@@ -13,6 +13,8 @@ Adding websites, files and folders
 
 -Header customiation
 
+-Searching through your stuff in LauncherX
+
 -Automatic updates
 
 -Fluent Design
