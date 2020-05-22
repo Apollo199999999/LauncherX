@@ -34,6 +34,6 @@ LauncherX uses the XAML Islands library in order to have the look and feel of a 
 
 ## Licensing
 
-LauncherX is protected under the MIT License. To view the license, visit [LICENSE.TXT](https://github.com/Apollo199999999/LauncherX/blob/master/LICENSE.txt)
+LauncherX is licensed under the MIT License. To view the license, visit [LICENSE.TXT](https://github.com/Apollo199999999/LauncherX/blob/master/LICENSE.txt)
 
 Copyright © 2020-present ClickPhase 
