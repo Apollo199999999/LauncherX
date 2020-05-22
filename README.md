@@ -9,8 +9,9 @@ Adding websites, files and folders
 -Automatic updates
 -Fluent Design
 
-[Imgur](https://i.imgur.com/E7fUsAX.png)
-[Imgur](https://i.imgur.com/oOsRgYw.png)
+![Dark Mode](https://i.imgur.com/E7fUsAX.png)
+
+![Light Mode](https://i.imgur.com/oOsRgYw.png)
 
 ## Minimum System Requirements
 -Windows 10 version 1903 and up
