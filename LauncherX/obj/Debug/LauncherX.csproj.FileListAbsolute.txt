@@ -1,0 +1,5 @@
+C:\Users\fligh\source\repos\LauncherX\LauncherX\obj\Debug\LauncherX.csprojAssemblyReference.cache
+C:\Users\fligh\source\repos\LauncherX\LauncherX\obj\Debug\MainWindow.g.cs
+C:\Users\fligh\source\repos\LauncherX\LauncherX\obj\Debug\App.g.cs
+C:\Users\fligh\source\repos\LauncherX\LauncherX\obj\Debug\LauncherX_MarkupCompile.cache
+C:\Users\fligh\source\repos\LauncherX\LauncherX\obj\Debug\LauncherX_MarkupCompile.lref

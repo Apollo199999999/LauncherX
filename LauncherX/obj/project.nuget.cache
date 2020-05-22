@@ -1,0 +1,19 @@
+{
+  "version": 2,
+  "dgSpecHash": "exv89W13R5wmWjDeGHtaKvp2FkvHCTOGYyJ5Htcb2uZ/FHBQO0AY+KbeUHj2fetAuGsNAOKS2UFznOuxKTHL2Q==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\fligh\\source\\repos\\LauncherX\\LauncherX\\LauncherX.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\fligh\\.nuget\\packages\\fluentwpf\\0.8.0\\fluentwpf.0.8.0.nupkg.sha512",
+    "C:\\Users\\fligh\\.nuget\\packages\\microsoft.toolkit.ui.xamlhost\\6.0.0\\microsoft.toolkit.ui.xamlhost.6.0.0.nupkg.sha512",
+    "C:\\Users\\fligh\\.nuget\\packages\\microsoft.toolkit.win32.ui.sdk\\6.0.0\\microsoft.toolkit.win32.ui.sdk.6.0.0.nupkg.sha512",
+    "C:\\Users\\fligh\\.nuget\\packages\\microsoft.toolkit.win32.ui.xamlapplication\\6.0.0\\microsoft.toolkit.win32.ui.xamlapplication.6.0.0.nupkg.sha512",
+    "C:\\Users\\fligh\\.nuget\\packages\\microsoft.toolkit.wpf.ui.controls\\6.0.0\\microsoft.toolkit.wpf.ui.controls.6.0.0.nupkg.sha512",
+    "C:\\Users\\fligh\\.nuget\\packages\\microsoft.toolkit.wpf.ui.xamlhost\\6.0.0\\microsoft.toolkit.wpf.ui.xamlhost.6.0.0.nupkg.sha512",
+    "C:\\Users\\fligh\\.nuget\\packages\\microsoft.vcrtforwarders.140\\1.0.2-rc\\microsoft.vcrtforwarders.140.1.0.2-rc.nupkg.sha512",
+    "C:\\Users\\fligh\\.nuget\\packages\\microsoft.windows.sdk.contracts\\10.0.18362.2005\\microsoft.windows.sdk.contracts.10.0.18362.2005.nupkg.sha512",
+    "C:\\Users\\fligh\\.nuget\\packages\\system.runtime.windowsruntime\\4.6.0\\system.runtime.windowsruntime.4.6.0.nupkg.sha512",
+    "C:\\Users\\fligh\\.nuget\\packages\\system.runtime.windowsruntime.ui.xaml\\4.6.0\\system.runtime.windowsruntime.ui.xaml.4.6.0.nupkg.sha512"
+  ],
+  "logs": []
+}

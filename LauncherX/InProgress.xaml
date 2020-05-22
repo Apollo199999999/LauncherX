@@ -1,0 +1,18 @@
+﻿<fw:AcrylicWindow x:Class="LauncherX.InProgress"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:fw="clr-namespace:SourceChord.FluentWPF;assembly=FluentWPF"
+        xmlns:local="clr-namespace:LauncherX"
+        mc:Ignorable="d"
+        Title="InProgress" Height="100" Width="400" ResizeMode="NoResize"  WindowStartupLocation="CenterScreen" Topmost="True" WindowStyle="None" AcrylicWindowStyle="None" TintOpacity="1" NoiseOpacity="0">
+    <Border BorderThickness="1" BorderBrush="DodgerBlue" >
+        <Grid Margin="0,0,0,0">
+            <TextBlock x:Name="label" Text="Adding your items, please wait..." TextWrapping="Wrap" TextAlignment="Center" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" FontSize="20" Width="378" Height="35"/>
+            <TextBlock x:Name="label1" Text="Do not close LauncherX" HorizontalAlignment="Center" Margin="0,0,0,10" VerticalAlignment="Bottom" Width="228" FontSize="20"/>
+
+        </Grid>
+    </Border>
+
+</fw:AcrylicWindow>
