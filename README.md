@@ -1,7 +1,8 @@
 # LauncherX
-LauncherX - Organise all your stuff!
 
-Project site: https://clickphase.weebly.com/launcherx.html
+### Project site: https://clickphase.weebly.com/launcherx.html
+
+LauncherX - Organise all your stuff!
 
 LauncherX is a Windows Program used to organize and access all of your files, folders, websites, and pretty much anything in a beautiful way.
 
