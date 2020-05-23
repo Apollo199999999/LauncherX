@@ -1,17 +1,19 @@
 # LauncherX
 LauncherX - Organise all your stuff!
 
-LauncherX is a Windows Program used to organize all of your files, folders, websites, and pretty much anything.
+Project site: https://clickphase.weebly.com/launcherx.html
+
+LauncherX is a Windows Program used to organize and access all of your files, folders, websites, and pretty much anything in a beautiful way.
 
 It supports:
 
-Adding websites, files and folders
+-Adding websites, files and folders
 
 -Light and Dark mode
 
 -Multiple Icon sizes
 
--Header customiation
+-Ability to change Header text 
 
 -Searching through your stuff in LauncherX
 
