@@ -22,7 +22,6 @@
           "net48"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\DotNetBar for Windows Forms": {},
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
@@ -46,10 +45,6 @@
             "Microsoft.Toolkit.Wpf.UI.XamlHost": {
               "target": "Package",
               "version": "[6.0.0, )"
-            },
-            "Microsoft.VCRTForwarders.140": {
-              "target": "Package",
-              "version": "[1.0.2-rc, )"
             }
           },
           "imports": [
