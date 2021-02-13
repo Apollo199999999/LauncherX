@@ -1,8 +1,3 @@
-C:\Users\fligh\source\repos\LauncherX\LauncherX\obj\Debug\LauncherX.csprojAssemblyReference.cache
-C:\Users\fligh\source\repos\LauncherX\LauncherX\obj\Debug\MainWindow.g.cs
-C:\Users\fligh\source\repos\LauncherX\LauncherX\obj\Debug\App.g.cs
-C:\Users\fligh\source\repos\LauncherX\LauncherX\obj\Debug\LauncherX_MarkupCompile.cache
-C:\Users\fligh\source\repos\LauncherX\LauncherX\obj\Debug\LauncherX_MarkupCompile.lref
 C:\Users\fligh\source\repos\LauncherX\LauncherX\bin\Debug\LauncherX.exe.config
 C:\Users\fligh\source\repos\LauncherX\LauncherX\bin\Debug\LauncherX.exe
 C:\Users\fligh\source\repos\LauncherX\LauncherX\bin\Debug\LauncherX.pdb
@@ -15,12 +10,17 @@ C:\Users\fligh\source\repos\LauncherX\LauncherX\bin\Debug\Microsoft.Toolkit.Wpf.
 C:\Users\fligh\source\repos\LauncherX\LauncherX\bin\Debug\Microsoft.Toolkit.Wpf.UI.XamlHost.dll
 C:\Users\fligh\source\repos\LauncherX\LauncherX\bin\Debug\Microsoft.Toolkit.Wpf.UI.XamlHost.pdb
 C:\Users\fligh\source\repos\LauncherX\LauncherX\bin\Debug\Microsoft.Toolkit.Win32.UI.XamlHost.winmd
+C:\Users\fligh\source\repos\LauncherX\LauncherX\obj\Debug\LauncherX.csprojAssemblyReference.cache
 C:\Users\fligh\source\repos\LauncherX\LauncherX\obj\Debug\Interop.Shell32.dll
 C:\Users\fligh\source\repos\LauncherX\LauncherX\obj\Debug\LauncherX.csproj.ResolveComReference.cache
 C:\Users\fligh\source\repos\LauncherX\LauncherX\obj\Debug\AddItemsErrorDialog.g.cs
 C:\Users\fligh\source\repos\LauncherX\LauncherX\obj\Debug\InProgress.g.cs
+C:\Users\fligh\source\repos\LauncherX\LauncherX\obj\Debug\MainWindow.g.cs
 C:\Users\fligh\source\repos\LauncherX\LauncherX\obj\Debug\SettingsWindow.g.cs
 C:\Users\fligh\source\repos\LauncherX\LauncherX\obj\Debug\WebsiteDialog.g.cs
+C:\Users\fligh\source\repos\LauncherX\LauncherX\obj\Debug\App.g.cs
+C:\Users\fligh\source\repos\LauncherX\LauncherX\obj\Debug\LauncherX_MarkupCompile.cache
+C:\Users\fligh\source\repos\LauncherX\LauncherX\obj\Debug\LauncherX_MarkupCompile.lref
 C:\Users\fligh\source\repos\LauncherX\LauncherX\obj\Debug\App.baml
 C:\Users\fligh\source\repos\LauncherX\LauncherX\obj\Debug\AddItemsErrorDialog.baml
 C:\Users\fligh\source\repos\LauncherX\LauncherX\obj\Debug\InProgress.baml

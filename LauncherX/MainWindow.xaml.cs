@@ -71,7 +71,7 @@ namespace LauncherX
 
 
 
-    public partial class MainWindow 
+    public partial class MainWindow
     {
         [DllImport("user32.dll")]
         internal static extern int SetWindowCompositionAttribute(IntPtr hwnd, ref WindowCompositionAttributeData data);
@@ -1329,7 +1329,7 @@ namespace LauncherX
             //show settings window
             SettingsWindow sw = new SettingsWindow();
             sw.Closing += Sw_Closing;
-            sw.Show();
+            sw.ShowDialog();
         }
 
         private void Sw_Closing(object sender, System.ComponentModel.CancelEventArgs e)

@@ -18,7 +18,7 @@
         <Button x:Name="CloseButton" Content="Save and Exit" HorizontalAlignment="Right" Margin="0,0,10,5.5" VerticalAlignment="Bottom" Width="100" Height="30" FontSize="13" Click="CloseButton_Click" />
         <TextBlock x:Name="changeHeaderTextHeader" HorizontalAlignment="Left" Margin="10,115,0,0" TextWrapping="Wrap" Text="Change Header Text" VerticalAlignment="Top" FontSize="12" FontWeight="Normal"/>
         <TextBox x:Name="changeHeaderTextTextBox" HorizontalAlignment="Left" Height="25" Margin="10,135,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="335" FontSize="13" TextChanged="changeHeaderTextTextBox_TextChanged"/>
-        <TextBlock x:Name="textBlock2" HorizontalAlignment="Center" Margin="0,256,0,0" TextWrapping="Wrap" Text="Version 1.0" VerticalAlignment="Top"/>
+        <TextBlock x:Name="textBlock2" HorizontalAlignment="Center" Margin="0,256,0,0" TextWrapping="Wrap" Text="Version 1.0.1" VerticalAlignment="Top"/>
         <TextBlock x:Name="textBlock3" HorizontalAlignment="Center" Margin="0,276,0,0" TextWrapping="Wrap" Text="Copyright © 2020-present ClickPhase" VerticalAlignment="Top" Cursor=""/>
 
         <Grid x:Name="LogoContainer" HorizontalAlignment="Center" Height="32" Margin="0,215,0,0" VerticalAlignment="Top" Width="172">

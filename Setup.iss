@@ -33,6 +33,9 @@ VersionInfoVersion = 1.0.1
 UninstallDisplayIcon={app}\LauncherX.exe
 UninstallDisplayName=LauncherX
 
+[Tasks]
+Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{cm:AdditionalIcons}"; Flags: unchecked
+
 [Languages]
 Name: "english"; MessagesFile: "compiler:Default.isl"
 
@@ -42,4 +45,5 @@ Source: "C:\Users\fligh\source\repos\LauncherX\LauncherX\bin\Debug\*"; DestDir: 
 
 [Icons]
 Name: "{autoprograms}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"
+
 

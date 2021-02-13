@@ -11,11 +11,11 @@
           "lib/net45/FluentWPF.dll": {}
         }
       },
-      "Microsoft.Toolkit.UI.XamlHost/6.0.0": {
+      "Microsoft.Toolkit.UI.XamlHost/6.1.2": {
         "type": "package",
         "dependencies": {
-          "Microsoft.Toolkit.Win32.UI.SDK": "6.0.0",
-          "Microsoft.Toolkit.Win32.UI.XamlApplication": "6.0.0",
+          "Microsoft.Toolkit.Win32.UI.SDK": "6.1.2",
+          "Microsoft.Toolkit.Win32.UI.XamlApplication": "6.1.2",
           "Microsoft.Windows.SDK.Contracts": "10.0.18362.2005"
         },
         "compile": {
@@ -29,14 +29,14 @@
           "build/Microsoft.Toolkit.UI.XamlHost.targets": {}
         }
       },
-      "Microsoft.Toolkit.Win32.UI.SDK/6.0.0": {
+      "Microsoft.Toolkit.Win32.UI.SDK/6.1.2": {
         "type": "package",
         "build": {
           "build/Microsoft.Toolkit.Win32.UI.SDK.props": {},
           "build/Microsoft.Toolkit.Win32.UI.SDK.targets": {}
         }
       },
-      "Microsoft.Toolkit.Win32.UI.XamlApplication/6.0.0": {
+      "Microsoft.Toolkit.Win32.UI.XamlApplication/6.1.2": {
         "type": "package",
         "build": {
           "build/Microsoft.Toolkit.Win32.UI.XamlApplication.props": {},
@@ -77,10 +77,10 @@
           }
         }
       },
-      "Microsoft.Toolkit.Wpf.UI.Controls/6.0.0": {
+      "Microsoft.Toolkit.Wpf.UI.Controls/6.1.2": {
         "type": "package",
         "dependencies": {
-          "Microsoft.Toolkit.Wpf.UI.XamlHost": "6.0.0",
+          "Microsoft.Toolkit.Wpf.UI.XamlHost": "6.1.2",
           "Microsoft.Windows.SDK.Contracts": "10.0.18362.2005"
         },
         "frameworkAssemblies": [
@@ -101,11 +101,11 @@
           "lib/net462/Microsoft.Toolkit.Wpf.UI.Controls.dll": {}
         }
       },
-      "Microsoft.Toolkit.Wpf.UI.XamlHost/6.0.0": {
+      "Microsoft.Toolkit.Wpf.UI.XamlHost/6.1.2": {
         "type": "package",
         "dependencies": {
-          "Microsoft.Toolkit.UI.XamlHost": "6.0.0",
-          "Microsoft.Toolkit.Win32.UI.XamlApplication": "6.0.0",
+          "Microsoft.Toolkit.UI.XamlHost": "6.1.2",
+          "Microsoft.Toolkit.Win32.UI.XamlApplication": "6.1.2",
           "Microsoft.Windows.SDK.Contracts": "10.0.18362.2005"
         },
         "frameworkAssemblies": [
@@ -124,7 +124,7 @@
           "lib/net462/Microsoft.Toolkit.Wpf.UI.XamlHost.dll": {}
         }
       },
-      "Microsoft.VCRTForwarders.140/1.0.2-rc": {
+      "Microsoft.VCRTForwarders.140/1.0.6": {
         "type": "package",
         "build": {
           "build/net45/Microsoft.VCRTForwarders.140.targets": {}
@@ -468,11 +468,11 @@
           "lib/net45/FluentWPF.dll": {}
         }
       },
-      "Microsoft.Toolkit.UI.XamlHost/6.0.0": {
+      "Microsoft.Toolkit.UI.XamlHost/6.1.2": {
         "type": "package",
         "dependencies": {
-          "Microsoft.Toolkit.Win32.UI.SDK": "6.0.0",
-          "Microsoft.Toolkit.Win32.UI.XamlApplication": "6.0.0",
+          "Microsoft.Toolkit.Win32.UI.SDK": "6.1.2",
+          "Microsoft.Toolkit.Win32.UI.XamlApplication": "6.1.2",
           "Microsoft.Windows.SDK.Contracts": "10.0.18362.2005"
         },
         "compile": {
@@ -486,24 +486,24 @@
           "build/Microsoft.Toolkit.UI.XamlHost.targets": {}
         }
       },
-      "Microsoft.Toolkit.Win32.UI.SDK/6.0.0": {
+      "Microsoft.Toolkit.Win32.UI.SDK/6.1.2": {
         "type": "package",
         "build": {
           "build/Microsoft.Toolkit.Win32.UI.SDK.props": {},
           "build/Microsoft.Toolkit.Win32.UI.SDK.targets": {}
         }
       },
-      "Microsoft.Toolkit.Win32.UI.XamlApplication/6.0.0": {
+      "Microsoft.Toolkit.Win32.UI.XamlApplication/6.1.2": {
         "type": "package",
         "build": {
           "build/Microsoft.Toolkit.Win32.UI.XamlApplication.props": {},
           "build/Microsoft.Toolkit.Win32.UI.XamlApplication.targets": {}
         }
       },
-      "Microsoft.Toolkit.Wpf.UI.Controls/6.0.0": {
+      "Microsoft.Toolkit.Wpf.UI.Controls/6.1.2": {
         "type": "package",
         "dependencies": {
-          "Microsoft.Toolkit.Wpf.UI.XamlHost": "6.0.0",
+          "Microsoft.Toolkit.Wpf.UI.XamlHost": "6.1.2",
           "Microsoft.Windows.SDK.Contracts": "10.0.18362.2005"
         },
         "frameworkAssemblies": [
@@ -524,11 +524,11 @@
           "lib/net462/Microsoft.Toolkit.Wpf.UI.Controls.dll": {}
         }
       },
-      "Microsoft.Toolkit.Wpf.UI.XamlHost/6.0.0": {
+      "Microsoft.Toolkit.Wpf.UI.XamlHost/6.1.2": {
         "type": "package",
         "dependencies": {
-          "Microsoft.Toolkit.UI.XamlHost": "6.0.0",
-          "Microsoft.Toolkit.Win32.UI.XamlApplication": "6.0.0",
+          "Microsoft.Toolkit.UI.XamlHost": "6.1.2",
+          "Microsoft.Toolkit.Win32.UI.XamlApplication": "6.1.2",
           "Microsoft.Windows.SDK.Contracts": "10.0.18362.2005"
         },
         "frameworkAssemblies": [
@@ -547,7 +547,7 @@
           "lib/net462/Microsoft.Toolkit.Wpf.UI.XamlHost.dll": {}
         }
       },
-      "Microsoft.VCRTForwarders.140/1.0.2-rc": {
+      "Microsoft.VCRTForwarders.140/1.0.6": {
         "type": "package",
         "build": {
           "build/net45/Microsoft.VCRTForwarders.140.targets": {}
@@ -689,11 +689,11 @@
           "lib/net45/FluentWPF.dll": {}
         }
       },
-      "Microsoft.Toolkit.UI.XamlHost/6.0.0": {
+      "Microsoft.Toolkit.UI.XamlHost/6.1.2": {
         "type": "package",
         "dependencies": {
-          "Microsoft.Toolkit.Win32.UI.SDK": "6.0.0",
-          "Microsoft.Toolkit.Win32.UI.XamlApplication": "6.0.0",
+          "Microsoft.Toolkit.Win32.UI.SDK": "6.1.2",
+          "Microsoft.Toolkit.Win32.UI.XamlApplication": "6.1.2",
           "Microsoft.Windows.SDK.Contracts": "10.0.18362.2005"
         },
         "compile": {
@@ -707,24 +707,24 @@
           "build/Microsoft.Toolkit.UI.XamlHost.targets": {}
         }
       },
-      "Microsoft.Toolkit.Win32.UI.SDK/6.0.0": {
+      "Microsoft.Toolkit.Win32.UI.SDK/6.1.2": {
         "type": "package",
         "build": {
           "build/Microsoft.Toolkit.Win32.UI.SDK.props": {},
           "build/Microsoft.Toolkit.Win32.UI.SDK.targets": {}
         }
       },
-      "Microsoft.Toolkit.Win32.UI.XamlApplication/6.0.0": {
+      "Microsoft.Toolkit.Win32.UI.XamlApplication/6.1.2": {
         "type": "package",
         "build": {
           "build/Microsoft.Toolkit.Win32.UI.XamlApplication.props": {},
           "build/Microsoft.Toolkit.Win32.UI.XamlApplication.targets": {}
         }
       },
-      "Microsoft.Toolkit.Wpf.UI.Controls/6.0.0": {
+      "Microsoft.Toolkit.Wpf.UI.Controls/6.1.2": {
         "type": "package",
         "dependencies": {
-          "Microsoft.Toolkit.Wpf.UI.XamlHost": "6.0.0",
+          "Microsoft.Toolkit.Wpf.UI.XamlHost": "6.1.2",
           "Microsoft.Windows.SDK.Contracts": "10.0.18362.2005"
         },
         "frameworkAssemblies": [
@@ -745,11 +745,11 @@
           "lib/net462/Microsoft.Toolkit.Wpf.UI.Controls.dll": {}
         }
       },
-      "Microsoft.Toolkit.Wpf.UI.XamlHost/6.0.0": {
+      "Microsoft.Toolkit.Wpf.UI.XamlHost/6.1.2": {
         "type": "package",
         "dependencies": {
-          "Microsoft.Toolkit.UI.XamlHost": "6.0.0",
-          "Microsoft.Toolkit.Win32.UI.XamlApplication": "6.0.0",
+          "Microsoft.Toolkit.UI.XamlHost": "6.1.2",
+          "Microsoft.Toolkit.Win32.UI.XamlApplication": "6.1.2",
           "Microsoft.Windows.SDK.Contracts": "10.0.18362.2005"
         },
         "frameworkAssemblies": [
@@ -768,7 +768,7 @@
           "lib/net462/Microsoft.Toolkit.Wpf.UI.XamlHost.dll": {}
         }
       },
-      "Microsoft.VCRTForwarders.140/1.0.2-rc": {
+      "Microsoft.VCRTForwarders.140/1.0.6": {
         "type": "package",
         "build": {
           "build/net45/Microsoft.VCRTForwarders.140.targets": {}
@@ -910,11 +910,11 @@
           "lib/net45/FluentWPF.dll": {}
         }
       },
-      "Microsoft.Toolkit.UI.XamlHost/6.0.0": {
+      "Microsoft.Toolkit.UI.XamlHost/6.1.2": {
         "type": "package",
         "dependencies": {
-          "Microsoft.Toolkit.Win32.UI.SDK": "6.0.0",
-          "Microsoft.Toolkit.Win32.UI.XamlApplication": "6.0.0",
+          "Microsoft.Toolkit.Win32.UI.SDK": "6.1.2",
+          "Microsoft.Toolkit.Win32.UI.XamlApplication": "6.1.2",
           "Microsoft.Windows.SDK.Contracts": "10.0.18362.2005"
         },
         "compile": {
@@ -928,24 +928,24 @@
           "build/Microsoft.Toolkit.UI.XamlHost.targets": {}
         }
       },
-      "Microsoft.Toolkit.Win32.UI.SDK/6.0.0": {
+      "Microsoft.Toolkit.Win32.UI.SDK/6.1.2": {
         "type": "package",
         "build": {
           "build/Microsoft.Toolkit.Win32.UI.SDK.props": {},
           "build/Microsoft.Toolkit.Win32.UI.SDK.targets": {}
         }
       },
-      "Microsoft.Toolkit.Win32.UI.XamlApplication/6.0.0": {
+      "Microsoft.Toolkit.Win32.UI.XamlApplication/6.1.2": {
         "type": "package",
         "build": {
           "build/Microsoft.Toolkit.Win32.UI.XamlApplication.props": {},
           "build/Microsoft.Toolkit.Win32.UI.XamlApplication.targets": {}
         }
       },
-      "Microsoft.Toolkit.Wpf.UI.Controls/6.0.0": {
+      "Microsoft.Toolkit.Wpf.UI.Controls/6.1.2": {
         "type": "package",
         "dependencies": {
-          "Microsoft.Toolkit.Wpf.UI.XamlHost": "6.0.0",
+          "Microsoft.Toolkit.Wpf.UI.XamlHost": "6.1.2",
           "Microsoft.Windows.SDK.Contracts": "10.0.18362.2005"
         },
         "frameworkAssemblies": [
@@ -966,11 +966,11 @@
           "lib/net462/Microsoft.Toolkit.Wpf.UI.Controls.dll": {}
         }
       },
-      "Microsoft.Toolkit.Wpf.UI.XamlHost/6.0.0": {
+      "Microsoft.Toolkit.Wpf.UI.XamlHost/6.1.2": {
         "type": "package",
         "dependencies": {
-          "Microsoft.Toolkit.UI.XamlHost": "6.0.0",
-          "Microsoft.Toolkit.Win32.UI.XamlApplication": "6.0.0",
+          "Microsoft.Toolkit.UI.XamlHost": "6.1.2",
+          "Microsoft.Toolkit.Win32.UI.XamlApplication": "6.1.2",
           "Microsoft.Windows.SDK.Contracts": "10.0.18362.2005"
         },
         "frameworkAssemblies": [
@@ -989,7 +989,7 @@
           "lib/net462/Microsoft.Toolkit.Wpf.UI.XamlHost.dll": {}
         }
       },
-      "Microsoft.VCRTForwarders.140/1.0.2-rc": {
+      "Microsoft.VCRTForwarders.140/1.0.6": {
         "type": "package",
         "build": {
           "build/net45/Microsoft.VCRTForwarders.140.targets": {}
@@ -1137,10 +1137,10 @@
         "lib/netcoreapp3.0/FluentWPF.dll"
       ]
     },
-    "Microsoft.Toolkit.UI.XamlHost/6.0.0": {
-      "sha512": "BUf+NIwdswWhf9jb8SpAlHKqYRu4GJImAdcBBVezEYIT3+NJopdBpUvwzZaE1mfJWS2dCWcyWjEcu2x3Cs3Rug==",
+    "Microsoft.Toolkit.UI.XamlHost/6.1.2": {
+      "sha512": "/cMQUJPxl+pASVOO47T8zml9YuHLyejP5ct0OUN7OVshrJ2n/QRMDVktPxbMSla8Rl3Jnpn2n3qyHjVkNBt0Og==",
       "type": "package",
-      "path": "microsoft.toolkit.ui.xamlhost/6.0.0",
+      "path": "microsoft.toolkit.ui.xamlhost/6.1.2",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -1152,14 +1152,14 @@
         "lib/netcoreapp3.0/Microsoft.Toolkit.Win32.UI.XamlHost.Managed.dll",
         "lib/netcoreapp3.0/Microsoft.Toolkit.Win32.UI.XamlHost.Managed.pdb",
         "lib/netcoreapp3.0/Microsoft.Toolkit.Win32.UI.XamlHost.Managed.xml",
-        "microsoft.toolkit.ui.xamlhost.6.0.0.nupkg.sha512",
+        "microsoft.toolkit.ui.xamlhost.6.1.2.nupkg.sha512",
         "microsoft.toolkit.ui.xamlhost.nuspec"
       ]
     },
-    "Microsoft.Toolkit.Win32.UI.SDK/6.0.0": {
-      "sha512": "8IaW569NRq2heCnKrKIK3kWdFbwZXQE8JMM0XagK55qH0FiwSS7isrw8WPxYdkcvN98w66qNW9DiLWwNbcjrOA==",
+    "Microsoft.Toolkit.Win32.UI.SDK/6.1.2": {
+      "sha512": "pqfhHMfbP7ZzGHoN3yvutUmjSZNtXlQ2YompmdEiY1w9FuaanWorM8az2DHmzrwlTzfDDJ4MSxvFwa54tCKgjg==",
       "type": "package",
-      "path": "microsoft.toolkit.win32.ui.sdk/6.0.0",
+      "path": "microsoft.toolkit.win32.ui.sdk/6.1.2",
       "hasTools": true,
       "files": [
         ".nupkg.metadata",
@@ -1167,17 +1167,17 @@
         "build/Microsoft.Toolkit.Win32.UI.SDK.props",
         "build/Microsoft.Toolkit.Win32.UI.SDK.targets",
         "build/Microsoft.WinRT.Win32.targets",
-        "microsoft.toolkit.win32.ui.sdk.6.0.0.nupkg.sha512",
+        "microsoft.toolkit.win32.ui.sdk.6.1.2.nupkg.sha512",
         "microsoft.toolkit.win32.ui.sdk.nuspec",
         "tools/midlrtmd.dll",
         "tools/mt.exe",
         "tools/mt.exe.config"
       ]
     },
-    "Microsoft.Toolkit.Win32.UI.XamlApplication/6.0.0": {
-      "sha512": "/WHIske3Z1YNaaCFFuzq2pa9Vl4o6lon9EVm9z1YqSMBb7Uee1yFeD4irgBABsHOpDvjc/ZCNb6lTWL5AY3ZTw==",
+    "Microsoft.Toolkit.Win32.UI.XamlApplication/6.1.2": {
+      "sha512": "3n4p27LTp8TLJWUdpVDKtrCESBSNagYB8MCJPYx+sYfBviqUWLqKekMes2ZanyxVAg9az7rWhIDdBiRLwdkFNg==",
       "type": "package",
-      "path": "microsoft.toolkit.win32.ui.xamlapplication/6.0.0",
+      "path": "microsoft.toolkit.win32.ui.xamlapplication/6.1.2",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -1187,7 +1187,7 @@
         "build/native/Microsoft.Toolkit.Win32.UI.XamlApplication.targets",
         "lib/uap10.0/Microsoft.Toolkit.Win32.UI.XamlHost.winmd",
         "lib/uap10.0/Microsoft.Toolkit.Win32.UI.XamlHost.xml",
-        "microsoft.toolkit.win32.ui.xamlapplication.6.0.0.nupkg.sha512",
+        "microsoft.toolkit.win32.ui.xamlapplication.6.1.2.nupkg.sha512",
         "microsoft.toolkit.win32.ui.xamlapplication.nuspec",
         "runtimes/win10-arm/native/Microsoft.Toolkit.Win32.UI.XamlHost.dll",
         "runtimes/win10-arm/native/Microsoft.Toolkit.Win32.UI.XamlHost.pri",
@@ -1199,10 +1199,10 @@
         "runtimes/win10-x86/native/Microsoft.Toolkit.Win32.UI.XamlHost.pri"
       ]
     },
-    "Microsoft.Toolkit.Wpf.UI.Controls/6.0.0": {
-      "sha512": "1/iQyEyEHQssNsTQZbTXbX7mgFUTpmJnRVdXDCHK9mC40paESQv+e6WL7HsfWThJDkzqC4cSwo9Mkg7jUjVw7g==",
+    "Microsoft.Toolkit.Wpf.UI.Controls/6.1.2": {
+      "sha512": "gaFIEevxjzL8wjyh9DY1FprP5HtEOKR13Wp0SVd0JVA6/Fxr+4NHcSPBVdMSnglD8NNuN9R293WSd98CCbCwJw==",
       "type": "package",
-      "path": "microsoft.toolkit.wpf.ui.controls/6.0.0",
+      "path": "microsoft.toolkit.wpf.ui.controls/6.1.2",
       "hasTools": true,
       "files": [
         ".nupkg.metadata",
@@ -1213,15 +1213,15 @@
         "lib/netcoreapp3.0/Microsoft.Toolkit.Wpf.UI.Controls.dll",
         "lib/netcoreapp3.0/Microsoft.Toolkit.Wpf.UI.Controls.pdb",
         "lib/netcoreapp3.0/Microsoft.Toolkit.Wpf.UI.Controls.xml",
-        "microsoft.toolkit.wpf.ui.controls.6.0.0.nupkg.sha512",
+        "microsoft.toolkit.wpf.ui.controls.6.1.2.nupkg.sha512",
         "microsoft.toolkit.wpf.ui.controls.nuspec",
         "tools/VisualStudioToolsManifest.xml"
       ]
     },
-    "Microsoft.Toolkit.Wpf.UI.XamlHost/6.0.0": {
-      "sha512": "XdFRsjWQZ7T/AYaKblgaQ0jZTHUaoO+3JRqLFv52vhb/VGW0GlFwAll4bjtFcmNPS418HYYWQmXAoqlDKuiB2g==",
+    "Microsoft.Toolkit.Wpf.UI.XamlHost/6.1.2": {
+      "sha512": "pGm4bQ2oy8qZEmZ3H5bQOdDMyzIMCAb9huHyK7xsziK2+JGVYDhgJL1m2UhUhOm8n5jryC5aeAzlkgJlgXvZdg==",
       "type": "package",
-      "path": "microsoft.toolkit.wpf.ui.xamlhost/6.0.0",
+      "path": "microsoft.toolkit.wpf.ui.xamlhost/6.1.2",
       "hasTools": true,
       "files": [
         ".nupkg.metadata",
@@ -1232,20 +1232,22 @@
         "lib/netcoreapp3.0/Microsoft.Toolkit.Wpf.UI.XamlHost.dll",
         "lib/netcoreapp3.0/Microsoft.Toolkit.Wpf.UI.XamlHost.pdb",
         "lib/netcoreapp3.0/Microsoft.Toolkit.Wpf.UI.XamlHost.xml",
-        "microsoft.toolkit.wpf.ui.xamlhost.6.0.0.nupkg.sha512",
+        "microsoft.toolkit.wpf.ui.xamlhost.6.1.2.nupkg.sha512",
         "microsoft.toolkit.wpf.ui.xamlhost.nuspec",
         "tools/VisualStudioToolsManifest.xml"
       ]
     },
-    "Microsoft.VCRTForwarders.140/1.0.2-rc": {
-      "sha512": "/r+sjtEeCIGyDhobIZ5hSmYhC/dSyGZxf1SxYJpElUhB0LMCktOMFs9gXrauXypIFECpVynNyVjAmJt6hjJ5oQ==",
+    "Microsoft.VCRTForwarders.140/1.0.6": {
+      "sha512": "CRemcSRRhH5wtdovxqcz3AgjttqgEXJzJuXSCjNStxW/JSm54xM7kSkwVb3tYen/mGCnGv/+PHvpEaliMEUxYA==",
       "type": "package",
-      "path": "microsoft.vcrtforwarders.140/1.0.2-rc",
+      "path": "microsoft.vcrtforwarders.140/1.0.6",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "Unity/Editor/InitVCRTForwarders.cs",
         "Unity/Editor/InitVCRTForwarders.cs.meta",
+        "Unity/Editor/Microsoft.VCRTForwarders.140.asmdef",
+        "Unity/Editor/Microsoft.VCRTForwarders.140.asmdef.meta",
         "Unity/x64/concrt140_app.dll",
         "Unity/x64/concrt140_app.dll.meta",
         "Unity/x64/msvcp140_1_app.dll",
@@ -1267,7 +1269,7 @@
         "build/native/Microsoft.VCRTForwarders.140.targets",
         "build/net45/Microsoft.VCRTForwarders.140.targets",
         "build/netcoreapp2.0/Microsoft.VCRTForwarders.140.targets",
-        "microsoft.vcrtforwarders.140.1.0.2-rc.nupkg.sha512",
+        "microsoft.vcrtforwarders.140.1.0.6.nupkg.sha512",
         "microsoft.vcrtforwarders.140.nuspec",
         "runtimes/win10-arm64/native/debug/concrt140d_app.dll",
         "runtimes/win10-arm64/native/debug/msvcp140_1d_app.dll",
@@ -1636,9 +1638,9 @@
   "projectFileDependencyGroups": {
     ".NETFramework,Version=v4.8": [
       "FluentWPF >= 0.8.0",
-      "Microsoft.Toolkit.Wpf.UI.Controls >= 6.0.0",
-      "Microsoft.Toolkit.Wpf.UI.XamlHost >= 6.0.0",
-      "Microsoft.VCRTForwarders.140 >= 1.0.2-rc"
+      "Microsoft.Toolkit.Wpf.UI.Controls >= 6.1.2",
+      "Microsoft.Toolkit.Wpf.UI.XamlHost >= 6.1.2",
+      "Microsoft.VCRTForwarders.140 >= 1.0.6"
     ]
   },
   "packageFolders": {
@@ -1680,15 +1682,15 @@
           },
           "Microsoft.Toolkit.Wpf.UI.Controls": {
             "target": "Package",
-            "version": "[6.0.0, )"
+            "version": "[6.1.2, )"
           },
           "Microsoft.Toolkit.Wpf.UI.XamlHost": {
             "target": "Package",
-            "version": "[6.0.0, )"
+            "version": "[6.1.2, )"
           },
           "Microsoft.VCRTForwarders.140": {
             "target": "Package",
-            "version": "[1.0.2-rc, )"
+            "version": "[1.0.6, )"
           }
         },
         "imports": [

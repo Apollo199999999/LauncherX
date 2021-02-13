@@ -40,15 +40,15 @@
             },
             "Microsoft.Toolkit.Wpf.UI.Controls": {
               "target": "Package",
-              "version": "[6.0.0, )"
+              "version": "[6.1.2, )"
             },
             "Microsoft.Toolkit.Wpf.UI.XamlHost": {
               "target": "Package",
-              "version": "[6.0.0, )"
+              "version": "[6.1.2, )"
             },
             "Microsoft.VCRTForwarders.140": {
               "target": "Package",
-              "version": "[1.0.2-rc, )"
+              "version": "[1.0.6, )"
             }
           },
           "imports": [
