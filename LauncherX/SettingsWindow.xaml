@@ -4,7 +4,8 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:LauncherX"
-        xmlns:XamlHost="clr-namespace:Microsoft.Toolkit.Wpf.UI.XamlHost;assembly=Microsoft.Toolkit.Wpf.UI.XamlHost" x:Class="LauncherX.SettingsWindow"
+        xmlns:XamlHost="clr-namespace:Microsoft.Toolkit.Wpf.UI.XamlHost;assembly=Microsoft.Toolkit.Wpf.UI.XamlHost" 
+        x:Class="LauncherX.SettingsWindow"
         mc:Ignorable="d"
         xmlns:fw="clr-namespace:SourceChord.FluentWPF;assembly=FluentWPF"
         Title="Settings" Height="490" Width="355" ResizeMode="NoResize" AcrylicWindowStyle="None" TintOpacity="2" NoiseOpacity="0" WindowStyle="None" MouseDown="AcrylicWindow_MouseDown">

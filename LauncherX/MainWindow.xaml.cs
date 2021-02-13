@@ -1329,7 +1329,7 @@ namespace LauncherX
             //show settings window
             SettingsWindow sw = new SettingsWindow();
             sw.Closing += Sw_Closing;
-            sw.ShowDialog();
+            sw.Show();
         }
 
         private void Sw_Closing(object sender, System.ComponentModel.CancelEventArgs e)
