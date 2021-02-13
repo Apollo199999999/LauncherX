@@ -8,28 +8,28 @@ LauncherX is a Windows Program used to organize and access all of your files, fo
 
 It supports:
 
--Adding websites, files and folders
+* Adding websites, files and folders
 
--Light and Dark mode
+* Light and Dark mode
 
--Multiple Icon sizes
+* Multiple Icon sizes
 
--Ability to change Header text 
+* Ability to change Header text 
 
--Searching through your stuff in LauncherX
+* Searching through your stuff in LauncherX
 
--Automatic updates
+* Automatic updates
 
--Fluent Design
+* Fluent Design
 
 ![Dark Mode](https://i.imgur.com/E7fUsAX.png)
 
 ![Light Mode](https://i.imgur.com/oOsRgYw.png)
 
 ## Minimum System Requirements
--Windows 10 version 1903 and up
+* 64-bit Windows 10 version 1903 and up
 
--20MB Free disk space
+* 20MB Free disk space
 
 ## Compiling the code
 
