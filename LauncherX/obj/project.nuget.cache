@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "H4T67vSopKfHlDiX5URzynQsjhpLTqtQSZL+gjkZ+QUdTYPGSnpiQXJQ3d51jRUcrXYGW2zsqa+pewkiYdDrOg==",
+  "dgSpecHash": "l4HOqkWrUmecNtGNABKKTAL8iLyxw4IZ6zY1zOGd39B6eEvSZZAevcpP/2NFYJXSjLUJy5nqZvb/4TscecJ/Hg==",
   "success": true,
   "projectFilePath": "C:\\Users\\fligh\\source\\repos\\LauncherX\\LauncherX\\LauncherX.csproj",
   "expectedPackageFiles": [
@@ -10,6 +10,7 @@
     "C:\\Users\\fligh\\.nuget\\packages\\microsoft.toolkit.win32.ui.xamlapplication\\6.0.0\\microsoft.toolkit.win32.ui.xamlapplication.6.0.0.nupkg.sha512",
     "C:\\Users\\fligh\\.nuget\\packages\\microsoft.toolkit.wpf.ui.controls\\6.0.0\\microsoft.toolkit.wpf.ui.controls.6.0.0.nupkg.sha512",
     "C:\\Users\\fligh\\.nuget\\packages\\microsoft.toolkit.wpf.ui.xamlhost\\6.0.0\\microsoft.toolkit.wpf.ui.xamlhost.6.0.0.nupkg.sha512",
+    "C:\\Users\\fligh\\.nuget\\packages\\microsoft.vcrtforwarders.140\\1.0.2-rc\\microsoft.vcrtforwarders.140.1.0.2-rc.nupkg.sha512",
     "C:\\Users\\fligh\\.nuget\\packages\\microsoft.windows.sdk.contracts\\10.0.18362.2005\\microsoft.windows.sdk.contracts.10.0.18362.2005.nupkg.sha512",
     "C:\\Users\\fligh\\.nuget\\packages\\system.runtime.windowsruntime\\4.6.0\\system.runtime.windowsruntime.4.6.0.nupkg.sha512",
     "C:\\Users\\fligh\\.nuget\\packages\\system.runtime.windowsruntime.ui.xaml\\4.6.0\\system.runtime.windowsruntime.ui.xaml.4.6.0.nupkg.sha512"

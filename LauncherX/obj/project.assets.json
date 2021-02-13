@@ -124,6 +124,214 @@
           "lib/net462/Microsoft.Toolkit.Wpf.UI.XamlHost.dll": {}
         }
       },
+      "Microsoft.VCRTForwarders.140/1.0.2-rc": {
+        "type": "package",
+        "build": {
+          "build/net45/Microsoft.VCRTForwarders.140.targets": {}
+        },
+        "runtimeTargets": {
+          "runtimes/win10-arm64/native/debug/concrt140d_app.dll": {
+            "assetType": "native",
+            "rid": "win10-arm64"
+          },
+          "runtimes/win10-arm64/native/debug/msvcp140_1d_app.dll": {
+            "assetType": "native",
+            "rid": "win10-arm64"
+          },
+          "runtimes/win10-arm64/native/debug/msvcp140_2d_app.dll": {
+            "assetType": "native",
+            "rid": "win10-arm64"
+          },
+          "runtimes/win10-arm64/native/debug/msvcp140d_app.dll": {
+            "assetType": "native",
+            "rid": "win10-arm64"
+          },
+          "runtimes/win10-arm64/native/debug/vcamp140d_app.dll": {
+            "assetType": "native",
+            "rid": "win10-arm64"
+          },
+          "runtimes/win10-arm64/native/debug/vccorlib140d_app.dll": {
+            "assetType": "native",
+            "rid": "win10-arm64"
+          },
+          "runtimes/win10-arm64/native/debug/vcomp140d_app.dll": {
+            "assetType": "native",
+            "rid": "win10-arm64"
+          },
+          "runtimes/win10-arm64/native/debug/vcruntime140d_app.dll": {
+            "assetType": "native",
+            "rid": "win10-arm64"
+          },
+          "runtimes/win10-arm64/native/release/concrt140_app.dll": {
+            "assetType": "native",
+            "rid": "win10-arm64"
+          },
+          "runtimes/win10-arm64/native/release/msvcp140_1_app.dll": {
+            "assetType": "native",
+            "rid": "win10-arm64"
+          },
+          "runtimes/win10-arm64/native/release/msvcp140_2_app.dll": {
+            "assetType": "native",
+            "rid": "win10-arm64"
+          },
+          "runtimes/win10-arm64/native/release/msvcp140_app.dll": {
+            "assetType": "native",
+            "rid": "win10-arm64"
+          },
+          "runtimes/win10-arm64/native/release/vcamp140_app.dll": {
+            "assetType": "native",
+            "rid": "win10-arm64"
+          },
+          "runtimes/win10-arm64/native/release/vccorlib140_app.dll": {
+            "assetType": "native",
+            "rid": "win10-arm64"
+          },
+          "runtimes/win10-arm64/native/release/vcomp140_app.dll": {
+            "assetType": "native",
+            "rid": "win10-arm64"
+          },
+          "runtimes/win10-arm64/native/release/vcruntime140_app.dll": {
+            "assetType": "native",
+            "rid": "win10-arm64"
+          },
+          "runtimes/win10-x64/native/debug/concrt140d_app.dll": {
+            "assetType": "native",
+            "rid": "win10-x64"
+          },
+          "runtimes/win10-x64/native/debug/msvcp140_1d_app.dll": {
+            "assetType": "native",
+            "rid": "win10-x64"
+          },
+          "runtimes/win10-x64/native/debug/msvcp140_2d_app.dll": {
+            "assetType": "native",
+            "rid": "win10-x64"
+          },
+          "runtimes/win10-x64/native/debug/msvcp140d_app.dll": {
+            "assetType": "native",
+            "rid": "win10-x64"
+          },
+          "runtimes/win10-x64/native/debug/vcamp140d_app.dll": {
+            "assetType": "native",
+            "rid": "win10-x64"
+          },
+          "runtimes/win10-x64/native/debug/vccorlib140d_app.dll": {
+            "assetType": "native",
+            "rid": "win10-x64"
+          },
+          "runtimes/win10-x64/native/debug/vcomp140d_app.dll": {
+            "assetType": "native",
+            "rid": "win10-x64"
+          },
+          "runtimes/win10-x64/native/debug/vcruntime140_1d_app.dll": {
+            "assetType": "native",
+            "rid": "win10-x64"
+          },
+          "runtimes/win10-x64/native/debug/vcruntime140d_app.dll": {
+            "assetType": "native",
+            "rid": "win10-x64"
+          },
+          "runtimes/win10-x64/native/release/concrt140_app.dll": {
+            "assetType": "native",
+            "rid": "win10-x64"
+          },
+          "runtimes/win10-x64/native/release/msvcp140_1_app.dll": {
+            "assetType": "native",
+            "rid": "win10-x64"
+          },
+          "runtimes/win10-x64/native/release/msvcp140_2_app.dll": {
+            "assetType": "native",
+            "rid": "win10-x64"
+          },
+          "runtimes/win10-x64/native/release/msvcp140_app.dll": {
+            "assetType": "native",
+            "rid": "win10-x64"
+          },
+          "runtimes/win10-x64/native/release/vcamp140_app.dll": {
+            "assetType": "native",
+            "rid": "win10-x64"
+          },
+          "runtimes/win10-x64/native/release/vccorlib140_app.dll": {
+            "assetType": "native",
+            "rid": "win10-x64"
+          },
+          "runtimes/win10-x64/native/release/vcomp140_app.dll": {
+            "assetType": "native",
+            "rid": "win10-x64"
+          },
+          "runtimes/win10-x64/native/release/vcruntime140_1_app.dll": {
+            "assetType": "native",
+            "rid": "win10-x64"
+          },
+          "runtimes/win10-x64/native/release/vcruntime140_app.dll": {
+            "assetType": "native",
+            "rid": "win10-x64"
+          },
+          "runtimes/win10-x86/native/debug/concrt140d_app.dll": {
+            "assetType": "native",
+            "rid": "win10-x86"
+          },
+          "runtimes/win10-x86/native/debug/msvcp140_1d_app.dll": {
+            "assetType": "native",
+            "rid": "win10-x86"
+          },
+          "runtimes/win10-x86/native/debug/msvcp140_2d_app.dll": {
+            "assetType": "native",
+            "rid": "win10-x86"
+          },
+          "runtimes/win10-x86/native/debug/msvcp140d_app.dll": {
+            "assetType": "native",
+            "rid": "win10-x86"
+          },
+          "runtimes/win10-x86/native/debug/vcamp140d_app.dll": {
+            "assetType": "native",
+            "rid": "win10-x86"
+          },
+          "runtimes/win10-x86/native/debug/vccorlib140d_app.dll": {
+            "assetType": "native",
+            "rid": "win10-x86"
+          },
+          "runtimes/win10-x86/native/debug/vcomp140d_app.dll": {
+            "assetType": "native",
+            "rid": "win10-x86"
+          },
+          "runtimes/win10-x86/native/debug/vcruntime140d_app.dll": {
+            "assetType": "native",
+            "rid": "win10-x86"
+          },
+          "runtimes/win10-x86/native/release/concrt140_app.dll": {
+            "assetType": "native",
+            "rid": "win10-x86"
+          },
+          "runtimes/win10-x86/native/release/msvcp140_1_app.dll": {
+            "assetType": "native",
+            "rid": "win10-x86"
+          },
+          "runtimes/win10-x86/native/release/msvcp140_2_app.dll": {
+            "assetType": "native",
+            "rid": "win10-x86"
+          },
+          "runtimes/win10-x86/native/release/msvcp140_app.dll": {
+            "assetType": "native",
+            "rid": "win10-x86"
+          },
+          "runtimes/win10-x86/native/release/vcamp140_app.dll": {
+            "assetType": "native",
+            "rid": "win10-x86"
+          },
+          "runtimes/win10-x86/native/release/vccorlib140_app.dll": {
+            "assetType": "native",
+            "rid": "win10-x86"
+          },
+          "runtimes/win10-x86/native/release/vcomp140_app.dll": {
+            "assetType": "native",
+            "rid": "win10-x86"
+          },
+          "runtimes/win10-x86/native/release/vcruntime140_app.dll": {
+            "assetType": "native",
+            "rid": "win10-x86"
+          }
+        }
+      },
       "Microsoft.Windows.SDK.Contracts/10.0.18362.2005": {
         "type": "package",
         "dependencies": {
@@ -337,6 +545,12 @@
         },
         "runtime": {
           "lib/net462/Microsoft.Toolkit.Wpf.UI.XamlHost.dll": {}
+        }
+      },
+      "Microsoft.VCRTForwarders.140/1.0.2-rc": {
+        "type": "package",
+        "build": {
+          "build/net45/Microsoft.VCRTForwarders.140.targets": {}
         }
       },
       "Microsoft.Windows.SDK.Contracts/10.0.18362.2005": {
@@ -554,6 +768,12 @@
           "lib/net462/Microsoft.Toolkit.Wpf.UI.XamlHost.dll": {}
         }
       },
+      "Microsoft.VCRTForwarders.140/1.0.2-rc": {
+        "type": "package",
+        "build": {
+          "build/net45/Microsoft.VCRTForwarders.140.targets": {}
+        }
+      },
       "Microsoft.Windows.SDK.Contracts/10.0.18362.2005": {
         "type": "package",
         "dependencies": {
@@ -767,6 +987,12 @@
         },
         "runtime": {
           "lib/net462/Microsoft.Toolkit.Wpf.UI.XamlHost.dll": {}
+        }
+      },
+      "Microsoft.VCRTForwarders.140/1.0.2-rc": {
+        "type": "package",
+        "build": {
+          "build/net45/Microsoft.VCRTForwarders.140.targets": {}
         }
       },
       "Microsoft.Windows.SDK.Contracts/10.0.18362.2005": {
@@ -1009,6 +1235,90 @@
         "microsoft.toolkit.wpf.ui.xamlhost.6.0.0.nupkg.sha512",
         "microsoft.toolkit.wpf.ui.xamlhost.nuspec",
         "tools/VisualStudioToolsManifest.xml"
+      ]
+    },
+    "Microsoft.VCRTForwarders.140/1.0.2-rc": {
+      "sha512": "/r+sjtEeCIGyDhobIZ5hSmYhC/dSyGZxf1SxYJpElUhB0LMCktOMFs9gXrauXypIFECpVynNyVjAmJt6hjJ5oQ==",
+      "type": "package",
+      "path": "microsoft.vcrtforwarders.140/1.0.2-rc",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Unity/Editor/InitVCRTForwarders.cs",
+        "Unity/Editor/InitVCRTForwarders.cs.meta",
+        "Unity/x64/concrt140_app.dll",
+        "Unity/x64/concrt140_app.dll.meta",
+        "Unity/x64/msvcp140_1_app.dll",
+        "Unity/x64/msvcp140_1_app.dll.meta",
+        "Unity/x64/msvcp140_2_app.dll",
+        "Unity/x64/msvcp140_2_app.dll.meta",
+        "Unity/x64/msvcp140_app.dll",
+        "Unity/x64/msvcp140_app.dll.meta",
+        "Unity/x64/vcamp140_app.dll",
+        "Unity/x64/vcamp140_app.dll.meta",
+        "Unity/x64/vccorlib140_app.dll",
+        "Unity/x64/vccorlib140_app.dll.meta",
+        "Unity/x64/vcomp140_app.dll",
+        "Unity/x64/vcomp140_app.dll.meta",
+        "Unity/x64/vcruntime140_1_app.dll",
+        "Unity/x64/vcruntime140_1_app.dll.meta",
+        "Unity/x64/vcruntime140_app.dll",
+        "Unity/x64/vcruntime140_app.dll.meta",
+        "build/native/Microsoft.VCRTForwarders.140.targets",
+        "build/net45/Microsoft.VCRTForwarders.140.targets",
+        "build/netcoreapp2.0/Microsoft.VCRTForwarders.140.targets",
+        "microsoft.vcrtforwarders.140.1.0.2-rc.nupkg.sha512",
+        "microsoft.vcrtforwarders.140.nuspec",
+        "runtimes/win10-arm64/native/debug/concrt140d_app.dll",
+        "runtimes/win10-arm64/native/debug/msvcp140_1d_app.dll",
+        "runtimes/win10-arm64/native/debug/msvcp140_2d_app.dll",
+        "runtimes/win10-arm64/native/debug/msvcp140d_app.dll",
+        "runtimes/win10-arm64/native/debug/vcamp140d_app.dll",
+        "runtimes/win10-arm64/native/debug/vccorlib140d_app.dll",
+        "runtimes/win10-arm64/native/debug/vcomp140d_app.dll",
+        "runtimes/win10-arm64/native/debug/vcruntime140d_app.dll",
+        "runtimes/win10-arm64/native/release/concrt140_app.dll",
+        "runtimes/win10-arm64/native/release/msvcp140_1_app.dll",
+        "runtimes/win10-arm64/native/release/msvcp140_2_app.dll",
+        "runtimes/win10-arm64/native/release/msvcp140_app.dll",
+        "runtimes/win10-arm64/native/release/vcamp140_app.dll",
+        "runtimes/win10-arm64/native/release/vccorlib140_app.dll",
+        "runtimes/win10-arm64/native/release/vcomp140_app.dll",
+        "runtimes/win10-arm64/native/release/vcruntime140_app.dll",
+        "runtimes/win10-x64/native/debug/concrt140d_app.dll",
+        "runtimes/win10-x64/native/debug/msvcp140_1d_app.dll",
+        "runtimes/win10-x64/native/debug/msvcp140_2d_app.dll",
+        "runtimes/win10-x64/native/debug/msvcp140d_app.dll",
+        "runtimes/win10-x64/native/debug/vcamp140d_app.dll",
+        "runtimes/win10-x64/native/debug/vccorlib140d_app.dll",
+        "runtimes/win10-x64/native/debug/vcomp140d_app.dll",
+        "runtimes/win10-x64/native/debug/vcruntime140_1d_app.dll",
+        "runtimes/win10-x64/native/debug/vcruntime140d_app.dll",
+        "runtimes/win10-x64/native/release/concrt140_app.dll",
+        "runtimes/win10-x64/native/release/msvcp140_1_app.dll",
+        "runtimes/win10-x64/native/release/msvcp140_2_app.dll",
+        "runtimes/win10-x64/native/release/msvcp140_app.dll",
+        "runtimes/win10-x64/native/release/vcamp140_app.dll",
+        "runtimes/win10-x64/native/release/vccorlib140_app.dll",
+        "runtimes/win10-x64/native/release/vcomp140_app.dll",
+        "runtimes/win10-x64/native/release/vcruntime140_1_app.dll",
+        "runtimes/win10-x64/native/release/vcruntime140_app.dll",
+        "runtimes/win10-x86/native/debug/concrt140d_app.dll",
+        "runtimes/win10-x86/native/debug/msvcp140_1d_app.dll",
+        "runtimes/win10-x86/native/debug/msvcp140_2d_app.dll",
+        "runtimes/win10-x86/native/debug/msvcp140d_app.dll",
+        "runtimes/win10-x86/native/debug/vcamp140d_app.dll",
+        "runtimes/win10-x86/native/debug/vccorlib140d_app.dll",
+        "runtimes/win10-x86/native/debug/vcomp140d_app.dll",
+        "runtimes/win10-x86/native/debug/vcruntime140d_app.dll",
+        "runtimes/win10-x86/native/release/concrt140_app.dll",
+        "runtimes/win10-x86/native/release/msvcp140_1_app.dll",
+        "runtimes/win10-x86/native/release/msvcp140_2_app.dll",
+        "runtimes/win10-x86/native/release/msvcp140_app.dll",
+        "runtimes/win10-x86/native/release/vcamp140_app.dll",
+        "runtimes/win10-x86/native/release/vccorlib140_app.dll",
+        "runtimes/win10-x86/native/release/vcomp140_app.dll",
+        "runtimes/win10-x86/native/release/vcruntime140_app.dll"
       ]
     },
     "Microsoft.Windows.SDK.Contracts/10.0.18362.2005": {
@@ -1327,7 +1637,8 @@
     ".NETFramework,Version=v4.8": [
       "FluentWPF >= 0.8.0",
       "Microsoft.Toolkit.Wpf.UI.Controls >= 6.0.0",
-      "Microsoft.Toolkit.Wpf.UI.XamlHost >= 6.0.0"
+      "Microsoft.Toolkit.Wpf.UI.XamlHost >= 6.0.0",
+      "Microsoft.VCRTForwarders.140 >= 1.0.2-rc"
     ]
   },
   "packageFolders": {
@@ -1374,6 +1685,10 @@
           "Microsoft.Toolkit.Wpf.UI.XamlHost": {
             "target": "Package",
             "version": "[6.0.0, )"
+          },
+          "Microsoft.VCRTForwarders.140": {
+            "target": "Package",
+            "version": "[1.0.2-rc, )"
           }
         },
         "imports": [

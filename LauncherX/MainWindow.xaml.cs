@@ -1028,7 +1028,7 @@ namespace LauncherX
 
 
             //download address. The link is used to grab the favicon
-            string downloadaddress = "https://i.olsh.me/icon?size=80..120..200&url=" + url;
+            string downloadaddress = "https://www.google.com/s2/favicons?sz=64&domain_url=" + url;
 
             //init a new webclient
             WebClient webClient = new WebClient();
