@@ -6,6 +6,8 @@ LauncherX - Organise all your stuff!
 
 LauncherX is a Windows Program used to organize and access all of your files, folders, websites, and pretty much anything in a beautiful way.
 
+***LauncherX is compatible with 64-bit Windows 10 version 1903 and above, and Windows 11.***
+
 It supports:
 
 * Adding websites, files and folders
@@ -27,7 +29,7 @@ It supports:
 ![Light Mode](https://i.imgur.com/oOsRgYw.png)
 
 ## Minimum System Requirements
-* 64-bit Windows 10 version 1903 and up
+* 64-bit Windows 10 version 1903 and above (including Windows 11)
 
 * 20MB Free disk space
 
