@@ -1,0 +1,16 @@
+{
+  "Version": 1,
+  "ProjectMap": {
+    "1180a27e-9352-4d9a-973e-b76567ba55a0": {
+      "ProjectGuid": "1180a27e-9352-4d9a-973e-b76567ba55a0",
+      "DisplayName": "LauncherX.Avalonia",
+      "ColorIndex": 0
+    },
+    "0ed4b833-4226-40e2-af84-40d36d09c86e": {
+      "ProjectGuid": "0ed4b833-4226-40e2-af84-40d36d09c86e",
+      "DisplayName": "LauncherX [FROZEN ON v1.0.1]",
+      "ColorIndex": 1
+    }
+  },
+  "NextColorIndex": 2
+}
