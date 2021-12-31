@@ -1,0 +1,78 @@
+{
+  "format": 1,
+  "restore": {
+    "C:\\Users\\fligh\\source\\repos\\LauncherX\\LauncherX\\LauncherX [FROZEN ON v1.0.1].csproj": {}
+  },
+  "projects": {
+    "C:\\Users\\fligh\\source\\repos\\LauncherX\\LauncherX\\LauncherX [FROZEN ON v1.0.1].csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\fligh\\source\\repos\\LauncherX\\LauncherX\\LauncherX [FROZEN ON v1.0.1].csproj",
+        "projectName": "LauncherX",
+        "projectPath": "C:\\Users\\fligh\\source\\repos\\LauncherX\\LauncherX\\LauncherX [FROZEN ON v1.0.1].csproj",
+        "packagesPath": "C:\\Users\\fligh\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\fligh\\source\\repos\\LauncherX\\LauncherX\\obj\\",
+        "projectStyle": "PackageReference",
+        "skipContentFileWrite": true,
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\fligh\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net48"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net48": {
+            "projectReferences": {}
+          }
+        }
+      },
+      "frameworks": {
+        "net48": {
+          "dependencies": {
+            "FluentWPF": {
+              "target": "Package",
+              "version": "[0.8.0, )"
+            },
+            "Microsoft.Toolkit.Wpf.UI.Controls": {
+              "target": "Package",
+              "version": "[6.1.2, )"
+            },
+            "Microsoft.Toolkit.Wpf.UI.XamlHost": {
+              "target": "Package",
+              "version": "[6.1.2, )"
+            },
+            "Microsoft.VCRTForwarders.140": {
+              "target": "Package",
+              "version": "[1.0.6, )"
+            }
+          },
+          "imports": [
+            "uap10.0.18362"
+          ],
+          "assetTargetFallback": true,
+          "warn": true
+        }
+      },
+      "runtimes": {
+        "win": {
+          "#import": []
+        },
+        "win-x64": {
+          "#import": []
+        },
+        "win-x86": {
+          "#import": []
+        }
+      }
+    }
+  }
+}

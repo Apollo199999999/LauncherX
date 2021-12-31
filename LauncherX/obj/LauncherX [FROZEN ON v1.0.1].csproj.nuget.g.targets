@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<Project ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ImportGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">
+    <Import Project="$(NuGetPackageRoot)system.runtime.windowsruntime\4.6.0\buildTransitive\net461\System.Runtime.WindowsRuntime.targets" Condition="Exists('$(NuGetPackageRoot)system.runtime.windowsruntime\4.6.0\buildTransitive\net461\System.Runtime.WindowsRuntime.targets')" />
+    <Import Project="$(NuGetPackageRoot)system.runtime.windowsruntime.ui.xaml\4.6.0\build\net461\System.Runtime.WindowsRuntime.UI.Xaml.targets" Condition="Exists('$(NuGetPackageRoot)system.runtime.windowsruntime.ui.xaml\4.6.0\build\net461\System.Runtime.WindowsRuntime.UI.Xaml.targets')" />
+    <Import Project="$(NuGetPackageRoot)microsoft.windows.sdk.contracts\10.0.18362.2005\build\Microsoft.Windows.SDK.Contracts.targets" Condition="Exists('$(NuGetPackageRoot)microsoft.windows.sdk.contracts\10.0.18362.2005\build\Microsoft.Windows.SDK.Contracts.targets')" />
+    <Import Project="$(NuGetPackageRoot)microsoft.vcrtforwarders.140\1.0.6\build\net45\Microsoft.VCRTForwarders.140.targets" Condition="Exists('$(NuGetPackageRoot)microsoft.vcrtforwarders.140\1.0.6\build\net45\Microsoft.VCRTForwarders.140.targets')" />
+    <Import Project="$(NuGetPackageRoot)microsoft.toolkit.win32.ui.xamlapplication\6.1.2\build\Microsoft.Toolkit.Win32.UI.XamlApplication.targets" Condition="Exists('$(NuGetPackageRoot)microsoft.toolkit.win32.ui.xamlapplication\6.1.2\build\Microsoft.Toolkit.Win32.UI.XamlApplication.targets')" />
+    <Import Project="$(NuGetPackageRoot)microsoft.toolkit.win32.ui.sdk\6.1.2\build\Microsoft.Toolkit.Win32.UI.SDK.targets" Condition="Exists('$(NuGetPackageRoot)microsoft.toolkit.win32.ui.sdk\6.1.2\build\Microsoft.Toolkit.Win32.UI.SDK.targets')" />
+    <Import Project="$(NuGetPackageRoot)microsoft.toolkit.ui.xamlhost\6.1.2\build\Microsoft.Toolkit.UI.XamlHost.targets" Condition="Exists('$(NuGetPackageRoot)microsoft.toolkit.ui.xamlhost\6.1.2\build\Microsoft.Toolkit.UI.XamlHost.targets')" />
+  </ImportGroup>
+</Project>

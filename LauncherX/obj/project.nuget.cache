@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "hU7EzGx3AehduvwyeVzrCv1XMkZYkvm2mIHnRAE0BMTp/W86N7YQg5jpLPG8YmqlaKHhLvBG8QvnSHyN3pjuvg==",
+  "dgSpecHash": "fnyMSVbMPZV7EYwvZTxIqZwiJVtXT18QOCzO3hRw+fV9kmx4Koxy3Kb0kWMLwvL7bLhWOD5RPaNz1Ul3RaqLxw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\fligh\\source\\repos\\LauncherX\\LauncherX\\LauncherX.csproj",
+  "projectFilePath": "C:\\Users\\fligh\\source\\repos\\LauncherX\\LauncherX\\LauncherX [FROZEN ON v1.0.1].csproj",
   "expectedPackageFiles": [
     "C:\\Users\\fligh\\.nuget\\packages\\fluentwpf\\0.8.0\\fluentwpf.0.8.0.nupkg.sha512",
     "C:\\Users\\fligh\\.nuget\\packages\\microsoft.toolkit.ui.xamlhost\\6.1.2\\microsoft.toolkit.ui.xamlhost.6.1.2.nupkg.sha512",
