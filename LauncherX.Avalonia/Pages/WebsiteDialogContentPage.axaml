@@ -2,6 +2,9 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:sty="using:FluentAvalonia.Styling"
+             xmlns:ui="using:FluentAvalonia.UI.Controls"
+             xmlns:uip="using:FluentAvalonia.UI.Controls.Primitives"
              mc:Ignorable="d" 
              x:Class="LauncherX.Avalonia.Pages.WebsiteDialogContentPage" Width="400" Padding="0,10,0,0">
   <Panel>

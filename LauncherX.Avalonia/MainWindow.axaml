@@ -7,27 +7,35 @@
         xmlns:uip="using:FluentAvalonia.UI.Controls.Primitives"
         mc:Ignorable="d"
         x:Class="LauncherX.Avalonia.MainWindow"
-         Title="LauncherX - Organize all your stuff!" Width="900" Height="600" MinWidth="700" MinHeight="400" >
+        Title="LauncherX - Organize all your stuff!" Width="900" Height="600" MinWidth="700" MinHeight="400" >
   
   <Panel>
     <AutoCompleteBox Margin="20,20,20,20" VerticalAlignment="Top" Watermark="Search through everything in LauncherX" />
 
     <Panel HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="20,72,20,20" >
       <TextBlock Text="My files, folders, and websites" FontSize="24" FontWeight="Bold" />
-      
+    
       <Button Margin="0,0,0,0" x:Name="AddWebsiteBtn" HorizontalAlignment="Right" VerticalAlignment="Stretch" Content="Add a website" Width="110" Click="AddWebsiteBtn_Click"/>
       <Button Margin="0,0,120,0" x:Name="AddFolderBtn" HorizontalAlignment="Right" VerticalAlignment="Stretch" Content="Add a folder" Width="100"/>
       <Button Margin="0,0,230,0" x:Name="AddFileBtn" HorizontalAlignment="Right" VerticalAlignment="Stretch" Content="Add a file"  Width="90" Classes="accent"/>
     
     </Panel>
-    
-    <ui:NavigationView HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="20,114,20,20" PaneDisplayMode="Top" IsSettingsVisible="False" >
+
+
+    <Button HorizontalAlignment="Right" VerticalAlignment="Bottom" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Width="35" Height="35" Margin="0,0,20,20"  >
+      <ui:SymbolIcon Symbol="Settings" FontSize="16" />
+    </Button>
+
+
+    <ui:NavigationView HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="20,114,20,20" PaneDisplayMode="Top" IsSettingsVisible="False" SelectionFollowsFocus="True" IsBackButtonVisible="False" >
       <ui:NavigationView.MenuItems>
         <ui:NavigationViewItem Content="All Items"/>
         <ui:NavigationViewItem Content="Files"/>
         <ui:NavigationViewItem Content="Folders"/>
         <ui:NavigationViewItem Content="Websites"/>
       </ui:NavigationView.MenuItems>
+      
+      <ui:Frame x:Name="contentFrame"/>
     </ui:NavigationView>
     
   </Panel>
