@@ -7,11 +7,21 @@
         xmlns:uip="using:FluentAvalonia.UI.Controls.Primitives"
         mc:Ignorable="d"
         x:Class="LauncherX.Avalonia.MainWindow"
-         Title="LauncherX - Organize all your stuff!" Height="533" Width="800" MinHeight="400" MinWidth="650">
+         Title="LauncherX - Organize all your stuff!" Width="900" Height="600" MinWidth="700" MinHeight="400" >
+  
   <Panel>
-    <AutoCompleteBox Margin="20,20,20,0" VerticalAlignment="Top" Watermark="Search through everything in LauncherX" />
+    <AutoCompleteBox Margin="20,20,20,20" VerticalAlignment="Top" Watermark="Search through everything in LauncherX" />
 
-    <ui:NavigationView HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="20,62,20,20" PaneDisplayMode="Top" Header="My files, folders, and websites" IsBackButtonVisible="True" IsBackEnabled="True" FontSize="24" >
+    <Panel HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="20,72,20,20" >
+      <TextBlock Text="My files, folders, and websites" FontSize="24" FontWeight="Bold" />
+      
+      <Button Margin="0,0,0,0" HorizontalAlignment="Right" VerticalAlignment="Stretch" Content="Add a website" Width="110" />
+      <Button Margin="0,0,120,0" HorizontalAlignment="Right" VerticalAlignment="Stretch" Content="Add a folder" Width="100"/>
+      <Button Margin="0,0,230,0" HorizontalAlignment="Right" VerticalAlignment="Stretch" Content="Add a file"  Width="90" Classes="accent"/>
+    
+    </Panel>
+    
+    <ui:NavigationView HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="20,114,20,20" PaneDisplayMode="Top" IsSettingsVisible="False" >
       <ui:NavigationView.MenuItems>
         <ui:NavigationViewItem Content="All Items"/>
         <ui:NavigationViewItem Content="Files"/>
@@ -19,5 +29,6 @@
         <ui:NavigationViewItem Content="Websites"/>
       </ui:NavigationView.MenuItems>
     </ui:NavigationView>
+    
   </Panel>
 </Window>
