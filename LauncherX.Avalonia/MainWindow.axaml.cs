@@ -4,11 +4,17 @@ using Avalonia.Interactivity;
 using Avalonia.Markup.Xaml;
 using FluentAvalonia.UI.Controls;
 using LauncherX.Avalonia.Pages;
+using Button = Avalonia.Controls.Button;
 
 namespace LauncherX.Avalonia
 {
     public partial class MainWindow : CoreWindow
     {
+        //init controls from xaml
+        Button AddWebsiteBtn = new Button();
+        Button AddFolderBtn = new Button();
+        Button AddFileBtn = new Button();
+
         public MainWindow()
         {
             InitializeComponent();
@@ -20,6 +26,14 @@ namespace LauncherX.Avalonia
         private void InitializeComponent()
         {
             AvaloniaXamlLoader.Load(this);
+
+            //locate controls
+            AddWebsiteBtn = this.FindControl<Button>("AddWebsiteBtn");
+            AddFolderBtn = this.FindControl<Button>("AddFolderBtn");
+            AddFileBtn = this.FindControl<Button>("AddFileBtn");
+
+            //configure controls
+
         }
 
         public async void AddWebsiteBtn_Click(object sender, RoutedEventArgs e)

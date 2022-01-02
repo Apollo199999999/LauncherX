@@ -15,9 +15,9 @@
     <Panel HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="20,72,20,20" >
       <TextBlock Text="My files, folders, and websites" FontSize="24" FontWeight="Bold" />
     
-      <Button Margin="0,0,0,0" x:Name="AddWebsiteBtn" HorizontalAlignment="Right" VerticalAlignment="Stretch" Content="Add a website" Width="110" Click="AddWebsiteBtn_Click"/>
-      <Button Margin="0,0,120,0" x:Name="AddFolderBtn" HorizontalAlignment="Right" VerticalAlignment="Stretch" Content="Add a folder" Width="100"/>
-      <Button Margin="0,0,230,0" x:Name="AddFileBtn" HorizontalAlignment="Right" VerticalAlignment="Stretch" Content="Add a file"  Width="90" Classes="accent"/>
+      <Button Margin="0,0,0,0" x:Name="AddWebsiteBtn" HorizontalAlignment="Right" VerticalAlignment="Stretch" Content="Add a website" Click="AddWebsiteBtn_Click"/>
+      <Button Margin="0,0,120,0" x:Name="AddFolderBtn" HorizontalAlignment="Right" VerticalAlignment="Stretch" Content="Add a folder" />
+      <Button Margin="0,0,230,0" x:Name="AddFileBtn" HorizontalAlignment="Right" VerticalAlignment="Stretch" Content=" Add a file " Classes="accent"/>
     
     </Panel>
 
@@ -27,7 +27,7 @@
     </Button>
 
 
-    <ui:NavigationView HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="20,114,20,20" PaneDisplayMode="Top" IsSettingsVisible="False" SelectionFollowsFocus="True" IsBackButtonVisible="False" >
+    <ui:NavigationView HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="20,114,20,75" PaneDisplayMode="Top" IsSettingsVisible="False" SelectionFollowsFocus="True" IsBackButtonVisible="False" >
       <ui:NavigationView.MenuItems>
         <ui:NavigationViewItem Content="All Items"/>
         <ui:NavigationViewItem Content="Files"/>

@@ -6,9 +6,9 @@
              xmlns:ui="using:FluentAvalonia.UI.Controls"
              xmlns:uip="using:FluentAvalonia.UI.Controls.Primitives"
              mc:Ignorable="d" 
-             x:Class="LauncherX.Avalonia.Pages.WebsiteDialogContentPage" Width="400" Padding="0,10,0,0">
+             x:Class="LauncherX.Avalonia.Pages.WebsiteDialogContentPage" Width="400" Padding="0,5,0,0">
   <Panel>
     <TextBlock Text="Enter the website URL below:" VerticalAlignment="Top" HorizontalAlignment="Left" />
-    <TextBox VerticalAlignment="Top" HorizontalAlignment="Stretch" Margin="0,26,0,0"/>
+    <TextBox VerticalAlignment="Top" HorizontalAlignment="Stretch" Margin="0,31,0,0"/>
   </Panel>
 </UserControl>
