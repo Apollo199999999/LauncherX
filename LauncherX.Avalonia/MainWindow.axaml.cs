@@ -21,6 +21,7 @@ namespace LauncherX.Avalonia
 #if DEBUG
             this.AttachDevTools();
 #endif
+
         }
 
         private void InitializeComponent()
@@ -33,6 +34,11 @@ namespace LauncherX.Avalonia
             AddFileBtn = this.FindControl<Button>("AddFileBtn");
 
             //configure controls
+
+            //set the margin for the three buttons
+            //AddWebsiteBtn.Margin = new Thickness(0, 0, 0, 0);
+            //AddFolderBtn.Margin = new Thickness(0, (AddWebsiteBtn.Width + 10), 0, 0);
+            //AddFileBtn.Margin = new Thickness(0, (AddWebsiteBtn.Width + 10 + AddFolderBtn.Width + 10), 0, 0);
 
         }
 
