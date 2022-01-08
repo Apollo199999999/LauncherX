@@ -17,22 +17,22 @@ namespace LauncherX.Avalonia
         //init controls from xaml
 
         //Header text
-        TextBlock HeaderText = new TextBlock();
+        public TextBlock HeaderText = new TextBlock();
 
         //Add items buttons
-        Button AddWebsiteBtn = new Button();
-        Button AddFolderBtn = new Button();
-        Button AddFileBtn = new Button();
+        public Button AddWebsiteBtn = new Button();
+        public Button AddFolderBtn = new Button();
+        public Button AddFileBtn = new Button();
 
         //NavView, NavView items and frame
-        Frame ContentFrame = new Frame();
+        public Frame ContentFrame = new Frame();
 
-        NavigationView NavView = new NavigationView();
+        public NavigationView NavView = new NavigationView();
 
-        NavigationViewItem AllItemsItem = new NavigationViewItem();
-        NavigationViewItem FilesItem = new NavigationViewItem();
-        NavigationViewItem FoldersItem = new NavigationViewItem();
-        NavigationViewItem WebsitesItem = new NavigationViewItem();
+        public NavigationViewItem AllItemsItem = new NavigationViewItem();
+        public NavigationViewItem FilesItem = new NavigationViewItem();
+        public NavigationViewItem FoldersItem = new NavigationViewItem();
+        public NavigationViewItem WebsitesItem = new NavigationViewItem();
 
 
         //FUNCTIONS:
@@ -120,8 +120,9 @@ namespace LauncherX.Avalonia
        
         public void SettingsBtn_Click(object? sender, RoutedEventArgs e)
         {
-            //when the settings button is clicked, open the settings window
+            //when the settings button is clicked, configure open the settings window
             SettingsWindow settingsWindow = new SettingsWindow();
+            settingsWindow.HeaderTextBox.Text = HeaderText.Text;
             settingsWindow.ShowDialog(this);
         }
     }
