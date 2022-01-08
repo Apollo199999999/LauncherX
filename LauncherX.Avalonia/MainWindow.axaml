@@ -12,7 +12,7 @@
   <Panel>
     <AutoCompleteBox HorizontalAlignment="Stretch"  VerticalAlignment="Top" Margin="20,20,75,20" Watermark="Search through everything in LauncherX"/>
 
-    <Button HorizontalAlignment="Right" VerticalAlignment="Top" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Width="35" Height="35" Margin="20,20,20,20" x:Name="SettingsBtn" Click="SettingsBtn_Click" >
+    <Button HorizontalAlignment="Right" VerticalAlignment="Top" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Width="35" Height="35" Margin="20,20,20,20" x:Name="SettingsBtn" >
       <ui:SymbolIcon Symbol="Settings" FontSize="16" />
     </Button>
 

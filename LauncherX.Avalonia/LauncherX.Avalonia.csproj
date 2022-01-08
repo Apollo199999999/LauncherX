@@ -24,4 +24,9 @@
     <PackageReference Condition="'$(Configuration)' == 'Debug'" Include="Avalonia.Diagnostics" Version="0.10.11" />
     <PackageReference Include="FluentAvaloniaUI" Version="1.1.8" />
    </ItemGroup>
+  <ItemGroup>
+    <Compile Update="Pages\SettingsMainPage.axaml.cs">
+      <DependentUpon>SettingsMainPage.axaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
 </Project>

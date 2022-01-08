@@ -17,19 +17,13 @@ namespace LauncherX.Avalonia
     {
         //init controls from xaml
 
-        //Header text
         public TextBlock HeaderText = new TextBlock();
-
-        //Add items buttons
+        public Button SettingsBtn = new Button();
         public Button AddWebsiteBtn = new Button();
         public Button AddFolderBtn = new Button();
         public Button AddFileBtn = new Button();
-
-        //NavView, NavView items and frame
         public Frame ContentFrame = new Frame();
-
         public NavigationView NavView = new NavigationView();
-
         public NavigationViewItem AllItemsItem = new NavigationViewItem();
         public NavigationViewItem FilesItem = new NavigationViewItem();
         public NavigationViewItem FoldersItem = new NavigationViewItem();
@@ -52,15 +46,12 @@ namespace LauncherX.Avalonia
 
             //locate controls
             HeaderText = this.FindControl<TextBlock>("HeaderText");
-
+            SettingsBtn = this.FindControl<Button>("SettingsBtn");
             AddWebsiteBtn = this.FindControl<Button>("AddWebsiteBtn");
             AddFolderBtn = this.FindControl<Button>("AddFolderBtn");
             AddFileBtn = this.FindControl<Button>("AddFileBtn");
-
             ContentFrame = this.FindControl<Frame>("ContentFrame");
-
             NavView = this.FindControl<NavigationView>("NavView");
-
             AllItemsItem = this.FindControl<NavigationViewItem>("AllItemsItem");
             FilesItem = this.FindControl<NavigationViewItem>("FilesItem");
             FoldersItem = this.FindControl<NavigationViewItem>("FoldersItem");
@@ -74,10 +65,40 @@ namespace LauncherX.Avalonia
             NavView.SelectedItem = AllItemsItem;
             ContentFrame.Navigate(typeof(AllItemsPage));
 
-            //configure NavView event handlers
+            //all event handlers go here
             NavView.SelectionChanged += NavView_SelectionChanged;
+            SettingsBtn.Click += SettingsBtn_Click;
+            AddWebsiteBtn.Click += AddWebsiteBtn_Click;
 
 
+        }
+
+        private async void AddWebsiteBtn_Click(object? sender, RoutedEventArgs e)
+        {
+            //show a contentdialog with a textbox to enter the website URL
+
+            //init contentdialog
+            ContentDialog WebsiteDialog = new ContentDialog();
+            WebsiteDialog.Title = "Add a website";
+            WebsiteDialog.PrimaryButtonText = "OK";
+            WebsiteDialog.CloseButtonText = "Cancel";
+            WebsiteDialog.DefaultButton = ContentDialogButton.Primary;
+            WebsiteDialog.Content = new WebsiteDialogContentPage();
+
+            ContentDialogResult result = await WebsiteDialog.ShowAsync();
+        }
+
+        private async void SettingsBtn_Click(object? sender, RoutedEventArgs e)
+        {
+            //when the settings button is clicked, configure and open the settings page using a content dialog
+            ContentDialog SettingsDialog = new ContentDialog();
+            SettingsDialog.PrimaryButtonText = "Save and Exit";
+            SettingsDialog.CloseButtonText = "Cancel";
+            SettingsDialog.DefaultButton = ContentDialogButton.Primary;
+            SettingsDialog.Content = new SettingsMainPage();
+
+            ContentDialogResult result = await SettingsDialog.ShowAsync();
+           
         }
 
         private void NavView_SelectionChanged(object? sender, NavigationViewSelectionChangedEventArgs e)
@@ -103,29 +124,5 @@ namespace LauncherX.Avalonia
 
         }
 
-        public async void AddWebsiteBtn_Click(object? sender, RoutedEventArgs e)
-        {
-            //show a contentdialog with a textbox to enter the website URL
-
-            //init contentdialog
-            ContentDialog WebsiteDialog = new ContentDialog();
-            WebsiteDialog.Title = "Add a website";
-            WebsiteDialog.PrimaryButtonText = "OK";
-            WebsiteDialog.CloseButtonText = "Cancel";
-            WebsiteDialog.DefaultButton = ContentDialogButton.Primary;
-            WebsiteDialog.Content = new WebsiteDialogContentPage();
-
-            var result = await WebsiteDialog.ShowAsync();
-
-        }
-       
-        public void SettingsBtn_Click(object? sender, RoutedEventArgs e)
-        {
-            //when the settings button is clicked, configure and open the settings window
-            SettingsWindow settingsWindow = new SettingsWindow();
-            settingsWindow.HeaderTextBox.Text = HeaderText.Text;
-            settingsWindow.VersionText.Text = "Current version: " + CurrentVersion;
-            settingsWindow.ShowDialog(this);
-        }
     }
 }

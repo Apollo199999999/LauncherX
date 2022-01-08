@@ -1,0 +1,31 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:sty="using:FluentAvalonia.Styling"
+             xmlns:ui="using:FluentAvalonia.UI.Controls"
+             xmlns:uip="using:FluentAvalonia.UI.Controls.Primitives"
+             mc:Ignorable="d" 
+             x:Class="LauncherX.Avalonia.Pages.SettingsMainPage" Width="800" Height="300">
+  <Panel>
+    <ui:NavigationView HorizontalAlignment="Stretch" VerticalAlignment="Stretch" PaneDisplayMode="Left" IsSettingsVisible="False"
+                       SelectionFollowsFocus="True" IsBackButtonVisible="False" x:Name="NavView" PaneTitle="LauncherX Settings" >
+
+      <ui:NavigationView.MenuItems>
+        <ui:NavigationViewItem Content="Personalisation" x:Name="PersonalisationItem" >
+          <ui:NavigationViewItem.Icon>
+            <ui:SymbolIcon Symbol="Add"/>
+          </ui:NavigationViewItem.Icon>
+        </ui:NavigationViewItem>
+        
+        <ui:NavigationViewItem Content="Updates" x:Name="UpdatesItem"/>
+        <ui:NavigationViewItem Content="About" x:Name="AboutItem"/>
+      </ui:NavigationView.MenuItems>
+
+      <ui:Frame x:Name="ContentFrame"/>
+    </ui:NavigationView>
+
+
+   
+  </Panel>
+</UserControl>
