@@ -2,21 +2,22 @@ using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Markup.Xaml;
 using FluentAvalonia.UI.Controls;
-using Button = Avalonia.Controls.Button;
 
-namespace LauncherX.Avalonia.Pages
+namespace LauncherX.Avalonia
 {
-    public partial class SettingsMainPage : UserControl
+    public partial class SettingsWindow : CoreWindow
     {
         //init controls from xaml
         public NumericUpDown IconSizeNumUpDown = new NumericUpDown();
         public TextBox HeaderTextBox = new TextBox();
         public TextBlock VersionText = new TextBlock();
 
-
-        public SettingsMainPage()
+        public SettingsWindow()
         {
             InitializeComponent();
+#if DEBUG
+            this.AttachDevTools();
+#endif
         }
 
         private void InitializeComponent()
@@ -27,10 +28,6 @@ namespace LauncherX.Avalonia.Pages
             IconSizeNumUpDown = this.FindControl<NumericUpDown>("IconSizeNumUpDown");
             HeaderTextBox = this.FindControl<TextBox>("HeaderTextBox");
             VersionText = this.FindControl<TextBlock>("VersionText");
-
-            //configure controls
-
-            //all event handlers go here
 
         }
     }
