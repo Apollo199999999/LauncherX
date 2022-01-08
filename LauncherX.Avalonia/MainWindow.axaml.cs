@@ -122,7 +122,7 @@ namespace LauncherX.Avalonia
         {
             //when the settings button is clicked, open the settings window
             SettingsWindow settingsWindow = new SettingsWindow();
-            settingsWindow.Show();
+            settingsWindow.ShowDialog(this);
         }
     }
 }

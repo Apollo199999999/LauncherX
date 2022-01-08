@@ -77,7 +77,7 @@ namespace LauncherX {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/LauncherX;component/websitedialog.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/LauncherX [FROZEN ON v1.0.1];component/websitedialog.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\WebsiteDialog.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

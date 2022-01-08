@@ -3,6 +3,7 @@
     <OutputType>WinExe</OutputType>
     <TargetFramework>net5.0</TargetFramework>
     <Nullable>enable</Nullable>
+    <AssemblyName>LauncherX</AssemblyName>
   </PropertyGroup>
   <ItemGroup>
     <None Remove=".gitignore" />
