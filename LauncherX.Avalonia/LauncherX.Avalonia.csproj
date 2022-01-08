@@ -4,6 +4,15 @@
     <TargetFramework>net5.0</TargetFramework>
     <Nullable>enable</Nullable>
     <AssemblyName>LauncherX</AssemblyName>
+    <Version>2.0.0</Version>
+    <Authors>Matthias Wang, ClickPhase</Authors>
+    <Description>LauncherX - Organize all your stuff!</Description>
+    <Company>ClickPhase</Company>
+    <Copyright>Copyright © 2020-present ClickPhase</Copyright>
+    <PackageProjectUrl>https://clickphase.weebly.com/launcherx.html</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/Apollo199999999/LauncherX</RepositoryUrl>
+    <AssemblyVersion>2.0.0</AssemblyVersion>
+    <FileVersion>2.0.0</FileVersion>
   </PropertyGroup>
   <ItemGroup>
     <None Remove=".gitignore" />
