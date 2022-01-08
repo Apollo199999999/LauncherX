@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 
 namespace LauncherX.Avalonia
 {
-    internal class PublicVariables
+    static class PublicVariables
     {
+        //this variable used to define file version
+        public static string CurrentVersion = "2.0.0";
     }
 }

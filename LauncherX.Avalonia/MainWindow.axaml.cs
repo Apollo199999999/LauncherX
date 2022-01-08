@@ -1,3 +1,5 @@
+using System;
+using System.Diagnostics;
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Interactivity;
@@ -6,8 +8,7 @@ using Avalonia.Media;
 using FluentAvalonia.UI.Controls;
 using FluentAvalonia.UI.Navigation;
 using LauncherX.Avalonia.Pages;
-using System;
-using System.Diagnostics;
+using static LauncherX.Avalonia.PublicVariables;
 using Button = Avalonia.Controls.Button;
 
 namespace LauncherX.Avalonia
@@ -120,9 +121,10 @@ namespace LauncherX.Avalonia
        
         public void SettingsBtn_Click(object? sender, RoutedEventArgs e)
         {
-            //when the settings button is clicked, configure open the settings window
+            //when the settings button is clicked, configure and open the settings window
             SettingsWindow settingsWindow = new SettingsWindow();
             settingsWindow.HeaderTextBox.Text = HeaderText.Text;
+            settingsWindow.VersionText.Text = "Current version: " + CurrentVersion;
             settingsWindow.ShowDialog(this);
         }
     }

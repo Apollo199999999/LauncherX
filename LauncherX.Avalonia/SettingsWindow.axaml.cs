@@ -10,6 +10,7 @@ namespace LauncherX.Avalonia
         //init controls from xaml
         public NumericUpDown IconSizeNumUpDown = new NumericUpDown();
         public TextBox HeaderTextBox = new TextBox();
+        public TextBlock VersionText = new TextBlock();
 
         public SettingsWindow()
         {
@@ -26,6 +27,7 @@ namespace LauncherX.Avalonia
             //locate controls
             IconSizeNumUpDown = this.FindControl<NumericUpDown>("IconSizeNumUpDown");
             HeaderTextBox = this.FindControl<TextBox>("HeaderTextBox");
+            VersionText = this.FindControl<TextBlock>("VersionText");
 
         }
     }
