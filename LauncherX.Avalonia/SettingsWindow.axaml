@@ -5,35 +5,123 @@
         xmlns:sty="using:FluentAvalonia.Styling"
         xmlns:ui="using:FluentAvalonia.UI.Controls"
         xmlns:uip="using:FluentAvalonia.UI.Controls.Primitives"
-        mc:Ignorable="d" 
+        mc:Ignorable="d"
         x:Class="LauncherX.Avalonia.SettingsWindow"
-        Title="LauncherX Settings" Width="600" Height="533" CanResize="False" x:Name="SettingsWindow">
-  
+        Title="LauncherX Settings" Width="800" Height="533" CanResize="False" x:Name="SettingsWindow">
+
   <Panel>
     <TextBlock Text="LauncherX Settings" FontSize="24" FontWeight="SemiBold" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="20,20,0,0"/>
 
-    <StackPanel Orientation="Vertical" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20,72,20,20" Width="310" >
-      <TextBlock Text="Personalisation" FontSize="20" FontWeight="SemiBold" VerticalAlignment="Top" HorizontalAlignment="Left"/>
-      
-      <TextBlock Text="Change Icon Size:" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="0,15,0,0" />
-      <NumericUpDown VerticalAlignment="Top" HorizontalAlignment="Left" Maximum="2.0" Minimum="0.7" Value="1.0" Increment="0.1" FormatString="{}{0:F1}" Margin="0,10,0,0" x:Name="IconSizeNumUpDown"/>
+    <Panel VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="0,72,0,62" >
+      <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
 
-      <TextBlock Text="Change Header Text:" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="0,20,0,0" />
-      <TextBox VerticalAlignment="Top" HorizontalAlignment="Left" Width="290" Margin="0,10,0,0" x:Name="HeaderTextBox" />
+        <Panel>
+          
+          <StackPanel Orientation="Vertical" HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="20,0,20,20" >
+            <TextBlock Text="Appearance" FontSize="16" FontWeight="SemiBold" VerticalAlignment="Top" HorizontalAlignment="Left"/>
 
-      
-      <TextBlock Text="Updates" FontSize="20" FontWeight="SemiBold" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="0,30,0,0"/>
+            <Expander Margin="0,10,0,0" ExpandDirection="Down">
 
-      <TextBlock Text="Current version: {version}" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="0,15,0,0" x:Name="VersionText" />
-      <Button x:Name="CheckUpdatesBtn" Content="Check for Updates" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,10,0,0" Classes="accent"/>
-    </StackPanel>
+              <Expander.Header>
+                <StackPanel Orientation="Horizontal" Height="60" >
+
+                  <ui:FontIcon FontFamily="/Fonts/SegoeFluentIcons.ttf#Segoe Fluent Icons" Glyph="&#xe771;" FontSize="18" />
+
+                  <StackPanel Orientation="Vertical" Margin="20,0,0,0" VerticalAlignment="Center">
+                    <TextBlock Text="Personalisation" />
+                    <TextBlock Text="Change how LauncherX looks like" FontSize="12" Margin="0,2,0,0"/>
+                  </StackPanel>
+
+                </StackPanel>
+              </Expander.Header>
+
+              <Expander.Content>
+                <StackPanel Orientation="Vertical">
+
+                  <Panel>
+                    <TextBlock Text="Change Icon Size:" VerticalAlignment="Center" HorizontalAlignment="Left" />
+                    <NumericUpDown VerticalAlignment="Center" HorizontalAlignment="Right" Maximum="2.0" Minimum="0.7" Value="1.0" Increment="0.1" FormatString="{}{0:F1}" x:Name="IconSizeNumUpDown"/>
+                  </Panel>
+
+                  <Panel Margin="0,20,0,0">
+                    <TextBlock Text="Change Header Text:" VerticalAlignment="Center" HorizontalAlignment="Left" />
+                    <TextBox VerticalAlignment="Center" HorizontalAlignment="Right"  x:Name="HeaderTextBox" Width="300" />
+                  </Panel>
+
+                </StackPanel>
+              </Expander.Content>
+
+            </Expander>
 
 
-    <StackPanel Orientation="Vertical" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="20,72,20,20" Width="250" >
-      <TextBlock Text="About LauncherX" FontSize="20" FontWeight="SemiBold" VerticalAlignment="Top" HorizontalAlignment="Left"/>
-      <TextBlock VerticalAlignment="Top" HorizontalAlignment="Left" Margin="0,10,0,0" Text="LauncherX is a Windows Program used to organize and access all of your files, folders, websites, and pretty much anything." TextWrapping="Wrap"/>
-    </StackPanel>
-    
-    <Button x:Name="SaveBtn" Content=" Save and Exit " Classes="accent" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,20,20"/>
+            <Expander Margin="0,5,0,0" ExpandDirection="Down" >
+
+              <Expander.Header>
+                <StackPanel Orientation="Horizontal" Height="60" >
+
+                  <ui:FontIcon FontFamily="/Fonts/SegoeFluentIcons.ttf#Segoe Fluent Icons" Glyph="&#xe790;" FontSize="18" />
+
+                  <StackPanel Orientation="Vertical" Margin="20,0,0,0" VerticalAlignment="Center">
+                    <TextBlock Text="App Theme" />
+                    <TextBlock Text="Select which app theme to display" FontSize="12" Margin="0,2,0,0"/>
+                  </StackPanel>
+
+                </StackPanel>
+              </Expander.Header>
+
+              <Expander.Content>
+                <StackPanel Orientation="Vertical">
+                  <RadioButton Content="Light"/>
+                  <RadioButton Content="Dark"/>
+                  <RadioButton Content="Use system setting"/>
+
+                </StackPanel>
+              </Expander.Content>
+
+            </Expander>
+
+
+            <TextBlock Text="Version" FontSize="16" FontWeight="SemiBold" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="0,20,0,0"/>
+            
+            <!--TODO: Change InfoBar to Expander--> 
+              <ui:InfoBar IsOpen="True" IsIconVisible="False" IsClosable="False" Margin="0,10,0,0" Height="60" x:Name="VersionInfoBar">
+                <Panel HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Height="{Binding Height, ElementName=VersionInfoBar}" >
+                  
+                <StackPanel Orientation="Horizontal" >
+                 <ui:FontIcon FontFamily="/Fonts/SegoeFluentIcons.ttf#Segoe Fluent Icons" Glyph="&#xe117;" FontSize="18" />
+                  <TextBlock Text="Current version: {version}" VerticalAlignment="Center" HorizontalAlignment="Left" x:Name="VersionText" Margin="20,0,0,0" />
+                </StackPanel>
+                
+                  <Button x:Name="CheckUpdatesBtn" Content="Check for Updates" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,20,0" />
+              </Panel>
+            </ui:InfoBar>
+           
+            
+            <TextBlock Text="About" FontSize="16" FontWeight="SemiBold" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="0,20,0,0"/>
+          
+            <ui:InfoBar IsOpen="True" IsIconVisible="False" IsClosable="False" Margin="0,10,0,0" Height="60" HorizontalAlignment="Stretch" x:Name="AboutInfoBar" BorderThickness="0">
+                <Panel HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Height="{Binding Height, ElementName=AboutInfoBar}">
+                  
+                <StackPanel Orientation="Horizontal" >
+                  <ui:FontIcon FontFamily="/Fonts/SegoeFluentIcons.ttf#Segoe Fluent Icons" Glyph="&#xe946;" FontSize="18" />
+                  <TextBlock Text="About LauncherX" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="20,0,0,0" />
+                </StackPanel>
+                
+                  <Label HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,20,0" >
+                    <Label.Content>
+                       <ui:FontIcon FontFamily="/Fonts/SegoeFluentIcons.ttf#Segoe Fluent Icons" Glyph="&#xe8a7;" FontSize="18" />
+                    </Label.Content>
+                  </Label>
+              </Panel>
+            </ui:InfoBar>
+          </StackPanel>
+
+
+        </Panel>
+      </ScrollViewer>
+    </Panel>
+
+    <Button x:Name="SaveBtn" Content="Save and Exit" Classes="accent" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,20,20"/>
+
   </Panel>
 </Window>

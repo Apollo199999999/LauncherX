@@ -1,6 +1,7 @@
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Markup.Xaml;
+using Avalonia.Media;
 using FluentAvalonia.UI.Controls;
 
 namespace LauncherX.Avalonia
@@ -11,6 +12,7 @@ namespace LauncherX.Avalonia
         public NumericUpDown IconSizeNumUpDown = new NumericUpDown();
         public TextBox HeaderTextBox = new TextBox();
         public TextBlock VersionText = new TextBlock();
+        public InfoBar AboutInfoBar = new InfoBar();
 
         public SettingsWindow()
         {
@@ -28,7 +30,22 @@ namespace LauncherX.Avalonia
             IconSizeNumUpDown = this.FindControl<NumericUpDown>("IconSizeNumUpDown");
             HeaderTextBox = this.FindControl<TextBox>("HeaderTextBox");
             VersionText = this.FindControl<TextBlock>("VersionText");
+            AboutInfoBar = this.FindControl<InfoBar>("AboutInfoBar");
 
+            //all event handlers go here
+            AboutInfoBar.PointerEnter += AboutInfoBar_PointerEnter;
+            AboutInfoBar.PointerLeave += AboutInfoBar_PointerLeave;
+
+        }
+
+        private void AboutInfoBar_PointerLeave(object? sender, global::Avalonia.Input.PointerEventArgs e)
+        {
+            
+        }
+
+        private void AboutInfoBar_PointerEnter(object? sender, global::Avalonia.Input.PointerEventArgs e)
+        {
+           
         }
     }
 }

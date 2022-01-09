@@ -16,6 +16,10 @@
   </PropertyGroup>
   <ItemGroup>
     <None Remove=".gitignore" />
+    <None Remove="Fonts\SegoeFluentIcons.ttf" />
+  </ItemGroup>
+  <ItemGroup>
+    <AvaloniaResource Include="Fonts\SegoeFluentIcons.ttf" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Avalonia" Version="0.10.11" />
