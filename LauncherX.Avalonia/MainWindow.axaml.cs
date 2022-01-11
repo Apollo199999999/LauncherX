@@ -13,7 +13,7 @@ using Button = Avalonia.Controls.Button;
 
 namespace LauncherX.Avalonia
 {
-    public partial class MainWindow : CoreWindow
+    public partial class MainWindow : Window
     {
         //init controls from xaml
 
