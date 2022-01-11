@@ -13,6 +13,9 @@ namespace LauncherX.Avalonia
         public TextBox HeaderTextBox = new TextBox();
         public TextBlock VersionText = new TextBlock();
         public InfoBar AboutInfoBar = new InfoBar();
+        public RadioButton LightThmRadioBtn = new RadioButton();
+        public RadioButton DarkThmRadioBtn = new RadioButton();
+        public RadioButton SystemThmRadioBtn = new RadioButton();
 
         public SettingsWindow()
         {
@@ -31,6 +34,9 @@ namespace LauncherX.Avalonia
             HeaderTextBox = this.FindControl<TextBox>("HeaderTextBox");
             VersionText = this.FindControl<TextBlock>("VersionText");
             AboutInfoBar = this.FindControl<InfoBar>("AboutInfoBar");
+            LightThmRadioBtn = this.FindControl<RadioButton>("LightThmRadioBtn");
+            DarkThmRadioBtn = this.FindControl<RadioButton>("DarkThmRadioBtn");
+            SystemThmRadioBtn = this.FindControl<RadioButton>("SystemThmRadioBtn")
 
             //all event handlers go here
             AboutInfoBar.PointerEnter += AboutInfoBar_PointerEnter;

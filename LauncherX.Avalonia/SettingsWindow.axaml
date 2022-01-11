@@ -71,9 +71,9 @@
 
               <Expander.Content>
                 <StackPanel Orientation="Vertical">
-                  <RadioButton Content="Light"/>
-                  <RadioButton Content="Dark"/>
-                  <RadioButton Content="Use system setting"/>
+                  <RadioButton Content="Light" x:Name="LightThmRadioBtn" />
+                  <RadioButton Content="Dark" x:Name="DarkThmRadioBtn" />
+                  <RadioButton Content="Use system setting" x:Name="SystemThmRadioBtn" />
 
                 </StackPanel>
               </Expander.Content>
