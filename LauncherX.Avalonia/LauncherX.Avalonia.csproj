@@ -13,13 +13,20 @@
     <RepositoryUrl>https://github.com/Apollo199999999/LauncherX</RepositoryUrl>
     <AssemblyVersion>2.0.0</AssemblyVersion>
     <FileVersion>2.0.0</FileVersion>
+    <ApplicationIcon>Assets\icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <None Remove=".gitignore" />
     <None Remove="Fonts\SegoeFluentIcons.ttf" />
   </ItemGroup>
   <ItemGroup>
+    <AvaloniaResource Include="Assets\**" />
+  </ItemGroup>
+  <ItemGroup>
     <AvaloniaResource Include="Fonts\SegoeFluentIcons.ttf" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Assets\icon.ico" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Avalonia" Version="0.10.11" />

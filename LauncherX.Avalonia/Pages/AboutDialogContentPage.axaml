@@ -2,11 +2,19 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
-             x:Class="LauncherX.Avalonia.Pages.AboutDialogContentPage">
-  <StackPanel Orientation="Vertical">
-    <TextBlock Text="About LauncherX" FontSize="24" FontWeight="SemiBold" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="20,20,20,20"/>
-    <Image Width="50" Height="50" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="20,10,20,20" />
-    <TextBlock Text="LauncherX is a Windows Program used to organize and access all of your files, folders, websites, and pretty much anything." VerticalAlignment="Top" HorizontalAlignment="Stretch" Margin="20,10,0,0" />
-  </Panel>
+             xmlns:sty="using:FluentAvalonia.Styling"
+             xmlns:ui="using:FluentAvalonia.UI.Controls"
+             xmlns:uip="using:FluentAvalonia.UI.Controls.Primitives"
+             mc:Ignorable="d" 
+             x:Class="LauncherX.Avalonia.Pages.AboutDialogContentPage" Width="400" Height="400">
+  <StackPanel Orientation="Vertical"> 
+    <Image Width="100" Height="100" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,0" Source="/Assets/icon.png"/>
+    <TextBlock Text="LauncherX" FontSize="24" FontWeight="SemiBold" HorizontalAlignment="Center" />
+    <TextBlock Text="LauncherX is a Windows Program used to organize and access all of your files, folders, websites, and pretty much anything." HorizontalAlignment="Center" Margin="0,10,0,0" TextWrapping="Wrap" />
+    <ui:HyperlinkButton NavigateUri="https://github.com/Apollo199999999/LauncherX" Content="Visit LauncherX's GitHub repository" HorizontalAlignment="Center" Margin="0,10,0,0"/>
+    <ui:HyperlinkButton NavigateUri="https://clickphase.weebly.com/launcherx.html" Content="Visit LauncherX's website" HorizontalAlignment="Center" />
+    <ui:HyperlinkButton NavigateUri="https://github.com/Apollo199999999/LauncherX/issues" Content="Report a bug" HorizontalAlignment="Center" />
+    <ui:HyperlinkButton NavigateUri="https://github.com/Apollo199999999/LauncherX/issues" Content="Request a feature" HorizontalAlignment="Center" />
+    <ui:HyperlinkButton NavigateUri="https://github.com/Apollo199999999/LauncherX/blob/master/LICENSE.txt" Content="MIT License" HorizontalAlignment="Center" />
+  </StackPanel>
 </UserControl>

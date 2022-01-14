@@ -4,6 +4,7 @@ using Avalonia.Markup.Xaml;
 using Avalonia.Media;
 using FluentAvalonia.Styling;
 using FluentAvalonia.UI.Controls;
+using LauncherX.Avalonia.Pages;
 using Button = Avalonia.Controls.Button;
 
 namespace LauncherX.Avalonia
@@ -55,9 +56,17 @@ namespace LauncherX.Avalonia
 
         }
 
-        private void AboutBtn_Click(object? sender, global::Avalonia.Interactivity.RoutedEventArgs e)
+        private async void AboutBtn_Click(object? sender, global::Avalonia.Interactivity.RoutedEventArgs e)
         {
             //show a contentdialog with the about page
+
+            //init contentdialog
+            ContentDialog AboutDialog = new ContentDialog();
+            AboutDialog.PrimaryButtonText = "OK";
+            AboutDialog.DefaultButton = ContentDialogButton.Primary;
+            AboutDialog.Content = new AboutDialogContentPage();
+
+            var result = await AboutDialog.ShowAsync();
         }
 
         private void SystemThmRadioBtn_Checked(object? sender, global::Avalonia.Interactivity.RoutedEventArgs e)

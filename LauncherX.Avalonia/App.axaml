@@ -3,7 +3,7 @@
              xmlns:sty="using:FluentAvalonia.Styling"
              xmlns:ui="using:FluentAvalonia.UI.Controls"
              xmlns:uip="using:FluentAvalonia.UI.Controls.Primitives"
-             x:Class="LauncherX.Avalonia.App">
+             x:Class="LauncherX.Avalonia.App" >
     <Application.Styles>
         <sty:FluentAvaloniaTheme />
     </Application.Styles>
