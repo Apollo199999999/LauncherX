@@ -4,5 +4,9 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="LauncherX.Avalonia.Pages.AboutDialogContentPage">
-  Welcome to Avalonia!
+  <StackPanel Orientation="Vertical">
+    <TextBlock Text="About LauncherX" FontSize="24" FontWeight="SemiBold" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="20,20,20,20"/>
+    <Image Width="50" Height="50" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="20,10,20,20" />
+    <TextBlock Text="LauncherX is a Windows Program used to organize and access all of your files, folders, websites, and pretty much anything." VerticalAlignment="Top" HorizontalAlignment="Stretch" Margin="20,10,0,0" />
+  </Panel>
 </UserControl>

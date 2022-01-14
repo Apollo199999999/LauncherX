@@ -10,7 +10,7 @@
         Title="LauncherX Settings" Width="800" Height="533" CanResize="False" x:Name="SettingsWindow">
 
   <Panel>
-    <TextBlock Text="LauncherX Settings" FontSize="24" FontWeight="SemiBold" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="20,20,0,0"/>
+    <TextBlock Text="LauncherX Settings" FontSize="24" FontWeight="SemiBold" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="20,20,20,20"/>
 
     <Panel VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="0,72,0,62" >
       <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
