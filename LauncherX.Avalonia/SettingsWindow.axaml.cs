@@ -62,6 +62,7 @@ namespace LauncherX.Avalonia
 
             //init contentdialog
             ContentDialog AboutDialog = new ContentDialog();
+            AboutDialog.Title = "About LauncherX";
             AboutDialog.PrimaryButtonText = "OK";
             AboutDialog.DefaultButton = ContentDialogButton.Primary;
             AboutDialog.Content = new AboutDialogContentPage();
