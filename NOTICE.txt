@@ -1,6 +1,5 @@
 LauncherX incorporates material from third parties. As such, their respective licenses and/or notices are included in this file.
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
 Avalonia
 Source: https://github.com/AvaloniaUI/Avalonia
 
