@@ -5,15 +5,13 @@ using Avalonia.Media;
 using FluentAvalonia.Styling;
 using FluentAvalonia.UI.Controls;
 using LauncherX.Avalonia.Pages;
+using static LauncherX.Avalonia.PublicVariables;
 using Button = Avalonia.Controls.Button;
 
 namespace LauncherX.Avalonia
 {
     public partial class SettingsWindow : Window
     {
-        //string to store the system theme
-        string SysTheme = "";
-
         //init controls from xaml
         public NumericUpDown IconSizeNumUpDown = new NumericUpDown();
         public TextBox HeaderTextBox = new TextBox();
@@ -49,10 +47,6 @@ namespace LauncherX.Avalonia
             DarkThmRadioBtn.Checked += DarkThmRadioBtn_Checked;
             SystemThmRadioBtn.Checked += SystemThmRadioBtn_Checked;
             AboutBtn.Click += AboutBtn_Click;
-
-            //get the system theme
-            var thm = AvaloniaLocator.Current.GetService<FluentAvaloniaTheme>();
-            SysTheme = thm.RequestedTheme;
 
         }
 

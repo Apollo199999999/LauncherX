@@ -5,6 +5,7 @@ using Avalonia.Controls;
 using Avalonia.Interactivity;
 using Avalonia.Markup.Xaml;
 using Avalonia.Media;
+using FluentAvalonia.Styling;
 using FluentAvalonia.UI.Controls;
 using FluentAvalonia.UI.Navigation;
 using LauncherX.Avalonia.Pages;
@@ -69,6 +70,10 @@ namespace LauncherX.Avalonia
             SettingsBtn.Click += SettingsBtn_Click;
             AddWebsiteBtn.Click += AddWebsiteBtn_Click;
             NavView.SelectionChanged += NavView_SelectionChanged;
+
+            //get the system theme (string SysTheme is from PublicVariables)
+            var thm = AvaloniaLocator.Current.GetService<FluentAvaloniaTheme>();
+            SysTheme = thm.RequestedTheme;
 
 
         }
