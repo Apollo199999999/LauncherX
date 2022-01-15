@@ -5,6 +5,6 @@
              xmlns:uip="using:FluentAvalonia.UI.Controls.Primitives"
              x:Class="LauncherX.Avalonia.App" >
     <Application.Styles>
-        <sty:FluentAvaloniaTheme />
+      <sty:FluentAvaloniaTheme />
     </Application.Styles>
 </Application>

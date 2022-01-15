@@ -1,4 +1,7 @@
-﻿using System;
+﻿using Avalonia;
+using Avalonia.Media;
+using FluentAvalonia.Styling;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,5 +16,6 @@ namespace LauncherX.Avalonia
 
         //string to store the system theme
         public static string SysTheme = "";
+        
     }
 }

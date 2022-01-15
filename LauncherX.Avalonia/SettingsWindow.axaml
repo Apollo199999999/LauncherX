@@ -7,10 +7,22 @@
         xmlns:uip="using:FluentAvalonia.UI.Controls.Primitives"
         mc:Ignorable="d"
         x:Class="LauncherX.Avalonia.SettingsWindow"
+        TransparencyLevelHint="Mica"
+        Background="{x:Null}"
         Icon="/Assets/icon.ico"
         Title="LauncherX Settings" Width="800" Height="533" CanResize="False" x:Name="SettingsWindow">
 
   <Panel>
+    <ExperimentalAcrylicBorder IsHitTestVisible="False" x:Name="SettingsWindowMicaMaterial">
+      <ExperimentalAcrylicBorder.Material>
+        <ExperimentalAcrylicMaterial
+            BackgroundSource="Digger"
+            TintColor="Black"
+            TintOpacity="1"
+            MaterialOpacity="0.85" />
+      </ExperimentalAcrylicBorder.Material>
+    </ExperimentalAcrylicBorder>
+    
     <TextBlock Text="LauncherX Settings" FontSize="24" FontWeight="SemiBold" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="20,20,20,20"/>
 
     <Panel VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="0,72,0,62" >
