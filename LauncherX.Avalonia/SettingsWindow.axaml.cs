@@ -1,5 +1,6 @@
 using Avalonia;
 using Avalonia.Controls;
+using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Markup.Xaml;
 using Avalonia.Media;
 using FluentAvalonia.Styling;
@@ -22,75 +23,51 @@ namespace LauncherX.Avalonia
         public RadioButton SystemThmRadioBtn = new RadioButton();
         public Button AboutBtn = new Button();
 
-        //functions go here
 
-        //function to change the application theme
-        public void ChangeApplicationTheme(string theme)
-        {
-            //get currently running mainwindow and settings window
-            var _mainWindow = AvaloniaLocator.Current.GetService<MainWindow>();
-            var _settingsWindow = AvaloniaLocator.Current.GetService<SettingsWindow>();
-
-            //get the currently running fluentavalonia theme manager
-            var thmMgr = AvaloniaLocator.Current.GetService<FluentAvaloniaTheme>();
-
-            //change the theme accordingly only if the theme manager, mainwindow, and settings window are all not null (they have been initialized)
-            if (_mainWindow != null && _settingsWindow != null && thmMgr != null)
-            {
-                if (theme.ToLower() == "light")
-                {
-                    //set light theme for both windows
-                    thmMgr.RequestedTheme = "Light";
-
-                    _mainWindow.MainWindowMicaMaterial.Material.TintColor = Colors.White;
-                    _settingsWindow.SettingsWindowMicaMaterial.Material.TintColor = Colors.White;
-                }
-                else if (theme.ToLower() == "dark")
-                {
-                    //set light theme for both windows
-                    thmMgr.RequestedTheme = "Dark";
-
-                    _mainWindow.MainWindowMicaMaterial.Material.TintColor = Colors.Black;
-                    _settingsWindow.SettingsWindowMicaMaterial.Material.TintColor = Colors.Black;
-                }
-                else if (theme.ToLower() == "system")
-                {
-                    //set light theme for both windows
-                    thmMgr.RequestedTheme = SysTheme;
-
-                    /*if the systheme is dark, set the mica material for both windows to black. Otherwise, if the systheme is light,
-                    set the mica material for both windows to white*/
-
-                    if (SysTheme.ToLower() == "light")
-                    {
-                        _mainWindow.MainWindowMicaMaterial.Material.TintColor = Colors.White;
-                        _settingsWindow.SettingsWindowMicaMaterial.Material.TintColor = Colors.White;
-                    }
-                    else if (SysTheme.ToLower() == "dark")
-                    {
-                        _mainWindow.MainWindowMicaMaterial.Material.TintColor = Colors.Black;
-                        _settingsWindow.SettingsWindowMicaMaterial.Material.TintColor = Colors.Black;
-                    }
-                }
-
-            }
-
-        }
-
-
+       
         public SettingsWindow()
         {
             InitializeComponent();
 #if DEBUG
             this.AttachDevTools();
 #endif
+
+            //SettingsWindow event handlers go here
+            this.Opened += SettingsWindow_Opened;
+            this.Closing += SettingsWindow_Closing;
         }
+
+        private void SettingsWindow_Closing(object? sender, System.ComponentModel.CancelEventArgs e)
+        {
+            //don't close the window, only hide it
+            e.Cancel = true;
+            this.Hide();
+        }
+
+        private void SettingsWindow_Opened(object? sender, System.EventArgs e)
+        {
+            //set the theme according to the theme manager;
+            var thmMgr = AvaloniaLocator.Current.GetService<FluentAvaloniaTheme>();
+
+            if (thmMgr.RequestedTheme == "Light")
+            {
+                //set the app theme to light
+                ChangeApplicationTheme("light");
+            }
+            else if (thmMgr.RequestedTheme == "Dark")
+            {
+                //set the app theme to light
+                ChangeApplicationTheme("dark");
+            }
+        }
+
 
         private void InitializeComponent()
         {
             AvaloniaXamlLoader.Load(this);
 
             //locate controls
+            SettingsWindowMicaMaterial = this.FindControl<ExperimentalAcrylicBorder>("SettingsWindowMicaMaterial");
             IconSizeNumUpDown = this.FindControl<NumericUpDown>("IconSizeNumUpDown");
             HeaderTextBox = this.FindControl<TextBox>("HeaderTextBox");
             VersionText = this.FindControl<TextBlock>("VersionText");

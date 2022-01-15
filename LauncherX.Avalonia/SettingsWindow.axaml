@@ -19,7 +19,7 @@
             BackgroundSource="Digger"
             TintColor="Black"
             TintOpacity="1"
-            MaterialOpacity="0.85" />
+            MaterialOpacity="0.87" />
       </ExperimentalAcrylicBorder.Material>
     </ExperimentalAcrylicBorder>
     

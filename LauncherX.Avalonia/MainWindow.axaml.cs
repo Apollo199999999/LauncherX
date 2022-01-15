@@ -9,8 +9,9 @@ using FluentAvalonia.Styling;
 using FluentAvalonia.UI.Controls;
 using FluentAvalonia.UI.Navigation;
 using LauncherX.Avalonia.Pages;
-using static LauncherX.Avalonia.PublicVariables;
 using Button = Avalonia.Controls.Button;
+using static LauncherX.Avalonia.PublicVariables;
+using Avalonia.Controls.ApplicationLifetimes;
 
 namespace LauncherX.Avalonia
 {
@@ -30,8 +31,8 @@ namespace LauncherX.Avalonia
         public NavigationViewItem FoldersItem = new NavigationViewItem();
         public NavigationViewItem WebsitesItem = new NavigationViewItem();
 
-
-        //FUNCTIONS:
+        //init SettingsWindow
+        SettingsWindow settingsWindow = new SettingsWindow();
 
         public MainWindow()
         {
@@ -39,6 +40,8 @@ namespace LauncherX.Avalonia
 #if DEBUG
             this.AttachDevTools();
 #endif
+            //MainWindow event handlers go here
+            this.Opened += MainWindow_Opened;
         }
 
         private void InitializeComponent()
@@ -61,6 +64,16 @@ namespace LauncherX.Avalonia
 
             //configure controls
 
+            //set the application shutdownmode to onmainwindowclose
+
+            if (Application.Current != null)
+            {
+                if (Application.Current.ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
+                {
+                    desktop.ShutdownMode = ShutdownMode.OnMainWindowClose;
+                }
+            }
+
             //set the NavView SelectedItem manually and navigate to that page
             NavView.SelectedItem = AllItemsItem;
             ContentFrame.Navigate(typeof(AllItemsPage));
@@ -72,8 +85,32 @@ namespace LauncherX.Avalonia
 
             //get the system theme (string SysTheme is from PublicVariables)
             var thm = AvaloniaLocator.Current.GetService<FluentAvaloniaTheme>();
-            SysTheme = thm.RequestedTheme;
+            PV_SysTheme = thm.RequestedTheme;
 
+
+        }
+
+        private void MainWindow_Opened(object? sender, EventArgs e)
+        {
+            //store the current MainWindow instance in the PublicVariables class
+            PV_mainWindow = this;
+
+            //store the current SettingsWindow instance in the PublicVariables class
+            PV_settingsWindow = settingsWindow;
+
+            //set the theme according to the theme manager;
+            var thmMgr = AvaloniaLocator.Current.GetService<FluentAvaloniaTheme>();
+
+            if (thmMgr.RequestedTheme == "Light")
+            {
+                //set the app theme to light
+                ChangeApplicationTheme("light");
+            }
+            else if (thmMgr.RequestedTheme == "Dark")
+            {
+                //set the app theme to light
+                ChangeApplicationTheme("dark");
+            }
 
         }
 
@@ -95,9 +132,8 @@ namespace LauncherX.Avalonia
         private void SettingsBtn_Click(object? sender, RoutedEventArgs e)
         {
             //when the settings button is clicked, configure and open the settings window
-            SettingsWindow settingsWindow = new SettingsWindow();
             settingsWindow.HeaderTextBox.Text = HeaderText.Text;
-            settingsWindow.VersionText.Text = "Current version: " + CurrentVersion;
+            settingsWindow.VersionText.Text = "Current version: " + PV_CurrentVersion;
             settingsWindow.ShowDialog(this);
         }
 

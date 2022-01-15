@@ -19,7 +19,7 @@
             BackgroundSource="Digger"
             TintColor="Black"
             TintOpacity="1"
-            MaterialOpacity="0.85" />
+            MaterialOpacity="0.87" />
       </ExperimentalAcrylicBorder.Material>
     </ExperimentalAcrylicBorder>
 
@@ -44,6 +44,7 @@
     <ui:NavigationView HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="20,114,20,20" PaneDisplayMode="Top" IsSettingsVisible="False"
                        SelectionFollowsFocus="True" IsBackButtonVisible="False" x:Name="NavView" >
 
+      
       <ui:NavigationView.MenuItems>
         <ui:NavigationViewItem Content="All Items" x:Name="AllItemsItem"/>
         <ui:NavigationViewItem Content="Files" x:Name="FilesItem"/>
@@ -51,7 +52,7 @@
         <ui:NavigationViewItem Content="Websites" x:Name="WebsitesItem"/>
       </ui:NavigationView.MenuItems>
 
-      <ui:Frame x:Name="ContentFrame"/>
+      <ui:Frame x:Name="ContentFrame" />
     </ui:NavigationView>
 
   </Panel>
