@@ -69,7 +69,7 @@ namespace LauncherX {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/LauncherX;component/inprogress.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/LauncherX [FROZEN ON v1.0.1];component/inprogress.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\InProgress.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);
