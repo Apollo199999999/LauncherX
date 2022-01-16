@@ -41,7 +41,7 @@
     </Panel>
 
 
-    <ui:NavigationView HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="20,114,20,20" PaneDisplayMode="Top" IsSettingsVisible="False"
+    <ui:NavigationView HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="10,114,10,10" PaneDisplayMode="Top" IsSettingsVisible="False"
                        SelectionFollowsFocus="True" IsBackButtonVisible="False" x:Name="NavView" >
 
       
