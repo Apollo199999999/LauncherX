@@ -35,8 +35,8 @@
 
       <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center">
         <Button x:Name="AddFileBtn" HorizontalAlignment="Right" VerticalAlignment="Stretch" Content=" Add a file " Classes="accent" />
-        <Button x:Name="AddFolderBtn" HorizontalAlignment="Right" VerticalAlignment="Stretch" Content="Add a folder" Margin="10,0,10,0" />
-        <Button x:Name="AddWebsiteBtn" HorizontalAlignment="Right" VerticalAlignment="Stretch" Content="Add a website" />
+        <Button x:Name="AddFolderBtn" HorizontalAlignment="Right" VerticalAlignment="Stretch" Content=" Add a folder " Margin="10,0,10,0" />
+        <Button x:Name="AddWebsiteBtn" HorizontalAlignment="Right" VerticalAlignment="Stretch" Content=" Add a website " />
       </StackPanel>
     </Panel>
 

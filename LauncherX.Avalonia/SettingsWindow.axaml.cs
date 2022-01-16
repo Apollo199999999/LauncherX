@@ -7,6 +7,7 @@ using FluentAvalonia.Styling;
 using FluentAvalonia.UI.Controls;
 using LauncherX.Avalonia.Pages;
 using System;
+using System.Diagnostics;
 using System.Runtime.InteropServices;
 using static LauncherX.Avalonia.PublicVariables;
 using Button = Avalonia.Controls.Button;
@@ -23,9 +24,8 @@ namespace LauncherX.Avalonia
         public RadioButton LightThmRadioBtn = new RadioButton();
         public RadioButton DarkThmRadioBtn = new RadioButton();
         public Button AboutBtn = new Button();
+        public Button CheckUpdatesBtn = new Button();
 
-
-       
         public SettingsWindow()
         {
             InitializeComponent();
@@ -53,12 +53,12 @@ namespace LauncherX.Avalonia
             if (thmMgr.RequestedTheme == "Light")
             {
                 //set the app theme to light
-                ChangeApplicationTheme("light");
+                PV_ChangeApplicationTheme("light");
             }
             else if (thmMgr.RequestedTheme == "Dark")
             {
                 //set the app theme to light
-                ChangeApplicationTheme("dark");
+                PV_ChangeApplicationTheme("dark");
             }
         }
 
@@ -75,12 +75,69 @@ namespace LauncherX.Avalonia
             LightThmRadioBtn = this.FindControl<RadioButton>("LightThmRadioBtn");
             DarkThmRadioBtn = this.FindControl<RadioButton>("DarkThmRadioBtn");
             AboutBtn = this.FindControl<Button>("AboutBtn");
+            CheckUpdatesBtn = this.FindControl<Button>("CheckUpdatesBtn");
 
             //all event handlers go here
             LightThmRadioBtn.Checked += LightThmRadioBtn_Checked;
             DarkThmRadioBtn.Checked += DarkThmRadioBtn_Checked;
             AboutBtn.Click += AboutBtn_Click;
+            CheckUpdatesBtn.Click += CheckUpdatesBtn_Click;
 
+        }
+
+        private async void CheckUpdatesBtn_Click(object? sender, global::Avalonia.Interactivity.RoutedEventArgs e)
+        {
+            //check for updates if there is an intenet connection
+            if (PV_CheckForInternetConnection() == true)
+            {
+                if (PV_CheckForUpdates() == true)
+                {
+                    //show a contentdialog to prompt the user to update
+                    ContentDialog UpdateDialog = new ContentDialog();
+                    UpdateDialog.Title = "Update available";
+                    UpdateDialog.Content = "An update is available, would you like to download it?";
+                    UpdateDialog.PrimaryButtonText = " Yes ";
+                    UpdateDialog.CloseButtonText = " No ";
+                    UpdateDialog.DefaultButton = ContentDialogButton.Primary;
+                    ContentDialogResult result = await UpdateDialog.ShowAsync();
+
+                    if (result == ContentDialogResult.Primary)
+                    {
+                        //navigate to the update page and shutdown the application
+                        PV_OpenBrowser("https://www.github.com/Apollo199999999/LauncherX/releases");
+
+                        this.Close();
+                        if (PV_MainWindow != null)
+                        {
+                            PV_MainWindow.Close();
+                        }
+
+                    }
+                }
+                else if (PV_CheckForUpdates() == false)
+                {
+                    //show a contentdialog to show that there are no updates available
+                    ContentDialog NoUpdateDialog = new ContentDialog();
+                    NoUpdateDialog.Title = "You're up to date!";
+                    NoUpdateDialog.Content = "No updates are available for LauncherX";
+                    NoUpdateDialog.CloseButtonText = " OK ";
+                    NoUpdateDialog.DefaultButton = ContentDialogButton.Close;
+                    ContentDialogResult result = await NoUpdateDialog.ShowAsync();
+                }
+            }
+            else if (PV_CheckForInternetConnection() == false)
+            {
+                //no internet conntection available, show an error message
+                ContentDialog NoInternetDialog = new ContentDialog();
+                NoInternetDialog.Title = "No internet connection";
+                NoInternetDialog.Content = "LauncherX cannot check for updates as there is no internet connection. " +
+                    "Connect to the internet and try again"; ;
+                NoInternetDialog.CloseButtonText = " OK ";
+                NoInternetDialog.DefaultButton = ContentDialogButton.Close;
+                ContentDialogResult result = await NoInternetDialog.ShowAsync();
+            }
+            
+           
         }
 
         private async void AboutBtn_Click(object? sender, global::Avalonia.Interactivity.RoutedEventArgs e)
@@ -90,8 +147,8 @@ namespace LauncherX.Avalonia
             //init contentdialog
             ContentDialog AboutDialog = new ContentDialog();
             AboutDialog.Title = "About LauncherX";
-            AboutDialog.PrimaryButtonText = "OK";
-            AboutDialog.DefaultButton = ContentDialogButton.Primary;
+            AboutDialog.CloseButtonText = " OK ";
+            AboutDialog.DefaultButton = ContentDialogButton.Close;
             AboutDialog.Content = new AboutDialogContentPage();
 
             var result = await AboutDialog.ShowAsync();
@@ -100,13 +157,13 @@ namespace LauncherX.Avalonia
         private void DarkThmRadioBtn_Checked(object? sender, global::Avalonia.Interactivity.RoutedEventArgs e)
         {
             //set the app theme to dark theme
-            ChangeApplicationTheme("dark");
+            PV_ChangeApplicationTheme("dark");
         }
 
         private void LightThmRadioBtn_Checked(object? sender, global::Avalonia.Interactivity.RoutedEventArgs e)
         {
             //set the app theme to light theme
-            ChangeApplicationTheme("light");
+            PV_ChangeApplicationTheme("light");
             
         }
     }

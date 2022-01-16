@@ -144,7 +144,7 @@
       </ScrollViewer>
     </Panel>
 
-    <Button x:Name="SaveBtn" Content="Save and Exit" Classes="accent" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,20,20"/>
+    <Button x:Name="SaveBtn" Content=" Save and Exit " Classes="accent" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,20,20"/>
 
   </Panel>
 </Window>

@@ -100,12 +100,12 @@ namespace LauncherX.Avalonia
             if (thmMgr.RequestedTheme == "Light")
             {
                 //set the app theme to light
-                ChangeApplicationTheme("light");
+                PV_ChangeApplicationTheme("light");
             }
             else if (thmMgr.RequestedTheme == "Dark")
             {
                 //set the app theme to light
-                ChangeApplicationTheme("dark");
+                PV_ChangeApplicationTheme("dark");
             }
 
         }
@@ -117,12 +117,12 @@ namespace LauncherX.Avalonia
             //init contentdialog
             ContentDialog WebsiteDialog = new ContentDialog();
             WebsiteDialog.Title = "Add a website";
-            WebsiteDialog.PrimaryButtonText = "OK";
-            WebsiteDialog.CloseButtonText = "Cancel";
+            WebsiteDialog.PrimaryButtonText = " OK ";
+            WebsiteDialog.CloseButtonText = " Cancel ";
             WebsiteDialog.DefaultButton = ContentDialogButton.Primary;
             WebsiteDialog.Content = new WebsiteDialogContentPage();
 
-            var result = await WebsiteDialog.ShowAsync();
+            ContentDialogResult result = await WebsiteDialog.ShowAsync();
         }
 
         private void SettingsBtn_Click(object? sender, RoutedEventArgs e)
