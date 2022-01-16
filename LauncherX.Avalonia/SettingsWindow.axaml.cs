@@ -6,6 +6,8 @@ using Avalonia.Media;
 using FluentAvalonia.Styling;
 using FluentAvalonia.UI.Controls;
 using LauncherX.Avalonia.Pages;
+using System;
+using System.Runtime.InteropServices;
 using static LauncherX.Avalonia.PublicVariables;
 using Button = Avalonia.Controls.Button;
 
@@ -20,7 +22,6 @@ namespace LauncherX.Avalonia
         public TextBlock VersionText = new TextBlock();
         public RadioButton LightThmRadioBtn = new RadioButton();
         public RadioButton DarkThmRadioBtn = new RadioButton();
-        public RadioButton SystemThmRadioBtn = new RadioButton();
         public Button AboutBtn = new Button();
 
 
@@ -73,13 +74,11 @@ namespace LauncherX.Avalonia
             VersionText = this.FindControl<TextBlock>("VersionText");
             LightThmRadioBtn = this.FindControl<RadioButton>("LightThmRadioBtn");
             DarkThmRadioBtn = this.FindControl<RadioButton>("DarkThmRadioBtn");
-            SystemThmRadioBtn = this.FindControl<RadioButton>("SystemThmRadioBtn");
             AboutBtn = this.FindControl<Button>("AboutBtn");
 
             //all event handlers go here
             LightThmRadioBtn.Checked += LightThmRadioBtn_Checked;
             DarkThmRadioBtn.Checked += DarkThmRadioBtn_Checked;
-            SystemThmRadioBtn.Checked += SystemThmRadioBtn_Checked;
             AboutBtn.Click += AboutBtn_Click;
 
         }
@@ -96,12 +95,6 @@ namespace LauncherX.Avalonia
             AboutDialog.Content = new AboutDialogContentPage();
 
             var result = await AboutDialog.ShowAsync();
-        }
-
-        private void SystemThmRadioBtn_Checked(object? sender, global::Avalonia.Interactivity.RoutedEventArgs e)
-        {
-            //set the app theme to system theme
-            ChangeApplicationTheme("system");
         }
 
         private void DarkThmRadioBtn_Checked(object? sender, global::Avalonia.Interactivity.RoutedEventArgs e)

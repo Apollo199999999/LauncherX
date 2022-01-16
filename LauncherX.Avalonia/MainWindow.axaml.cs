@@ -12,6 +12,7 @@ using LauncherX.Avalonia.Pages;
 using Button = Avalonia.Controls.Button;
 using static LauncherX.Avalonia.PublicVariables;
 using Avalonia.Controls.ApplicationLifetimes;
+using System.Runtime.InteropServices;
 
 namespace LauncherX.Avalonia
 {
@@ -83,20 +84,15 @@ namespace LauncherX.Avalonia
             AddWebsiteBtn.Click += AddWebsiteBtn_Click;
             NavView.SelectionChanged += NavView_SelectionChanged;
 
-            //get the system theme (string SysTheme is from PublicVariables)
-            var thm = AvaloniaLocator.Current.GetService<FluentAvaloniaTheme>();
-            PV_SysTheme = thm.RequestedTheme;
-
-
         }
 
         private void MainWindow_Opened(object? sender, EventArgs e)
         {
             //store the current MainWindow instance in the PublicVariables class
-            PV_mainWindow = this;
+            PV_MainWindow = this;
 
             //store the current SettingsWindow instance in the PublicVariables class
-            PV_settingsWindow = settingsWindow;
+            PV_SettingsWindow = settingsWindow;
 
             //set the theme according to the theme manager;
             var thmMgr = AvaloniaLocator.Current.GetService<FluentAvaloniaTheme>();

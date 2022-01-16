@@ -8,12 +8,11 @@
         mc:Ignorable="d"
         x:Class="LauncherX.Avalonia.MainWindow"
         TransparencyLevelHint="Mica"
-        Background="{x:Null}"
         Icon="/Assets/icon.ico"
         Title="LauncherX - Organize all your stuff!" Width="900" Height="600" MinWidth="700" MinHeight="400" >
 
   <Panel>
-    <ExperimentalAcrylicBorder IsHitTestVisible="False" x:Name="MainWindowMicaMaterial">
+    <ExperimentalAcrylicBorder IsHitTestVisible="False" IsVisible="False" x:Name="MainWindowMicaMaterial">
       <ExperimentalAcrylicBorder.Material>
         <ExperimentalAcrylicMaterial
             BackgroundSource="Digger"
@@ -22,6 +21,7 @@
             MaterialOpacity="0.87" />
       </ExperimentalAcrylicBorder.Material>
     </ExperimentalAcrylicBorder>
+
 
 
     <AutoCompleteBox HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="20,20,62,20"  Watermark="Search through everything in LauncherX" />
