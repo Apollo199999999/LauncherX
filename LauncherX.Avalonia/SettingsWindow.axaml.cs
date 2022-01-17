@@ -25,6 +25,7 @@ namespace LauncherX.Avalonia
         public RadioButton DarkThmRadioBtn = new RadioButton();
         public Button AboutBtn = new Button();
         public Button CheckUpdatesBtn = new Button();
+        public Button SaveBtn = new Button();
 
         public SettingsWindow()
         {
@@ -76,13 +77,20 @@ namespace LauncherX.Avalonia
             DarkThmRadioBtn = this.FindControl<RadioButton>("DarkThmRadioBtn");
             AboutBtn = this.FindControl<Button>("AboutBtn");
             CheckUpdatesBtn = this.FindControl<Button>("CheckUpdatesBtn");
+            SaveBtn = this.FindControl<Button>("SaveBtn");
 
             //all event handlers go here
             LightThmRadioBtn.Checked += LightThmRadioBtn_Checked;
             DarkThmRadioBtn.Checked += DarkThmRadioBtn_Checked;
             AboutBtn.Click += AboutBtn_Click;
             CheckUpdatesBtn.Click += CheckUpdatesBtn_Click;
+            SaveBtn.Click += SaveBtn_Click
 
+        }
+        private void SaveBtn_Click(object? sender, global::Avalonia.Interactivity.RoutedEventArgs e)
+        {
+            //hide this window after saving settings
+            this.Hide();
         }
 
         private async void CheckUpdatesBtn_Click(object? sender, global::Avalonia.Interactivity.RoutedEventArgs e)
