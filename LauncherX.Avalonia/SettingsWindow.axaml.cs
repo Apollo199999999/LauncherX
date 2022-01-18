@@ -14,6 +14,14 @@ using Button = Avalonia.Controls.Button;
 
 namespace LauncherX.Avalonia
 {
+    //class to store user settings
+    public class UserSettings
+    {
+        public double IconScale { get; set;}
+        public string HeaderText { get; set; }
+        public string Theme { get; set; }
+    }
+
     public partial class SettingsWindow : Window
     {
         //init controls from xaml
@@ -26,6 +34,18 @@ namespace LauncherX.Avalonia
         public Button AboutBtn = new Button();
         public Button CheckUpdatesBtn = new Button();
         public Button SaveBtn = new Button();
+
+        //functions go here
+
+        //function to save settings
+        public void SaveSettings()
+        {
+            //init the usersettings class to store user settings
+            var userSettings = new UserSettings
+            {
+
+            }
+        }
 
         public SettingsWindow()
         {
