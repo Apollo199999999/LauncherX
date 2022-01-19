@@ -56,8 +56,33 @@ namespace LauncherX.Avalonia
                  }
             }
 
-            //serialize json
+            //TODO: serialize json
+            if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+            {
+                //serialize json in the appdata folder
+            }
 
+        }
+
+        //function to load settings
+        public void LoadSettings()
+        {
+            //TODO: Load json to usersettings class
+
+            //init the usersettings class to load settings
+            var userSettings = new UserSettings
+            {
+                IconSizeNumUpDown.Value = IconSize;
+                HeaderTextBox.Text = HeaderText;
+                if (Theme = "Light")
+                {
+                    LightThmRadioBtn.IsChecked = true;
+                }
+                else if (Theme = "Dark")
+                {
+                    DarkThmRadioBtn.IsChecked = true;
+                }
+            }
         }
 
         public SettingsWindow()
