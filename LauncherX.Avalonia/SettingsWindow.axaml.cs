@@ -42,19 +42,19 @@ namespace LauncherX.Avalonia
         public void SaveSettings()
         {
             //init the usersettings class to store user settings
-            var userSettings = new UserSettings
+            UserSettings userSettings = new UserSettings();
+            userSettings.IconSize = IconSizeNumUpDown.Value;
+            userSettings.HeaderText = HeaderTextBox.Text;
+            if (LightThmRadioBtn.IsChecked == true)
             {
-                IconSize = IconSizeNumUpDown.Value;
-                HeaderText = HeaderTextBox.Text;
-                 if (LightThmRadioBtn.IsChecked == true)
-                 {
-                     Theme = "Light";
-                 }
-                 else if (DarkThmRadioBtn.IsChecked == true)
-                 {
-                    Theme = "Dark";
-                 }
+                userSettings.Theme = "Light";
             }
+            else if (DarkThmRadioBtn.IsChecked == true)
+            {
+                userSettings.Theme = "Dark";
+            }
+
+            
 
             //TODO: serialize json
             if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
@@ -62,27 +62,6 @@ namespace LauncherX.Avalonia
                 //serialize json in the appdata folder
             }
 
-        }
-
-        //function to load settings
-        public void LoadSettings()
-        {
-            //TODO: Load json to usersettings class
-
-            //init the usersettings class to load settings
-            var userSettings = new UserSettings
-            {
-                IconSizeNumUpDown.Value = IconSize;
-                HeaderTextBox.Text = HeaderText;
-                if (Theme = "Light")
-                {
-                    LightThmRadioBtn.IsChecked = true;
-                }
-                else if (Theme = "Dark")
-                {
-                    DarkThmRadioBtn.IsChecked = true;
-                }
-            }
         }
 
         public SettingsWindow()
@@ -142,9 +121,10 @@ namespace LauncherX.Avalonia
             DarkThmRadioBtn.Checked += DarkThmRadioBtn_Checked;
             AboutBtn.Click += AboutBtn_Click;
             CheckUpdatesBtn.Click += CheckUpdatesBtn_Click;
-            SaveBtn.Click += SaveBtn_Click
+            SaveBtn.Click += SaveBtn_Click;
 
         }
+
         private void SaveBtn_Click(object? sender, global::Avalonia.Interactivity.RoutedEventArgs e)
         {
             //hide this window after saving settings
