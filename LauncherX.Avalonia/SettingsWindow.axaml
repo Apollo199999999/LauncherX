@@ -9,7 +9,7 @@
         x:Class="LauncherX.Avalonia.SettingsWindow"
         TransparencyLevelHint="Mica"
         Icon="/Assets/icon.ico"
-        Title="LauncherX Settings" Width="800" Height="533" CanResize="False" x:Name="SettingsWindow">
+        Title="LauncherX Settings" Width="800" Height="575" MinWidth="600" MinHeight="550" x:Name="SettingsWindow">
 
   <Panel>
     <ExperimentalAcrylicBorder IsHitTestVisible="False" IsVisible="False" x:Name="SettingsWindowMicaMaterial">
