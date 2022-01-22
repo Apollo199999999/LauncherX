@@ -5,27 +5,37 @@
              xmlns:sty="using:FluentAvalonia.Styling"
              xmlns:ui="using:FluentAvalonia.UI.Controls"
              xmlns:uip="using:FluentAvalonia.UI.Controls.Primitives"
-             mc:Ignorable="d" 
+             mc:Ignorable="d"
              x:Class="LauncherX.Avalonia.Pages.AboutDialogContentPage" Width="500" >
-  <StackPanel Orientation="Vertical"> 
+  <StackPanel Orientation="Vertical">
     <Image Width="100" Height="100" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,0" Source="/Assets/icon.png"/>
     <TextBlock Text="LauncherX" FontSize="24" FontWeight="SemiBold" HorizontalAlignment="Center" />
     <TextBlock Text="LauncherX is a Windows Program used to organize and access all of your files, folders, websites, and pretty much anything." HorizontalAlignment="Stretch" TextWrapping="Wrap" Margin="0,10,0,0"/>
 
-    <TextBlock Text="Links:" FontSize="16" FontWeight="SemiBold" HorizontalAlignment="Left" Margin="0,20,0,0" />
-    <Panel Margin="0,10,0,0">
-      
-      <StackPanel Width="250" HorizontalAlignment="Left">
-        <ui:HyperlinkButton NavigateUri="https://github.com/Apollo199999999/LauncherX" Content="Visit LauncherX's GitHub repository" HorizontalAlignment="Center"/>
-        <ui:HyperlinkButton NavigateUri="https://clickphase.weebly.com/launcherx.html" Content="Visit LauncherX's website" HorizontalAlignment="Center" />
-        <ui:HyperlinkButton NavigateUri="https://github.com/Apollo199999999/LauncherX/issues" Content="Report a bug or request a feature" HorizontalAlignment="Center" />
-      </StackPanel>
-      
-      <StackPanel Width="250" HorizontalAlignment="Right">
-        <ui:HyperlinkButton NavigateUri="https://github.com/Apollo199999999/LauncherX/blob/master/LICENSE.txt" Content="MIT License" HorizontalAlignment="Center" />
-        <ui:HyperlinkButton NavigateUri="https://github.com/Apollo199999999/LauncherX/blob/master/NOTICE.txt" Content="Third party notices and licenses" HorizontalAlignment="Center" />
-        <ui:HyperlinkButton NavigateUri="https://www.youtube.com/watch?v=dQw4w9WgXcQ" Content="Don't click this!" HorizontalAlignment="Center" />
-      </StackPanel>
-    </Panel>
+    <Expander HorizontalAlignment="Stretch" Margin="0,20,0,0" >
+      <Expander.Header>
+        <StackPanel Orientation="Horizontal" Height="50" >
+          <ui:FontIcon FontFamily="/Fonts/SegoeFluentIcons.ttf#Segoe Fluent Icons" Glyph="&#xe71b;" FontSize="18" />
+          <TextBlock Text="Links" Margin="20,0,0,0" VerticalAlignment="Center"/>
+        </StackPanel>
+      </Expander.Header>
+
+      <Expander.Content>
+        <StackPanel Orientation="Horizontal">
+          <StackPanel>
+            <ui:HyperlinkButton NavigateUri="https://github.com/Apollo199999999/LauncherX" Content="Visit LauncherX's GitHub repository" HorizontalAlignment="Center"/>
+            <ui:HyperlinkButton NavigateUri="https://clickphase.weebly.com/launcherx.html" Content="Visit LauncherX's website" HorizontalAlignment="Center" />
+            <ui:HyperlinkButton NavigateUri="https://github.com/Apollo199999999/LauncherX/issues" Content="Report a bug or request a feature" HorizontalAlignment="Center" />
+          </StackPanel>
+
+          <StackPanel>
+            <ui:HyperlinkButton NavigateUri="https://github.com/Apollo199999999/LauncherX/blob/master/LICENSE.txt" Content="MIT License" HorizontalAlignment="Center" />
+            <ui:HyperlinkButton NavigateUri="https://github.com/Apollo199999999/LauncherX/blob/master/NOTICE.txt" Content="Third party notices and licenses" HorizontalAlignment="Center" />
+            <ui:HyperlinkButton NavigateUri="https://www.youtube.com/watch?v=dQw4w9WgXcQ" Content="Don't click this!" HorizontalAlignment="Center" />
+          </StackPanel>
+        </StackPanel>
+      </Expander.Content>
+    </Expander>
+
   </StackPanel>
 </UserControl>
