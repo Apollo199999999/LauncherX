@@ -26,6 +26,7 @@ namespace LauncherX.Avalonia
     public partial class SettingsWindow : Window
     {
         //init controls from xaml
+        public ExperimentalAcrylicBorder SettingsWindowMicaMaterial = new ExperimentalAcrylicBorder();
         public NumericUpDown IconSizeNumUpDown = new NumericUpDown();
         public TextBox HeaderTextBox = new TextBox();
         public TextBlock VersionText = new TextBlock();
@@ -105,6 +106,7 @@ namespace LauncherX.Avalonia
             AvaloniaXamlLoader.Load(this);
 
             //locate controls
+            SettingsWindowMicaMaterial = this.FindControl<ExperimentalAcrylicBorder>("SettingsWindowMicaMaterial");
             IconSizeNumUpDown = this.FindControl<NumericUpDown>("IconSizeNumUpDown");
             HeaderTextBox = this.FindControl<TextBox>("HeaderTextBox");
             VersionText = this.FindControl<TextBlock>("VersionText");

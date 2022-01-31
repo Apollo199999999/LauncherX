@@ -29,11 +29,15 @@ namespace LauncherX.Avalonia
         //function to enable Mica on both windows
         public static void PV_EnableMica()
         {
-
             if (PV_MainWindow != null && PV_SettingsWindow != null)
             {
                 //enable mica by making the window background be null, configuring the visibility of the experimentalacrylicborder
-               
+                PV_MainWindow.Background = null;
+                PV_SettingsWindow.Background = null;
+
+                PV_MainWindow.MainWindowMicaMaterial.IsVisible = true;
+                PV_SettingsWindow.SettingsWindowMicaMaterial.IsVisible = true;
+
             }
             
         }
@@ -58,6 +62,9 @@ namespace LauncherX.Avalonia
                     //set light theme for both windows
                     thmMgr.RequestedTheme = "Light";
 
+                    PV_MainWindow.MainWindowMicaMaterial.Material.TintColor = Colors.White;
+                    PV_SettingsWindow.SettingsWindowMicaMaterial.Material.TintColor = Colors.White;
+
                     //check the lightthemeradiobutton in settings window
                     PV_SettingsWindow.LightThmRadioBtn.IsChecked = true;
 
@@ -66,6 +73,9 @@ namespace LauncherX.Avalonia
                 {
                     //set light theme for both windows
                     thmMgr.RequestedTheme = "Dark";
+
+                    PV_MainWindow.MainWindowMicaMaterial.Material.TintColor = Colors.Black;
+                    PV_SettingsWindow.SettingsWindowMicaMaterial.Material.TintColor = Colors.Black;
 
                     //check the darkthemeradiobutton in settings window
                     PV_SettingsWindow.DarkThmRadioBtn.IsChecked = true;
