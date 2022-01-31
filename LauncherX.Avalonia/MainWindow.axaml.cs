@@ -13,6 +13,7 @@ using Button = Avalonia.Controls.Button;
 using static LauncherX.Avalonia.PublicVariables;
 using Avalonia.Controls.ApplicationLifetimes;
 using System.Runtime.InteropServices;
+using static LauncherX.Avalonia.AddItemLogic;
 
 namespace LauncherX.Avalonia
 {
@@ -34,6 +35,12 @@ namespace LauncherX.Avalonia
 
         //init SettingsWindow
         SettingsWindow settingsWindow = new SettingsWindow();
+
+        //init item pages for navview
+        AllItemsPage allItemsPage = new AllItemsPage();
+        FilesPage filesPage = new FilesPage();
+        FoldersPage foldersPage = new FoldersPage();
+        WebsitesPage websitesPage = new WebsitesPage();
 
         public MainWindow()
         {
@@ -114,15 +121,30 @@ namespace LauncherX.Avalonia
         {
             //show a contentdialog with a textbox to enter the website URL
 
+            //init websitedialogcontentpage
+            WebsiteDialogContentPage websiteDialogContentPage = new WebsiteDialogContentPage();
+
             //init contentdialog
             ContentDialog WebsiteDialog = new ContentDialog();
             WebsiteDialog.Title = "Add a website";
             WebsiteDialog.PrimaryButtonText = " OK ";
             WebsiteDialog.CloseButtonText = " Cancel ";
             WebsiteDialog.DefaultButton = ContentDialogButton.Primary;
-            WebsiteDialog.Content = new WebsiteDialogContentPage();
+            WebsiteDialog.Content = websiteDialogContentPage;
 
             ContentDialogResult result = await WebsiteDialog.ShowAsync();
+
+            if (result == ContentDialogResult.Primary)
+            {
+                //modify the url from the textbox in the websitedialogcontentpage
+                if (websiteDialogContentPage.UrlTextBox.Text.StartsWith("https://"))
+                {
+                    string OriginalUrl = websiteDialogContentPage.UrlTextBox.Text;
+                    string ModifiedUrl = websiteDialogContentPage.UrlTextBox.Text.Remove(0, 8);
+                }
+
+                //add the website to the gridview in the allitemspage and the websitespage
+            }
         }
 
         private void SettingsBtn_Click(object? sender, RoutedEventArgs e)

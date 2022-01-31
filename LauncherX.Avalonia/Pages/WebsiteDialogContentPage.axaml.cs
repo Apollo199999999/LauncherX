@@ -6,6 +6,9 @@ namespace LauncherX.Avalonia.Pages
 {
     public partial class WebsiteDialogContentPage : UserControl
     {
+        //init controls from xaml
+        public TextBox UrlTextBox = new TextBox();
+
         public WebsiteDialogContentPage()
         {
             InitializeComponent();
@@ -14,6 +17,9 @@ namespace LauncherX.Avalonia.Pages
         private void InitializeComponent()
         {
             AvaloniaXamlLoader.Load(this);
+
+            //locate controls
+            UrlTextBox = this.FindControl<TextBox>("UrlTextBox");
         }
     }
 }

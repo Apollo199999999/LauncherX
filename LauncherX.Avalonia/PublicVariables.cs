@@ -12,11 +12,16 @@ using System.Net.NetworkInformation;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.IO;
 
 namespace LauncherX.Avalonia
 {
     public static class PublicVariables
     {
+        //directories to store files
+        public static string PV_WebsiteIconDir = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData),
+            "LauncherX", "Temp", "WebsiteIcons");
+
         //this variable used to define file version
         public static string PV_CurrentVersion = "2.0.0";
 
