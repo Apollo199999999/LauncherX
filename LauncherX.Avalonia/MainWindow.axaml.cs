@@ -19,7 +19,6 @@ namespace LauncherX.Avalonia
     public partial class MainWindow : Window
     {
         //init controls from xaml
-        public ExperimentalAcrylicBorder MainWindowMicaMaterial = new ExperimentalAcrylicBorder();
         public TextBlock HeaderText = new TextBlock();
         public Button SettingsBtn = new Button();
         public Button AddWebsiteBtn = new Button();
@@ -50,7 +49,6 @@ namespace LauncherX.Avalonia
             AvaloniaXamlLoader.Load(this);
 
             //locate controls
-            MainWindowMicaMaterial = this.FindControl<ExperimentalAcrylicBorder>("MainWindowMicaMaterial");
             HeaderText = this.FindControl<TextBlock>("HeaderText");
             SettingsBtn = this.FindControl<Button>("SettingsBtn");
             AddWebsiteBtn = this.FindControl<Button>("AddWebsiteBtn");
