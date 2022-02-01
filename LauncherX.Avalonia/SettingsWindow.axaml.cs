@@ -12,17 +12,12 @@ using System.Runtime.InteropServices;
 using System.Text.Json;
 using static LauncherX.Avalonia.PublicVariables;
 using Button = Avalonia.Controls.Button;
+using static LauncherX.Avalonia.UserSettings;
 
 namespace LauncherX.Avalonia
 {
     //class to store user settings
-    public class UserSettings
-    {
-        public double IconSize { get; set;}
-        public string HeaderText { get; set; }
-        public string Theme { get; set; }
-    }
-
+   
     public partial class SettingsWindow : Window
     {
         //init controls from xaml
@@ -42,16 +37,15 @@ namespace LauncherX.Avalonia
         public void SaveSettings()
         {
             //init the usersettings class to store user settings
-            UserSettings userSettings = new UserSettings();
-            userSettings.IconSize = IconSizeNumUpDown.Value;
-            userSettings.HeaderText = HeaderTextBox.Text;
+            Settings_IconSize = IconSizeNumUpDown.Value;
+            Settings_HeaderText = HeaderTextBox.Text;
             if (LightThmRadioBtn.IsChecked == true)
             {
-                userSettings.Theme = "Light";
+                Settings_Theme = "Light";
             }
             else if (DarkThmRadioBtn.IsChecked == true)
             {
-                userSettings.Theme = "Dark";
+                Settings_Theme = "Dark";
             }
 
             

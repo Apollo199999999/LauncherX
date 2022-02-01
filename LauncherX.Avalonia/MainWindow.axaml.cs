@@ -14,6 +14,7 @@ using static LauncherX.Avalonia.PublicVariables;
 using Avalonia.Controls.ApplicationLifetimes;
 using System.Runtime.InteropServices;
 using static LauncherX.Avalonia.AddItemLogic;
+using System.IO;
 
 namespace LauncherX.Avalonia
 {
@@ -36,12 +37,6 @@ namespace LauncherX.Avalonia
         //init SettingsWindow
         SettingsWindow settingsWindow = new SettingsWindow();
 
-        //init item pages for navview
-        AllItemsPage allItemsPage = new AllItemsPage();
-        FilesPage filesPage = new FilesPage();
-        FoldersPage foldersPage = new FoldersPage();
-        WebsitesPage websitesPage = new WebsitesPage();
-
         public MainWindow()
         {
             InitializeComponent();
@@ -55,6 +50,9 @@ namespace LauncherX.Avalonia
         private void InitializeComponent()
         {
             AvaloniaXamlLoader.Load(this);
+
+            //create directories
+            Directory.CreateDirectory(PV_WebsiteIconDir);
 
             //locate controls
             MainWindowMicaMaterial = this.FindControl<ExperimentalAcrylicBorder>("MainWindowMicaMaterial");
@@ -136,14 +134,8 @@ namespace LauncherX.Avalonia
 
             if (result == ContentDialogResult.Primary)
             {
-                //modify the url from the textbox in the websitedialogcontentpage
-                if (websiteDialogContentPage.UrlTextBox.Text.StartsWith("https://"))
-                {
-                    string OriginalUrl = websiteDialogContentPage.UrlTextBox.Text;
-                    string ModifiedUrl = websiteDialogContentPage.UrlTextBox.Text.Remove(0, 8);
-                }
-
-                //add the website to the gridview in the allitemspage and the websitespage
+                //add the website
+                AddWebsite(websiteDialogContentPage.UrlTextBox.Text, 1.0);
             }
         }
 

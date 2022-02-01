@@ -8,10 +8,6 @@
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="LauncherX.Avalonia.Pages.WebsitesPage">
   <Panel>
-    <ListBox>
-      <ListBoxItem Content="Websites 0"/>
-      <ListBoxItem Content="Websites 1"/>
-      <ListBoxItem Content="Websites 2"/>
-    </ListBox>
+    <ui:GridView x:Name="WebsitesGridView"/>
   </Panel>
 </UserControl>

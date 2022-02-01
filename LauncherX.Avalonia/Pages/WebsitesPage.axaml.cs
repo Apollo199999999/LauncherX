@@ -1,11 +1,15 @@
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Markup.Xaml;
+using FluentAvalonia.UI.Controls;
 
 namespace LauncherX.Avalonia.Pages
 {
     public partial class WebsitesPage : UserControl
     {
+        //init controls from xaml
+        public static GridView WebsitesGridView = new GridView();
+
         public WebsitesPage()
         {
             InitializeComponent();
@@ -14,6 +18,9 @@ namespace LauncherX.Avalonia.Pages
         private void InitializeComponent()
         {
             AvaloniaXamlLoader.Load(this);
+
+            //locate controls
+            WebsitesGridView = this.FindControl<GridView>("WebsitesGridView");
         }
     }
 }
