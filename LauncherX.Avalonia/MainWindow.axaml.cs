@@ -15,6 +15,7 @@ using Avalonia.Controls.ApplicationLifetimes;
 using System.Runtime.InteropServices;
 using static LauncherX.Avalonia.AddItemLogic;
 using System.IO;
+using System.Collections.Generic;
 
 namespace LauncherX.Avalonia
 {
@@ -27,12 +28,16 @@ namespace LauncherX.Avalonia
         public Button AddWebsiteBtn = new Button();
         public Button AddFolderBtn = new Button();
         public Button AddFileBtn = new Button();
-        public Frame ContentFrame = new Frame();
         public NavigationView NavView = new NavigationView();
         public NavigationViewItem AllItemsItem = new NavigationViewItem();
         public NavigationViewItem FilesItem = new NavigationViewItem();
         public NavigationViewItem FoldersItem = new NavigationViewItem();
         public NavigationViewItem WebsitesItem = new NavigationViewItem();
+        public Carousel ContentCarousel = new Carousel();
+        public AllItemsPage allItemsPage = new AllItemsPage();
+        public FilesPage filesPage = new FilesPage();
+        public FoldersPage foldersPage = new FoldersPage();
+        public WebsitesPage websitesPage = new WebsitesPage();
 
         //init SettingsWindow
         SettingsWindow settingsWindow = new SettingsWindow();
@@ -61,14 +66,15 @@ namespace LauncherX.Avalonia
             AddWebsiteBtn = this.FindControl<Button>("AddWebsiteBtn");
             AddFolderBtn = this.FindControl<Button>("AddFolderBtn");
             AddFileBtn = this.FindControl<Button>("AddFileBtn");
-            ContentFrame = this.FindControl<Frame>("ContentFrame");
             NavView = this.FindControl<NavigationView>("NavView");
             AllItemsItem = this.FindControl<NavigationViewItem>("AllItemsItem");
             FilesItem = this.FindControl<NavigationViewItem>("FilesItem");
             FoldersItem = this.FindControl<NavigationViewItem>("FoldersItem");
             WebsitesItem = this.FindControl<NavigationViewItem>("WebsitesItem");
+            ContentCarousel = this.FindControl<Carousel>("ContentCarousel");
 
             //configure controls
+            ContentCarousel.Items = new List<UserControl>() { allItemsPage, filesPage, foldersPage, websitesPage };
 
             //set the application shutdownmode to onmainwindowclose
 
@@ -82,8 +88,8 @@ namespace LauncherX.Avalonia
 
             //set the NavView SelectedItem manually and navigate to that page
             NavView.SelectedItem = AllItemsItem;
-            ContentFrame.Navigate(typeof(AllItemsPage));
-
+            ContentCarousel.SelectedItem = AllItemsItem;
+         
             //all event handlers go here
             SettingsBtn.Click += SettingsBtn_Click;
             AddWebsiteBtn.Click += AddWebsiteBtn_Click;
@@ -153,19 +159,19 @@ namespace LauncherX.Avalonia
 
             if (NavView.SelectedItem == AllItemsItem)
             {
-                ContentFrame.Navigate(typeof(AllItemsPage));
+                ContentCarousel.SelectedItem = allItemsPage;
             }
             else if (NavView.SelectedItem == FilesItem)
             {
-                ContentFrame.Navigate(typeof(FilesPage));
+                ContentCarousel.SelectedItem = filesPage;
             }
             else if (NavView.SelectedItem == FoldersItem)
             {
-                ContentFrame.Navigate(typeof(FoldersPage));
+                ContentCarousel.SelectedItem = foldersPage;
             }
             else if (NavView.SelectedItem == WebsitesItem)
             {
-                ContentFrame.Navigate(typeof(WebsitesPage));
+                ContentCarousel.SelectedItem = websitesPage;
             }
 
         }

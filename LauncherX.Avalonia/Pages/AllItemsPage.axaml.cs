@@ -8,7 +8,7 @@ namespace LauncherX.Avalonia.Pages
     public partial class AllItemsPage : UserControl
     {
         //init controls from xaml
-        public static GridView AllItemsGridView = new GridView();
+        public GridView AllItemsGridView = new GridView();
 
         public AllItemsPage()
         {

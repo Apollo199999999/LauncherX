@@ -113,7 +113,11 @@ namespace LauncherX.Avalonia
             //load file icon into uwp image control
             Image image = new Image();
             string path = Path.Combine(PV_WebsiteIconDir, filename);
-            image.Source = new Bitmap(path);
+            try
+            {
+                image.Source = new Bitmap(path);
+            }
+            catch { }
             image.Stretch = Stretch.Uniform;
             image.VerticalAlignment = VerticalAlignment.Center;
             image.HorizontalAlignment = HorizontalAlignment.Center;
@@ -142,20 +146,20 @@ namespace LauncherX.Avalonia
             stackpanel.Children.Add(textblock);
 
             List<StackPanel> WebsitesGridViewItems = new List<StackPanel>();
-            foreach (StackPanel WebsitesStack in WebsitesPage.WebsitesGridView.Items)
+            foreach (StackPanel WebsitesStack in PV_MainWindow.websitesPage.WebsitesGridView.Items)
             {
                 WebsitesGridViewItems.Add(WebsitesStack);
             }
             WebsitesGridViewItems.Add(stackpanel);
-            WebsitesPage.WebsitesGridView.Items = WebsitesGridViewItems;
+            PV_MainWindow.websitesPage.WebsitesGridView.Items = WebsitesGridViewItems;
 
             List<StackPanel> AllItemsGridViewItems = new List<StackPanel>();
-            foreach (StackPanel AllItemsStack in AllItemsPage.AllItemsGridView.Items)
+            foreach (StackPanel AllItemsStack in PV_MainWindow.allItemsPage.AllItemsGridView.Items)
             {
                 AllItemsGridViewItems.Add(AllItemsStack);
             }
             AllItemsGridViewItems.Add(stackpanel);
-            AllItemsPage.AllItemsGridView.Items = AllItemsGridViewItems;
+            PV_MainWindow.allItemsPage.AllItemsGridView.Items = AllItemsGridViewItems;
         }
     }
 }

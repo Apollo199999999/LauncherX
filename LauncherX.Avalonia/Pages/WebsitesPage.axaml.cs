@@ -8,7 +8,7 @@ namespace LauncherX.Avalonia.Pages
     public partial class WebsitesPage : UserControl
     {
         //init controls from xaml
-        public static GridView WebsitesGridView = new GridView();
+        public GridView WebsitesGridView = new GridView();
 
         public WebsitesPage()
         {
