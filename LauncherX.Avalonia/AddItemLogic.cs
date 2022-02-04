@@ -145,21 +145,21 @@ namespace LauncherX.Avalonia
             stackpanel.Children.Add(image);
             stackpanel.Children.Add(textblock);
 
-            List<StackPanel> WebsitesGridViewItems = new List<StackPanel>();
-            foreach (StackPanel WebsitesStack in PV_MainWindow.websitesPage.WebsitesGridView.Items)
-            {
-                WebsitesGridViewItems.Add(WebsitesStack);
-            }
-            WebsitesGridViewItems.Add(stackpanel);
-            PV_MainWindow.websitesPage.WebsitesGridView.Items = WebsitesGridViewItems;
+            //List<StackPanel> WebsitesGridViewItems = new List<StackPanel>();
+            //foreach (StackPanel WebsitesStack in PV_MainWindow.websitesPage.WebsitesGridView.Items)
+            //{
+            //    WebsitesGridViewItems.Add(WebsitesStack);
+            //}
+            //WebsitesGridViewItems.Add(stackpanel);
+            //PV_MainWindow.websitesPage.WebsitesGridView.Items = WebsitesGridViewItems;
 
-            List<StackPanel> AllItemsGridViewItems = new List<StackPanel>();
-            foreach (StackPanel AllItemsStack in PV_MainWindow.allItemsPage.AllItemsGridView.Items)
-            {
-                AllItemsGridViewItems.Add(AllItemsStack);
-            }
-            AllItemsGridViewItems.Add(stackpanel);
-            PV_MainWindow.allItemsPage.AllItemsGridView.Items = AllItemsGridViewItems;
+            //List<StackPanel> AllItemsGridViewItems = new List<StackPanel>();
+            //foreach (StackPanel AllItemsStack in PV_MainWindow.allItemsPage.AllItemsGridView.Items)
+            //{
+            //    AllItemsGridViewItems.Add(AllItemsStack);
+            //}
+            //AllItemsGridViewItems.Add(stackpanel);
+            //PV_MainWindow.allItemsPage.AllItemsGridView.Items = AllItemsGridViewItems;
         }
     }
 }

@@ -8,10 +8,10 @@
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="LauncherX.Avalonia.Pages.FoldersPage">
   <Panel>
-    <ui:GridView x:Name="FoldersGridView">
+    <!--<ui:GridView x:Name="FoldersGridView">
       <ui:GridViewItem Content="Folders 0"/>
       <ui:GridViewItem Content="Folders 1"/>
       <ui:GridViewItem Content="Folders 2"/>
-    </ui:GridView>
+    </ui:GridView>-->
   </Panel>
 </UserControl>

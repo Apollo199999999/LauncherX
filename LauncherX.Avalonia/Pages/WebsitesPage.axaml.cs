@@ -8,7 +8,7 @@ namespace LauncherX.Avalonia.Pages
     public partial class WebsitesPage : UserControl
     {
         //init controls from xaml
-        public GridView WebsitesGridView = new GridView();
+        //public GridView WebsitesGridView = new GridView();
 
         public WebsitesPage()
         {
@@ -20,7 +20,7 @@ namespace LauncherX.Avalonia.Pages
             AvaloniaXamlLoader.Load(this);
 
             //locate controls
-            WebsitesGridView = this.FindControl<GridView>("WebsitesGridView");
+            //WebsitesGridView = this.FindControl<GridView>("WebsitesGridView");
         }
     }
 }

@@ -8,10 +8,10 @@
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="LauncherX.Avalonia.Pages.FilesPage">
   <Panel>
-    <ui:GridView x:Name="FilesGridView">
+    <!--<ui:GridView x:Name="FilesGridView">
       <ui:GridViewItem Content="Files 0"/>
       <ui:GridViewItem Content="Files 1"/>
       <ui:GridViewItem Content="Files 2"/>
-    </ui:GridView>
+    </ui:GridView>-->
   </Panel>
 </UserControl>
