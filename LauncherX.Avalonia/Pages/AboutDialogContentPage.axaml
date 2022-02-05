@@ -15,7 +15,7 @@
     <Expander HorizontalAlignment="Stretch" Margin="0,20,0,0" >
       <Expander.Header>
         <StackPanel Orientation="Horizontal" Height="50" >
-          <ui:FontIcon FontFamily="/Fonts/SegoeFluentIcons.ttf#Segoe Fluent Icons" Glyph="&#xe71b;" FontSize="18" />
+          <ui:FontIcon FontFamily="/Fonts/SegoeFluentIcons.ttf#Segoe Fluent Icons" Glyph=" &#xe71b; " FontSize="18" VerticalAlignment="Center"/>
           <TextBlock Text="Links" Margin="20,0,0,0" VerticalAlignment="Center"/>
         </StackPanel>
       </Expander.Header>
