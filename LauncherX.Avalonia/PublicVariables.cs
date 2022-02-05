@@ -13,6 +13,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.IO;
+using FluentAvalonia.UI.Controls;
 
 namespace LauncherX.Avalonia
 {
@@ -32,7 +33,7 @@ namespace LauncherX.Avalonia
         public static SettingsWindow? PV_SettingsWindow;
 
 
-       
+
         //function to change the application theme
         public static void PV_ChangeApplicationTheme(string theme)
         {
@@ -149,5 +150,7 @@ namespace LauncherX.Avalonia
                 }
             }
         }
+
+        
     }
 }

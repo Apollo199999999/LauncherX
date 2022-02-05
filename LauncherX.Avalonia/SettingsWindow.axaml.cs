@@ -23,7 +23,8 @@ namespace LauncherX.Avalonia
     public partial class SettingsWindow : CoreWindow
     {
         //init controls from xaml
-        public ExperimentalAcrylicBorder SettingsWindowMicaMaterial = new ExperimentalAcrylicBorder();
+        public Grid TitleBarHost = new Grid();
+        public Panel ControlsPanel = new Panel();
         public NumericUpDown IconSizeNumUpDown = new NumericUpDown();
         public TextBox HeaderTextBox = new TextBox();
         public TextBlock VersionText = new TextBlock();
@@ -81,6 +82,23 @@ namespace LauncherX.Avalonia
 
         private void SettingsWindow_Opened(object? sender, System.EventArgs e)
         {
+            //set the titlebar of the window
+            if (this.TitleBar != null)
+            {
+                //extend view into titlebar
+                this.TitleBar.ExtendViewIntoTitleBar = true;
+
+                //make the titlebar visible and set the margin of the ControlsPanel
+                ControlsPanel.Margin = new Thickness(0, 0, 0, 0);
+                TitleBarHost.IsVisible = true;
+
+                //set the titlebar
+                this.SetTitleBar(TitleBarHost);
+
+                //set the titlebar margin so that it doesn't hide the caption buttons
+                TitleBarHost.Margin = new Thickness(0, 0, this.TitleBar.SystemOverlayRightInset, 0);
+            }
+
             //set the application theme
             PV_ChangeApplicationTheme("dark");
 
@@ -154,7 +172,8 @@ namespace LauncherX.Avalonia
             AvaloniaXamlLoader.Load(this);
 
             //locate controls
-            SettingsWindowMicaMaterial = this.FindControl<ExperimentalAcrylicBorder>("SettingsWindowMicaMaterial");
+            TitleBarHost = this.FindControl<Grid>("TitleBarHost");
+            ControlsPanel = this.FindControl<Panel>("ControlsPanel");
             IconSizeNumUpDown = this.FindControl<NumericUpDown>("IconSizeNumUpDown");
             HeaderTextBox = this.FindControl<TextBox>("HeaderTextBox");
             VersionText = this.FindControl<TextBlock>("VersionText");

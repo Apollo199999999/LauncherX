@@ -24,6 +24,8 @@ namespace LauncherX.Avalonia
     public partial class MainWindow : CoreWindow
     {
         //init controls from xaml
+        public Grid TitleBarHost = new Grid();
+        public Panel ControlsPanel = new Panel();
         public TextBlock HeaderText = new TextBlock();
         public Button SettingsBtn = new Button();
         public Button AddWebsiteBtn = new Button();
@@ -34,96 +36,11 @@ namespace LauncherX.Avalonia
         public NavigationViewItem FilesItem = new NavigationViewItem();
         public NavigationViewItem FoldersItem = new NavigationViewItem();
         public NavigationViewItem WebsitesItem = new NavigationViewItem();
-        public Carousel ContentCarousel = new Carousel();
-        public AllItemsPage allItemsPage = new AllItemsPage();
-        public FilesPage filesPage = new FilesPage();
-        public FoldersPage foldersPage = new FoldersPage();
-        public WebsitesPage websitesPage = new WebsitesPage();
 
         //init SettingsWindow
         SettingsWindow settingsWindow = new SettingsWindow();
 
-        public MainWindow()
-        {
-            InitializeComponent();
-#if DEBUG
-            this.AttachDevTools();
-#endif
-            //MainWindow event handlers go here
-            this.Opened += MainWindow_Opened;
-        }
-
-        private void InitializeComponent()
-        {
-            AvaloniaXamlLoader.Load(this);
-
-            //create directories
-            Directory.CreateDirectory(PV_WebsiteIconDir);
-
-            //locate controls
-            HeaderText = this.FindControl<TextBlock>("HeaderText");
-            SettingsBtn = this.FindControl<Button>("SettingsBtn");
-            AddWebsiteBtn = this.FindControl<Button>("AddWebsiteBtn");
-            AddFolderBtn = this.FindControl<Button>("AddFolderBtn");
-            AddFileBtn = this.FindControl<Button>("AddFileBtn");
-            NavView = this.FindControl<NavigationView>("NavView");
-            AllItemsItem = this.FindControl<NavigationViewItem>("AllItemsItem");
-            FilesItem = this.FindControl<NavigationViewItem>("FilesItem");
-            FoldersItem = this.FindControl<NavigationViewItem>("FoldersItem");
-            WebsitesItem = this.FindControl<NavigationViewItem>("WebsitesItem");
-            ContentCarousel = this.FindControl<Carousel>("ContentCarousel");
-
-            //configure controls
-            ContentCarousel.Items = new List<UserControl>() { allItemsPage, filesPage, foldersPage, websitesPage };
-
-            //set the application shutdownmode to onmainwindowclose
-
-            if (Application.Current != null)
-            {
-                if (Application.Current.ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
-                {
-                    desktop.ShutdownMode = ShutdownMode.OnMainWindowClose;
-                }
-            }
-
-            //set the NavView SelectedItem manually and navigate to that page
-            NavView.SelectedItem = AllItemsItem;
-            ContentCarousel.SelectedItem = AllItemsItem;
-         
-            //all event handlers go here
-            SettingsBtn.Click += SettingsBtn_Click;
-            AddWebsiteBtn.Click += AddWebsiteBtn_Click;
-            NavView.SelectionChanged += NavView_SelectionChanged;
-
-        }
-
-        private void MainWindow_Opened(object? sender, EventArgs e)
-        {
-            //store the current MainWindow instance in the PublicVariables class
-            PV_MainWindow = this;
-
-            //store the current SettingsWindow instance in the PublicVariables class
-            PV_SettingsWindow = settingsWindow;
-
-            var thm = AvaloniaLocator.Current.GetService<FluentAvaloniaTheme>();
-            thm.RequestedThemeChanged += OnRequestedThemeChanged;
-
-            // Enable Mica on Windows 11
-            if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
-            {
-
-                if (IsWindows11 && thm.RequestedTheme != FluentAvaloniaTheme.HighContrastModeString)
-                {
-                    TransparencyBackgroundFallback = Brushes.Transparent;
-                    TransparencyLevelHint = WindowTransparencyLevel.Mica;
-
-                    TryEnableMicaEffect(thm);
-                }
-            }
-
-            thm.ForceWin32WindowToTheme(this);
-
-        }
+        //functions go here:
 
         private void OnRequestedThemeChanged(FluentAvaloniaTheme sender, RequestedThemeChangedEventArgs args)
         {
@@ -173,6 +90,104 @@ namespace LauncherX.Avalonia
         }
 
 
+        public MainWindow()
+        {
+            InitializeComponent();
+#if DEBUG
+            this.AttachDevTools();
+#endif
+            //MainWindow event handlers go here
+            this.Opened += MainWindow_Opened;
+        }
+
+        private void InitializeComponent()
+        {
+            AvaloniaXamlLoader.Load(this);
+
+            //create directories
+            Directory.CreateDirectory(PV_WebsiteIconDir);
+
+            //locate controls
+            TitleBarHost = this.FindControl<Grid>("TitleBarHost");
+            ControlsPanel = this.FindControl<Panel>("ControlsPanel");
+            HeaderText = this.FindControl<TextBlock>("HeaderText");
+            SettingsBtn = this.FindControl<Button>("SettingsBtn");
+            AddWebsiteBtn = this.FindControl<Button>("AddWebsiteBtn");
+            AddFolderBtn = this.FindControl<Button>("AddFolderBtn");
+            AddFileBtn = this.FindControl<Button>("AddFileBtn");
+            NavView = this.FindControl<NavigationView>("NavView");
+            AllItemsItem = this.FindControl<NavigationViewItem>("AllItemsItem");
+            FilesItem = this.FindControl<NavigationViewItem>("FilesItem");
+            FoldersItem = this.FindControl<NavigationViewItem>("FoldersItem");
+            WebsitesItem = this.FindControl<NavigationViewItem>("WebsitesItem");
+
+            //set the application shutdownmode to onmainwindowclose
+
+            if (Application.Current != null)
+            {
+                if (Application.Current.ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
+                {
+                    desktop.ShutdownMode = ShutdownMode.OnMainWindowClose;
+                }
+            }
+
+            //set the NavView SelectedItem manually and navigate to that page
+            NavView.SelectedItem = AllItemsItem;
+
+
+            //all event handlers go here
+            SettingsBtn.Click += SettingsBtn_Click;
+            AddWebsiteBtn.Click += AddWebsiteBtn_Click;
+            NavView.SelectionChanged += NavView_SelectionChanged;
+
+        }
+
+        private void MainWindow_Opened(object? sender, EventArgs e)
+        {
+            //store the current MainWindow instance in the PublicVariables class
+            PV_MainWindow = this;
+
+            //store the current SettingsWindow instance in the PublicVariables class
+            PV_SettingsWindow = settingsWindow;
+
+            //set the titlebar of the window
+            if (this.TitleBar != null)
+            {
+                //extend view into titlebar
+                this.TitleBar.ExtendViewIntoTitleBar = true;
+
+                //make the titlebar visible and set the margin of the ControlsPanel
+                ControlsPanel.Margin = new Thickness(0, 0, 0, 0);
+                TitleBarHost.IsVisible = true;
+
+                //set the titlebar
+                this.SetTitleBar(TitleBarHost);
+
+                //set the titlebar margin so that it doesn't hide the caption buttons
+                TitleBarHost.Margin = new Thickness(0, 0, this.TitleBar.SystemOverlayRightInset, 0);
+            }
+
+            var thm = AvaloniaLocator.Current.GetService<FluentAvaloniaTheme>();
+            thm.RequestedThemeChanged += OnRequestedThemeChanged;
+
+            // Enable Mica on Windows 11
+            if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+            {
+
+                if (IsWindows11 && thm.RequestedTheme != FluentAvaloniaTheme.HighContrastModeString)
+                {
+                    TransparencyBackgroundFallback = Brushes.Transparent;
+                    TransparencyLevelHint = WindowTransparencyLevel.Mica;
+
+                    TryEnableMicaEffect(thm);
+                }
+            }
+
+            thm.ForceWin32WindowToTheme(this);
+
+        }
+
+        
         private async void AddWebsiteBtn_Click(object? sender, RoutedEventArgs e)
         {
             //show a contentdialog with a textbox to enter the website URL
@@ -211,22 +226,22 @@ namespace LauncherX.Avalonia
 
             if (NavView.SelectedItem == AllItemsItem)
             {
-                ContentCarousel.SelectedItem = allItemsPage;
+
             }
             else if (NavView.SelectedItem == FilesItem)
             {
-                ContentCarousel.SelectedItem = filesPage;
+
             }
             else if (NavView.SelectedItem == FoldersItem)
             {
-                ContentCarousel.SelectedItem = foldersPage;
+
             }
             else if (NavView.SelectedItem == WebsitesItem)
             {
-                ContentCarousel.SelectedItem = websitesPage;
+
             }
 
         }
-     
+
     }
 }

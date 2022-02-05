@@ -9,6 +9,7 @@ namespace LauncherX.Avalonia.Pages
     {
         //init controls from xaml
         //public GridView AllItemsGridView = new GridView();
+        public static ListBox AllItemsGridView = new ListBox();
 
         public AllItemsPage()
         {
@@ -21,6 +22,7 @@ namespace LauncherX.Avalonia.Pages
 
             //locate controls
             //AllItemsGridView = this.FindControl<GridView>("AllItemsGridView");
+            AllItemsGridView = this.FindControl<ListBox>("AllItemsGridView");
         }
     }
 }

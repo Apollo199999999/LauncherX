@@ -9,5 +9,6 @@
              x:Class="LauncherX.Avalonia.Pages.WebsitesPage">
   <Panel>
     <!--<ui:GridView x:Name="WebsitesGridView"/>-->
+    <ListBox x:Name="WebsitesGridView"/>
   </Panel>
 </UserControl>

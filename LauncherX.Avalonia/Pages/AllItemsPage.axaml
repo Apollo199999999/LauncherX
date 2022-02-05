@@ -9,5 +9,6 @@
              x:Class="LauncherX.Avalonia.Pages.AllItemsPage" >
   <Panel>
     <!--<ui:GridView x:Name="AllItemsGridView"/>-->
+    <ListBox x:Name="AllItemsGridView"/>
   </Panel>
 </UserControl>

@@ -9,16 +9,34 @@
         mc:Ignorable="d"
         x:Class="LauncherX.Avalonia.MainWindow"
         Icon="/Assets/icon.ico"
-        Title="LauncherX - Organize all your stuff!" Width="900" Height="600" MinWidth="700" MinHeight="400" >
+        Title="LauncherX - Organize all your stuff!" Width="900" Height="600" MinWidth="700" MinHeight="400" x:Name="mainWindow" >
 
-    <Panel>
-      <AutoCompleteBox HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="20,20,62,20"  Watermark="Search through everything in LauncherX" />
+  <DockPanel>
 
-      <Button Height="32" Width="32" x:Name="SettingsBtn" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="20,20,20,20" VerticalContentAlignment="Stretch" HorizontalContentAlignment="Stretch" >
+    <Grid Background="Transparent" Height="52" DockPanel.Dock="Top" x:Name="TitleBarHost" ColumnDefinitions="Auto,*" IsVisible="False" >
+      <!-- Adding an Image control to add an Icon -->
+      <Image Margin="12 4"
+             IsHitTestVisible="False"
+             Source="/Assets/icon.ico"
+             Width="18" Height="18"
+             Name="WindowIcon" />
+
+      <!-- Add a TextBlock for the Window title text -->
+      <TextBlock Text="{Binding Title, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}}"
+                 FontSize="12"
+                 IsHitTestVisible="False"
+                 VerticalAlignment="Center"
+                 Grid.Column="1"/>
+    </Grid>
+    
+    <Panel x:Name="ControlsPanel" Margin="0,20,0,0">
+      <AutoCompleteBox HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="20,0,62,20"  Watermark="Search through everything in LauncherX" />
+
+      <Button Height="32" Width="32" x:Name="SettingsBtn" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="20,0,20,20" VerticalContentAlignment="Stretch" HorizontalContentAlignment="Stretch" >
         <ui:FontIcon FontFamily="/Fonts/SegoeFluentIcons.ttf#Segoe Fluent Icons" Glyph="&#xe713;" FontSize="16" Width="32" Height="32" />
       </Button>
 
-      <Panel HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="20,72,20,57" >
+      <Panel HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="20,52,20,57" >
         <TextBlock Text="My files, folders, and websites" FontSize="24" FontWeight="SemiBold" x:Name="HeaderText" />
 
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center">
@@ -29,7 +47,7 @@
       </Panel>
 
 
-      <ui:NavigationView HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5,114,5,5" PaneDisplayMode="Top" IsSettingsVisible="False"
+      <ui:NavigationView HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5,94,5,5" PaneDisplayMode="Top" IsSettingsVisible="False"
                          SelectionFollowsFocus="True" IsBackButtonVisible="False" x:Name="NavView" >
 
 
@@ -40,8 +58,8 @@
           <ui:NavigationViewItem Content="Websites" x:Name="WebsitesItem"/>
         </ui:NavigationView.MenuItems>
 
-        <Carousel x:Name="ContentCarousel" />
       </ui:NavigationView>
-
     </Panel>
+
+  </DockPanel>
 </Window>

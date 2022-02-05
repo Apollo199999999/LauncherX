@@ -69,11 +69,10 @@ namespace LauncherX.Avalonia
                 {
                     //show error message (contentdialog)
                     ContentDialog dialog = new ContentDialog();
-                    dialog.Title = "Error";
+                    dialog.Title = "Unable to get website icon";
                     dialog.CloseButtonText = " OK ";
                     dialog.DefaultButton = ContentDialogButton.Close;
-                    dialog.Content = "Unable to get website icon. Please check that the website is valid and that you are connected to the internet. LauncherX will still add the website, just without the icon." +
-                        "If you want to have the icon, remove the website from LauncherX and re-add the website or restart Launcher X when you have internet connection.";
+                    dialog.Content = "Please check that the website is valid and that you are connected to the internet. LauncherX will still add the website, just without the icon.";
 
                     var result = await dialog.ShowAsync();
                 }
@@ -92,11 +91,10 @@ namespace LauncherX.Avalonia
                 {
                     //show error message (contentdialog)
                     ContentDialog dialog = new ContentDialog();
-                    dialog.Title = "Error";
+                    dialog.Title = "Unable to get website icon";
                     dialog.CloseButtonText = " OK ";
                     dialog.DefaultButton = ContentDialogButton.Close;
-                    dialog.Content = "Unable to get website icon. Please check that the website is valid and that you are connected to the internet. LauncherX will still add the website, just without the icon." +
-                        "If you want to have the icon, remove the website from LauncherX and re-add the website or restart Launcher X when you have internet connection.";
+                    dialog.Content = "Please check that the website is valid and that you are connected to the internet. LauncherX will still add the website, just without the icon.";
 
                     var result = await dialog.ShowAsync();
                 }
@@ -145,21 +143,21 @@ namespace LauncherX.Avalonia
             stackpanel.Children.Add(image);
             stackpanel.Children.Add(textblock);
 
-            //List<StackPanel> WebsitesGridViewItems = new List<StackPanel>();
-            //foreach (StackPanel WebsitesStack in PV_MainWindow.websitesPage.WebsitesGridView.Items)
-            //{
-            //    WebsitesGridViewItems.Add(WebsitesStack);
-            //}
-            //WebsitesGridViewItems.Add(stackpanel);
-            //PV_MainWindow.websitesPage.WebsitesGridView.Items = WebsitesGridViewItems;
+            List<StackPanel> WebsitesGridViewItems = new List<StackPanel>();
+            foreach (StackPanel WebsitesStack in WebsitesPage.WebsitesGridView.Items)
+            {
+                WebsitesGridViewItems.Add(WebsitesStack);
+            }
+            WebsitesGridViewItems.Add(stackpanel);
+            WebsitesPage.WebsitesGridView.Items = WebsitesGridViewItems;
 
-            //List<StackPanel> AllItemsGridViewItems = new List<StackPanel>();
-            //foreach (StackPanel AllItemsStack in PV_MainWindow.allItemsPage.AllItemsGridView.Items)
-            //{
-            //    AllItemsGridViewItems.Add(AllItemsStack);
-            //}
-            //AllItemsGridViewItems.Add(stackpanel);
-            //PV_MainWindow.allItemsPage.AllItemsGridView.Items = AllItemsGridViewItems;
+            List<StackPanel> AllItemsGridViewItems = new List<StackPanel>();
+            foreach (StackPanel AllItemsStack in AllItemsPage.AllItemsGridView.Items)
+            {
+                AllItemsGridViewItems.Add(AllItemsStack);
+            }
+            AllItemsGridViewItems.Add(stackpanel);
+            AllItemsPage.AllItemsGridView.Items = AllItemsGridViewItems;
         }
     }
 }
