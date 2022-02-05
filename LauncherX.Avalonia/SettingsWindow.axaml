@@ -18,7 +18,8 @@
              IsHitTestVisible="False"
              Source="/Assets/icon.ico"
              Width="18" Height="18"
-             Name="WindowIcon" />
+             x:Name="WindowIcon"
+             VerticalAlignment="Center"/>
 
       <!-- Add a TextBlock for the Window title text -->
       <TextBlock Text="{Binding Title, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}}"
