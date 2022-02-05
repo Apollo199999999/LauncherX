@@ -100,9 +100,6 @@ namespace LauncherX.Avalonia
                 }
             }
 
-
-
-
             //create a stackpanel
             StackPanel stackpanel = new StackPanel();
             stackpanel.Width = size * 105;
@@ -144,20 +141,20 @@ namespace LauncherX.Avalonia
             stackpanel.Children.Add(textblock);
 
             List<StackPanel> WebsitesGridViewItems = new List<StackPanel>();
-            foreach (StackPanel WebsitesStack in WebsitesPage.WebsitesGridView.Items)
+            foreach (StackPanel WebsitesStack in PV_MainWindow.WebsitesGridView.Items)
             {
                 WebsitesGridViewItems.Add(WebsitesStack);
             }
             WebsitesGridViewItems.Add(stackpanel);
-            WebsitesPage.WebsitesGridView.Items = WebsitesGridViewItems;
+            PV_MainWindow.WebsitesGridView.Items = WebsitesGridViewItems;
 
             List<StackPanel> AllItemsGridViewItems = new List<StackPanel>();
-            foreach (StackPanel AllItemsStack in AllItemsPage.AllItemsGridView.Items)
+            foreach (StackPanel AllItemsStack in PV_MainWindow.AllItemsGridView.Items)
             {
                 AllItemsGridViewItems.Add(AllItemsStack);
             }
             AllItemsGridViewItems.Add(stackpanel);
-            AllItemsPage.AllItemsGridView.Items = AllItemsGridViewItems;
+            PV_MainWindow.AllItemsGridView.Items = AllItemsGridViewItems;
         }
     }
 }

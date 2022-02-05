@@ -36,6 +36,19 @@ namespace LauncherX.Avalonia
         public NavigationViewItem FilesItem = new NavigationViewItem();
         public NavigationViewItem FoldersItem = new NavigationViewItem();
         public NavigationViewItem WebsitesItem = new NavigationViewItem();
+        public Carousel ContentCarousel = new Carousel();
+        public Panel AllItemsPage = new Panel();
+        public Panel FilesPage = new Panel();
+        public Panel FoldersPage = new Panel();
+        public Panel WebsitesPage = new Panel();
+        //public GridView AllItemsGridView = new GridView();
+        public ListBox AllItemsGridView = new ListBox();
+        //public GridView FilesGridView = new GridView();
+        public ListBox FilesGridView = new ListBox();
+        //public GridView FoldersGridView = new GridView();
+        public ListBox FoldersGridView = new ListBox();
+        //public GridView WebsitesGridView = new GridView();
+        public ListBox WebsitesGridView = new ListBox();
 
         //init SettingsWindow
         SettingsWindow settingsWindow = new SettingsWindow();
@@ -120,6 +133,19 @@ namespace LauncherX.Avalonia
             FilesItem = this.FindControl<NavigationViewItem>("FilesItem");
             FoldersItem = this.FindControl<NavigationViewItem>("FoldersItem");
             WebsitesItem = this.FindControl<NavigationViewItem>("WebsitesItem");
+            ContentCarousel = this.FindControl<Carousel>("ContentCarousel");
+            AllItemsPage = this.FindControl<Panel>("AllItemsPage");
+            FilesPage = this.FindControl<Panel>("FilesPage");
+            FoldersPage = this.FindControl<Panel>("FoldersPage");
+            WebsitesPage = this.FindControl<Panel>("WebsitesPage");
+            //AllItemsGridView = this.FindControl<GridView>("AllItemsGridView");
+            AllItemsGridView = this.FindControl<ListBox>("AllItemsGridView");
+            //FilesGridView = this.FindControl<GridView>("FilesGridView");
+            FilesGridView = this.FindControl<ListBox>("FilesGridView");
+            //FoldersGridView = this.FindControl<GridView>("FoldersGridView");
+            FoldersGridView = this.FindControl<ListBox>("FoldersGridView");
+            //WebsitesGridView = this.FindControl<GridView>("WebsitesGridView");
+            WebsitesGridView = this.FindControl<ListBox>("WebsitesGridView");
 
             //set the application shutdownmode to onmainwindowclose
 
@@ -226,19 +252,19 @@ namespace LauncherX.Avalonia
 
             if (NavView.SelectedItem == AllItemsItem)
             {
-
+                ContentCarousel.SelectedItem = AllItemsPage;
             }
             else if (NavView.SelectedItem == FilesItem)
             {
-
+                ContentCarousel.SelectedItem = FilesPage;
             }
             else if (NavView.SelectedItem == FoldersItem)
             {
-
+                ContentCarousel.SelectedItem = FoldersPage;
             }
             else if (NavView.SelectedItem == WebsitesItem)
             {
-
+                ContentCarousel.SelectedItem = WebsitesPage;
             }
 
         }
