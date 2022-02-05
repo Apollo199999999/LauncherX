@@ -23,10 +23,57 @@ namespace LauncherX.Avalonia
 {
     public static class AddItemLogic
     {
+
         //these variables are used for duplicate naming
         public static int foldercount = 0;
         public static int count = 0;
         public static int WebsiteCount = 0;
+
+        //functions for creating gridviewtiles
+        public static StackPanel CreateWebsiteTile(string url, string filename, double size)
+        {
+            //create a stackpanel
+            StackPanel stackpanel = new StackPanel();
+            stackpanel.Width = size * 105;
+            stackpanel.Height = size * 90;
+
+            //load file icon into image control
+            Image image = new Image();
+            string path = Path.Combine(PV_WebsiteIconDir, filename);
+            try
+            {
+                image.Source = new Bitmap(path);
+            }
+            catch { }
+            image.Stretch = Stretch.Uniform;
+            image.VerticalAlignment = VerticalAlignment.Center;
+            image.HorizontalAlignment = HorizontalAlignment.Center;
+            image.Margin = new Thickness(size * 22.5, 5, size * 22.5, 0);
+            image.Height = stackpanel.Width - size * 22.5 - size * 22.5;
+            image.Width = stackpanel.Width - size * 22.5 - size * 22.5;
+
+            //create a textblock
+            TextBlock textblock = new TextBlock();
+            textblock.TextAlignment = TextAlignment.Center;
+            textblock.Text = url;
+            textblock.HorizontalAlignment = HorizontalAlignment.Center;
+            textblock.VerticalAlignment = VerticalAlignment.Bottom;
+            textblock.FontSize = size * 11;
+            textblock.Margin = new Thickness(5);
+            textblock.TextTrimming = TextTrimming.CharacterEllipsis;
+
+            //save the path in stackpanel tag
+            if (url.StartsWith("http://") == false && url.StartsWith("https://") == false)
+            {
+                stackpanel.Tag = "https://" + url;
+            }
+
+            //add the controls
+            stackpanel.Children.Add(image);
+            stackpanel.Children.Add(textblock);
+
+            return stackpanel;
+        }
 
         public async static void AddWebsite(string url, double size)
         {
@@ -100,52 +147,13 @@ namespace LauncherX.Avalonia
                 }
             }
 
-            //create a stackpanel
-            StackPanel stackpanel = new StackPanel();
-            stackpanel.Width = size * 105;
-            stackpanel.Height = size * 90;
-
-            //load file icon into uwp image control
-            Image image = new Image();
-            string path = Path.Combine(PV_WebsiteIconDir, filename);
-            try
-            {
-                image.Source = new Bitmap(path);
-            }
-            catch { }
-            image.Stretch = Stretch.Uniform;
-            image.VerticalAlignment = VerticalAlignment.Center;
-            image.HorizontalAlignment = HorizontalAlignment.Center;
-            image.Margin = new Thickness(size * 22.5, 5, size * 22.5, 0);
-            image.Height = stackpanel.Width - size * 22.5 - size * 22.5;
-            image.Width = stackpanel.Width - size * 22.5 - size * 22.5;
-
-            //create a textblock
-            TextBlock textblock = new TextBlock();
-            textblock.TextAlignment = TextAlignment.Center;
-            textblock.Text = url;
-            textblock.HorizontalAlignment = HorizontalAlignment.Center;
-            textblock.VerticalAlignment = VerticalAlignment.Bottom;
-            textblock.FontSize = size * 11;
-            textblock.Margin = new Thickness(5);
-            textblock.TextTrimming = TextTrimming.CharacterEllipsis;
-
-            //save the path in stackpanel tag
-            if (url.StartsWith("http://") == false && url.StartsWith("https://") == false)
-            {
-                stackpanel.Tag = "https://" + url;
-            }
-
-            //add the controls
-            stackpanel.Children.Add(image);
-            stackpanel.Children.Add(textblock);
-
+            //create a websitetile and add it to the websitegridview and allitemsgridview
             List<StackPanel> WebsitesGridViewItems = new List<StackPanel>();
             foreach (StackPanel WebsitesStack in PV_MainWindow.WebsitesGridView.Items)
             {
                 WebsitesGridViewItems.Add(WebsitesStack);
             }
-            WebsitesGridViewItems.Add(stackpanel);
+            WebsitesGridViewItems.Add(CreateWebsiteTile(url, filename, size));
             PV_MainWindow.WebsitesGridView.Items = WebsitesGridViewItems;
 
             List<StackPanel> AllItemsGridViewItems = new List<StackPanel>();
@@ -153,7 +161,7 @@ namespace LauncherX.Avalonia
             {
                 AllItemsGridViewItems.Add(AllItemsStack);
             }
-            AllItemsGridViewItems.Add(stackpanel);
+            AllItemsGridViewItems.Add(CreateWebsiteTile(url, filename, size));
             PV_MainWindow.AllItemsGridView.Items = AllItemsGridViewItems;
         }
     }
