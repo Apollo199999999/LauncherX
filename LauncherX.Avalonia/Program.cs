@@ -20,7 +20,8 @@ namespace LauncherX.Avalonia
                 .UsePlatformDetect()
                 .With(new Win32PlatformOptions
                 {
-                    UseWindowsUIComposition = true
+                    UseWindowsUIComposition = true,
+                    EnableMultitouch = true
                 })
                 .UsePlatformDetect()
                 .LogToTrace();
