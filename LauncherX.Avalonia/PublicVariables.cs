@@ -151,6 +151,5 @@ namespace LauncherX.Avalonia
             }
         }
 
-        
     }
 }

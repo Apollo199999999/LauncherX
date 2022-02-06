@@ -18,6 +18,7 @@ using System.IO;
 using Avalonia.Media.Imaging;
 using Avalonia.Layout;
 using System.Collections.Generic;
+using Avalonia.Input;
 
 namespace LauncherX.Avalonia
 {
@@ -33,9 +34,9 @@ namespace LauncherX.Avalonia
         public static StackPanel CreateWebsiteTile(string url, string filename, double size)
         {
             //create a stackpanel
-            StackPanel stackpanel = new StackPanel();
-            stackpanel.Width = size * 105;
-            stackpanel.Height = size * 90;
+            StackPanel stackPanel = new StackPanel();
+            stackPanel.Width = size * 105;
+            stackPanel.Height = size * 90;
 
             //load file icon into image control
             Image image = new Image();
@@ -49,8 +50,8 @@ namespace LauncherX.Avalonia
             image.VerticalAlignment = VerticalAlignment.Center;
             image.HorizontalAlignment = HorizontalAlignment.Center;
             image.Margin = new Thickness(size * 22.5, 5, size * 22.5, 0);
-            image.Height = stackpanel.Width - size * 22.5 - size * 22.5;
-            image.Width = stackpanel.Width - size * 22.5 - size * 22.5;
+            image.Height = stackPanel.Width - size * 22.5 - size * 22.5;
+            image.Width = stackPanel.Width - size * 22.5 - size * 22.5;
 
             //create a textblock
             TextBlock textblock = new TextBlock();
@@ -65,14 +66,18 @@ namespace LauncherX.Avalonia
             //save the path in stackpanel tag
             if (url.StartsWith("http://") == false && url.StartsWith("https://") == false)
             {
-                stackpanel.Tag = "https://" + url;
+                stackPanel.Tag = "https://" + url;
             }
 
-            //add the controls
-            stackpanel.Children.Add(image);
-            stackpanel.Children.Add(textblock);
+            //attach a tooltip to the stackpanel
+            ToolTip.SetTip(stackPanel, url);
 
-            return stackpanel;
+            //add the controls
+            stackPanel.Children.Add(image);
+            stackPanel.Children.Add(textblock);
+            stackPanel.PointerReleased += Item_PointerReleased;
+
+            return stackPanel;
         }
 
         public async static void AddWebsite(string url, double size)
@@ -164,5 +169,35 @@ namespace LauncherX.Avalonia
             AllItemsGridViewItems.Add(CreateWebsiteTile(url, filename, size));
             PV_MainWindow.AllItemsGridView.Items = AllItemsGridViewItems;
         }
+
+
+
+        //event handlers
+        private static void Item_PointerReleased(object? sender, global::Avalonia.Input.PointerReleasedEventArgs e)
+        {
+            //cast the sender as a stackpanel
+            StackPanel stackPanel = sender as StackPanel;
+
+            //check if it is a left click or right click
+            if (e.MouseButton == MouseButton.Left)
+            {
+                //left click
+
+                //check if the item is a websiteitem, fileitem, or folderitem
+                if (stackPanel.Tag.ToString().StartsWith("https://") || stackPanel.Tag.ToString().StartsWith("http://"))
+                {
+                    //the stackpanel is a website tile, start the website
+                    PV_OpenBrowser(stackPanel.Tag.ToString());
+                }
+            }
+            else if (e.MouseButton == MouseButton.Right)
+            {
+                //right click
+
+                //show a context menu
+            }
+
+        }
+
     }
 }
