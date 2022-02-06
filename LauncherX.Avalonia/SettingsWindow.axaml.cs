@@ -77,7 +77,13 @@ namespace LauncherX.Avalonia
         {
             //don't close the window, only hide it
             e.Cancel = true;
+
+            //activate the mainwindow before hiding the settingswindow
+            PV_MainWindow.Activate();
+
+            //hide the settings window
             this.Hide();
+
         }
 
         private void SettingsWindow_Opened(object? sender, System.EventArgs e)

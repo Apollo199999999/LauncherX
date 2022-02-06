@@ -18,6 +18,7 @@ using System.IO;
 using System.Collections.Generic;
 using Avalonia.Media.Immutable;
 using FluentAvalonia.UI.Media;
+using System.Threading.Tasks;
 
 namespace LauncherX.Avalonia
 {
@@ -162,10 +163,25 @@ namespace LauncherX.Avalonia
 
 
             //all event handlers go here
+            AllItemsGridView.SelectionChanged += GridViewItem_SelectionChanged;
+            FilesGridView.SelectionChanged += GridViewItem_SelectionChanged;
+            FoldersGridView.SelectionChanged += GridViewItem_SelectionChanged;
+            WebsitesGridView.SelectionChanged += GridViewItem_SelectionChanged;
             SettingsBtn.Click += SettingsBtn_Click;
             AddWebsiteBtn.Click += AddWebsiteBtn_Click;
             NavView.SelectionChanged += NavView_SelectionChanged;
 
+        }
+
+        private async void GridViewItem_SelectionChanged(object? sender, SelectionChangedEventArgs e)
+        {
+            //cast sender as gridview
+            //GridView gridView = sender as GridView;
+            ListBox gridView = sender as ListBox;
+
+            //unselect the selected item
+            await Task.Delay(500);
+            gridView.SelectedItem = null;
         }
 
         private void MainWindow_Opened(object? sender, EventArgs e)

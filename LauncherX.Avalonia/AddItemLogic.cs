@@ -179,7 +179,7 @@ namespace LauncherX.Avalonia
             StackPanel stackPanel = sender as StackPanel;
 
             //check if it is a left click or right click
-            if (e.MouseButton == MouseButton.Left)
+            if (e.InitialPressMouseButton == MouseButton.Left)
             {
                 //left click
 
@@ -190,11 +190,16 @@ namespace LauncherX.Avalonia
                     PV_OpenBrowser(stackPanel.Tag.ToString());
                 }
             }
-            else if (e.MouseButton == MouseButton.Right)
+            else if (e.InitialPressMouseButton == MouseButton.Right)
             {
                 //right click
 
                 //show a context menu
+                ContextMenu contextMenu = new ContextMenu();
+
+                //create contextmenuitems
+                
+                //TODO: Create context menu
             }
 
         }
