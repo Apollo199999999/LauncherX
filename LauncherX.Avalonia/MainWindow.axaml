@@ -29,7 +29,7 @@
                  VerticalAlignment="Center"
                  Grid.Column="1"/>
     </Grid>
-
+    
     <Panel x:Name="ControlsPanel" Margin="0,20,0,0">
       <AutoCompleteBox HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="20,0,62,20"  Watermark="Search through everything in LauncherX" />
 
@@ -59,7 +59,29 @@
           <ui:NavigationViewItem Content="Websites" x:Name="WebsitesItem"/>
         </ui:NavigationView.MenuItems>
 
-        <ui:Frame x:Name="ContentFrame"/>
+        <Carousel x:Name="ContentCarousel">
+          
+          <Panel x:Name="AllItemsPage">
+            <!--<ui:GridView x:Name="AllItemsGridView"/>-->
+            <ListBox x:Name="AllItemsGridView"/>
+          </Panel>
+
+          <Panel x:Name="FilesPage">
+            <!--<ui:GridView x:Name="FilesGridView"/>-->
+            <ListBox x:Name="FilesGridView"/>
+          </Panel>
+
+          <Panel x:Name="FoldersPage">
+            <!--<ui:GridView x:Name="FoldersGridView"/>-->
+            <ListBox x:Name="FoldersGridView"/>
+          </Panel>
+
+          <Panel x:Name="WebsitesPage">
+            <!--<ui:GridView x:Name="WebsitesGridView"/>-->
+            <ListBox x:Name="WebsitesGridView"/>
+          </Panel>
+          
+        </Carousel>
       </ui:NavigationView>
     </Panel>
 
