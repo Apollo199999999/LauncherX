@@ -192,6 +192,9 @@ namespace LauncherX.Avalonia
             //store the current SettingsWindow instance in the PublicVariables class
             PV_SettingsWindow = settingsWindow;
 
+            //set the application theme
+            PV_ChangeApplicationTheme("dark");
+
             //set the titlebar of the window
             if (this.TitleBar != null)
             {

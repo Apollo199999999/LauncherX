@@ -105,9 +105,6 @@ namespace LauncherX.Avalonia
                 TitleBarHost.Margin = new Thickness(0, 0, this.TitleBar.SystemOverlayRightInset, 0);
             }
 
-            //set the application theme
-            PV_ChangeApplicationTheme("dark");
-
             var thm = AvaloniaLocator.Current.GetService<FluentAvaloniaTheme>();
             thm.RequestedThemeChanged += OnRequestedThemeChanged;
 

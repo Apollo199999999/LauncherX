@@ -19,6 +19,7 @@ using Avalonia.Media.Imaging;
 using Avalonia.Layout;
 using System.Collections.Generic;
 using Avalonia.Input;
+using MenuFlyout = Avalonia.Controls.MenuFlyout;
 
 namespace LauncherX.Avalonia
 {
@@ -189,17 +190,54 @@ namespace LauncherX.Avalonia
                     //the stackpanel is a website tile, start the website
                     PV_OpenBrowser(stackPanel.Tag.ToString());
                 }
+                else
+                {
+                    //the stackpanel is a file/folder tile
+                }
             }
             else if (e.InitialPressMouseButton == MouseButton.Right)
             {
                 //right click
 
-                //show a context menu
-                ContextMenu contextMenu = new ContextMenu();
+                //check if the stackpanel is a file, website, or folder tile
+                if (stackPanel.Tag.ToString().StartsWith("https://") || stackPanel.Tag.ToString().StartsWith("http://"))
+                {
+                    //the stackpanel is a website tile, create appropriate menuflyout items
 
-                //create contextmenuitems
-                
-                //TODO: Create context menu
+                    //init a menuflyout
+                    MenuFlyout WebsitesMenuFlyout = new MenuFlyout();
+
+                    //TODO: FIX ICONS NOT SHOWING UP ON LINUX
+                    //create menuflyoutitem icons
+                    FontIcon OpenWebsiteIcon = new FontIcon();
+                    OpenWebsiteIcon.FontFamily = new FontFamily(new Uri("/Fonts/SegoeFluentIcons.ttf#Segoe Fluent Icons", UriKind.RelativeOrAbsolute), "Segoe Fluent Icons");
+                    OpenWebsiteIcon.Glyph = "\xe774";
+
+                    FontIcon RemoveIcon = new FontIcon();
+                    RemoveIcon.FontFamily = new FontFamily(new Uri("/Fonts/SegoeFluentIcons.ttf#Segoe Fluent Icons", UriKind.RelativeOrAbsolute), "Segoe Fluent Icons");
+                    RemoveIcon.Glyph = "\xe74d";
+
+                    MenuItem OpenWebsiteItem = new MenuItem();
+                    OpenWebsiteItem.Header = "Open website";
+                    OpenWebsiteItem.Icon = OpenWebsiteIcon;
+
+                    MenuItem RemoveWebsiteItem = new MenuItem();
+                    RemoveWebsiteItem.Header = "Remove website from LauncherX";
+                    RemoveWebsiteItem.Icon = RemoveIcon;
+
+                    //add the menuflyout items to the menuflyout
+                    WebsitesMenuFlyout.Items = new List<MenuItem>() { OpenWebsiteItem, RemoveWebsiteItem };
+
+                    //show the menuflyout
+                    WebsitesMenuFlyout.ShowAt(stackPanel, true);
+                }
+                else
+                {
+                    //TODO: stackpanel is a file/folder tile, implement specific checks here
+                }
+
+
+
             }
 
         }

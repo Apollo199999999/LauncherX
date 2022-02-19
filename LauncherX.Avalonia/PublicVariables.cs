@@ -46,7 +46,7 @@ namespace LauncherX.Avalonia
                 if (theme.ToLower() == "light")
                 {
                     //set light theme for both windows
-                    thmMgr.RequestedTheme = "Light";
+                    thmMgr.RequestedTheme = FluentAvaloniaTheme.LightModeString;
                     //check the lightthemeradiobutton in settings window
                     PV_SettingsWindow.LightThmRadioBtn.IsChecked = true;
 
@@ -54,7 +54,7 @@ namespace LauncherX.Avalonia
                 else if (theme.ToLower() == "dark")
                 {
                     //set light theme for both windows
-                    thmMgr.RequestedTheme = "Dark";
+                    thmMgr.RequestedTheme = FluentAvaloniaTheme.DarkModeString;
 
                     //check the darkthemeradiobutton in settings window
                     PV_SettingsWindow.DarkThmRadioBtn.IsChecked = true;
@@ -122,7 +122,7 @@ namespace LauncherX.Avalonia
 
 
         //function to start url
-        public static void PV_OpenBrowser(string url)
+        public async static void PV_OpenBrowser(string url)
         {
             try
             {
@@ -138,7 +138,21 @@ namespace LauncherX.Avalonia
                 }
                 else if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
                 {
-                    Process.Start("xdg-open", url);
+                    try
+                    {
+                        Process.Start("xdg-open", url);
+                    }
+                    catch
+                    {
+                        //show a contentdialog telling the user to install xdg-utils
+                        ContentDialog dialog = new ContentDialog();
+                        dialog.Title = "Unable to open website";
+                        dialog.CloseButtonText = " OK ";
+                        dialog.DefaultButton = ContentDialogButton.Close;
+                        dialog.Content = "To open the website, please install xdg-utils on your system.";
+
+                        var result = await dialog.ShowAsync();
+                    }
                 }
                 else if (RuntimeInformation.IsOSPlatform(OSPlatform.OSX))
                 {
