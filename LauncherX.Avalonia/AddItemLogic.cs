@@ -154,20 +154,20 @@ namespace LauncherX.Avalonia
 
             //create a websitetile and add it to the websitegridview and allitemsgridview
             List<StackPanel> WebsitesGridViewItems = new List<StackPanel>();
-            foreach (StackPanel WebsitesStack in PV_MainWindow.WebsitesGridView.Items)
+            foreach (StackPanel WebsitesStack in PV_MainWindow.websitesPage.WebsitesGridView.Items)
             {
                 WebsitesGridViewItems.Add(WebsitesStack);
             }
             WebsitesGridViewItems.Add(CreateWebsiteTile(url, filename, size));
-            PV_MainWindow.WebsitesGridView.Items = WebsitesGridViewItems;
+            PV_MainWindow.websitesPage.WebsitesGridView.Items = WebsitesGridViewItems;
 
             List<StackPanel> AllItemsGridViewItems = new List<StackPanel>();
-            foreach (StackPanel AllItemsStack in PV_MainWindow.AllItemsGridView.Items)
+            foreach (StackPanel AllItemsStack in PV_MainWindow.allItemsPage.AllItemsGridView.Items)
             {
                 AllItemsGridViewItems.Add(AllItemsStack);
             }
             AllItemsGridViewItems.Add(CreateWebsiteTile(url, filename, size));
-            PV_MainWindow.AllItemsGridView.Items = AllItemsGridViewItems;
+            PV_MainWindow.allItemsPage.AllItemsGridView.Items = AllItemsGridViewItems;
         }
 
 

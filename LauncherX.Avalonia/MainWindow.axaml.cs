@@ -37,19 +37,13 @@ namespace LauncherX.Avalonia
         public NavigationViewItem FilesItem = new NavigationViewItem();
         public NavigationViewItem FoldersItem = new NavigationViewItem();
         public NavigationViewItem WebsitesItem = new NavigationViewItem();
-        public Carousel ContentCarousel = new Carousel();
-        public Panel AllItemsPage = new Panel();
-        public Panel FilesPage = new Panel();
-        public Panel FoldersPage = new Panel();
-        public Panel WebsitesPage = new Panel();
-        //public GridView AllItemsGridView = new GridView();
-        public ListBox AllItemsGridView = new ListBox();
-        //public GridView FilesGridView = new GridView();
-        public ListBox FilesGridView = new ListBox();
-        //public GridView FoldersGridView = new GridView();
-        public ListBox FoldersGridView = new ListBox();
-        //public GridView WebsitesGridView = new GridView();
-        public ListBox WebsitesGridView = new ListBox();
+        public Frame ContentFrame = new Frame();
+        
+        //init instances of all the pages to store data
+        public AllItemsPage allItemsPage = new AllItemsPage();
+        public FilesPage filesPage = new FilesPage();
+        public FoldersPage foldersPage = new FoldersPage();
+        public WebsitesPage websitesPage = new WebsitesPage();
 
         //init SettingsWindow
         SettingsWindow settingsWindow = new SettingsWindow();
@@ -134,19 +128,9 @@ namespace LauncherX.Avalonia
             FilesItem = this.FindControl<NavigationViewItem>("FilesItem");
             FoldersItem = this.FindControl<NavigationViewItem>("FoldersItem");
             WebsitesItem = this.FindControl<NavigationViewItem>("WebsitesItem");
-            ContentCarousel = this.FindControl<Carousel>("ContentCarousel");
-            AllItemsPage = this.FindControl<Panel>("AllItemsPage");
-            FilesPage = this.FindControl<Panel>("FilesPage");
-            FoldersPage = this.FindControl<Panel>("FoldersPage");
-            WebsitesPage = this.FindControl<Panel>("WebsitesPage");
-            //AllItemsGridView = this.FindControl<GridView>("AllItemsGridView");
-            AllItemsGridView = this.FindControl<ListBox>("AllItemsGridView");
-            //FilesGridView = this.FindControl<GridView>("FilesGridView");
-            FilesGridView = this.FindControl<ListBox>("FilesGridView");
-            //FoldersGridView = this.FindControl<GridView>("FoldersGridView");
-            FoldersGridView = this.FindControl<ListBox>("FoldersGridView");
-            //WebsitesGridView = this.FindControl<GridView>("WebsitesGridView");
-            WebsitesGridView = this.FindControl<ListBox>("WebsitesGridView");
+            ContentFrame = this.FindControl<Frame>("ContentFrame");
+
+            //configure controls
 
             //set the application shutdownmode to onmainwindowclose
 
@@ -160,28 +144,13 @@ namespace LauncherX.Avalonia
 
             //set the NavView SelectedItem manually and navigate to that page
             NavView.SelectedItem = AllItemsItem;
-
+            ContentFrame.Navigate(typeof(AllItemsPage));
 
             //all event handlers go here
-            AllItemsGridView.SelectionChanged += GridViewItem_SelectionChanged;
-            FilesGridView.SelectionChanged += GridViewItem_SelectionChanged;
-            FoldersGridView.SelectionChanged += GridViewItem_SelectionChanged;
-            WebsitesGridView.SelectionChanged += GridViewItem_SelectionChanged;
             SettingsBtn.Click += SettingsBtn_Click;
             AddWebsiteBtn.Click += AddWebsiteBtn_Click;
             NavView.SelectionChanged += NavView_SelectionChanged;
 
-        }
-
-        private async void GridViewItem_SelectionChanged(object? sender, SelectionChangedEventArgs e)
-        {
-            //cast sender as gridview
-            //GridView gridView = sender as GridView;
-            ListBox gridView = sender as ListBox;
-
-            //unselect the selected item
-            await Task.Delay(500);
-            gridView.SelectedItem = null;
         }
 
         private void MainWindow_Opened(object? sender, EventArgs e)
@@ -268,20 +237,24 @@ namespace LauncherX.Avalonia
 
             if (NavView.SelectedItem == AllItemsItem)
             {
-                ContentCarousel.SelectedItem = AllItemsPage;
+                ContentFrame.Navigate(typeof(AllItemsPage));
+                AllItemsPage page = ContentFrame.Content as AllItemsPage;
+                page.Content = allItemsPage.Content;
             }
             else if (NavView.SelectedItem == FilesItem)
             {
-                ContentCarousel.SelectedItem = FilesPage;
+                ContentFrame.Navigate(typeof(FilesPage));
             }
             else if (NavView.SelectedItem == FoldersItem)
             {
-                ContentCarousel.SelectedItem = FoldersPage;
+                ContentFrame.Navigate(typeof(FoldersPage));
             }
             else if (NavView.SelectedItem == WebsitesItem)
             {
-                ContentCarousel.SelectedItem = WebsitesPage;
+                ContentFrame.Navigate(typeof(WebsitesPage));
             }
+
+            
 
         }
 
