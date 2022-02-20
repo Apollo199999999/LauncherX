@@ -153,15 +153,7 @@ namespace LauncherX.Avalonia
                 }
             }
 
-            //create a websitetile and add it to the websitegridview and allitemsgridview
-            List<StackPanel> WebsitesGridViewItems = new List<StackPanel>();
-            foreach (StackPanel WebsitesStack in PV_MainWindow.WebsitesGridView.Items)
-            {
-                WebsitesGridViewItems.Add(WebsitesStack);
-            }
-            WebsitesGridViewItems.Add(CreateWebsiteTile(url, filename, size));
-            PV_MainWindow.WebsitesGridView.Items = WebsitesGridViewItems;
-
+            //create a websitetile and add it to the allitemsgridview
             List<StackPanel> AllItemsGridViewItems = new List<StackPanel>();
             foreach (StackPanel AllItemsStack in PV_MainWindow.AllItemsGridView.Items)
             {
@@ -210,11 +202,11 @@ namespace LauncherX.Avalonia
                     //TODO: FIX ICONS NOT SHOWING UP ON LINUX
                     //create menuflyoutitem icons
                     FontIcon OpenWebsiteIcon = new FontIcon();
-                    OpenWebsiteIcon.FontFamily = new FontFamily(new Uri("/Fonts/SegoeFluentIcons.ttf#Segoe Fluent Icons", UriKind.RelativeOrAbsolute), "Segoe Fluent Icons");
+                    OpenWebsiteIcon.FontFamily = new FontFamily("avares://LauncherX/Fonts#Segoe Fluent Icons");
                     OpenWebsiteIcon.Glyph = "\xe774";
 
                     FontIcon RemoveIcon = new FontIcon();
-                    RemoveIcon.FontFamily = new FontFamily(new Uri("/Fonts/SegoeFluentIcons.ttf#Segoe Fluent Icons", UriKind.RelativeOrAbsolute), "Segoe Fluent Icons");
+                    RemoveIcon.FontFamily = new FontFamily("avares://LauncherX/Fonts#Segoe Fluent Icons");
                     RemoveIcon.Glyph = "\xe74d";
 
                     MenuItem OpenWebsiteItem = new MenuItem();
@@ -224,6 +216,20 @@ namespace LauncherX.Avalonia
                     MenuItem RemoveWebsiteItem = new MenuItem();
                     RemoveWebsiteItem.Header = "Remove website from LauncherX";
                     RemoveWebsiteItem.Icon = RemoveIcon;
+
+                    //configure event handlers
+                    OpenWebsiteIcon.PointerReleased += (s, e) => PV_OpenBrowser(stackPanel.Tag.ToString());
+                    //TODO: UPDATE THE WEBSITESGRIDVIEW EVERYTIME ALLITEMSGRIDVIEW ITEM CHANGE
+                    RemoveWebsiteItem.PointerReleased += (s, e) =>
+                    {
+                        List<StackPanel> AllItemsGridViewItems = new List<StackPanel>();
+                        foreach (StackPanel AllItemsStack in PV_MainWindow.AllItemsGridView.Items)
+                        {
+                            AllItemsGridViewItems.Add(AllItemsStack);
+                        }
+                        AllItemsGridViewItems.Remove(stackPanel);
+                        PV_MainWindow.AllItemsGridView.Items = AllItemsGridViewItems;
+                    };
 
                     //add the menuflyout items to the menuflyout
                     WebsitesMenuFlyout.Items = new List<MenuItem>() { OpenWebsiteItem, RemoveWebsiteItem };

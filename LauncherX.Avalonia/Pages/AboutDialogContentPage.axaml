@@ -21,18 +21,20 @@
       </Expander.Header>
 
       <Expander.Content>
-        <StackPanel Orientation="Horizontal">
-          <StackPanel>
-            <ui:HyperlinkButton NavigateUri="https://github.com/Apollo199999999/LauncherX" Content="Visit LauncherX's GitHub repository" HorizontalAlignment="Center"/>
-            <ui:HyperlinkButton NavigateUri="https://clickphase.weebly.com/launcherx.html" Content="Visit LauncherX's website" HorizontalAlignment="Center" />
-            <ui:HyperlinkButton NavigateUri="https://github.com/Apollo199999999/LauncherX/issues" Content="Report a bug or request a feature" HorizontalAlignment="Center" />
+        <StackPanel Orientation="Vertical">
+          
+          <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+            <ui:HyperlinkButton NavigateUri="https://github.com/Apollo199999999/LauncherX" Content="Visit GitHub repository" HorizontalAlignment="Center"/>
+            <ui:HyperlinkButton NavigateUri="https://clickphase.weebly.com/launcherx.html" Content="Visit website" HorizontalAlignment="Center" />
+            <ui:HyperlinkButton NavigateUri="https://github.com/Apollo199999999/LauncherX/issues" Content="Report a bug" HorizontalAlignment="Center" />
           </StackPanel>
 
-          <StackPanel>
+          <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+            <ui:HyperlinkButton NavigateUri="https://github.com/Apollo199999999/LauncherX/issues" Content="Suggest a feature" HorizontalAlignment="Center" />
             <ui:HyperlinkButton NavigateUri="https://github.com/Apollo199999999/LauncherX/blob/master/LICENSE.txt" Content="MIT License" HorizontalAlignment="Center" />
             <ui:HyperlinkButton NavigateUri="https://github.com/Apollo199999999/LauncherX/blob/master/NOTICE.txt" Content="Third party notices and licenses" HorizontalAlignment="Center" />
-            <ui:HyperlinkButton NavigateUri="https://www.youtube.com/watch?v=dQw4w9WgXcQ" Content="Don't click this!" HorizontalAlignment="Center" />
           </StackPanel>
+        
         </StackPanel>
       </Expander.Content>
     </Expander>
