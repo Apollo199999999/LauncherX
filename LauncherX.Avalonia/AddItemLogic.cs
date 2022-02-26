@@ -202,12 +202,14 @@ namespace LauncherX.Avalonia
                     //TODO: FIX ICONS NOT SHOWING UP ON LINUX
                     //create menuflyoutitem icons
                     FontIcon OpenWebsiteIcon = new FontIcon();
-                    OpenWebsiteIcon.FontFamily = new FontFamily("avares://LauncherX/Fonts#Segoe Fluent Icons");
-                    OpenWebsiteIcon.Glyph = "\xe774";
+                    OpenWebsiteIcon.FontFamily = new FontFamily("avares://LauncherX/Fonts#FluentSystemIcons-Regular");
+                    OpenWebsiteIcon.FontSize = 18;
+                    OpenWebsiteIcon.Glyph = "\xF45A";
 
                     FontIcon RemoveIcon = new FontIcon();
-                    RemoveIcon.FontFamily = new FontFamily("avares://LauncherX/Fonts#Segoe Fluent Icons");
-                    RemoveIcon.Glyph = "\xe74d";
+                    RemoveIcon.FontFamily = new FontFamily("avares://LauncherX/Fonts#FluentSystemIcons-Regular");
+                    RemoveIcon.FontSize = 18;
+                    RemoveIcon.Glyph = "\xF34C";
 
                     MenuItem OpenWebsiteItem = new MenuItem();
                     OpenWebsiteItem.Header = "Open website";

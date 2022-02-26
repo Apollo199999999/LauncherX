@@ -17,13 +17,13 @@
   </PropertyGroup>
   <ItemGroup>
     <None Remove=".gitignore" />
-    <None Remove="Fonts\SegoeFluentIcons.ttf" />
+    <None Remove="Fonts\FluentSystemIcons-Regular.ttf" />
   </ItemGroup>
   <ItemGroup>
     <AvaloniaResource Include="Assets\**" />
   </ItemGroup>
   <ItemGroup>
-    <AvaloniaResource Include="Fonts\SegoeFluentIcons.ttf">
+    <AvaloniaResource Include="Fonts\FluentSystemIcons-Regular.ttf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </AvaloniaResource>
   </ItemGroup>

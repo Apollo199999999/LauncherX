@@ -34,7 +34,7 @@
       <AutoCompleteBox HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="20,0,62,20"  Watermark="Search through everything in LauncherX" />
 
       <Button Height="32" Width="32" x:Name="SettingsBtn" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="20,0,20,20" VerticalContentAlignment="Stretch" HorizontalContentAlignment="Stretch" >
-        <ui:FontIcon FontFamily="/Fonts/SegoeFluentIcons.ttf#Segoe Fluent Icons" Glyph="&#xe713;" FontSize="16" Width="32" Height="32" />
+        <ui:FontIcon FontFamily="/Fonts/FluentSystemIcons-Regular.ttf#FluentSystemIcons-Regular" Glyph="&#xF6A9;" FontSize="20" Width="32" Height="32" />
       </Button>
 
       <Panel HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="20,52,20,57" >

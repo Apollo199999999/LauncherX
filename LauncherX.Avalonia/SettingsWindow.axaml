@@ -45,7 +45,7 @@
                 <Expander.Header>
                   <StackPanel Orientation="Horizontal" Height="70" >
 
-                    <ui:FontIcon FontFamily="/Fonts/SegoeFluentIcons.ttf#Segoe Fluent Icons" Glyph=" &#xe771; " FontSize="18" />
+                    <ui:FontIcon FontFamily="/Fonts/FluentSystemIcons-Regular.ttf#FluentSystemIcons-Regular" Glyph="&#xF593;" FontSize="24" />
 
                     <StackPanel Orientation="Vertical" Margin="20,0,0,0" VerticalAlignment="Center">
                       <TextBlock Text="Personalisation" />
@@ -81,7 +81,7 @@
                 <Expander.Header>
                   <StackPanel Orientation="Horizontal" Height="70" >
 
-                    <ui:FontIcon FontFamily="/Fonts/SegoeFluentIcons.ttf#Segoe Fluent Icons" Glyph=" &#xe790; " FontSize="18" />
+                    <ui:FontIcon FontFamily="/Fonts/FluentSystemIcons-Regular.ttf#FluentSystemIcons-Regular" Glyph="&#xF2F6;" FontSize="24" />
 
                     <StackPanel Orientation="Vertical" Margin="20,0,0,0" VerticalAlignment="Center">
                       <TextBlock Text="App Theme" />
@@ -108,7 +108,11 @@
                 <Expander.Header>
                   <StackPanel Orientation="Horizontal" Height="70" >
 
-                    <ui:FontIcon FontFamily="/Fonts/SegoeFluentIcons.ttf#Segoe Fluent Icons" Glyph=" &#xe117; " FontSize="18" />
+                    <ui:FontIcon FontFamily="/Fonts/FluentSystemIcons-Regular.ttf#FluentSystemIcons-Regular" Glyph="&#xF191;" FontSize="24" >
+                      <ui:FontIcon.RenderTransform>
+                        <RotateTransform Angle="90"/>
+                      </ui:FontIcon.RenderTransform>
+                    </ui:FontIcon>
 
                     <StackPanel Orientation="Vertical" Margin="20,0,0,0" VerticalAlignment="Center">
                       <TextBlock Text="Version and Updates" />
@@ -134,13 +138,13 @@
                 <Panel HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Height="{Binding Height, ElementName=AboutInfoBar}" Margin="10,0,0,0" >
 
                   <StackPanel Orientation="Horizontal" >
-                    <ui:FontIcon FontFamily="/Fonts/SegoeFluentIcons.ttf#Segoe Fluent Icons" Glyph=" &#xe946; " FontSize="18" />
+                    <ui:FontIcon FontFamily="/Fonts/FluentSystemIcons-Regular.ttf#FluentSystemIcons-Regular" Glyph="&#xF4A4;" FontSize="24" />
                     <TextBlock Text="About LauncherX" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="20,0,0,0" />
                   </StackPanel>
 
                   <Label HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,10,0" >
                     <Label.Content>
-                      <ui:FontIcon FontFamily="/Fonts/SegoeFluentIcons.ttf#Segoe Fluent Icons" Glyph=" &#xe8a7; " FontSize="18"  />
+                      <ui:FontIcon FontFamily="/Fonts/FluentSystemIcons-Regular.ttf#FluentSystemIcons-Regular" Glyph="&#xF583;" FontSize="24" />
                     </Label.Content>
                   </Label>
                 </Panel>
