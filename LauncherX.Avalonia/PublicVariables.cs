@@ -14,6 +14,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.IO;
 using FluentAvalonia.UI.Controls;
+using FluentAvalonia.Interop;
 
 namespace LauncherX.Avalonia
 {
@@ -32,7 +33,18 @@ namespace LauncherX.Avalonia
         //variable to store the current instance of SettingsWindow
         public static SettingsWindow? PV_SettingsWindow;
 
+        //bool if user is on Windows 11
+        public static bool PV_IsOnWindows11()
+        {
+            Win32Interop.OSVERSIONINFOEX version = new Win32Interop.OSVERSIONINFOEX
+            {
+                OSVersionInfoSize = Marshal.SizeOf<Win32Interop.OSVERSIONINFOEX>()
+            };
 
+            Win32Interop.RtlGetVersion(ref version);
+
+            return version.BuildNumber >= 22000; 
+        }
 
         //function to change the application theme
         public static void PV_ChangeApplicationTheme(string theme)
@@ -124,46 +136,9 @@ namespace LauncherX.Avalonia
         //function to start url
         public async static void PV_OpenBrowser(string url)
         {
-            try
-            {
-                Process.Start(url);
-            }
-            catch
-            {
-                // hack because of this: https://github.com/dotnet/corefx/issues/10361
-                if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
-                {
-                    url = url.Replace("&", "^&");
-                    Process.Start(new ProcessStartInfo("cmd", $"/c start {url}") { CreateNoWindow = true });
-                }
-                else if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
-                {
-                    try
-                    {
-                        Process.Start("xdg-open", url);
-                    }
-                    catch
-                    {
-                        //show a contentdialog telling the user to install xdg-utils
-                        ContentDialog dialog = new ContentDialog();
-                        dialog.Title = "Unable to open website";
-                        dialog.CloseButtonText = " OK ";
-                        dialog.DefaultButton = ContentDialogButton.Close;
-                        dialog.Content = "To open the website, please install xdg-utils on your system.";
+            // NOTE: Will not open avares files or anything embedded in the assembly
+            Process.Start(new ProcessStartInfo(url) { UseShellExecute = true, Verb = "open" });
 
-                        var result = await dialog.ShowAsync();
-                    }
-                }
-                else if (RuntimeInformation.IsOSPlatform(OSPlatform.OSX))
-                {
-                    Process.Start("open", url);
-                }
-                else
-                {
-                    throw;
-                }
-            }
         }
-
     }
 }

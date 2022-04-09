@@ -38,6 +38,8 @@ namespace LauncherX.Avalonia
             StackPanel stackPanel = new StackPanel();
             stackPanel.Width = size * 105;
             stackPanel.Height = size * 90;
+            //for some reason, it needs to have a background in order for the stackpanel to be clickable when there's no favicon??
+            stackPanel.Background = new SolidColorBrush(Color.FromArgb(0, 0, 0, 0));
 
             //load file icon into image control
             Image image = new Image();
@@ -68,6 +70,10 @@ namespace LauncherX.Avalonia
             if (url.StartsWith("http://") == false && url.StartsWith("https://") == false)
             {
                 stackPanel.Tag = "https://" + url;
+            }
+            else
+            {
+                stackPanel.Tag = url;
             }
 
             //attach a tooltip to the stackpanel
@@ -101,9 +107,25 @@ namespace LauncherX.Avalonia
             //add the .tiff extension
             filename = filename + ".tiff";
 
-
             //download address. The link is used to grab the favicon
-            string downloadaddress = "https://www.google.com/s2/favicons?sz=64&domain_url=" + url;
+            //TODO: FIND AN OPTIMAL WEBSITE TO GET FAVICONS
+            string downloadaddress = "";
+
+            if (url.StartsWith("http://") == false && url.StartsWith("https://") == false)
+            {
+                downloadaddress = "https://standard-amber-wombat.faviconkit.com/" + url + "/256";
+            }
+            else if (url.StartsWith("https://"))
+            {
+                string faviconurl = url.Replace("https://", "");
+                downloadaddress = "https://standard-amber-wombat.faviconkit.com/" + faviconurl + "/256";
+            }
+            else if (url.StartsWith("http://"))
+            {
+                string faviconurl = url.Replace("http://", "");
+                downloadaddress = "https://standard-amber-wombat.faviconkit.com/" + faviconurl + "/256";
+            }
+
 
             //init a new webclient
             WebClient webClient = new WebClient();
@@ -153,14 +175,14 @@ namespace LauncherX.Avalonia
                 }
             }
 
-            //create a websitetile and add it to the allitemsgridview
-            List<StackPanel> AllItemsGridViewItems = new List<StackPanel>();
-            foreach (StackPanel AllItemsStack in PV_MainWindow.AllItemsGridView.Items)
+            //create a websitetile and add it to the ItemsListBox
+            List<StackPanel> ItemsListBoxItems = new List<StackPanel>();
+            foreach (StackPanel AllItemsStack in PV_MainWindow.ItemsListBox.Items)
             {
-                AllItemsGridViewItems.Add(AllItemsStack);
+                ItemsListBoxItems.Add(AllItemsStack);
             }
-            AllItemsGridViewItems.Add(CreateWebsiteTile(url, filename, size));
-            PV_MainWindow.AllItemsGridView.Items = AllItemsGridViewItems;
+            ItemsListBoxItems.Add(CreateWebsiteTile(url, filename, size));
+            PV_MainWindow.ItemsListBox.Items = ItemsListBoxItems;
         }
 
 
@@ -174,8 +196,6 @@ namespace LauncherX.Avalonia
             //check if it is a left click or right click
             if (e.InitialPressMouseButton == MouseButton.Left)
             {
-                //left click
-
                 //check if the item is a websiteitem, fileitem, or folderitem
                 if (stackPanel.Tag.ToString().StartsWith("https://") || stackPanel.Tag.ToString().StartsWith("http://"))
                 {
@@ -187,68 +207,7 @@ namespace LauncherX.Avalonia
                     //the stackpanel is a file/folder tile
                 }
             }
-            else if (e.InitialPressMouseButton == MouseButton.Right)
-            {
-                //right click
-
-                //check if the stackpanel is a file, website, or folder tile
-                if (stackPanel.Tag.ToString().StartsWith("https://") || stackPanel.Tag.ToString().StartsWith("http://"))
-                {
-                    //the stackpanel is a website tile, create appropriate menuflyout items
-
-                    //init a menuflyout
-                    MenuFlyout WebsitesMenuFlyout = new MenuFlyout();
-
-                    //TODO: FIX ICONS NOT SHOWING UP ON LINUX
-                    //create menuflyoutitem icons
-                    FontIcon OpenWebsiteIcon = new FontIcon();
-                    OpenWebsiteIcon.FontFamily = new FontFamily("avares://LauncherX/Fonts#FluentSystemIcons-Regular");
-                    OpenWebsiteIcon.FontSize = 18;
-                    OpenWebsiteIcon.Glyph = "\xF45A";
-
-                    FontIcon RemoveIcon = new FontIcon();
-                    RemoveIcon.FontFamily = new FontFamily("avares://LauncherX/Fonts#FluentSystemIcons-Regular");
-                    RemoveIcon.FontSize = 18;
-                    RemoveIcon.Glyph = "\xF34C";
-
-                    MenuItem OpenWebsiteItem = new MenuItem();
-                    OpenWebsiteItem.Header = "Open website";
-                    OpenWebsiteItem.Icon = OpenWebsiteIcon;
-
-                    MenuItem RemoveWebsiteItem = new MenuItem();
-                    RemoveWebsiteItem.Header = "Remove website from LauncherX";
-                    RemoveWebsiteItem.Icon = RemoveIcon;
-
-                    //configure event handlers
-                    OpenWebsiteIcon.PointerReleased += (s, e) => PV_OpenBrowser(stackPanel.Tag.ToString());
-                    //TODO: UPDATE THE WEBSITESGRIDVIEW EVERYTIME ALLITEMSGRIDVIEW ITEM CHANGE
-                    RemoveWebsiteItem.PointerReleased += (s, e) =>
-                    {
-                        List<StackPanel> AllItemsGridViewItems = new List<StackPanel>();
-                        foreach (StackPanel AllItemsStack in PV_MainWindow.AllItemsGridView.Items)
-                        {
-                            AllItemsGridViewItems.Add(AllItemsStack);
-                        }
-                        AllItemsGridViewItems.Remove(stackPanel);
-                        PV_MainWindow.AllItemsGridView.Items = AllItemsGridViewItems;
-                    };
-
-                    //add the menuflyout items to the menuflyout
-                    WebsitesMenuFlyout.Items = new List<MenuItem>() { OpenWebsiteItem, RemoveWebsiteItem };
-
-                    //show the menuflyout
-                    WebsitesMenuFlyout.ShowAt(stackPanel, true);
-                }
-                else
-                {
-                    //TODO: stackpanel is a file/folder tile, implement specific checks here
-                }
-
-
-
-            }
 
         }
-
     }
 }

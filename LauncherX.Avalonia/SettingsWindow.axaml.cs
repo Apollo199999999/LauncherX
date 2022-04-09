@@ -20,7 +20,7 @@ namespace LauncherX.Avalonia
 {
     //class to store user settings
    
-    public partial class SettingsWindow : CoreWindow
+    public partial class SettingsWindow : Window
     {
         //init controls from xaml
         public Grid TitleBarHost = new Grid();
@@ -88,31 +88,15 @@ namespace LauncherX.Avalonia
 
         private void SettingsWindow_Opened(object? sender, System.EventArgs e)
         {
-            //set the titlebar of the window
-            if (this.TitleBar != null)
-            {
-                //extend view into titlebar
-                this.TitleBar.ExtendViewIntoTitleBar = true;
-
-                //make the titlebar visible and set the margin of the ControlsPanel
-                ControlsPanel.Margin = new Thickness(0, 0, 0, 0);
-                TitleBarHost.IsVisible = true;
-
-                //set the titlebar
-                this.SetTitleBar(TitleBarHost);
-
-                //set the titlebar margin so that it doesn't hide the caption buttons
-                TitleBarHost.Margin = new Thickness(0, 0, this.TitleBar.SystemOverlayRightInset, 0);
-            }
-
             var thm = AvaloniaLocator.Current.GetService<FluentAvaloniaTheme>();
             thm.RequestedThemeChanged += OnRequestedThemeChanged;
 
             // Enable Mica on Windows 11
             if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
             {
+                thm.ForceWin32WindowToTheme(this);
 
-                if (IsWindows11 && thm.RequestedTheme != FluentAvaloniaTheme.HighContrastModeString)
+                if (PV_IsOnWindows11() == true && thm.RequestedTheme != FluentAvaloniaTheme.HighContrastModeString)
                 {
                     TransparencyBackgroundFallback = Brushes.Transparent;
                     TransparencyLevelHint = WindowTransparencyLevel.Mica;
@@ -121,7 +105,6 @@ namespace LauncherX.Avalonia
                 }
             }
 
-            thm.ForceWin32WindowToTheme(this);
         }
 
         private void OnRequestedThemeChanged(FluentAvaloniaTheme sender, RequestedThemeChangedEventArgs args)
@@ -129,7 +112,7 @@ namespace LauncherX.Avalonia
             if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
             {
                 // TODO: add Windows version to CoreWindow
-                if (IsWindows11 && args.NewTheme != FluentAvaloniaTheme.HighContrastModeString)
+                if (PV_IsOnWindows11() == true && args.NewTheme != FluentAvaloniaTheme.HighContrastModeString)
                 {
                     TryEnableMicaEffect(sender);
                 }

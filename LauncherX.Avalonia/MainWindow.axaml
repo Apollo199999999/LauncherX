@@ -9,81 +9,27 @@
         mc:Ignorable="d"
         x:Class="LauncherX.Avalonia.MainWindow"
         Icon="/Assets/icon.ico"
-        Title="LauncherX - Organize all your stuff!" Width="900" Height="600" MinWidth="700" MinHeight="400" x:Name="mainWindow" >
+        Title="LauncherX - Organize all your stuff!" Width="600" Height="700" CanResize="False" x:Name="mainWindow" >
 
-  <DockPanel>
+  <Panel x:Name="ControlsPanel" Margin="0,20,0,0">
 
-    <Grid Background="Transparent" Height="52" DockPanel.Dock="Top" x:Name="TitleBarHost" ColumnDefinitions="Auto,*" IsVisible="False" >
-      <!-- Adding an Image control to add an Icon -->
-      <Image Margin="12 4"
-             IsHitTestVisible="False"
-             Source="/Assets/icon.ico"
-             Width="18" Height="18"
-             x:Name="WindowIcon"
-             VerticalAlignment="Center"/>
+    <Button Height="32" Width="32" x:Name="SettingsBtn" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="20,0,20,0" VerticalContentAlignment="Stretch" HorizontalContentAlignment="Stretch" >
+      <ui:FontIcon FontFamily="/Fonts/FluentSystemIcons-Regular.ttf#FluentSystemIcons-Regular" Glyph="&#xF6A9;" FontSize="20" Width="32" Height="32" />
+    </Button>
 
-      <!-- Add a TextBlock for the Window title text -->
-      <TextBlock Text="{Binding Title, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}}"
-                 FontSize="12"
-                 IsHitTestVisible="False"
-                 VerticalAlignment="Center"
-                 Grid.Column="1"/>
-    </Grid>
-    
-    <Panel x:Name="ControlsPanel" Margin="0,20,0,0">
-      <AutoCompleteBox HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="20,0,62,20"  Watermark="Search through everything in LauncherX" />
+    <TextBlock Text="My files, folders, and websites" FontSize="24" FontWeight="SemiBold" x:Name="HeaderText" Margin="62,0,62,0" TextTrimming="CharacterEllipsis" VerticalAlignment="Top" HorizontalAlignment="Center" />
+   
+    <Panel VerticalAlignment="Top" Margin="0,44,0,0" HorizontalAlignment="Center" >
 
-      <Button Height="32" Width="32" x:Name="SettingsBtn" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="20,0,20,20" VerticalContentAlignment="Stretch" HorizontalContentAlignment="Stretch" >
-        <ui:FontIcon FontFamily="/Fonts/FluentSystemIcons-Regular.ttf#FluentSystemIcons-Regular" Glyph="&#xF6A9;" FontSize="20" Width="32" Height="32" />
-      </Button>
-
-      <Panel HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="20,52,20,57" >
-        <TextBlock Text="My files, folders, and websites" FontSize="24" FontWeight="SemiBold" x:Name="HeaderText" />
-
-        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center">
-          <Button x:Name="AddFileBtn" HorizontalAlignment="Right" VerticalAlignment="Stretch" Content=" Add a file " Classes="accent" />
-          <Button x:Name="AddFolderBtn" HorizontalAlignment="Right" VerticalAlignment="Stretch" Content=" Add a folder " Margin="10,0,10,0" />
-          <Button x:Name="AddWebsiteBtn" HorizontalAlignment="Right" VerticalAlignment="Stretch" Content=" Add a website " />
-        </StackPanel>
-      </Panel>
-
-
-      <ui:NavigationView HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5,94,5,5" PaneDisplayMode="Top" IsSettingsVisible="False"
-                         SelectionFollowsFocus="True" IsBackButtonVisible="False" x:Name="NavView" >
-
-
-        <ui:NavigationView.MenuItems>
-          <ui:NavigationViewItem Content="All Items" x:Name="AllItemsItem"/>
-          <ui:NavigationViewItem Content="Files" x:Name="FilesItem"/>
-          <ui:NavigationViewItem Content="Folders" x:Name="FoldersItem"/>
-          <ui:NavigationViewItem Content="Websites" x:Name="WebsitesItem"/>
-        </ui:NavigationView.MenuItems>
-
-        <Carousel x:Name="ContentCarousel">
-          
-          <Panel x:Name="AllItemsPage">
-            <!--<ui:GridView x:Name="AllItemsGridView"/>-->
-            <ListBox x:Name="AllItemsGridView"/>
-          </Panel>
-
-          <Panel x:Name="FilesPage">
-            <!--<ui:GridView x:Name="FilesGridView"/>-->
-            <ListBox x:Name="FilesGridView"/>
-          </Panel>
-
-          <Panel x:Name="FoldersPage">
-            <!--<ui:GridView x:Name="FoldersGridView"/>-->
-            <ListBox x:Name="FoldersGridView"/>
-          </Panel>
-
-          <Panel x:Name="WebsitesPage">
-            <!--<ui:GridView x:Name="WebsitesGridView"/>-->
-            <ListBox x:Name="WebsitesGridView"/>
-          </Panel>
-          
-        </Carousel>
-      </ui:NavigationView>
+      <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center">
+        <Button x:Name="AddFileBtn" Content=" Add a file " Classes="accent" />
+        <Button x:Name="AddFolderBtn" Content=" Add a folder " Margin="15,0,15,0" />
+        <Button x:Name="AddWebsiteBtn" Content=" Add a website " />
+      </StackPanel>
     </Panel>
 
-  </DockPanel>
+    <AutoCompleteBox HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="40,96,40,20" Watermark="Search through everything in LauncherX" />
+
+    <ListBox x:Name="ItemsListBox" Margin="5,147,5,5" Background="{StaticResource ControlFillColorDefault}"/>
+  </Panel>
 </Window>

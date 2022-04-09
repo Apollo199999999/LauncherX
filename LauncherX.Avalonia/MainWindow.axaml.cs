@@ -22,7 +22,7 @@ using System.Threading.Tasks;
 
 namespace LauncherX.Avalonia
 {
-    public partial class MainWindow : CoreWindow
+    public partial class MainWindow : Window
     {
         //init controls from xaml
         public Grid TitleBarHost = new Grid();
@@ -32,24 +32,7 @@ namespace LauncherX.Avalonia
         public Button AddWebsiteBtn = new Button();
         public Button AddFolderBtn = new Button();
         public Button AddFileBtn = new Button();
-        public NavigationView NavView = new NavigationView();
-        public NavigationViewItem AllItemsItem = new NavigationViewItem();
-        public NavigationViewItem FilesItem = new NavigationViewItem();
-        public NavigationViewItem FoldersItem = new NavigationViewItem();
-        public NavigationViewItem WebsitesItem = new NavigationViewItem();
-        public Carousel ContentCarousel = new Carousel();
-        public Panel AllItemsPage = new Panel();
-        public Panel FilesPage = new Panel();
-        public Panel FoldersPage = new Panel();
-        public Panel WebsitesPage = new Panel();
-        //public GridView AllItemsGridView = new GridView();
-        public ListBox AllItemsGridView = new ListBox();
-        //public GridView FilesGridView = new GridView();
-        public ListBox FilesGridView = new ListBox();
-        //public GridView FoldersGridView = new GridView();
-        public ListBox FoldersGridView = new ListBox();
-        //public GridView WebsitesGridView = new GridView();
-        public ListBox WebsitesGridView = new ListBox();
+        public ListBox ItemsListBox = new ListBox();
 
         //init SettingsWindow
         SettingsWindow settingsWindow = new SettingsWindow();
@@ -61,7 +44,7 @@ namespace LauncherX.Avalonia
             if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
             {
                 // TODO: add Windows version to CoreWindow
-                if (IsWindows11 && args.NewTheme != FluentAvaloniaTheme.HighContrastModeString)
+                if (PV_IsOnWindows11() == true && args.NewTheme != FluentAvaloniaTheme.HighContrastModeString)
                 {
                     TryEnableMicaEffect(sender);
                 }
@@ -129,24 +112,7 @@ namespace LauncherX.Avalonia
             AddWebsiteBtn = this.FindControl<Button>("AddWebsiteBtn");
             AddFolderBtn = this.FindControl<Button>("AddFolderBtn");
             AddFileBtn = this.FindControl<Button>("AddFileBtn");
-            NavView = this.FindControl<NavigationView>("NavView");
-            AllItemsItem = this.FindControl<NavigationViewItem>("AllItemsItem");
-            FilesItem = this.FindControl<NavigationViewItem>("FilesItem");
-            FoldersItem = this.FindControl<NavigationViewItem>("FoldersItem");
-            WebsitesItem = this.FindControl<NavigationViewItem>("WebsitesItem");
-            ContentCarousel = this.FindControl<Carousel>("ContentCarousel");
-            AllItemsPage = this.FindControl<Panel>("AllItemsPage");
-            FilesPage = this.FindControl<Panel>("FilesPage");
-            FoldersPage = this.FindControl<Panel>("FoldersPage");
-            WebsitesPage = this.FindControl<Panel>("WebsitesPage");
-            //AllItemsGridView = this.FindControl<GridView>("AllItemsGridView");
-            AllItemsGridView = this.FindControl<ListBox>("AllItemsGridView");
-            //FilesGridView = this.FindControl<GridView>("FilesGridView");
-            FilesGridView = this.FindControl<ListBox>("FilesGridView");
-            //FoldersGridView = this.FindControl<GridView>("FoldersGridView");
-            FoldersGridView = this.FindControl<ListBox>("FoldersGridView");
-            //WebsitesGridView = this.FindControl<GridView>("WebsitesGridView");
-            WebsitesGridView = this.FindControl<ListBox>("WebsitesGridView");
+            ItemsListBox = this.FindControl<ListBox>("ItemsListBox");
 
             //set the application shutdownmode to onmainwindowclose
 
@@ -158,30 +124,18 @@ namespace LauncherX.Avalonia
                 }
             }
 
-            //set the NavView SelectedItem manually and navigate to that page
-            NavView.SelectedItem = AllItemsItem;
-
-
             //all event handlers go here
-            AllItemsGridView.SelectionChanged += GridViewItem_SelectionChanged;
-            FilesGridView.SelectionChanged += GridViewItem_SelectionChanged;
-            FoldersGridView.SelectionChanged += GridViewItem_SelectionChanged;
-            WebsitesGridView.SelectionChanged += GridViewItem_SelectionChanged;
+            ItemsListBox.SelectionChanged += ItemsListBox_SelectionChanged;
             SettingsBtn.Click += SettingsBtn_Click;
             AddWebsiteBtn.Click += AddWebsiteBtn_Click;
-            NavView.SelectionChanged += NavView_SelectionChanged;
 
         }
 
-        private async void GridViewItem_SelectionChanged(object? sender, SelectionChangedEventArgs e)
+        private async void ItemsListBox_SelectionChanged(object? sender, SelectionChangedEventArgs e)
         {
-            //cast sender as gridview
-            //GridView gridView = sender as GridView;
-            ListBox gridView = sender as ListBox;
-
             //unselect the selected item
             await Task.Delay(500);
-            gridView.SelectedItem = null;
+            ItemsListBox.SelectedItem = null;
         }
 
         private void MainWindow_Opened(object? sender, EventArgs e)
@@ -195,22 +149,6 @@ namespace LauncherX.Avalonia
             //set the application theme
             PV_ChangeApplicationTheme("dark");
 
-            //set the titlebar of the window
-            if (this.TitleBar != null)
-            {
-                //extend view into titlebar
-                this.TitleBar.ExtendViewIntoTitleBar = true;
-
-                //make the titlebar visible and set the margin of the ControlsPanel
-                ControlsPanel.Margin = new Thickness(0, 0, 0, 0);
-                TitleBarHost.IsVisible = true;
-
-                //set the titlebar
-                this.SetTitleBar(TitleBarHost);
-
-                //set the titlebar margin so that it doesn't hide the caption buttons
-                TitleBarHost.Margin = new Thickness(0, 0, this.TitleBar.SystemOverlayRightInset, 0);
-            }
 
             var thm = AvaloniaLocator.Current.GetService<FluentAvaloniaTheme>();
             thm.RequestedThemeChanged += OnRequestedThemeChanged;
@@ -218,17 +156,17 @@ namespace LauncherX.Avalonia
             // Enable Mica on Windows 11
             if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
             {
-
-                if (IsWindows11 && thm.RequestedTheme != FluentAvaloniaTheme.HighContrastModeString)
+                thm.ForceWin32WindowToTheme(this);
+                
+                if (PV_IsOnWindows11() == true && thm.RequestedTheme != FluentAvaloniaTheme.HighContrastModeString)
                 {
+                    Debug.WriteLine("hello");
                     TransparencyBackgroundFallback = Brushes.Transparent;
                     TransparencyLevelHint = WindowTransparencyLevel.Mica;
 
                     TryEnableMicaEffect(thm);
                 }
-            }
-
-            thm.ForceWin32WindowToTheme(this);
+            } 
 
         }
 
@@ -264,29 +202,5 @@ namespace LauncherX.Avalonia
             settingsWindow.VersionText.Text = "Current version: " + PV_CurrentVersion;
             settingsWindow.ShowDialog(this);
         }
-
-        private void NavView_SelectionChanged(object? sender, NavigationViewSelectionChangedEventArgs e)
-        {
-            //this part controls which page to navigate to, upon user selection of a new NavViewItem
-
-            if (NavView.SelectedItem == AllItemsItem)
-            {
-                ContentCarousel.SelectedItem = AllItemsPage;
-            }
-            else if (NavView.SelectedItem == FilesItem)
-            {
-                ContentCarousel.SelectedItem = FilesPage;
-            }
-            else if (NavView.SelectedItem == FoldersItem)
-            {
-                ContentCarousel.SelectedItem = FoldersPage;
-            }
-            else if (NavView.SelectedItem == WebsitesItem)
-            {
-                ContentCarousel.SelectedItem = WebsitesPage;
-            }
-
-        }
-
     }
 }
