@@ -7,11 +7,6 @@ C:\Users\fligh\source\repos\LauncherX\LauncherX.WinUI3\bin\x64\Debug\net6.0-wind
 C:\Users\fligh\source\repos\LauncherX\LauncherX.WinUI3\bin\x64\Debug\net6.0-windows10.0.19041.0\win10-x64\Assets\Square44x44Logo.targetsize-24_altform-unplated.png
 C:\Users\fligh\source\repos\LauncherX\LauncherX.WinUI3\bin\x64\Debug\net6.0-windows10.0.19041.0\win10-x64\Assets\StoreLogo.png
 C:\Users\fligh\source\repos\LauncherX\LauncherX.WinUI3\bin\x64\Debug\net6.0-windows10.0.19041.0\win10-x64\Assets\Wide310x150Logo.scale-200.png
-C:\Users\fligh\source\repos\LauncherX\LauncherX.WinUI3\bin\x64\Debug\net6.0-windows10.0.19041.0\win10-x64\LauncherX.WinUI3.exe
-C:\Users\fligh\source\repos\LauncherX\LauncherX.WinUI3\bin\x64\Debug\net6.0-windows10.0.19041.0\win10-x64\LauncherX.WinUI3.deps.json
-C:\Users\fligh\source\repos\LauncherX\LauncherX.WinUI3\bin\x64\Debug\net6.0-windows10.0.19041.0\win10-x64\LauncherX.WinUI3.runtimeconfig.json
-C:\Users\fligh\source\repos\LauncherX\LauncherX.WinUI3\bin\x64\Debug\net6.0-windows10.0.19041.0\win10-x64\LauncherX.WinUI3.dll
-C:\Users\fligh\source\repos\LauncherX\LauncherX.WinUI3\bin\x64\Debug\net6.0-windows10.0.19041.0\win10-x64\LauncherX.WinUI3.pdb
 C:\Users\fligh\source\repos\LauncherX\LauncherX.WinUI3\bin\x64\Debug\net6.0-windows10.0.19041.0\win10-x64\resources.pri
 C:\Users\fligh\source\repos\LauncherX\LauncherX.WinUI3\bin\x64\Debug\net6.0-windows10.0.19041.0\win10-x64\Microsoft.InteractiveExperiences.Projection.dll
 C:\Users\fligh\source\repos\LauncherX\LauncherX.WinUI3\bin\x64\Debug\net6.0-windows10.0.19041.0\win10-x64\Microsoft.WinUI.dll
@@ -265,11 +260,7 @@ C:\Users\fligh\source\repos\LauncherX\LauncherX.WinUI3\obj\x64\Debug\net6.0-wind
 C:\Users\fligh\source\repos\LauncherX\LauncherX.WinUI3\obj\x64\Debug\net6.0-windows10.0.19041.0\win10-x64\LauncherX.WinUI3.AssemblyInfo.cs
 C:\Users\fligh\source\repos\LauncherX\LauncherX.WinUI3\obj\x64\Debug\net6.0-windows10.0.19041.0\win10-x64\LauncherX.WinUI3.csproj.CoreCompileInputs.cache
 C:\Users\fligh\source\repos\LauncherX\LauncherX.WinUI3\obj\x64\Debug\net6.0-windows10.0.19041.0\win10-x64\LauncherX.WinUI3.csproj.CopyComplete
-C:\Users\fligh\source\repos\LauncherX\LauncherX.WinUI3\obj\x64\Debug\net6.0-windows10.0.19041.0\win10-x64\LauncherX.WinUI3.dll
-C:\Users\fligh\source\repos\LauncherX\LauncherX.WinUI3\obj\x64\Debug\net6.0-windows10.0.19041.0\win10-x64\refint\LauncherX.WinUI3.dll
-C:\Users\fligh\source\repos\LauncherX\LauncherX.WinUI3\obj\x64\Debug\net6.0-windows10.0.19041.0\win10-x64\LauncherX.WinUI3.pdb
 C:\Users\fligh\source\repos\LauncherX\LauncherX.WinUI3\obj\x64\Debug\net6.0-windows10.0.19041.0\win10-x64\LauncherX.WinUI3.genruntimeconfig.cache
-C:\Users\fligh\source\repos\LauncherX\LauncherX.WinUI3\obj\x64\Debug\net6.0-windows10.0.19041.0\win10-x64\ref\LauncherX.WinUI3.dll
 C:\Users\fligh\source\repos\LauncherX\LauncherX.WinUI3\obj\x64\Debug\net6.0-windows10.0.19041.0\win10-x64\priconfig.xml
 C:\Users\fligh\source\repos\LauncherX\LauncherX.WinUI3\obj\x64\Debug\net6.0-windows10.0.19041.0\win10-x64\priconfig.xml.intermediate
 C:\Users\fligh\source\repos\LauncherX\LauncherX.WinUI3\obj\x64\Debug\net6.0-windows10.0.19041.0\win10-x64\unfiltered.layout.resfiles
@@ -453,3 +444,12 @@ C:\Users\fligh\source\repos\LauncherX\LauncherX.WinUI3\obj\x64\Debug\net6.0-wind
 C:\Users\fligh\source\repos\LauncherX\LauncherX.WinUI3\obj\x64\Debug\net6.0-windows10.0.19041.0\win10-x64\Frames\CreateCollectionDialogContent.xaml
 C:\Users\fligh\source\repos\LauncherX\LauncherX.WinUI3\obj\x64\Debug\net6.0-windows10.0.19041.0\win10-x64\Frames\CreateCollectionDialogContent.xbf
 C:\Users\fligh\source\repos\LauncherX\LauncherX.WinUI3\bin\x64\Debug\net6.0-windows10.0.19041.0\win10-x64\Frames\CreateCollectionDialogContent.xbf
+C:\Users\fligh\source\repos\LauncherX\LauncherX.WinUI3\bin\x64\Debug\net6.0-windows10.0.19041.0\win10-x64\LauncherX.exe
+C:\Users\fligh\source\repos\LauncherX\LauncherX.WinUI3\bin\x64\Debug\net6.0-windows10.0.19041.0\win10-x64\LauncherX.deps.json
+C:\Users\fligh\source\repos\LauncherX\LauncherX.WinUI3\bin\x64\Debug\net6.0-windows10.0.19041.0\win10-x64\LauncherX.runtimeconfig.json
+C:\Users\fligh\source\repos\LauncherX\LauncherX.WinUI3\bin\x64\Debug\net6.0-windows10.0.19041.0\win10-x64\LauncherX.dll
+C:\Users\fligh\source\repos\LauncherX\LauncherX.WinUI3\bin\x64\Debug\net6.0-windows10.0.19041.0\win10-x64\LauncherX.pdb
+C:\Users\fligh\source\repos\LauncherX\LauncherX.WinUI3\obj\x64\Debug\net6.0-windows10.0.19041.0\win10-x64\LauncherX.dll
+C:\Users\fligh\source\repos\LauncherX\LauncherX.WinUI3\obj\x64\Debug\net6.0-windows10.0.19041.0\win10-x64\refint\LauncherX.dll
+C:\Users\fligh\source\repos\LauncherX\LauncherX.WinUI3\obj\x64\Debug\net6.0-windows10.0.19041.0\win10-x64\LauncherX.pdb
+C:\Users\fligh\source\repos\LauncherX\LauncherX.WinUI3\obj\x64\Debug\net6.0-windows10.0.19041.0\win10-x64\ref\LauncherX.dll

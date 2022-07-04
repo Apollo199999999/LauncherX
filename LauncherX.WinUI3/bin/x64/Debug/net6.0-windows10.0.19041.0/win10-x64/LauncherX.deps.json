@@ -7,7 +7,7 @@
   "targets": {
     ".NETCoreApp,Version=v6.0": {},
     ".NETCoreApp,Version=v6.0/win10-x64": {
-      "LauncherX.WinUI3/1.0.0": {
+      "LauncherX/1.0.0": {
         "dependencies": {
           "Microsoft.Windows.SDK.BuildTools": "10.0.22621.1",
           "Microsoft.WindowsAppSDK": "1.1.2",
@@ -16,7 +16,7 @@
           "runtimepack.Microsoft.Windows.SDK.NET.Ref": "10.0.19041.25"
         },
         "runtime": {
-          "LauncherX.WinUI3.dll": {}
+          "LauncherX.dll": {}
         }
       },
       "runtimepack.Microsoft.NETCore.App.Runtime.win-x64/6.0.6": {
@@ -1976,7 +1976,7 @@
     }
   },
   "libraries": {
-    "LauncherX.WinUI3/1.0.0": {
+    "LauncherX/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

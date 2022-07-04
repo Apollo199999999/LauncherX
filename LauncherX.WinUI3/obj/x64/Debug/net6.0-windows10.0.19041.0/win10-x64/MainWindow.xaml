@@ -7,7 +7,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
-    <Grid x:ConnectionId='2' x:Name="ParentControlsGrid"                                    Padding="20,20,20,20">
+    <Grid x:ConnectionId='2' x:Name="ParentControlsGrid"                                    Padding="20,20,20,20" >
         <Grid VerticalAlignment="Top" HorizontalAlignment="Stretch" Height="32">
             <TextBlock VerticalAlignment="Center" FontSize="28px" FontWeight="SemiBold">LauncherX</TextBlock>
             <Button x:ConnectionId='3' x:Name="AddCategoryBtn" VerticalAlignment="Center" HorizontalAlignment="Right" Style="{StaticResource AccentButtonStyle}"                             >
@@ -18,9 +18,9 @@
             </Button>
         </Grid>
 
-        <TextBlock VerticalAlignment="Top" HorizontalAlignment="Left" FontSize="20px" Margin="0,42,0,0" FontWeight="SemiBold">Collections</TextBlock>
+        <TextBlock VerticalAlignment="Top" HorizontalAlignment="Left" FontSize="20px" Margin="0,52,0,0" FontWeight="SemiBold">Collections</TextBlock>
 
-        <GridView Margin="0,72,0,42" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+        <GridView Margin="0,92,0,42" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
             <GridView.Items>
                 <GridViewItem>Item</GridViewItem>
                 <GridViewItem>Item</GridViewItem>
@@ -40,7 +40,7 @@
                 <GridViewItem>Item</GridViewItem>
             </GridView.Items>
         </GridView>
-        
+
         <Button VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="32" Height="32" Padding="0,0,0,0">
             <FontIcon FontFamily="Segoe MDL2 Assets" FontSize="16" Glyph="&#xE713;"/>
         </Button>

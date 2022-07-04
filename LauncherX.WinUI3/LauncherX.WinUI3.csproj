@@ -12,6 +12,7 @@
     <EnablePreviewMsixTooling>true</EnablePreviewMsixTooling>
     <WindowsPackageType>None</WindowsPackageType>
     <WindowsAppSDKSelfContained>true</WindowsAppSDKSelfContained>
+    <AssemblyName>LauncherX</AssemblyName>
   </PropertyGroup>
   <ItemGroup>
     <None Remove="CreateCollectionDialogContent.xaml" />
