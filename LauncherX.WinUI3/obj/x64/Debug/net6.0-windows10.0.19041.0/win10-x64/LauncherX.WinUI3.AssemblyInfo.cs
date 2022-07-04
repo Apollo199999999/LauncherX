@@ -11,13 +11,15 @@
 using System;
 using System.Reflection;
 
-[assembly: System.Reflection.AssemblyCompanyAttribute("LauncherX")]
+[assembly: System.Reflection.AssemblyCompanyAttribute("ClickPhase")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
-[assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyCopyrightAttribute("Copyright © 2020-present ClickPhase")]
+[assembly: System.Reflection.AssemblyDescriptionAttribute("LauncherX - Create and organise collections of files, folders, and websites")]
+[assembly: System.Reflection.AssemblyFileVersionAttribute("2.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("2.0.0")]
 [assembly: System.Reflection.AssemblyProductAttribute("LauncherX")]
 [assembly: System.Reflection.AssemblyTitleAttribute("LauncherX")]
-[assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
+[assembly: System.Reflection.AssemblyVersionAttribute("2.0.0")]
 [assembly: System.Runtime.Versioning.TargetPlatformAttribute("Windows10.0.19041.0")]
 [assembly: System.Runtime.Versioning.SupportedOSPlatformAttribute("Windows10.0.17763.0")]
 

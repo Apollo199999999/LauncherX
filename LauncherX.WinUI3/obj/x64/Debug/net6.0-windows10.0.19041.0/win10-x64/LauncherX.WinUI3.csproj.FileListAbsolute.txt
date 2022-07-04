@@ -1,12 +1,5 @@
 C:\Users\fligh\source\repos\LauncherX\LauncherX.WinUI3\bin\x64\Debug\net6.0-windows10.0.19041.0\win10-x64\App.xbf
 C:\Users\fligh\source\repos\LauncherX\LauncherX.WinUI3\bin\x64\Debug\net6.0-windows10.0.19041.0\win10-x64\MainWindow.xbf
-C:\Users\fligh\source\repos\LauncherX\LauncherX.WinUI3\bin\x64\Debug\net6.0-windows10.0.19041.0\win10-x64\Assets\LockScreenLogo.scale-200.png
-C:\Users\fligh\source\repos\LauncherX\LauncherX.WinUI3\bin\x64\Debug\net6.0-windows10.0.19041.0\win10-x64\Assets\SplashScreen.scale-200.png
-C:\Users\fligh\source\repos\LauncherX\LauncherX.WinUI3\bin\x64\Debug\net6.0-windows10.0.19041.0\win10-x64\Assets\Square150x150Logo.scale-200.png
-C:\Users\fligh\source\repos\LauncherX\LauncherX.WinUI3\bin\x64\Debug\net6.0-windows10.0.19041.0\win10-x64\Assets\Square44x44Logo.scale-200.png
-C:\Users\fligh\source\repos\LauncherX\LauncherX.WinUI3\bin\x64\Debug\net6.0-windows10.0.19041.0\win10-x64\Assets\Square44x44Logo.targetsize-24_altform-unplated.png
-C:\Users\fligh\source\repos\LauncherX\LauncherX.WinUI3\bin\x64\Debug\net6.0-windows10.0.19041.0\win10-x64\Assets\StoreLogo.png
-C:\Users\fligh\source\repos\LauncherX\LauncherX.WinUI3\bin\x64\Debug\net6.0-windows10.0.19041.0\win10-x64\Assets\Wide310x150Logo.scale-200.png
 C:\Users\fligh\source\repos\LauncherX\LauncherX.WinUI3\bin\x64\Debug\net6.0-windows10.0.19041.0\win10-x64\resources.pri
 C:\Users\fligh\source\repos\LauncherX\LauncherX.WinUI3\bin\x64\Debug\net6.0-windows10.0.19041.0\win10-x64\Microsoft.InteractiveExperiences.Projection.dll
 C:\Users\fligh\source\repos\LauncherX\LauncherX.WinUI3\bin\x64\Debug\net6.0-windows10.0.19041.0\win10-x64\Microsoft.WinUI.dll
@@ -453,3 +446,5 @@ C:\Users\fligh\source\repos\LauncherX\LauncherX.WinUI3\obj\x64\Debug\net6.0-wind
 C:\Users\fligh\source\repos\LauncherX\LauncherX.WinUI3\obj\x64\Debug\net6.0-windows10.0.19041.0\win10-x64\refint\LauncherX.dll
 C:\Users\fligh\source\repos\LauncherX\LauncherX.WinUI3\obj\x64\Debug\net6.0-windows10.0.19041.0\win10-x64\LauncherX.pdb
 C:\Users\fligh\source\repos\LauncherX\LauncherX.WinUI3\obj\x64\Debug\net6.0-windows10.0.19041.0\win10-x64\ref\LauncherX.dll
+C:\Users\fligh\source\repos\LauncherX\LauncherX.WinUI3\bin\x64\Debug\net6.0-windows10.0.19041.0\win10-x64\Assets\icon.ico
+C:\Users\fligh\source\repos\LauncherX\LauncherX.WinUI3\bin\x64\Debug\net6.0-windows10.0.19041.0\win10-x64\Assets\icon.png

@@ -7,7 +7,7 @@
   "targets": {
     ".NETCoreApp,Version=v6.0": {},
     ".NETCoreApp,Version=v6.0/win10-x64": {
-      "LauncherX/1.0.0": {
+      "LauncherX/2.0.0": {
         "dependencies": {
           "Microsoft.Windows.SDK.BuildTools": "10.0.22621.1",
           "Microsoft.WindowsAppSDK": "1.1.2",
@@ -1976,7 +1976,7 @@
     }
   },
   "libraries": {
-    "LauncherX/1.0.0": {
+    "LauncherX/2.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

@@ -31,47 +31,76 @@ namespace LauncherX.WinUI3
     /// </summary>
     public sealed partial class MainWindow : Window
     {
+        //Initialise AppWindow
+        public AppWindow appWindow;
+
+        //Intialise Window Handle
+        public IntPtr hWnd;
+
+        //Initialise 
+
         public MainWindow()
         {
             this.InitializeComponent();
+
+            // Retrieve the window handle (HWND) of the current WinUI 3 window.
+            hWnd = WinRT.Interop.WindowNative.GetWindowHandle(this);
+
+            //load AppWindow
+            var windowId = Win32Interop.GetWindowIdFromWindow(hWnd);
+            appWindow = AppWindow.GetFromWindowId(windowId);
+
+            //Theme changed event handler
+            ((FrameworkElement)this.Content).ActualThemeChanged += MainWindow_ThemeChanged;
         }
 
+        //ALL FUNCTIONS GO HERE
         public void TryEnableMica()
         {
-            //Try and enable Mica and set a Mica titlebar (may not be compatible with diff Windows versions)
-            try
+            //Enable Mica if supported
+            if (Microsoft.UI.Composition.SystemBackdrops.MicaController.IsSupported() == true)
             {
-                //Enable Mica
+                //Set background Mica
                 SystemBackdropsHelper systemBackdropsHelper = new SystemBackdropsHelper(this);
                 systemBackdropsHelper.SetBackdrop(BackdropType.Mica);
 
-                //Try enable Mica titlebar
-                try
-                {
-                    // Retrieve the window handle (HWND) of the current WinUI 3 window.
-                    IntPtr hWnd = WinRT.Interop.WindowNative.GetWindowHandle(this);
-                    DesktopWindowManager.EnableMicaIfSupported(hWnd);
-
-                    //Set titlebar Light/Dark mode based on app theme
-                    if (Application.Current.RequestedTheme == ApplicationTheme.Light)
-                    {
-                        DesktopWindowManager.SetImmersiveDarkMode(hWnd, false);
-                    }
-                    else
-                    {
-                        DesktopWindowManager.SetImmersiveDarkMode(hWnd, true);
-                    }
-                } catch { }
+                //Set titlebar Mica
+                DesktopWindowManager.EnableMicaIfSupported(hWnd);
             }
-            catch
+            else
             {
                 //Set the ParentControlsGrid background
-                ParentControlsGrid.Background = (Brush)Application.Current.Resources["SolidBackgroundFillColorBaseBrush"];
+                ParentControlsGrid.Background = (Brush)Application.Current.Resources["ApplicationPageBackgroundThemeBrush"];
             }
+           
+            //Try set titlebar color
+            try
+            {
+                //Set titlebar Light/Dark mode based on app theme
+                if (Application.Current.RequestedTheme == ApplicationTheme.Light)
+                {
+                    DesktopWindowManager.SetImmersiveDarkMode(hWnd, false);
+                }
+                else if (Application.Current.RequestedTheme == ApplicationTheme.Dark)
+                {
+                    DesktopWindowManager.SetImmersiveDarkMode(hWnd, true);
+                }
+            }
+            catch { }
         }
+
+        private void MainWindow_ThemeChanged(FrameworkElement sender, object args)
+        {
+            //Try Enable Mica
+            TryEnableMica();
+        }
+
         private void ParentControlsGrid_Loaded(object sender, RoutedEventArgs e)
         {
             //CONFIGURE WINDOW
+            //Set Window icon
+            appWindow.SetIcon("Assets\\icon.ico");
+
             //Set Window titlebar text
             this.Title = "LauncherX - Create and organise collections of files, folders, and websites";
 
@@ -90,6 +119,7 @@ namespace LauncherX.WinUI3
             ContentDialog dialog = new ContentDialog();
             dialog.XamlRoot = this.Content.XamlRoot;
             dialog.Style = Application.Current.Resources["DefaultContentDialogStyle"] as Style;
+            dialog.Width = 350;
             dialog.Title = "Create new collection";
             dialog.PrimaryButtonText = "Create Collection";
             dialog.CloseButtonText = "Cancel";
