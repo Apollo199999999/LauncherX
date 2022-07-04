@@ -7,43 +7,52 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
-    <Grid x:ConnectionId='2' x:Name="ParentControlsGrid"                                    Padding="20,20,20,20" >
-        <Grid VerticalAlignment="Top" HorizontalAlignment="Stretch" Height="32">
-            <TextBlock VerticalAlignment="Center" FontSize="28px" FontWeight="SemiBold">LauncherX</TextBlock>
-            <Button x:ConnectionId='3' x:Name="AddCategoryBtn" VerticalAlignment="Center" HorizontalAlignment="Right" Style="{StaticResource AccentButtonStyle}"                             >
-                <StackPanel Orientation="Horizontal">
-                    <FontIcon VerticalAlignment="Center" FontFamily="Segoe MDL2 Assets" FontSize="14" Margin="0,1,8,0" Glyph="&#xE710;"/>
-                    <TextBlock VerticalAlignment="Center">Create new collection</TextBlock>
-                </StackPanel>
+    <!--Grid that stretches for the whole window-->
+    <Grid>
+        <!--Custom titlebar (normally hidden)-->
+       <StackPanel x:ConnectionId='2' Orientation="Horizontal" x:Name="AppTitleBar" Visibility="Collapsed" Height="40" VerticalAlignment="Top" HorizontalAlignment="Stretch">
+            <Image VerticalAlignment="Center" HorizontalAlignment="Left" Source="Assets\icon.ico" Width="18" Height="18" Margin="10,0,0,0"/>
+            <TextBlock VerticalAlignment="Center" HorizontalAlignment="Left" Margin="8,0,0,0" FontSize="12">LauncherX - Create and organise collections of files, folders, and websites</TextBlock>
+        </StackPanel>
+
+        <Grid x:ConnectionId='3' x:Name="ParentControlsGrid"                                    Padding="20,20,20,20">
+            <Grid VerticalAlignment="Top" HorizontalAlignment="Stretch" Height="32">
+                <TextBlock VerticalAlignment="Center" FontSize="28px" FontWeight="SemiBold">LauncherX</TextBlock>
+                <Button x:ConnectionId='4' x:Name="AddCategoryBtn" VerticalAlignment="Center" HorizontalAlignment="Right" Style="{StaticResource AccentButtonStyle}"                             >
+                    <StackPanel Orientation="Horizontal">
+                        <FontIcon VerticalAlignment="Center" FontFamily="Segoe MDL2 Assets" FontSize="14" Margin="0,1,8,0" Glyph="&#xE710;"/>
+                        <TextBlock VerticalAlignment="Center">Create new collection</TextBlock>
+                    </StackPanel>
+                </Button>
+            </Grid>
+
+            <TextBlock VerticalAlignment="Top" HorizontalAlignment="Left" FontSize="20px" Margin="0,52,0,0" FontWeight="SemiBold">Collections</TextBlock>
+
+            <GridView Margin="0,92,0,42" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                <GridView.Items>
+                    <GridViewItem>Item</GridViewItem>
+                    <GridViewItem>Item</GridViewItem>
+                    <GridViewItem>Item</GridViewItem>
+                    <GridViewItem>Item</GridViewItem>
+                    <GridViewItem>Item</GridViewItem>
+                    <GridViewItem>Item</GridViewItem>
+                    <GridViewItem>Item</GridViewItem>
+                    <GridViewItem>Item</GridViewItem>
+                    <GridViewItem>Item</GridViewItem>
+                    <GridViewItem>Item</GridViewItem>
+                    <GridViewItem>Item</GridViewItem>
+                    <GridViewItem>Item</GridViewItem>
+                    <GridViewItem>Item</GridViewItem>
+                    <GridViewItem>Item</GridViewItem>
+                    <GridViewItem>Item</GridViewItem>
+                    <GridViewItem>Item</GridViewItem>
+                </GridView.Items>
+            </GridView>
+
+            <Button VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="32" Height="32" Padding="0,0,0,0">
+                <FontIcon FontFamily="Segoe MDL2 Assets" FontSize="16" Glyph="&#xE713;"/>
             </Button>
         </Grid>
-
-        <TextBlock VerticalAlignment="Top" HorizontalAlignment="Left" FontSize="20px" Margin="0,52,0,0" FontWeight="SemiBold">Collections</TextBlock>
-
-        <GridView Margin="0,92,0,42" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-            <GridView.Items>
-                <GridViewItem>Item</GridViewItem>
-                <GridViewItem>Item</GridViewItem>
-                <GridViewItem>Item</GridViewItem>
-                <GridViewItem>Item</GridViewItem>
-                <GridViewItem>Item</GridViewItem>
-                <GridViewItem>Item</GridViewItem>
-                <GridViewItem>Item</GridViewItem>
-                <GridViewItem>Item</GridViewItem>
-                <GridViewItem>Item</GridViewItem>
-                <GridViewItem>Item</GridViewItem>
-                <GridViewItem>Item</GridViewItem>
-                <GridViewItem>Item</GridViewItem>
-                <GridViewItem>Item</GridViewItem>
-                <GridViewItem>Item</GridViewItem>
-                <GridViewItem>Item</GridViewItem>
-                <GridViewItem>Item</GridViewItem>
-            </GridView.Items>
-        </GridView>
-
-        <Button VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="32" Height="32" Padding="0,0,0,0">
-            <FontIcon FontFamily="Segoe MDL2 Assets" FontSize="16" Glyph="&#xE713;"/>
-        </Button>
     </Grid>
 </Window>
 

@@ -20,6 +20,7 @@ using Microsoft.UI;
 using Microsoft.Windows.ApplicationModel;
 using Microsoft.UI.Windowing;
 using LauncherX.WinUI3.Win32;
+using Windows.UI;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -55,7 +56,7 @@ namespace LauncherX.WinUI3
         }
 
         //ALL FUNCTIONS GO HERE
-        public void TryEnableMica()
+        public void TrySetModernWindowStyles()
         {
             //Enable Mica if supported
             if (Microsoft.UI.Composition.SystemBackdrops.MicaController.IsSupported() == true)
@@ -63,36 +64,53 @@ namespace LauncherX.WinUI3
                 //Set background Mica
                 SystemBackdropsHelper systemBackdropsHelper = new SystemBackdropsHelper(this);
                 systemBackdropsHelper.SetBackdrop(BackdropType.Mica);
-
-                //Set titlebar Mica
-                DesktopWindowManager.EnableMicaIfSupported(hWnd);
             }
             else
             {
                 //Set the ParentControlsGrid background
                 ParentControlsGrid.Background = (Brush)Application.Current.Resources["ApplicationPageBackgroundThemeBrush"];
             }
-           
-            //Try set titlebar color
-            try
+
+            //Set custom titlebar if supported
+            if (AppWindowTitleBar.IsCustomizationSupported() == true)
             {
-                //Set titlebar Light/Dark mode based on app theme
-                if (Application.Current.RequestedTheme == ApplicationTheme.Light)
-                {
-                    DesktopWindowManager.SetImmersiveDarkMode(hWnd, false);
-                }
-                else if (Application.Current.RequestedTheme == ApplicationTheme.Dark)
-                {
-                    DesktopWindowManager.SetImmersiveDarkMode(hWnd, true);
-                }
+                //Set modern titlebar style
+                //Show the custom titlebar
+                AppTitleBar.Visibility = Visibility.Visible;
+                ParentControlsGrid.Margin = new Thickness(0, 40, 0, 0);
+
+                //Customise AppWindow Titlebar
+                appWindow.TitleBar.ExtendsContentIntoTitleBar = true;
+                appWindow.TitleBar.ButtonBackgroundColor = Colors.Transparent;
+                appWindow.TitleBar.ButtonHoverBackgroundColor = (Color)Application.Current.Resources["ControlFillColorSecondary"];
+                appWindow.TitleBar.ButtonInactiveBackgroundColor = Colors.Transparent;
+                appWindow.TitleBar.ButtonPressedBackgroundColor = (Color)Application.Current.Resources["ControlFillColorDefault"];
+
             }
-            catch { }
+            else
+            {
+                //Try set titlebar color based on user theme
+                try
+                {
+                    //Set titlebar Light/Dark mode based on app theme
+                    if (Application.Current.RequestedTheme == ApplicationTheme.Light)
+                    {
+                        DesktopWindowManager.SetImmersiveDarkMode(hWnd, false);
+                    }
+                    else if (Application.Current.RequestedTheme == ApplicationTheme.Dark)
+                    {
+                        DesktopWindowManager.SetImmersiveDarkMode(hWnd, true);
+                    }
+                }
+                catch { }
+            }
+
         }
 
         private void MainWindow_ThemeChanged(FrameworkElement sender, object args)
         {
-            //Try Enable Mica
-            TryEnableMica();
+            //Try set modern window styles
+            TrySetModernWindowStyles();
         }
 
         private void ParentControlsGrid_Loaded(object sender, RoutedEventArgs e)
@@ -104,8 +122,8 @@ namespace LauncherX.WinUI3
             //Set Window titlebar text
             this.Title = "LauncherX - Create and organise collections of files, folders, and websites";
 
-            //Enable Mica
-            TryEnableMica();
+            //Try set modern window styles
+            TrySetModernWindowStyles();
 
             //Set window size and minimum window size
             WindowHelper.SetWindowSize(this, 900, 600);
