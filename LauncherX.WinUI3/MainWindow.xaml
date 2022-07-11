@@ -17,7 +17,7 @@
 
         <Grid x:Name="ParentControlsGrid" Loaded="ParentControlsGrid_Loaded" Padding="20,20,20,20">
             <Grid VerticalAlignment="Top" HorizontalAlignment="Stretch" Height="32">
-                <TextBlock VerticalAlignment="Center" FontSize="28px" FontWeight="SemiBold">LauncherX</TextBlock>
+                <TextBlock VerticalAlignment="Center" Style="{StaticResource TitleTextBlockStyle}" >LauncherX</TextBlock>
                 <Button x:Name="AddCategoryBtn" VerticalAlignment="Center" HorizontalAlignment="Right" Style="{StaticResource AccentButtonStyle}" Click="AddCategoryBtn_Click">
                     <StackPanel Orientation="Horizontal">
                         <FontIcon VerticalAlignment="Center" FontFamily="Segoe MDL2 Assets" FontSize="14" Margin="0,1,8,0" Glyph="&#xE710;"/>
@@ -26,7 +26,7 @@
                 </Button>
             </Grid>
 
-            <TextBlock VerticalAlignment="Top" HorizontalAlignment="Left" FontSize="20px" Margin="0,52,0,0" FontWeight="SemiBold">Collections</TextBlock>
+            <TextBlock VerticalAlignment="Top" HorizontalAlignment="Left" Margin="0,52,0,0" Style="{StaticResource SubtitleTextBlockStyle}">Collections</TextBlock>
 
             <GridView Margin="0,92,0,42" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                 <GridView.Items>
@@ -49,7 +49,7 @@
                 </GridView.Items>
             </GridView>
 
-            <Button VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="32" Height="32" Padding="0,0,0,0">
+            <Button x:Name="SettingsBtn" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="32" Height="32" Padding="0,0,0,0" Click="SettingsBtn_Click">
                 <FontIcon FontFamily="Segoe MDL2 Assets" FontSize="16" Glyph="&#xE713;"/>
             </Button>
         </Grid>

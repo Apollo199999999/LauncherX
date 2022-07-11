@@ -32,7 +32,10 @@
   </ItemGroup>
   <ItemGroup>
     <None Remove="CreateCollectionDialogContent.xaml" />
-    <None Remove="Frames\CreateCollectionDialogContent.xaml" />
+    <None Remove="Dialogs\CreateCollectionDialog.xaml" />
+    <None Remove="Dialogs\SettingsDialog.xaml" />
+    <None Remove="Dialogs\SettingsPages\AboutPage.xaml" />
+    <None Remove="Dialogs\SettingsPages\AppearancePage.xaml" />
   </ItemGroup>
 
   <ItemGroup>
@@ -57,6 +60,15 @@
       <Pack>True</Pack>
       <PackagePath>\</PackagePath>
     </None>
+    <Page Update="Dialogs\SettingsPages\AboutPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Update="Dialogs\SettingsPages\AppearancePage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Update="Pages\SettingsDialog.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Page Update="Frames\CreateCollectionDialogContent.xaml">

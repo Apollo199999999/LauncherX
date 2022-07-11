@@ -1,5 +1,5 @@
 ﻿<UserControl
-    x:Class="LauncherX.WinUI3.Frames.CreateCollectionDialogContent"
+    x:Class="LauncherX.WinUI3.Dialogs.CreateCollectionDialog"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:LauncherX.WinUI3"
@@ -12,3 +12,4 @@
         <TextBox Margin="0,10,0,0" PlaceholderText="Name"/>
     </StackPanel>
 </UserControl>
+

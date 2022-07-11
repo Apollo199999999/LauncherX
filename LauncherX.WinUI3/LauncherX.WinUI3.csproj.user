@@ -10,7 +10,10 @@
     <None Update="App.xaml">
       <SubType>Designer</SubType>
     </None>
-    <Page Update="Frames\CreateCollectionDialogContent.xaml">
+    <Page Update="Dialogs\SettingsPages\AboutPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Dialogs\SettingsPages\AppearancePage.xaml">
       <SubType>Designer</SubType>
     </Page>
     <None Update="MainWindow.xaml">

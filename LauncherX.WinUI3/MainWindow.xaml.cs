@@ -1,25 +1,13 @@
-﻿using Microsoft.UI.Xaml;
+﻿using LauncherX.WinUI3.Dialogs;
+using LauncherX.WinUI3.Win32;
+using Microsoft.UI;
+using Microsoft.UI.Windowing;
+using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Controls.Primitives;
-using Microsoft.UI.Xaml.Data;
-using Microsoft.UI.Xaml.Input;
 using Microsoft.UI.Xaml.Media;
-using Microsoft.UI.Xaml.Navigation;
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
-using SettingsUI;
 using SettingsUI.Helpers;
-using LauncherX.WinUI3.Frames;
-using Windows.UI.ViewManagement;
-using Microsoft.UI;
-using Microsoft.Windows.ApplicationModel;
-using Microsoft.UI.Windowing;
-using LauncherX.WinUI3.Win32;
+using System;
 using Windows.UI;
 
 // To learn more about WinUI, the WinUI project structure,
@@ -82,6 +70,7 @@ namespace LauncherX.WinUI3
                 //Customise AppWindow Titlebar
                 appWindow.TitleBar.ExtendsContentIntoTitleBar = true;
                 appWindow.TitleBar.ButtonBackgroundColor = Colors.Transparent;
+                appWindow.TitleBar.ButtonForegroundColor = (Color)Application.Current.Resources["TextFillColorPrimary"];
                 appWindow.TitleBar.ButtonHoverBackgroundColor = (Color)Application.Current.Resources["ControlFillColorSecondary"];
                 appWindow.TitleBar.ButtonInactiveBackgroundColor = Colors.Transparent;
                 appWindow.TitleBar.ButtonPressedBackgroundColor = (Color)Application.Current.Resources["ControlFillColorDefault"];
@@ -128,24 +117,33 @@ namespace LauncherX.WinUI3
             //Set window size and minimum window size
             WindowHelper.SetWindowSize(this, 900, 600);
             WindowHelper.RegisterWindowMinMax(this);
-            WindowHelper.MinWindowWidth = 600;
-            WindowHelper.MinWindowHeight = 400;
+            WindowHelper.MinWindowWidth = 900;
+            WindowHelper.MinWindowHeight = 600;
         }
 
         private async void AddCategoryBtn_Click(object sender, RoutedEventArgs e)
         {
-            ContentDialog dialog = new ContentDialog();
-            dialog.XamlRoot = this.Content.XamlRoot;
-            dialog.Style = Application.Current.Resources["DefaultContentDialogStyle"] as Style;
-            dialog.Width = 350;
-            dialog.Title = "Create new collection";
-            dialog.PrimaryButtonText = "Create Collection";
-            dialog.CloseButtonText = "Cancel";
-            dialog.DefaultButton = ContentDialogButton.Primary;
-            dialog.Content = new CreateCollectionDialogContent();
+            //Launch a ContentDialog that prompts the user to create a new collection
+            ContentDialog createCollectionDialog = new ContentDialog();
+            createCollectionDialog.XamlRoot = ParentControlsGrid.XamlRoot;
+            createCollectionDialog.Style = Application.Current.Resources["DefaultContentDialogStyle"] as Style;
+            createCollectionDialog.Width = 350;
+            createCollectionDialog.Title = "Create new collection";
+            createCollectionDialog.PrimaryButtonText = "Create Collection";
+            createCollectionDialog.CloseButtonText = "Cancel";
+            createCollectionDialog.DefaultButton = ContentDialogButton.Primary;
+            createCollectionDialog.Content = new CreateCollectionDialog();
 
-            var result = await dialog.ShowAsync();
+            var result = await createCollectionDialog.ShowAsync();
 
+        }
+
+        private async void SettingsBtn_Click(object sender, RoutedEventArgs e)
+        {
+            //Launch a ContentDialog that shows app settings
+            SettingsDialog settingsDialog = new SettingsDialog();
+            settingsDialog.XamlRoot = ParentControlsGrid.XamlRoot;
+            var result = await settingsDialog.ShowAsync();
         }
     }
 }
