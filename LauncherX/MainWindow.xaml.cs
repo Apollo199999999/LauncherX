@@ -147,10 +147,7 @@ namespace LauncherX
             //set the button reveal style
             var buttonstyle = (Style)App.Current.Resources["ButtonRevealStyle"];
             SettingsButton.Style = buttonstyle;
-            CloseButton.Style = buttonstyle;
-            MaximizeButton.Style = buttonstyle;
-            MinimiseButton.Style = buttonstyle;
-
+           
             //upgrade and reload settings
             Properties.Settings.Default.Upgrade();
             Properties.Settings.Default.Save();
@@ -227,8 +224,8 @@ namespace LauncherX
             catch { }
 
             //and then, create to seperate solid color brushes for the theme color accordingly
-            SolidColorBrush lightTheme = new SolidColorBrush(System.Windows.Media.Color.FromArgb(255, 255, 255, 255));
-            SolidColorBrush darkTheme = new SolidColorBrush(System.Windows.Media.Color.FromArgb(255, 0, 0, 0));
+            SolidColorBrush lightTheme = new SolidColorBrush(System.Windows.Media.Color.FromArgb(255, 243, 243, 243));
+            SolidColorBrush darkTheme = new SolidColorBrush(System.Windows.Media.Color.FromArgb(255, 32, 32, 32));
 
             //check light/dark mode, change colors accordingly
             if (is_light_mode == true)
@@ -243,7 +240,7 @@ namespace LauncherX
                 grid.Background = darkTheme;
 
                 //change window tint color
-                this.TintColor = System.Windows.Media.Color.FromArgb(255, 0, 0, 0);
+                this.TintColor = System.Windows.Media.Color.FromArgb(255, 20, 20, 20);
             }
         }
 
@@ -1028,10 +1025,11 @@ namespace LauncherX
 
 
             //download address. The link is used to grab the favicon
-            string downloadaddress = "https://www.google.com/s2/favicons?sz=64&domain_url=" + url;
+            string downloadaddress = "https://www.google.com/s2/favicons?sz=64&domain_url=https://" + url;
 
             //init a new webclient
             WebClient webClient = new WebClient();
+           
 
             if (File.Exists(Path.Combine(websiteIconDir, filename)))
             {
@@ -1376,7 +1374,7 @@ namespace LauncherX
         {
             //init a button and declare properties
             var folderbutton = OpenFolderHost.Child as Windows.UI.Xaml.Controls.Button;
-            folderbutton.Content = "Add a Folder";
+            folderbutton.Content = "Add a folder";
 
             //event handlers
             folderbutton.Click += Folderbutton_Click;
@@ -1629,45 +1627,6 @@ namespace LauncherX
             Focus();
         }
 
-        private void TitleBar_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-            //DragMove
-            DragMove();
-        }
-
-        private void CloseButton_Click(object sender, RoutedEventArgs e)
-        {
-            //close
-            this.Close();
-        }
-
-        private void MaximizeButton_Click(object sender, RoutedEventArgs e)
-        {
-            //check if window is maximized
-            if (this.WindowState == WindowState.Maximized)
-            {
-                //set the windowstate to normal
-                this.WindowState = WindowState.Normal;
-
-                //change the button content
-                MaximizeButton.Content = "\xE922";
-                MaximizeButton.FontFamily = new System.Windows.Media.FontFamily("Segoe MDL2 Assets");
-            }
-            else
-            {
-                //set the windowstate to maximized
-                this.WindowState = WindowState.Maximized;
-
-                //change the button content
-                MaximizeButton.Content = "\xE923";
-                MaximizeButton.FontFamily = new System.Windows.Media.FontFamily("Segoe MDL2 Assets");
-            }
-        }
-
-        private void MinimiseButton_Click(object sender, RoutedEventArgs e)
-        {
-            //minimise the window
-            this.WindowState = WindowState.Minimized;
-        }
+       
     }
 }
