@@ -8,7 +8,7 @@
         x:Class="LauncherX.SettingsWindow"
         mc:Ignorable="d"
         xmlns:fw="clr-namespace:SourceChord.FluentWPF;assembly=FluentWPF"
-        Title="Settings" Height="490" Width="355" ResizeMode="NoResize" AcrylicWindowStyle="None" TintOpacity="2" NoiseOpacity="0" WindowStyle="None" MouseDown="AcrylicWindow_MouseDown">
+        Title="Settings" Height="490" Width="355" ResizeMode="NoResize" AcrylicWindowStyle="NoIcon" TintOpacity="2" NoiseOpacity="0" MouseDown="AcrylicWindow_MouseDown">
     <Grid Margin="0,0,0,0" fw:PointerTracker.Enabled="True">
 
         <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" Text="Settings" VerticalAlignment="Top" FontSize="16" FontWeight="Bold"/>
