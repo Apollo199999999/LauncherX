@@ -49,17 +49,8 @@
             "Microsoft.Toolkit.Wpf.UI.XamlHost": {
               "target": "Package",
               "version": "[6.1.2, )"
-            },
-            "Microsoft.VCRTForwarders.140": {
-              "target": "Package",
-              "version": "[1.0.6, )"
             }
-          },
-          "imports": [
-            "uap10.0.18362"
-          ],
-          "assetTargetFallback": true,
-          "warn": true
+          }
         }
       },
       "runtimes": {

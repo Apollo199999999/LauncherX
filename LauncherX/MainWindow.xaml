@@ -7,19 +7,14 @@
         xmlns:fw="clr-namespace:SourceChord.FluentWPF;assembly=FluentWPF"
         xmlns:xamlHost="clr-namespace:Microsoft.Toolkit.Wpf.UI.XamlHost;assembly=Microsoft.Toolkit.Wpf.UI.XamlHost"
         mc:Ignorable="d"
-        Title="LauncherX - Organize all your stuff!" Height="600" Width="830" MinHeight="400" MinWidth="650" x:Name="window" TintOpacity="0.85" NoiseOpacity="0.015" Closing="window_Closing" MouseDown="window_MouseDown" AcrylicWindowStyle="Normal" BorderBrush="Transparent">
+        Title="LauncherX - Organize all your stuff!" Height="600" Width="830" MinHeight="400" MinWidth="650" x:Name="window" Closing="window_Closing" MouseDown="window_MouseDown" BorderBrush="Transparent">
     <DockPanel>
         <Grid DockPanel.Dock="Top" x:Name="Container" Margin="0,0,0,0" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Background="Transparent">
             <TextBlock x:Name="header" HorizontalAlignment="Left" Margin="10,66,0,0" TextWrapping="Wrap" Text="My files, folders, and websites" VerticalAlignment="Top" FontWeight="Bold" FontSize="18"/>
-            <Grid>
-                <xamlHost:WindowsXamlHost x:Name="OpenFileHost" InitialTypeName="Windows.UI.Xaml.Controls.Button" Margin="0,62,10,0" HorizontalAlignment="Right" VerticalAlignment="Top" Height="32" RenderTransformOrigin="0.5,0.5" Width="105" ChildChanged="OpenFileHost_ChildChanged"/>
-                <xamlHost:WindowsXamlHost x:Name="OpenFolderHost" HorizontalAlignment="Right" Height="32" Margin="0,62,125,0" VerticalAlignment="Top" Width="110" ChildChanged="OpenFolderHost_ChildChanged" InitialTypeName="Windows.UI.Xaml.Controls.Button"/>
-                <xamlHost:WindowsXamlHost x:Name="OpenWebsiteHost" HorizontalAlignment="Right" Height="32" Margin="0,62,245,0" VerticalAlignment="Top" Width="120" InitialTypeName="Windows.UI.Xaml.Controls.Button" ChildChanged="OpenWebsiteHost_ChildChanged"/>
-                <xamlHost:WindowsXamlHost x:Name="SearchHost" Height="32" Margin="50,10,50,0" VerticalAlignment="Top" InitialTypeName="Windows.UI.Xaml.Controls.AutoSuggestBox" ChildChanged="SearchHost_ChildChanged"/>
-                <Grid.Effect>
-                    <BlurEffect Radius="200"/>
-                </Grid.Effect>
-            </Grid>
+            <xamlHost:WindowsXamlHost x:Name="OpenFileHost" InitialTypeName="UWPClassLibrary.UWPButton" Margin="0,62,10,0" HorizontalAlignment="Right" VerticalAlignment="Top" Height="32" RenderTransformOrigin="0.5,0.5" Width="105" ChildChanged="OpenFileHost_ChildChanged"/>
+            <xamlHost:WindowsXamlHost x:Name="OpenFolderHost" HorizontalAlignment="Right" Height="32" Margin="0,62,125,0" VerticalAlignment="Top" Width="110" ChildChanged="OpenFolderHost_ChildChanged" InitialTypeName="Windows.UI.Xaml.Controls.Button"/>
+            <xamlHost:WindowsXamlHost x:Name="OpenWebsiteHost" HorizontalAlignment="Right" Height="32" Margin="0,62,245,0" VerticalAlignment="Top" Width="120" InitialTypeName="Windows.UI.Xaml.Controls.Button" ChildChanged="OpenWebsiteHost_ChildChanged"/>
+            <xamlHost:WindowsXamlHost x:Name="SearchHost" Height="32" Margin="50,10,50,0" VerticalAlignment="Top" InitialTypeName="Windows.UI.Xaml.Controls.AutoSuggestBox" ChildChanged="SearchHost_ChildChanged"/>
         </Grid>
         <Grid DockPanel.Dock="Bottom" x:Name="grid" fw:PointerTracker.Enabled="True" Margin="0,10,0,0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="Transparent" MouseDown="grid_MouseDown" >
             <xamlHost:WindowsXamlHost Margin="10,10,10,55" x:Name="gridviewhost" InitialTypeName="Windows.UI.Xaml.Controls.GridView" ChildChanged="gridviewhost_ChildChanged" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"/>
