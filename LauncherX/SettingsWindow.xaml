@@ -8,22 +8,17 @@
         x:Class="LauncherX.SettingsWindow"
         mc:Ignorable="d"
         xmlns:fw="clr-namespace:SourceChord.FluentWPF;assembly=FluentWPF"
-<<<<<<< HEAD
-        Title="Settings" Height="490" Width="355" ResizeMode="NoResize" AcrylicWindowStyle="NoIcon" TintOpacity="2" NoiseOpacity="0" MouseDown="AcrylicWindow_MouseDown">
-    <Grid Margin="0,0,0,0" fw:PointerTracker.Enabled="True">
-=======
         Title="Settings" Height="490" Width="355" ResizeMode="NoResize" AcrylicWindowStyle="None" TintOpacity="2" NoiseOpacity="0" WindowStyle="None" MouseDown="AcrylicWindow_MouseDown">
-    <Grid Margin="0,0,0,0">
->>>>>>> parent of c917a51 (Slight UI Revamp)
+    <Grid Margin="0,0,0,0" fw:PointerTracker.Enabled="True">
 
         <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" Text="Settings" VerticalAlignment="Top" FontSize="16" FontWeight="Bold"/>
         <TextBlock x:Name="AboutHeader" HorizontalAlignment="Left" Margin="10,190,0,0" TextWrapping="Wrap" Text="About" VerticalAlignment="Top" FontSize="16" FontWeight="Bold"/>
-        <XamlHost:WindowsXamlHost x:Name="scalescrollhost" InitialTypeName="Windows.UI.Xaml.Controls.Slider" HorizontalAlignment="Left" Height="40" Margin="10,60,0,0" VerticalAlignment="Top" Width="254" ChildChanged="scalescrollhost_ChildChanged"/>
+        <XamlHost:WindowsXamlHost x:Name="scalescrollhost" InitialTypeName="Windows.UI.Xaml.Controls.Slider" HorizontalAlignment="Left" Height="40" Margin="10,66,0,0" VerticalAlignment="Top" Width="254" ChildChanged="scalescrollhost_ChildChanged"/>
         <TextBlock x:Name="changeScaleTextHeader" HorizontalAlignment="Left" Margin="10,45,0,0" TextWrapping="Wrap" Text="Change Icon Size" VerticalAlignment="Top" FontSize="12" FontWeight="Normal"/>
-        <Button x:Name="CloseButton" Content="Save and Exit" HorizontalAlignment="Right" Margin="0,0,10,5.5" VerticalAlignment="Bottom" Width="100" Height="30" FontSize="13" Click="CloseButton_Click" />
+        <Button x:Name="CloseButton" Content="Save and Exit" HorizontalAlignment="Right" Margin="0,0,10,5.5" VerticalAlignment="Bottom" Width="100" Height="30" FontSize="13" Click="CloseButton_Click" Style="{StaticResource ButtonRevealStyle}"/>
         <TextBlock x:Name="changeHeaderTextHeader" HorizontalAlignment="Left" Margin="10,115,0,0" TextWrapping="Wrap" Text="Change Header Text" VerticalAlignment="Top" FontSize="12" FontWeight="Normal"/>
-        <TextBox x:Name="changeHeaderTextTextBox" HorizontalAlignment="Left" Height="25" Margin="10,135,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="335" FontSize="13" TextChanged="changeHeaderTextTextBox_TextChanged"/>
-        <TextBlock x:Name="textBlock2" HorizontalAlignment="Center" Margin="0,256,0,0" TextWrapping="Wrap" Text="Version 1.0.1" VerticalAlignment="Top"/>
+        <TextBox x:Name="changeHeaderTextTextBox" HorizontalAlignment="Center" Height="32" Margin="0,135,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="335" FontSize="13" TextChanged="changeHeaderTextTextBox_TextChanged" Style="{StaticResource TextBoxRevealStyle}"/>
+        <TextBlock x:Name="textBlock2" HorizontalAlignment="Center" Margin="0,256,0,0" TextWrapping="Wrap" Text="Version 1.0.2" VerticalAlignment="Top"/>
         <TextBlock x:Name="textBlock3" HorizontalAlignment="Center" Margin="0,276,0,0" TextWrapping="Wrap" Text="Copyright © 2020-present ClickPhase" VerticalAlignment="Top" Cursor=""/>
 
         <Grid x:Name="LogoContainer" HorizontalAlignment="Center" Height="32" Margin="0,215,0,0" VerticalAlignment="Top" Width="172">
@@ -33,7 +28,7 @@
 
         <TextBlock x:Name="textBlock4" HorizontalAlignment="Center" Margin="0,296,0,0" TextWrapping="Wrap" Text="This project is licensed under the MIT Licence. For more information, visit LauncherX's Github respository." VerticalAlignment="Top" TextAlignment="Center"/>
         <TextBlock x:Name="textBlock5" HorizontalAlignment="Center" Margin="28,375,27,0" TextWrapping="Wrap" Text="Hi! I am Matthias, the (only) developer of LauncherX. This is my first actual program for Windows, so it may not be perfect. Anyways, I hope that you enjoy using LauncherX." VerticalAlignment="Top" TextAlignment="Center" Width="300"/>
-        <Button x:Name="VisitGithub" Content="Visit LauncherX's Github respository" HorizontalAlignment="Center" Margin="0,335,0,0" VerticalAlignment="Top" Width="220" Height="30" Click="VisitGithub_Click" FontSize="13"/>
+        <Button x:Name="VisitGithub" Content="Visit LauncherX's Github respository" HorizontalAlignment="Center" Margin="0,335,0,0" VerticalAlignment="Top" Width="220" Height="30" Click="VisitGithub_Click" FontSize="13" Style="{StaticResource ButtonRevealStyle}"/>
 
     </Grid>
 

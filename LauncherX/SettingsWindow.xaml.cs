@@ -26,8 +26,6 @@ namespace LauncherX
     /// </summary>
     public partial class SettingsWindow
     {
-        
-
         public SettingsWindow()
         {
             InitializeComponent();

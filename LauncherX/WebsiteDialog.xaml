@@ -4,13 +4,14 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:LauncherX"
+        xmlns:XamlHost="clr-namespace:Microsoft.Toolkit.Wpf.UI.XamlHost;assembly=Microsoft.Toolkit.Wpf.UI.XamlHost" 
         xmlns:fw="clr-namespace:SourceChord.FluentWPF;assembly=FluentWPF"
         mc:Ignorable="d"
-        Title="Add a website" Height="125" Width="500" ResizeMode="NoResize" AcrylicWindowStyle="NoIcon" NoiseOpacity="0" TintOpacity="1" WindowStartupLocation="CenterScreen">
-    <Grid>
+        Title="Add a website" Height="160" Width="500" ResizeMode="NoResize" AcrylicWindowStyle="NoIcon" NoiseOpacity="0" TintOpacity="1" WindowStartupLocation="CenterScreen">
+    <Grid fw:PointerTracker.Enabled="True">
         <TextBlock x:Name="label" Text="URL:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="urlBox" HorizontalAlignment="Left" Height="22" Margin="10,36,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="475"/>
-        <Button x:Name="button" Content="OK" HorizontalAlignment="Left" Margin="410,63,0,0" VerticalAlignment="Top" Width="75" Click="button_Click"/>
+        <XamlHost:WindowsXamlHost x:Name="urlBoxHost" ChildChanged="urlBoxHost_ChildChanged" InitialTypeName="Windows.UI.Xaml.Controls.TextBox" Height="32" Margin="10,31,10,0" VerticalAlignment="Top"/>
+        <XamlHost:WindowsXamlHost x:Name="OkBtnHost" InitialTypeName="Windows.UI.Xaml.Controls.Button" Margin="0,80,10,0" HorizontalAlignment="Right" VerticalAlignment="Top" Height="32" Width="85" ChildChanged="OkBtn_ChildChanged"/>
 
     </Grid>
 </fw:AcrylicWindow>

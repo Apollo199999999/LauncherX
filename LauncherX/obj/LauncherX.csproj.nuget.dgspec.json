@@ -40,7 +40,7 @@
           "dependencies": {
             "FluentWPF": {
               "target": "Package",
-              "version": "[0.8.0, )"
+              "version": "[0.9.0, )"
             },
             "Microsoft.Toolkit.Wpf.UI.Controls": {
               "target": "Package",
@@ -49,8 +49,17 @@
             "Microsoft.Toolkit.Wpf.UI.XamlHost": {
               "target": "Package",
               "version": "[6.1.2, )"
+            },
+            "Microsoft.VCRTForwarders.140": {
+              "target": "Package",
+              "version": "[1.0.6, )"
             }
-          }
+          },
+          "imports": [
+            "uap10.0.18362"
+          ],
+          "assetTargetFallback": true,
+          "warn": true
         }
       },
       "runtimes": {

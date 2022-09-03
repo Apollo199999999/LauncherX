@@ -1,19 +1,16 @@
 {
   "version": 2,
-<<<<<<< HEAD
-  "dgSpecHash": "uPz5P+/N81Y1lsG1J2dnMcQ1HXCfS5IW74gd8NWv78bNAMA5lXy+IPYkFnHqoCQWTDdSlLdrzTad4cjQu3H5NQ==",
-=======
-  "dgSpecHash": "ZbVzq4rpaBkM7eOSNaxDZesnJ4LBilo8fb41aWbGOfTfvPT9ehsQ9jsCus9LqphTT9dgHP0YQ1H4Z4rdlu5tZg==",
->>>>>>> parent of c917a51 (Slight UI Revamp)
+  "dgSpecHash": "sVCcqnP3O3Kadr9CGMLn+lJHZ+4Gcs2Bx63At7sVN/j/QnD1CtTPWe2LBxD64JxjyYT0l83BdkRjI3X5cB5aow==",
   "success": true,
-  "projectFilePath": "C:\\Users\\fligh\\source\\repos\\LauncherX\\LauncherX\\LauncherX [FROZEN ON v1.0.1].csproj",
+  "projectFilePath": "C:\\Users\\fligh\\source\\repos\\LauncherX\\LauncherX\\LauncherX.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\fligh\\.nuget\\packages\\fluentwpf\\0.8.0\\fluentwpf.0.8.0.nupkg.sha512",
+    "C:\\Users\\fligh\\.nuget\\packages\\fluentwpf\\0.9.0\\fluentwpf.0.9.0.nupkg.sha512",
     "C:\\Users\\fligh\\.nuget\\packages\\microsoft.toolkit.ui.xamlhost\\6.1.2\\microsoft.toolkit.ui.xamlhost.6.1.2.nupkg.sha512",
     "C:\\Users\\fligh\\.nuget\\packages\\microsoft.toolkit.win32.ui.sdk\\6.1.2\\microsoft.toolkit.win32.ui.sdk.6.1.2.nupkg.sha512",
     "C:\\Users\\fligh\\.nuget\\packages\\microsoft.toolkit.win32.ui.xamlapplication\\6.1.2\\microsoft.toolkit.win32.ui.xamlapplication.6.1.2.nupkg.sha512",
     "C:\\Users\\fligh\\.nuget\\packages\\microsoft.toolkit.wpf.ui.controls\\6.1.2\\microsoft.toolkit.wpf.ui.controls.6.1.2.nupkg.sha512",
     "C:\\Users\\fligh\\.nuget\\packages\\microsoft.toolkit.wpf.ui.xamlhost\\6.1.2\\microsoft.toolkit.wpf.ui.xamlhost.6.1.2.nupkg.sha512",
+    "C:\\Users\\fligh\\.nuget\\packages\\microsoft.vcrtforwarders.140\\1.0.6\\microsoft.vcrtforwarders.140.1.0.6.nupkg.sha512",
     "C:\\Users\\fligh\\.nuget\\packages\\microsoft.windows.sdk.contracts\\10.0.18362.2005\\microsoft.windows.sdk.contracts.10.0.18362.2005.nupkg.sha512",
     "C:\\Users\\fligh\\.nuget\\packages\\system.runtime.windowsruntime\\4.6.0\\system.runtime.windowsruntime.4.6.0.nupkg.sha512",
     "C:\\Users\\fligh\\.nuget\\packages\\system.runtime.windowsruntime.ui.xaml\\4.6.0\\system.runtime.windowsruntime.ui.xaml.4.6.0.nupkg.sha512"

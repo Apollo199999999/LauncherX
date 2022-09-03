@@ -25,8 +25,27 @@ namespace LauncherX
             InitializeComponent();
         }
 
-        private void button_Click(object sender, RoutedEventArgs e)
+        private void urlBoxHost_ChildChanged(object sender, EventArgs e)
         {
+            var urlBox = urlBoxHost.Child as Windows.UI.Xaml.Controls.TextBox;
+            urlBox.PlaceholderText = "Enter URL here";
+
+            urlBoxHost.ChildChanged -= urlBoxHost_ChildChanged;
+        }
+
+        private void OkBtn_ChildChanged(object sender, EventArgs e)
+        {
+            var OkBtn = OkBtnHost.Child as Windows.UI.Xaml.Controls.Button;
+            OkBtn.Content = "OK";
+            OkBtn.Click += OkBtn_Click;
+
+            OkBtnHost.ChildChanged -= OkBtn_ChildChanged;
+        }
+
+        private void OkBtn_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+        {
+            var urlBox = urlBoxHost.Child as Windows.UI.Xaml.Controls.TextBox;
+
             if (urlBox.Text.StartsWith("https://"))
             {
                 //remove https:// and set websiteok to true to activate the method later
@@ -43,7 +62,7 @@ namespace LauncherX
                 websiteok = true;
                 Close();
             }
-            else 
+            else
             {
                 //assign to the url variable and set website ok to true
                 original_url = urlBox.Text;

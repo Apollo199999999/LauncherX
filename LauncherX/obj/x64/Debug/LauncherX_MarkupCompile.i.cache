@@ -12,14 +12,9 @@ DEBUG;TRACE
 C:\Users\fligh\source\repos\LauncherX\LauncherX\App.xaml
 51168852500
 
-<<<<<<< HEAD
-12-600656333
-218-299456901
-=======
 12-1451601683
-218-778874314
->>>>>>> parent of c917a51 (Slight UI Revamp)
+218-299456901
 AddItemsErrorDialog.xaml;InProgress.xaml;MainWindow.xaml;SettingsWindow.xaml;WebsiteDialog.xaml;
 
-True
+False
 

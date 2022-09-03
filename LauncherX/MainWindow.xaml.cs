@@ -31,13 +31,74 @@ using System.Web;
 
 namespace LauncherX
 {
+    internal enum AccentState
+    {
+        ACCENT_DISABLED = 1,
+        ACCENT_ENABLE_GRADIENT = 0,
+        ACCENT_ENABLE_TRANSPARENTGRADIENT = 2,
+        ACCENT_ENABLE_BLURBEHIND = 3,
+        ACCENT_INVALID_STATE = 4
+    }
+
+    [StructLayout(LayoutKind.Sequential)]
+    internal struct AccentPolicy
+    {
+        public AccentState AccentState;
+        public int AccentFlags;
+        public int GradientColor;
+        public int AnimationId;
+    }
+
+    [StructLayout(LayoutKind.Sequential)]
+    internal struct WindowCompositionAttributeData
+    {
+        public WindowCompositionAttribute Attribute;
+        public IntPtr Data;
+        public int SizeOfData;
+    }
+
+    internal enum WindowCompositionAttribute
+    {
+        // ...
+        WCA_ACCENT_POLICY = 19
+        // ...
+    }
+
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
     /// 
 
+
+
     public partial class MainWindow
-    { 
+    {
+        [DllImport("user32.dll")]
+        internal static extern int SetWindowCompositionAttribute(IntPtr hwnd, ref WindowCompositionAttributeData data);
+
+        internal void EnableBlur()
+        {
+            var windowHelper = new WindowInteropHelper(this);
+
+            var accent = new AccentPolicy();
+            accent.AccentState = AccentState.ACCENT_ENABLE_BLURBEHIND;
+
+            var accentStructSize = Marshal.SizeOf(accent);
+
+            var accentPtr = Marshal.AllocHGlobal(accentStructSize);
+            Marshal.StructureToPtr(accent, accentPtr, false);
+
+            var data = new WindowCompositionAttributeData();
+            data.Attribute = WindowCompositionAttribute.WCA_ACCENT_POLICY;
+            data.SizeOfData = accentStructSize;
+            data.Data = accentPtr;
+
+            SetWindowCompositionAttribute(windowHelper.Handle, ref data);
+
+            Marshal.FreeHGlobal(accentPtr);
+        }
+
+
         //Struct used by SHGetFileInfo function
         [StructLayout(LayoutKind.Sequential)]
         public struct SHFILEINFO
@@ -86,10 +147,7 @@ namespace LauncherX
             //set the button reveal style
             var buttonstyle = (Style)App.Current.Resources["ButtonRevealStyle"];
             SettingsButton.Style = buttonstyle;
-            CloseButton.Style = buttonstyle;
-            MaximizeButton.Style = buttonstyle;
-            MinimiseButton.Style = buttonstyle;
-
+           
             //upgrade and reload settings
             Properties.Settings.Default.Upgrade();
             Properties.Settings.Default.Save();
@@ -166,23 +224,23 @@ namespace LauncherX
             catch { }
 
             //and then, create to seperate solid color brushes for the theme color accordingly
-            SolidColorBrush lightTheme = new SolidColorBrush(System.Windows.Media.Color.FromArgb(255, 255, 255, 255));
-            SolidColorBrush darkTheme = new SolidColorBrush(System.Windows.Media.Color.FromArgb(255, 0, 0, 0));
+            SolidColorBrush lightTheme = new SolidColorBrush(System.Windows.Media.Color.FromArgb(255, 243, 243, 243));
+            SolidColorBrush darkTheme = new SolidColorBrush(System.Windows.Media.Color.FromArgb(255, 32, 32, 32));
 
             //check light/dark mode, change colors accordingly
             if (is_light_mode == true)
             {
                 grid.Background = lightTheme;
+
+                //change window tint color
+                this.TintColor = System.Windows.Media.Color.FromArgb(255, 255, 255, 255);
             }
             else if (is_light_mode == false)
             {
                 grid.Background = darkTheme;
-<<<<<<< HEAD
-=======
 
                 //change window tint color
-                this.TintColor = System.Windows.Media.Color.FromArgb(255, 0, 0, 0);
->>>>>>> parent of c917a51 (Slight UI Revamp)
+                this.TintColor = System.Windows.Media.Color.FromArgb(255, 20, 20, 20);
             }
         }
 
@@ -193,6 +251,9 @@ namespace LauncherX
 
         private async void Window_Loaded(object sender, RoutedEventArgs e)
         {
+            //combining the fully transparent FluentWPF window with the setwindowcomposition API colourless blur seems to work
+            EnableBlur();
+
             //wait a while for the controls to load
             await Task.Delay(500);
 
@@ -964,10 +1025,11 @@ namespace LauncherX
 
 
             //download address. The link is used to grab the favicon
-            string downloadaddress = "https://www.google.com/s2/favicons?sz=64&domain_url=" + url;
+            string downloadaddress = "https://www.google.com/s2/favicons?sz=64&domain_url=https://" + url;
 
             //init a new webclient
             WebClient webClient = new WebClient();
+           
 
             if (File.Exists(Path.Combine(websiteIconDir, filename)))
             {
@@ -1191,9 +1253,9 @@ namespace LauncherX
         {
             //init button and set properties
             var button = OpenFileHost.Child as Windows.UI.Xaml.Controls.Button;
-            //button.Content = "Add a file";
-            //button.Click += OpenFile_Click;
-            //OpenFileHost.ChildChanged -= OpenFileHost_ChildChanged;
+            button.Content = "Add a file";
+            button.Click += OpenFile_Click;
+            OpenFileHost.ChildChanged -= OpenFileHost_ChildChanged;
         }
       
         
@@ -1312,7 +1374,7 @@ namespace LauncherX
         {
             //init a button and declare properties
             var folderbutton = OpenFolderHost.Child as Windows.UI.Xaml.Controls.Button;
-            folderbutton.Content = "Add a Folder";
+            folderbutton.Content = "Add a folder";
 
             //event handlers
             folderbutton.Click += Folderbutton_Click;
@@ -1565,45 +1627,6 @@ namespace LauncherX
             Focus();
         }
 
-        private void TitleBar_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-            //DragMove
-            DragMove();
-        }
-
-        private void CloseButton_Click(object sender, RoutedEventArgs e)
-        {
-            //close
-            this.Close();
-        }
-
-        private void MaximizeButton_Click(object sender, RoutedEventArgs e)
-        {
-            //check if window is maximized
-            if (this.WindowState == WindowState.Maximized)
-            {
-                //set the windowstate to normal
-                this.WindowState = WindowState.Normal;
-
-                //change the button content
-                MaximizeButton.Content = "\xE922";
-                MaximizeButton.FontFamily = new System.Windows.Media.FontFamily("Segoe MDL2 Assets");
-            }
-            else
-            {
-                //set the windowstate to maximized
-                this.WindowState = WindowState.Maximized;
-
-                //change the button content
-                MaximizeButton.Content = "\xE923";
-                MaximizeButton.FontFamily = new System.Windows.Media.FontFamily("Segoe MDL2 Assets");
-            }
-        }
-
-        private void MinimiseButton_Click(object sender, RoutedEventArgs e)
-        {
-            //minimise the window
-            this.WindowState = WindowState.Minimized;
-        }
+       
     }
 }
