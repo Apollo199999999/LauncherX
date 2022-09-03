@@ -1,4 +1,4 @@
-﻿LauncherX
+﻿LauncherX [FROZEN ON v1.0.1]
 
 
 winexe
@@ -12,9 +12,9 @@ DEBUG;TRACE
 C:\Users\fligh\source\repos\LauncherX\LauncherX\App.xaml
 51168852500
 
-12-1451601683
+111117922126
 218-778874314
 AddItemsErrorDialog.xaml;InProgress.xaml;MainWindow.xaml;SettingsWindow.xaml;WebsiteDialog.xaml;
 
-True
+False
 

@@ -2,7 +2,7 @@
   "version": 3,
   "targets": {
     ".NETFramework,Version=v4.8": {
-      "FluentWPF/0.9.0": {
+      "FluentWPF/0.8.0": {
         "type": "package",
         "compile": {
           "lib/net45/FluentWPF.dll": {}
@@ -251,7 +251,7 @@
       }
     },
     ".NETFramework,Version=v4.8/win": {
-      "FluentWPF/0.9.0": {
+      "FluentWPF/0.8.0": {
         "type": "package",
         "compile": {
           "lib/net45/FluentWPF.dll": {}
@@ -466,7 +466,7 @@
       }
     },
     ".NETFramework,Version=v4.8/win-x64": {
-      "FluentWPF/0.9.0": {
+      "FluentWPF/0.8.0": {
         "type": "package",
         "compile": {
           "lib/net45/FluentWPF.dll": {}
@@ -681,7 +681,7 @@
       }
     },
     ".NETFramework,Version=v4.8/win-x86": {
-      "FluentWPF/0.9.0": {
+      "FluentWPF/0.8.0": {
         "type": "package",
         "compile": {
           "lib/net45/FluentWPF.dll": {}
@@ -897,15 +897,15 @@
     }
   },
   "libraries": {
-    "FluentWPF/0.9.0": {
-      "sha512": "h8AUlCSOg11477H6fRSM30mxqdX3/ETu1Ksso2fuLrCD7rHK2TZPma2SuQHMcidsFq5GJZe1BkKbPdkKoTeAUQ==",
+    "FluentWPF/0.8.0": {
+      "sha512": "Yq/GjRtlNRjE5lLf99NWqJ+9kSeuhSrt55/Is1wgZwSL6s2oZWxfT1C6bnz7O+kzb/aAWEZD94X0MP5mW4H+qQ==",
       "type": "package",
-      "path": "fluentwpf/0.9.0",
+      "path": "fluentwpf/0.8.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "LICENSE",
-        "fluentwpf.0.9.0.nupkg.sha512",
+        "fluentwpf.0.8.0.nupkg.sha512",
         "fluentwpf.nuspec",
         "lib/net45/FluentWPF.dll",
         "lib/netcoreapp3.0/FluentWPF.dll"
@@ -1325,7 +1325,7 @@
   },
   "projectFileDependencyGroups": {
     ".NETFramework,Version=v4.8": [
-      "FluentWPF >= 0.9.0",
+      "FluentWPF >= 0.8.0",
       "Microsoft.Toolkit.Wpf.UI.Controls >= 6.1.2",
       "Microsoft.Toolkit.Wpf.UI.XamlHost >= 6.1.2"
     ]
@@ -1337,9 +1337,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\fligh\\source\\repos\\LauncherX\\LauncherX\\LauncherX.csproj",
-      "projectName": "LauncherX",
-      "projectPath": "C:\\Users\\fligh\\source\\repos\\LauncherX\\LauncherX\\LauncherX.csproj",
+      "projectUniqueName": "C:\\Users\\fligh\\source\\repos\\LauncherX\\LauncherX\\LauncherX [FROZEN ON v1.0.1].csproj",
+      "projectName": "LauncherX [FROZEN ON v1.0.1]",
+      "projectPath": "C:\\Users\\fligh\\source\\repos\\LauncherX\\LauncherX\\LauncherX [FROZEN ON v1.0.1].csproj",
       "packagesPath": "C:\\Users\\fligh\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\fligh\\source\\repos\\LauncherX\\LauncherX\\obj\\",
       "projectStyle": "PackageReference",
@@ -1370,7 +1370,7 @@
         "dependencies": {
           "FluentWPF": {
             "target": "Package",
-            "version": "[0.9.0, )"
+            "version": "[0.8.0, )"
           },
           "Microsoft.Toolkit.Wpf.UI.Controls": {
             "target": "Package",
