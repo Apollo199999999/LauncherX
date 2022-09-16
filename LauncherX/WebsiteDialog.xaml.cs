@@ -18,7 +18,7 @@ namespace LauncherX
     /// <summary>
     /// Interaction logic for WebsiteDialog.xaml
     /// </summary>
-    public partial class WebsiteDialog 
+    public partial class WebsiteDialog : Window
     {
         public WebsiteDialog()
         {

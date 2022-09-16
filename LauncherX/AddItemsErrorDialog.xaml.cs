@@ -17,7 +17,7 @@ namespace LauncherX
     /// <summary>
     /// Interaction logic for AddItemsErrorDialog.xaml
     /// </summary>
-    public partial class AddItemsErrorDialog 
+    public partial class AddItemsErrorDialog : Window
     {
         public AddItemsErrorDialog()
         {

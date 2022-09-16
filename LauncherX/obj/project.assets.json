@@ -2,15 +2,6 @@
   "version": 3,
   "targets": {
     ".NETFramework,Version=v4.8": {
-      "FluentWPF/0.9.0": {
-        "type": "package",
-        "compile": {
-          "lib/net45/FluentWPF.dll": {}
-        },
-        "runtime": {
-          "lib/net45/FluentWPF.dll": {}
-        }
-      },
       "Microsoft.Toolkit.UI.XamlHost/6.1.2": {
         "type": "package",
         "dependencies": {
@@ -19,10 +10,14 @@
           "Microsoft.Windows.SDK.Contracts": "10.0.18362.2005"
         },
         "compile": {
-          "lib/net462/Microsoft.Toolkit.Win32.UI.XamlHost.Managed.dll": {}
+          "lib/net462/Microsoft.Toolkit.Win32.UI.XamlHost.Managed.dll": {
+            "related": ".pdb;.xml"
+          }
         },
         "runtime": {
-          "lib/net462/Microsoft.Toolkit.Win32.UI.XamlHost.Managed.dll": {}
+          "lib/net462/Microsoft.Toolkit.Win32.UI.XamlHost.Managed.dll": {
+            "related": ".pdb;.xml"
+          }
         },
         "build": {
           "build/Microsoft.Toolkit.UI.XamlHost.props": {},
@@ -95,10 +90,14 @@
           "WindowsBase"
         ],
         "compile": {
-          "lib/net462/Microsoft.Toolkit.Wpf.UI.Controls.dll": {}
+          "lib/net462/Microsoft.Toolkit.Wpf.UI.Controls.dll": {
+            "related": ".pdb;.xml"
+          }
         },
         "runtime": {
-          "lib/net462/Microsoft.Toolkit.Wpf.UI.Controls.dll": {}
+          "lib/net462/Microsoft.Toolkit.Wpf.UI.Controls.dll": {
+            "related": ".pdb;.xml"
+          }
         }
       },
       "Microsoft.Toolkit.Wpf.UI.XamlHost/6.1.2": {
@@ -118,10 +117,14 @@
           "WindowsBase"
         ],
         "compile": {
-          "lib/net462/Microsoft.Toolkit.Wpf.UI.XamlHost.dll": {}
+          "lib/net462/Microsoft.Toolkit.Wpf.UI.XamlHost.dll": {
+            "related": ".pdb;.xml"
+          }
         },
         "runtime": {
-          "lib/net462/Microsoft.Toolkit.Wpf.UI.XamlHost.dll": {}
+          "lib/net462/Microsoft.Toolkit.Wpf.UI.XamlHost.dll": {
+            "related": ".pdb;.xml"
+          }
         }
       },
       "Microsoft.VCRTForwarders.140/1.0.6": {
@@ -459,15 +462,6 @@
       }
     },
     ".NETFramework,Version=v4.8/win": {
-      "FluentWPF/0.9.0": {
-        "type": "package",
-        "compile": {
-          "lib/net45/FluentWPF.dll": {}
-        },
-        "runtime": {
-          "lib/net45/FluentWPF.dll": {}
-        }
-      },
       "Microsoft.Toolkit.UI.XamlHost/6.1.2": {
         "type": "package",
         "dependencies": {
@@ -476,10 +470,14 @@
           "Microsoft.Windows.SDK.Contracts": "10.0.18362.2005"
         },
         "compile": {
-          "lib/net462/Microsoft.Toolkit.Win32.UI.XamlHost.Managed.dll": {}
+          "lib/net462/Microsoft.Toolkit.Win32.UI.XamlHost.Managed.dll": {
+            "related": ".pdb;.xml"
+          }
         },
         "runtime": {
-          "lib/net462/Microsoft.Toolkit.Win32.UI.XamlHost.Managed.dll": {}
+          "lib/net462/Microsoft.Toolkit.Win32.UI.XamlHost.Managed.dll": {
+            "related": ".pdb;.xml"
+          }
         },
         "build": {
           "build/Microsoft.Toolkit.UI.XamlHost.props": {},
@@ -518,10 +516,14 @@
           "WindowsBase"
         ],
         "compile": {
-          "lib/net462/Microsoft.Toolkit.Wpf.UI.Controls.dll": {}
+          "lib/net462/Microsoft.Toolkit.Wpf.UI.Controls.dll": {
+            "related": ".pdb;.xml"
+          }
         },
         "runtime": {
-          "lib/net462/Microsoft.Toolkit.Wpf.UI.Controls.dll": {}
+          "lib/net462/Microsoft.Toolkit.Wpf.UI.Controls.dll": {
+            "related": ".pdb;.xml"
+          }
         }
       },
       "Microsoft.Toolkit.Wpf.UI.XamlHost/6.1.2": {
@@ -541,10 +543,14 @@
           "WindowsBase"
         ],
         "compile": {
-          "lib/net462/Microsoft.Toolkit.Wpf.UI.XamlHost.dll": {}
+          "lib/net462/Microsoft.Toolkit.Wpf.UI.XamlHost.dll": {
+            "related": ".pdb;.xml"
+          }
         },
         "runtime": {
-          "lib/net462/Microsoft.Toolkit.Wpf.UI.XamlHost.dll": {}
+          "lib/net462/Microsoft.Toolkit.Wpf.UI.XamlHost.dll": {
+            "related": ".pdb;.xml"
+          }
         }
       },
       "Microsoft.VCRTForwarders.140/1.0.6": {
@@ -680,15 +686,6 @@
       }
     },
     ".NETFramework,Version=v4.8/win-x64": {
-      "FluentWPF/0.9.0": {
-        "type": "package",
-        "compile": {
-          "lib/net45/FluentWPF.dll": {}
-        },
-        "runtime": {
-          "lib/net45/FluentWPF.dll": {}
-        }
-      },
       "Microsoft.Toolkit.UI.XamlHost/6.1.2": {
         "type": "package",
         "dependencies": {
@@ -697,10 +694,14 @@
           "Microsoft.Windows.SDK.Contracts": "10.0.18362.2005"
         },
         "compile": {
-          "lib/net462/Microsoft.Toolkit.Win32.UI.XamlHost.Managed.dll": {}
+          "lib/net462/Microsoft.Toolkit.Win32.UI.XamlHost.Managed.dll": {
+            "related": ".pdb;.xml"
+          }
         },
         "runtime": {
-          "lib/net462/Microsoft.Toolkit.Win32.UI.XamlHost.Managed.dll": {}
+          "lib/net462/Microsoft.Toolkit.Win32.UI.XamlHost.Managed.dll": {
+            "related": ".pdb;.xml"
+          }
         },
         "build": {
           "build/Microsoft.Toolkit.UI.XamlHost.props": {},
@@ -739,10 +740,14 @@
           "WindowsBase"
         ],
         "compile": {
-          "lib/net462/Microsoft.Toolkit.Wpf.UI.Controls.dll": {}
+          "lib/net462/Microsoft.Toolkit.Wpf.UI.Controls.dll": {
+            "related": ".pdb;.xml"
+          }
         },
         "runtime": {
-          "lib/net462/Microsoft.Toolkit.Wpf.UI.Controls.dll": {}
+          "lib/net462/Microsoft.Toolkit.Wpf.UI.Controls.dll": {
+            "related": ".pdb;.xml"
+          }
         }
       },
       "Microsoft.Toolkit.Wpf.UI.XamlHost/6.1.2": {
@@ -762,10 +767,14 @@
           "WindowsBase"
         ],
         "compile": {
-          "lib/net462/Microsoft.Toolkit.Wpf.UI.XamlHost.dll": {}
+          "lib/net462/Microsoft.Toolkit.Wpf.UI.XamlHost.dll": {
+            "related": ".pdb;.xml"
+          }
         },
         "runtime": {
-          "lib/net462/Microsoft.Toolkit.Wpf.UI.XamlHost.dll": {}
+          "lib/net462/Microsoft.Toolkit.Wpf.UI.XamlHost.dll": {
+            "related": ".pdb;.xml"
+          }
         }
       },
       "Microsoft.VCRTForwarders.140/1.0.6": {
@@ -901,15 +910,6 @@
       }
     },
     ".NETFramework,Version=v4.8/win-x86": {
-      "FluentWPF/0.9.0": {
-        "type": "package",
-        "compile": {
-          "lib/net45/FluentWPF.dll": {}
-        },
-        "runtime": {
-          "lib/net45/FluentWPF.dll": {}
-        }
-      },
       "Microsoft.Toolkit.UI.XamlHost/6.1.2": {
         "type": "package",
         "dependencies": {
@@ -918,10 +918,14 @@
           "Microsoft.Windows.SDK.Contracts": "10.0.18362.2005"
         },
         "compile": {
-          "lib/net462/Microsoft.Toolkit.Win32.UI.XamlHost.Managed.dll": {}
+          "lib/net462/Microsoft.Toolkit.Win32.UI.XamlHost.Managed.dll": {
+            "related": ".pdb;.xml"
+          }
         },
         "runtime": {
-          "lib/net462/Microsoft.Toolkit.Win32.UI.XamlHost.Managed.dll": {}
+          "lib/net462/Microsoft.Toolkit.Win32.UI.XamlHost.Managed.dll": {
+            "related": ".pdb;.xml"
+          }
         },
         "build": {
           "build/Microsoft.Toolkit.UI.XamlHost.props": {},
@@ -960,10 +964,14 @@
           "WindowsBase"
         ],
         "compile": {
-          "lib/net462/Microsoft.Toolkit.Wpf.UI.Controls.dll": {}
+          "lib/net462/Microsoft.Toolkit.Wpf.UI.Controls.dll": {
+            "related": ".pdb;.xml"
+          }
         },
         "runtime": {
-          "lib/net462/Microsoft.Toolkit.Wpf.UI.Controls.dll": {}
+          "lib/net462/Microsoft.Toolkit.Wpf.UI.Controls.dll": {
+            "related": ".pdb;.xml"
+          }
         }
       },
       "Microsoft.Toolkit.Wpf.UI.XamlHost/6.1.2": {
@@ -983,10 +991,14 @@
           "WindowsBase"
         ],
         "compile": {
-          "lib/net462/Microsoft.Toolkit.Wpf.UI.XamlHost.dll": {}
+          "lib/net462/Microsoft.Toolkit.Wpf.UI.XamlHost.dll": {
+            "related": ".pdb;.xml"
+          }
         },
         "runtime": {
-          "lib/net462/Microsoft.Toolkit.Wpf.UI.XamlHost.dll": {}
+          "lib/net462/Microsoft.Toolkit.Wpf.UI.XamlHost.dll": {
+            "related": ".pdb;.xml"
+          }
         }
       },
       "Microsoft.VCRTForwarders.140/1.0.6": {
@@ -1123,20 +1135,6 @@
     }
   },
   "libraries": {
-    "FluentWPF/0.9.0": {
-      "sha512": "h8AUlCSOg11477H6fRSM30mxqdX3/ETu1Ksso2fuLrCD7rHK2TZPma2SuQHMcidsFq5GJZe1BkKbPdkKoTeAUQ==",
-      "type": "package",
-      "path": "fluentwpf/0.9.0",
-      "files": [
-        ".nupkg.metadata",
-        ".signature.p7s",
-        "LICENSE",
-        "fluentwpf.0.9.0.nupkg.sha512",
-        "fluentwpf.nuspec",
-        "lib/net45/FluentWPF.dll",
-        "lib/netcoreapp3.0/FluentWPF.dll"
-      ]
-    },
     "Microsoft.Toolkit.UI.XamlHost/6.1.2": {
       "sha512": "/cMQUJPxl+pASVOO47T8zml9YuHLyejP5ct0OUN7OVshrJ2n/QRMDVktPxbMSla8Rl3Jnpn2n3qyHjVkNBt0Og==",
       "type": "package",
@@ -1637,7 +1635,6 @@
   },
   "projectFileDependencyGroups": {
     ".NETFramework,Version=v4.8": [
-      "FluentWPF >= 0.9.0",
       "Microsoft.Toolkit.Wpf.UI.Controls >= 6.1.2",
       "Microsoft.Toolkit.Wpf.UI.XamlHost >= 6.1.2",
       "Microsoft.VCRTForwarders.140 >= 1.0.6"
@@ -1681,10 +1678,6 @@
     "frameworks": {
       "net48": {
         "dependencies": {
-          "FluentWPF": {
-            "target": "Package",
-            "version": "[0.9.0, )"
-          },
           "Microsoft.Toolkit.Wpf.UI.Controls": {
             "target": "Package",
             "version": "[6.1.2, )"

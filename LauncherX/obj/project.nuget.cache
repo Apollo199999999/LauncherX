@@ -1,10 +1,9 @@
 {
   "version": 2,
-  "dgSpecHash": "sVCcqnP3O3Kadr9CGMLn+lJHZ+4Gcs2Bx63At7sVN/j/QnD1CtTPWe2LBxD64JxjyYT0l83BdkRjI3X5cB5aow==",
+  "dgSpecHash": "pmdnbe8fDXMb9RQF/PO7Vm2UzL2CVcUq0yIGrydoxDzG7Tg8dT7L2HwOUrymn5XATprEQk/g9r5XT7rFh5YIzA==",
   "success": true,
   "projectFilePath": "C:\\Users\\fligh\\source\\repos\\LauncherX\\LauncherX\\LauncherX.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\fligh\\.nuget\\packages\\fluentwpf\\0.9.0\\fluentwpf.0.9.0.nupkg.sha512",
     "C:\\Users\\fligh\\.nuget\\packages\\microsoft.toolkit.ui.xamlhost\\6.1.2\\microsoft.toolkit.ui.xamlhost.6.1.2.nupkg.sha512",
     "C:\\Users\\fligh\\.nuget\\packages\\microsoft.toolkit.win32.ui.sdk\\6.1.2\\microsoft.toolkit.win32.ui.sdk.6.1.2.nupkg.sha512",
     "C:\\Users\\fligh\\.nuget\\packages\\microsoft.toolkit.win32.ui.xamlapplication\\6.1.2\\microsoft.toolkit.win32.ui.xamlapplication.6.1.2.nupkg.sha512",

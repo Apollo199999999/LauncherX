@@ -30,75 +30,15 @@ using System.Net;
 using System.Web;
 
 namespace LauncherX
-{
-    internal enum AccentState
-    {
-        ACCENT_DISABLED = 1,
-        ACCENT_ENABLE_GRADIENT = 0,
-        ACCENT_ENABLE_TRANSPARENTGRADIENT = 2,
-        ACCENT_ENABLE_BLURBEHIND = 3,
-        ACCENT_INVALID_STATE = 4
-    }
-
-    [StructLayout(LayoutKind.Sequential)]
-    internal struct AccentPolicy
-    {
-        public AccentState AccentState;
-        public int AccentFlags;
-        public int GradientColor;
-        public int AnimationId;
-    }
-
-    [StructLayout(LayoutKind.Sequential)]
-    internal struct WindowCompositionAttributeData
-    {
-        public WindowCompositionAttribute Attribute;
-        public IntPtr Data;
-        public int SizeOfData;
-    }
-
-    internal enum WindowCompositionAttribute
-    {
-        // ...
-        WCA_ACCENT_POLICY = 19
-        // ...
-    }
+{ 
 
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
     /// 
 
-
-
-    public partial class MainWindow
+    public partial class MainWindow : Window
     {
-        [DllImport("user32.dll")]
-        internal static extern int SetWindowCompositionAttribute(IntPtr hwnd, ref WindowCompositionAttributeData data);
-
-        internal void EnableBlur()
-        {
-            var windowHelper = new WindowInteropHelper(this);
-
-            var accent = new AccentPolicy();
-            accent.AccentState = AccentState.ACCENT_ENABLE_BLURBEHIND;
-
-            var accentStructSize = Marshal.SizeOf(accent);
-
-            var accentPtr = Marshal.AllocHGlobal(accentStructSize);
-            Marshal.StructureToPtr(accent, accentPtr, false);
-
-            var data = new WindowCompositionAttributeData();
-            data.Attribute = WindowCompositionAttribute.WCA_ACCENT_POLICY;
-            data.SizeOfData = accentStructSize;
-            data.Data = accentPtr;
-
-            SetWindowCompositionAttribute(windowHelper.Handle, ref data);
-
-            Marshal.FreeHGlobal(accentPtr);
-        }
-
-
         //Struct used by SHGetFileInfo function
         [StructLayout(LayoutKind.Sequential)]
         public struct SHFILEINFO
@@ -231,16 +171,10 @@ namespace LauncherX
             if (is_light_mode == true)
             {
                 grid.Background = lightTheme;
-
-                //change window tint color
-                this.TintColor = System.Windows.Media.Color.FromArgb(255, 255, 255, 255);
             }
             else if (is_light_mode == false)
             {
                 grid.Background = darkTheme;
-
-                //change window tint color
-                this.TintColor = System.Windows.Media.Color.FromArgb(255, 20, 20, 20);
             }
         }
 
@@ -251,9 +185,6 @@ namespace LauncherX
 
         private async void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            //combining the fully transparent FluentWPF window with the setwindowcomposition API colourless blur seems to work
-            EnableBlur();
-
             //wait a while for the controls to load
             await Task.Delay(500);
 

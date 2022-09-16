@@ -24,7 +24,7 @@ namespace LauncherX
     /// <summary>
     /// Interaction logic for SettingsWindow.xaml
     /// </summary>
-    public partial class SettingsWindow
+    public partial class SettingsWindow : Window
     {
         public SettingsWindow()
         {
@@ -72,25 +72,17 @@ namespace LauncherX
             catch { }
 
             //and then, create to seperate solid color brushes for the theme color accordingly
-            SolidColorBrush lightTheme = new SolidColorBrush(System.Windows.Media.Color.FromArgb(255, 255, 255, 255));
-            SolidColorBrush darkTheme = new SolidColorBrush(System.Windows.Media.Color.FromArgb(255, 0, 0, 0));
+            SolidColorBrush lightTheme = new SolidColorBrush(System.Windows.Media.Color.FromArgb(255, 243, 243, 243));
+            SolidColorBrush darkTheme = new SolidColorBrush(System.Windows.Media.Color.FromArgb(255, 32, 32, 32));
 
             //check light/dark mode, change colors accordingly
             if (is_light_mode == true)
             {
-                changeHeaderTextTextBox.Background = lightTheme;
-                changeHeaderTextTextBox.Foreground = darkTheme;
-
-                //change window tint color
-                this.TintColor = System.Windows.Media.Color.FromArgb(255, 255, 255, 255);
+                grid.Background = lightTheme;
             }
             else if (is_light_mode == false)
             {
-                changeHeaderTextTextBox.Background = darkTheme;
-                changeHeaderTextTextBox.Foreground = lightTheme;
-
-                //change window tint color
-                this.TintColor = System.Windows.Media.Color.FromArgb(255, 0, 0, 0);
+                grid.Background = darkTheme;
             }
         }
 
