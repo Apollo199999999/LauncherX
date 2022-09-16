@@ -1,3 +1,0 @@
-C:\Users\fligh\source\repos\LauncherX\LauncherX\obj\Debug\net6.0-windows10.0.19041\LauncherX.csproj.AssemblyReference.cache
-C:\Users\fligh\source\repos\LauncherX\LauncherX\obj\Debug\net6.0-windows10.0.19041\Interop.Shell32.dll
-C:\Users\fligh\source\repos\LauncherX\LauncherX\obj\Debug\net6.0-windows10.0.19041\LauncherX.csproj.ResolveComReference.cache
