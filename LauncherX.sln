@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31912.275
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LauncherX", "LauncherX\LauncherX.csproj", "{0ED4B833-4226-40E2-AF84-40D36D09C86E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LauncherX", "LauncherX\LauncherX.csproj", "{0ED4B833-4226-40E2-AF84-40D36D09C86E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,8 +21,8 @@ Global
 		{0ED4B833-4226-40E2-AF84-40D36D09C86E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0ED4B833-4226-40E2-AF84-40D36D09C86E}.Debug|arm64.ActiveCfg = Debug|Any CPU
 		{0ED4B833-4226-40E2-AF84-40D36D09C86E}.Debug|arm64.Build.0 = Debug|Any CPU
-		{0ED4B833-4226-40E2-AF84-40D36D09C86E}.Debug|x64.ActiveCfg = Debug|x64
-		{0ED4B833-4226-40E2-AF84-40D36D09C86E}.Debug|x64.Build.0 = Debug|x64
+		{0ED4B833-4226-40E2-AF84-40D36D09C86E}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{0ED4B833-4226-40E2-AF84-40D36D09C86E}.Debug|x64.Build.0 = Debug|Any CPU
 		{0ED4B833-4226-40E2-AF84-40D36D09C86E}.Debug|x86.ActiveCfg = Debug|Win32
 		{0ED4B833-4226-40E2-AF84-40D36D09C86E}.Debug|x86.Build.0 = Debug|Win32
 		{0ED4B833-4226-40E2-AF84-40D36D09C86E}.Release|Any CPU.ActiveCfg = Release|Any CPU

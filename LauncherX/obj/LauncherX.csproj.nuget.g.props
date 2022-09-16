@@ -18,10 +18,12 @@
     <Import Project="$(NuGetPackageRoot)microsoft.toolkit.win32.ui.xamlapplication\6.1.2\build\Microsoft.Toolkit.Win32.UI.XamlApplication.props" Condition="Exists('$(NuGetPackageRoot)microsoft.toolkit.win32.ui.xamlapplication\6.1.2\build\Microsoft.Toolkit.Win32.UI.XamlApplication.props')" />
     <Import Project="$(NuGetPackageRoot)microsoft.toolkit.win32.ui.sdk\6.1.2\build\Microsoft.Toolkit.Win32.UI.SDK.props" Condition="Exists('$(NuGetPackageRoot)microsoft.toolkit.win32.ui.sdk\6.1.2\build\Microsoft.Toolkit.Win32.UI.SDK.props')" />
     <Import Project="$(NuGetPackageRoot)microsoft.toolkit.ui.xamlhost\6.1.2\build\Microsoft.Toolkit.UI.XamlHost.props" Condition="Exists('$(NuGetPackageRoot)microsoft.toolkit.ui.xamlhost\6.1.2\build\Microsoft.Toolkit.UI.XamlHost.props')" />
+    <Import Project="$(NuGetPackageRoot)microsoft.dotnet.upgradeassistant.extensions.default.analyzers\0.4.346201\build\Microsoft.DotNet.UpgradeAssistant.Extensions.Default.Analyzers.props" Condition="Exists('$(NuGetPackageRoot)microsoft.dotnet.upgradeassistant.extensions.default.analyzers\0.4.346201\build\Microsoft.DotNet.UpgradeAssistant.Extensions.Default.Analyzers.props')" />
   </ImportGroup>
   <PropertyGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">
     <PkgMicrosoft_Toolkit_Win32_UI_SDK Condition=" '$(PkgMicrosoft_Toolkit_Win32_UI_SDK)' == '' ">C:\Users\fligh\.nuget\packages\microsoft.toolkit.win32.ui.sdk\6.1.2</PkgMicrosoft_Toolkit_Win32_UI_SDK>
     <PkgMicrosoft_Toolkit_Wpf_UI_XamlHost Condition=" '$(PkgMicrosoft_Toolkit_Wpf_UI_XamlHost)' == '' ">C:\Users\fligh\.nuget\packages\microsoft.toolkit.wpf.ui.xamlhost\6.1.2</PkgMicrosoft_Toolkit_Wpf_UI_XamlHost>
     <PkgMicrosoft_Toolkit_Wpf_UI_Controls Condition=" '$(PkgMicrosoft_Toolkit_Wpf_UI_Controls)' == '' ">C:\Users\fligh\.nuget\packages\microsoft.toolkit.wpf.ui.controls\6.1.2</PkgMicrosoft_Toolkit_Wpf_UI_Controls>
+    <PkgMicrosoft_DotNet_UpgradeAssistant_Extensions_Default_Analyzers Condition=" '$(PkgMicrosoft_DotNet_UpgradeAssistant_Extensions_Default_Analyzers)' == '' ">C:\Users\fligh\.nuget\packages\microsoft.dotnet.upgradeassistant.extensions.default.analyzers\0.4.346201</PkgMicrosoft_DotNet_UpgradeAssistant_Extensions_Default_Analyzers>
   </PropertyGroup>
 </Project>
