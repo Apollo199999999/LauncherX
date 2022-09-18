@@ -30,14 +30,14 @@ using System.Net;
 using System.Web;
 
 namespace LauncherX
-{ 
+{
 
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
     /// 
 
-    public partial class MainWindow : Window
+    public partial class MainWindow
     {
         //Struct used by SHGetFileInfo function
         [StructLayout(LayoutKind.Sequential)]
@@ -59,8 +59,8 @@ namespace LauncherX
         //Import SHGetFileInfo function
         [DllImport("shell32.dll")]
         public static extern IntPtr SHGetFileInfo(string pszPath, uint dwFileAttributes, ref SHFILEINFO psfi, uint cbSizeFileInfo, uint uFlags);
-        
-//------------------------------------------------------------------------------------------------------------------
+
+        //------------------------------------------------------------------------------------------------------------------
         //size variable to control size of icons
         public double size;
 
@@ -84,17 +84,14 @@ namespace LauncherX
         {
             InitializeComponent();
 
-            //set the button reveal style
-            var buttonstyle = (Style)App.Current.Resources["ButtonRevealStyle"];
-            SettingsButton.Style = buttonstyle;
-           
             //upgrade and reload settings
             Properties.Settings.Default.Upgrade();
             Properties.Settings.Default.Save();
             Properties.Settings.Default.Reload();
-
+            
             //set size value
             size = Properties.Settings.Default.scale;
+            scale = Properties.Settings.Default.scale;
 
             //set header text
             header.Text = Properties.Settings.Default.headerText;
@@ -142,7 +139,7 @@ namespace LauncherX
             themeupdater.Interval = TimeSpan.FromMilliseconds(100);
             themeupdater.Tick += Themeupdater_Tick;
             themeupdater.Start();
-            
+
         }
 
         private void Themeupdater_Tick(object sender, EventArgs e)
@@ -151,33 +148,7 @@ namespace LauncherX
             CheckAndUpdateTheme();
         }
 
-        private void CheckAndUpdateTheme()
-        {
-            //next, check if the system is in light or dark theme
-            bool is_light_mode = true;
-            try
-            {
-                var v = Microsoft.Win32.Registry.GetValue(@"HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Themes\Personalize", "AppsUseLightTheme", "1");
-                if (v != null && v.ToString() == "0")
-                    is_light_mode = false;
-            }
-            catch { }
-
-            //and then, create to seperate solid color brushes for the theme color accordingly
-            SolidColorBrush lightTheme = new SolidColorBrush(System.Windows.Media.Color.FromArgb(255, 243, 243, 243));
-            SolidColorBrush darkTheme = new SolidColorBrush(System.Windows.Media.Color.FromArgb(255, 32, 32, 32));
-
-            //check light/dark mode, change colors accordingly
-            if (is_light_mode == true)
-            {
-                grid.Background = lightTheme;
-            }
-            else if (is_light_mode == false)
-            {
-                grid.Background = darkTheme;
-            }
-        }
-
+        
         public bool IsDirectoryEmpty(string path)
         {
             return !Directory.EnumerateFileSystemEntries(path).Any();
@@ -262,7 +233,7 @@ namespace LauncherX
                         }
 
                     }
-                    
+
                 }
 
             }
@@ -318,14 +289,14 @@ namespace LauncherX
                         Process.Start(updateLink);
 
                         themeupdater.Stop();
-                        System.Windows.Application.Current.Shutdown();                       
+                        System.Windows.Application.Current.Shutdown();
                     }
                 }
 
             }
 
         }
-        
+
 
         //these variables are used for duplicate naming
         public int foldercount = 0;
@@ -461,14 +432,14 @@ namespace LauncherX
                 }
             }
 
-            
+
 
             //create a stackpanel
             Windows.UI.Xaml.Controls.StackPanel stackpanel = new Windows.UI.Xaml.Controls.StackPanel();
             stackpanel.Width = size * 105;
             stackpanel.Height = size * 90;
             //for some reason, it needs to have a background in order for right tap to work??
-            stackpanel.Background = new Windows.UI.Xaml.Media.SolidColorBrush(Windows.UI.Color.FromArgb(0,0,0,0));
+            stackpanel.Background = new Windows.UI.Xaml.Media.SolidColorBrush(Windows.UI.Color.FromArgb(0, 0, 0, 0));
 
             //load file icon into uwp image control
             Windows.UI.Xaml.Controls.Image image = new Windows.UI.Xaml.Controls.Image();
@@ -478,7 +449,7 @@ namespace LauncherX
             image.Stretch = Windows.UI.Xaml.Media.Stretch.Uniform;
             image.VerticalAlignment = Windows.UI.Xaml.VerticalAlignment.Center;
             image.HorizontalAlignment = Windows.UI.Xaml.HorizontalAlignment.Center;
-            image.Margin = new Windows.UI.Xaml.Thickness(size*22.5, 5, size*22.5, 0);
+            image.Margin = new Windows.UI.Xaml.Thickness(size * 22.5, 5, size * 22.5, 0);
             image.Height = stackpanel.Width - size * 22.5 - size * 22.5;
             image.Width = stackpanel.Width - size * 22.5 - size * 22.5;
 
@@ -525,7 +496,7 @@ namespace LauncherX
             if (e.Pointer.PointerDeviceType == Windows.Devices.Input.PointerDeviceType.Mouse)
             {
                 var properties = e.GetCurrentPoint(stackPanel).Properties;
-                
+
                 if (properties.IsRightButtonPressed)
                 {
                     //assign stackpanel tag to texttolook
@@ -578,7 +549,7 @@ namespace LauncherX
             }
         }
 
-        
+
 
         private void Stackpanel_RightTapped(object sender, Windows.UI.Xaml.Input.RightTappedRoutedEventArgs e)
         {
@@ -960,7 +931,7 @@ namespace LauncherX
 
             //init a new webclient
             WebClient webClient = new WebClient();
-           
+
 
             if (File.Exists(Path.Combine(websiteIconDir, filename)))
             {
@@ -978,7 +949,7 @@ namespace LauncherX
                     System.Windows.MessageBox.Show("Unable to get website icon. Please check that the website is valid and that you are connected to the internet. LauncherX will still add the website, just without the icon." +
                         "If you want to have the icon, remove the website from LauncherX and re-add the website or restart Launcher X when you have internet connection.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
-                
+
 
             }
             else
@@ -1079,7 +1050,7 @@ namespace LauncherX
                     Windows.UI.Xaml.Controls.MenuFlyoutItem open = new Windows.UI.Xaml.Controls.MenuFlyoutItem();
                     Windows.UI.Xaml.Controls.MenuFlyoutItem remove = new Windows.UI.Xaml.Controls.MenuFlyoutItem();
 
-                  
+
                     //set properties and icons for the menuitems
                     open.Icon = new SymbolIcon(Symbol.OpenFile);
                     open.Text = "Open website";
@@ -1188,8 +1159,8 @@ namespace LauncherX
             button.Click += OpenFile_Click;
             OpenFileHost.ChildChanged -= OpenFileHost_ChildChanged;
         }
-      
-        
+
+
         private async void OpenFile_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
         {
             //init open file dialog
@@ -1233,7 +1204,7 @@ namespace LauncherX
         }
 
         private async void GridView_ItemClick(object sender, Windows.UI.Xaml.Controls.ItemClickEventArgs e)
-        { 
+        {
             //init a gridView
             var gridView = gridviewhost.Child as Windows.UI.Xaml.Controls.GridView;
 
@@ -1250,7 +1221,7 @@ namespace LauncherX
             //unselect the selected item
             await Task.Delay(500);
             gridView.SelectedItem = null;
-            
+
         }
 
         private void SettingsButton_Click(object sender, RoutedEventArgs e)
@@ -1293,7 +1264,7 @@ namespace LauncherX
                 //Update headerText
                 header.Text = headerText;
             }
-            catch 
+            catch
             {
                 //show a error message
                 System.Windows.MessageBox.Show("Unable to update one or more settings. Please try again later, " +
@@ -1334,68 +1305,10 @@ namespace LauncherX
 
         }
 
-        private void SearchHost_ChildChanged(object sender, EventArgs e)
+        //TODO: PORT AUTOSUGGESTBOX
+        private void SearchBox_SuggestionChosen(object sender, RoutedEventArgs e)
         {
-            //Make the auto suggest box. Demos and guides in Xaml controls gallery and Microsoft docs
-            var AutoSuggestBox = SearchHost.Child as Windows.UI.Xaml.Controls.AutoSuggestBox;
-
-            //declare properties
-            AutoSuggestBox.PlaceholderText = "Search through everything in LauncherX";
-            AutoSuggestBox.QueryIcon = new SymbolIcon(Symbol.Find);
-
-            //event handlers
-            //3 autosuggest event handlers need to handle
-            AutoSuggestBox.TextChanged += AutoSuggestBox_TextChanged;
-            AutoSuggestBox.SuggestionChosen += AutoSuggestBox_SuggestionChosen;
-            AutoSuggestBox.QuerySubmitted += AutoSuggestBox_QuerySubmitted;
-
-            SearchHost.ChildChanged -= SearchHost_ChildChanged;
-        }
-
-        //create a new list to store the itemssource
-        List<string> Query = new List<string>();
-
-        private void AutoSuggestBox_QuerySubmitted(Windows.UI.Xaml.Controls.AutoSuggestBox sender, Windows.UI.Xaml.Controls.AutoSuggestBoxQuerySubmittedEventArgs args)
-        {
-            try
-            {
-                //get the first item of the list, and then assign it to text
-                string text = Query[0];
-
-                //init a gridview and autosuggestbox
-                var gridView = gridviewhost.Child as Windows.UI.Xaml.Controls.GridView;
-
-                //check every item in grid, and find the stackpanel with the textblock with the correct text, and then launch the app
-                foreach (Windows.UI.Xaml.Controls.StackPanel stackpanel in gridView.Items)
-                {
-                    //textblock
-                    Windows.UI.Xaml.Controls.TextBlock textblock = (Windows.UI.Xaml.Controls.TextBlock)stackpanel.Children[1];
-
-                    //now check if it is the same
-                    if (textblock.Text.ToLower() == text.ToLower())
-                    {
-                        try
-                        {
-                            //start the process
-                            Process.Start(stackpanel.Tag.ToString());
-                        }
-                        catch { }
-                    }
-                }
-                //init a list
-                List<string> AutoItems = new List<string>();
-                sender.ItemsSource = AutoItems;
-            }
-            catch { }
-
-        }
-
-        private void AutoSuggestBox_SuggestionChosen(Windows.UI.Xaml.Controls.AutoSuggestBox sender, Windows.UI.Xaml.Controls.AutoSuggestBoxSuggestionChosenEventArgs args)
-        {
-            var AutoSuggestBox = SearchHost.Child as Windows.UI.Xaml.Controls.AutoSuggestBox;
-
-            //disable the event handler
-            AutoSuggestBox.QuerySubmitted -= AutoSuggestBox_QuerySubmitted;
+            Wpf.Ui.Controls.AutoSuggestBox autoSuggestBox = sender as Wpf.Ui.Controls.AutoSuggestBox;
 
             //init a gridview and autosuggestbox
             var gridView = gridviewhost.Child as Windows.UI.Xaml.Controls.GridView;
@@ -1407,30 +1320,24 @@ namespace LauncherX
                 Windows.UI.Xaml.Controls.TextBlock textblock = (Windows.UI.Xaml.Controls.TextBlock)stackpanel.Children[1];
 
                 //now check if it is the same
-                if (textblock.Text.ToLower() == args.SelectedItem.ToString().ToLower())
+                if (textblock.Text.ToLower().ToString() == SearchBox.Text.ToLower().ToString())
                 {
-                    try
-                    { //start the process
-                        Process.Start(stackpanel.Tag.ToString());
-                    }
-                    catch { }
+                        try
+                        { //start the process
+                            Process.Start(stackpanel.Tag.ToString());
+                        }
+                        catch { }
 
-                    break;
-                    
-                }
+                        break;
+
+                    }
             }
             //init a list
             List<string> AutoItems = new List<string>();
-            sender.ItemsSource = AutoItems;
-
-            //enable the event handler
-            AutoSuggestBox.QuerySubmitted += AutoSuggestBox_QuerySubmitted;
-
+            autoSuggestBox.ItemsSource = AutoItems;
         }
 
-
-
-        private void AutoSuggestBox_TextChanged(Windows.UI.Xaml.Controls.AutoSuggestBox sender, Windows.UI.Xaml.Controls.AutoSuggestBoxTextChangedEventArgs args)
+        private void SearchBox_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
         {
             //init a list
             List<string> AutoItems = new List<string>();
@@ -1438,27 +1345,23 @@ namespace LauncherX
             //init a gridview and autosuggestbox
             var gridView = gridviewhost.Child as Windows.UI.Xaml.Controls.GridView;
 
-            var AutoSuggestBox = SearchHost.Child as Windows.UI.Xaml.Controls.AutoSuggestBox;
-            
+            Wpf.Ui.Controls.AutoSuggestBox autoSuggestBox = sender as Wpf.Ui.Controls.AutoSuggestBox;
+
 
             foreach (Windows.UI.Xaml.Controls.StackPanel stackpanel in gridView.Items)
             {
                 Windows.UI.Xaml.Controls.TextBlock textBlock = (Windows.UI.Xaml.Controls.TextBlock)stackpanel.Children[1];
 
                 //check if the textblock contains characters from the search. Make everthing lower case as strings are case sensitive.
-                if (textBlock.Text.ToLower().Contains(AutoSuggestBox.Text.ToLower()) == true)
+                if (textBlock.Text.ToLower().Contains(autoSuggestBox.Text.ToLower()) == true)
                 {
                     AutoItems.Add(textBlock.Text);
                 }
-                
+
             }
             //and then make the autosuggestbox.itemssource the array
-            AutoSuggestBox.ItemsSource = AutoItems;
-            AutoSuggestBox.MaxSuggestionListHeight = 200;
-
-            //assign to query, this list is used for query_submitted
-            Query = AutoItems;
-
+            autoSuggestBox.ItemsSource = AutoItems;
+            autoSuggestBox.MaxDropDownHeight = 200;
         }
 
         private void OpenWebsiteHost_ChildChanged(object sender, EventArgs e)
@@ -1485,7 +1388,7 @@ namespace LauncherX
 
         private async void Wbd_Closed(object sender, EventArgs e)
         {
-            
+
             if (websiteok == true)
             {
                 progress.Show();
@@ -1557,7 +1460,5 @@ namespace LauncherX
             //focus the window
             Focus();
         }
-
-       
     }
 }

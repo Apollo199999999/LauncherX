@@ -1,22 +1,28 @@
-﻿<Window
+﻿<ui:UiWindow
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:LauncherX"
         xmlns:XamlHost="clr-namespace:Microsoft.Toolkit.Wpf.UI.XamlHost;assembly=Microsoft.Toolkit.Wpf.UI.XamlHost" 
+        xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
         x:Class="LauncherX.SettingsWindow"
         mc:Ignorable="d"
+        ExtendsContentIntoTitleBar="True"
+        ui:WindowBackdropType="Mica"
+        ui:WindowCornerPreference="Round"
+        ui:WindowStartupLocation="CenterScreen"
+        Style="{StaticResource UiWindow}"
         Title="Settings" Height="510" Width="400" ResizeMode="NoResize" WindowStyle="None" MouseDown="AcrylicWindow_MouseDown">
-    <Grid Margin="0,0,0,0" x:Name="grid">
 
+    <Grid Margin="0,0,0,0" x:Name="grid">
         <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" Text="Settings" VerticalAlignment="Top" FontSize="16" FontWeight="Bold"/>
         <TextBlock x:Name="AboutHeader" HorizontalAlignment="Left" Margin="10,190,0,0" TextWrapping="Wrap" Text="About" VerticalAlignment="Top" FontSize="16" FontWeight="Bold"/>
-        <XamlHost:WindowsXamlHost x:Name="scalescrollhost" InitialTypeName="Windows.UI.Xaml.Controls.Slider" HorizontalAlignment="Stretch" Height="40" Margin="10,66,10,0" VerticalAlignment="Top" ChildChanged="scalescrollhost_ChildChanged"/>
+        <Slider Minimum="0.70" Maximum="2.50" TickFrequency="0.01" x:Name="ScaleSlider" Loaded="ScaleSlider_Loaded" Unloaded="ScaleSlider_Unloaded" AutoToolTipPlacement="TopLeft" AutoToolTipPrecision="2" HorizontalAlignment="Stretch" Height="40" Margin="10,66,10,0" VerticalAlignment="Top"/>
         <TextBlock x:Name="changeScaleTextHeader" HorizontalAlignment="Left" Margin="10,45,0,0" TextWrapping="Wrap" Text="Change Icon Size" VerticalAlignment="Top" FontSize="12" FontWeight="Normal"/>
-        <Button x:Name="CloseButton" Content="Save and Exit" HorizontalAlignment="Right" Margin="0,0,10,10" VerticalAlignment="Bottom" Width="100" Height="32" FontSize="13" Click="CloseButton_Click" />
+        <ui:Button x:Name="CloseButton" Appearance="Primary" Content="Save and Exit" HorizontalAlignment="Right" Margin="0,0,10,10" VerticalAlignment="Bottom" FontSize="14" Click="CloseButton_Click" />
         <TextBlock x:Name="changeHeaderTextHeader" HorizontalAlignment="Left" Margin="10,115,0,0" TextWrapping="Wrap" Text="Change Header Text" VerticalAlignment="Top" FontSize="12" FontWeight="Normal"/>
-        <TextBox x:Name="changeHeaderTextTextBox" HorizontalAlignment="Stretch" Height="32" Margin="10,135,10,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="13" TextChanged="changeHeaderTextTextBox_TextChanged" />
+        <TextBox x:Name="changeHeaderTextTextBox" HorizontalAlignment="Stretch" Margin="10,135,10,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="14" TextChanged="changeHeaderTextTextBox_TextChanged" />
         <TextBlock x:Name="textBlock2" HorizontalAlignment="Center" Margin="0,256,0,0" TextWrapping="Wrap" Text="Version 1.0.3" VerticalAlignment="Top"/>
         <TextBlock x:Name="textBlock3" HorizontalAlignment="Center" Margin="0,276,0,0" TextWrapping="Wrap" Text="Copyright © 2020-present ClickPhase" VerticalAlignment="Top" Cursor=""/>
 
@@ -26,9 +32,9 @@
         </Grid>
 
         <TextBlock x:Name="textBlock4" HorizontalAlignment="Stretch" Margin="10,296,10,0" TextWrapping="Wrap" Text="This project is licensed under the MIT Licence. For more information, visit LauncherX's Github respository." VerticalAlignment="Top" TextAlignment="Center"/>
-        <TextBlock x:Name="textBlock5" HorizontalAlignment="Stretch" Margin="10,375,10,0" TextWrapping="Wrap" Text="Hi! I am Matthias, the (only) developer of LauncherX. This is my first actual program for Windows, so it may not be perfect. Anyways, I hope that you enjoy using LauncherX." VerticalAlignment="Top" TextAlignment="Center" />
-        <Button x:Name="VisitGithub" Content="Visit LauncherX's Github respository" HorizontalAlignment="Center" Margin="0,335,0,0" VerticalAlignment="Top" Width="220" Height="32" Click="VisitGithub_Click" FontSize="13" />
+        <TextBlock x:Name="textBlock5" HorizontalAlignment="Stretch" Margin="10,380,10,0" TextWrapping="Wrap" Text="Hi! I am Matthias, the (only) developer of LauncherX. This is my first actual program for Windows, so it may not be perfect. Anyways, I hope that you enjoy using LauncherX." VerticalAlignment="Top" TextAlignment="Center" />
+        <Button x:Name="VisitGithub" Content="Visit LauncherX's Github respository" HorizontalAlignment="Center" Margin="0,340,0,0" VerticalAlignment="Top" Click="VisitGithub_Click" FontSize="14" />
 
     </Grid>
 
-</Window>
+</ui:UiWindow>

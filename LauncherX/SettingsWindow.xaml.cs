@@ -24,16 +24,11 @@ namespace LauncherX
     /// <summary>
     /// Interaction logic for SettingsWindow.xaml
     /// </summary>
-    public partial class SettingsWindow : Window
+    public partial class SettingsWindow
     {
         public SettingsWindow()
         {
             InitializeComponent();
-
-            //set the button reveal style
-            var buttonstyle = (Style)App.Current.Resources["ButtonRevealStyle"];
-            CloseButton.Style = buttonstyle;
-            VisitGithub.Style = buttonstyle;
 
             //set changeHeaderTextTextBox inital text to properties.settings.default.headertext
             changeHeaderTextTextBox.Text = Properties.Settings.Default.headerText;
@@ -59,62 +54,6 @@ namespace LauncherX
             CheckAndUpdateTheme();
         }
 
-        private void CheckAndUpdateTheme()
-        {
-            //next, check if the system is in light or dark theme
-            bool is_light_mode = true;
-            try
-            {
-                var v = Microsoft.Win32.Registry.GetValue(@"HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Themes\Personalize", "AppsUseLightTheme", "1");
-                if (v != null && v.ToString() == "0")
-                    is_light_mode = false;
-            }
-            catch { }
-
-            //and then, create to seperate solid color brushes for the theme color accordingly
-            SolidColorBrush lightTheme = new SolidColorBrush(System.Windows.Media.Color.FromArgb(255, 243, 243, 243));
-            SolidColorBrush darkTheme = new SolidColorBrush(System.Windows.Media.Color.FromArgb(255, 32, 32, 32));
-
-            //check light/dark mode, change colors accordingly
-            if (is_light_mode == true)
-            {
-                grid.Background = lightTheme;
-            }
-            else if (is_light_mode == false)
-            {
-                grid.Background = darkTheme;
-            }
-        }
-
-        private void scalescrollhost_ChildChanged(object sender, EventArgs e)
-        {
-            //init slider and properties
-            var scrollscale = scalescrollhost.Child as Windows.UI.Xaml.Controls.Slider;
-
-            scrollscale.Value = Properties.Settings.Default.scale;
-
-            scrollscale.Maximum = 2.5;
-            scrollscale.Minimum = 0.7;
-            scrollscale.StepFrequency = 0.1;
-            scrollscale.ValueChanged += Scrollscale_ValueChanged;
-
-            //unsubscribe this event
-            scalescrollhost.ChildChanged -= scalescrollhost_ChildChanged;
-
-        }
-
-        private void Scrollscale_ValueChanged(object sender, Windows.UI.Xaml.Controls.Primitives.RangeBaseValueChangedEventArgs e)
-        {
-            //init slider
-            var scrollscale = scalescrollhost.Child as Windows.UI.Xaml.Controls.Slider;
-
-            //update scale value
-            scale = scrollscale.Value;
-
-            //update settings
-            Properties.Settings.Default.scale = scale;
-            Properties.Settings.Default.Save();
-        }
 
         private void AcrylicWindow_MouseDown(object sender, MouseButtonEventArgs e)
         {
@@ -162,6 +101,30 @@ namespace LauncherX
                 System.Windows.MessageBox.Show("Unable to open the github respository. Check that you are connected " +
                     "to the internet, and try again.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
+        }
+
+        private void ScaleSlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            //update scale value
+            scale = ScaleSlider.Value;
+
+            //update settings
+            Properties.Settings.Default.scale = ScaleSlider.Value;
+            Properties.Settings.Default.Save();
+            Properties.Settings.Default.Reload();
+        }
+
+        private void ScaleSlider_Loaded(object sender, RoutedEventArgs e)
+        {
+            ScaleSlider.Value = Properties.Settings.Default.scale;
+            //subscribe to valuechanged event handler
+            ScaleSlider.ValueChanged += ScaleSlider_ValueChanged;
+        }
+
+        private void ScaleSlider_Unloaded(object sender, RoutedEventArgs e)
+        {
+            //unsubscribe to valuechanged event handler
+            ScaleSlider.ValueChanged -= ScaleSlider_ValueChanged;
         }
     }
 }

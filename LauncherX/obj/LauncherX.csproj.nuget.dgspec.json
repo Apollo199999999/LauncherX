@@ -49,6 +49,10 @@
             "Microsoft.VCRTForwarders.140": {
               "target": "Package",
               "version": "[1.0.6, )"
+            },
+            "WPF-UI": {
+              "target": "Package",
+              "version": "[2.0.2, )"
             }
           },
           "imports": [
