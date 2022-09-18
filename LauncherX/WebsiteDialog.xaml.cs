@@ -18,34 +18,15 @@ namespace LauncherX
     /// <summary>
     /// Interaction logic for WebsiteDialog.xaml
     /// </summary>
-    public partial class WebsiteDialog : Window
+    public partial class WebsiteDialog
     {
         public WebsiteDialog()
         {
             InitializeComponent();
         }
 
-        private void urlBoxHost_ChildChanged(object sender, EventArgs e)
+        private void OkBtn_Click(object sender, RoutedEventArgs e)
         {
-            var urlBox = urlBoxHost.Child as Windows.UI.Xaml.Controls.TextBox;
-            urlBox.PlaceholderText = "Enter URL here";
-
-            urlBoxHost.ChildChanged -= urlBoxHost_ChildChanged;
-        }
-
-        private void OkBtn_ChildChanged(object sender, EventArgs e)
-        {
-            var OkBtn = OkBtnHost.Child as Windows.UI.Xaml.Controls.Button;
-            OkBtn.Content = "OK";
-            OkBtn.Click += OkBtn_Click;
-
-            OkBtnHost.ChildChanged -= OkBtn_ChildChanged;
-        }
-
-        private void OkBtn_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
-        {
-            var urlBox = urlBoxHost.Child as Windows.UI.Xaml.Controls.TextBox;
-
             if (urlBox.Text.StartsWith("https://"))
             {
                 //remove https:// and set websiteok to true to activate the method later

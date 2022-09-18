@@ -28,6 +28,9 @@ using Windows.UI.Xaml.Controls;
 using System.Windows.Forms;
 using System.Net;
 using System.Web;
+using Windows.UI.Xaml.Media;
+using Windows.UI;
+using System.Web.UI.WebControls;
 
 namespace LauncherX
 {
@@ -78,6 +81,58 @@ namespace LauncherX
         public string appIconDir = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\LauncherX\\Temp\\AppIcons\\";
         public string folderIconDir = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\LauncherX\\Temp\\FolderIcons\\";
         public string websiteIconDir = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\LauncherX\\Temp\\WebsiteIcons\\";
+
+        //function to check and update theme
+        public void CheckAndUpdateTheme()
+        {
+            //next, check if the system is in light or dark theme
+            bool is_light_mode = true;
+            try
+            {
+                var v = Microsoft.Win32.Registry.GetValue(@"HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Themes\Personalize", "AppsUseLightTheme", "1");
+                if (v != null && v.ToString() == "0")
+                    is_light_mode = false;
+            }
+            catch { }
+
+
+            if (is_light_mode == true)
+            {
+                Wpf.Ui.Appearance.Theme.Apply(
+                    Wpf.Ui.Appearance.ThemeType.Light,     // Theme type
+                    Wpf.Ui.Appearance.BackgroundType.Mica, // Background type
+                    true                                   // Whether to change accents automatically
+                );
+
+                //change the background of the gridview section
+                var gridView = gridviewhost.Child as Windows.UI.Xaml.Controls.GridView;
+                if (gridView != null)
+                {
+                    Windows.UI.Xaml.Media.SolidColorBrush background = new Windows.UI.Xaml.Media.SolidColorBrush(Windows.UI.Color.FromArgb(255, 243, 243, 243));
+                    gridView.Background = background;
+                }
+                GridViewBackground.Background = new System.Windows.Media.SolidColorBrush(System.Windows.Media.Color.FromArgb(255, 243, 243, 243));
+            }
+            else if (is_light_mode == false)
+            {
+                Wpf.Ui.Appearance.Theme.Apply(
+                  Wpf.Ui.Appearance.ThemeType.Dark,      // Theme type
+                  Wpf.Ui.Appearance.BackgroundType.Mica, // Background type
+                  true                                   // Whether to change accents automatically
+                );
+
+                //change the background of the gridview section
+                var gridView = gridviewhost.Child as Windows.UI.Xaml.Controls.GridView;
+                if (gridView != null)
+                {
+                    Windows.UI.Xaml.Media.SolidColorBrush background = new Windows.UI.Xaml.Media.SolidColorBrush(Windows.UI.Color.FromArgb(255, 32, 32, 32));
+                    gridView.Background = background;
+                }
+                GridViewBackground.Background = new System.Windows.Media.SolidColorBrush(System.Windows.Media.Color.FromArgb(255, 32, 32, 32));
+
+            }
+
+        }
 
 
         public MainWindow()
@@ -1151,17 +1206,7 @@ namespace LauncherX
             menu.ShowAt(sender as Windows.UI.Xaml.UIElement, e.GetPosition(sender as Windows.UI.Xaml.UIElement));
         }
 
-        private void OpenFileHost_ChildChanged(object sender, EventArgs e)
-        {
-            //init button and set properties
-            var button = OpenFileHost.Child as Windows.UI.Xaml.Controls.Button;
-            button.Content = "Add a file";
-            button.Click += OpenFile_Click;
-            OpenFileHost.ChildChanged -= OpenFileHost_ChildChanged;
-        }
-
-
-        private async void OpenFile_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+        private async void OpenFileBtn_Click(object sender, RoutedEventArgs e)
         {
             //init open file dialog
             Microsoft.Win32.OpenFileDialog openFileDialog = new Microsoft.Win32.OpenFileDialog() { DereferenceLinks = false };
@@ -1185,7 +1230,7 @@ namespace LauncherX
                 progress.Hide();
             }
         }
-
+  
         private void gridviewhost_ChildChanged(object sender, EventArgs e)
         {
             //init a gridview
@@ -1272,19 +1317,7 @@ namespace LauncherX
             }
         }
 
-        private void OpenFolderHost_ChildChanged(object sender, EventArgs e)
-        {
-            //init a button and declare properties
-            var folderbutton = OpenFolderHost.Child as Windows.UI.Xaml.Controls.Button;
-            folderbutton.Content = "Add a folder";
-
-            //event handlers
-            folderbutton.Click += Folderbutton_Click;
-            OpenFolderHost.ChildChanged -= OpenFolderHost_ChildChanged;
-
-        }
-
-        private async void Folderbutton_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+        private async void OpenFolderBtn_Click(object sender, RoutedEventArgs e)
         {
             //init folderbrowsedialog
             System.Windows.Forms.FolderBrowserDialog folderBrowserDialog =
@@ -1302,10 +1335,8 @@ namespace LauncherX
                 AddFolder(folderBrowserDialog.SelectedPath);
                 progress.Hide();
             }
-
         }
 
-        //TODO: PORT AUTOSUGGESTBOX
         private void SearchBox_SuggestionChosen(object sender, RoutedEventArgs e)
         {
             Wpf.Ui.Controls.AutoSuggestBox autoSuggestBox = sender as Wpf.Ui.Controls.AutoSuggestBox;
@@ -1364,19 +1395,7 @@ namespace LauncherX
             autoSuggestBox.MaxDropDownHeight = 200;
         }
 
-        private void OpenWebsiteHost_ChildChanged(object sender, EventArgs e)
-        {
-            //init button and set properties
-            var openwebsite = OpenWebsiteHost.Child as Windows.UI.Xaml.Controls.Button;
-
-            openwebsite.Content = "Add a website";
-
-            //event handlers
-            openwebsite.Click += Openwebsite_Click;
-            OpenWebsiteHost.ChildChanged -= OpenWebsiteHost_ChildChanged;
-        }
-
-        private void Openwebsite_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+        private void OpenWebsiteBtn_Click(object sender, RoutedEventArgs e)
         {
             //show add website dialog
             WebsiteDialog wbd = new WebsiteDialog();
@@ -1385,7 +1404,7 @@ namespace LauncherX
             //event handler to add the website
             wbd.Closed += Wbd_Closed;
         }
-
+     
         private async void Wbd_Closed(object sender, EventArgs e)
         {
 

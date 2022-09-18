@@ -1,16 +1,16 @@
-﻿<Window x:Class="LauncherX.WebsiteDialog"
+﻿<ui:UiWindow x:Class="LauncherX.WebsiteDialog"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:LauncherX"
+        xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
         xmlns:XamlHost="clr-namespace:Microsoft.Toolkit.Wpf.UI.XamlHost;assembly=Microsoft.Toolkit.Wpf.UI.XamlHost" 
         mc:Ignorable="d"
         Title="Add a website" Height="160" Width="500" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
     <Grid>
         <TextBlock x:Name="label" Text="URL:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
-        <XamlHost:WindowsXamlHost x:Name="urlBoxHost" ChildChanged="urlBoxHost_ChildChanged" InitialTypeName="Windows.UI.Xaml.Controls.TextBox" Height="32" Margin="10,31,10,0" VerticalAlignment="Top"/>
-        <XamlHost:WindowsXamlHost x:Name="OkBtnHost" InitialTypeName="Windows.UI.Xaml.Controls.Button" Margin="0,80,10,0" HorizontalAlignment="Right" VerticalAlignment="Top" Height="32" Width="85" ChildChanged="OkBtn_ChildChanged"/>
-
+        <ui:TextBox x:Name="urlBox" Height="32" Margin="10,31,10,0" VerticalAlignment="Top" PlaceholderEnabled="True" PlaceholderText="Enter URL here"/>
+        <ui:Button x:Name="OkBtn" Margin="0,80,10,0" HorizontalAlignment="Right" VerticalAlignment="Top" Height="32" Width="85" Content="OK" Click="OkBtn_Click" />
     </Grid>
-</Window>
+</ui:UiWindow>

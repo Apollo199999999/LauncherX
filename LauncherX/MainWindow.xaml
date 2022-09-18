@@ -17,19 +17,23 @@
         <ui:TitleBar Title="LauncherX - Organise all your stuff!" Icon="icon.ico" UseSnapLayout="True" />
 
         <Grid x:Name="grid" Margin="20,48,20,20" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" MouseDown="grid_MouseDown" >
-            <ui:AutoSuggestBox x:Name="SearchBox" Margin="0,10,0,0" VerticalAlignment="Top" PlaceholderText="Search through everything in LauncherX" Icon="Search16" SuggestionChosen="SearchBox_SuggestionChosen" TextChanged="SearchBox_TextChanged"/>
-            <xamlHost:WindowsXamlHost x:Name="OpenFileHost" InitialTypeName="Windows.UI.Xaml.Controls.Button" Margin="0,62,0,0" HorizontalAlignment="Right" VerticalAlignment="Top" Height="32" RenderTransformOrigin="0.5,0.5" Width="105" ChildChanged="OpenFileHost_ChildChanged"/>
-            <TextBlock x:Name="header" HorizontalAlignment="Left" Margin="0,66,0,0" TextWrapping="Wrap" Text="My files, folders, and websites" VerticalAlignment="Top" FontWeight="Bold" FontSize="18"/>
-            <xamlHost:WindowsXamlHost x:Name="OpenFolderHost" HorizontalAlignment="Right" Height="32" Margin="0,62,115,0" VerticalAlignment="Top" Width="110" ChildChanged="OpenFolderHost_ChildChanged" InitialTypeName="Windows.UI.Xaml.Controls.Button"/>
-            <xamlHost:WindowsXamlHost x:Name="OpenWebsiteHost" HorizontalAlignment="Right" Height="32" Margin="0,62,235,0" VerticalAlignment="Top" Width="120" InitialTypeName="Windows.UI.Xaml.Controls.Button" ChildChanged="OpenWebsiteHost_ChildChanged"/>
-            <xamlHost:WindowsXamlHost Margin="0,104,0,45" x:Name="gridviewhost" InitialTypeName="Windows.UI.Xaml.Controls.GridView" ChildChanged="gridviewhost_ChildChanged" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"/>
-            <ui:Button x:Name="SettingsButton" HorizontalAlignment="Right" Height="35" Margin="0,0,0,0" VerticalAlignment="Bottom" Width="35" Icon="Settings24" Padding="6" FontSize="20" Click="SettingsButton_Click"/>
+            <ui:AutoSuggestBox x:Name="SearchBox" Margin="0,10,45,0" VerticalAlignment="Top" PlaceholderText="Search through everything in LauncherX" Icon="Search16" SuggestionChosen="SearchBox_SuggestionChosen" TextChanged="SearchBox_TextChanged"/>
+            <ui:Button x:Name="SettingsButton" HorizontalAlignment="Right" Height="35" Margin="0,10,0,0" VerticalAlignment="Top" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Width="35" Icon="Settings24" Padding="6" FontSize="20" Click="SettingsButton_Click"/>
 
-            <Grid x:Name="empty" HorizontalAlignment="Center" Height="55" Margin="0" VerticalAlignment="Center" >
-                <Label x:Name="label1" Content="There is nothing here." HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="16" Foreground="Gray" Margin="40,0,0,0"/>
-                <Label x:Name="label" Content="&#xE838;" Margin="0" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="24" FontFamily="Segoe MDL2 Assets" Foreground="Gray" Width="31" />
-                <Label x:Name="label2" Content="To add an item, click the buttons at the top right corner." HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="Gray" Margin="40,25,0,0"/>
+            <TextBlock x:Name="header" HorizontalAlignment="Left" Margin="0,66,0,0" TextWrapping="Wrap" Text="My files, folders, and websites" VerticalAlignment="Top" FontWeight="Bold" FontSize="18"/>
+            <ui:Button x:Name="OpenFileBtn" Content="Add a file"  Margin="0,62,0,0" HorizontalAlignment="Right" VerticalAlignment="Top" Height="32" Width="105" Click="OpenFileBtn_Click" Appearance="Primary"/>
+            <ui:Button x:Name="OpenFolderBtn" Content="Add a folder" Height="32" Margin="0,62,115,0" VerticalAlignment="Top" HorizontalAlignment="Right" Width="110" Click="OpenFolderBtn_Click"/>
+            <ui:Button x:Name="OpenWebsiteBtn" Content="Add a website" HorizontalAlignment="Right" Height="32" Margin="0,62,235,0" VerticalAlignment="Top" Width="120" Click="OpenWebsiteBtn_Click" />
+            
+            <Grid Margin="-20,104,-20,-20" x:Name="GridViewBackground">
+                <xamlHost:WindowsXamlHost x:Name="gridviewhost" InitialTypeName="Windows.UI.Xaml.Controls.GridView" ChildChanged="gridviewhost_ChildChanged" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="20,0,20,20"/>
+                <Grid x:Name="empty" HorizontalAlignment="Center" Height="55" VerticalAlignment="Center" Margin="0,0,0,20" >
+                    <Label x:Name="label1" Content="There is nothing here." HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="16" Foreground="Gray" Margin="40,0,0,0"/>
+                    <Label x:Name="label" Content="&#xE838;" Margin="0" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="24" FontFamily="Segoe MDL2 Assets" Foreground="Gray" Width="31" />
+                    <Label x:Name="label2" Content="To add an item, click the buttons at the top right corner." HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="Gray" Margin="40,25,0,0"/>
+                </Grid>
             </Grid>
+   
         </Grid>
 
     </Grid>
