@@ -111,7 +111,7 @@ namespace LauncherX
                     Windows.UI.Xaml.Media.SolidColorBrush background = new Windows.UI.Xaml.Media.SolidColorBrush(Windows.UI.Color.FromArgb(255, 243, 243, 243));
                     gridView.Background = background;
                 }
-                GridViewBackground.Background = new System.Windows.Media.SolidColorBrush(System.Windows.Media.Color.FromArgb(255, 243, 243, 243));
+                //GridViewBackground.Background = new System.Windows.Media.SolidColorBrush(System.Windows.Media.Color.FromArgb(255, 243, 243, 243));
             }
             else if (is_light_mode == false)
             {
@@ -128,7 +128,7 @@ namespace LauncherX
                     Windows.UI.Xaml.Media.SolidColorBrush background = new Windows.UI.Xaml.Media.SolidColorBrush(Windows.UI.Color.FromArgb(255, 32, 32, 32));
                     gridView.Background = background;
                 }
-                GridViewBackground.Background = new System.Windows.Media.SolidColorBrush(System.Windows.Media.Color.FromArgb(255, 32, 32, 32));
+                ///GridViewBackground.Background = new System.Windows.Media.SolidColorBrush(System.Windows.Media.Color.FromArgb(255, 32, 32, 32));
 
             }
 
