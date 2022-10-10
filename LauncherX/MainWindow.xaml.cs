@@ -67,9 +67,6 @@ namespace LauncherX
         //size variable to control size of icons
         public double size;
 
-        //inprogress window, used to tell users that it is adding items
-        InProgress progress = new InProgress();
-
         //AddItemsErrorDialog, in case when loading the files after application startup, the file does not exist
         AddItemsErrorDialog AddItemsErrorDialog = new AddItemsErrorDialog();
 
@@ -217,17 +214,6 @@ namespace LauncherX
             //init gridView
             var gridView = gridviewhost.Child as Windows.UI.Xaml.Controls.GridView;
 
-            //check if there are files in the loading directory
-            if (IsDirectoryEmpty(loadDir) == false)
-            {
-                //show the progress window
-                progress.label.Text = "Loading your items, please wait...";
-                progress.Show();
-
-                //wait a while for the progress window to open
-                await Task.Delay(500);
-            }
-
             //create a variable to check if there are items that LauncherX cannot add
             bool ErrorAddingItems = false;
 
@@ -293,8 +279,6 @@ namespace LauncherX
 
             }
 
-            progress.Hide();
-
             //check if gridView is empty
             if (gridView.Items.Count == 0)
             {
@@ -324,7 +308,7 @@ namespace LauncherX
                     //show the messagebox
                     var result = System.Windows.MessageBox.Show("An update is available, would you like to download it?", "Update available",
                         System.Windows.MessageBoxButton.YesNo, System.Windows.MessageBoxImage.Information);
-
+                   
                     //check for the messagebox reply
                     if (result == MessageBoxResult.Yes)
                     {
@@ -350,6 +334,9 @@ namespace LauncherX
 
             }
 
+            //activate and focus this window
+            this.Activate();
+            this.Focus();
         }
 
 
@@ -1206,7 +1193,7 @@ namespace LauncherX
             menu.ShowAt(sender as Windows.UI.Xaml.UIElement, e.GetPosition(sender as Windows.UI.Xaml.UIElement));
         }
 
-        private async void OpenFileBtn_Click(object sender, RoutedEventArgs e)
+        private void OpenFileBtn_Click(object sender, RoutedEventArgs e)
         {
             //init open file dialog
             Microsoft.Win32.OpenFileDialog openFileDialog = new Microsoft.Win32.OpenFileDialog() { DereferenceLinks = false };
@@ -1215,19 +1202,12 @@ namespace LauncherX
             //check if openfile dialog is ok
             if (openFileDialog.ShowDialog() == true)
             {
-                progress.Show();
-                progress.label.Text = "Adding your items, please wait...";
-
-                //this delay is to allow some time for the progress dialog to open
-                await Task.Delay(500);
-
                 //and then get the icon and YEET in into the grid view
                 foreach (string myfile in openFileDialog.FileNames)
                 {
                     AddItem(myfile);
                 }
 
-                progress.Hide();
             }
         }
   
@@ -1317,7 +1297,7 @@ namespace LauncherX
             }
         }
 
-        private async void OpenFolderBtn_Click(object sender, RoutedEventArgs e)
+        private void OpenFolderBtn_Click(object sender, RoutedEventArgs e)
         {
             //init folderbrowsedialog
             System.Windows.Forms.FolderBrowserDialog folderBrowserDialog =
@@ -1326,14 +1306,7 @@ namespace LauncherX
             //Add the folder
             if (folderBrowserDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
-                progress.Show();
-                progress.label.Text = "Adding your items, please wait...";
-
-                //this delay is to allow some time for the progress dialog to open
-                await Task.Delay(500);
-
                 AddFolder(folderBrowserDialog.SelectedPath);
-                progress.Hide();
             }
         }
 
@@ -1409,17 +1382,10 @@ namespace LauncherX
 
             if (websiteok == true)
             {
-                progress.Show();
-                progress.label.Text = "Adding your items, please wait...";
-
-                //this delay is to allow some time for the progress dialog to open
-                await Task.Delay(500);
-
                 //add the website
                 AddWebsite(url);
 
                 websiteok = false;
-                progress.Hide();
             }
         }
 

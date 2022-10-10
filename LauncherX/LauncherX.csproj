@@ -101,9 +101,6 @@
       <DependentUpon>AddItemsErrorDialog.xaml</DependentUpon>
     </Compile>
     <Compile Include="AlphanumComparatorFast.cs" />
-    <Compile Include="InProgress.xaml.cs">
-      <DependentUpon>InProgress.xaml</DependentUpon>
-    </Compile>
     <Compile Include="PublicVariables.cs" />
     <Compile Include="SettingsWindow.xaml.cs">
       <DependentUpon>SettingsWindow.xaml</DependentUpon>
@@ -112,10 +109,6 @@
       <DependentUpon>WebsiteDialog.xaml</DependentUpon>
     </Compile>
     <Page Include="AddItemsErrorDialog.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="InProgress.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

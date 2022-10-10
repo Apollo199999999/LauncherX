@@ -36,7 +36,6 @@ C:\Users\fligh\source\repos\LauncherX\LauncherX\obj\x64\Debug\LauncherX.csproj.S
 C:\Users\fligh\source\repos\LauncherX\LauncherX\obj\x64\Debug\Interop.Shell32.dll
 C:\Users\fligh\source\repos\LauncherX\LauncherX\obj\x64\Debug\LauncherX.csproj.ResolveComReference.cache
 C:\Users\fligh\source\repos\LauncherX\LauncherX\obj\x64\Debug\AddItemsErrorDialog.g.cs
-C:\Users\fligh\source\repos\LauncherX\LauncherX\obj\x64\Debug\InProgress.g.cs
 C:\Users\fligh\source\repos\LauncherX\LauncherX\obj\x64\Debug\MainWindow.g.cs
 C:\Users\fligh\source\repos\LauncherX\LauncherX\obj\x64\Debug\SettingsWindow.g.cs
 C:\Users\fligh\source\repos\LauncherX\LauncherX\obj\x64\Debug\WebsiteDialog.g.cs
@@ -45,7 +44,6 @@ C:\Users\fligh\source\repos\LauncherX\LauncherX\obj\x64\Debug\LauncherX_MarkupCo
 C:\Users\fligh\source\repos\LauncherX\LauncherX\obj\x64\Debug\LauncherX_MarkupCompile.lref
 C:\Users\fligh\source\repos\LauncherX\LauncherX\obj\x64\Debug\App.baml
 C:\Users\fligh\source\repos\LauncherX\LauncherX\obj\x64\Debug\AddItemsErrorDialog.baml
-C:\Users\fligh\source\repos\LauncherX\LauncherX\obj\x64\Debug\InProgress.baml
 C:\Users\fligh\source\repos\LauncherX\LauncherX\obj\x64\Debug\MainWindow.baml
 C:\Users\fligh\source\repos\LauncherX\LauncherX\obj\x64\Debug\SettingsWindow.baml
 C:\Users\fligh\source\repos\LauncherX\LauncherX\obj\x64\Debug\WebsiteDialog.baml
