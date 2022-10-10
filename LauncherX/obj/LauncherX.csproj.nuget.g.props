@@ -20,7 +20,7 @@
     <Import Project="$(NuGetPackageRoot)microsoft.toolkit.ui.xamlhost\6.1.2\build\Microsoft.Toolkit.UI.XamlHost.props" Condition="Exists('$(NuGetPackageRoot)microsoft.toolkit.ui.xamlhost\6.1.2\build\Microsoft.Toolkit.UI.XamlHost.props')" />
   </ImportGroup>
   <PropertyGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">
-    <PkgWPF-UI Condition=" '$(PkgWPF-UI)' == '' ">C:\Users\fligh\.nuget\packages\wpf-ui\2.0.2</PkgWPF-UI>
+    <PkgWPF-UI Condition=" '$(PkgWPF-UI)' == '' ">C:\Users\fligh\.nuget\packages\wpf-ui\2.0.3</PkgWPF-UI>
     <PkgMicrosoft_Toolkit_Win32_UI_SDK Condition=" '$(PkgMicrosoft_Toolkit_Win32_UI_SDK)' == '' ">C:\Users\fligh\.nuget\packages\microsoft.toolkit.win32.ui.sdk\6.1.2</PkgMicrosoft_Toolkit_Win32_UI_SDK>
     <PkgMicrosoft_Toolkit_Wpf_UI_XamlHost Condition=" '$(PkgMicrosoft_Toolkit_Wpf_UI_XamlHost)' == '' ">C:\Users\fligh\.nuget\packages\microsoft.toolkit.wpf.ui.xamlhost\6.1.2</PkgMicrosoft_Toolkit_Wpf_UI_XamlHost>
     <PkgMicrosoft_Toolkit_Wpf_UI_Controls Condition=" '$(PkgMicrosoft_Toolkit_Wpf_UI_Controls)' == '' ">C:\Users\fligh\.nuget\packages\microsoft.toolkit.wpf.ui.controls\6.1.2</PkgMicrosoft_Toolkit_Wpf_UI_Controls>

@@ -7,10 +7,16 @@
         xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
         xmlns:XamlHost="clr-namespace:Microsoft.Toolkit.Wpf.UI.XamlHost;assembly=Microsoft.Toolkit.Wpf.UI.XamlHost" 
         mc:Ignorable="d"
-        Title="Add a website" Height="160" Width="500" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
+        ui:ExtendsContentIntoTitleBar="True"
+        ui:WindowBackdropType="Mica"
+        ui:WindowCornerPreference="Round"
+        Style="{StaticResource UiWindow}"
+        Title="Add a website" Width="500" ResizeMode="NoResize" MinHeight="0" Height="184" WindowStartupLocation="CenterScreen" >
     <Grid>
-        <TextBlock x:Name="label" Text="URL:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
-        <ui:TextBox x:Name="urlBox" Height="32" Margin="10,31,10,0" VerticalAlignment="Top" PlaceholderEnabled="True" PlaceholderText="Enter URL here"/>
-        <ui:Button x:Name="OkBtn" Margin="0,80,10,0" HorizontalAlignment="Right" VerticalAlignment="Top" Height="32" Width="85" Content="OK" Click="OkBtn_Click" />
+        <ui:TitleBar Title="LauncherX Settings" Icon="icon.ico" UseSnapLayout="True" ShowMaximize="False" ShowMinimize="False"/>
+
+        <TextBlock x:Name="label" Text="URL:" HorizontalAlignment="Left" Margin="10,58,0,0" VerticalAlignment="Top" />
+        <ui:TextBox x:Name="urlBox" Margin="10,88,10,10" VerticalAlignment="Top" PlaceholderEnabled="True" PlaceholderText="Enter URL here"/>
+        <ui:Button x:Name="OkBtn" Margin="0,138,10,0" HorizontalAlignment="Right" VerticalAlignment="Top" Height="32" Width="85" Content="OK" Click="OkBtn_Click" />
     </Grid>
 </ui:UiWindow>

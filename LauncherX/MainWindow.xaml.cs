@@ -1399,10 +1399,9 @@ namespace LauncherX
         {
             //show add website dialog
             WebsiteDialog wbd = new WebsiteDialog();
-            wbd.Show();
-
             //event handler to add the website
             wbd.Closed += Wbd_Closed;
+            wbd.ShowDialog();
         }
      
         private async void Wbd_Closed(object sender, EventArgs e)

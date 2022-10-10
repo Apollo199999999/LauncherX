@@ -1,4 +1,4 @@
-﻿ <ui:UiWindow x:Class="LauncherX.MainWindow"
+﻿<ui:UiWindow x:Class="LauncherX.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -24,7 +24,7 @@
             <ui:Button x:Name="OpenFileBtn" Content="Add a file"  Margin="0,62,0,0" HorizontalAlignment="Right" VerticalAlignment="Top" Height="32" Width="105" Click="OpenFileBtn_Click" Appearance="Primary"/>
             <ui:Button x:Name="OpenFolderBtn" Content="Add a folder" Height="32" Margin="0,62,115,0" VerticalAlignment="Top" HorizontalAlignment="Right" Width="110" Click="OpenFolderBtn_Click"/>
             <ui:Button x:Name="OpenWebsiteBtn" Content="Add a website" HorizontalAlignment="Right" Height="32" Margin="0,62,235,0" VerticalAlignment="Top" Width="120" Click="OpenWebsiteBtn_Click" />
-            
+
             <Grid Margin="-20,104,-20,-20" x:Name="GridViewBackground">
                 <xamlHost:WindowsXamlHost x:Name="gridviewhost" InitialTypeName="Windows.UI.Xaml.Controls.GridView" ChildChanged="gridviewhost_ChildChanged" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="20,0,20,20"/>
                 <Grid x:Name="empty" HorizontalAlignment="Center" Height="55" VerticalAlignment="Center" Margin="0,0,0,20" >
@@ -33,9 +33,6 @@
                     <Label x:Name="label2" Content="To add an item, click the buttons at the top right corner." HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="Gray" Margin="40,25,0,0"/>
                 </Grid>
             </Grid>
-   
         </Grid>
-
     </Grid>
-
 </ui:UiWindow>

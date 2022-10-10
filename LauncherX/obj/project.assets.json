@@ -473,7 +473,7 @@
           "build/net461/System.Runtime.WindowsRuntime.UI.Xaml.targets": {}
         }
       },
-      "WPF-UI/2.0.2": {
+      "WPF-UI/2.0.3": {
         "type": "package",
         "dependencies": {
           "System.Drawing.Common": "6.0.0"
@@ -726,7 +726,7 @@
           "build/net461/System.Runtime.WindowsRuntime.UI.Xaml.targets": {}
         }
       },
-      "WPF-UI/2.0.2": {
+      "WPF-UI/2.0.3": {
         "type": "package",
         "dependencies": {
           "System.Drawing.Common": "6.0.0"
@@ -979,7 +979,7 @@
           "build/net461/System.Runtime.WindowsRuntime.UI.Xaml.targets": {}
         }
       },
-      "WPF-UI/2.0.2": {
+      "WPF-UI/2.0.3": {
         "type": "package",
         "dependencies": {
           "System.Drawing.Common": "6.0.0"
@@ -1232,7 +1232,7 @@
           "build/net461/System.Runtime.WindowsRuntime.UI.Xaml.targets": {}
         }
       },
-      "WPF-UI/2.0.2": {
+      "WPF-UI/2.0.3": {
         "type": "package",
         "dependencies": {
           "System.Drawing.Common": "6.0.0"
@@ -1787,10 +1787,10 @@
         "version.txt"
       ]
     },
-    "WPF-UI/2.0.2": {
-      "sha512": "Nj2Viy7dbqin4L//9c99wo2cYOT90uG2k1JAGnXbnbvKAOAbERwGxIm3sAKziB21RP9hKW/Z2jurAsZ4Xu0Tkg==",
+    "WPF-UI/2.0.3": {
+      "sha512": "1e9Q8pQGfi9YFp3WavKZjXyLYohIjXxk5q0NqEaamofVgIdxRxwqrkWha584FBUISRBBT/qFOrl97YBl5bs30Q==",
       "type": "package",
-      "path": "wpf-ui/2.0.2",
+      "path": "wpf-ui/2.0.3",
       "hasTools": true,
       "files": [
         ".nupkg.metadata",
@@ -1809,7 +1809,7 @@
         "lib/netcoreapp3.1/Wpf.Ui.dll",
         "lib/netcoreapp3.1/Wpf.Ui.xml",
         "tools/VisualStudioToolsManifest.xml",
-        "wpf-ui.2.0.2.nupkg.sha512",
+        "wpf-ui.2.0.3.nupkg.sha512",
         "wpf-ui.nuspec",
         "wpfui.png"
       ]
@@ -1820,7 +1820,7 @@
       "Microsoft.Toolkit.Wpf.UI.Controls >= 6.1.2",
       "Microsoft.Toolkit.Wpf.UI.XamlHost >= 6.1.2",
       "Microsoft.VCRTForwarders.140 >= 1.0.6",
-      "WPF-UI >= 2.0.2"
+      "WPF-UI >= 2.0.3"
     ]
   },
   "packageFolders": {
@@ -1875,7 +1875,7 @@
           },
           "WPF-UI": {
             "target": "Package",
-            "version": "[2.0.2, )"
+            "version": "[2.0.3, )"
           }
         },
         "imports": [

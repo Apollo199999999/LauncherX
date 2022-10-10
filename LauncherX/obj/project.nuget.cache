@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "3ubCmNuz3FM3ZoVWbFH/00okKWzJzP9VUWLlEtoca6QDqXvPHiunIAvludpnH4ZXamqxx1saYR0qMIupgz9/NA==",
+  "dgSpecHash": "Ccpr3l9pS1eobTTFVYfJFPZWvountwFjiWdcKM9VfTpRfqO9jr+ZYsesk+ufESdgrwwAFqjovRvXzYx57+iEbw==",
   "success": true,
   "projectFilePath": "C:\\Users\\fligh\\source\\repos\\LauncherX\\LauncherX\\LauncherX.csproj",
   "expectedPackageFiles": [
@@ -14,7 +14,7 @@
     "C:\\Users\\fligh\\.nuget\\packages\\system.drawing.common\\6.0.0\\system.drawing.common.6.0.0.nupkg.sha512",
     "C:\\Users\\fligh\\.nuget\\packages\\system.runtime.windowsruntime\\4.6.0\\system.runtime.windowsruntime.4.6.0.nupkg.sha512",
     "C:\\Users\\fligh\\.nuget\\packages\\system.runtime.windowsruntime.ui.xaml\\4.6.0\\system.runtime.windowsruntime.ui.xaml.4.6.0.nupkg.sha512",
-    "C:\\Users\\fligh\\.nuget\\packages\\wpf-ui\\2.0.2\\wpf-ui.2.0.2.nupkg.sha512"
+    "C:\\Users\\fligh\\.nuget\\packages\\wpf-ui\\2.0.3\\wpf-ui.2.0.3.nupkg.sha512"
   ],
   "logs": []
 }

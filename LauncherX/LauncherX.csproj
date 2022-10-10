@@ -175,7 +175,7 @@
       <Version>6.1.2</Version>
     </PackageReference>
     <PackageReference Include="WPF-UI">
-      <Version>2.0.2</Version>
+      <Version>2.0.3</Version>
     </PackageReference>
   </ItemGroup>
   <ItemGroup>

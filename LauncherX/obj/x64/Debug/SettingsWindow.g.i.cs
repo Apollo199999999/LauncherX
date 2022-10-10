@@ -34,6 +34,7 @@ using System.Windows.Shell;
 using Wpf.Ui;
 using Wpf.Ui.Common;
 using Wpf.Ui.Controls;
+using Wpf.Ui.Controls.Navigation;
 using Wpf.Ui.Converters;
 using Wpf.Ui.Markup;
 using Wpf.Ui.ValidationRules;
