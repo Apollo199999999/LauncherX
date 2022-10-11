@@ -1,24 +1,52 @@
-﻿<ui:UiWindow x:Class="LauncherX.AddItemsErrorDialog"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
-        xmlns:local="clr-namespace:LauncherX"
-        ui:ExtendsContentIntoTitleBar="True"
-        ui:WindowBackdropType="Mica"
-        ui:WindowCornerPreference="Round"
-        Style="{StaticResource UiWindow}"
-        mc:Ignorable="d"
-        Title="Error while adding items" Height="338" Width="500" MinHeight="0" ResizeMode="NoResize">
+﻿<ui:UiWindow
+    x:Class="LauncherX.AddItemsErrorDialog"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:LauncherX"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
+    Title="Error while adding items"
+    Width="500"
+    Height="338"
+    MinHeight="0"
+    ui:ExtendsContentIntoTitleBar="True"
+    ui:WindowBackdropType="Mica"
+    ui:WindowCornerPreference="Round"
+    ResizeMode="NoResize"
+    Style="{StaticResource UiWindow}"
+    mc:Ignorable="d">
     <Grid>
-        <ui:TitleBar Title="Error while adding items" Icon="icon.ico" UseSnapLayout="True" ShowMaximize="False" ShowMinimize="False"/>
+        <ui:TitleBar
+            Title="Error while adding items"
+            Icon="icon.ico"
+            ShowMaximize="False"
+            ShowMinimize="False"
+            UseSnapLayout="True" />
 
-        <TextBlock x:Name="textBlock" HorizontalAlignment="Center" Margin="0,58,0,0" TextWrapping="Wrap" Text="The following items could not be loaded into LauncherX. The file(s)/folder(s) may have been moved or deleted. Please check that they are in the correct location, and re-add the file(s)/folder(s) when you are done." VerticalAlignment="Top" Width="480" FontSize="14"/>
-        <ListBox x:Name="ErrorFiles" HorizontalAlignment="Center" Height="167" Margin="0,119,0,0" VerticalAlignment="Top" Width="480">
-
-        </ListBox>
-        <Button x:Name="button" Content="OK" HorizontalAlignment="Right" Margin="0,0,10,9" VerticalAlignment="Bottom" Width="75" Height="32" Click="button_Click" />
+        <TextBlock
+            x:Name="textBlock"
+            Margin="15,51,15,0"
+            HorizontalAlignment="Stretch"
+            VerticalAlignment="Top"
+            FontSize="14"
+            Text="The following items could not be loaded into LauncherX. The file(s)/folder(s) may have been moved or deleted. Please check that they are in the correct location, and re-add the file(s)/folder(s) when you are done."
+            TextWrapping="Wrap" />
+        <ListBox
+            x:Name="ErrorFiles"
+            Height="167"
+            Margin="15,120,15,62"
+            HorizontalAlignment="Stretch"
+            VerticalAlignment="Top" />
+        <Button
+            x:Name="button"
+            Width="75"
+            Height="32"
+            Margin="0,0,15,15"
+            HorizontalAlignment="Right"
+            VerticalAlignment="Bottom"
+            Click="button_Click"
+            Content="OK" />
 
     </Grid>
 </ui:UiWindow>

@@ -88,12 +88,6 @@ namespace LauncherX
         }
 
 
-        private void AcrylicWindow_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-            this.DragMove();
-        }
-
-        
         private void CloseButton_Click(object sender, RoutedEventArgs e)
         {
             Close();
@@ -109,31 +103,6 @@ namespace LauncherX
 
             //save settings
             Properties.Settings.Default.Save();
-        }
-
-        private void VisitGithub_Click(object sender, RoutedEventArgs e)
-        {
-            try
-            {
-                //get the github respository link from the pastebin link
-                //github respository link is a pastebin link
-                var url = "https://pastebin.com/raw/kjLK23F0";
-
-                //init a webclient
-                WebClient client = new WebClient();
-
-                //download all text from the pastebin raw link
-                string reply = client.DownloadString(url);
-
-                //start the process
-                Process.Start(reply);
-            }
-            catch
-            {
-                //show an error message
-                System.Windows.MessageBox.Show("Unable to open the github respository. Check that you are connected " +
-                    "to the internet, and try again.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
         }
 
         private void ScaleSlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
