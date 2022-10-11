@@ -62,10 +62,10 @@
 
             <TextBlock
                 x:Name="header"
-                Margin="0,66,0,0"
+                Margin="0,65,0,0"
                 HorizontalAlignment="Left"
                 VerticalAlignment="Top"
-                FontSize="18"
+                FontSize="20"
                 FontWeight="Bold"
                 Text="My files, folders, and websites"
                 TextWrapping="Wrap" />

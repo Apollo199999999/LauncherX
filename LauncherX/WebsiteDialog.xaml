@@ -28,7 +28,7 @@
 
         <TextBlock
             x:Name="label"
-            Margin="15,51,0,0"
+            Margin="15,55,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             Text="URL:" />

@@ -16,7 +16,7 @@ namespace LauncherX
         public static bool updaterequired;
 
         //this variable used to define file version
-        public static string currentversion = "1.0.3";
+        public static string currentversion = "2.0.0";
 
         //this variable is used to pass the url
         public static string url;
