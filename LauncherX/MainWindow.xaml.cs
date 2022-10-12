@@ -13,6 +13,11 @@ using System.Windows.Threading;
 using Windows.UI.Xaml.Controls;
 using static LauncherX.PublicVariables;
 using Microsoft.WindowsAPICodePack.Dialogs;
+using static System.Net.WebRequestMethods;
+using System.Runtime.InteropServices.ComTypes;
+using System.Windows.Controls;
+using Windows.Devices.PointOfService;
+using File = System.IO.File;
 
 namespace LauncherX
 {
@@ -54,9 +59,9 @@ namespace LauncherX
         public double size;
 
         //these variables are used for duplicate naming
-        public int foldercount = 0;
-        public int filecount = 0;
-        public int websitecount = 0;
+        public int FolderNameCount = 0;
+        public int FileNameCount = 0;
+        public int WebsiteNameCount = 0;
 
         //this variable is used to save the items in the gridview, based on order
         public int savename = 1;
@@ -238,7 +243,7 @@ namespace LauncherX
                         //remove https://
                         s = s.Replace("https://", "");
                         original_url = sr.ReadLine();
-                        AddWebsite(s);
+                        AddWebsite(s, original_url);
 
                     }
                     else
@@ -388,12 +393,254 @@ namespace LauncherX
 
         #endregion
 
-        #region Methods relating to adding items to the gridView
-        public void CreateGridViewItem()
+        #region Methods relating to GridView Items
+
+        #region Methods relating to creation of GridView Items
+        public Windows.UI.Xaml.Controls.StackPanel CreateGridViewItem(string iconPath, string DisplayText, string StackPanelTag)
         {
+            //create a stackpanel
+            Windows.UI.Xaml.Controls.StackPanel stackpanel = new Windows.UI.Xaml.Controls.StackPanel();
+            stackpanel.Width = size * 105;
+            stackpanel.Height = size * 90;
+            //for some reason, it needs to have a background in order for right tap to work??
+            stackpanel.Background = new Windows.UI.Xaml.Media.SolidColorBrush(Windows.UI.Color.FromArgb(0, 0, 0, 0));
+
+            //load file icon into uwp image control
+            Windows.UI.Xaml.Controls.Image image = new Windows.UI.Xaml.Controls.Image();
+            string path = iconPath;
+            Uri fileuri = new Uri(path);
+            image.Source = new Windows.UI.Xaml.Media.Imaging.BitmapImage(fileuri);
+            image.Stretch = Windows.UI.Xaml.Media.Stretch.Uniform;
+            image.VerticalAlignment = Windows.UI.Xaml.VerticalAlignment.Center;
+            image.HorizontalAlignment = Windows.UI.Xaml.HorizontalAlignment.Center;
+            image.Margin = new Windows.UI.Xaml.Thickness(size * 22.5, 5, size * 22.5, 0);
+            image.Height = stackpanel.Width - size * 22.5 - size * 22.5;
+            image.Width = stackpanel.Width - size * 22.5 - size * 22.5;
+
+            //create a textblock
+            Windows.UI.Xaml.Controls.TextBlock textblock = new Windows.UI.Xaml.Controls.TextBlock();
+            textblock.TextAlignment = Windows.UI.Xaml.TextAlignment.Center;
+            textblock.Text = DisplayText;
+            textblock.HorizontalAlignment = Windows.UI.Xaml.HorizontalAlignment.Center;
+            textblock.VerticalAlignment = Windows.UI.Xaml.VerticalAlignment.Bottom;
+            textblock.FontSize = size * 11;
+            textblock.Margin = new Windows.UI.Xaml.Thickness(5);
+            textblock.TextTrimming = Windows.UI.Xaml.TextTrimming.CharacterEllipsis;
+
+            //save the path in stackpanel tag
+            stackpanel.Tag = StackPanelTag;
+
+            //init a tooltip
+            Windows.UI.Xaml.Controls.ToolTip toolTip = new Windows.UI.Xaml.Controls.ToolTip();
+            toolTip.Content = DisplayText;
+
+            //set the tooltipowner to the stackpanel using tooltip service
+            Windows.UI.Xaml.Controls.ToolTipService.SetToolTip(stackpanel, toolTip);
+
+            //righttapped event handler for menu flyou
+            stackpanel.PointerPressed += GridViewItem_PointerPressed;
+
+            //add the controls
+            stackpanel.Children.Add(image);
+            stackpanel.Children.Add(textblock);
+
+            return stackpanel;
 
         }
 
+
+        public void AddFile(string myfile)
+        {
+            //init a gridview
+            var gridView = gridviewhost.Child as Windows.UI.Xaml.Controls.GridView;
+
+            //show gridView
+            gridviewhost.Visibility = Visibility.Visible;
+
+            //init FileIconName
+            var FileIconName = System.IO.Path.GetFileNameWithoutExtension(myfile);
+            FileIconName = FileIconName + ".tiff";
+
+            bool isImageFile;
+            try
+            {
+                System.Drawing.Image.FromFile(myfile).Dispose();
+                isImageFile = true;
+            }
+            catch (OutOfMemoryException)
+            {
+                isImageFile = false;
+            }
+
+            //save file icon
+            if (isImageFile == true)
+            {
+                if (File.Exists(Path.Combine(appIconDir, FileIconName)))
+                {
+                    FileIconName = FileNameCount.ToString() + FileIconName;
+                    FileStream stream = new FileStream(System.IO.Path.Combine(appIconDir, FileIconName), FileMode.Create);
+                    System.Drawing.Image image1 = System.Drawing.Image.FromFile(myfile);
+                    System.Drawing.Image icon = image1.GetThumbnailImage(image1.Width, image1.Height, () => false, IntPtr.Zero);
+                    icon.Save(stream, System.Drawing.Imaging.ImageFormat.Tiff);
+                    FileNameCount += 1;
+
+                }
+                else
+                {
+                    FileStream stream = new FileStream(System.IO.Path.Combine(appIconDir, FileIconName), FileMode.Create);
+                    System.Drawing.Image image1 = System.Drawing.Image.FromFile(myfile);
+                    System.Drawing.Image icon = image1.GetThumbnailImage(image1.Width, image1.Height, () => false, IntPtr.Zero);
+                    icon.Save(stream, System.Drawing.Imaging.ImageFormat.Tiff);
+                }
+            }
+            else
+            {
+                if (File.Exists(Path.Combine(appIconDir, FileIconName)))
+                {
+                    FileIconName = FileNameCount.ToString() + FileIconName;
+                    FileStream stream = new FileStream(System.IO.Path.Combine(appIconDir, FileIconName), FileMode.Create);
+                    Bitmap icon = new Bitmap(System.Drawing.Icon.ExtractAssociatedIcon(myfile).ToBitmap());
+                    icon.Save(stream, System.Drawing.Imaging.ImageFormat.Tiff);
+                    FileNameCount += 1;
+
+                }
+                else
+                {
+                    FileStream stream = new FileStream(System.IO.Path.Combine(appIconDir, FileIconName), FileMode.Create);
+                    Bitmap icon = new Bitmap(System.Drawing.Icon.ExtractAssociatedIcon(myfile).ToBitmap());
+                    icon.Save(stream, System.Drawing.Imaging.ImageFormat.Tiff);
+                }
+            }
+
+            gridView.Items.Add(CreateGridViewItem(Path.Combine(appIconDir + FileIconName), Path.GetFileName(myfile), myfile));
+
+
+        }
+
+        //add folder
+        public void AddFolder(string directory)
+        {
+            //so, basic idea, copy the add_item and remove non essential functions
+
+            //init a gridview
+            var gridView = gridviewhost.Child as Windows.UI.Xaml.Controls.GridView;
+
+            //show gridView
+            gridviewhost.Visibility = Visibility.Visible;
+
+            //init FolderIconName
+            string FolderIconName = new DirectoryInfo(directory).Name;
+            FolderIconName = FolderIconName + ".tiff";
+
+            //now check if the icon of the folder exists in directory
+            if (File.Exists(System.IO.Path.Combine(folderIconDir, FolderIconName)))
+            {
+                FolderIconName = FolderNameCount.ToString() + FolderIconName;
+
+                //get the icon of the folder
+                SHFILEINFO shinfo = new SHFILEINFO();
+                SHGetFileInfo(directory, 0, ref shinfo, (uint)Marshal.SizeOf(shinfo), SHGFI_ICON | SHGFI_LARGEICON);
+                Icon i = System.Drawing.Icon.FromHandle(shinfo.hIcon);
+
+                //init filestream
+                FileStream stream = new FileStream(System.IO.Path.Combine(folderIconDir, FolderIconName), FileMode.Create);
+                Bitmap icon = i.ToBitmap();
+                icon.Save(stream, System.Drawing.Imaging.ImageFormat.Tiff);
+
+                FolderNameCount += 1;
+            }
+            else
+            {
+                //get the icon of the folder
+                SHFILEINFO shinfo = new SHFILEINFO();
+                SHGetFileInfo(directory, 0, ref shinfo, (uint)Marshal.SizeOf(shinfo), SHGFI_ICON | SHGFI_LARGEICON);
+                Icon i = System.Drawing.Icon.FromHandle(shinfo.hIcon);
+
+                //init filestream
+                FileStream stream = new FileStream(System.IO.Path.Combine(folderIconDir, FolderIconName), FileMode.Create);
+                Bitmap icon = i.ToBitmap();
+                icon.Save(stream, System.Drawing.Imaging.ImageFormat.Tiff);
+            }
+
+            //then do the controls and add it to the gridView
+            gridView.Items.Add(CreateGridViewItem(Path.Combine(folderIconDir + FolderIconName), new DirectoryInfo(directory).Name, directory));
+
+        }
+
+        private void AddWebsite(string url, string DisplayName)
+        {
+            //init a gridview
+            var gridView = gridviewhost.Child as Windows.UI.Xaml.Controls.GridView;
+
+            //show gridView
+            gridviewhost.Visibility = Visibility.Visible;
+
+
+            //init WebsiteIconFileName and remove everything after .com
+            var WebsiteIconFileName = url;
+
+            //remove all illegal characters from WebsiteIconFileName
+            WebsiteIconFileName = WebsiteIconFileName.Replace("/", "");
+            WebsiteIconFileName = WebsiteIconFileName.Replace(@"\", "");
+            WebsiteIconFileName = WebsiteIconFileName.Replace(":", "");
+            WebsiteIconFileName = WebsiteIconFileName.Replace("*", "");
+            WebsiteIconFileName = WebsiteIconFileName.Replace("?", "");
+            WebsiteIconFileName = WebsiteIconFileName.Replace("\"", "");
+            WebsiteIconFileName = WebsiteIconFileName.Replace("<", "");
+            WebsiteIconFileName = WebsiteIconFileName.Replace(">", "");
+            WebsiteIconFileName = WebsiteIconFileName.Replace("|", "");
+            WebsiteIconFileName = WebsiteIconFileName.Replace(".", "");
+
+            //add the .tiff extension
+            WebsiteIconFileName = WebsiteIconFileName + ".tiff";
+
+
+            //download address. The link is used to grab the favicon
+            string downloadaddress = "https://www.google.com/s2/favicons?sz=64&domain_url=https://" + url;
+
+            //init a new webclient
+            WebClient webClient = new WebClient();
+
+
+            if (File.Exists(Path.Combine(websiteIconDir, WebsiteIconFileName)))
+            {
+                try
+                {
+                    //try to download file
+                    WebsiteIconFileName = WebsiteNameCount.ToString() + WebsiteIconFileName;
+                    //download the website's favicon
+                    webClient.DownloadFile(new Uri(downloadaddress), System.IO.Path.Combine(websiteIconDir, WebsiteIconFileName));
+                    WebsiteNameCount += 1;
+                }
+                catch
+                {
+                    //show error message
+                    System.Windows.MessageBox.Show("Unable to get website icon. Please check that the website is valid and that you are connected to the internet. LauncherX will still add the website, just without the icon." +
+                        "If you want to have the icon, remove the website from LauncherX and re-add the website or restart Launcher X when you have internet connection.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+            }
+            else
+            {
+                try
+                {
+                    //try to download file
+                    //download the website's favicon
+                    webClient.DownloadFile(new Uri(downloadaddress), System.IO.Path.Combine(websiteIconDir, WebsiteIconFileName));
+                }
+                catch
+                {
+                    //show error message
+                    System.Windows.MessageBox.Show("Unable to get website icon. Please check that the website is valid and that you are connected to the internet. LauncherX will still add the website, just without the icon." +
+                        "If you want to have the icon, remove the website from LauncherX and re-add the website or restart Launcher X when you have internet connection.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+            }
+
+            gridView.Items.Add(CreateGridViewItem(Path.Combine(websiteIconDir + WebsiteIconFileName), DisplayName, "https://" + url));
+        }
+
+        #endregion
+
+        #region Methods relating to MenuFlyout and its event handlers
         public Windows.UI.Xaml.Controls.MenuFlyout CreateGridViewItemContextMenu(Windows.UI.Xaml.Controls.StackPanel stackPanel)
         {
             //init a new menu flyout
@@ -483,121 +730,6 @@ namespace LauncherX
 
             return menu;
         }
-
-        public void AddFile(string myfile)
-        {
-            //init a gridview
-            var gridView = gridviewhost.Child as Windows.UI.Xaml.Controls.GridView;
-
-            //show gridView
-            gridviewhost.Visibility = Visibility.Visible;
-
-            //init filename
-            var filename = System.IO.Path.GetFileNameWithoutExtension(myfile);
-            filename = filename + ".tiff";
-
-            bool isImageFile;
-            try
-            {
-                System.Drawing.Image.FromFile(myfile).Dispose();
-                isImageFile = true;
-            }
-            catch (OutOfMemoryException)
-            {
-                isImageFile = false;
-            }
-
-            //save file icon
-            if (isImageFile == true)
-            {
-                if (File.Exists(Path.Combine(appIconDir, filename)))
-                {
-                    filename = filecount.ToString() + filename;
-                    FileStream stream = new FileStream(System.IO.Path.Combine(appIconDir, filename), FileMode.Create);
-                    System.Drawing.Image image1 = System.Drawing.Image.FromFile(myfile);
-                    System.Drawing.Image icon = image1.GetThumbnailImage(image1.Width, image1.Height, () => false, IntPtr.Zero);
-                    icon.Save(stream, System.Drawing.Imaging.ImageFormat.Tiff);
-                    filecount += 1;
-
-                }
-                else
-                {
-                    FileStream stream = new FileStream(System.IO.Path.Combine(appIconDir, filename), FileMode.Create);
-                    System.Drawing.Image image1 = System.Drawing.Image.FromFile(myfile);
-                    System.Drawing.Image icon = image1.GetThumbnailImage(image1.Width, image1.Height, () => false, IntPtr.Zero);
-                    icon.Save(stream, System.Drawing.Imaging.ImageFormat.Tiff);
-                }
-            }
-            else
-            {
-                if (File.Exists(Path.Combine(appIconDir, filename)))
-                {
-                    filename = filecount.ToString() + filename;
-                    FileStream stream = new FileStream(System.IO.Path.Combine(appIconDir, filename), FileMode.Create);
-                    Bitmap icon = new Bitmap(System.Drawing.Icon.ExtractAssociatedIcon(myfile).ToBitmap());
-                    icon.Save(stream, System.Drawing.Imaging.ImageFormat.Tiff);
-                    filecount += 1;
-
-                }
-                else
-                {
-                    FileStream stream = new FileStream(System.IO.Path.Combine(appIconDir, filename), FileMode.Create);
-                    Bitmap icon = new Bitmap(System.Drawing.Icon.ExtractAssociatedIcon(myfile).ToBitmap());
-                    icon.Save(stream, System.Drawing.Imaging.ImageFormat.Tiff);
-                }
-            }
-
-
-
-            //create a stackpanel
-            Windows.UI.Xaml.Controls.StackPanel stackpanel = new Windows.UI.Xaml.Controls.StackPanel();
-            stackpanel.Width = size * 105;
-            stackpanel.Height = size * 90;
-            //for some reason, it needs to have a background in order for right tap to work??
-            stackpanel.Background = new Windows.UI.Xaml.Media.SolidColorBrush(Windows.UI.Color.FromArgb(0, 0, 0, 0));
-
-            //load file icon into uwp image control
-            Windows.UI.Xaml.Controls.Image image = new Windows.UI.Xaml.Controls.Image();
-            string path = Path.Combine(appIconDir + filename);
-            Uri fileuri = new Uri(path);
-            image.Source = new Windows.UI.Xaml.Media.Imaging.BitmapImage(fileuri);
-            image.Stretch = Windows.UI.Xaml.Media.Stretch.Uniform;
-            image.VerticalAlignment = Windows.UI.Xaml.VerticalAlignment.Center;
-            image.HorizontalAlignment = Windows.UI.Xaml.HorizontalAlignment.Center;
-            image.Margin = new Windows.UI.Xaml.Thickness(size * 22.5, 5, size * 22.5, 0);
-            image.Height = stackpanel.Width - size * 22.5 - size * 22.5;
-            image.Width = stackpanel.Width - size * 22.5 - size * 22.5;
-
-            //create a textblock
-            Windows.UI.Xaml.Controls.TextBlock textblock = new Windows.UI.Xaml.Controls.TextBlock();
-            textblock.TextAlignment = Windows.UI.Xaml.TextAlignment.Center;
-            textblock.Text = Path.GetFileName(myfile);
-            textblock.HorizontalAlignment = Windows.UI.Xaml.HorizontalAlignment.Center;
-            textblock.VerticalAlignment = Windows.UI.Xaml.VerticalAlignment.Bottom;
-            textblock.FontSize = size * 11;
-            textblock.Margin = new Windows.UI.Xaml.Thickness(5);
-            textblock.TextTrimming = Windows.UI.Xaml.TextTrimming.CharacterEllipsis;
-
-            //save the path in stackpanel tag
-            stackpanel.Tag = myfile;
-
-            //init a tooltip
-            Windows.UI.Xaml.Controls.ToolTip toolTip = new Windows.UI.Xaml.Controls.ToolTip();
-            toolTip.Content = Path.GetFileName(myfile);
-
-            //set the tooltipowner to the stackpanel using tooltip service
-            Windows.UI.Xaml.Controls.ToolTipService.SetToolTip(stackpanel, toolTip);
-
-            //righttapped event handler for menu flyou
-            stackpanel.PointerPressed += GridViewItem_PointerPressed;
-
-            //add the controls
-            stackpanel.Children.Add(image);
-            stackpanel.Children.Add(textblock);
-            gridView.Items.Add(stackpanel);
-
-        }
-
         private void GridViewItem_PointerPressed(object sender, Windows.UI.Xaml.Input.PointerRoutedEventArgs e)
         {
             //init a stackpanel from sender
@@ -655,226 +787,7 @@ namespace LauncherX
             Process.Start("explorer.exe", "/select, " + ItemToLook);
         }
 
-
-
-        //add folder
-        public void AddFolder(string directory)
-        {
-            //so, basic idea, copy the add_item and remove non essential functions
-
-            //init a gridview
-            var gridView = gridviewhost.Child as Windows.UI.Xaml.Controls.GridView;
-
-            //show gridView
-            gridviewhost.Visibility = Visibility.Visible;
-
-            //init foldername
-            string foldername = new DirectoryInfo(directory).Name;
-            foldername = foldername + ".tiff";
-
-            //now check if the icon of the folder exists in directory
-            if (File.Exists(System.IO.Path.Combine(folderIconDir, foldername)))
-            {
-                foldername = foldercount.ToString() + foldername;
-
-                //get the icon of the folder
-                SHFILEINFO shinfo = new SHFILEINFO();
-                SHGetFileInfo(directory, 0, ref shinfo, (uint)Marshal.SizeOf(shinfo), SHGFI_ICON | SHGFI_LARGEICON);
-                Icon i = System.Drawing.Icon.FromHandle(shinfo.hIcon);
-
-                //init filestream
-                FileStream stream = new FileStream(System.IO.Path.Combine(folderIconDir, foldername), FileMode.Create);
-                Bitmap icon = i.ToBitmap();
-                icon.Save(stream, System.Drawing.Imaging.ImageFormat.Tiff);
-
-                foldercount += 1;
-            }
-            else
-            {
-                //get the icon of the folder
-                SHFILEINFO shinfo = new SHFILEINFO();
-                SHGetFileInfo(directory, 0, ref shinfo, (uint)Marshal.SizeOf(shinfo), SHGFI_ICON | SHGFI_LARGEICON);
-                Icon i = System.Drawing.Icon.FromHandle(shinfo.hIcon);
-
-                //init filestream
-                FileStream stream = new FileStream(System.IO.Path.Combine(folderIconDir, foldername), FileMode.Create);
-                Bitmap icon = i.ToBitmap();
-                icon.Save(stream, System.Drawing.Imaging.ImageFormat.Tiff);
-            }
-
-            //then do the controls and add it to the gridView
-            //create a stackpanel
-            Windows.UI.Xaml.Controls.StackPanel stackpanel = new Windows.UI.Xaml.Controls.StackPanel();
-            stackpanel.Width = size * 105;
-            stackpanel.Height = size * 90;
-
-            //for some reason, it needs to have a background in order for right tap to work??
-            stackpanel.Background = new Windows.UI.Xaml.Media.SolidColorBrush(Windows.UI.Color.FromArgb(0, 0, 0, 0));
-
-            //load file icon into uwp image control
-            Windows.UI.Xaml.Controls.Image image = new Windows.UI.Xaml.Controls.Image();
-            string path = Path.Combine(folderIconDir + foldername);
-            Uri fileuri = new Uri(path);
-            image.Source = new Windows.UI.Xaml.Media.Imaging.BitmapImage(fileuri);
-            image.Stretch = Windows.UI.Xaml.Media.Stretch.Uniform;
-            image.VerticalAlignment = Windows.UI.Xaml.VerticalAlignment.Center;
-            image.HorizontalAlignment = Windows.UI.Xaml.HorizontalAlignment.Center;
-            image.Margin = new Windows.UI.Xaml.Thickness(size * 22.5, 5, size * 22.5, 0);
-            image.Height = stackpanel.Width - size * 22.5 - size * 22.5;
-            image.Width = stackpanel.Width - size * 22.5 - size * 22.5;
-
-            //create a textblock
-            Windows.UI.Xaml.Controls.TextBlock textblock = new Windows.UI.Xaml.Controls.TextBlock();
-            textblock.TextAlignment = Windows.UI.Xaml.TextAlignment.Center;
-            textblock.Text = new DirectoryInfo(directory).Name;
-            textblock.HorizontalAlignment = Windows.UI.Xaml.HorizontalAlignment.Center;
-            textblock.VerticalAlignment = Windows.UI.Xaml.VerticalAlignment.Bottom;
-            textblock.FontSize = size * 11;
-            textblock.Margin = new Windows.UI.Xaml.Thickness(5);
-            textblock.TextTrimming = Windows.UI.Xaml.TextTrimming.CharacterEllipsis;
-
-
-            //save the path in stackpanel tag
-            stackpanel.Tag = directory;
-
-            //init a tooltip
-            Windows.UI.Xaml.Controls.ToolTip toolTip = new Windows.UI.Xaml.Controls.ToolTip();
-            toolTip.Content = new DirectoryInfo(directory).Name;
-
-            //set the tooltipowner to the stackpanel using tooltip service
-            Windows.UI.Xaml.Controls.ToolTipService.SetToolTip(stackpanel, toolTip);
-
-            //stackpanel righttapped event handler to show menu flyout
-            stackpanel.PointerPressed += GridViewItem_PointerPressed;
-
-            //add the controls
-            stackpanel.Children.Add(image);
-            stackpanel.Children.Add(textblock);
-            gridView.Items.Add(stackpanel);
-
-        }
-
-        private void AddWebsite(string url)
-        {
-            //init a gridview
-            var gridView = gridviewhost.Child as Windows.UI.Xaml.Controls.GridView;
-
-            //show gridView
-            gridviewhost.Visibility = Visibility.Visible;
-
-            //init filename and remove everything after .com
-            var filename = url;
-
-            //remove all illegal characters from filename
-            filename = filename.Replace("/", "");
-            filename = filename.Replace(@"\", "");
-            filename = filename.Replace(":", "");
-            filename = filename.Replace("*", "");
-            filename = filename.Replace("?", "");
-            filename = filename.Replace("\"", "");
-            filename = filename.Replace("<", "");
-            filename = filename.Replace(">", "");
-            filename = filename.Replace("|", "");
-            filename = filename.Replace(".", "");
-
-            //add the .tiff extension
-            filename = filename + ".tiff";
-
-
-            //download address. The link is used to grab the favicon
-            string downloadaddress = "https://www.google.com/s2/favicons?sz=64&domain_url=https://" + url;
-
-            //init a new webclient
-            WebClient webClient = new WebClient();
-
-
-            if (File.Exists(Path.Combine(websiteIconDir, filename)))
-            {
-                try
-                {
-                    //try to download file
-                    filename = websitecount.ToString() + filename;
-                    //download the website's favicon
-                    webClient.DownloadFile(new Uri(downloadaddress), System.IO.Path.Combine(websiteIconDir, filename));
-                    websitecount += 1;
-                }
-                catch
-                {
-                    //show error message
-                    System.Windows.MessageBox.Show("Unable to get website icon. Please check that the website is valid and that you are connected to the internet. LauncherX will still add the website, just without the icon." +
-                        "If you want to have the icon, remove the website from LauncherX and re-add the website or restart Launcher X when you have internet connection.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                }
-
-
-            }
-            else
-            {
-                try
-                {
-                    //try to download file
-                    //download the website's favicon
-                    webClient.DownloadFile(new Uri(downloadaddress), System.IO.Path.Combine(websiteIconDir, filename));
-                }
-                catch
-                {
-                    //show error message
-                    System.Windows.MessageBox.Show("Unable to get website icon. Please check that the website is valid and that you are connected to the internet. LauncherX will still add the website, just without the icon." +
-                        "If you want to have the icon, remove the website from LauncherX and re-add the website or restart Launcher X when you have internet connection.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                }
-            }
-
-
-
-
-            //create a stackpanel
-            Windows.UI.Xaml.Controls.StackPanel stackpanel = new Windows.UI.Xaml.Controls.StackPanel();
-            stackpanel.Width = size * 105;
-            stackpanel.Height = size * 90;
-            //for some reason, it needs to have a background in order for right tap to work??
-            stackpanel.Background = new Windows.UI.Xaml.Media.SolidColorBrush(Windows.UI.Color.FromArgb(0, 0, 0, 0));
-
-            //load file icon into uwp image control
-            Windows.UI.Xaml.Controls.Image image = new Windows.UI.Xaml.Controls.Image();
-            string path = Path.Combine(websiteIconDir + filename);
-            Uri fileuri = new Uri(path);
-            image.Source = new Windows.UI.Xaml.Media.Imaging.BitmapImage(fileuri);
-            image.Stretch = Windows.UI.Xaml.Media.Stretch.Uniform;
-            image.VerticalAlignment = Windows.UI.Xaml.VerticalAlignment.Center;
-            image.HorizontalAlignment = Windows.UI.Xaml.HorizontalAlignment.Center;
-            image.Margin = new Windows.UI.Xaml.Thickness(size * 22.5, 5, size * 22.5, 0);
-            image.Height = stackpanel.Width - size * 22.5 - size * 22.5;
-            image.Width = stackpanel.Width - size * 22.5 - size * 22.5;
-
-            //create a textblock
-            Windows.UI.Xaml.Controls.TextBlock textblock = new Windows.UI.Xaml.Controls.TextBlock();
-            textblock.TextAlignment = Windows.UI.Xaml.TextAlignment.Center;
-            textblock.Text = original_url;
-            textblock.HorizontalAlignment = Windows.UI.Xaml.HorizontalAlignment.Center;
-            textblock.VerticalAlignment = Windows.UI.Xaml.VerticalAlignment.Bottom;
-            textblock.FontSize = size * 11;
-            textblock.Margin = new Windows.UI.Xaml.Thickness(5);
-            textblock.TextTrimming = Windows.UI.Xaml.TextTrimming.CharacterEllipsis;
-
-            //save the path in stackpanel tag
-            stackpanel.Tag = "https://" + url;
-
-            //init a tooltip
-            Windows.UI.Xaml.Controls.ToolTip toolTip = new Windows.UI.Xaml.Controls.ToolTip();
-            toolTip.Content = original_url;
-
-            //set the tooltipowner to the stackpanel using tooltip service
-            Windows.UI.Xaml.Controls.ToolTipService.SetToolTip(stackpanel, toolTip);
-
-            //righttapped event handler for menu flyout
-            stackpanel.PointerPressed += GridViewItem_PointerPressed;
-
-            //add the controls
-            stackpanel.Children.Add(image);
-            stackpanel.Children.Add(textblock);
-            gridView.Items.Add(stackpanel);
-
-
-        }
+        #endregion
 
         #endregion
 
@@ -972,7 +885,7 @@ namespace LauncherX
             if (websiteok == true)
             {
                 //add the website
-                AddWebsite(url);
+                AddWebsite(url, original_url);
 
                 websiteok = false;
             }

@@ -78,28 +78,25 @@ namespace LauncherX
 
         private void OkBtn_Click(object sender, RoutedEventArgs e)
         {
+            original_url = urlBox.Text;
+            websiteok = true;
+
             if (urlBox.Text.StartsWith("https://"))
             {
                 //remove https:// and set websiteok to true to activate the method later
-                original_url = urlBox.Text;
                 url = urlBox.Text.Remove(0, 8);
-                websiteok = true;
                 Close();
             }
             else if (urlBox.Text.StartsWith("http://"))
             {
                 //remove http:// and set websiteok to true to activate the method later
-                original_url = urlBox.Text;
                 url = urlBox.Text.Remove(0, 7);
-                websiteok = true;
                 Close();
             }
             else
             {
                 //assign to the url variable and set website ok to true
-                original_url = urlBox.Text;
                 url = urlBox.Text;
-                websiteok = true;
                 Close();
             }
         }
