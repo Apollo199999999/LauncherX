@@ -140,7 +140,7 @@ namespace LauncherX
             Properties.Settings.Default.Upgrade();
             Properties.Settings.Default.Save();
             Properties.Settings.Default.Reload();
-            
+
             //set size value
             size = Properties.Settings.Default.scale;
             scale = Properties.Settings.Default.scale;
@@ -200,7 +200,7 @@ namespace LauncherX
             CheckAndUpdateTheme();
         }
 
-        
+
         public bool IsDirectoryEmpty(string path)
         {
             return !Directory.EnumerateFileSystemEntries(path).Any();
@@ -308,7 +308,7 @@ namespace LauncherX
                     //show the messagebox
                     var result = System.Windows.MessageBox.Show("An update is available, would you like to download it?", "Update available",
                         System.Windows.MessageBoxButton.YesNo, System.Windows.MessageBoxImage.Information);
-                   
+
                     //check for the messagebox reply
                     if (result == MessageBoxResult.Yes)
                     {
@@ -342,26 +342,8 @@ namespace LauncherX
 
         //these variables are used for duplicate naming
         public int foldercount = 0;
-        public int count = 0;
+        public int filecount = 0;
         public int websitecount = 0;
-
-        //this variable is used in case the user wants to remove the item(**file**)
-        public object filetoremove;
-
-        //this variable is used to look for thr **file **to open
-        public string filetolook;
-
-        //this variable is used to look for the **folder** to open
-        public string foldertolook;
-
-        //this variable is used in case the user wants to remove the item(**folder**)
-        public object foldertoremove;
-
-        //this variable is used to look for the **website** to open
-        public string websitetolook;
-
-        //this variable is used in case the user wants to remove the item (**website**)
-        public object websitetoremove;
 
         //this variable is used to save the items in the gridview, based on order
         public int savename = 1;
@@ -411,6 +393,102 @@ namespace LauncherX
             }
         }
 
+        //FUNCTIONS TO ADD ITEM, FOLDER, WEBSITE
+        public void CreateGridViewItem()
+        {
+
+        }
+
+        public Windows.UI.Xaml.Controls.MenuFlyout CreateGridViewItemContextMenu(Windows.UI.Xaml.Controls.StackPanel stackPanel)
+        {
+            //init a new menu flyout
+            Windows.UI.Xaml.Controls.MenuFlyout menu = new Windows.UI.Xaml.Controls.MenuFlyout();
+
+            //init menu flyout items
+            Windows.UI.Xaml.Controls.MenuFlyoutItem open = new Windows.UI.Xaml.Controls.MenuFlyoutItem();
+            Windows.UI.Xaml.Controls.MenuFlyoutItem openfilelocation = new Windows.UI.Xaml.Controls.MenuFlyoutItem();
+            Windows.UI.Xaml.Controls.MenuFlyoutItem remove = new Windows.UI.Xaml.Controls.MenuFlyoutItem();
+
+            //event handlers for the items
+            open.Click += (s, args) => MenuItemOpen_Click(s, args, stackPanel.Tag.ToString());
+            remove.Click += (s, args) => MenuItemRemove_Click(s, args, stackPanel);
+            openfilelocation.Click += (s, args) => MenuItemOpenLocation_Click(s, args, stackPanel.Tag.ToString());
+
+            //next, we need to determine if the stackpanel is a file, folder, or website item.
+            if (stackPanel.Tag.ToString().StartsWith("https://"))
+            {
+
+                //set properties and icons for the menuitems
+                open.Icon = new SymbolIcon(Symbol.OpenFile);
+                open.Text = "Open website";
+
+                remove.Icon = new SymbolIcon(Symbol.Delete);
+                remove.Text = "Remove item from LauncherX";
+
+                //this is a website
+                //add them to the menuflyout
+                menu.Items.Add(open);
+                menu.Items.Add(remove);
+            }
+            else
+            {
+                //either file or folder
+                System.IO.FileAttributes attr = File.GetAttributes(stackPanel.Tag.ToString());
+
+
+                if (attr.HasFlag(System.IO.FileAttributes.Directory))
+                {
+                    //this is a directory (folder)
+                    //create a new FontIcon
+                    Windows.UI.Xaml.Controls.FontIcon fontIcon = new Windows.UI.Xaml.Controls.FontIcon();
+                    fontIcon.FontFamily = new Windows.UI.Xaml.Media.FontFamily("Segoe MDL2 Assets");
+                    fontIcon.Glyph = "\xE838";
+
+                    //set properties and icons for the menuitems
+                    open.Icon = new SymbolIcon(Symbol.OpenFile);
+                    open.Text = "Open";
+
+                    openfilelocation.Icon = fontIcon;
+                    openfilelocation.Text = "Open folder location";
+
+                    remove.Icon = new SymbolIcon(Symbol.Delete);
+                    remove.Text = "Remove item from LauncherX";
+
+                    //add them to the menuflyout
+                    menu.Items.Add(open);
+                    menu.Items.Add(openfilelocation);
+                    menu.Items.Add(remove);
+
+                }
+                else if (!attr.HasFlag(System.IO.FileAttributes.Directory))
+                {
+                    //this is a file
+                    //create a new FontIcon
+                    Windows.UI.Xaml.Controls.FontIcon fontIcon = new Windows.UI.Xaml.Controls.FontIcon();
+                    fontIcon.FontFamily = new Windows.UI.Xaml.Media.FontFamily("Segoe MDL2 Assets");
+                    fontIcon.Glyph = "\xE838";
+
+                    //set properties and icons for the menuitems
+                    open.Icon = new SymbolIcon(Symbol.OpenFile);
+                    open.Text = "Open";
+
+                    openfilelocation.Icon = fontIcon;
+                    openfilelocation.Text = "Open file location";
+
+                    remove.Icon = new SymbolIcon(Symbol.Delete);
+                    remove.Text = "Remove item from LauncherX";
+
+                    //add them to the menuflyout
+                    menu.Items.Add(open);
+                    menu.Items.Add(openfilelocation);
+                    menu.Items.Add(remove);
+
+                }
+            }
+
+            return menu;
+        }
+
         public void AddItem(string myfile)
         {
             //init a gridview
@@ -439,12 +517,12 @@ namespace LauncherX
             {
                 if (File.Exists(Path.Combine(appIconDir, filename)))
                 {
-                    filename = count.ToString() + filename;
+                    filename = filecount.ToString() + filename;
                     FileStream stream = new FileStream(System.IO.Path.Combine(appIconDir, filename), FileMode.Create);
                     System.Drawing.Image image1 = System.Drawing.Image.FromFile(myfile);
                     System.Drawing.Image icon = image1.GetThumbnailImage(image1.Width, image1.Height, () => false, IntPtr.Zero);
                     icon.Save(stream, System.Drawing.Imaging.ImageFormat.Tiff);
-                    count += 1;
+                    filecount += 1;
 
                 }
                 else
@@ -459,11 +537,11 @@ namespace LauncherX
             {
                 if (File.Exists(Path.Combine(appIconDir, filename)))
                 {
-                    filename = count.ToString() + filename;
+                    filename = filecount.ToString() + filename;
                     FileStream stream = new FileStream(System.IO.Path.Combine(appIconDir, filename), FileMode.Create);
                     Bitmap icon = new Bitmap(System.Drawing.Icon.ExtractAssociatedIcon(myfile).ToBitmap());
                     icon.Save(stream, System.Drawing.Imaging.ImageFormat.Tiff);
-                    count += 1;
+                    filecount += 1;
 
                 }
                 else
@@ -515,9 +593,8 @@ namespace LauncherX
             //set the tooltipowner to the stackpanel using tooltip service
             Windows.UI.Xaml.Controls.ToolTipService.SetToolTip(stackpanel, toolTip);
 
-            //righttapped event handler for menu flyout
-            stackpanel.RightTapped += Stackpanel_RightTapped;
-            stackpanel.PointerPressed += Stackpanel_PointerPressed;
+            //righttapped event handler for menu flyou
+            stackpanel.PointerPressed += GridViewItem_PointerPressed;
 
             //add the controls
             stackpanel.Children.Add(image);
@@ -526,13 +603,10 @@ namespace LauncherX
 
         }
 
-        private void Stackpanel_PointerPressed(object sender, Windows.UI.Xaml.Input.PointerRoutedEventArgs e)
+        private void GridViewItem_PointerPressed(object sender, Windows.UI.Xaml.Input.PointerRoutedEventArgs e)
         {
             //init a stackpanel from sender
             Windows.UI.Xaml.Controls.StackPanel stackPanel = sender as Windows.UI.Xaml.Controls.StackPanel;
-
-            //disable the righttapped event
-            stackPanel.RightTapped -= Stackpanel_RightTapped;
 
             // Check for input device
             if (e.Pointer.PointerDeviceType == Windows.Devices.Input.PointerDeviceType.Mouse)
@@ -541,112 +615,31 @@ namespace LauncherX
 
                 if (properties.IsRightButtonPressed)
                 {
-                    //assign stackpanel tag to texttolook
-                    filetolook = stackPanel.Tag.ToString();
+                    MenuFlyout menu = CreateGridViewItemContextMenu(stackPanel);
 
-                    //assign stackpanel to filetoremove
-                    filetoremove = stackPanel;
-
-                    //init a new menu flyout
-                    Windows.UI.Xaml.Controls.MenuFlyout menu = new Windows.UI.Xaml.Controls.MenuFlyout();
-
-                    //init menu flyout items
-                    Windows.UI.Xaml.Controls.MenuFlyoutItem open = new Windows.UI.Xaml.Controls.MenuFlyoutItem();
-                    Windows.UI.Xaml.Controls.MenuFlyoutItem openfilelocation = new Windows.UI.Xaml.Controls.MenuFlyoutItem();
-                    Windows.UI.Xaml.Controls.MenuFlyoutItem remove = new Windows.UI.Xaml.Controls.MenuFlyoutItem();
-
-                    //create a new FontIcon
-                    Windows.UI.Xaml.Controls.FontIcon fontIcon = new Windows.UI.Xaml.Controls.FontIcon();
-                    fontIcon.FontFamily = new Windows.UI.Xaml.Media.FontFamily("Segoe MDL2 Assets");
-                    fontIcon.Glyph = "\xE838";
-
-                    //set properties and icons for the menuitems
-                    open.Icon = new SymbolIcon(Symbol.OpenFile);
-                    open.Text = "Open";
-
-                    openfilelocation.Icon = fontIcon;
-                    openfilelocation.Text = "Open file location";
-
-                    remove.Icon = new SymbolIcon(Symbol.Delete);
-                    remove.Text = "Remove item from LauncherX";
-
-                    //event handlers for the items
-                    open.Click += Open_Click;
-                    openfilelocation.Click += Openfilelocation_Click;
-                    remove.Click += Remove_Click;
-
-                    //add them to the menuflyout
-                    menu.Items.Add(open);
-                    menu.Items.Add(openfilelocation);
-                    menu.Items.Add(remove);
-
-                    //show the menyflyout
+                    //show the menuflyout
                     menu.ShowAt(sender as Windows.UI.Xaml.UIElement, e.GetCurrentPoint(stackPanel).Position);
                 }
             }
-            else
-            {
-                //if the input device is not a mouse, enable the righttapped event
-                stackPanel.RightTapped += Stackpanel_RightTapped;
-            }
         }
 
-
-
-        private void Stackpanel_RightTapped(object sender, Windows.UI.Xaml.Input.RightTappedRoutedEventArgs e)
+        private void MenuItemOpen_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e, string ItemToOpen)
         {
-            //assign stackpanel tag to filetolook
-            Windows.UI.Xaml.Controls.StackPanel stackPanel = sender as Windows.UI.Xaml.Controls.StackPanel;
-            filetolook = stackPanel.Tag.ToString();
-
-            //assign stackpanel to filetoremove
-            filetoremove = stackPanel;
-
-            //init a new menu flyout
-            Windows.UI.Xaml.Controls.MenuFlyout menu = new Windows.UI.Xaml.Controls.MenuFlyout();
-
-            //init menu flyout items
-            Windows.UI.Xaml.Controls.MenuFlyoutItem open = new Windows.UI.Xaml.Controls.MenuFlyoutItem();
-            Windows.UI.Xaml.Controls.MenuFlyoutItem openfilelocation = new Windows.UI.Xaml.Controls.MenuFlyoutItem();
-            Windows.UI.Xaml.Controls.MenuFlyoutItem remove = new Windows.UI.Xaml.Controls.MenuFlyoutItem();
-
-            //create a new FontIcon
-            Windows.UI.Xaml.Controls.FontIcon fontIcon = new Windows.UI.Xaml.Controls.FontIcon();
-            fontIcon.FontFamily = new Windows.UI.Xaml.Media.FontFamily("Segoe MDL2 Assets");
-            fontIcon.Glyph = "\xE838";
-
-            //set properties and icons for the menuitems
-            open.Icon = new SymbolIcon(Symbol.OpenFile);
-            open.Text = "Open";
-
-            openfilelocation.Icon = fontIcon;
-            openfilelocation.Text = "Open file location";
-
-            remove.Icon = new SymbolIcon(Symbol.Delete);
-            remove.Text = "Remove item from LauncherX";
-
-            //event handlers for the items
-            open.Click += Open_Click;
-            openfilelocation.Click += Openfilelocation_Click;
-            remove.Click += Remove_Click;
-
-            //add them to the menuflyout
-            menu.Items.Add(open);
-            menu.Items.Add(openfilelocation);
-            menu.Items.Add(remove);
-
-            //show the menyflyout
-            menu.ShowAt(sender as Windows.UI.Xaml.UIElement, e.GetPosition(sender as Windows.UI.Xaml.UIElement));
-
+            try
+            {
+                //start the process
+                Process.Start(ItemToOpen);
+            }
+            catch { }
         }
 
-        private void Remove_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+        private void MenuItemRemove_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e, Windows.UI.Xaml.Controls.StackPanel stackPanel)
         {
             //init gridView
             var gridView = gridviewhost.Child as Windows.UI.Xaml.Controls.GridView;
 
             //remove the item
-            gridView.Items.Remove(filetoremove);
+            gridView.Items.Remove(stackPanel);
 
             //check if gridView is empty
             if (gridView.Items.Count == 0)
@@ -659,30 +652,12 @@ namespace LauncherX
                 gridviewhost.Visibility = Visibility.Visible;
             }
 
-            //clear the variable
-            filetoremove = null;
-
         }
 
-        private void Openfilelocation_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+        private void MenuItemOpenLocation_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e, string ItemToLook)
         {
             //open file location
-            Process.Start("explorer.exe", "/select, " + filetolook);
-
-            //clear the variable
-            filetolook = null;
-        }
-
-        private void Open_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
-        {
-            try
-            {
-                //start the process
-                Process.Start(filetolook);
-            }
-            catch { }
-            //clear the variable
-            filetolook = null;
+            Process.Start("explorer.exe", "/select, " + ItemToLook);
         }
 
 
@@ -775,170 +750,13 @@ namespace LauncherX
             Windows.UI.Xaml.Controls.ToolTipService.SetToolTip(stackpanel, toolTip);
 
             //stackpanel righttapped event handler to show menu flyout
-            stackpanel.RightTapped += Stackpanel_RightTapped1;
-            stackpanel.PointerPressed += Stackpanel_PointerPressed1;
+            stackpanel.PointerPressed += GridViewItem_PointerPressed;
 
             //add the controls
             stackpanel.Children.Add(image);
             stackpanel.Children.Add(textblock);
             gridView.Items.Add(stackpanel);
 
-        }
-
-        private void Stackpanel_PointerPressed1(object sender, Windows.UI.Xaml.Input.PointerRoutedEventArgs e)
-        {
-            //init a stackpanel from sender
-            Windows.UI.Xaml.Controls.StackPanel stackPanel = sender as Windows.UI.Xaml.Controls.StackPanel;
-
-            //disable the righttapped event
-            stackPanel.RightTapped -= Stackpanel_RightTapped1;
-
-            // Check for input device
-            if (e.Pointer.PointerDeviceType == Windows.Devices.Input.PointerDeviceType.Mouse)
-            {
-                var properties = e.GetCurrentPoint(stackPanel).Properties;
-
-                if (properties.IsRightButtonPressed)
-                {
-                    // assign stackpanel tag to foldertolook
-                    foldertolook = stackPanel.Tag.ToString();
-
-                    //assign stackpanel to foldertoremove
-                    foldertoremove = stackPanel;
-
-                    //init a new menu flyout
-                    Windows.UI.Xaml.Controls.MenuFlyout menu = new Windows.UI.Xaml.Controls.MenuFlyout();
-
-                    //init menu flyout items
-                    Windows.UI.Xaml.Controls.MenuFlyoutItem open = new Windows.UI.Xaml.Controls.MenuFlyoutItem();
-                    Windows.UI.Xaml.Controls.MenuFlyoutItem openfilelocation = new Windows.UI.Xaml.Controls.MenuFlyoutItem();
-                    Windows.UI.Xaml.Controls.MenuFlyoutItem remove = new Windows.UI.Xaml.Controls.MenuFlyoutItem();
-
-                    //create a new FontIcon
-                    Windows.UI.Xaml.Controls.FontIcon fontIcon = new Windows.UI.Xaml.Controls.FontIcon();
-                    fontIcon.FontFamily = new Windows.UI.Xaml.Media.FontFamily("Segoe MDL2 Assets");
-                    fontIcon.Glyph = "\xE838";
-
-                    //set properties and icons for the menuitems
-                    open.Icon = new SymbolIcon(Symbol.OpenFile);
-                    open.Text = "Open";
-
-                    openfilelocation.Icon = fontIcon;
-                    openfilelocation.Text = "Open folder location";
-
-                    remove.Icon = new SymbolIcon(Symbol.Delete);
-                    remove.Text = "Remove item from LauncherX";
-
-                    //event handlers
-                    open.Click += Open_Click1;
-                    remove.Click += Remove_Click1;
-                    openfilelocation.Click += Openfilelocation_Click1;
-
-                    //add them to the menuflyout
-                    menu.Items.Add(open);
-                    menu.Items.Add(openfilelocation);
-                    menu.Items.Add(remove);
-
-                    //show the menyflyout
-                    menu.ShowAt(sender as Windows.UI.Xaml.UIElement, e.GetCurrentPoint(stackPanel).Position);
-                }
-            }
-            else
-            {
-                //if the input device is not a mouse, enable the righttapped event
-                stackPanel.RightTapped += Stackpanel_RightTapped1;
-            }
-        }
-
-        private void Stackpanel_RightTapped1(object sender, Windows.UI.Xaml.Input.RightTappedRoutedEventArgs e)
-        {
-            //assign stackpanel textblock to texttolook
-            Windows.UI.Xaml.Controls.StackPanel stackPanel = sender as Windows.UI.Xaml.Controls.StackPanel;
-            foldertolook = stackPanel.Tag.ToString();
-
-            //assign stackpanel to foldertoremove
-            foldertoremove = stackPanel;
-
-            //init a new menu flyout
-            Windows.UI.Xaml.Controls.MenuFlyout menu = new Windows.UI.Xaml.Controls.MenuFlyout();
-
-            //init menu flyout items
-            Windows.UI.Xaml.Controls.MenuFlyoutItem open = new Windows.UI.Xaml.Controls.MenuFlyoutItem();
-            Windows.UI.Xaml.Controls.MenuFlyoutItem openfilelocation = new Windows.UI.Xaml.Controls.MenuFlyoutItem();
-            Windows.UI.Xaml.Controls.MenuFlyoutItem remove = new Windows.UI.Xaml.Controls.MenuFlyoutItem();
-
-            //create a new FontIcon
-            Windows.UI.Xaml.Controls.FontIcon fontIcon = new Windows.UI.Xaml.Controls.FontIcon();
-            fontIcon.FontFamily = new Windows.UI.Xaml.Media.FontFamily("Segoe MDL2 Assets");
-            fontIcon.Glyph = "\xE838";
-
-            //set properties and icons for the menuitems
-            open.Icon = new SymbolIcon(Symbol.OpenFile);
-            open.Text = "Open";
-
-            openfilelocation.Icon = fontIcon;
-            openfilelocation.Text = "Open folder location";
-
-            remove.Icon = new SymbolIcon(Symbol.Delete);
-            remove.Text = "Remove item from LauncherX";
-
-            //event handlers
-            open.Click += Open_Click1;
-            remove.Click += Remove_Click1;
-            openfilelocation.Click += Openfilelocation_Click1;
-
-            //add them to the menuflyout
-            menu.Items.Add(open);
-            menu.Items.Add(openfilelocation);
-            menu.Items.Add(remove);
-
-            //show the menyflyout
-            menu.ShowAt(sender as Windows.UI.Xaml.UIElement, e.GetPosition(sender as Windows.UI.Xaml.UIElement));
-
-        }
-
-        private void Openfilelocation_Click1(object sender, Windows.UI.Xaml.RoutedEventArgs e)
-        {
-            //open folder location
-            Process.Start("explorer.exe", "/select, " + foldertolook);
-
-            //clear the variable
-            foldertolook = null;
-        }
-
-        private void Remove_Click1(object sender, Windows.UI.Xaml.RoutedEventArgs e)
-        {
-            //init a gridView
-            var gridView = gridviewhost.Child as Windows.UI.Xaml.Controls.GridView;
-
-            //remove the item
-            gridView.Items.Remove(foldertoremove);
-
-            //check if gridView is empty
-            if (gridView.Items.Count == 0)
-            {
-                gridviewhost.Visibility = Visibility.Hidden;
-                empty.BringIntoView();
-            }
-            else
-            {
-                gridviewhost.Visibility = Visibility.Visible;
-            }
-
-            //clear the variable
-            foldertoremove = null;
-        }
-
-        private void Open_Click1(object sender, Windows.UI.Xaml.RoutedEventArgs e)
-        {
-            try
-            {
-                //start the process
-                Process.Start(foldertolook);
-            }
-            catch { }
-            //clear the variable
-            foldertolook = null;
         }
 
         private void AddWebsite(string url)
@@ -1053,8 +871,7 @@ namespace LauncherX
             Windows.UI.Xaml.Controls.ToolTipService.SetToolTip(stackpanel, toolTip);
 
             //righttapped event handler for menu flyout
-            stackpanel.RightTapped += Stackpanel_RightTapped2;
-            stackpanel.PointerPressed += Stackpanel_PointerPressed2;
+            stackpanel.PointerPressed += GridViewItem_PointerPressed;
 
             //add the controls
             stackpanel.Children.Add(image);
@@ -1064,134 +881,6 @@ namespace LauncherX
 
         }
 
-        private void Stackpanel_PointerPressed2(object sender, Windows.UI.Xaml.Input.PointerRoutedEventArgs e)
-        {
-            //init a stackpanel from sender
-            Windows.UI.Xaml.Controls.StackPanel stackPanel = sender as Windows.UI.Xaml.Controls.StackPanel;
-
-            //disable the righttapped event
-            stackPanel.RightTapped -= Stackpanel_RightTapped2;
-
-            // Check for input device
-            if (e.Pointer.PointerDeviceType == Windows.Devices.Input.PointerDeviceType.Mouse)
-            {
-                var properties = e.GetCurrentPoint(stackPanel).Properties;
-
-                if (properties.IsRightButtonPressed)
-                {
-                    //assign stackpanel tag to websitetolook
-                    websitetolook = stackPanel.Tag.ToString();
-
-                    //assign stackpanel to websitetoremove
-                    websitetoremove = stackPanel;
-
-                    //init a new menu flyout
-                    Windows.UI.Xaml.Controls.MenuFlyout menu = new Windows.UI.Xaml.Controls.MenuFlyout();
-
-                    //init menu flyout items
-                    Windows.UI.Xaml.Controls.MenuFlyoutItem open = new Windows.UI.Xaml.Controls.MenuFlyoutItem();
-                    Windows.UI.Xaml.Controls.MenuFlyoutItem remove = new Windows.UI.Xaml.Controls.MenuFlyoutItem();
-
-
-                    //set properties and icons for the menuitems
-                    open.Icon = new SymbolIcon(Symbol.OpenFile);
-                    open.Text = "Open website";
-
-                    remove.Icon = new SymbolIcon(Symbol.Delete);
-                    remove.Text = "Remove item from LauncherX";
-
-                    //event handlers for the items
-                    open.Click += Open_Click2;
-                    remove.Click += Remove_Click2;
-
-                    //add them to the menuflyout
-                    menu.Items.Add(open);
-                    menu.Items.Add(remove);
-
-                    //show the menyflyout
-                    menu.ShowAt(sender as Windows.UI.Xaml.UIElement, e.GetCurrentPoint(stackPanel).Position);
-                }
-            }
-            else
-            {
-                //if the input device is not a mouse, enable the righttapped event
-                stackPanel.RightTapped += Stackpanel_RightTapped2;
-            }
-        }
-
-        private void Remove_Click2(object sender, Windows.UI.Xaml.RoutedEventArgs e)
-        {
-            //init a gridView
-            var gridView = gridviewhost.Child as Windows.UI.Xaml.Controls.GridView;
-
-            //remove the item
-            gridView.Items.Remove(websitetoremove);
-
-            //check if gridView is empty
-            if (gridView.Items.Count == 0)
-            {
-                gridviewhost.Visibility = Visibility.Hidden;
-                empty.BringIntoView();
-            }
-            else
-            {
-                gridviewhost.Visibility = Visibility.Visible;
-            }
-
-            //clear the variable
-            websitetoremove = null;
-        }
-
-        private void Open_Click2(object sender, Windows.UI.Xaml.RoutedEventArgs e)
-        {
-            try
-            {
-                //start the process
-                Process.Start(websitetolook);
-            }
-            catch
-            { }
-            //clear the variable
-            websitetolook = null;
-        }
-
-        private void Stackpanel_RightTapped2(object sender, Windows.UI.Xaml.Input.RightTappedRoutedEventArgs e)
-        {
-            //init a stackpanel
-            Windows.UI.Xaml.Controls.StackPanel stackPanel = sender as Windows.UI.Xaml.Controls.StackPanel;
-
-            //assign stackpanel tag to websitetolook
-            websitetolook = stackPanel.Tag.ToString();
-
-            //assign stackpanel to websitetoremove
-            websitetoremove = stackPanel;
-
-            //init a new menu flyout
-            Windows.UI.Xaml.Controls.MenuFlyout menu = new Windows.UI.Xaml.Controls.MenuFlyout();
-
-            //init menu flyout items
-            Windows.UI.Xaml.Controls.MenuFlyoutItem open = new Windows.UI.Xaml.Controls.MenuFlyoutItem();
-            Windows.UI.Xaml.Controls.MenuFlyoutItem remove = new Windows.UI.Xaml.Controls.MenuFlyoutItem();
-
-
-            //set properties and icons for the menuitems
-            open.Icon = new SymbolIcon(Symbol.OpenFile);
-            open.Text = "Open website";
-
-            remove.Icon = new SymbolIcon(Symbol.Delete);
-            remove.Text = "Remove item from LauncherX";
-
-            //event handlers for the items
-            open.Click += Open_Click2;
-            remove.Click += Remove_Click2;
-
-            //add them to the menuflyout
-            menu.Items.Add(open);
-            menu.Items.Add(remove);
-
-            //show the menyflyout
-            menu.ShowAt(sender as Windows.UI.Xaml.UIElement, e.GetPosition(sender as Windows.UI.Xaml.UIElement));
-        }
 
         private void OpenFileBtn_Click(object sender, RoutedEventArgs e)
         {
@@ -1210,7 +899,7 @@ namespace LauncherX
 
             }
         }
-  
+
         private void gridviewhost_ChildChanged(object sender, EventArgs e)
         {
             //init a gridview
@@ -1326,15 +1015,15 @@ namespace LauncherX
                 //now check if it is the same
                 if (textblock.Text.ToLower().ToString() == SearchBox.Text.ToLower().ToString())
                 {
-                        try
-                        { //start the process
-                            Process.Start(stackpanel.Tag.ToString());
-                        }
-                        catch { }
-
-                        break;
-
+                    try
+                    { //start the process
+                        Process.Start(stackpanel.Tag.ToString());
                     }
+                    catch { }
+
+                    break;
+
+                }
             }
             //init a list
             List<string> AutoItems = new List<string>();
@@ -1376,7 +1065,7 @@ namespace LauncherX
             wbd.Closed += Wbd_Closed;
             wbd.ShowDialog();
         }
-     
+
         private async void Wbd_Closed(object sender, EventArgs e)
         {
 

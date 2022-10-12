@@ -98,10 +98,10 @@
                 Click="OpenWebsiteBtn_Click"
                 Content="Add a website" />
 
-            <Grid x:Name="GridViewBackground" Margin="-20,104,-20,-20">
+            <Grid x:Name="GridViewBackground" Margin="-20,104,-20,-20" Background="AliceBlue">
                 <xamlHost:WindowsXamlHost
                     x:Name="gridviewhost"
-                    Margin="20,0,20,20"
+                    Margin="20,20,20,20"
                     HorizontalAlignment="Stretch"
                     VerticalAlignment="Stretch"
                     ChildChanged="gridviewhost_ChildChanged"
