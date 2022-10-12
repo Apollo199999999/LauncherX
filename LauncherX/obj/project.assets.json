@@ -433,6 +433,29 @@
           "build/Microsoft.Windows.SDK.Contracts.targets": {}
         }
       },
+      "Microsoft.WindowsAPICodePack-Core/1.1.0": {
+        "type": "package",
+        "compile": {
+          "lib/Microsoft.WindowsAPICodePack.dll": {}
+        },
+        "runtime": {
+          "lib/Microsoft.WindowsAPICodePack.dll": {}
+        }
+      },
+      "Microsoft.WindowsAPICodePack-Shell/1.1.0": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.WindowsAPICodePack-Core": "1.1.0"
+        },
+        "compile": {
+          "lib/Microsoft.WindowsAPICodePack.Shell.dll": {},
+          "lib/Microsoft.WindowsAPICodePack.ShellExtensions.dll": {}
+        },
+        "runtime": {
+          "lib/Microsoft.WindowsAPICodePack.Shell.dll": {},
+          "lib/Microsoft.WindowsAPICodePack.ShellExtensions.dll": {}
+        }
+      },
       "System.Drawing.Common/6.0.0": {
         "type": "package",
         "compile": {
@@ -684,6 +707,29 @@
         "build": {
           "build/Microsoft.Windows.SDK.Contracts.props": {},
           "build/Microsoft.Windows.SDK.Contracts.targets": {}
+        }
+      },
+      "Microsoft.WindowsAPICodePack-Core/1.1.0": {
+        "type": "package",
+        "compile": {
+          "lib/Microsoft.WindowsAPICodePack.dll": {}
+        },
+        "runtime": {
+          "lib/Microsoft.WindowsAPICodePack.dll": {}
+        }
+      },
+      "Microsoft.WindowsAPICodePack-Shell/1.1.0": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.WindowsAPICodePack-Core": "1.1.0"
+        },
+        "compile": {
+          "lib/Microsoft.WindowsAPICodePack.Shell.dll": {},
+          "lib/Microsoft.WindowsAPICodePack.ShellExtensions.dll": {}
+        },
+        "runtime": {
+          "lib/Microsoft.WindowsAPICodePack.Shell.dll": {},
+          "lib/Microsoft.WindowsAPICodePack.ShellExtensions.dll": {}
         }
       },
       "System.Drawing.Common/6.0.0": {
@@ -939,6 +985,29 @@
           "build/Microsoft.Windows.SDK.Contracts.targets": {}
         }
       },
+      "Microsoft.WindowsAPICodePack-Core/1.1.0": {
+        "type": "package",
+        "compile": {
+          "lib/Microsoft.WindowsAPICodePack.dll": {}
+        },
+        "runtime": {
+          "lib/Microsoft.WindowsAPICodePack.dll": {}
+        }
+      },
+      "Microsoft.WindowsAPICodePack-Shell/1.1.0": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.WindowsAPICodePack-Core": "1.1.0"
+        },
+        "compile": {
+          "lib/Microsoft.WindowsAPICodePack.Shell.dll": {},
+          "lib/Microsoft.WindowsAPICodePack.ShellExtensions.dll": {}
+        },
+        "runtime": {
+          "lib/Microsoft.WindowsAPICodePack.Shell.dll": {},
+          "lib/Microsoft.WindowsAPICodePack.ShellExtensions.dll": {}
+        }
+      },
       "System.Drawing.Common/6.0.0": {
         "type": "package",
         "compile": {
@@ -1190,6 +1259,29 @@
         "build": {
           "build/Microsoft.Windows.SDK.Contracts.props": {},
           "build/Microsoft.Windows.SDK.Contracts.targets": {}
+        }
+      },
+      "Microsoft.WindowsAPICodePack-Core/1.1.0": {
+        "type": "package",
+        "compile": {
+          "lib/Microsoft.WindowsAPICodePack.dll": {}
+        },
+        "runtime": {
+          "lib/Microsoft.WindowsAPICodePack.dll": {}
+        }
+      },
+      "Microsoft.WindowsAPICodePack-Shell/1.1.0": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.WindowsAPICodePack-Core": "1.1.0"
+        },
+        "compile": {
+          "lib/Microsoft.WindowsAPICodePack.Shell.dll": {},
+          "lib/Microsoft.WindowsAPICodePack.ShellExtensions.dll": {}
+        },
+        "runtime": {
+          "lib/Microsoft.WindowsAPICodePack.Shell.dll": {},
+          "lib/Microsoft.WindowsAPICodePack.ShellExtensions.dll": {}
         }
       },
       "System.Drawing.Common/6.0.0": {
@@ -1608,6 +1700,37 @@
         "ref/netstandard2.0/en/Windows.Web.Http.Diagnostics.HttpDiagnosticsContract.xml"
       ]
     },
+    "Microsoft.WindowsAPICodePack-Core/1.1.0": {
+      "sha512": "jU5Y9fvuC/USod2RCCHhs1PJ/T5ANBIXPhNpew53s5SDfRzvIE97XcIt9U8Wm+DF0bTJAdF9v9PD0cgbTi7uMg==",
+      "type": "package",
+      "path": "microsoft.windowsapicodepack-core/1.1.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/Microsoft.WindowsAPICodePack.XML",
+        "lib/Microsoft.WindowsAPICodePack.dll",
+        "lib/Microsoft.WindowsAPICodePack.pdb",
+        "microsoft.windowsapicodepack-core.1.1.0.nupkg.sha512",
+        "microsoft.windowsapicodepack-core.nuspec"
+      ]
+    },
+    "Microsoft.WindowsAPICodePack-Shell/1.1.0": {
+      "sha512": "8WvLG0TNTylzMB8gnZeZDG68/DsagAF64K35RC2Y/zocHp4e03Uj/kba6egQlq1+0uVv04FpLG+CmENEIN53rg==",
+      "type": "package",
+      "path": "microsoft.windowsapicodepack-shell/1.1.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/Microsoft.WindowsAPICodePack.Shell.dll",
+        "lib/Microsoft.WindowsAPICodePack.Shell.pdb",
+        "lib/Microsoft.WindowsAPICodePack.Shell.xml",
+        "lib/Microsoft.WindowsAPICodePack.ShellExtensions.XML",
+        "lib/Microsoft.WindowsAPICodePack.ShellExtensions.dll",
+        "lib/Microsoft.WindowsAPICodePack.ShellExtensions.pdb",
+        "microsoft.windowsapicodepack-shell.1.1.0.nupkg.sha512",
+        "microsoft.windowsapicodepack-shell.nuspec"
+      ]
+    },
     "System.Drawing.Common/6.0.0": {
       "sha512": "NfuoKUiP2nUWwKZN6twGqXioIe1zVD0RIj2t976A+czLHr2nY454RwwXs6JU9Htc6mwqL6Dn/nEL3dpVf2jOhg==",
       "type": "package",
@@ -1820,6 +1943,7 @@
       "Microsoft.Toolkit.Wpf.UI.Controls >= 6.1.2",
       "Microsoft.Toolkit.Wpf.UI.XamlHost >= 6.1.2",
       "Microsoft.VCRTForwarders.140 >= 1.0.6",
+      "Microsoft.WindowsAPICodePack-Shell >= 1.1.0",
       "WPF-UI >= 2.0.3"
     ]
   },
@@ -1872,6 +1996,10 @@
           "Microsoft.VCRTForwarders.140": {
             "target": "Package",
             "version": "[1.0.6, )"
+          },
+          "Microsoft.WindowsAPICodePack-Shell": {
+            "target": "Package",
+            "version": "[1.1.0, )"
           },
           "WPF-UI": {
             "target": "Package",

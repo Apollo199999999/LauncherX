@@ -54,3 +54,9 @@ C:\Users\fligh\source\repos\LauncherX\LauncherX\obj\x64\Debug\LauncherX.csproj.C
 C:\Users\fligh\source\repos\LauncherX\LauncherX\obj\x64\Debug\LauncherX.csproj.CopyComplete
 C:\Users\fligh\source\repos\LauncherX\LauncherX\obj\x64\Debug\LauncherX.exe
 C:\Users\fligh\source\repos\LauncherX\LauncherX\obj\x64\Debug\LauncherX.pdb
+C:\Users\fligh\source\repos\LauncherX\LauncherX\bin\x64\Debug\Microsoft.WindowsAPICodePack.dll
+C:\Users\fligh\source\repos\LauncherX\LauncherX\bin\x64\Debug\Microsoft.WindowsAPICodePack.pdb
+C:\Users\fligh\source\repos\LauncherX\LauncherX\bin\x64\Debug\Microsoft.WindowsAPICodePack.Shell.dll
+C:\Users\fligh\source\repos\LauncherX\LauncherX\bin\x64\Debug\Microsoft.WindowsAPICodePack.Shell.pdb
+C:\Users\fligh\source\repos\LauncherX\LauncherX\bin\x64\Debug\Microsoft.WindowsAPICodePack.ShellExtensions.dll
+C:\Users\fligh\source\repos\LauncherX\LauncherX\bin\x64\Debug\Microsoft.WindowsAPICodePack.ShellExtensions.pdb

@@ -26,6 +26,29 @@ namespace LauncherX
     /// </summary>
     public partial class SettingsWindow
     {
+        public SettingsWindow()
+        {
+            InitializeComponent();
+
+            //set changeHeaderTextTextBox inital text to properties.settings.default.headertext
+            changeHeaderTextTextBox.Text = Properties.Settings.Default.headerText;
+
+            //make sure the textbox is not readonly
+            changeHeaderTextTextBox.IsReadOnly = false;
+
+            //check and update theme
+            CheckAndUpdateTheme();
+
+            //create a dispatcher timer to check for theme    
+            //init a new dispatcher timer
+            DispatcherTimer themeupdater = new DispatcherTimer();
+
+            themeupdater.Interval = TimeSpan.FromMilliseconds(100);
+            themeupdater.Tick += Themeupdater_Tick;
+            themeupdater.Start();
+        }
+
+        #region Methods relating to appearance of Settings Window
         //function to check and update theme
         public void CheckAndUpdateTheme()
         {
@@ -59,40 +82,14 @@ namespace LauncherX
 
         }
 
-        public SettingsWindow()
-        {
-            InitializeComponent();
-
-            //set changeHeaderTextTextBox inital text to properties.settings.default.headertext
-            changeHeaderTextTextBox.Text = Properties.Settings.Default.headerText;
-
-            //make sure the textbox is not readonly
-            changeHeaderTextTextBox.IsReadOnly = false;
-
-            //check and update theme
-            CheckAndUpdateTheme();
-
-            //create a dispatcher timer to check for theme    
-            //init a new dispatcher timer
-            DispatcherTimer themeupdater = new DispatcherTimer();
-
-            themeupdater.Interval = TimeSpan.FromMilliseconds(100);
-            themeupdater.Tick += Themeupdater_Tick;
-            themeupdater.Start();
-        }
-
         private void Themeupdater_Tick(object sender, EventArgs e)
         {
             //check and update theme
             CheckAndUpdateTheme();
         }
+        #endregion
 
-
-        private void CloseButton_Click(object sender, RoutedEventArgs e)
-        {
-            Close();
-        }
-
+        #region Event Handlers for saving settings after they have been modified
         private void changeHeaderTextTextBox_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
         {
             //update headerText value from **publicvariables**
@@ -128,5 +125,13 @@ namespace LauncherX
             //unsubscribe to valuechanged event handler
             ScaleSlider.ValueChanged -= ScaleSlider_ValueChanged;
         }
+
+        #endregion
+
+        private void CloseButton_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
+        }
+
     }
 }

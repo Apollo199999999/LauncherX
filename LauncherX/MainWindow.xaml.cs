@@ -1,36 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.Drawing;
+using System.IO;
 using System.Linq;
-using System.Text;
+using System.Net;
+using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using Windows.Storage;
-using Microsoft.Toolkit.Wpf;
-using Microsoft.Win32;
-using System.IO;
-using System.DirectoryServices;
-using System.Drawing;
-using Shell32;
-using System.Diagnostics;
-using Windows.ApplicationModel.DataTransfer;
-using System.Runtime.InteropServices;
-using static LauncherX.PublicVariables;
-using System.Windows.Interop;
 using System.Windows.Threading;
 using Windows.UI.Xaml.Controls;
-using System.Windows.Forms;
-using System.Net;
-using System.Web;
-using Windows.UI.Xaml.Media;
-using Windows.UI;
-using System.Web.UI.WebControls;
+using static LauncherX.PublicVariables;
+using Microsoft.WindowsAPICodePack.Dialogs;
 
 namespace LauncherX
 {
@@ -42,6 +24,7 @@ namespace LauncherX
 
     public partial class MainWindow
     {
+        #region Code related to calling of Win32 APIs
         //Struct used by SHGetFileInfo function
         [StructLayout(LayoutKind.Sequential)]
         public struct SHFILEINFO
@@ -63,9 +46,20 @@ namespace LauncherX
         [DllImport("shell32.dll")]
         public static extern IntPtr SHGetFileInfo(string pszPath, uint dwFileAttributes, ref SHFILEINFO psfi, uint cbSizeFileInfo, uint uFlags);
 
-        //------------------------------------------------------------------------------------------------------------------
+        #endregion
+
+        #region Global variables
+
         //size variable to control size of icons
         public double size;
+
+        //these variables are used for duplicate naming
+        public int foldercount = 0;
+        public int filecount = 0;
+        public int websitecount = 0;
+
+        //this variable is used to save the items in the gridview, based on order
+        public int savename = 1;
 
         //AddItemsErrorDialog, in case when loading the files after application startup, the file does not exist
         AddItemsErrorDialog AddItemsErrorDialog = new AddItemsErrorDialog();
@@ -79,58 +73,7 @@ namespace LauncherX
         public string folderIconDir = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\LauncherX\\Temp\\FolderIcons\\";
         public string websiteIconDir = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\LauncherX\\Temp\\WebsiteIcons\\";
 
-        //function to check and update theme
-        public void CheckAndUpdateTheme()
-        {
-            //next, check if the system is in light or dark theme
-            bool is_light_mode = true;
-            try
-            {
-                var v = Microsoft.Win32.Registry.GetValue(@"HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Themes\Personalize", "AppsUseLightTheme", "1");
-                if (v != null && v.ToString() == "0")
-                    is_light_mode = false;
-            }
-            catch { }
-
-
-            if (is_light_mode == true)
-            {
-                Wpf.Ui.Appearance.Theme.Apply(
-                    Wpf.Ui.Appearance.ThemeType.Light,     // Theme type
-                    Wpf.Ui.Appearance.BackgroundType.Mica, // Background type
-                    true                                   // Whether to change accents automatically
-                );
-
-                //change the background of the gridview section
-                var gridView = gridviewhost.Child as Windows.UI.Xaml.Controls.GridView;
-                if (gridView != null)
-                {
-                    Windows.UI.Xaml.Media.SolidColorBrush background = new Windows.UI.Xaml.Media.SolidColorBrush(Windows.UI.Color.FromArgb(255, 243, 243, 243));
-                    gridView.Background = background;
-                }
-                //GridViewBackground.Background = new System.Windows.Media.SolidColorBrush(System.Windows.Media.Color.FromArgb(255, 243, 243, 243));
-            }
-            else if (is_light_mode == false)
-            {
-                Wpf.Ui.Appearance.Theme.Apply(
-                  Wpf.Ui.Appearance.ThemeType.Dark,      // Theme type
-                  Wpf.Ui.Appearance.BackgroundType.Mica, // Background type
-                  true                                   // Whether to change accents automatically
-                );
-
-                //change the background of the gridview section
-                var gridView = gridviewhost.Child as Windows.UI.Xaml.Controls.GridView;
-                if (gridView != null)
-                {
-                    Windows.UI.Xaml.Media.SolidColorBrush background = new Windows.UI.Xaml.Media.SolidColorBrush(Windows.UI.Color.FromArgb(255, 32, 32, 32));
-                    gridView.Background = background;
-                }
-                ///GridViewBackground.Background = new System.Windows.Media.SolidColorBrush(System.Windows.Media.Color.FromArgb(255, 32, 32, 32));
-
-            }
-
-        }
-
+        #endregion
 
         public MainWindow()
         {
@@ -194,13 +137,68 @@ namespace LauncherX
 
         }
 
+        #region Methods relating to appearance of MainWindow
+        //function to check and update theme
+        public void CheckAndUpdateTheme()
+        {
+            //next, check if the system is in light or dark theme
+            bool is_light_mode = true;
+            try
+            {
+                var v = Microsoft.Win32.Registry.GetValue(@"HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Themes\Personalize", "AppsUseLightTheme", "1");
+                if (v != null && v.ToString() == "0")
+                    is_light_mode = false;
+            }
+            catch { }
+
+
+            if (is_light_mode == true)
+            {
+                Wpf.Ui.Appearance.Theme.Apply(
+                    Wpf.Ui.Appearance.ThemeType.Light,     // Theme type
+                    Wpf.Ui.Appearance.BackgroundType.Mica, // Background type
+                    true                                   // Whether to change accents automatically
+                );
+
+                //change the background of the gridview section
+                var gridView = gridviewhost.Child as Windows.UI.Xaml.Controls.GridView;
+                if (gridView != null)
+                {
+                    Windows.UI.Xaml.Media.SolidColorBrush background = new Windows.UI.Xaml.Media.SolidColorBrush(Windows.UI.Color.FromArgb(255, 243, 243, 243));
+                    gridView.Background = background;
+                }
+                //GridViewBackground.Background = new System.Windows.Media.SolidColorBrush(System.Windows.Media.Color.FromArgb(255, 243, 243, 243));
+            }
+            else if (is_light_mode == false)
+            {
+                Wpf.Ui.Appearance.Theme.Apply(
+                  Wpf.Ui.Appearance.ThemeType.Dark,      // Theme type
+                  Wpf.Ui.Appearance.BackgroundType.Mica, // Background type
+                  true                                   // Whether to change accents automatically
+                );
+
+                //change the background of the gridview section
+                var gridView = gridviewhost.Child as Windows.UI.Xaml.Controls.GridView;
+                if (gridView != null)
+                {
+                    Windows.UI.Xaml.Media.SolidColorBrush background = new Windows.UI.Xaml.Media.SolidColorBrush(Windows.UI.Color.FromArgb(255, 32, 32, 32));
+                    gridView.Background = background;
+                }
+                ///GridViewBackground.Background = new System.Windows.Media.SolidColorBrush(System.Windows.Media.Color.FromArgb(255, 32, 32, 32));
+
+            }
+
+        }
+
         private void Themeupdater_Tick(object sender, EventArgs e)
         {
             //check and update theme
             CheckAndUpdateTheme();
         }
 
+        #endregion
 
+        #region Loading settings and checking for updates when LauncherX starts
         public bool IsDirectoryEmpty(string path)
         {
             return !Directory.EnumerateFileSystemEntries(path).Any();
@@ -263,7 +261,7 @@ namespace LauncherX
                             else if (!attr.HasFlag(System.IO.FileAttributes.Directory))
                             {
                                 //this is a file
-                                AddItem(s);
+                                AddFile(s);
                             }
                         }
                         catch
@@ -339,14 +337,9 @@ namespace LauncherX
             this.Focus();
         }
 
+        #endregion
 
-        //these variables are used for duplicate naming
-        public int foldercount = 0;
-        public int filecount = 0;
-        public int websitecount = 0;
-
-        //this variable is used to save the items in the gridview, based on order
-        public int savename = 1;
+        #region Methods relating to auto-update system
 
         //Check Internet Connection Function
         public static bool CheckForInternetConnection()
@@ -393,7 +386,9 @@ namespace LauncherX
             }
         }
 
-        //FUNCTIONS TO ADD ITEM, FOLDER, WEBSITE
+        #endregion
+
+        #region Methods relating to adding items to the gridView
         public void CreateGridViewItem()
         {
 
@@ -489,7 +484,7 @@ namespace LauncherX
             return menu;
         }
 
-        public void AddItem(string myfile)
+        public void AddFile(string myfile)
         {
             //init a gridview
             var gridView = gridviewhost.Child as Windows.UI.Xaml.Controls.GridView;
@@ -881,25 +876,9 @@ namespace LauncherX
 
         }
 
+        #endregion
 
-        private void OpenFileBtn_Click(object sender, RoutedEventArgs e)
-        {
-            //init open file dialog
-            Microsoft.Win32.OpenFileDialog openFileDialog = new Microsoft.Win32.OpenFileDialog() { DereferenceLinks = false };
-            openFileDialog.Multiselect = true;
-
-            //check if openfile dialog is ok
-            if (openFileDialog.ShowDialog() == true)
-            {
-                //and then get the icon and YEET in into the grid view
-                foreach (string myfile in openFileDialog.FileNames)
-                {
-                    AddItem(myfile);
-                }
-
-            }
-        }
-
+        #region Methods relating to XAML Islands GridView
         private void gridviewhost_ChildChanged(object sender, EventArgs e)
         {
             //init a gridview
@@ -938,6 +917,70 @@ namespace LauncherX
 
         }
 
+        #endregion
+
+        #region Event handlers for the Open file, folder, and website buttons
+        private void OpenFileBtn_Click(object sender, RoutedEventArgs e)
+        {
+            //init open file dialog
+            Microsoft.Win32.OpenFileDialog openFileDialog = new Microsoft.Win32.OpenFileDialog() { DereferenceLinks = false };
+            openFileDialog.Multiselect = true;
+
+            //check if openfile dialog is ok
+            if (openFileDialog.ShowDialog() == true)
+            {
+                //and then get the filename and YEET in into the grid view
+                foreach (string myfile in openFileDialog.FileNames)
+                {
+                    AddFile(myfile);
+                }
+
+            }
+        }
+
+        private void OpenFolderBtn_Click(object sender, RoutedEventArgs e)
+        {
+            //init folderbrowsedialog
+            var dialog = new CommonOpenFileDialog();
+            dialog.IsFolderPicker = true;
+            dialog.Multiselect = true;
+            CommonFileDialogResult result = dialog.ShowDialog();
+
+            //Add the folder
+            if (result == CommonFileDialogResult.Ok)
+            {
+                //and then get the filename and YEET in into the grid view
+                foreach (string myfile in dialog.FileNames)
+                {
+                    AddFolder(myfile);
+                }
+            }
+        }
+
+        private void OpenWebsiteBtn_Click(object sender, RoutedEventArgs e)
+        {
+            //show add website dialog
+            WebsiteDialog wbd = new WebsiteDialog();
+            //event handler to add the website
+            wbd.Closed += Wbd_Closed;
+            wbd.ShowDialog();
+        }
+
+        private void Wbd_Closed(object sender, EventArgs e)
+        {
+
+            if (websiteok == true)
+            {
+                //add the website
+                AddWebsite(url);
+
+                websiteok = false;
+            }
+        }
+
+        #endregion
+
+        #region Event handlers for application of settings
         private void SettingsButton_Click(object sender, RoutedEventArgs e)
         {
             //show settings window
@@ -985,20 +1028,9 @@ namespace LauncherX
                     "or contact the developer.", "Error while updating settings", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
+        #endregion
 
-        private void OpenFolderBtn_Click(object sender, RoutedEventArgs e)
-        {
-            //init folderbrowsedialog
-            System.Windows.Forms.FolderBrowserDialog folderBrowserDialog =
-                new System.Windows.Forms.FolderBrowserDialog();
-
-            //Add the folder
-            if (folderBrowserDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-            {
-                AddFolder(folderBrowserDialog.SelectedPath);
-            }
-        }
-
+        #region Event handlers for AutoSuggestBox
         private void SearchBox_SuggestionChosen(object sender, RoutedEventArgs e)
         {
             Wpf.Ui.Controls.AutoSuggestBox autoSuggestBox = sender as Wpf.Ui.Controls.AutoSuggestBox;
@@ -1057,27 +1089,9 @@ namespace LauncherX
             autoSuggestBox.MaxDropDownHeight = 200;
         }
 
-        private void OpenWebsiteBtn_Click(object sender, RoutedEventArgs e)
-        {
-            //show add website dialog
-            WebsiteDialog wbd = new WebsiteDialog();
-            //event handler to add the website
-            wbd.Closed += Wbd_Closed;
-            wbd.ShowDialog();
-        }
+        #endregion
 
-        private async void Wbd_Closed(object sender, EventArgs e)
-        {
-
-            if (websiteok == true)
-            {
-                //add the website
-                AddWebsite(url);
-
-                websiteok = false;
-            }
-        }
-
+        #region Saving of settings
         private void window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             //stop timers
@@ -1121,7 +1135,9 @@ namespace LauncherX
             //close application manually
             System.Windows.Application.Current.Shutdown();
         }
+        #endregion
 
+        #region Event Handlers for focusing window
         private void grid_MouseDown(object sender, MouseButtonEventArgs e)
         {
             //focus the window
@@ -1133,5 +1149,6 @@ namespace LauncherX
             //focus the window
             Focus();
         }
+        #endregion
     }
 }

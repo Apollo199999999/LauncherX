@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "Ccpr3l9pS1eobTTFVYfJFPZWvountwFjiWdcKM9VfTpRfqO9jr+ZYsesk+ufESdgrwwAFqjovRvXzYx57+iEbw==",
+  "dgSpecHash": "itPYIu3WYyontqGhPGtdba9PSAfxoXBoppeDYI3gmwF6OCechDt695rPEGiHDhB9qvi5/X6jt9Rokt20zKWa8g==",
   "success": true,
   "projectFilePath": "C:\\Users\\fligh\\source\\repos\\LauncherX\\LauncherX\\LauncherX.csproj",
   "expectedPackageFiles": [
@@ -11,6 +11,8 @@
     "C:\\Users\\fligh\\.nuget\\packages\\microsoft.toolkit.wpf.ui.xamlhost\\6.1.2\\microsoft.toolkit.wpf.ui.xamlhost.6.1.2.nupkg.sha512",
     "C:\\Users\\fligh\\.nuget\\packages\\microsoft.vcrtforwarders.140\\1.0.6\\microsoft.vcrtforwarders.140.1.0.6.nupkg.sha512",
     "C:\\Users\\fligh\\.nuget\\packages\\microsoft.windows.sdk.contracts\\10.0.18362.2005\\microsoft.windows.sdk.contracts.10.0.18362.2005.nupkg.sha512",
+    "C:\\Users\\fligh\\.nuget\\packages\\microsoft.windowsapicodepack-core\\1.1.0\\microsoft.windowsapicodepack-core.1.1.0.nupkg.sha512",
+    "C:\\Users\\fligh\\.nuget\\packages\\microsoft.windowsapicodepack-shell\\1.1.0\\microsoft.windowsapicodepack-shell.1.1.0.nupkg.sha512",
     "C:\\Users\\fligh\\.nuget\\packages\\system.drawing.common\\6.0.0\\system.drawing.common.6.0.0.nupkg.sha512",
     "C:\\Users\\fligh\\.nuget\\packages\\system.runtime.windowsruntime\\4.6.0\\system.runtime.windowsruntime.4.6.0.nupkg.sha512",
     "C:\\Users\\fligh\\.nuget\\packages\\system.runtime.windowsruntime.ui.xaml\\4.6.0\\system.runtime.windowsruntime.ui.xaml.4.6.0.nupkg.sha512",
