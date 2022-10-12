@@ -173,6 +173,12 @@
                                         Margin="0,5,0,0"
                                         FontSize="13"
                                         FontWeight="Medium"
+                                        Text="LauncherX's website:" />
+                                    
+                                    <TextBlock
+                                        Margin="0,5,0,0"
+                                        FontSize="13"
+                                        FontWeight="Medium"
                                         Text="GitHub repository:" />
 
                                     <TextBlock
@@ -200,6 +206,14 @@
                                         Foreground="{DynamicResource TextFillColorTertiaryBrush}"
                                         Text="© 2020-present ClickPhase" />
 
+                                    <ui:Hyperlink
+                                        Margin="0,5,0,0"
+                                        Padding="0"
+                                        Content="Visit LauncherX's website"
+                                        FontSize="13"
+                                        Icon="Link48"
+                                        NavigateUri="https://clickphase.vercel.app/launcherx" />
+                                    
                                     <ui:Hyperlink
                                         Margin="0,5,0,0"
                                         Padding="0"
