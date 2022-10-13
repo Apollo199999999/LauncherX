@@ -10,14 +10,13 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 using System.Windows.Threading;
-using Windows.UI.Xaml.Controls;
 using static LauncherX.PublicVariables;
 using Microsoft.WindowsAPICodePack.Dialogs;
-using static System.Net.WebRequestMethods;
-using System.Runtime.InteropServices.ComTypes;
 using System.Windows.Controls;
-using Windows.Devices.PointOfService;
-using File = System.IO.File;
+using System.Windows.Media;
+using Image = System.Windows.Controls.Image;
+using System.Windows.Media.Imaging;
+using Color = System.Windows.Media.Color;
 
 namespace LauncherX
 {
@@ -74,7 +73,7 @@ namespace LauncherX
 
         //init directory strings
         public string loadDir = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\LauncherX\\Files\\";
-        public string appIconDir = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\LauncherX\\Temp\\AppIcons\\";
+        public string fileIconDir = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\LauncherX\\Temp\\AppIcons\\";
         public string folderIconDir = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\LauncherX\\Temp\\FolderIcons\\";
         public string websiteIconDir = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\LauncherX\\Temp\\WebsiteIcons\\";
 
@@ -98,12 +97,12 @@ namespace LauncherX
 
             //create directories
             Directory.CreateDirectory(loadDir);
-            Directory.CreateDirectory(appIconDir);
+            Directory.CreateDirectory(fileIconDir);
             Directory.CreateDirectory(folderIconDir);
             Directory.CreateDirectory(websiteIconDir);
 
             //delete files in directory (appicons)
-            System.IO.DirectoryInfo di = new DirectoryInfo(appIconDir);
+            System.IO.DirectoryInfo di = new DirectoryInfo(fileIconDir);
 
             foreach (FileInfo file in di.GetFiles())
             {
@@ -164,15 +163,6 @@ namespace LauncherX
                     Wpf.Ui.Appearance.BackgroundType.Mica, // Background type
                     true                                   // Whether to change accents automatically
                 );
-
-                //change the background of the gridview section
-                var gridView = gridviewhost.Child as Windows.UI.Xaml.Controls.GridView;
-                if (gridView != null)
-                {
-                    Windows.UI.Xaml.Media.SolidColorBrush background = new Windows.UI.Xaml.Media.SolidColorBrush(Windows.UI.Color.FromArgb(255, 243, 243, 243));
-                    gridView.Background = background;
-                }
-                //GridViewBackground.Background = new System.Windows.Media.SolidColorBrush(System.Windows.Media.Color.FromArgb(255, 243, 243, 243));
             }
             else if (is_light_mode == false)
             {
@@ -181,16 +171,6 @@ namespace LauncherX
                   Wpf.Ui.Appearance.BackgroundType.Mica, // Background type
                   true                                   // Whether to change accents automatically
                 );
-
-                //change the background of the gridview section
-                var gridView = gridviewhost.Child as Windows.UI.Xaml.Controls.GridView;
-                if (gridView != null)
-                {
-                    Windows.UI.Xaml.Media.SolidColorBrush background = new Windows.UI.Xaml.Media.SolidColorBrush(Windows.UI.Color.FromArgb(255, 32, 32, 32));
-                    gridView.Background = background;
-                }
-                ///GridViewBackground.Background = new System.Windows.Media.SolidColorBrush(System.Windows.Media.Color.FromArgb(255, 32, 32, 32));
-
             }
 
         }
@@ -213,9 +193,6 @@ namespace LauncherX
         {
             //wait a while for the controls to load
             await Task.Delay(500);
-
-            //init gridView
-            var gridView = gridviewhost.Child as Windows.UI.Xaml.Controls.GridView;
 
             //create a variable to check if there are items that LauncherX cannot add
             bool ErrorAddingItems = false;
@@ -283,14 +260,15 @@ namespace LauncherX
             }
 
             //check if gridView is empty
-            if (gridView.Items.Count == 0)
+            if (WPFGridView.Items.Count == 0)
             {
-                gridviewhost.Visibility = Visibility.Hidden;
-                empty.BringIntoView();
+                WPFGridView.Visibility = Visibility.Hidden;
+                EmptyNotice.Visibility = Visibility.Visible;
             }
             else
             {
-                gridviewhost.Visibility = Visibility.Visible;
+                WPFGridView.Visibility = Visibility.Visible;
+                EmptyNotice.Visibility = Visibility.Hidden;
             }
 
             if (ErrorAddingItems == true)
@@ -395,50 +373,55 @@ namespace LauncherX
 
         #region Methods relating to GridView Items
 
-        #region Methods relating to creation of GridView Items
-        public Windows.UI.Xaml.Controls.StackPanel CreateGridViewItem(string iconPath, string DisplayText, string StackPanelTag)
+        #region Methods relating to creation and handling of GridView Items
+        public StackPanel CreateGridViewItem(string iconPath, string DisplayText, string StackPanelTag)
         {
             //create a stackpanel
-            Windows.UI.Xaml.Controls.StackPanel stackpanel = new Windows.UI.Xaml.Controls.StackPanel();
+            StackPanel stackpanel = new StackPanel();
             stackpanel.Width = size * 105;
-            stackpanel.Height = size * 90;
+            stackpanel.Height = size * 95;
             //for some reason, it needs to have a background in order for right tap to work??
-            stackpanel.Background = new Windows.UI.Xaml.Media.SolidColorBrush(Windows.UI.Color.FromArgb(0, 0, 0, 0));
+            stackpanel.Background = new SolidColorBrush(Color.FromArgb(0, 0, 0, 0));
 
-            //load file icon into uwp image control
-            Windows.UI.Xaml.Controls.Image image = new Windows.UI.Xaml.Controls.Image();
+            //load file icon into image control
+            Image image = new Image();
             string path = iconPath;
             Uri fileuri = new Uri(path);
-            image.Source = new Windows.UI.Xaml.Media.Imaging.BitmapImage(fileuri);
-            image.Stretch = Windows.UI.Xaml.Media.Stretch.Uniform;
-            image.VerticalAlignment = Windows.UI.Xaml.VerticalAlignment.Center;
-            image.HorizontalAlignment = Windows.UI.Xaml.HorizontalAlignment.Center;
-            image.Margin = new Windows.UI.Xaml.Thickness(size * 22.5, 5, size * 22.5, 0);
+            image.Source = new BitmapImage(fileuri);
+            image.Stretch = Stretch.Uniform;
+            image.VerticalAlignment = VerticalAlignment.Center;
+            image.HorizontalAlignment = HorizontalAlignment.Center;
+            image.Margin = new Thickness(size * 22.5, 5, size * 22.5, 0);
             image.Height = stackpanel.Width - size * 22.5 - size * 22.5;
             image.Width = stackpanel.Width - size * 22.5 - size * 22.5;
 
             //create a textblock
-            Windows.UI.Xaml.Controls.TextBlock textblock = new Windows.UI.Xaml.Controls.TextBlock();
-            textblock.TextAlignment = Windows.UI.Xaml.TextAlignment.Center;
+            TextBlock textblock = new TextBlock();
+            textblock.TextAlignment = TextAlignment.Center;
             textblock.Text = DisplayText;
-            textblock.HorizontalAlignment = Windows.UI.Xaml.HorizontalAlignment.Center;
-            textblock.VerticalAlignment = Windows.UI.Xaml.VerticalAlignment.Bottom;
+            textblock.HorizontalAlignment = HorizontalAlignment.Center;
+            textblock.VerticalAlignment = VerticalAlignment.Bottom;
             textblock.FontSize = size * 11;
-            textblock.Margin = new Windows.UI.Xaml.Thickness(5);
-            textblock.TextTrimming = Windows.UI.Xaml.TextTrimming.CharacterEllipsis;
+            textblock.Margin = new Thickness(5);
+            textblock.TextTrimming = TextTrimming.CharacterEllipsis;
 
             //save the path in stackpanel tag
             stackpanel.Tag = StackPanelTag;
 
             //init a tooltip
-            Windows.UI.Xaml.Controls.ToolTip toolTip = new Windows.UI.Xaml.Controls.ToolTip();
+            ToolTip toolTip = new ToolTip();
             toolTip.Content = DisplayText;
 
             //set the tooltipowner to the stackpanel using tooltip service
-            Windows.UI.Xaml.Controls.ToolTipService.SetToolTip(stackpanel, toolTip);
+            ToolTipService.SetToolTip(stackpanel, toolTip);
 
-            //righttapped event handler for menu flyou
-            stackpanel.PointerPressed += GridViewItem_PointerPressed;
+            //left click event handler for starting the process
+            stackpanel.MouseLeftButtonUp += GridViewItem_LeftClicked;
+            //right click event handler for menu flyout
+            stackpanel.MouseRightButtonUp += GridViewItem_RightClicked;
+            //mouseenter and mouseleave events for stackpanel mouse highlight effect
+            stackpanel.MouseEnter += GridViewItem_MouseEnter;
+            stackpanel.MouseLeave += GridViewItem_MouseLeave;
 
             //add the controls
             stackpanel.Children.Add(image);
@@ -448,14 +431,53 @@ namespace LauncherX
 
         }
 
+        private async void GridViewItem_LeftClicked(object sender, MouseButtonEventArgs e)
+        {
+            //init stackpanel from sender
+            StackPanel stackPanel = sender as StackPanel;
+            try
+            {
+                //start the process that is related to the tag
+                Process.Start(stackPanel.Tag.ToString());
+            }
+            catch { }
 
+            //unselect the selected item
+            await Task.Delay(500);
+            WPFGridView.SelectedItem = null;
+        }
+
+        private void GridViewItem_RightClicked(object sender, MouseButtonEventArgs e)
+        {
+            //init stackpanel from sender
+            StackPanel stackPanel = sender as StackPanel;
+
+            //create context menu for stackpanel
+            ContextMenu menu = CreateGridViewItemContextMenu(stackPanel);
+            stackPanel.ContextMenu = menu;
+        }
+
+        private void GridViewItem_MouseEnter(object sender, MouseEventArgs e)
+        {
+            //set the background of the stackpanel
+            StackPanel stackPanel = sender as StackPanel;
+            stackPanel.Background = Application.Current.Resources["ControlFillColorSecondaryBrush"] as SolidColorBrush;
+        }
+
+        private void GridViewItem_MouseLeave(object sender, MouseEventArgs e)
+        {
+            //restore the background of the stackpanel
+            StackPanel stackPanel = sender as StackPanel;
+            stackPanel.Background = new SolidColorBrush(Color.FromArgb(0, 0, 0, 0));
+        }
+
+        //add file
         public void AddFile(string myfile)
         {
-            //init a gridview
-            var gridView = gridviewhost.Child as Windows.UI.Xaml.Controls.GridView;
-
             //show gridView
-            gridviewhost.Visibility = Visibility.Visible;
+            //gridviewhost.Visibility = Visibility.Visible;
+            WPFGridView.Visibility = Visibility.Visible;
+            EmptyNotice.Visibility = Visibility.Hidden;  
 
             //init FileIconName
             var FileIconName = System.IO.Path.GetFileNameWithoutExtension(myfile);
@@ -475,44 +497,46 @@ namespace LauncherX
             //save file icon
             if (isImageFile == true)
             {
-                if (File.Exists(Path.Combine(appIconDir, FileIconName)))
+                if (File.Exists(Path.Combine(fileIconDir, FileIconName)))
                 {
                     FileIconName = FileNameCount.ToString() + FileIconName;
-                    FileStream stream = new FileStream(System.IO.Path.Combine(appIconDir, FileIconName), FileMode.Create);
+                    FileStream stream = new FileStream(System.IO.Path.Combine(fileIconDir, FileIconName), FileMode.Create);
                     System.Drawing.Image image1 = System.Drawing.Image.FromFile(myfile);
                     System.Drawing.Image icon = image1.GetThumbnailImage(image1.Width, image1.Height, () => false, IntPtr.Zero);
                     icon.Save(stream, System.Drawing.Imaging.ImageFormat.Tiff);
                     FileNameCount += 1;
-
+                    stream.Dispose();
                 }
                 else
                 {
-                    FileStream stream = new FileStream(System.IO.Path.Combine(appIconDir, FileIconName), FileMode.Create);
+                    FileStream stream = new FileStream(System.IO.Path.Combine(fileIconDir, FileIconName), FileMode.Create);
                     System.Drawing.Image image1 = System.Drawing.Image.FromFile(myfile);
                     System.Drawing.Image icon = image1.GetThumbnailImage(image1.Width, image1.Height, () => false, IntPtr.Zero);
                     icon.Save(stream, System.Drawing.Imaging.ImageFormat.Tiff);
+                    stream.Dispose();
                 }
             }
             else
             {
-                if (File.Exists(Path.Combine(appIconDir, FileIconName)))
+                if (File.Exists(Path.Combine(fileIconDir, FileIconName)))
                 {
                     FileIconName = FileNameCount.ToString() + FileIconName;
-                    FileStream stream = new FileStream(System.IO.Path.Combine(appIconDir, FileIconName), FileMode.Create);
+                    FileStream stream = new FileStream(System.IO.Path.Combine(fileIconDir, FileIconName), FileMode.Create);
                     Bitmap icon = new Bitmap(System.Drawing.Icon.ExtractAssociatedIcon(myfile).ToBitmap());
                     icon.Save(stream, System.Drawing.Imaging.ImageFormat.Tiff);
                     FileNameCount += 1;
-
+                    stream.Dispose();
                 }
                 else
                 {
-                    FileStream stream = new FileStream(System.IO.Path.Combine(appIconDir, FileIconName), FileMode.Create);
+                    FileStream stream = new FileStream(System.IO.Path.Combine(fileIconDir, FileIconName), FileMode.Create);
                     Bitmap icon = new Bitmap(System.Drawing.Icon.ExtractAssociatedIcon(myfile).ToBitmap());
                     icon.Save(stream, System.Drawing.Imaging.ImageFormat.Tiff);
+                    stream.Dispose();
                 }
             }
 
-            gridView.Items.Add(CreateGridViewItem(Path.Combine(appIconDir + FileIconName), Path.GetFileName(myfile), myfile));
+            WPFGridView.Items.Add(CreateGridViewItem(Path.Combine(fileIconDir + FileIconName), Path.GetFileName(myfile), myfile));
 
 
         }
@@ -520,13 +544,10 @@ namespace LauncherX
         //add folder
         public void AddFolder(string directory)
         {
-            //so, basic idea, copy the add_item and remove non essential functions
-
-            //init a gridview
-            var gridView = gridviewhost.Child as Windows.UI.Xaml.Controls.GridView;
-
             //show gridView
-            gridviewhost.Visibility = Visibility.Visible;
+            //gridviewhost.Visibility = Visibility.Visible;
+            WPFGridView.Visibility = Visibility.Visible;
+            EmptyNotice.Visibility = Visibility.Hidden;
 
             //init FolderIconName
             string FolderIconName = new DirectoryInfo(directory).Name;
@@ -548,6 +569,8 @@ namespace LauncherX
                 icon.Save(stream, System.Drawing.Imaging.ImageFormat.Tiff);
 
                 FolderNameCount += 1;
+
+                stream.Dispose();
             }
             else
             {
@@ -560,21 +583,21 @@ namespace LauncherX
                 FileStream stream = new FileStream(System.IO.Path.Combine(folderIconDir, FolderIconName), FileMode.Create);
                 Bitmap icon = i.ToBitmap();
                 icon.Save(stream, System.Drawing.Imaging.ImageFormat.Tiff);
+
+                stream.Dispose();
             }
 
             //then do the controls and add it to the gridView
-            gridView.Items.Add(CreateGridViewItem(Path.Combine(folderIconDir + FolderIconName), new DirectoryInfo(directory).Name, directory));
+            WPFGridView.Items.Add(CreateGridViewItem(Path.Combine(folderIconDir + FolderIconName), new DirectoryInfo(directory).Name, directory));
 
         }
 
         private void AddWebsite(string url, string DisplayName)
         {
-            //init a gridview
-            var gridView = gridviewhost.Child as Windows.UI.Xaml.Controls.GridView;
-
             //show gridView
-            gridviewhost.Visibility = Visibility.Visible;
-
+            //gridviewhost.Visibility = Visibility.Visible;
+            WPFGridView.Visibility = Visibility.Visible;
+            EmptyNotice.Visibility = Visibility.Hidden;
 
             //init WebsiteIconFileName and remove everything after .com
             var WebsiteIconFileName = url;
@@ -635,37 +658,45 @@ namespace LauncherX
                 }
             }
 
-            gridView.Items.Add(CreateGridViewItem(Path.Combine(websiteIconDir + WebsiteIconFileName), DisplayName, "https://" + url));
+            WPFGridView.Items.Add(CreateGridViewItem(Path.Combine(websiteIconDir + WebsiteIconFileName), DisplayName, "https://" + url));
         }
 
         #endregion
 
-        #region Methods relating to MenuFlyout and its event handlers
-        public Windows.UI.Xaml.Controls.MenuFlyout CreateGridViewItemContextMenu(Windows.UI.Xaml.Controls.StackPanel stackPanel)
+        #region Methods relating to ContextMenu of GridViewItems and its event handlers
+        public ContextMenu CreateGridViewItemContextMenu(StackPanel stackPanel)
         {
-            //init a new menu flyout
-            Windows.UI.Xaml.Controls.MenuFlyout menu = new Windows.UI.Xaml.Controls.MenuFlyout();
+            //init a new contextmenu
+            ContextMenu menu = new ContextMenu();
+            menu.Closed += Menu_Closed;
 
             //init menu flyout items
-            Windows.UI.Xaml.Controls.MenuFlyoutItem open = new Windows.UI.Xaml.Controls.MenuFlyoutItem();
-            Windows.UI.Xaml.Controls.MenuFlyoutItem openfilelocation = new Windows.UI.Xaml.Controls.MenuFlyoutItem();
-            Windows.UI.Xaml.Controls.MenuFlyoutItem remove = new Windows.UI.Xaml.Controls.MenuFlyoutItem();
+            MenuItem open = new MenuItem();
+            MenuItem openfilelocation = new MenuItem();
+            MenuItem remove = new MenuItem();
 
             //event handlers for the items
             open.Click += (s, args) => MenuItemOpen_Click(s, args, stackPanel.Tag.ToString());
             remove.Click += (s, args) => MenuItemRemove_Click(s, args, stackPanel);
             openfilelocation.Click += (s, args) => MenuItemOpenLocation_Click(s, args, stackPanel.Tag.ToString());
 
+            //create symbolicons
+            Wpf.Ui.Controls.SymbolIcon OpenItemIcon = new Wpf.Ui.Controls.SymbolIcon();
+            OpenItemIcon.Symbol = Wpf.Ui.Common.SymbolRegular.OpenFolder24;
+            Wpf.Ui.Controls.SymbolIcon OpenLocationIcon = new Wpf.Ui.Controls.SymbolIcon();
+            OpenLocationIcon.Symbol = Wpf.Ui.Common.SymbolRegular.FolderOpen24;
+            Wpf.Ui.Controls.SymbolIcon RemoveItemIcon = new Wpf.Ui.Controls.SymbolIcon();
+            RemoveItemIcon.Symbol = Wpf.Ui.Common.SymbolRegular.Delete24;
+
             //next, we need to determine if the stackpanel is a file, folder, or website item.
             if (stackPanel.Tag.ToString().StartsWith("https://"))
             {
-
                 //set properties and icons for the menuitems
-                open.Icon = new SymbolIcon(Symbol.OpenFile);
-                open.Text = "Open website";
+                open.Icon = OpenItemIcon;
+                open.Header = "Open website";
 
-                remove.Icon = new SymbolIcon(Symbol.Delete);
-                remove.Text = "Remove item from LauncherX";
+                remove.Icon = RemoveItemIcon;
+                remove.Header = "Remove item from LauncherX";
 
                 //this is a website
                 //add them to the menuflyout
@@ -681,20 +712,15 @@ namespace LauncherX
                 if (attr.HasFlag(System.IO.FileAttributes.Directory))
                 {
                     //this is a directory (folder)
-                    //create a new FontIcon
-                    Windows.UI.Xaml.Controls.FontIcon fontIcon = new Windows.UI.Xaml.Controls.FontIcon();
-                    fontIcon.FontFamily = new Windows.UI.Xaml.Media.FontFamily("Segoe MDL2 Assets");
-                    fontIcon.Glyph = "\xE838";
-
                     //set properties and icons for the menuitems
-                    open.Icon = new SymbolIcon(Symbol.OpenFile);
-                    open.Text = "Open";
+                    open.Icon = OpenItemIcon;
+                    open.Header = "Open";
 
-                    openfilelocation.Icon = fontIcon;
-                    openfilelocation.Text = "Open folder location";
+                    openfilelocation.Icon = OpenLocationIcon;
+                    openfilelocation.Header = "Open folder location";
 
-                    remove.Icon = new SymbolIcon(Symbol.Delete);
-                    remove.Text = "Remove item from LauncherX";
+                    remove.Icon = RemoveItemIcon;
+                    remove.Header = "Remove item from LauncherX";
 
                     //add them to the menuflyout
                     menu.Items.Add(open);
@@ -705,20 +731,15 @@ namespace LauncherX
                 else if (!attr.HasFlag(System.IO.FileAttributes.Directory))
                 {
                     //this is a file
-                    //create a new FontIcon
-                    Windows.UI.Xaml.Controls.FontIcon fontIcon = new Windows.UI.Xaml.Controls.FontIcon();
-                    fontIcon.FontFamily = new Windows.UI.Xaml.Media.FontFamily("Segoe MDL2 Assets");
-                    fontIcon.Glyph = "\xE838";
-
                     //set properties and icons for the menuitems
-                    open.Icon = new SymbolIcon(Symbol.OpenFile);
-                    open.Text = "Open";
+                    open.Icon = OpenItemIcon;
+                    open.Header = "Open";
 
-                    openfilelocation.Icon = fontIcon;
-                    openfilelocation.Text = "Open file location";
+                    openfilelocation.Icon = OpenLocationIcon;
+                    openfilelocation.Header = "Open file location";
 
-                    remove.Icon = new SymbolIcon(Symbol.Delete);
-                    remove.Text = "Remove item from LauncherX";
+                    remove.Icon = RemoveItemIcon;
+                    remove.Header = "Remove item from LauncherX";
 
                     //add them to the menuflyout
                     menu.Items.Add(open);
@@ -730,27 +751,14 @@ namespace LauncherX
 
             return menu;
         }
-        private void GridViewItem_PointerPressed(object sender, Windows.UI.Xaml.Input.PointerRoutedEventArgs e)
+
+        private void Menu_Closed(object sender, RoutedEventArgs e)
         {
-            //init a stackpanel from sender
-            Windows.UI.Xaml.Controls.StackPanel stackPanel = sender as Windows.UI.Xaml.Controls.StackPanel;
-
-            // Check for input device
-            if (e.Pointer.PointerDeviceType == Windows.Devices.Input.PointerDeviceType.Mouse)
-            {
-                var properties = e.GetCurrentPoint(stackPanel).Properties;
-
-                if (properties.IsRightButtonPressed)
-                {
-                    MenuFlyout menu = CreateGridViewItemContextMenu(stackPanel);
-
-                    //show the menuflyout
-                    menu.ShowAt(sender as Windows.UI.Xaml.UIElement, e.GetCurrentPoint(stackPanel).Position);
-                }
-            }
+            //unselect the selected GridView Item
+            WPFGridView.SelectedItem = null;
         }
 
-        private void MenuItemOpen_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e, string ItemToOpen)
+        private void MenuItemOpen_Click(object sender, RoutedEventArgs e, string ItemToOpen)
         {
             try
             {
@@ -760,75 +768,31 @@ namespace LauncherX
             catch { }
         }
 
-        private void MenuItemRemove_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e, Windows.UI.Xaml.Controls.StackPanel stackPanel)
+        private void MenuItemRemove_Click(object sender, RoutedEventArgs e, StackPanel stackPanel)
         {
-            //init gridView
-            var gridView = gridviewhost.Child as Windows.UI.Xaml.Controls.GridView;
-
             //remove the item
-            gridView.Items.Remove(stackPanel);
+            WPFGridView.Items.Remove(stackPanel);
 
-            //check if gridView is empty
-            if (gridView.Items.Count == 0)
+            if (WPFGridView.Items.Count == 0)
             {
-                gridviewhost.Visibility = Visibility.Hidden;
-                empty.BringIntoView();
+                WPFGridView.Visibility = Visibility.Hidden;
+                EmptyNotice.Visibility = Visibility.Visible;
             }
             else
             {
-                gridviewhost.Visibility = Visibility.Visible;
+                WPFGridView.Visibility = Visibility.Visible;
+                EmptyNotice.Visibility = Visibility.Hidden;
             }
 
         }
 
-        private void MenuItemOpenLocation_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e, string ItemToLook)
+        private void MenuItemOpenLocation_Click(object sender, RoutedEventArgs e, string ItemToLook)
         {
             //open file location
             Process.Start("explorer.exe", "/select, " + ItemToLook);
         }
 
         #endregion
-
-        #endregion
-
-        #region Methods relating to XAML Islands GridView
-        private void gridviewhost_ChildChanged(object sender, EventArgs e)
-        {
-            //init a gridview
-            var gridView = gridviewhost.Child as Windows.UI.Xaml.Controls.GridView;
-
-            //declare properties
-            gridView.CanDragItems = true;
-            gridView.CanReorderItems = true;
-            gridView.IsItemClickEnabled = true;
-            gridView.AllowDrop = true;
-            gridView.SelectionMode = Windows.UI.Xaml.Controls.ListViewSelectionMode.Single;
-
-            //event handlers
-            gridView.ItemClick += GridView_ItemClick;
-            gridviewhost.ChildChanged -= gridviewhost_ChildChanged;
-        }
-
-        private async void GridView_ItemClick(object sender, Windows.UI.Xaml.Controls.ItemClickEventArgs e)
-        {
-            //init a gridView
-            var gridView = gridviewhost.Child as Windows.UI.Xaml.Controls.GridView;
-
-            //init a stackpanel from the clicked item
-            Windows.UI.Xaml.Controls.StackPanel stackPanel = e.ClickedItem as Windows.UI.Xaml.Controls.StackPanel;
-
-            try
-            {
-                //start the process that us related to the tag
-                Process.Start(stackPanel.Tag.ToString());
-            }
-            catch { }
-
-            //unselect the selected item
-            await Task.Delay(500);
-            gridView.SelectedItem = null;
-
-        }
 
         #endregion
 
@@ -914,19 +878,17 @@ namespace LauncherX
                 //---------------------------------------------------------------change scale
                 //UPDATE SIZES
 
-                //init a gridview
-                var gridView = gridviewhost.Child as Windows.UI.Xaml.Controls.GridView;
                 //foreach loop
-                foreach (Windows.UI.Xaml.Controls.StackPanel stackpanel in gridView.Items)
+                foreach (StackPanel stackpanel in WPFGridView.Items)
                 {
                     //update sizes
                     stackpanel.Width = size * 105;
-                    stackpanel.Height = size * 90;
+                    stackpanel.Height = size * 95;
 
-                    Windows.UI.Xaml.Controls.TextBlock textBlock = (Windows.UI.Xaml.Controls.TextBlock)stackpanel.Children[1];
-                    Windows.UI.Xaml.Controls.Image image = (Windows.UI.Xaml.Controls.Image)stackpanel.Children[0];
+                    TextBlock textBlock = (TextBlock)stackpanel.Children[1];
+                    Image image = (Image)stackpanel.Children[0];
                     textBlock.FontSize = size * 11;
-                    image.Margin = new Windows.UI.Xaml.Thickness(size * 22.5, 5, size * 22.5, 0);
+                    image.Margin = new Thickness(size * 22.5, 5, size * 22.5, 0);
                     image.Height = stackpanel.Width - size * 22.5 - size * 22.5;
                     image.Width = stackpanel.Width - size * 22.5 - size * 22.5;
                 }
@@ -948,14 +910,11 @@ namespace LauncherX
         {
             Wpf.Ui.Controls.AutoSuggestBox autoSuggestBox = sender as Wpf.Ui.Controls.AutoSuggestBox;
 
-            //init a gridview and autosuggestbox
-            var gridView = gridviewhost.Child as Windows.UI.Xaml.Controls.GridView;
-
             //check every item in grid, and find the stackpanel with the textblock with the correct text, and then launch the app
-            foreach (Windows.UI.Xaml.Controls.StackPanel stackpanel in gridView.Items)
+            foreach (StackPanel stackpanel in WPFGridView.Items)
             {
                 //textblock
-                Windows.UI.Xaml.Controls.TextBlock textblock = (Windows.UI.Xaml.Controls.TextBlock)stackpanel.Children[1];
+                TextBlock textblock = (TextBlock)stackpanel.Children[1];
 
                 //now check if it is the same
                 if (textblock.Text.ToLower().ToString() == SearchBox.Text.ToLower().ToString())
@@ -980,15 +939,12 @@ namespace LauncherX
             //init a list
             List<string> AutoItems = new List<string>();
 
-            //init a gridview and autosuggestbox
-            var gridView = gridviewhost.Child as Windows.UI.Xaml.Controls.GridView;
-
             Wpf.Ui.Controls.AutoSuggestBox autoSuggestBox = sender as Wpf.Ui.Controls.AutoSuggestBox;
 
 
-            foreach (Windows.UI.Xaml.Controls.StackPanel stackpanel in gridView.Items)
+            foreach (StackPanel stackpanel in WPFGridView.Items)
             {
-                Windows.UI.Xaml.Controls.TextBlock textBlock = (Windows.UI.Xaml.Controls.TextBlock)stackpanel.Children[1];
+                TextBlock textBlock = (TextBlock)stackpanel.Children[1];
 
                 //check if the textblock contains characters from the search. Make everthing lower case as strings are case sensitive.
                 if (textBlock.Text.ToLower().Contains(autoSuggestBox.Text.ToLower()) == true)
@@ -1012,9 +968,6 @@ namespace LauncherX
 
             //save the items by creating text documents----------------------------------------
 
-            //foreach stackpanel in gridView.items
-            var gridView = gridviewhost.Child as Windows.UI.Xaml.Controls.GridView;
-
             //delete files in directory(loading items directory)
             System.IO.DirectoryInfo di4 = new DirectoryInfo(loadDir);
 
@@ -1023,7 +976,7 @@ namespace LauncherX
                 file3.Delete();
             }
 
-            foreach (Windows.UI.Xaml.Controls.StackPanel stackpanel in gridView.Items)
+            foreach (StackPanel stackpanel in WPFGridView.Items)
             {
                 //create a filepath variable
                 string filepath = Path.Combine(loadDir, savename.ToString() + ".txt");
@@ -1036,7 +989,7 @@ namespace LauncherX
                     if (stackpanel.Tag.ToString().StartsWith("https://"))
                     {
                         //it is a website, needs an extra line
-                        Windows.UI.Xaml.Controls.TextBlock textBlock = (Windows.UI.Xaml.Controls.TextBlock)stackpanel.Children[1];
+                        TextBlock textBlock = (TextBlock)stackpanel.Children[1];
                         sw.WriteLine(textBlock.Text);
                     }
 
@@ -1063,5 +1016,15 @@ namespace LauncherX
             Focus();
         }
         #endregion
+
+        #region Misc. Event Handlers
+        private void window_Deactivated(object sender, EventArgs e)
+        {
+            //hide the suggestion list of the search box
+            SearchBox.IsSuggestionListOpen = false;
+        }
+
+        #endregion
+
     }
 }

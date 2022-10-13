@@ -60,3 +60,4 @@ C:\Users\fligh\source\repos\LauncherX\LauncherX\bin\x64\Debug\Microsoft.WindowsA
 C:\Users\fligh\source\repos\LauncherX\LauncherX\bin\x64\Debug\Microsoft.WindowsAPICodePack.Shell.pdb
 C:\Users\fligh\source\repos\LauncherX\LauncherX\bin\x64\Debug\Microsoft.WindowsAPICodePack.ShellExtensions.dll
 C:\Users\fligh\source\repos\LauncherX\LauncherX\bin\x64\Debug\Microsoft.WindowsAPICodePack.ShellExtensions.pdb
+C:\Users\fligh\source\repos\LauncherX\LauncherX\bin\x64\Debug\GongSolutions.WPF.DragDrop.dll

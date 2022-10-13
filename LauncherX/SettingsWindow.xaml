@@ -19,7 +19,10 @@
     Style="{StaticResource UiWindow}"
     mc:Ignorable="d">
 
-    <Grid x:Name="grid" Margin="0,0,0,0">
+    <Grid
+        x:Name="grid"
+        Margin="0,0,0,0"
+        Background="{DynamicResource ControlFillColorDefaultBrush}">
         <ui:TitleBar
             Title="LauncherX Settings"
             Icon="icon.ico"

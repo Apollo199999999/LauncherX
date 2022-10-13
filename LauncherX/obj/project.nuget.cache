@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "itPYIu3WYyontqGhPGtdba9PSAfxoXBoppeDYI3gmwF6OCechDt695rPEGiHDhB9qvi5/X6jt9Rokt20zKWa8g==",
+  "dgSpecHash": "0Le6ZGisR0ykjtLFrJM5rMrQk1m4lUnmWa6p3/ud5euilPIozit5mUrh8WT8lMajozRwUSfyQmRhPHwwp0P2Fw==",
   "success": true,
   "projectFilePath": "C:\\Users\\fligh\\source\\repos\\LauncherX\\LauncherX\\LauncherX.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\fligh\\.nuget\\packages\\gong-wpf-dragdrop\\3.2.0\\gong-wpf-dragdrop.3.2.0.nupkg.sha512",
     "C:\\Users\\fligh\\.nuget\\packages\\microsoft.toolkit.ui.xamlhost\\6.1.2\\microsoft.toolkit.ui.xamlhost.6.1.2.nupkg.sha512",
     "C:\\Users\\fligh\\.nuget\\packages\\microsoft.toolkit.win32.ui.sdk\\6.1.2\\microsoft.toolkit.win32.ui.sdk.6.1.2.nupkg.sha512",
     "C:\\Users\\fligh\\.nuget\\packages\\microsoft.toolkit.win32.ui.xamlapplication\\6.1.2\\microsoft.toolkit.win32.ui.xamlapplication.6.1.2.nupkg.sha512",

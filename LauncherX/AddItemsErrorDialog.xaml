@@ -16,7 +16,7 @@
     ResizeMode="NoResize"
     Style="{StaticResource UiWindow}"
     mc:Ignorable="d">
-    <Grid>
+    <Grid Background="{DynamicResource ControlFillColorDefaultBrush}">
         <ui:TitleBar
             Title="Error while adding items"
             Icon="icon.ico"

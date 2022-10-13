@@ -2,6 +2,19 @@
   "version": 3,
   "targets": {
     ".NETFramework,Version=v4.8": {
+      "gong-wpf-dragdrop/3.2.0": {
+        "type": "package",
+        "compile": {
+          "lib/net48/GongSolutions.WPF.DragDrop.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net48/GongSolutions.WPF.DragDrop.dll": {
+            "related": ".xml"
+          }
+        }
+      },
       "Microsoft.Toolkit.UI.XamlHost/6.1.2": {
         "type": "package",
         "dependencies": {
@@ -514,6 +527,19 @@
       }
     },
     ".NETFramework,Version=v4.8/win": {
+      "gong-wpf-dragdrop/3.2.0": {
+        "type": "package",
+        "compile": {
+          "lib/net48/GongSolutions.WPF.DragDrop.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net48/GongSolutions.WPF.DragDrop.dll": {
+            "related": ".xml"
+          }
+        }
+      },
       "Microsoft.Toolkit.UI.XamlHost/6.1.2": {
         "type": "package",
         "dependencies": {
@@ -790,6 +816,19 @@
       }
     },
     ".NETFramework,Version=v4.8/win-x64": {
+      "gong-wpf-dragdrop/3.2.0": {
+        "type": "package",
+        "compile": {
+          "lib/net48/GongSolutions.WPF.DragDrop.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net48/GongSolutions.WPF.DragDrop.dll": {
+            "related": ".xml"
+          }
+        }
+      },
       "Microsoft.Toolkit.UI.XamlHost/6.1.2": {
         "type": "package",
         "dependencies": {
@@ -1066,6 +1105,19 @@
       }
     },
     ".NETFramework,Version=v4.8/win-x86": {
+      "gong-wpf-dragdrop/3.2.0": {
+        "type": "package",
+        "compile": {
+          "lib/net48/GongSolutions.WPF.DragDrop.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net48/GongSolutions.WPF.DragDrop.dll": {
+            "related": ".xml"
+          }
+        }
+      },
       "Microsoft.Toolkit.UI.XamlHost/6.1.2": {
         "type": "package",
         "dependencies": {
@@ -1343,6 +1395,31 @@
     }
   },
   "libraries": {
+    "gong-wpf-dragdrop/3.2.0": {
+      "sha512": "Sg3h2GZ2qOG/boscpRd5+pVe1VtZ72VTHCE25ajpXu5FNU40sskBvmuz47Q0/7bmtITzV3K+6OR5R0s0lglvNw==",
+      "type": "package",
+      "path": "gong-wpf-dragdrop/3.2.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "GongSolutions.Wpf.DragDrop.png",
+        "LICENSE",
+        "gong-wpf-dragdrop.3.2.0.nupkg.sha512",
+        "gong-wpf-dragdrop.nuspec",
+        "lib/net462/GongSolutions.WPF.DragDrop.dll",
+        "lib/net462/GongSolutions.WPF.DragDrop.xml",
+        "lib/net47/GongSolutions.WPF.DragDrop.dll",
+        "lib/net47/GongSolutions.WPF.DragDrop.xml",
+        "lib/net48/GongSolutions.WPF.DragDrop.dll",
+        "lib/net48/GongSolutions.WPF.DragDrop.xml",
+        "lib/net5.0-windows7.0/GongSolutions.WPF.DragDrop.dll",
+        "lib/net5.0-windows7.0/GongSolutions.WPF.DragDrop.xml",
+        "lib/net6.0-windows7.0/GongSolutions.WPF.DragDrop.dll",
+        "lib/net6.0-windows7.0/GongSolutions.WPF.DragDrop.xml",
+        "lib/netcoreapp3.1/GongSolutions.WPF.DragDrop.dll",
+        "lib/netcoreapp3.1/GongSolutions.WPF.DragDrop.xml"
+      ]
+    },
     "Microsoft.Toolkit.UI.XamlHost/6.1.2": {
       "sha512": "/cMQUJPxl+pASVOO47T8zml9YuHLyejP5ct0OUN7OVshrJ2n/QRMDVktPxbMSla8Rl3Jnpn2n3qyHjVkNBt0Og==",
       "type": "package",
@@ -1944,7 +2021,8 @@
       "Microsoft.Toolkit.Wpf.UI.XamlHost >= 6.1.2",
       "Microsoft.VCRTForwarders.140 >= 1.0.6",
       "Microsoft.WindowsAPICodePack-Shell >= 1.1.0",
-      "WPF-UI >= 2.0.3"
+      "WPF-UI >= 2.0.3",
+      "gong-wpf-dragdrop >= 3.2.0"
     ]
   },
   "packageFolders": {
@@ -2004,6 +2082,10 @@
           "WPF-UI": {
             "target": "Package",
             "version": "[2.0.3, )"
+          },
+          "gong-wpf-dragdrop": {
+            "target": "Package",
+            "version": "[3.2.0, )"
           }
         },
         "imports": [
