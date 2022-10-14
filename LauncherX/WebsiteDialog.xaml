@@ -42,10 +42,21 @@
             x:Name="OkBtn"
             Width="85"
             Height="32"
+            Margin="0,131,110,0"
+            HorizontalAlignment="Right"
+            VerticalAlignment="Top"
+            Appearance="Primary"
+            Click="OkBtn_Click"
+            Content="OK" />
+
+        <ui:Button
+            x:Name="CancelBtn"
+            Width="85"
+            Height="32"
             Margin="0,131,15,0"
             HorizontalAlignment="Right"
             VerticalAlignment="Top"
-            Click="OkBtn_Click"
-            Content="OK" />
+            Click="CancelBtn_Click"
+            Content="Cancel" />
     </Grid>
 </ui:UiWindow>

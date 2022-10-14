@@ -10,7 +10,7 @@
     xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
     Title="LauncherX Settings"
     Width="650"
-    Height="510"
+    Height="550"
     ui:ExtendsContentIntoTitleBar="True"
     ui:WindowBackdropType="Mica"
     ui:WindowCornerPreference="Round"
@@ -56,7 +56,7 @@
                                 <TextBlock
                                     FontSize="13"
                                     FontWeight="Medium"
-                                    Text="Change Icon Scale" />
+                                    Text="Change icon scale" />
                                 <TextBlock
                                     FontSize="12"
                                     Foreground="{DynamicResource TextFillColorTertiaryBrush}"
@@ -83,7 +83,7 @@
                                 <TextBlock
                                     FontSize="13"
                                     FontWeight="Medium"
-                                    Text="Change Header Text" />
+                                    Text="Change header text" />
                                 <TextBlock
                                     FontSize="12"
                                     Foreground="{DynamicResource TextFillColorTertiaryBrush}"
@@ -99,6 +99,23 @@
                             TextChanged="changeHeaderTextTextBox_TextChanged"
                             TextWrapping="Wrap" />
                     </ui:CardControl>
+
+                    <ui:CardControl Margin="0,10,0,0" Icon="ArrowSyncCircle24">
+                        <ui:CardControl.Header>
+                            <StackPanel Grid.Column="0" VerticalAlignment="Center">
+                                <TextBlock
+                                    FontSize="13"
+                                    FontWeight="Medium"
+                                    Text="Check for updates" />
+                                <TextBlock
+                                    FontSize="12"
+                                    Foreground="{DynamicResource TextFillColorTertiaryBrush}"
+                                    Text="Check if any new updates are available." />
+                            </StackPanel>
+                        </ui:CardControl.Header>
+                        <ui:Button Content="Check for updates" x:Name="CheckUpdatesBtn" Click="CheckUpdatesBtn_Click"/>
+                    </ui:CardControl>
+
 
                     <TextBlock
                         x:Name="AboutHeader"
@@ -199,9 +216,10 @@
                                 </StackPanel>
                                 <StackPanel Margin="50,0,0,0" Orientation="Vertical">
                                     <TextBlock
+                                        x:Name="VersionText"
                                         FontSize="13"
                                         Foreground="{DynamicResource TextFillColorTertiaryBrush}"
-                                        Text="2.0.0" />
+                                        Text="x.x.x" />
 
                                     <TextBlock
                                         Margin="0,5,0,0"
@@ -261,6 +279,41 @@
             Click="CloseButton_Click"
             Content=" Close "
             FontSize="14" />
+
+        <ui:Snackbar
+            x:Name="UpdateSnackBar"
+            Title="Update available"
+            Icon="ArrowSyncCircle24"
+            Message="To download it, click the button on the right."
+            Timeout="5000">
+            <ui:Snackbar.Content>
+                <ui:Button
+                    x:Name="UpdateBtn"
+                    HorizontalAlignment="Right"
+                    VerticalAlignment="Center"
+                    Appearance="Primary"
+                    Content="Get update" />
+            </ui:Snackbar.Content>
+        </ui:Snackbar>
+
+        <ui:Snackbar
+            x:Name="NoUpdateSnackBar"
+            Title="You're up to date!"
+            Icon="CheckmarkCircle24"
+            Message="No updates are available."
+            Timeout="5000"
+            Appearance="Success">
+        </ui:Snackbar>
+
+        <ui:Snackbar
+            x:Name="UpdateFailSnackBar"
+            Title="Failed to check for updates"
+            Icon="ErrorCircle24"
+            Message="Please check your internet connection, or try again later."
+            Timeout="5000"
+            Appearance="Danger">
+        </ui:Snackbar>
+
     </Grid>
 
 </ui:UiWindow>

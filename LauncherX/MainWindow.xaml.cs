@@ -128,71 +128,23 @@ namespace LauncherX
             //check and update theme
             CheckAndUpdateTheme();
 
-            //event handlers
-            window.Loaded += Window_Loaded;
-
-            //set updaterequired to false
-            updaterequired = false;
-
             //create a dispatcher timer to check for theme        
             themeupdater.Interval = TimeSpan.FromMilliseconds(100);
             themeupdater.Tick += Themeupdater_Tick;
             themeupdater.Start();
 
-        }
-
-        #region Methods relating to appearance of MainWindow
-        //function to check and update theme
-        public void CheckAndUpdateTheme()
-        {
-            //next, check if the system is in light or dark theme
-            bool is_light_mode = true;
-            try
-            {
-                var v = Microsoft.Win32.Registry.GetValue(@"HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Themes\Personalize", "AppsUseLightTheme", "1");
-                if (v != null && v.ToString() == "0")
-                    is_light_mode = false;
-            }
-            catch { }
-
-
-            if (is_light_mode == true)
-            {
-                Wpf.Ui.Appearance.Theme.Apply(
-                    Wpf.Ui.Appearance.ThemeType.Light,     // Theme type
-                    Wpf.Ui.Appearance.BackgroundType.Mica, // Background type
-                    true                                   // Whether to change accents automatically
-                );
-            }
-            else if (is_light_mode == false)
-            {
-                Wpf.Ui.Appearance.Theme.Apply(
-                  Wpf.Ui.Appearance.ThemeType.Dark,      // Theme type
-                  Wpf.Ui.Appearance.BackgroundType.Mica, // Background type
-                  true                                   // Whether to change accents automatically
-                );
-            }
+            //event handler for when window loads to check for updates
+            this.Loaded += MainWindow_Loaded;
 
         }
 
-        private void Themeupdater_Tick(object sender, EventArgs e)
+        #region Checking for updates and loading items when LauncherX loads
+        private async void MainWindow_Loaded(object sender, RoutedEventArgs e)
         {
-            //check and update theme
-            CheckAndUpdateTheme();
-        }
+            //wait a while for controls and window to load
+            LoadingDialog.Visibility = Visibility.Visible;
 
-        #endregion
-
-        #region Loading settings and checking for updates when LauncherX starts
-        public bool IsDirectoryEmpty(string path)
-        {
-            return !Directory.EnumerateFileSystemEntries(path).Any();
-        }
-
-        private async void Window_Loaded(object sender, RoutedEventArgs e)
-        {
-            //wait a while for the controls to load
-            await Task.Delay(500);
+            await Task.Delay(100);
 
             //create a variable to check if there are items that LauncherX cannot add
             bool ErrorAddingItems = false;
@@ -277,96 +229,75 @@ namespace LauncherX
                 AddItemsErrorDialog.ShowDialog();
             }
 
-            /*check if internet connection exists, and if so, check for updates, and if there are updates,
-           show a messagebox to ask if the user wants to update*/
-
-            if (CheckForInternetConnection() == true)
-            {
-                CheckForUpdates();
-
-                if (updaterequired == true)
-                {
-                    //show the messagebox
-                    var result = System.Windows.MessageBox.Show("An update is available, would you like to download it?", "Update available",
-                        System.Windows.MessageBoxButton.YesNo, System.Windows.MessageBoxImage.Information);
-
-                    //check for the messagebox reply
-                    if (result == MessageBoxResult.Yes)
-                    {
-                        //get the download update link from the pastebin link
-                        //update link is a pastebin link
-                        var url = "https://pastebin.com/raw/M0zxFc29";
-
-                        //init a webclient
-                        WebClient client = new WebClient();
-
-                        //download all text from the pastebin raw link
-                        string reply = client.DownloadString(url);
-
-                        //set the updateLink
-                        updateLink = reply;
-                        //start the update link, stop all timers, and shutdown application
-                        Process.Start(updateLink);
-
-                        themeupdater.Stop();
-                        System.Windows.Application.Current.Shutdown();
-                    }
-                }
-
-            }
-
             //activate and focus this window
             this.Activate();
             this.Focus();
+
+            LoadingDialog.Visibility = Visibility.Collapsed;
+
+            await Task.Delay(1000);
+
+            /*check if internet connection exists, and if so, check for updates, and if there are updates,
+            show a snackbar to ask if the user wants to update*/
+
+            if (CheckForUpdates() == true)
+            {
+                //show the messagebox
+                UpdateSnackBar.Show();
+                UpdateBtn.Click += (s, args) =>
+                {
+                    //navigate to github releases page
+                    Process.Start("https://github.com/Apollo199999999/LauncherX/releases");
+
+                    //close this app
+                    themeupdater.Stop();
+                    System.Windows.Application.Current.Shutdown();
+                };
+
+            }
+
         }
 
         #endregion
 
-        #region Methods relating to auto-update system
-
-        //Check Internet Connection Function
-        public static bool CheckForInternetConnection()
+        #region Methods relating to appearance of MainWindow
+        //function to check and update theme
+        public void CheckAndUpdateTheme()
         {
+            //next, check if the system is in light or dark theme
+            bool is_light_mode = true;
             try
             {
-                using (var CheckInternet = new WebClient())
-                using (CheckInternet.OpenRead("http://clients3.google.com/generate_204"))
-                {
-                    return true;
-                }
+                var v = Microsoft.Win32.Registry.GetValue(@"HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Themes\Personalize", "AppsUseLightTheme", "1");
+                if (v != null && v.ToString() == "0")
+                    is_light_mode = false;
             }
-            catch
+            catch { }
+
+
+            if (is_light_mode == true)
             {
-                return false;
+                Wpf.Ui.Appearance.Theme.Apply(
+                    Wpf.Ui.Appearance.ThemeType.Light,     // Theme type
+                    Wpf.Ui.Appearance.BackgroundType.Mica, // Background type
+                    true                                   // Whether to change accents automatically
+                );
             }
+            else if (is_light_mode == false)
+            {
+                Wpf.Ui.Appearance.Theme.Apply(
+                  Wpf.Ui.Appearance.ThemeType.Dark,      // Theme type
+                  Wpf.Ui.Appearance.BackgroundType.Mica, // Background type
+                  true                                   // Whether to change accents automatically
+                );
+            }
+
         }
 
-
-        public void CheckForUpdates()
+        private void Themeupdater_Tick(object sender, EventArgs e)
         {
-            //Check for updates
-
-            //updtae link is a pastebin link
-            var url = "https://pastebin.com/raw/PGcXcxnT";
-
-            //init a webclient
-            WebClient client = new WebClient();
-
-            //download all text from the pastebin raw link
-            string reply = client.DownloadString(url);
-
-            //check if version matches pastebin link
-            if (reply != currentversion)
-            {
-                //this is the output when an update is available. Modify it if you wish
-
-                //update the "updaterequired" variable from publicvariables to true, this will be used later in the about section
-                updaterequired = true;
-            }
-            else
-            {
-                updaterequired = false;
-            }
+            //check and update theme
+            CheckAndUpdateTheme();
         }
 
         #endregion
@@ -797,7 +728,7 @@ namespace LauncherX
         #endregion
 
         #region Event handlers for the Open file, folder, and website buttons
-        private void OpenFileBtn_Click(object sender, RoutedEventArgs e)
+        private async void OpenFileBtn_Click(object sender, RoutedEventArgs e)
         {
             //init open file dialog
             Microsoft.Win32.OpenFileDialog openFileDialog = new Microsoft.Win32.OpenFileDialog() { DereferenceLinks = false };
@@ -806,6 +737,10 @@ namespace LauncherX
             //check if openfile dialog is ok
             if (openFileDialog.ShowDialog() == true)
             {
+                LoadingDialog.Visibility = Visibility.Visible;
+
+                await Task.Delay(100);
+
                 //and then get the filename and YEET in into the grid view
                 foreach (string myfile in openFileDialog.FileNames)
                 {
@@ -813,9 +748,11 @@ namespace LauncherX
                 }
 
             }
+
+            LoadingDialog.Visibility = Visibility.Hidden;
         }
 
-        private void OpenFolderBtn_Click(object sender, RoutedEventArgs e)
+        private async void OpenFolderBtn_Click(object sender, RoutedEventArgs e)
         {
             //init folderbrowsedialog
             var dialog = new CommonOpenFileDialog();
@@ -826,12 +763,18 @@ namespace LauncherX
             //Add the folder
             if (result == CommonFileDialogResult.Ok)
             {
+                LoadingDialog.Visibility = Visibility.Visible;
+
+                await Task.Delay(100);
+
                 //and then get the filename and YEET in into the grid view
                 foreach (string myfile in dialog.FileNames)
                 {
                     AddFolder(myfile);
                 }
             }
+
+            LoadingDialog.Visibility = Visibility.Hidden;
         }
 
         private void OpenWebsiteBtn_Click(object sender, RoutedEventArgs e)
@@ -843,16 +786,21 @@ namespace LauncherX
             wbd.ShowDialog();
         }
 
-        private void Wbd_Closed(object sender, EventArgs e)
+        private async void Wbd_Closed(object sender, EventArgs e)
         {
-
             if (websiteok == true)
             {
+                LoadingDialog.Visibility = Visibility.Visible;
+
+                await Task.Delay(100);
+
                 //add the website
                 AddWebsite(url, original_url);
 
                 websiteok = false;
             }
+
+            LoadingDialog.Visibility = Visibility.Hidden;
         }
 
         #endregion
@@ -958,13 +906,27 @@ namespace LauncherX
             autoSuggestBox.MaxDropDownHeight = 200;
         }
 
+        private void SearchBox_LostFocus(object sender, RoutedEventArgs e)
+        {
+            //hide the suggestion list of the search box
+            SearchBox.IsSuggestionListOpen = false;
+        }
+
         #endregion
 
         #region Saving of settings
-        private void window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        private async void window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
+            e.Cancel = true;
+
             //stop timers
             themeupdater.Stop();
+
+            //show loading (saving) dialog
+            DialogText.Text = "Saving your items, please wait...";
+            LoadingDialog.Visibility = Visibility.Visible;
+
+            await Task.Delay(100);
 
             //save the items by creating text documents----------------------------------------
 
@@ -1003,22 +965,8 @@ namespace LauncherX
         }
         #endregion
 
-        #region Event Handlers for focusing window
-        private void grid_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-            //focus the window
-            Focus();
-        }
-
-        private void window_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-            //focus the window
-            Focus();
-        }
-        #endregion
-
         #region Misc. Event Handlers
-        private void window_Deactivated(object sender, EventArgs e)
+        private void MainWindow_Deactivated(object sender, EventArgs e)
         {
             //hide the suggestion list of the search box
             SearchBox.IsSuggestionListOpen = false;

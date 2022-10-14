@@ -89,5 +89,10 @@ namespace LauncherX
                 Close();
             }
         }
+
+        private void CancelBtn_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
     }
 }

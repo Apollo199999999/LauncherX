@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Windows;
 using System.Windows.Threading;
 using static LauncherX.PublicVariables;
@@ -10,12 +11,17 @@ namespace LauncherX
     /// </summary>
     public partial class SettingsWindow
     {
+        //init a new dispatcher timer
+        DispatcherTimer themeupdater = new DispatcherTimer();
         public SettingsWindow()
         {
             InitializeComponent();
 
             //set changeHeaderTextTextBox inital text to properties.settings.default.headertext
             changeHeaderTextTextBox.Text = Properties.Settings.Default.headerText;
+
+            //set VersionText from public variables
+            VersionText.Text = currentversion.ToString();
 
             //make sure the textbox is not readonly
             changeHeaderTextTextBox.IsReadOnly = false;
@@ -24,9 +30,6 @@ namespace LauncherX
             CheckAndUpdateTheme();
 
             //create a dispatcher timer to check for theme    
-            //init a new dispatcher timer
-            DispatcherTimer themeupdater = new DispatcherTimer();
-
             themeupdater.Interval = TimeSpan.FromMilliseconds(100);
             themeupdater.Tick += Themeupdater_Tick;
             themeupdater.Start();
@@ -117,5 +120,32 @@ namespace LauncherX
             Close();
         }
 
+        private void CheckUpdatesBtn_Click(object sender, RoutedEventArgs e)
+        {
+            //check for updates
+            if (CheckForUpdates() == true)
+            {
+                //show the messagebox
+                UpdateSnackBar.Show();
+                UpdateBtn.Click += (s, args) =>
+                {
+                    //navigate to github releases page
+                    Process.Start("https://github.com/Apollo199999999/LauncherX/releases");
+
+                    //close this app
+                    themeupdater.Stop();
+                    System.Windows.Application.Current.Shutdown();
+                };
+
+            }
+            else if (CheckForUpdates() == false)
+            {
+                NoUpdateSnackBar.Show();
+            }
+            else if (CheckForUpdates() == null)
+            {
+                UpdateFailSnackBar.Show();
+            }
+        }
     }
 }
