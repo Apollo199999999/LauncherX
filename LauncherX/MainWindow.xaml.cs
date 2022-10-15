@@ -17,6 +17,7 @@ using System.Windows.Media;
 using Image = System.Windows.Controls.Image;
 using System.Windows.Media.Imaging;
 using Color = System.Windows.Media.Color;
+using System.Runtime.InteropServices.ComTypes;
 
 namespace LauncherX
 {
@@ -57,6 +58,15 @@ namespace LauncherX
         //size variable to control size of icons
         public double size;
 
+        //create a variable to check if there are items that LauncherX cannot add
+        bool ErrorAddingItems = false;
+
+        //string list to contain file paths for items that LauncherX cannot add
+        public List<string> ErrorItems = new List<string>();
+
+        //AddItemsErrorDialog, in case when loading the files after application startup, the file does not exist
+        AddItemsErrorDialog AddItemsErrorDialog = new AddItemsErrorDialog();
+
         //these variables are used for duplicate naming
         public int FolderNameCount = 0;
         public int FileNameCount = 0;
@@ -64,9 +74,6 @@ namespace LauncherX
 
         //this variable is used to save the items in the gridview, based on order
         public int savename = 1;
-
-        //AddItemsErrorDialog, in case when loading the files after application startup, the file does not exist
-        AddItemsErrorDialog AddItemsErrorDialog = new AddItemsErrorDialog();
 
         //create a new dispatcher timer
         DispatcherTimer themeupdater = new DispatcherTimer();
@@ -138,16 +145,11 @@ namespace LauncherX
 
         }
 
-        #region Checking for updates and loading items when LauncherX loads
-        private async void MainWindow_Loaded(object sender, RoutedEventArgs e)
+        #region Methods for code that reads/writes gridView items from disk
+        public Dictionary<int, string> LoadItemsFromDisk()
         {
-            //wait a while for controls and window to load
-            LoadingDialog.Visibility = Visibility.Visible;
-
-            await Task.Delay(100);
-
-            //create a variable to check if there are items that LauncherX cannot add
-            bool ErrorAddingItems = false;
+            //create list that lists the items in gridView in order, to be returned at the end
+            Dictionary<int, string> GridViewItems = new Dictionary<int, string>();
 
             //create a new list and sort the files
             var list = Directory.GetFiles(loadDir);
@@ -172,7 +174,11 @@ namespace LauncherX
                         //remove https://
                         s = s.Replace("https://", "");
                         original_url = sr.ReadLine();
-                        AddWebsite(s, original_url);
+
+                        Application.Current.Dispatcher.Invoke(() => {
+                            AddWebsite(s, original_url);
+                        });
+                        
 
                     }
                     else
@@ -190,18 +196,24 @@ namespace LauncherX
                             if (attr.HasFlag(System.IO.FileAttributes.Directory))
                             {
                                 //this is a directory (folder)
-                                AddFolder(s);
+                                Application.Current.Dispatcher.Invoke(() =>
+                                {
+                                    AddFolder(s);
+                                });
                             }
                             else if (!attr.HasFlag(System.IO.FileAttributes.Directory))
                             {
                                 //this is a file
-                                AddFile(s);
+                                Application.Current.Dispatcher.Invoke(() =>
+                                {
+                                    AddFile(s);
+                                });
                             }
                         }
                         catch
                         {
-                            //add the problematic directory ti the listview in the error dialog, then set erroraddingitems to true
-                            AddItemsErrorDialog.ErrorFiles.Items.Add(s);
+                            //add the problematic directory to the errorlist, then set erroraddingitems to true
+                            ErrorItems.Add(s);
                             ErrorAddingItems = true;
                         }
 
@@ -209,6 +221,28 @@ namespace LauncherX
 
                 }
 
+            }
+
+            return GridViewItems;
+        }
+
+        #endregion
+
+        #region Checking for updates and loading items when LauncherX loads
+        private async void MainWindow_Loaded(object sender, RoutedEventArgs e)
+        {
+            //wait a while for controls and window to load
+            LoadingDialog.Visibility = Visibility.Visible;
+
+            await Task.Delay(100);
+
+            //load settings
+            await Task.Run(() => LoadSettings());
+
+            if (ErrorAddingItems == true)
+            {
+                //add items from erroritems list to the listbox in the additemserrordialog listbox
+                AddItemsErrorDialog.ErrorFiles.ItemsSource = ErrorItems;
             }
 
             //check if gridView is empty
@@ -223,12 +257,7 @@ namespace LauncherX
                 EmptyNotice.Visibility = Visibility.Hidden;
             }
 
-            if (ErrorAddingItems == true)
-            {
-                //show the additemserrordialog
-                AddItemsErrorDialog.ShowDialog();
-            }
-
+           
             //activate and focus this window
             this.Activate();
             this.Focus();
@@ -236,6 +265,7 @@ namespace LauncherX
             LoadingDialog.Visibility = Visibility.Collapsed;
 
             await Task.Delay(1000);
+
 
             /*check if internet connection exists, and if so, check for updates, and if there are updates,
             show a snackbar to ask if the user wants to update*/
