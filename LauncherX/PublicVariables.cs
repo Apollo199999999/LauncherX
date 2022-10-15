@@ -23,9 +23,6 @@ namespace LauncherX
         //this variable is used to pass the url
         public static string url;
 
-        //this variable is used to store the full url (without removal of https:// or http://) for the use of textblock
-        public static string original_url;
-
         //this variable is used to check if the button is clicked in the websitedialog
         public static bool websiteok = false;
 

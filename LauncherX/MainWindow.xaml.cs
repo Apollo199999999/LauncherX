@@ -169,10 +169,7 @@ namespace LauncherX
                     if (s.StartsWith("https://"))
                     {
                         //this is a website.
-                        //remove https://
-                        s = s.Replace("https://", "");
-                        original_url = sr.ReadLine();
-                        AddWebsite(s, original_url);
+                        AddWebsite(s);
 
                     }
                     else
@@ -523,7 +520,7 @@ namespace LauncherX
 
         }
 
-        private void AddWebsite(string url, string DisplayName)
+        private void AddWebsite(string url)
         {
             //show gridView
             //gridviewhost.Visibility = Visibility.Visible;
@@ -589,7 +586,7 @@ namespace LauncherX
                 }
             }
 
-            WPFGridView.Items.Add(CreateGridViewItem(Path.Combine(websiteIconDir + WebsiteIconFileName), DisplayName, "https://" + url));
+            WPFGridView.Items.Add(CreateGridViewItem(Path.Combine(websiteIconDir + WebsiteIconFileName), url, url));
         }
 
         #endregion
@@ -795,7 +792,7 @@ namespace LauncherX
                 await Task.Delay(100);
 
                 //add the website
-                AddWebsite(url, original_url);
+                AddWebsite(url);
 
                 websiteok = false;
             }
