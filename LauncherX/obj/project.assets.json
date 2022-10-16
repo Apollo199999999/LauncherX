@@ -38,6 +38,19 @@
           "lib/Microsoft.WindowsAPICodePack.ShellExtensions.dll": {}
         }
       },
+      "RestoreWindowPlace/2.1.0": {
+        "type": "package",
+        "compile": {
+          "lib/net45/RestoreWindowPlace.Net45.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net45/RestoreWindowPlace.Net45.dll": {
+            "related": ".xml"
+          }
+        }
+      },
       "System.Drawing.Common/6.0.0": {
         "type": "package",
         "compile": {
@@ -103,6 +116,19 @@
         "runtime": {
           "lib/Microsoft.WindowsAPICodePack.Shell.dll": {},
           "lib/Microsoft.WindowsAPICodePack.ShellExtensions.dll": {}
+        }
+      },
+      "RestoreWindowPlace/2.1.0": {
+        "type": "package",
+        "compile": {
+          "lib/net45/RestoreWindowPlace.Net45.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net45/RestoreWindowPlace.Net45.dll": {
+            "related": ".xml"
+          }
         }
       },
       "System.Drawing.Common/6.0.0": {
@@ -172,6 +198,19 @@
           "lib/Microsoft.WindowsAPICodePack.ShellExtensions.dll": {}
         }
       },
+      "RestoreWindowPlace/2.1.0": {
+        "type": "package",
+        "compile": {
+          "lib/net45/RestoreWindowPlace.Net45.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net45/RestoreWindowPlace.Net45.dll": {
+            "related": ".xml"
+          }
+        }
+      },
       "System.Drawing.Common/6.0.0": {
         "type": "package",
         "compile": {
@@ -237,6 +276,19 @@
         "runtime": {
           "lib/Microsoft.WindowsAPICodePack.Shell.dll": {},
           "lib/Microsoft.WindowsAPICodePack.ShellExtensions.dll": {}
+        }
+      },
+      "RestoreWindowPlace/2.1.0": {
+        "type": "package",
+        "compile": {
+          "lib/net45/RestoreWindowPlace.Net45.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net45/RestoreWindowPlace.Net45.dll": {
+            "related": ".xml"
+          }
         }
       },
       "System.Drawing.Common/6.0.0": {
@@ -327,6 +379,22 @@
         "microsoft.windowsapicodepack-shell.nuspec"
       ]
     },
+    "RestoreWindowPlace/2.1.0": {
+      "sha512": "AzPJ4Am2rmZ7DncLDNV/SFbAG03CIqP4utXyfqUwqg9MVfDePWsIxX3x52qh6n+IklAygl9D88hWAXjusjSqdA==",
+      "type": "package",
+      "path": "restorewindowplace/2.1.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "LICENSE.txt",
+        "lib/net45/RestoreWindowPlace.Net45.dll",
+        "lib/net45/RestoreWindowPlace.Net45.xml",
+        "lib/netcoreapp3.0/RestoreWindowPlace.dll",
+        "lib/netcoreapp3.0/RestoreWindowPlace.xml",
+        "restorewindowplace.2.1.0.nupkg.sha512",
+        "restorewindowplace.nuspec"
+      ]
+    },
     "System.Drawing.Common/6.0.0": {
       "sha512": "NfuoKUiP2nUWwKZN6twGqXioIe1zVD0RIj2t976A+czLHr2nY454RwwXs6JU9Htc6mwqL6Dn/nEL3dpVf2jOhg==",
       "type": "package",
@@ -397,6 +465,7 @@
   "projectFileDependencyGroups": {
     ".NETFramework,Version=v4.8": [
       "Microsoft.WindowsAPICodePack-Shell >= 1.1.0",
+      "RestoreWindowPlace >= 2.1.0",
       "WPF-UI >= 2.0.3",
       "gong-wpf-dragdrop >= 3.2.0"
     ]
@@ -442,6 +511,10 @@
           "Microsoft.WindowsAPICodePack-Shell": {
             "target": "Package",
             "version": "[1.1.0, )"
+          },
+          "RestoreWindowPlace": {
+            "target": "Package",
+            "version": "[2.1.0, )"
           },
           "WPF-UI": {
             "target": "Package",

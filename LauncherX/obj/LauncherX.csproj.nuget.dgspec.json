@@ -42,6 +42,10 @@
               "target": "Package",
               "version": "[1.1.0, )"
             },
+            "RestoreWindowPlace": {
+              "target": "Package",
+              "version": "[2.1.0, )"
+            },
             "WPF-UI": {
               "target": "Package",
               "version": "[2.0.3, )"

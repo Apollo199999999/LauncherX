@@ -171,7 +171,7 @@ namespace LauncherX
         }
 
         #region not exposed methods
-        private void Animate(DependencyProperty property, double targetValue, int duration = 70)
+        private void Animate(DependencyProperty property, double targetValue, int duration = 60)
         {
             //make a smooth animation that starts and ends slowly
             var keyFramesAnimation = new DoubleAnimationUsingKeyFrames();

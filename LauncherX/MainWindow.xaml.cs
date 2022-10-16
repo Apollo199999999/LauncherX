@@ -83,6 +83,9 @@ namespace LauncherX
         {
             InitializeComponent();
 
+            //save Window Pos
+            ((App)Application.Current).WindowPlace.Register(this);
+
             //upgrade settings if needed
             if (Properties.Settings.Default.UpgradeRequired)
             {
