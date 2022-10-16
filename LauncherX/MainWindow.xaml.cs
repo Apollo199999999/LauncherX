@@ -143,6 +143,7 @@ namespace LauncherX
         {
             //wait a while for controls and window to load
             LoadingDialog.Visibility = Visibility.Visible;
+            this.IsEnabled = false;
 
             await Task.Delay(100);
 
@@ -234,8 +235,7 @@ namespace LauncherX
             this.Focus();
 
             LoadingDialog.Visibility = Visibility.Collapsed;
-
-            await Task.Delay(1000);
+            this.IsEnabled = true;
 
             /*check if internet connection exists, and if so, check for updates, and if there are updates,
             show a snackbar to ask if the user wants to update*/
@@ -914,19 +914,11 @@ namespace LauncherX
 
         #endregion
 
-        #region Saving of settings
-        private async void window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        #region Saving of items
+        private void MainWindow_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            e.Cancel = true;
-
             //stop timers
             themeupdater.Stop();
-
-            //show loading (saving) dialog
-            DialogText.Text = "Saving your items, please wait...";
-            LoadingDialog.Visibility = Visibility.Visible;
-
-            await Task.Delay(100);
 
             //save the items by creating text documents----------------------------------------
 
@@ -972,7 +964,12 @@ namespace LauncherX
             SearchBox.IsSuggestionListOpen = false;
         }
 
-        #endregion
+        private void Container_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            //hide the suggestion list of the search box
+            SearchBox.IsSuggestionListOpen = false;
+        }
 
+        #endregion
     }
 }

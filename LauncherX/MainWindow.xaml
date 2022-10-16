@@ -7,8 +7,6 @@
     xmlns:local="clr-namespace:LauncherX"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
-    xmlns:xamlHost="clr-namespace:Microsoft.Toolkit.Wpf.UI.XamlHost;assembly=Microsoft.Toolkit.Wpf.UI.XamlHost"
-    x:Name="window"
     Title="LauncherX - Organize all your stuff!"
     Width="855"
     Height="600"
@@ -18,7 +16,7 @@
     ui:WindowBackdropType="Mica"
     ui:WindowCornerPreference="Round"
     BorderBrush="Transparent"
-    Closing="window_Closing"
+    Closing="MainWindow_Closing"
     Deactivated="MainWindow_Deactivated"
     Style="{StaticResource UiWindow}"
     mc:Ignorable="d">
@@ -27,7 +25,8 @@
         x:Name="Container"
         Margin="0,0,0,0"
         HorizontalAlignment="Stretch"
-        VerticalAlignment="Stretch">
+        VerticalAlignment="Stretch"
+        MouseDown="Container_MouseDown">
         <ui:TitleBar
             Title="LauncherX - Organise all your stuff!"
             Icon="icon.ico"
@@ -140,10 +139,9 @@
 
                 <ListView
                     x:Name="WPFGridView"
-                    Margin="20,20,20,20"
-                    dd:DragDrop.IsDragSource="True"
-                    dd:DragDrop.IsDropTarget="True"
-                    SelectionMode="Single">
+                    Margin="20"
+                    ScrollViewer.CanContentScroll="True"
+                    ScrollViewer.VerticalScrollBarVisibility="Visible">
                     <ListView.ItemsPanel>
                         <ItemsPanelTemplate>
                             <WrapPanel
