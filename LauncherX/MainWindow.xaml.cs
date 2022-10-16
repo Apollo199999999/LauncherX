@@ -17,6 +17,7 @@ using System.Windows.Media;
 using Image = System.Windows.Controls.Image;
 using System.Windows.Media.Imaging;
 using Color = System.Windows.Media.Color;
+using LauncherX.Properties;
 
 namespace LauncherX
 {
@@ -83,14 +84,17 @@ namespace LauncherX
         {
             InitializeComponent();
 
-            //upgrade and reload settings
-            Properties.Settings.Default.Upgrade();
-            Properties.Settings.Default.Save();
-            Properties.Settings.Default.Reload();
+            //upgrade settings if needed
+            if (Settings.Default.UpgradeRequired)
+            {
+                Settings.Default.Upgrade();
+                Settings.Default.UpgradeRequired = false;
+                Settings.Default.Save();
+            }
 
             //set size value
-            size = Properties.Settings.Default.scale;
             scale = Properties.Settings.Default.scale;
+            size = Math.Sqrt(scale);
 
             //set header text
             header.Text = Properties.Settings.Default.headerText;
@@ -325,6 +329,7 @@ namespace LauncherX
             image.Margin = new Thickness(size * 22.5, 5, size * 22.5, 0);
             image.Height = stackpanel.Width - size * 22.5 - size * 22.5;
             image.Width = stackpanel.Width - size * 22.5 - size * 22.5;
+            RenderOptions.SetBitmapScalingMode(image, BitmapScalingMode.LowQuality);
 
             //create a textblock
             TextBlock textblock = new TextBlock();
@@ -817,7 +822,7 @@ namespace LauncherX
         private void Sw_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             //update the size variable
-            size = scale;
+            size = Math.Sqrt(scale);
 
             try
             {

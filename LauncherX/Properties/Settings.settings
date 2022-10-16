@@ -8,5 +8,8 @@
     <Setting Name="headerText" Type="System.String" Scope="User">
       <Value Profile="(Default)">My files, folders, and websites</Value>
     </Setting>
+    <Setting Name="UpgradeRequired" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

@@ -10,7 +10,7 @@
     Title="LauncherX - Organize all your stuff!"
     Width="855"
     Height="600"
-    MinWidth="690"
+    MinWidth="730"
     MinHeight="400"
     ui:ExtendsContentIntoTitleBar="True"
     ui:WindowBackdropType="Mica"
@@ -101,7 +101,7 @@
             <Grid
                 x:Name="GridViewBackground"
                 Margin="-20,104,-20,-20"
-                Background="{DynamicResource ControlFillColorDefaultBrush}">
+                Background="{StaticResource ControlFillColorDefaultBrush}">
 
                 <Grid
                     x:Name="EmptyNotice"
@@ -137,21 +137,26 @@
                         Foreground="Gray" />
                 </Grid>
 
-                <ListView
-                    x:Name="WPFGridView"
-                    Margin="20"
-                    ScrollViewer.CanContentScroll="True"
-                    ScrollViewer.VerticalScrollBarVisibility="Visible">
-                    <ListView.ItemsPanel>
-                        <ItemsPanelTemplate>
-                            <WrapPanel
-                                Width="{Binding (FrameworkElement.ActualWidth), RelativeSource={RelativeSource AncestorType=ScrollContentPresenter}}"
-                                MinWidth="{Binding ItemWidth, RelativeSource={RelativeSource Self}}"
-                                ItemHeight="{Binding (ListView.View).ItemHeight, RelativeSource={RelativeSource AncestorType=ListView}}"
-                                ItemWidth="{Binding (ListView.View).ItemWidth, RelativeSource={RelativeSource AncestorType=ListView}}" />
-                        </ItemsPanelTemplate>
-                    </ListView.ItemsPanel>
-                </ListView>
+                <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Visible" Margin="0,0,10,0">
+                    <ListView
+                        x:Name="WPFGridView"
+                        Margin="20,20,10,20"
+                        dd:DragDrop.IsDragSource="True"
+                        dd:DragDrop.IsDropTarget="True"
+                        ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                        ScrollViewer.VerticalScrollBarVisibility="Disabled">
+                        <ListView.Template>
+                            <ControlTemplate>
+                                <ItemsPresenter></ItemsPresenter>
+                            </ControlTemplate>
+                        </ListView.Template>
+                        <ListView.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <WrapPanel />
+                            </ItemsPanelTemplate>
+                        </ListView.ItemsPanel>
+                    </ListView>
+                </ScrollViewer>
 
             </Grid>
         </Grid>
@@ -184,7 +189,7 @@
                 Height="100"
                 HorizontalAlignment="Center"
                 VerticalAlignment="Center"
-                Background="{DynamicResource SolidBackgroundFillColorQuarternaryBrush}"
+                Background="{StaticResource SolidBackgroundFillColorQuarternaryBrush}"
                 CornerRadius="4">
                 <Grid>
                     <StackPanel
