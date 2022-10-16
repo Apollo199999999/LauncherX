@@ -68,8 +68,11 @@ namespace LauncherX
         //AddItemsErrorDialog, in case when loading the files after application startup, the file does not exist
         AddItemsErrorDialog AddItemsErrorDialog = new AddItemsErrorDialog();
 
-        //create a new dispatcher timer
+        //create a new dispatcher timer to update theme
         DispatcherTimer themeupdater = new DispatcherTimer();
+
+        //create a new dispatcher timer to save items
+        DispatcherTimer SaveItemsUpdater = new DispatcherTimer();
 
         //init directory strings
         public string loadDir = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\LauncherX\\Files\\";
@@ -83,7 +86,7 @@ namespace LauncherX
         {
             InitializeComponent();
 
-            //save Window Pos
+            //save window pos
             ((App)Application.Current).WindowPlace.Register(this);
 
             //upgrade settings if needed
@@ -135,9 +138,14 @@ namespace LauncherX
             CheckAndUpdateTheme();
 
             //create a dispatcher timer to check for theme        
-            themeupdater.Interval = TimeSpan.FromMilliseconds(100);
+            themeupdater.Interval = TimeSpan.FromMilliseconds(1000);
             themeupdater.Tick += Themeupdater_Tick;
             themeupdater.Start();
+
+            //create dispatcher timer to save items
+            SaveItemsUpdater.Interval = TimeSpan.FromSeconds(10);
+            SaveItemsUpdater.Tick += SaveItemsUpdater_Tick;
+            SaveItemsUpdater.Start();
 
             //event handler for when window loads to check for updates
             this.Loaded += MainWindow_Loaded;
@@ -324,7 +332,12 @@ namespace LauncherX
             Image image = new Image();
             string path = iconPath;
             Uri fileuri = new Uri(path);
-            image.Source = new BitmapImage(fileuri);
+            //sometimes websiteicon cannot be set (due to url being invalid)
+            try
+            {
+                image.Source = new BitmapImage(fileuri);
+            }
+            catch { }
             image.Stretch = Stretch.Uniform;
             image.VerticalAlignment = VerticalAlignment.Center;
             image.HorizontalAlignment = HorizontalAlignment.Center;
@@ -415,7 +428,7 @@ namespace LauncherX
             //show gridView
             //gridviewhost.Visibility = Visibility.Visible;
             WPFGridView.Visibility = Visibility.Visible;
-            EmptyNotice.Visibility = Visibility.Hidden;  
+            EmptyNotice.Visibility = Visibility.Hidden;
 
             //init FileIconName
             var FileIconName = System.IO.Path.GetFileNameWithoutExtension(myfile);
@@ -432,47 +445,29 @@ namespace LauncherX
                 isImageFile = false;
             }
 
-            //save file icon
+            //save file icon 
+            if (File.Exists(Path.Combine(fileIconDir, FileIconName)))
+            {
+                FileIconName = FileNameCount.ToString() + FileIconName;
+            }
+
+            FileStream stream = new FileStream(System.IO.Path.Combine(fileIconDir, FileIconName), FileMode.Create);
+
+            //extract icon from file
             if (isImageFile == true)
             {
-                if (File.Exists(Path.Combine(fileIconDir, FileIconName)))
-                {
-                    FileIconName = FileNameCount.ToString() + FileIconName;
-                    FileStream stream = new FileStream(System.IO.Path.Combine(fileIconDir, FileIconName), FileMode.Create);
-                    System.Drawing.Image image1 = System.Drawing.Image.FromFile(myfile);
-                    System.Drawing.Image icon = image1.GetThumbnailImage(image1.Width, image1.Height, () => false, IntPtr.Zero);
-                    icon.Save(stream, System.Drawing.Imaging.ImageFormat.Tiff);
-                    FileNameCount += 1;
-                    stream.Dispose();
-                }
-                else
-                {
-                    FileStream stream = new FileStream(System.IO.Path.Combine(fileIconDir, FileIconName), FileMode.Create);
-                    System.Drawing.Image image1 = System.Drawing.Image.FromFile(myfile);
-                    System.Drawing.Image icon = image1.GetThumbnailImage(image1.Width, image1.Height, () => false, IntPtr.Zero);
-                    icon.Save(stream, System.Drawing.Imaging.ImageFormat.Tiff);
-                    stream.Dispose();
-                }
+                System.Drawing.Image image1 = System.Drawing.Image.FromFile(myfile);
+                System.Drawing.Image icon = image1.GetThumbnailImage(image1.Width, image1.Height, () => false, IntPtr.Zero);
+                icon.Save(stream, System.Drawing.Imaging.ImageFormat.Tiff);
             }
             else
             {
-                if (File.Exists(Path.Combine(fileIconDir, FileIconName)))
-                {
-                    FileIconName = FileNameCount.ToString() + FileIconName;
-                    FileStream stream = new FileStream(System.IO.Path.Combine(fileIconDir, FileIconName), FileMode.Create);
-                    Bitmap icon = new Bitmap(System.Drawing.Icon.ExtractAssociatedIcon(myfile).ToBitmap());
-                    icon.Save(stream, System.Drawing.Imaging.ImageFormat.Tiff);
-                    FileNameCount += 1;
-                    stream.Dispose();
-                }
-                else
-                {
-                    FileStream stream = new FileStream(System.IO.Path.Combine(fileIconDir, FileIconName), FileMode.Create);
-                    Bitmap icon = new Bitmap(System.Drawing.Icon.ExtractAssociatedIcon(myfile).ToBitmap());
-                    icon.Save(stream, System.Drawing.Imaging.ImageFormat.Tiff);
-                    stream.Dispose();
-                }
+                Bitmap icon = new Bitmap(System.Drawing.Icon.ExtractAssociatedIcon(myfile).ToBitmap());
+                icon.Save(stream, System.Drawing.Imaging.ImageFormat.Tiff);
             }
+
+            FileNameCount += 1;
+            stream.Dispose();
 
             WPFGridView.Items.Add(CreateGridViewItem(Path.Combine(fileIconDir + FileIconName), Path.GetFileName(myfile), myfile));
 
@@ -495,35 +490,21 @@ namespace LauncherX
             if (File.Exists(System.IO.Path.Combine(folderIconDir, FolderIconName)))
             {
                 FolderIconName = FolderNameCount.ToString() + FolderIconName;
-
-                //get the icon of the folder
-                SHFILEINFO shinfo = new SHFILEINFO();
-                SHGetFileInfo(directory, 0, ref shinfo, (uint)Marshal.SizeOf(shinfo), SHGFI_ICON | SHGFI_LARGEICON);
-                Icon i = System.Drawing.Icon.FromHandle(shinfo.hIcon);
-
-                //init filestream
-                FileStream stream = new FileStream(System.IO.Path.Combine(folderIconDir, FolderIconName), FileMode.Create);
-                Bitmap icon = i.ToBitmap();
-                icon.Save(stream, System.Drawing.Imaging.ImageFormat.Tiff);
-
-                FolderNameCount += 1;
-
-                stream.Dispose();
             }
-            else
-            {
-                //get the icon of the folder
-                SHFILEINFO shinfo = new SHFILEINFO();
-                SHGetFileInfo(directory, 0, ref shinfo, (uint)Marshal.SizeOf(shinfo), SHGFI_ICON | SHGFI_LARGEICON);
-                Icon i = System.Drawing.Icon.FromHandle(shinfo.hIcon);
 
-                //init filestream
-                FileStream stream = new FileStream(System.IO.Path.Combine(folderIconDir, FolderIconName), FileMode.Create);
-                Bitmap icon = i.ToBitmap();
-                icon.Save(stream, System.Drawing.Imaging.ImageFormat.Tiff);
+            //get the icon of the folder
+            SHFILEINFO shinfo = new SHFILEINFO();
+            SHGetFileInfo(directory, 0, ref shinfo, (uint)Marshal.SizeOf(shinfo), SHGFI_ICON | SHGFI_LARGEICON);
+            Icon i = System.Drawing.Icon.FromHandle(shinfo.hIcon);
 
-                stream.Dispose();
-            }
+            //init filestream
+            FileStream stream = new FileStream(System.IO.Path.Combine(folderIconDir, FolderIconName), FileMode.Create);
+            Bitmap icon = i.ToBitmap();
+            icon.Save(stream, System.Drawing.Imaging.ImageFormat.Tiff);
+
+            FolderNameCount += 1;
+
+            stream.Dispose();
 
             //then do the controls and add it to the gridView
             WPFGridView.Items.Add(CreateGridViewItem(Path.Combine(folderIconDir + FolderIconName), new DirectoryInfo(directory).Name, directory));
@@ -565,35 +546,21 @@ namespace LauncherX
 
             if (File.Exists(Path.Combine(websiteIconDir, WebsiteIconFileName)))
             {
-                try
-                {
-                    //try to download file
-                    WebsiteIconFileName = WebsiteNameCount.ToString() + WebsiteIconFileName;
-                    //download the website's favicon
-                    webClient.DownloadFile(new Uri(downloadaddress), System.IO.Path.Combine(websiteIconDir, WebsiteIconFileName));
-                    WebsiteNameCount += 1;
-                }
-                catch
-                {
-                    //show error message
-                    System.Windows.MessageBox.Show("Unable to get website icon. Please check that the website is valid and that you are connected to the internet. LauncherX will still add the website, just without the icon." +
-                        "If you want to have the icon, remove the website from LauncherX and re-add the website or restart Launcher X when you have internet connection.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                }
+                WebsiteIconFileName = WebsiteNameCount.ToString() + WebsiteIconFileName;
             }
-            else
+
+            try
             {
-                try
-                {
-                    //try to download file
-                    //download the website's favicon
-                    webClient.DownloadFile(new Uri(downloadaddress), System.IO.Path.Combine(websiteIconDir, WebsiteIconFileName));
-                }
-                catch
-                {
-                    //show error message
-                    System.Windows.MessageBox.Show("Unable to get website icon. Please check that the website is valid and that you are connected to the internet. LauncherX will still add the website, just without the icon." +
-                        "If you want to have the icon, remove the website from LauncherX and re-add the website or restart Launcher X when you have internet connection.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                }
+                //try to download file
+                //download the website's favicon
+                webClient.DownloadFile(new Uri(downloadaddress), System.IO.Path.Combine(websiteIconDir, WebsiteIconFileName));
+                WebsiteNameCount += 1;
+            }
+            catch
+            {
+                //show error message
+                System.Windows.MessageBox.Show("Unable to get website icon. Please check that the website is valid and that you are connected to the internet. LauncherX will still add the website, just without the icon." +
+                    "If you want to have the icon, remove the website from LauncherX and re-add the website or restart Launcher X when you have internet connection.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
 
             WPFGridView.Items.Add(CreateGridViewItem(Path.Combine(websiteIconDir + WebsiteIconFileName), DisplayName, "https://" + url));
@@ -922,11 +889,10 @@ namespace LauncherX
         #endregion
 
         #region Saving of items
-        private void MainWindow_Closing(object sender, System.ComponentModel.CancelEventArgs e)
-        {
-            //stop timers
-            themeupdater.Stop();
 
+        //function that saves items in listview
+        public void SaveItems()
+        {
             //save the items by creating text documents----------------------------------------
 
             //delete files in directory(loading items directory)
@@ -958,6 +924,20 @@ namespace LauncherX
 
                 savename += 1;
             }
+
+        }
+
+        private void SaveItemsUpdater_Tick(object sender, EventArgs e)
+        {
+            SaveItems();
+        }
+        private void MainWindow_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            //stop timers
+            themeupdater.Stop();
+            SaveItemsUpdater.Stop();
+
+            SaveItems();
 
             //close application manually
             System.Windows.Application.Current.Shutdown();

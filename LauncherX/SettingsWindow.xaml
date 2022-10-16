@@ -2,6 +2,7 @@
     x:Class="LauncherX.SettingsWindow"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:LX="clr-namespace:LauncherX"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="clr-namespace:LauncherX"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
@@ -30,8 +31,7 @@
             UseSnapLayout="True" />
 
         <Grid Margin="15,51,2,57">
-            <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Visible">
-
+            <LX:SmoothScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Visible">
                 <StackPanel CanVerticallyScroll="True" Orientation="Vertical">
                     <TextBlock
                         x:Name="textBlock"
@@ -112,7 +112,10 @@
                                     Text="Check if any new updates are available." />
                             </StackPanel>
                         </ui:CardControl.Header>
-                        <ui:Button Content="Check for updates" x:Name="CheckUpdatesBtn" Click="CheckUpdatesBtn_Click"/>
+                        <ui:Button
+                            x:Name="CheckUpdatesBtn"
+                            Click="CheckUpdatesBtn_Click"
+                            Content="Check for updates" />
                     </ui:CardControl>
 
 
@@ -266,7 +269,7 @@
                     </ui:CardExpander>
 
                 </StackPanel>
-            </ScrollViewer>
+            </LX:SmoothScrollViewer>
         </Grid>
 
         <ui:Button
@@ -298,20 +301,18 @@
         <ui:Snackbar
             x:Name="NoUpdateSnackBar"
             Title="You're up to date!"
+            Appearance="Success"
             Icon="CheckmarkCircle24"
             Message="No updates are available."
-            Timeout="5000"
-            Appearance="Success">
-        </ui:Snackbar>
+            Timeout="5000" />
 
         <ui:Snackbar
             x:Name="UpdateFailSnackBar"
             Title="Failed to check for updates"
+            Appearance="Danger"
             Icon="ErrorCircle24"
             Message="Please check your internet connection, or try again later."
-            Timeout="5000"
-            Appearance="Danger">
-        </ui:Snackbar>
+            Timeout="5000" />
 
     </Grid>
 
