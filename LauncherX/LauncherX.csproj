@@ -96,9 +96,11 @@
     </Compile>
     <Compile Include="AlphanumComparatorFast.cs" />
     <Compile Include="PublicVariables.cs" />
+    <Compile Include="ScrollInfoAdapter.cs" />
     <Compile Include="SettingsWindow.xaml.cs">
       <DependentUpon>SettingsWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="SmoothScrollViewer.cs" />
     <Compile Include="WebsiteDialog.xaml.cs">
       <DependentUpon>WebsiteDialog.xaml</DependentUpon>
     </Compile>
@@ -121,6 +123,10 @@
     <Page Include="SettingsWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\Generic.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="WebsiteDialog.xaml">
       <SubType>Designer</SubType>

@@ -33,3 +33,5 @@ C:\Users\fligh\source\repos\LauncherX\LauncherX\obj\x64\Debug\LauncherX.csproj.C
 C:\Users\fligh\source\repos\LauncherX\LauncherX\obj\x64\Debug\LauncherX.exe
 C:\Users\fligh\source\repos\LauncherX\LauncherX\obj\x64\Debug\LauncherX.pdb
 C:\Users\fligh\source\repos\LauncherX\LauncherX\bin\x64\Debug\GongSolutions.WPF.DragDrop.dll
+C:\Users\fligh\source\repos\LauncherX\LauncherX\obj\x64\Debug\GeneratedInternalTypeHelper.g.cs
+C:\Users\fligh\source\repos\LauncherX\LauncherX\obj\x64\Debug\Themes\Generic.baml

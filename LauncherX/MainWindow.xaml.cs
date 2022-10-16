@@ -17,7 +17,6 @@ using System.Windows.Media;
 using Image = System.Windows.Controls.Image;
 using System.Windows.Media.Imaging;
 using Color = System.Windows.Media.Color;
-using LauncherX.Properties;
 
 namespace LauncherX
 {
@@ -85,11 +84,11 @@ namespace LauncherX
             InitializeComponent();
 
             //upgrade settings if needed
-            if (Settings.Default.UpgradeRequired)
+            if (Properties.Settings.Default.UpgradeRequired)
             {
-                Settings.Default.Upgrade();
-                Settings.Default.UpgradeRequired = false;
-                Settings.Default.Save();
+                Properties.Settings.Default.Upgrade();
+                Properties.Settings.Default.UpgradeRequired = false;
+                Properties.Settings.Default.Save();
             }
 
             //set size value
