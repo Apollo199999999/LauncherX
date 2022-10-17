@@ -17,6 +17,7 @@ using System.Windows.Media;
 using Image = System.Windows.Controls.Image;
 using System.Windows.Media.Imaging;
 using Color = System.Windows.Media.Color;
+using GongSolutions.Wpf.DragDrop;
 
 namespace LauncherX
 {
@@ -159,7 +160,7 @@ namespace LauncherX
             LoadingDialog.Visibility = Visibility.Visible;
             this.IsEnabled = false;
 
-            await Task.Delay(100);
+            await Task.Delay(10);
 
             //create a variable to check if there are items that LauncherX cannot add
             bool ErrorAddingItems = false;
@@ -942,6 +943,36 @@ namespace LauncherX
             //close application manually
             System.Windows.Application.Current.Shutdown();
         }
+        #endregion
+
+        #region Dragging and dropping of items (files, folders, websites) into the WPFGridView
+        private void WPFGridView_Drop(object sender, DragEventArgs e)
+        {
+            if (e.Data.GetDataPresent(DataFormats.FileDrop))
+            {
+                // Note that you can have more than one file.
+                var files = (string[])e.Data.GetData(DataFormats.FileDrop);
+
+                //Iterate through files dropped, and add it to WPFGridView depending on whether it's a file or folder
+                foreach (var file in files)
+                {
+                    //create a new fileatttributes from file. This will be used to check if the text in the text file is a directory or file.
+                    System.IO.FileAttributes attr = File.GetAttributes(file);
+
+                    if (attr.HasFlag(System.IO.FileAttributes.Directory))
+                    {
+                        //this is a directory (folder)
+                        AddFolder(file);
+                    }
+                    else if (!attr.HasFlag(System.IO.FileAttributes.Directory))
+                    {
+                        //this is a file
+                        AddFile(file);
+                    }
+                }
+            }
+        }
+
         #endregion
 
         #region Misc. Event Handlers

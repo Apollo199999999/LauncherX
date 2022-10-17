@@ -103,14 +103,12 @@
                 x:Name="GridViewBackground"
                 Margin="-20,104,-20,-20"
                 Background="{StaticResource ControlFillColorDefaultBrush}">
-
                 <Grid
                     x:Name="EmptyNotice"
                     Height="55"
                     Margin="0,0,0,20"
                     HorizontalAlignment="Center"
-                    VerticalAlignment="Center"
-                    Visibility="Hidden">
+                    VerticalAlignment="Center">
                     <Label
                         x:Name="label1"
                         Margin="40,0,0,0"
@@ -140,15 +138,17 @@
 
                 <LX:SmoothScrollViewer
                     Margin="0,0,10,0"
+                    AllowDrop="True"
                     CanContentScroll="False"
+                    Drop="WPFGridView_Drop"
                     VerticalScrollBarVisibility="Visible">
                     <ListView
                         x:Name="WPFGridView"
                         Margin="20,20,10,20"
+                        dd:DragDrop.DefaultDragAdornerOpacity="1"
                         dd:DragDrop.IsDragSource="True"
                         dd:DragDrop.IsDropTarget="True"
                         dd:DragDrop.UseDefaultDragAdorner="True"
-                        dd:DragDrop.DefaultDragAdornerOpacity="1"
                         ScrollViewer.CanContentScroll="False"
                         ScrollViewer.HorizontalScrollBarVisibility="Disabled"
                         ScrollViewer.VerticalScrollBarVisibility="Disabled">
