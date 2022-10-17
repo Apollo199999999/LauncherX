@@ -950,6 +950,8 @@ namespace LauncherX
         {
             if (e.Data.GetDataPresent(DataFormats.FileDrop))
             {
+                //FILE OR FOLDER
+
                 // Note that you can have more than one file.
                 var files = (string[])e.Data.GetData(DataFormats.FileDrop);
 
@@ -970,6 +972,28 @@ namespace LauncherX
                         AddFile(file);
                     }
                 }
+            } 
+            else if (e.Data.GetDataPresent(DataFormats.Text))
+            {
+                // Note that you can have more than one file.
+                var str = (string)e.Data.GetData(DataFormats.Text);
+
+                //this is (potentially) a website 
+                if (str.StartsWith("https://"))
+                {
+                    //this is a website.
+                    //remove https://
+                    original_url = str;
+                    AddWebsite(str.Replace("https://", ""), original_url);
+                }
+                else if (str.StartsWith("http://"))
+                {
+                    //this is a website.
+                    //remove http://
+                    original_url = str;
+                    AddWebsite(str.Replace("http://", ""), original_url);
+                }
+
             }
         }
 
