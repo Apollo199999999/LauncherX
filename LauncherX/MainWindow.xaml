@@ -105,35 +105,35 @@
                 Background="{StaticResource ControlFillColorDefaultBrush}">
                 <Grid
                     x:Name="EmptyNotice"
-                    Height="55"
+                    MinHeight="55"
+                    MaxWidth="400"
                     Margin="0,0,0,20"
                     HorizontalAlignment="Center"
                     VerticalAlignment="Center">
-                    <Label
-                        x:Name="label1"
+                    <TextBlock
                         Margin="40,0,0,0"
                         HorizontalAlignment="Left"
                         VerticalAlignment="Top"
-                        Content="There is nothing here."
                         FontSize="16"
-                        Foreground="Gray" />
-                    <Label
-                        x:Name="label"
+                        FontWeight="Bold"
+                        Foreground="Gray"
+                        Text="There is nothing here." />
+                    <TextBlock
                         Width="31"
                         Margin="0"
                         HorizontalAlignment="Left"
                         VerticalAlignment="Center"
-                        Content="&#xE838;"
                         FontFamily="Segoe MDL2 Assets"
-                        FontSize="24"
-                        Foreground="Gray" />
-                    <Label
-                        x:Name="label2"
+                        FontSize="28"
+                        Foreground="Gray"
+                        Text="&#xE838;" />
+                    <TextBlock
                         Margin="40,25,0,0"
                         HorizontalAlignment="Left"
                         VerticalAlignment="Top"
-                        Content="To add an item, click the buttons at the top right corner."
-                        Foreground="Gray" />
+                        Foreground="Gray"
+                        Text="To add an item, click the buttons at the top right corner, or simply drag your files into this window."
+                        TextWrapping="Wrap" />
                 </Grid>
 
                 <LX:SmoothScrollViewer
