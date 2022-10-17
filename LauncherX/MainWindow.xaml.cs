@@ -560,8 +560,10 @@ namespace LauncherX
             catch
             {
                 //show error message
-                System.Windows.MessageBox.Show("Unable to get website icon. Please check that the website is valid and that you are connected to the internet. LauncherX will still add the website, just without the icon." +
-                    "If you want to have the icon, remove the website from LauncherX and re-add the website or restart Launcher X when you have internet connection.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                System.Windows.MessageBox.Show("Unable to get website icon. Please check that the website is valid and that you are connected to the internet. " +
+                    "LauncherX will still add the website, just without the icon." +
+                    "If you want to have the icon, remove the website from LauncherX and re-add the website or restart Launcher X when you have internet connection.", 
+                    "Error adding website", MessageBoxButton.OK, MessageBoxImage.Error);
             }
 
             WPFGridView.Items.Add(CreateGridViewItem(Path.Combine(websiteIconDir + WebsiteIconFileName), DisplayName, "https://" + url));
@@ -948,10 +950,12 @@ namespace LauncherX
         #region Dragging and dropping of items (files, folders, websites) into the WPFGridView
         private void WPFGridView_Drop(object sender, DragEventArgs e)
         {
+            //variable to check for invalid data
+            bool isInvalidData = false; 
+
             if (e.Data.GetDataPresent(DataFormats.FileDrop))
             {
                 //FILE OR FOLDER
-
                 // Note that you can have more than one file.
                 var files = (string[])e.Data.GetData(DataFormats.FileDrop);
 
@@ -976,24 +980,40 @@ namespace LauncherX
             else if (e.Data.GetDataPresent(DataFormats.Text))
             {
                 // Note that you can have more than one file.
-                var str = (string)e.Data.GetData(DataFormats.Text);
+                string str = (string)e.Data.GetData(DataFormats.Text);
 
                 //this is (potentially) a website 
                 if (str.StartsWith("https://"))
                 {
-                    //this is a website.
+                    //this is a website
                     //remove https://
                     original_url = str;
                     AddWebsite(str.Replace("https://", ""), original_url);
                 }
                 else if (str.StartsWith("http://"))
                 {
-                    //this is a website.
+                    //this is a website
                     //remove http://
                     original_url = str;
                     AddWebsite(str.Replace("http://", ""), original_url);
                 }
+                else
+                {
+                    isInvalidData = true;
+                }
+            }
+            else
+            {
+                isInvalidData = true;
+            }
 
+            //show an error message if invalid data
+            if (isInvalidData == true)
+            {
+                MessageBox.Show("Invalid data has been dragged into LauncherX. " +
+                    "If you are trying to add a website, please check that the website starts with either \"https://\" or \"http://\". " +
+                    "Otherwise, please check that the items that you are trying to add is indeed either a file, folder, or website.", 
+                    "Invalid Data", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 

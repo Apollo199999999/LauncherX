@@ -132,7 +132,7 @@
                         HorizontalAlignment="Left"
                         VerticalAlignment="Top"
                         Foreground="Gray"
-                        Text="To add an item, click the buttons at the top right corner, or simply drag your files into this window."
+                        Text="To add an item, click the buttons at the top right corner, or simply drag them into this window."
                         TextWrapping="Wrap" />
                 </Grid>
 
