@@ -948,10 +948,23 @@ namespace LauncherX
         #endregion
 
         #region Dragging and dropping of items (files, folders, websites) into the WPFGridView
-        private void WPFGridView_Drop(object sender, DragEventArgs e)
+
+        //toggle the visibility of the dragdropinterface depending on dragenter and dragleave events
+        private void Container_DragEnter(object sender, DragEventArgs e)
+        {
+            DragDropInterface.Visibility = Visibility.Visible;
+        }
+
+        private void Container_DragLeave(object sender, DragEventArgs e)
+        {
+            DragDropInterface.Visibility = Visibility.Hidden;
+        }
+
+        //handle event when user drops item into window
+        private void DragDropInterface_Drop(object sender, DragEventArgs e)
         {
             //variable to check for invalid data
-            bool isInvalidData = false; 
+            bool isInvalidData = false;
 
             if (e.Data.GetDataPresent(DataFormats.FileDrop))
             {
@@ -976,7 +989,7 @@ namespace LauncherX
                         AddFile(file);
                     }
                 }
-            } 
+            }
             else if (e.Data.GetDataPresent(DataFormats.Text))
             {
                 // Note that you can have more than one file.
@@ -1012,9 +1025,12 @@ namespace LauncherX
             {
                 MessageBox.Show("Invalid data has been dragged into LauncherX. " +
                     "If you are trying to add a website, please check that the website starts with either \"https://\" or \"http://\". " +
-                    "Otherwise, please check that the items that you are trying to add is indeed either a file, folder, or website.", 
+                    "Otherwise, please check that the items that you are trying to add is indeed either a file, folder, or website.",
                     "Invalid Data", MessageBoxButton.OK, MessageBoxImage.Error);
             }
+
+            //hide the dragdropinterface
+            DragDropInterface.Visibility = Visibility.Hidden;
         }
 
         #endregion
@@ -1033,5 +1049,7 @@ namespace LauncherX
         }
 
         #endregion
+
+        
     }
 }

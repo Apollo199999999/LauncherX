@@ -27,6 +27,10 @@
         Margin="0,0,0,0"
         HorizontalAlignment="Stretch"
         VerticalAlignment="Stretch"
+        AllowDrop="True"
+        Background="Transparent"
+        DragEnter="Container_DragEnter"
+        DragLeave="Container_DragLeave"
         MouseDown="Container_MouseDown">
         <ui:TitleBar
             Title="LauncherX - Organise all your stuff!"
@@ -138,9 +142,7 @@
 
                 <LX:SmoothScrollViewer
                     Margin="0,0,10,0"
-                    AllowDrop="True"
                     CanContentScroll="False"
-                    Drop="WPFGridView_Drop"
                     VerticalScrollBarVisibility="Visible">
                     <ListView
                         x:Name="WPFGridView"
@@ -224,6 +226,29 @@
                     </StackPanel>
                 </Grid>
             </Border>
+        </Grid>
+
+        <Grid
+            x:Name="DragDropInterface"
+            Margin="0,0,0,0"
+            HorizontalAlignment="Stretch"
+            VerticalAlignment="Stretch"
+            Background="#8D000000"
+            Visibility="Hidden"
+            AllowDrop="True"
+            Drop="DragDropInterface_Drop">
+            <Border>
+                <Border.Effect>
+                    <BlurEffect Radius="5" KernelType="Gaussian"/>
+                </Border.Effect>
+            </Border>
+            <TextBlock
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                FontSize="18"
+                FontWeight="Bold"
+                Text="Drag and drop your files/folders/websites here"
+                TextAlignment="Center" />
         </Grid>
     </Grid>
 </ui:UiWindow>
