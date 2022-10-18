@@ -29,8 +29,9 @@
         VerticalAlignment="Stretch"
         AllowDrop="True"
         Background="Transparent"
-        DragEnter="Container_DragEnter"
-        DragLeave="Container_DragLeave"
+        PreviewDragEnter="Container_PreviewDragEnter"
+        PreviewDragOver="Container_PreviewDragOver"
+        PreviewDragLeave="Container_PreviewDragLeave"
         MouseDown="Container_MouseDown">
         <ui:TitleBar
             Title="LauncherX - Organise all your stuff!"
@@ -39,6 +40,8 @@
 
         <Grid
             x:Name="grid"
+            Background="Transparent"
+            AllowDrop="True"
             Margin="20,51,20,20"
             HorizontalAlignment="Stretch"
             VerticalAlignment="Stretch">
@@ -105,6 +108,7 @@
 
             <Grid
                 x:Name="GridViewBackground"
+                AllowDrop="True"
                 Margin="-20,104,-20,-20"
                 Background="{StaticResource ControlFillColorDefaultBrush}">
                 <Grid
@@ -143,7 +147,9 @@
                 <LX:SmoothScrollViewer
                     Margin="0,0,10,0"
                     CanContentScroll="False"
-                    VerticalScrollBarVisibility="Visible">
+                    VerticalScrollBarVisibility="Visible"
+                    AllowDrop="True"
+                    Background="Transparent">
                     <ListView
                         x:Name="WPFGridView"
                         Margin="20,20,10,20"
@@ -153,7 +159,9 @@
                         dd:DragDrop.UseDefaultDragAdorner="True"
                         ScrollViewer.CanContentScroll="False"
                         ScrollViewer.HorizontalScrollBarVisibility="Disabled"
-                        ScrollViewer.VerticalScrollBarVisibility="Disabled">
+                        ScrollViewer.VerticalScrollBarVisibility="Disabled"
+                        Background="Transparent"
+                        AllowDrop="True">
                         <ListView.Template>
                             <ControlTemplate>
                                 <ItemsPresenter />
@@ -239,7 +247,7 @@
             Drop="DragDropInterface_Drop">
             <Border>
                 <Border.Effect>
-                    <BlurEffect Radius="5" KernelType="Gaussian"/>
+                    <BlurEffect Radius="50"/>
                 </Border.Effect>
             </Border>
             <TextBlock

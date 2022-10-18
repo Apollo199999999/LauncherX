@@ -950,12 +950,17 @@ namespace LauncherX
         #region Dragging and dropping of items (files, folders, websites) into the WPFGridView
 
         //toggle the visibility of the dragdropinterface depending on dragenter and dragleave events
-        private void Container_DragEnter(object sender, DragEventArgs e)
+        private void Container_PreviewDragEnter(object sender, DragEventArgs e)
         {
             DragDropInterface.Visibility = Visibility.Visible;
         }
 
-        private void Container_DragLeave(object sender, DragEventArgs e)
+        private void Container_PreviewDragOver(object sender, DragEventArgs e)
+        {
+            DragDropInterface.Visibility = Visibility.Visible;
+        }
+
+        private void Container_PreviewDragLeave(object sender, DragEventArgs e)
         {
             DragDropInterface.Visibility = Visibility.Hidden;
         }
@@ -1048,8 +1053,8 @@ namespace LauncherX
             SearchBox.IsSuggestionListOpen = false;
         }
 
+
         #endregion
 
-        
     }
 }
