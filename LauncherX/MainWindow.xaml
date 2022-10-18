@@ -29,10 +29,10 @@
         VerticalAlignment="Stretch"
         AllowDrop="True"
         Background="Transparent"
+        MouseDown="Container_MouseDown"
         PreviewDragEnter="Container_PreviewDragEnter"
-        PreviewDragOver="Container_PreviewDragOver"
         PreviewDragLeave="Container_PreviewDragLeave"
-        MouseDown="Container_MouseDown">
+        PreviewDragOver="Container_PreviewDragOver">
         <ui:TitleBar
             Title="LauncherX - Organise all your stuff!"
             Icon="icon.ico"
@@ -40,11 +40,14 @@
 
         <Grid
             x:Name="grid"
-            Background="Transparent"
-            AllowDrop="True"
             Margin="20,51,20,20"
             HorizontalAlignment="Stretch"
-            VerticalAlignment="Stretch">
+            VerticalAlignment="Stretch"
+            AllowDrop="True"
+            Background="Transparent"
+            PreviewDragEnter="Container_PreviewDragEnter"
+            PreviewDragLeave="Container_PreviewDragLeave"
+            PreviewDragOver="Container_PreviewDragOver">
             <ui:AutoSuggestBox
                 x:Name="SearchBox"
                 Margin="0,10,45,0"
@@ -108,9 +111,12 @@
 
             <Grid
                 x:Name="GridViewBackground"
-                AllowDrop="True"
                 Margin="-20,104,-20,-20"
-                Background="{StaticResource ControlFillColorDefaultBrush}">
+                AllowDrop="True"
+                Background="{StaticResource ControlFillColorDefaultBrush}"
+                PreviewDragEnter="Container_PreviewDragEnter"
+                PreviewDragLeave="Container_PreviewDragLeave"
+                PreviewDragOver="Container_PreviewDragOver">
                 <Grid
                     x:Name="EmptyNotice"
                     MinHeight="55"
@@ -146,10 +152,10 @@
 
                 <LX:SmoothScrollViewer
                     Margin="0,0,10,0"
-                    CanContentScroll="False"
-                    VerticalScrollBarVisibility="Visible"
                     AllowDrop="True"
-                    Background="Transparent">
+                    Background="Transparent"
+                    CanContentScroll="False"
+                    VerticalScrollBarVisibility="Visible">
                     <ListView
                         x:Name="WPFGridView"
                         Margin="20,20,10,20"
@@ -157,11 +163,11 @@
                         dd:DragDrop.IsDragSource="True"
                         dd:DragDrop.IsDropTarget="True"
                         dd:DragDrop.UseDefaultDragAdorner="True"
+                        AllowDrop="True"
+                        Background="Transparent"
                         ScrollViewer.CanContentScroll="False"
                         ScrollViewer.HorizontalScrollBarVisibility="Disabled"
-                        ScrollViewer.VerticalScrollBarVisibility="Disabled"
-                        Background="Transparent"
-                        AllowDrop="True">
+                        ScrollViewer.VerticalScrollBarVisibility="Disabled">
                         <ListView.Template>
                             <ControlTemplate>
                                 <ItemsPresenter />
@@ -241,13 +247,13 @@
             Margin="0,0,0,0"
             HorizontalAlignment="Stretch"
             VerticalAlignment="Stretch"
-            Background="#8D000000"
-            Visibility="Hidden"
             AllowDrop="True"
-            Drop="DragDropInterface_Drop">
+            Background="#8D000000"
+            Drop="DragDropInterface_Drop"
+            Visibility="Hidden">
             <Border>
                 <Border.Effect>
-                    <BlurEffect Radius="50"/>
+                    <BlurEffect Radius="50" />
                 </Border.Effect>
             </Border>
             <TextBlock
