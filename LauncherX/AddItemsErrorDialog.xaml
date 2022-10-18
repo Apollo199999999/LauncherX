@@ -19,7 +19,7 @@
     <Grid Background="{StaticResource ControlFillColorDefaultBrush}">
         <ui:TitleBar
             Title="Error while adding items"
-            Icon="icon.ico"
+            Icon="/Resources/icon.ico"
             ShowMaximize="False"
             ShowMinimize="False"
             UseSnapLayout="True" />

@@ -25,7 +25,7 @@
         Background="{StaticResource ControlFillColorDefaultBrush}">
         <ui:TitleBar
             Title="LauncherX Settings"
-            Icon="icon.ico"
+            Icon="/Resources/icon.ico"
             ShowMaximize="False"
             ShowMinimize="False"
             UseSnapLayout="True" />

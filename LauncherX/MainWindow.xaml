@@ -35,7 +35,7 @@
         PreviewDragOver="Container_PreviewDragOver">
         <ui:TitleBar
             Title="LauncherX - Organise all your stuff!"
-            Icon="icon.ico"
+            Icon="/Resources/icon.ico"
             UseSnapLayout="True" />
 
         <Grid
@@ -205,7 +205,8 @@
             Margin="0,51,0,0"
             HorizontalAlignment="Stretch"
             VerticalAlignment="Stretch"
-            Background="#8D000000"
+            Panel.ZIndex="2147483647"
+            Background="#AA000000"
             Visibility="Hidden">
             <Border
                 Width="400"
@@ -247,15 +248,11 @@
             Margin="0,0,0,0"
             HorizontalAlignment="Stretch"
             VerticalAlignment="Stretch"
+            Panel.ZIndex="2147483647"
             AllowDrop="True"
-            Background="#8D000000"
+            Background="#AA000000"
             Drop="DragDropInterface_Drop"
             Visibility="Hidden">
-            <Border>
-                <Border.Effect>
-                    <BlurEffect Radius="50" />
-                </Border.Effect>
-            </Border>
             <TextBlock
                 HorizontalAlignment="Center"
                 VerticalAlignment="Center"
