@@ -374,9 +374,6 @@ namespace LauncherX
             //mouseenter and mouseleave events for stackpanel mouse highlight effect
             stackpanel.MouseEnter += GridViewItem_MouseEnter;
             stackpanel.MouseLeave += GridViewItem_MouseLeave;
-            //mousedown and mouseup event to enable or disable drag and drop functionality from outside LauncherX
-            stackpanel.MouseDown += GridViewItem_MouseDown;
-            stackpanel.MouseUp += GridViewItem_MouseUp;
 
             //add the controls
             stackpanel.Children.Add(image);
@@ -593,7 +590,7 @@ namespace LauncherX
 
             //create symbolicons
             Wpf.Ui.Controls.SymbolIcon OpenItemIcon = new Wpf.Ui.Controls.SymbolIcon();
-            OpenItemIcon.Symbol = Wpf.Ui.Common.SymbolRegular.OpenFolder24;
+            OpenItemIcon.Symbol = Wpf.Ui.Common.SymbolRegular.Open24;
             Wpf.Ui.Controls.SymbolIcon OpenLocationIcon = new Wpf.Ui.Controls.SymbolIcon();
             OpenLocationIcon.Symbol = Wpf.Ui.Common.SymbolRegular.FolderOpen24;
             Wpf.Ui.Controls.SymbolIcon RemoveItemIcon = new Wpf.Ui.Controls.SymbolIcon();
@@ -948,28 +945,17 @@ namespace LauncherX
             //close application manually
             System.Windows.Application.Current.Shutdown();
         }
+
         #endregion
 
         #region Dragging and dropping of items (files, folders, websites) into the WPFGridView
 
         //toggle the visibility of the dragdropinterface depending on dragenter and dragleave events
 
-        //check if the gridviewitem has mousedown, as the user may potentially want to reorder items and drag and drop from outside the app should not occur
-        bool GridViewItemIsMouseDown = false;
-        private void GridViewItem_MouseUp(object sender, MouseButtonEventArgs e)
+        //function to control visibility of dragdropinterface
+        public void TryShowDragDropInterface(DragEventArgs e)
         {
-            GridViewItemIsMouseDown = false;
-        }
-
-        private void GridViewItem_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-            GridViewItemIsMouseDown = true;
-        }
-
-        //function to do control visibility of dragdropinterface
-        public void TryShowDragDropInterface()
-        {
-            if (WPFGridView.SelectedItem == null || GridViewItemIsMouseDown == false)
+            if (e.Data.GetDataPresent(DataFormats.FileDrop) || e.Data.GetDataPresent(DataFormats.Text))
             {
                 DragDropInterface.Visibility = Visibility.Visible;
             }
@@ -981,17 +967,17 @@ namespace LauncherX
 
         private void Container_PreviewDragEnter(object sender, DragEventArgs e)
         {
-            TryShowDragDropInterface();
+            TryShowDragDropInterface(e);
         }
 
         private void Container_PreviewDragOver(object sender, DragEventArgs e)
         {
-            TryShowDragDropInterface();
+            TryShowDragDropInterface(e);
         }
 
         private void Container_PreviewDragLeave(object sender, DragEventArgs e)
         {
-            TryShowDragDropInterface();
+            DragDropInterface.Visibility = Visibility.Hidden;
         }
 
         //handle event when user drops item into window
