@@ -117,38 +117,40 @@
                 PreviewDragEnter="Container_PreviewDragEnter"
                 PreviewDragLeave="Container_PreviewDragLeave"
                 PreviewDragOver="Container_PreviewDragOver">
-                <Grid
+
+                <StackPanel
                     x:Name="EmptyNotice"
                     MinHeight="55"
                     MaxWidth="400"
                     Margin="0,0,0,20"
                     HorizontalAlignment="Center"
-                    VerticalAlignment="Center">
+                    VerticalAlignment="Center"
+                    Orientation="Vertical">
+                    <ui:SymbolIcon
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Center"
+                        FontSize="36"
+                        Foreground="{StaticResource TextFillColorTertiaryBrush}"
+                        Symbol="FolderOpen24" />
+
                     <TextBlock
-                        Margin="40,0,0,0"
+                        Margin="0,10,0,0"
                         HorizontalAlignment="Left"
                         VerticalAlignment="Top"
                         FontSize="16"
                         FontWeight="Bold"
-                        Foreground="Gray"
+                        Foreground="{StaticResource TextFillColorTertiaryBrush}"
                         Text="There is nothing here." />
+
                     <TextBlock
-                        Width="31"
-                        Margin="0"
-                        HorizontalAlignment="Left"
-                        VerticalAlignment="Center"
-                        FontFamily="Segoe MDL2 Assets"
-                        FontSize="28"
-                        Foreground="Gray"
-                        Text="&#xE838;" />
-                    <TextBlock
-                        Margin="40,25,0,0"
+                        Margin="0,5,0,0"
                         HorizontalAlignment="Left"
                         VerticalAlignment="Top"
-                        Foreground="Gray"
+                        Foreground="{StaticResource TextFillColorTertiaryBrush}"
                         Text="To add an item, click the buttons at the top right corner, or simply drag them into this window."
                         TextWrapping="Wrap" />
-                </Grid>
+
+                </StackPanel>
 
                 <LX:SmoothScrollViewer
                     Margin="0,0,10,0"
@@ -257,7 +259,7 @@
                 HorizontalAlignment="Center"
                 VerticalAlignment="Center"
                 Orientation="Vertical">
-                <ui:SymbolIcon FontSize="48" Symbol="DocumentCopy24" />
+                <ui:SymbolIcon FontSize="48" Symbol="ArrowDownload24" />
 
                 <TextBlock
                     Margin="0,10,0,0"

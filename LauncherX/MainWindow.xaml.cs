@@ -17,7 +17,6 @@ using System.Windows.Media;
 using Image = System.Windows.Controls.Image;
 using System.Windows.Media.Imaging;
 using Color = System.Windows.Media.Color;
-using GongSolutions.Wpf.DragDrop;
 
 namespace LauncherX
 {
@@ -156,73 +155,84 @@ namespace LauncherX
         #region Checking for updates and loading items when LauncherX loads
         private async void MainWindow_Loaded(object sender, RoutedEventArgs e)
         {
-            //wait a while for controls and window to load
-            LoadingDialog.Visibility = Visibility.Visible;
-            this.IsEnabled = false;
-
-            await Task.Delay(10);
-
-            //create a variable to check if there are items that LauncherX cannot add
-            bool ErrorAddingItems = false;
-
-            //create a new list and sort the files
-            var list = Directory.GetFiles(loadDir);
-            Array.Sort(list, new AlphanumComparatorFast());
-
-            //foreach loop to iterate through files and call the appropriate functions
-            foreach (string file in list)
+            //only load items if necessary
+            if (Directory.GetFiles(loadDir).Length != 0) 
             {
-                //load the text files (read)
+                //wait a while for controls and window to load
+                LoadingDialog.Visibility = Visibility.Visible;
+                this.IsEnabled = false;
 
-                // Open the file to read from.
-                using (StreamReader sr = File.OpenText(file))
+                await Task.Delay(10);
+
+                //create a variable to check if there are items that LauncherX cannot add
+                bool ErrorAddingItems = false;
+
+                //create a new list and sort the files
+                var list = Directory.GetFiles(loadDir);
+                Array.Sort(list, new AlphanumComparatorFast());
+
+                //foreach loop to iterate through files and call the appropriate functions
+                foreach (string file in list)
                 {
-                    string s = "";
+                    //load the text files (read)
 
-                    //read the first line of the text document
-                    s = sr.ReadLine();
-
-                    if (s.StartsWith("https://"))
+                    // Open the file to read from.
+                    using (StreamReader sr = File.OpenText(file))
                     {
-                        //this is a website.
-                        //remove https://
-                        s = s.Replace("https://", "");
-                        original_url = sr.ReadLine();
-                        AddWebsite(s, original_url);
+                        string s = "";
+
+                        //read the first line of the text document
+                        s = sr.ReadLine();
+
+                        if (s.StartsWith("https://"))
+                        {
+                            //this is a website.
+                            //remove https://
+                            s = s.Replace("https://", "");
+                            original_url = sr.ReadLine();
+                            AddWebsite(s, original_url);
+
+                        }
+                        else
+                        {
+                            /*this part, it is either a file or folder. hence, if it doesn't exist, 
+                             * we need to add it to a listview in a dialog window, to tell the user that the file/folder 
+                             * cannot be added*/
+
+                            //wrap everything in a try catch loop.
+                            try
+                            {
+                                //create a new fileatttributes from s. This will be used to check if the text in the text file is a directory or file.
+                                System.IO.FileAttributes attr = File.GetAttributes(s);
+
+                                if (attr.HasFlag(System.IO.FileAttributes.Directory))
+                                {
+                                    //this is a directory (folder)
+                                    AddFolder(s);
+                                }
+                                else if (!attr.HasFlag(System.IO.FileAttributes.Directory))
+                                {
+                                    //this is a file
+                                    AddFile(s);
+                                }
+                            }
+                            catch
+                            {
+                                //add the problematic directory ti the listview in the error dialog, then set erroraddingitems to true
+                                AddItemsErrorDialog.ErrorFiles.Items.Add(s);
+                                ErrorAddingItems = true;
+                            }
+
+                        }
 
                     }
-                    else
-                    {
-                        /*this part, it is either a file or folder. hence, if it doesn't exist, 
-                         * we need to add it to a listview in a dialog window, to tell the user that the file/folder 
-                         * cannot be added*/
 
-                        //wrap everything in a try catch loop.
-                        try
-                        {
-                            //create a new fileatttributes from s. This will be used to check if the text in the text file is a directory or file.
-                            System.IO.FileAttributes attr = File.GetAttributes(s);
+                }
 
-                            if (attr.HasFlag(System.IO.FileAttributes.Directory))
-                            {
-                                //this is a directory (folder)
-                                AddFolder(s);
-                            }
-                            else if (!attr.HasFlag(System.IO.FileAttributes.Directory))
-                            {
-                                //this is a file
-                                AddFile(s);
-                            }
-                        }
-                        catch
-                        {
-                            //add the problematic directory ti the listview in the error dialog, then set erroraddingitems to true
-                            AddItemsErrorDialog.ErrorFiles.Items.Add(s);
-                            ErrorAddingItems = true;
-                        }
-
-                    }
-
+                if (ErrorAddingItems == true)
+                {
+                    //show the additemserrordialog
+                    AddItemsErrorDialog.ShowDialog();
                 }
 
             }
@@ -239,17 +249,12 @@ namespace LauncherX
                 EmptyNotice.Visibility = Visibility.Hidden;
             }
 
-            if (ErrorAddingItems == true)
-            {
-                //show the additemserrordialog
-                AddItemsErrorDialog.ShowDialog();
-            }
-
             //activate and focus this window
             this.Activate();
             this.Focus();
 
-            LoadingDialog.Visibility = Visibility.Collapsed;
+            LoadingDialog.Visibility = Visibility.Hidden;
+
             this.IsEnabled = true;
 
             /*check if internet connection exists, and if so, check for updates, and if there are updates,
