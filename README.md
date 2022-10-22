@@ -1,5 +1,7 @@
 # LauncherX
 
+(this README is somewhat outdated, and will be updated when LauncherX v2 is released)
+
 ### Project site: https://clickphase.weebly.com/launcherx.html
 
 LauncherX - Organise all your stuff!
