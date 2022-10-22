@@ -156,7 +156,7 @@ namespace LauncherX
         private async void MainWindow_Loaded(object sender, RoutedEventArgs e)
         {
             //only load items if necessary
-            if (Directory.GetFiles(loadDir).Length != 0) 
+            if (Directory.GetFiles(loadDir).Length != 0)
             {
                 //wait a while for controls and window to load
                 LoadingDialog.Visibility = Visibility.Visible;
@@ -172,6 +172,7 @@ namespace LauncherX
                 Array.Sort(list, new AlphanumComparatorFast());
 
                 //foreach loop to iterate through files and call the appropriate functions
+
                 foreach (string file in list)
                 {
                     //load the text files (read)
@@ -440,17 +441,6 @@ namespace LauncherX
             var FileIconName = System.IO.Path.GetFileNameWithoutExtension(myfile);
             FileIconName = FileIconName + ".tiff";
 
-            bool isImageFile;
-            try
-            {
-                System.Drawing.Image.FromFile(myfile).Dispose();
-                isImageFile = true;
-            }
-            catch (OutOfMemoryException)
-            {
-                isImageFile = false;
-            }
-
             //save file icon 
             if (File.Exists(Path.Combine(fileIconDir, FileIconName)))
             {
@@ -460,23 +450,13 @@ namespace LauncherX
             FileStream stream = new FileStream(System.IO.Path.Combine(fileIconDir, FileIconName), FileMode.Create);
 
             //extract icon from file
-            if (isImageFile == true)
-            {
-                System.Drawing.Image image1 = System.Drawing.Image.FromFile(myfile);
-                System.Drawing.Image icon = image1.GetThumbnailImage(image1.Width, image1.Height, () => false, IntPtr.Zero);
-                icon.Save(stream, System.Drawing.Imaging.ImageFormat.Tiff);
-            }
-            else
-            {
-                Bitmap icon = new Bitmap(System.Drawing.Icon.ExtractAssociatedIcon(myfile).ToBitmap());
-                icon.Save(stream, System.Drawing.Imaging.ImageFormat.Tiff);
-            }
+            Bitmap icon = new Bitmap(System.Drawing.Icon.ExtractAssociatedIcon(myfile).ToBitmap());
+            icon.Save(stream, System.Drawing.Imaging.ImageFormat.Tiff);
 
             FileNameCount += 1;
             stream.Dispose();
 
             WPFGridView.Items.Add(CreateGridViewItem(Path.Combine(fileIconDir + FileIconName), Path.GetFileName(myfile), myfile));
-
 
         }
 
@@ -567,7 +547,7 @@ namespace LauncherX
                 //show error message
                 System.Windows.MessageBox.Show("Unable to get website icon. Please check that the website is valid and that you are connected to the internet. " +
                     "LauncherX will still add the website, just without the icon." +
-                    "If you want to have the icon, remove the website from LauncherX and re-add the website or restart Launcher X when you have internet connection.", 
+                    "If you want to have the icon, remove the website from LauncherX and re-add the website or restart Launcher X when you have internet connection.",
                     "Error adding website", MessageBoxButton.OK, MessageBoxImage.Error);
             }
 
