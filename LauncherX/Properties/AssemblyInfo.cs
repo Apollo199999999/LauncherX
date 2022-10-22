@@ -8,7 +8,7 @@ using System.Windows;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("LauncherX")]
-[assembly: AssemblyDescription("LauncherX - Organize all your stuff!")]
+[assembly: AssemblyDescription("LauncherX - Modern app launcher for Windows")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("ClickPhase")]
 [assembly: AssemblyProduct("LauncherX")]

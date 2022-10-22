@@ -237,7 +237,7 @@ namespace LauncherX
 
             }
 
-            //check if gridView is empty
+            //check if gridView is empty and hide/show gridview and emptynotice accordingly
             if (WPFGridView.Items.Count == 0)
             {
                 WPFGridView.Visibility = Visibility.Hidden;

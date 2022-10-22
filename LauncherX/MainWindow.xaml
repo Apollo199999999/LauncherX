@@ -8,10 +8,10 @@
     xmlns:local="clr-namespace:LauncherX"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
-    Title="LauncherX - Organize all your stuff!"
+    Title="LauncherX - Modern app launcher for Windows"
     Width="855"
     Height="600"
-    MinWidth="730"
+    MinWidth="630"
     MinHeight="400"
     ui:ExtendsContentIntoTitleBar="True"
     ui:WindowBackdropType="Mica"
@@ -33,8 +33,9 @@
         PreviewDragEnter="Container_PreviewDragEnter"
         PreviewDragLeave="Container_PreviewDragLeave"
         PreviewDragOver="Container_PreviewDragOver">
+
         <ui:TitleBar
-            Title="LauncherX - Organise all your stuff!"
+            Title="LauncherX - Modern app launcher for Windows"
             Icon="/Resources/icon.ico"
             UseSnapLayout="True" />
 
@@ -48,6 +49,7 @@
             PreviewDragEnter="Container_PreviewDragEnter"
             PreviewDragLeave="Container_PreviewDragLeave"
             PreviewDragOver="Container_PreviewDragOver">
+
             <ui:AutoSuggestBox
                 x:Name="SearchBox"
                 Margin="0,10,45,0"
@@ -71,43 +73,55 @@
                 FontSize="20"
                 Icon="Settings24" />
 
-            <TextBlock
-                x:Name="header"
-                Margin="0,65,0,0"
-                HorizontalAlignment="Left"
-                VerticalAlignment="Top"
-                FontSize="20"
-                FontWeight="Bold"
-                Text="My files, folders, and websites"
-                TextWrapping="Wrap" />
-            <ui:Button
-                x:Name="OpenFileBtn"
-                Width="105"
+            <Grid
                 Height="32"
                 Margin="0,62,0,0"
-                HorizontalAlignment="Right"
-                VerticalAlignment="Top"
-                Appearance="Primary"
-                Click="OpenFileBtn_Click"
-                Content="Add a file" />
-            <ui:Button
-                x:Name="OpenFolderBtn"
-                Width="110"
-                Height="32"
-                Margin="0,62,115,0"
-                HorizontalAlignment="Right"
-                VerticalAlignment="Top"
-                Click="OpenFolderBtn_Click"
-                Content="Add a folder" />
-            <ui:Button
-                x:Name="OpenWebsiteBtn"
-                Width="120"
-                Height="32"
-                Margin="0,62,235,0"
-                HorizontalAlignment="Right"
-                VerticalAlignment="Top"
-                Click="OpenWebsiteBtn_Click"
-                Content="Add a website" />
+                HorizontalAlignment="Stretch"
+                VerticalAlignment="Top">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="365" />
+                </Grid.ColumnDefinitions>
+
+                <TextBlock
+                    x:Name="header"
+                    Grid.Column="0"
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Center"
+                    FontSize="20"
+                    FontWeight="Bold"
+                    Text="My files, folders, and websites"
+                    TextTrimming="CharacterEllipsis"
+                    TextWrapping="NoWrap" />
+
+                <StackPanel
+                    Grid.Column="1"
+                    HorizontalAlignment="Right"
+                    VerticalAlignment="Stretch"
+                    Orientation="Horizontal">
+                    <ui:Button
+                        x:Name="OpenFileBtn"
+                        Width="105"
+                        Height="32"
+                        Appearance="Primary"
+                        Click="OpenFileBtn_Click"
+                        Content="Add a file" />
+                    <ui:Button
+                        x:Name="OpenFolderBtn"
+                        Width="110"
+                        Height="32"
+                        Margin="10,0,0,0"
+                        Click="OpenFolderBtn_Click"
+                        Content="Add a folder" />
+                    <ui:Button
+                        x:Name="OpenWebsiteBtn"
+                        Width="120"
+                        Height="32"
+                        Margin="10,0,0,0"
+                        Click="OpenWebsiteBtn_Click"
+                        Content="Add a website" />
+                </StackPanel>
+            </Grid>
 
             <Grid
                 x:Name="GridViewBackground"
@@ -125,7 +139,8 @@
                     Margin="0,0,0,20"
                     HorizontalAlignment="Center"
                     VerticalAlignment="Center"
-                    Orientation="Vertical">
+                    Orientation="Vertical"
+                    Visibility="Hidden">
                     <ui:SymbolIcon
                         HorizontalAlignment="Left"
                         VerticalAlignment="Center"

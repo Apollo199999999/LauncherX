@@ -95,8 +95,9 @@
                             HorizontalAlignment="Stretch"
                             VerticalAlignment="Top"
                             FontSize="14"
+                            TextAlignment="Left"
                             TextChanged="changeHeaderTextTextBox_TextChanged"
-                            TextWrapping="Wrap" />
+                            TextWrapping="NoWrap" />
                     </ui:CardControl>
 
                     <ui:CardControl Margin="0,10,0,0" Icon="ArrowSyncCircle24">
