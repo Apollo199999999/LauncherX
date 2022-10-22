@@ -143,7 +143,6 @@
                     Visibility="Hidden">
                     <ui:SymbolIcon
                         HorizontalAlignment="Left"
-                        VerticalAlignment="Center"
                         FontSize="36"
                         Foreground="{StaticResource TextFillColorTertiaryBrush}"
                         Symbol="FolderOpen24" />
@@ -151,7 +150,6 @@
                     <TextBlock
                         Margin="0,10,0,0"
                         HorizontalAlignment="Left"
-                        VerticalAlignment="Top"
                         FontSize="16"
                         FontWeight="Bold"
                         Foreground="{StaticResource TextFillColorTertiaryBrush}"
@@ -160,7 +158,7 @@
                     <TextBlock
                         Margin="0,5,0,0"
                         HorizontalAlignment="Left"
-                        VerticalAlignment="Top"
+                        TextAlignment="Left"
                         Foreground="{StaticResource TextFillColorTertiaryBrush}"
                         Text="To add an item, click the buttons at the top right corner, or simply drag them into this window."
                         TextWrapping="Wrap" />
