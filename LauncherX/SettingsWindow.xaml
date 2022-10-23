@@ -69,10 +69,11 @@
                             VerticalAlignment="Top"
                             AutoToolTipPlacement="TopLeft"
                             AutoToolTipPrecision="2"
+                            IsSnapToTickEnabled="True"
                             Loaded="ScaleSlider_Loaded"
                             Maximum="6"
                             Minimum="0.25"
-                            TickFrequency="0.01"
+                            TickFrequency="0.05"
                             Unloaded="ScaleSlider_Unloaded" />
                     </ui:CardControl>
 

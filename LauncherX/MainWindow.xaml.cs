@@ -380,6 +380,7 @@ namespace LauncherX
 
             //set the tooltipowner to the stackpanel using tooltip service
             ToolTipService.SetToolTip(stackpanel, toolTip);
+            ToolTipService.SetInitialShowDelay(stackpanel, 500);
 
             //left click event handler for starting the process
             stackpanel.MouseLeftButtonUp += GridViewItem_LeftClicked;
@@ -809,10 +810,7 @@ namespace LauncherX
             try
             {
                 //PUT UPDATE SETTINGS CODE HERE
-
-                //---------------------------------------------------------------change scale
                 //UPDATE SIZES
-
                 //foreach loop
                 foreach (StackPanel stackpanel in WPFGridView.Items)
                 {
@@ -835,7 +833,7 @@ namespace LauncherX
             {
                 //show a error message
                 System.Windows.MessageBox.Show("Unable to update one or more settings. Please try again later, " +
-                    "or contact the developer.", "Error while updating settings", MessageBoxButton.OK, MessageBoxImage.Error);
+                    "or open an issue on GitHub.", "Error while updating settings", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
         #endregion
