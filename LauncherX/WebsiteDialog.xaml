@@ -30,7 +30,7 @@
             Margin="15,55,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
-            Text="URL:" />
+            Text="Website URL:" />
         <ui:TextBox
             x:Name="urlBox"
             Margin="15,81,15,10"

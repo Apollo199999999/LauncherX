@@ -728,6 +728,8 @@ namespace LauncherX
                 foreach (string myfile in openFileDialog.FileNames)
                 {
                     AddFile(myfile);
+
+                    await Task.Delay(10);
                 }
 
             }
@@ -754,6 +756,8 @@ namespace LauncherX
                 foreach (string myfile in dialog.FileNames)
                 {
                     AddFolder(myfile);
+
+                    await Task.Delay(10);
                 }
             }
 
