@@ -235,6 +235,7 @@ namespace LauncherX
 
                     }
 
+                    //give the GridView time to render items
                     await Task.Delay(10);
 
                 }
