@@ -17,6 +17,7 @@ using System.Windows.Media;
 using Image = System.Windows.Controls.Image;
 using System.Windows.Media.Imaging;
 using Color = System.Windows.Media.Color;
+using System.Drawing.Imaging;
 
 namespace LauncherX
 {
@@ -79,6 +80,13 @@ namespace LauncherX
         public string fileIconDir = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\LauncherX\\Temp\\AppIcons\\";
         public string folderIconDir = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\LauncherX\\Temp\\FolderIcons\\";
         public string websiteIconDir = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\LauncherX\\Temp\\WebsiteIcons\\";
+
+        //list of image file extensions
+        List<string> ImageFileExtensions = ImageCodecInfo.GetImageEncoders()
+                                 .Select(c => c.FilenameExtension)
+                                 .SelectMany(e => e.Split(';'))
+                                 .Select(e => e.Replace("*", "").ToLower())
+                                 .ToList();
 
         #endregion
 
@@ -429,11 +437,16 @@ namespace LauncherX
             stackPanel.Background = new SolidColorBrush(Color.FromArgb(0, 0, 0, 0));
         }
 
+        //functions to check if extension is an image extension
+        private bool IsImage(string fileExtension)
+        {
+            return ImageFileExtensions.Contains(fileExtension.ToLower());
+        }
+
         //add file
         public void AddFile(string myfile)
         {
             //show gridView
-            //gridviewhost.Visibility = Visibility.Visible;
             WPFGridView.Visibility = Visibility.Visible;
             EmptyNotice.Visibility = Visibility.Hidden;
 
@@ -450,8 +463,17 @@ namespace LauncherX
             FileStream stream = new FileStream(System.IO.Path.Combine(fileIconDir, FileIconName), FileMode.Create);
 
             //extract icon from file
-            Bitmap icon = new Bitmap(System.Drawing.Icon.ExtractAssociatedIcon(myfile).ToBitmap());
-            icon.Save(stream, System.Drawing.Imaging.ImageFormat.Tiff);
+            if (IsImage(Path.GetExtension(myfile).ToLower()) == true)
+            {
+                System.Drawing.Image image1 = System.Drawing.Image.FromFile(myfile);
+                System.Drawing.Image icon = image1.GetThumbnailImage(image1.Width, image1.Height, () => false, IntPtr.Zero);
+                icon.Save(stream, System.Drawing.Imaging.ImageFormat.Tiff);
+            }
+            else
+            {
+                Bitmap icon = new Bitmap(System.Drawing.Icon.ExtractAssociatedIcon(myfile).ToBitmap());
+                icon.Save(stream, System.Drawing.Imaging.ImageFormat.Tiff);
+            }
 
             FileNameCount += 1;
             stream.Dispose();
@@ -464,7 +486,6 @@ namespace LauncherX
         public void AddFolder(string directory)
         {
             //show gridView
-            //gridviewhost.Visibility = Visibility.Visible;
             WPFGridView.Visibility = Visibility.Visible;
             EmptyNotice.Visibility = Visibility.Hidden;
 
@@ -500,7 +521,6 @@ namespace LauncherX
         private void AddWebsite(string url, string DisplayName)
         {
             //show gridView
-            //gridviewhost.Visibility = Visibility.Visible;
             WPFGridView.Visibility = Visibility.Visible;
             EmptyNotice.Visibility = Visibility.Hidden;
 
