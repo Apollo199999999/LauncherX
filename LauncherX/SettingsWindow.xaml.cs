@@ -30,7 +30,7 @@ namespace LauncherX
             CheckAndUpdateTheme();
 
             //create a dispatcher timer to check for theme    
-            themeupdater.Interval = TimeSpan.FromMilliseconds(100);
+            themeupdater.Interval = TimeSpan.FromMilliseconds(1000);
             themeupdater.Tick += Themeupdater_Tick;
             themeupdater.Start();
         }

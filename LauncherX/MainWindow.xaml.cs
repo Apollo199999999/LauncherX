@@ -291,10 +291,10 @@ namespace LauncherX
         #endregion
 
         #region Methods relating to appearance of MainWindow
-        //function to check and update theme
-        public void CheckAndUpdateTheme()
+
+        //function to get light/dark theme
+        public bool GetAppsLightTheme()
         {
-            //next, check if the system is in light or dark theme
             bool is_light_mode = true;
             try
             {
@@ -304,7 +304,15 @@ namespace LauncherX
             }
             catch { }
 
+            return is_light_mode;
+        }
 
+        //function to check and update theme
+        public void CheckAndUpdateTheme()
+        {
+            //check if the system is in light or dark theme
+            bool is_light_mode = GetAppsLightTheme();
+            
             if (is_light_mode == true)
             {
                 Wpf.Ui.Appearance.Theme.Apply(
@@ -436,7 +444,19 @@ namespace LauncherX
         {
             //set the background of the stackpanel
             StackPanel stackPanel = sender as StackPanel;
-            stackPanel.Background = Application.Current.Resources["ControlFillColorSecondaryBrush"] as SolidColorBrush;
+
+            //check if the system is in light or dark theme
+            bool is_light_mode = GetAppsLightTheme();
+
+            if (is_light_mode == true)
+            {
+                stackPanel.Background = new SolidColorBrush((Color)System.Windows.Media.ColorConverter.ConvertFromString("#10000000"));
+            }
+            else if (is_light_mode == false)
+            {
+                stackPanel.Background = new SolidColorBrush((Color)System.Windows.Media.ColorConverter.ConvertFromString("#15FFFFFF"));
+            }
+           
         }
 
         private void GridViewItem_MouseLeave(object sender, MouseEventArgs e)
@@ -634,7 +654,7 @@ namespace LauncherX
                 menu.Items.Add(open);
                 menu.Items.Add(remove);
             }
-            else if (File.Exists(stackPanel.Tag.ToString()) == true)
+            else if (File.Exists(stackPanel.Tag.ToString()) == true || Directory.Exists(stackPanel.Tag.ToString()) == true)
             {
                 //either file or folder
                 System.IO.FileAttributes attr = File.GetAttributes(stackPanel.Tag.ToString());

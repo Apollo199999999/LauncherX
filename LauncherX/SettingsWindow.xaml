@@ -47,7 +47,7 @@
                         Margin="0,5,0,0"
                         FontSize="12"
                         FontStyle="Italic"
-                        Foreground="{StaticResource TextFillColorTertiaryBrush}"
+                        Foreground="{StaticResource TextFillColorSecondaryBrush}"
                         Text="Settings are automatically saved once modified." />
 
                     <ui:CardControl Margin="0,10,0,0" Icon="ScaleFill24">
@@ -59,7 +59,7 @@
                                     Text="Change icon scale" />
                                 <TextBlock
                                     FontSize="12"
-                                    Foreground="{StaticResource TextFillColorTertiaryBrush}"
+                                    Foreground="{StaticResource TextFillColorSecondaryBrush}"
                                     Text="Adjust the scale of the icons displayed." />
                             </StackPanel>
                         </ui:CardControl.Header>
@@ -87,7 +87,7 @@
                                     Text="Change header text" />
                                 <TextBlock
                                     FontSize="12"
-                                    Foreground="{StaticResource TextFillColorTertiaryBrush}"
+                                    Foreground="{StaticResource TextFillColorSecondaryBrush}"
                                     Text="Modify the text shown below the search box." />
                             </StackPanel>
                         </ui:CardControl.Header>
@@ -111,7 +111,7 @@
                                     Text="Check for updates" />
                                 <TextBlock
                                     FontSize="12"
-                                    Foreground="{StaticResource TextFillColorTertiaryBrush}"
+                                    Foreground="{StaticResource TextFillColorSecondaryBrush}"
                                     Text="Check if any new updates are available." />
                             </StackPanel>
                         </ui:CardControl.Header>
@@ -151,7 +151,7 @@
                                         Text="About LauncherX" />
                                     <TextBlock
                                         FontSize="12"
-                                        Foreground="{StaticResource TextFillColorTertiaryBrush}"
+                                        Foreground="{StaticResource TextFillColorSecondaryBrush}"
                                         Text="View info about LauncherX" />
                                 </StackPanel>
                             </Grid>
@@ -223,13 +223,13 @@
                                     <TextBlock
                                         x:Name="VersionText"
                                         FontSize="13"
-                                        Foreground="{StaticResource TextFillColorTertiaryBrush}"
+                                        Foreground="{StaticResource TextFillColorSecondaryBrush}"
                                         Text="x.x.x" />
 
                                     <TextBlock
                                         Margin="0,5,0,0"
                                         FontSize="13"
-                                        Foreground="{StaticResource TextFillColorTertiaryBrush}"
+                                        Foreground="{StaticResource TextFillColorSecondaryBrush}"
                                         Text="© 2020-present ClickPhase" />
 
                                     <ui:Hyperlink
@@ -260,7 +260,7 @@
                                         MaxWidth="350"
                                         Margin="0,5,0,0"
                                         FontSize="13"
-                                        Foreground="{StaticResource TextFillColorTertiaryBrush}"
+                                        Foreground="{StaticResource TextFillColorSecondaryBrush}"
                                         Text="Hi! I am Matthias, the (only) developer of LauncherX. This is my first actual program for Windows, so it may not be perfect. Anyways, I hope that you enjoy using LauncherX."
                                         TextAlignment="Left"
                                         TextWrapping="Wrap" />

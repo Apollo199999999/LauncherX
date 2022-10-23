@@ -54,7 +54,7 @@ namespace LauncherX
             //init a new dispatcher timer
             DispatcherTimer themeupdater = new DispatcherTimer();
 
-            themeupdater.Interval = TimeSpan.FromMilliseconds(100);
+            themeupdater.Interval = TimeSpan.FromMilliseconds(1000);
             themeupdater.Tick += Themeupdater_Tick;
             themeupdater.Start();
         }

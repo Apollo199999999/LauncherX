@@ -144,7 +144,7 @@
                     <ui:SymbolIcon
                         HorizontalAlignment="Center"
                         FontSize="36"
-                        Foreground="{StaticResource TextFillColorTertiaryBrush}"
+                        Foreground="{StaticResource TextFillColorSecondaryBrush}"
                         Symbol="FolderOpen24" />
 
                     <TextBlock
@@ -152,13 +152,13 @@
                         HorizontalAlignment="Center"
                         FontSize="16"
                         FontWeight="Bold"
-                        Foreground="{StaticResource TextFillColorTertiaryBrush}"
+                        Foreground="{StaticResource TextFillColorSecondaryBrush}"
                         Text="There is nothing here." />
 
                     <TextBlock
                         Margin="0,5,0,0"
                         HorizontalAlignment="Center"
-                        Foreground="{StaticResource TextFillColorTertiaryBrush}"
+                        Foreground="{StaticResource TextFillColorSecondaryBrush}"
                         Text="To add an item, click the buttons at the top right corner, or simply drag them into this window."
                         TextAlignment="Center"
                         TextWrapping="Wrap" />
