@@ -23,6 +23,7 @@
         x:Name="grid"
         Margin="0,0,0,0"
         Background="{StaticResource ControlFillColorDefaultBrush}">
+
         <ui:TitleBar
             Title="LauncherX Settings"
             Icon="/Resources/icon.ico"

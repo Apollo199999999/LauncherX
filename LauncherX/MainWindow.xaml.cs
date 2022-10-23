@@ -408,7 +408,13 @@ namespace LauncherX
                 //start the process that is related to the tag
                 Process.Start(stackPanel.Tag.ToString());
             }
-            catch { }
+            catch 
+            {
+                //show error message
+                MessageBox.Show("Unable to run process. Check that the file/folder has not been moved or deleted, or try again later. " +
+                    "If the error still persists, open an issue on GitHub.",
+                    "Error running process", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
 
             //unselect the selected item
             await Task.Delay(500);
@@ -577,8 +583,8 @@ namespace LauncherX
             {
                 //show error message
                 System.Windows.MessageBox.Show("Unable to get website icon. Please check that the website is valid and that you are connected to the internet. " +
-                    "LauncherX will still add the website, just without the icon." +
-                    "If you want to have the icon, remove the website from LauncherX and re-add the website or restart Launcher X when you have internet connection.",
+                    "LauncherX will still add the website, just without the icon. " +
+                    "If you want to have the icon, remove the website re-add it, or restart Launcher X when you have internet connection.",
                     "Error adding website", MessageBoxButton.OK, MessageBoxImage.Error);
             }
 
@@ -627,7 +633,7 @@ namespace LauncherX
                 menu.Items.Add(open);
                 menu.Items.Add(remove);
             }
-            else
+            else if (File.Exists(stackPanel.Tag.ToString()) == true)
             {
                 //either file or folder
                 System.IO.FileAttributes attr = File.GetAttributes(stackPanel.Tag.ToString());
@@ -672,6 +678,13 @@ namespace LauncherX
 
                 }
             }
+            else
+            {
+                //show error message
+                MessageBox.Show("Unable to show context menu. Check that the file/folder has not been moved or deleted, or try again later. " +
+                    "If the error still persists, open an issue on GitHub.",
+                    "Error showing context menu", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
 
             return menu;
         }
@@ -689,7 +702,13 @@ namespace LauncherX
                 //start the process
                 Process.Start(ItemToOpen);
             }
-            catch { }
+            catch 
+            {
+                //show error message
+                MessageBox.Show("Unable to run process. Check that the file/folder has not been moved or deleted, or try again later. " +
+                    "If the error still persists, open an issue on GitHub.",
+                    "Error running process", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
 
         private void MenuItemRemove_Click(object sender, RoutedEventArgs e, StackPanel stackPanel)
@@ -713,7 +732,17 @@ namespace LauncherX
         private void MenuItemOpenLocation_Click(object sender, RoutedEventArgs e, string ItemToLook)
         {
             //open file location
-            Process.Start("explorer.exe", "/select, " + ItemToLook);
+            try
+            {
+                Process.Start("explorer.exe", "/select, " + ItemToLook);
+            }
+            catch
+            {
+                //show error message
+                MessageBox.Show("Unable to open location on disk. Check that the file/folder has not been moved or deleted, or try again later. " +
+                    "If the error still persists, open an issue on GitHub.",
+                    "Error opening location", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
 
         #endregion
