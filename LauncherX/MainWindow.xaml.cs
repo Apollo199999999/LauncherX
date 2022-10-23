@@ -467,9 +467,18 @@ namespace LauncherX
             //extract icon from file
             if (IsImage(Path.GetExtension(myfile).ToLower()) == true)
             {
-                System.Drawing.Image image1 = System.Drawing.Image.FromFile(myfile);
-                System.Drawing.Image icon = image1.GetThumbnailImage(image1.Width, image1.Height, () => false, IntPtr.Zero);
-                icon.Save(stream, System.Drawing.Imaging.ImageFormat.Tiff);
+                //in case image isn't a valid image
+                try
+                {
+                    System.Drawing.Image image1 = System.Drawing.Image.FromFile(myfile);
+                    System.Drawing.Image icon = image1.GetThumbnailImage(image1.Width, image1.Height, () => false, IntPtr.Zero);
+                    icon.Save(stream, System.Drawing.Imaging.ImageFormat.Tiff);
+                }
+                catch
+                {
+                    Bitmap icon = new Bitmap(System.Drawing.Icon.ExtractAssociatedIcon(myfile).ToBitmap());
+                    icon.Save(stream, System.Drawing.Imaging.ImageFormat.Tiff);
+                }
             }
             else
             {
