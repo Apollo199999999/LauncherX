@@ -328,6 +328,7 @@ namespace LauncherX
                   Wpf.Ui.Appearance.BackgroundType.Mica, // Background type
                   true                                   // Whether to change accents automatically
                 );
+
             }
 
         }

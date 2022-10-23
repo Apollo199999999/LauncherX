@@ -14,10 +14,10 @@
     ui:WindowBackdropType="Mica"
     ui:WindowCornerPreference="Round"
     ResizeMode="NoResize"
-    Style="{StaticResource UiWindow}"
+    Style="{DynamicResource UiWindow}"
     mc:Ignorable="d">
 
-    <Grid Background="{StaticResource ControlFillColorDefaultBrush}">
+    <Grid Background="{DynamicResource ControlFillColorDefaultBrush}">
         <ui:TitleBar
             Title="Error while adding items"
             Icon="/Resources/icon.ico"

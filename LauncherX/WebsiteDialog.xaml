@@ -14,11 +14,11 @@
     ui:WindowBackdropType="Mica"
     ui:WindowCornerPreference="Round"
     ResizeMode="NoResize"
-    Style="{StaticResource UiWindow}"
+    Style="{DynamicResource UiWindow}"
     WindowStartupLocation="CenterScreen"
     mc:Ignorable="d">
 
-    <Grid Background="{StaticResource ControlFillColorDefaultBrush}">
+    <Grid Background="{DynamicResource ControlFillColorDefaultBrush}">
 
         <ui:TitleBar
             Title="Add a website"

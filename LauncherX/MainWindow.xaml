@@ -19,7 +19,7 @@
     BorderBrush="Transparent"
     Closing="MainWindow_Closing"
     Deactivated="MainWindow_Deactivated"
-    Style="{StaticResource UiWindow}"
+    Style="{DynamicResource UiWindow}"
     mc:Ignorable="d">
 
     <Grid
@@ -127,7 +127,7 @@
                 x:Name="GridViewBackground"
                 Margin="-20,104,-20,-20"
                 AllowDrop="True"
-                Background="{StaticResource ControlFillColorDefaultBrush}"
+                Background="{DynamicResource ControlFillColorDefaultBrush}"
                 PreviewDragEnter="Container_PreviewDragEnter"
                 PreviewDragLeave="Container_PreviewDragLeave"
                 PreviewDragOver="Container_PreviewDragOver">
@@ -144,7 +144,7 @@
                     <ui:SymbolIcon
                         HorizontalAlignment="Center"
                         FontSize="36"
-                        Foreground="{StaticResource TextFillColorSecondaryBrush}"
+                        Foreground="{DynamicResource TextFillColorSecondaryBrush}"
                         Symbol="FolderOpen24" />
 
                     <TextBlock
@@ -152,13 +152,13 @@
                         HorizontalAlignment="Center"
                         FontSize="16"
                         FontWeight="Bold"
-                        Foreground="{StaticResource TextFillColorSecondaryBrush}"
+                        Foreground="{DynamicResource TextFillColorSecondaryBrush}"
                         Text="There is nothing here." />
 
                     <TextBlock
                         Margin="0,5,0,0"
                         HorizontalAlignment="Center"
-                        Foreground="{StaticResource TextFillColorSecondaryBrush}"
+                        Foreground="{DynamicResource TextFillColorSecondaryBrush}"
                         Text="To add an item, click the buttons at the top right corner, or simply drag them into this window."
                         TextAlignment="Center"
                         TextWrapping="Wrap" />
@@ -229,7 +229,7 @@
                 Height="120"
                 HorizontalAlignment="Center"
                 VerticalAlignment="Center"
-                Background="{StaticResource SolidBackgroundFillColorQuarternaryBrush}"
+                Background="{DynamicResource SolidBackgroundFillColorQuarternaryBrush}"
                 CornerRadius="4">
 
                 <StackPanel
