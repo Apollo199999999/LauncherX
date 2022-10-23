@@ -168,7 +168,6 @@ namespace LauncherX
             {
                 //wait a while for controls and window to load
                 LoadingDialog.Visibility = Visibility.Visible;
-                this.IsEnabled = false;
 
                 await Task.Delay(10);
 
@@ -236,6 +235,8 @@ namespace LauncherX
 
                     }
 
+                    await Task.Delay(10);
+
                 }
 
                 if (ErrorAddingItems == true)
@@ -263,8 +264,6 @@ namespace LauncherX
             this.Focus();
 
             LoadingDialog.Visibility = Visibility.Hidden;
-
-            this.IsEnabled = true;
 
             /*check if internet connection exists, and if so, check for updates, and if there are updates,
             show a snackbar to ask if the user wants to update*/
@@ -401,6 +400,7 @@ namespace LauncherX
         {
             //init stackpanel from sender
             StackPanel stackPanel = sender as StackPanel;
+
             try
             {
                 //start the process that is related to the tag
@@ -1075,6 +1075,7 @@ namespace LauncherX
 
 
         #endregion
+
 
     }
 }
