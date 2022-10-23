@@ -3,7 +3,4 @@
   <PropertyGroup>
     <ProjectView>ProjectFiles</ProjectView>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
-    <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
-  </PropertyGroup>
 </Project>

@@ -31,7 +31,7 @@ namespace LauncherX
     {
         #region Code related to calling of Win32 APIs
         //Struct used by SHGetFileInfo function
-        [StructLayout(LayoutKind.Sequential)]
+        [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Unicode)]
         public struct SHFILEINFO
         {
             public IntPtr hIcon;
@@ -48,7 +48,7 @@ namespace LauncherX
         public const uint SHGFI_LARGEICON = 0x0; // 'Large icon
 
         //Import SHGetFileInfo function
-        [DllImport("shell32.dll")]
+        [DllImport("shell32.dll", CharSet = CharSet.Unicode)]
         public static extern IntPtr SHGetFileInfo(string pszPath, uint dwFileAttributes, ref SHFILEINFO psfi, uint cbSizeFileInfo, uint uFlags);
 
         #endregion
@@ -991,8 +991,15 @@ namespace LauncherX
         }
 
         //handle event when user drops item into window
-        private void DragDropInterface_Drop(object sender, DragEventArgs e)
+        private async void DragDropInterface_Drop(object sender, DragEventArgs e)
         {
+            //hide dragdropinterface
+            DragDropInterface.Visibility = Visibility.Hidden;
+
+            //show LoadingDialog
+            LoadingDialog.Visibility = Visibility.Visible;
+            await Task.Delay(100);
+
             //variable to check for invalid data
             bool isInvalidData = false;
 
@@ -1018,6 +1025,8 @@ namespace LauncherX
                         //this is a file
                         AddFile(file);
                     }
+
+                    await Task.Delay(10);
                 }
             }
             else if (e.Data.GetDataPresent(DataFormats.Text))
@@ -1056,11 +1065,10 @@ namespace LauncherX
                 MessageBox.Show("Invalid data has been dragged into LauncherX. " +
                     "If you are trying to add a website, please check that the website starts with either \"https://\" or \"http://\". " +
                     "Otherwise, please check that the items that you are trying to add is indeed either a file, folder, or website.",
-                    "Invalid Data", MessageBoxButton.OK, MessageBoxImage.Error);
+                    "Invalid data present", MessageBoxButton.OK, MessageBoxImage.Error);
             }
 
-            //hide the dragdropinterface
-            DragDropInterface.Visibility = Visibility.Hidden;
+            LoadingDialog.Visibility = Visibility.Hidden;
         }
 
         #endregion
