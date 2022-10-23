@@ -279,6 +279,7 @@ namespace LauncherX
                     Process.Start("https://github.com/Apollo199999999/LauncherX/releases");
 
                     //close this app
+                    SaveItemsUpdater.Stop();
                     themeupdater.Stop();
                     System.Windows.Application.Current.Shutdown();
                 };
