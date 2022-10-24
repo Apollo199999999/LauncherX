@@ -36,20 +36,24 @@
 
         <ui:TitleBar
             Title="LauncherX - Modern app launcher for Windows"
+            AllowDrop="False"
             Icon="/Resources/icon.ico"
             UseSnapLayout="True" />
 
-        <Grid x:Name="BlurGrid" Margin="0,51,0,0">
+        <Grid
+            x:Name="BlurGrid"
+            Margin="0,51,0,0"
+            AllowDrop="True"
+            PreviewDragEnter="Container_PreviewDragEnter"
+            PreviewDragLeave="Container_PreviewDragLeave"
+            PreviewDragOver="Container_PreviewDragOver">
             <Grid
                 x:Name="grid"
                 Margin="20,0,20,20"
                 HorizontalAlignment="Stretch"
                 VerticalAlignment="Stretch"
                 AllowDrop="True"
-                Background="Transparent"
-                PreviewDragEnter="Container_PreviewDragEnter"
-                PreviewDragLeave="Container_PreviewDragLeave"
-                PreviewDragOver="Container_PreviewDragOver">
+                Background="Transparent">
 
                 <ui:AutoSuggestBox
                     x:Name="SearchBox"
@@ -166,36 +170,24 @@
 
                     </StackPanel>
 
-                    <LX:SmoothScrollViewer
-                        Margin="0,0,3,0"
+                    <ListView
+                        x:Name="WPFGridView"
+                        Margin="20,20,20,20"
+                        dd:DragDrop.DefaultDragAdornerOpacity="1"
+                        dd:DragDrop.IsDragSource="True"
+                        dd:DragDrop.IsDropTarget="True"
+                        dd:DragDrop.UseDefaultDragAdorner="True"
                         AllowDrop="True"
                         Background="Transparent"
-                        CanContentScroll="False"
-                        VerticalScrollBarVisibility="Visible">
-                        <ListView
-                            x:Name="WPFGridView"
-                            Margin="20,20,3,20"
-                            dd:DragDrop.DefaultDragAdornerOpacity="1"
-                            dd:DragDrop.IsDragSource="True"
-                            dd:DragDrop.IsDropTarget="True"
-                            dd:DragDrop.UseDefaultDragAdorner="True"
-                            AllowDrop="True"
-                            Background="Transparent"
-                            ScrollViewer.CanContentScroll="False"
-                            ScrollViewer.HorizontalScrollBarVisibility="Disabled"
-                            ScrollViewer.VerticalScrollBarVisibility="Disabled">
-                            <ListView.Template>
-                                <ControlTemplate>
-                                    <ItemsPresenter />
-                                </ControlTemplate>
-                            </ListView.Template>
-                            <ListView.ItemsPanel>
-                                <ItemsPanelTemplate>
-                                    <WrapPanel />
-                                </ItemsPanelTemplate>
-                            </ListView.ItemsPanel>
-                        </ListView>
-                    </LX:SmoothScrollViewer>
+                        RequestBringIntoView="WPFGridView_RequestBringIntoView"
+                        ScrollViewer.CanContentScroll="False"
+                        ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                        <ListView.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <WrapPanel />
+                            </ItemsPanelTemplate>
+                        </ListView.ItemsPanel>
+                    </ListView>
 
                 </Grid>
             </Grid>
@@ -219,11 +211,11 @@
 
         <Grid
             x:Name="LoadingDialog"
-            Margin="0,0,0,0"
+            Margin="0,51,0,0"
             HorizontalAlignment="Stretch"
             VerticalAlignment="Stretch"
             Panel.ZIndex="2147483647"
-            Background="#AA000000"
+            Background="#87000000"
             Visibility="Hidden">
 
             <Border
@@ -268,12 +260,12 @@
 
         <Grid
             x:Name="DragDropInterface"
-            Margin="0,0,0,0"
+            Margin="0,51,0,0"
             HorizontalAlignment="Stretch"
             VerticalAlignment="Stretch"
             Panel.ZIndex="2147483647"
             AllowDrop="True"
-            Background="#AA000000"
+            Background="#87000000"
             Drop="DragDropInterface_Drop"
             Visibility="Hidden">
 

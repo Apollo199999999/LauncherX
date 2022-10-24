@@ -31,7 +31,7 @@
             ShowMinimize="False"
             UseSnapLayout="True" />
 
-        <Grid Margin="15,51,2,57">
+        <Grid Margin="15,51,1,57">
             <LX:SmoothScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Visible">
                 <StackPanel CanVerticallyScroll="True" Orientation="Vertical">
                     <TextBlock

@@ -164,7 +164,7 @@ namespace LauncherX
             {
                 //wait a while for controls and window to load
                 LoadingDialog.Visibility = Visibility.Visible;
-
+                BlurBackground();
                 await Task.Delay(10);
 
                 //create a variable to check if there are items that LauncherX cannot add
@@ -261,6 +261,7 @@ namespace LauncherX
             this.Focus();
 
             LoadingDialog.Visibility = Visibility.Hidden;
+            UnblurBackground();
 
             //create dispatcher timer to save items
             SaveItemsUpdater.Interval = TimeSpan.FromSeconds(10);
@@ -294,21 +295,21 @@ namespace LauncherX
         #region Methods relating to appearance of MainWindow
 
         //function to blur window
-        public void BlurWindow()
+        public void BlurBackground()
         {
             //create new blur effect
             BlurEffect blurEffect = new BlurEffect();
             blurEffect.Radius = 5;
             blurEffect.KernelType = KernelType.Gaussian;
 
-            this.Effect = blurEffect;
+            BlurGrid.Effect = blurEffect;
         }
 
         //function to unblur window
-        public void UnblurWindow()
+        public void UnblurBackground()
         {
             //clear effects
-            this.Effect = null;
+            BlurGrid.Effect = null;
         }
 
         //function to get light/dark theme
@@ -801,7 +802,7 @@ namespace LauncherX
             if (openFileDialog.ShowDialog() == true)
             {
                 LoadingDialog.Visibility = Visibility.Visible;
-
+                BlurBackground();
                 await Task.Delay(100);
 
                 //and then get the filename and YEET in into the grid view
@@ -815,6 +816,7 @@ namespace LauncherX
             }
 
             LoadingDialog.Visibility = Visibility.Hidden;
+            UnblurBackground();
         }
 
         private async void OpenFolderBtn_Click(object sender, RoutedEventArgs e)
@@ -829,7 +831,7 @@ namespace LauncherX
             if (result == CommonFileDialogResult.Ok)
             {
                 LoadingDialog.Visibility = Visibility.Visible;
-
+                BlurBackground();
                 await Task.Delay(100);
 
                 //and then get the filename and YEET in into the grid view
@@ -842,6 +844,7 @@ namespace LauncherX
             }
 
             LoadingDialog.Visibility = Visibility.Hidden;
+            UnblurBackground();
         }
 
         private void OpenWebsiteBtn_Click(object sender, RoutedEventArgs e)
@@ -858,7 +861,7 @@ namespace LauncherX
             if (websiteok == true)
             {
                 LoadingDialog.Visibility = Visibility.Visible;
-
+                BlurBackground();
                 await Task.Delay(100);
 
                 //add the website
@@ -868,6 +871,7 @@ namespace LauncherX
             }
 
             LoadingDialog.Visibility = Visibility.Hidden;
+            UnblurBackground();
         }
 
         #endregion
@@ -1045,14 +1049,16 @@ namespace LauncherX
         {
             if (e.Data.GetDataPresent(DataFormats.FileDrop) || e.Data.GetDataPresent(DataFormats.Text))
             {
+                //user is dragging files/text into LauncherX
                 DragDropInterface.Visibility = Visibility.Visible;
-                BlurWindow();
+                BlurBackground();
             }
             else
             {
                 DragDropInterface.Visibility = Visibility.Hidden;
-                UnblurWindow();
+                UnblurBackground();
             }
+
         }
 
         private void Container_PreviewDragEnter(object sender, DragEventArgs e)
@@ -1068,7 +1074,7 @@ namespace LauncherX
         private void Container_PreviewDragLeave(object sender, DragEventArgs e)
         {
             DragDropInterface.Visibility = Visibility.Hidden;
-            UnblurWindow();
+            UnblurBackground();
         }
 
         //handle event when user drops item into window
@@ -1150,7 +1156,7 @@ namespace LauncherX
             }
 
             LoadingDialog.Visibility = Visibility.Hidden;
-            UnblurWindow();
+            UnblurBackground();
         }
 
         #endregion
@@ -1169,8 +1175,12 @@ namespace LauncherX
         }
 
 
+
         #endregion
 
-
+        private void WPFGridView_RequestBringIntoView(object sender, RequestBringIntoViewEventArgs e)
+        {
+            e.Handled = true;
+        }
     }
 }
