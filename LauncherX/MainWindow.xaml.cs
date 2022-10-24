@@ -18,6 +18,7 @@ using Image = System.Windows.Controls.Image;
 using System.Windows.Media.Imaging;
 using Color = System.Windows.Media.Color;
 using System.Drawing.Imaging;
+using System.Windows.Media.Effects;
 
 namespace LauncherX
 {
@@ -150,11 +151,6 @@ namespace LauncherX
             themeupdater.Tick += Themeupdater_Tick;
             themeupdater.Start();
 
-            //create dispatcher timer to save items
-            SaveItemsUpdater.Interval = TimeSpan.FromSeconds(10);
-            SaveItemsUpdater.Tick += SaveItemsUpdater_Tick;
-            SaveItemsUpdater.Start();
-
             //event handler for when window loads to check for updates
             this.Loaded += MainWindow_Loaded;
 
@@ -266,6 +262,11 @@ namespace LauncherX
 
             LoadingDialog.Visibility = Visibility.Hidden;
 
+            //create dispatcher timer to save items
+            SaveItemsUpdater.Interval = TimeSpan.FromSeconds(10);
+            SaveItemsUpdater.Tick += SaveItemsUpdater_Tick;
+            SaveItemsUpdater.Start();
+
             /*check if internet connection exists, and if so, check for updates, and if there are updates,
             show a snackbar to ask if the user wants to update*/
 
@@ -291,6 +292,24 @@ namespace LauncherX
         #endregion
 
         #region Methods relating to appearance of MainWindow
+
+        //function to blur window
+        public void BlurWindow()
+        {
+            //create new blur effect
+            BlurEffect blurEffect = new BlurEffect();
+            blurEffect.Radius = 5;
+            blurEffect.KernelType = KernelType.Gaussian;
+
+            this.Effect = blurEffect;
+        }
+
+        //function to unblur window
+        public void UnblurWindow()
+        {
+            //clear effects
+            this.Effect = null;
+        }
 
         //function to get light/dark theme
         public bool GetAppsLightTheme()
@@ -965,6 +984,7 @@ namespace LauncherX
         public void SaveItems()
         {
             //save the items by creating text documents----------------------------------------
+            savename = 1;
 
             //delete files in directory(loading items directory)
             System.IO.DirectoryInfo di4 = new DirectoryInfo(loadDir);
@@ -1026,10 +1046,12 @@ namespace LauncherX
             if (e.Data.GetDataPresent(DataFormats.FileDrop) || e.Data.GetDataPresent(DataFormats.Text))
             {
                 DragDropInterface.Visibility = Visibility.Visible;
+                BlurWindow();
             }
             else
             {
                 DragDropInterface.Visibility = Visibility.Hidden;
+                UnblurWindow();
             }
         }
 
@@ -1046,6 +1068,7 @@ namespace LauncherX
         private void Container_PreviewDragLeave(object sender, DragEventArgs e)
         {
             DragDropInterface.Visibility = Visibility.Hidden;
+            UnblurWindow();
         }
 
         //handle event when user drops item into window
@@ -1127,6 +1150,7 @@ namespace LauncherX
             }
 
             LoadingDialog.Visibility = Visibility.Hidden;
+            UnblurWindow();
         }
 
         #endregion
