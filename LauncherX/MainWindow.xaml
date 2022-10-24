@@ -144,7 +144,7 @@
                     <ui:SymbolIcon
                         HorizontalAlignment="Center"
                         FontSize="36"
-                        Foreground="{DynamicResource TextFillColorSecondaryBrush}"
+                        Opacity="0.7"
                         Symbol="FolderOpen24" />
 
                     <TextBlock
@@ -152,13 +152,13 @@
                         HorizontalAlignment="Center"
                         FontSize="16"
                         FontWeight="Bold"
-                        Foreground="{DynamicResource TextFillColorSecondaryBrush}"
+                        Opacity="0.7"
                         Text="There is nothing here." />
 
                     <TextBlock
                         Margin="0,5,0,0"
                         HorizontalAlignment="Center"
-                        Foreground="{DynamicResource TextFillColorSecondaryBrush}"
+                        Opacity="0.7"
                         Text="To add an item, click the buttons at the top right corner, or simply drag them into this window."
                         TextAlignment="Center"
                         TextWrapping="Wrap" />
@@ -278,7 +278,11 @@
                 HorizontalAlignment="Center"
                 VerticalAlignment="Center"
                 Orientation="Vertical">
-                <ui:SymbolIcon FontSize="48" Symbol="ArrowDownload24" />
+
+                <ui:SymbolIcon
+                    FontSize="48"
+                    Foreground="White"
+                    Symbol="ArrowDownload24" />
 
                 <TextBlock
                     Margin="0,10,0,0"
@@ -286,6 +290,7 @@
                     VerticalAlignment="Center"
                     FontSize="18"
                     FontWeight="Bold"
+                    Foreground="White"
                     Text="Drag and drop your items here"
                     TextAlignment="Center" />
             </StackPanel>

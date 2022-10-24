@@ -377,7 +377,7 @@ namespace LauncherX
             textblock.Text = DisplayText;
             textblock.HorizontalAlignment = HorizontalAlignment.Center;
             textblock.VerticalAlignment = VerticalAlignment.Bottom;
-            textblock.FontSize = size * 11;
+            textblock.FontSize = size * 12;
             textblock.Margin = new Thickness(5);
             textblock.TextTrimming = TextTrimming.CharacterEllipsis;
 
@@ -880,7 +880,7 @@ namespace LauncherX
 
                     TextBlock textBlock = (TextBlock)stackpanel.Children[1];
                     Image image = (Image)stackpanel.Children[0];
-                    textBlock.FontSize = size * 11;
+                    textBlock.FontSize = size * 12;
                     image.Margin = new Thickness(size * 22.5, 5, size * 22.5, 0);
                     image.Height = stackpanel.Width - size * 22.5 - size * 22.5;
                     image.Width = stackpanel.Width - size * 22.5 - size * 22.5;
