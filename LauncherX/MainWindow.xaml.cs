@@ -1178,9 +1178,5 @@ namespace LauncherX
 
         #endregion
 
-        private void WPFGridView_RequestBringIntoView(object sender, RequestBringIntoViewEventArgs e)
-        {
-            e.Handled = true;
-        }
     }
 }
