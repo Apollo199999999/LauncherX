@@ -2,13 +2,13 @@
 
 (this README is somewhat outdated, and will be updated when LauncherX v2 is released)
 
-### Project site: https://clickphase.weebly.com/launcherx.html
+### Project site: https://clickphase.vercel.app/launcherx
 
-LauncherX - Organise all your stuff!
+LauncherX - Modern app launcher for Windows
 
 LauncherX is a Windows Program used to organize and access all of your files, folders, websites, and pretty much anything.
 
-***LauncherX is compatible with 64-bit Windows 10 version 1903 and above, and Windows 11.***
+***LauncherX is compatible with Windows 7, 8.1*, 10, and 11***
 
 It supports:
 
@@ -26,9 +26,9 @@ It supports:
 
 * Fluent Design
 
-![Dark Mode](https://i.imgur.com/E7fUsAX.png)
+![Dark Mode](https://imgur.com/KLzIHpy.png)
 
-![Light Mode](https://i.imgur.com/oOsRgYw.png)
+![Light Mode](https://imgur.com/hTIV0QC.png)
 
 ## Minimum System Requirements
 * 64-bit Windows 10 version 1903 and above (including Windows 11)
