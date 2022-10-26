@@ -18,18 +18,20 @@ AppPublisher={#MyAppPublisher}
 AppPublisherURL={#MyAppURL}
 AppSupportURL={#MyAppURL}
 AppUpdatesURL={#MyAppURL}
+DisableWelcomePage=no
+DisableDirPage=no
 DefaultDirName={autopf}\{#MyAppName}
 DisableProgramGroupPage=yes
-LicenseFile=C:\Users\fligh\source\repos\LauncherX\LICENSE.TXT
+LicenseFile=C:\Users\fligh\source\repos\LauncherX\COMBINED-LICENSES.TXT
 ; Uncomment the following line to run in non administrative install mode (install for current user only.)
 ;PrivilegesRequired=lowest
 OutputDir=C:\Users\fligh\source\repos\LauncherX
-OutputBaseFilename=LauncherX_1.0.1_Setup
-SetupIconFile=C:\Users\fligh\source\repos\LauncherX\LauncherX\icon.ico
+OutputBaseFilename=LauncherX_2.0.0_Setup
+SetupIconFile=C:\Users\fligh\source\repos\LauncherX\LauncherX\Resources\icon.ico
 Compression=lzma
 SolidCompression=yes
 WizardStyle=modern
-VersionInfoVersion = 1.0.1
+VersionInfoVersion = 2.0.0
 UninstallDisplayIcon={app}\LauncherX.exe
 UninstallDisplayName=LauncherX
 
@@ -40,11 +42,15 @@ Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{
 Name: "english"; MessagesFile: "compiler:Default.isl"
 
 [Files]
-Source: "C:\Users\fligh\source\repos\LauncherX\LauncherX\bin\x64\Debug\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: "C:\Users\fligh\source\repos\LauncherX\LauncherX\bin\Release\{#MyAppExeName}"; DestDir: "{app}"; Flags: ignoreversion
+Source: "C:\Users\fligh\source\repos\LauncherX\LauncherX\bin\Release\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
 
 
 [Icons]
 Name: "{autoprograms}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"
 Name: "{commondesktop}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"; Tasks: desktopicon
+
+[UninstallRun]
+Filename: "{cmd}"; Parameters: "/C ""taskkill /im {#MyAppExeName} /f /t"; RunOnceId: "Uninstall"
 
 
