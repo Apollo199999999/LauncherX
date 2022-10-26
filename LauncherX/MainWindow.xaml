@@ -213,7 +213,7 @@
             HorizontalAlignment="Stretch"
             VerticalAlignment="Stretch"
             Panel.ZIndex="2147483647"
-            Background="#87000000"
+            Background="#82000000"
             Visibility="Hidden">
 
             <Border
@@ -263,7 +263,7 @@
             VerticalAlignment="Stretch"
             Panel.ZIndex="2147483647"
             AllowDrop="True"
-            Background="#87000000"
+            Background="#82000000"
             Drop="DragDropInterface_Drop"
             Visibility="Hidden">
 
