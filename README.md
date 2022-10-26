@@ -14,7 +14,7 @@
 * Ability to reorder items
 * Ability to search through your items
 * Automatic updates
-* Fluent visual appearance that fits Windows 11's design language.
+* Fluent visual appearance that fits Windows 11's design language (Mica backdrop only available on Windows 11)
 
 ![Dark Mode](https://imgur.com/KLzIHpy.png)
 
