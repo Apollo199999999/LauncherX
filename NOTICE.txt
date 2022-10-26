@@ -87,6 +87,12 @@ SOFTWARE.
 
 ------------------------------------------------------------------------------------------------------------------------------------------------------------
 
+Microsoft.WindowsAPICodePack-Shell (https://www.nuget.org/packages/Microsoft.WindowsAPICodePack-Shell/1.1.0)
+
+(Unable to find license, but the NuGet package link is linked above.)
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------
+
 LauncherX's application icon was designed using the Fluency Icons made by Icons8.
 Source: https://icons8.com/icons/fluency
 
