@@ -2,7 +2,7 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "LauncherX"
-#define MyAppVersion "2.0.0"
+#define MyAppVersion "2.0.1"
 #define MyAppPublisher "ClickPhase"
 #define MyAppURL "https://clickphase.vercel.app/launcherx"
 #define MyAppExeName "LauncherX.exe"
@@ -26,12 +26,12 @@ LicenseFile=C:\Users\fligh\source\repos\LauncherX\COMBINED-LICENSES.TXT
 ; Uncomment the following line to run in non administrative install mode (install for current user only.)
 ;PrivilegesRequired=lowest
 OutputDir=C:\Users\fligh\source\repos\LauncherX
-OutputBaseFilename=LauncherX_2.0.0_Setup
+OutputBaseFilename=LauncherX_2.0.1_Setup
 SetupIconFile=C:\Users\fligh\source\repos\LauncherX\LauncherX\Resources\icon.ico
 Compression=lzma
 SolidCompression=yes
 WizardStyle=modern
-VersionInfoVersion = 2.0.0
+VersionInfoVersion = 2.0.1
 UninstallDisplayIcon={app}\LauncherX.exe
 UninstallDisplayName=LauncherX
 

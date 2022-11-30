@@ -18,7 +18,7 @@ namespace LauncherX
         public static double scale = 1.0;
 
         //this variable used to define file version
-        public static string currentversion = "2.0.0";
+        public static string currentversion = "2.0.1";
 
         //this variable is used to pass the url
         public static string url;

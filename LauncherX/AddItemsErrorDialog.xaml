@@ -20,6 +20,7 @@
     <Grid Background="{DynamicResource ControlFillColorDefaultBrush}">
         <ui:TitleBar
             Title="Error while adding items"
+            CanMaximize="False"
             Icon="/Resources/icon.ico"
             ShowMaximize="False"
             ShowMinimize="False"

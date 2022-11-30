@@ -22,6 +22,7 @@
 
         <ui:TitleBar
             Title="Add a website"
+            CanMaximize="False"
             Icon="/Resources/icon.ico"
             ShowMaximize="False"
             ShowMinimize="False"
