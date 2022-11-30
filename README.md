@@ -22,11 +22,11 @@
 ## Minimum System Requirements
 * Windows 7*, 8.1*, 10, and 11 _*Not tested extensively with Windows 7 and 8.1. Use at your own risk._
 * 20MB Free disk space
-
 ## Compiling the code
 * To compile LauncherX, open LauncherX.sln in Visual Studio to run it. You also need to have the .NET Framework 4.8 runtime installed on your computer.
+## Privacy Policy
+* LauncherX's privacy policy can be viewed here: [PRIVACYPOLICY.md](https://github.com/Apollo199999999/LauncherX/blob/master/PRIVACYPOLICY.md)
 ## Licensing
-
 * LauncherX is licensed under the MIT License. To view the license, visit [LICENSE.TXT](https://github.com/Apollo199999999/LauncherX/blob/master/LICENSE.txt)
 
 Copyright © 2020-present ClickPhase 
