@@ -1,3 +1,4 @@
+using LauncherXWinUI.Classes;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Controls.Primitives;
@@ -26,6 +27,7 @@ namespace LauncherXWinUI
         public MainWindow()
         {
             this.InitializeComponent();
+            UserSettingsClass.UpgradeUserSettings();
         }
 
         private void Container_Loaded(object sender, RoutedEventArgs e)
@@ -35,25 +37,8 @@ namespace LauncherXWinUI
             this.SetTitleBar(AppTitleBar);
 
 
-            // Configure either Mica or Acrylic background, depending on which is available
-            if (Microsoft.UI.Composition.SystemBackdrops.MicaController.IsSupported())
-            {
-                Microsoft.UI.Xaml.Media.MicaBackdrop micaBackdrop = new Microsoft.UI.Xaml.Media.MicaBackdrop();
-                micaBackdrop.Kind = Microsoft.UI.Composition.SystemBackdrops.MicaKind.Base;
-                this.SystemBackdrop = micaBackdrop;
-
-            }
-            else if (Microsoft.UI.Composition.SystemBackdrops.DesktopAcrylicController.IsSupported())
-            {
-                Microsoft.UI.Xaml.Media.DesktopAcrylicBackdrop DesktopAcrylicBackdrop = new Microsoft.UI.Xaml.Media.DesktopAcrylicBackdrop();
-                this.SystemBackdrop = DesktopAcrylicBackdrop;
-                ContainerFallbackBackground.Opacity = 0.2;
-            }
-            else
-            {
-                // Load fallback background colour
-                ContainerFallbackBackground.Opacity = 1.0;
-            }
+            // Set Window Background
+            UIFunctionsClass.SetWindowBackground(this, ContainerFallbackBackgroundBrush);
         }
     }
 }

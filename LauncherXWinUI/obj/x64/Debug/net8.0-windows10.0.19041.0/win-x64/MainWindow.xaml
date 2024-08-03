@@ -22,7 +22,7 @@
         <Grid.Background>
             <!--  Fallback solid colour in case both Mica and Acrylic are unsupported  -->
             <SolidColorBrush x:ConnectionId='3'
-                x:Name="ContainerFallbackBackground"
+                x:Name="ContainerFallbackBackgroundBrush"
                 Opacity="0.0"
                 Color="{ThemeResource SolidBackgroundFillColorBase}" />
         </Grid.Background>
