@@ -47,7 +47,7 @@ namespace LauncherXWinUI
             {
                 Microsoft.UI.Xaml.Media.DesktopAcrylicBackdrop DesktopAcrylicBackdrop = new Microsoft.UI.Xaml.Media.DesktopAcrylicBackdrop();
                 this.SystemBackdrop = DesktopAcrylicBackdrop;
-                ContainerFallbackBackground.Opacity = 0.6;
+                ContainerFallbackBackground.Opacity = 0.2;
             }
             else
             {

@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("LauncherXWinUI")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e67e1856267278bc00536d7ef815320a5de5db43")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+3163babd9e1dbd1f65f70551ec21420494511eff")]
 [assembly: System.Reflection.AssemblyProductAttribute("LauncherXWinUI")]
 [assembly: System.Reflection.AssemblyTitleAttribute("LauncherXWinUI")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
