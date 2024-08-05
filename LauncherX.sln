@@ -5,7 +5,7 @@ VisualStudioVersion = 17.0.31912.275
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LauncherXWPFOld", "LauncherXWPFOld\LauncherXWPFOld.csproj", "{0ED4B833-4226-40E2-AF84-40D36D09C86E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LauncherXWinUI", "LauncherXWinUI\LauncherXWinUI.csproj", "{1148DCDD-B55F-4E84-8AFE-6CAD85E25B35}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LauncherXWinUI", "LauncherXWinUI\LauncherXWinUI.csproj", "{1148DCDD-B55F-4E84-8AFE-6CAD85E25B35}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -36,7 +36,6 @@ Global
 		{0ED4B833-4226-40E2-AF84-40D36D09C86E}.Release|x86.Build.0 = Release|Win32
 		{1148DCDD-B55F-4E84-8AFE-6CAD85E25B35}.Debug|Any CPU.ActiveCfg = Debug|x64
 		{1148DCDD-B55F-4E84-8AFE-6CAD85E25B35}.Debug|Any CPU.Build.0 = Debug|x64
-		{1148DCDD-B55F-4E84-8AFE-6CAD85E25B35}.Debug|Any CPU.Deploy.0 = Debug|x64
 		{1148DCDD-B55F-4E84-8AFE-6CAD85E25B35}.Debug|arm64.ActiveCfg = Debug|ARM64
 		{1148DCDD-B55F-4E84-8AFE-6CAD85E25B35}.Debug|arm64.Build.0 = Debug|ARM64
 		{1148DCDD-B55F-4E84-8AFE-6CAD85E25B35}.Debug|arm64.Deploy.0 = Debug|ARM64
