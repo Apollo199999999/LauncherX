@@ -149,27 +149,11 @@
                 CanReorderItems="True"
                 IsItemClickEnabled="True">
                 <GridView.Items>
-                    <controls:GridViewTile Size="1.0" />
-                    <controls:GridViewTile Size="1.0" />
-                    <controls:GridViewTile Size="1.0" />
-                    <controls:GridViewTile Size="1.0" />
-                    <controls:GridViewTile Size="1.0" />
-                    <controls:GridViewTile Size="1.0" />
-                    <controls:GridViewTile Size="1.0" />
-                    <controls:GridViewTile Size="1.0" />
-                    <controls:GridViewTile Size="1.0" />
-                    <controls:GridViewTile Size="1.0" />
-                    <controls:GridViewTile Size="1.0" />
-                    <controls:GridViewTile Size="1.0" />
-                    <controls:GridViewTile Size="1.0" />
-                    <controls:GridViewTile Size="1.0" />
-                    <controls:GridViewTile Size="1.0" />
-                    <controls:GridViewTile Size="1.0" />
-                    <controls:GridViewTile Size="1.0" />
-                    <controls:GridViewTile Size="1.0" />
-                    <controls:GridViewTile Size="1.0" />
-                    <controls:GridViewTile Size="1.0" />
-                    <controls:GridViewTile Size="1.0" />
+                    <controls:GridViewTile
+                        DisplayText="LauncherX"
+                        ExecutingPath="C:\Windows\System32\explorer.exe"
+                        ImageSource="C:\Users\fligh\source\repos\LauncherX\LauncherXWinUI\Resources\icon.png"
+                        Size="1.0" />
                 </GridView.Items>
             </GridView>
         </Grid>

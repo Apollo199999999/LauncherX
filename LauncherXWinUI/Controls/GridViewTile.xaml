@@ -7,10 +7,55 @@
     xmlns:local="using:LauncherXWinUI.Controls"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     x:Name="GridViewTileControl"
+    IsRightTapEnabled="True"
+    RightTapped="GridViewTileControl_RightTapped"
+    Tapped="GridViewTileControl_Tapped"
     mc:Ignorable="d">
 
     <StackPanel
         x:Name="TilePanel"
         HorizontalAlignment="Stretch"
-        VerticalAlignment="Stretch" />
+        VerticalAlignment="Stretch">
+        <Image
+            x:Name="TileImage"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            Stretch="Uniform" />
+
+        <TextBlock
+            x:Name="TileText"
+            Margin="5,5,5,5"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Bottom"
+            TextAlignment="Center"
+            TextTrimming="CharacterEllipsis" />
+
+        <FlyoutBase.AttachedFlyout>
+            <MenuFlyout x:Name="RightClickMenu">
+                <MenuFlyoutItem
+                    x:Name="MenuOpenOption"
+                    Click="MenuOpenOption_Click"
+                    Text="Open">
+                    <MenuFlyoutItem.Icon>
+                        <FontIcon x:Name="MenuOpenOptionIcon" Glyph="&#xE8E5;" />
+                    </MenuFlyoutItem.Icon>
+                </MenuFlyoutItem>
+
+                <MenuFlyoutItem
+                    x:Name="MenuOpenLocOption"
+                    Click="MenuOpenLocOption_Click"
+                    Text="Open Location">
+                    <MenuFlyoutItem.Icon>
+                        <FontIcon x:Name="MenuOpenLocOptionIcon" Glyph="&#xE838;" />
+                    </MenuFlyoutItem.Icon>
+                </MenuFlyoutItem>
+
+                <MenuFlyoutItem
+                    x:Name="MenuRemoveOption"
+                    Click="MenuRemoveOption_Click"
+                    Icon="Delete"
+                    Text="Remove from LauncherX" />
+            </MenuFlyout>
+        </FlyoutBase.AttachedFlyout>
+    </StackPanel>
 </UserControl>
