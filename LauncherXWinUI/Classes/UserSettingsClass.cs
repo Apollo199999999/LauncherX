@@ -207,9 +207,9 @@ namespace LauncherXWinUI.Classes
         }
 
         /// <summary>
-        /// Method to read user settings from a json file
+        /// Method to try read user settings from a json file if it exists
         /// </summary>
-        public static void ReadSettingsFile()
+        public static void TryReadSettingsFile()
         {
             string settingsFilePath = Path.Combine(settingsDir, "userSettings.json");
 

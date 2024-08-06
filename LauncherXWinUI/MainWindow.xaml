@@ -4,6 +4,7 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:animatedvisuals="using:Microsoft.UI.Xaml.Controls.AnimatedVisuals"
+    xmlns:controls="using:LauncherXWinUI.Controls"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="using:LauncherXWinUI"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
@@ -139,11 +140,37 @@
             Background="{ThemeResource ControlFillColorDefaultBrush}">
             <GridView
                 x:Name="ItemsGridView"
-                Margin="20,0,20,20"
+                Margin="20,20,20,20"
+                HorizontalAlignment="Stretch"
+                VerticalAlignment="Stretch"
                 AllowDrop="True"
                 CanDragItems="True"
                 CanReorderItems="True"
-                IsItemClickEnabled="True" />
+                IsItemClickEnabled="True">
+                <GridView.Items>
+                    <controls:GridViewTile Size="1.0" />
+                    <controls:GridViewTile Size="1.0" />
+                    <controls:GridViewTile Size="1.0" />
+                    <controls:GridViewTile Size="1.0" />
+                    <controls:GridViewTile Size="1.0" />
+                    <controls:GridViewTile Size="1.0" />
+                    <controls:GridViewTile Size="1.0" />
+                    <controls:GridViewTile Size="1.0" />
+                    <controls:GridViewTile Size="1.0" />
+                    <controls:GridViewTile Size="1.0" />
+                    <controls:GridViewTile Size="1.0" />
+                    <controls:GridViewTile Size="1.0" />
+                    <controls:GridViewTile Size="1.0" />
+                    <controls:GridViewTile Size="1.0" />
+                    <controls:GridViewTile Size="1.0" />
+                    <controls:GridViewTile Size="1.0" />
+                    <controls:GridViewTile Size="1.0" />
+                    <controls:GridViewTile Size="1.0" />
+                    <controls:GridViewTile Size="1.0" />
+                    <controls:GridViewTile Size="1.0" />
+                    <controls:GridViewTile Size="1.0" />
+                </GridView.Items>
+            </GridView>
         </Grid>
 
     </Grid>

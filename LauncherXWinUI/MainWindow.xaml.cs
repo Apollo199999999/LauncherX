@@ -40,7 +40,7 @@ namespace LauncherXWinUI
             }
 
             // Retrieve user settings from file
-            UserSettingsClass.ReadSettingsFile();
+            UserSettingsClass.TryReadSettingsFile();
 
             // Set header text
             HeaderTextBlock.Text = UserSettingsClass.headerText;
