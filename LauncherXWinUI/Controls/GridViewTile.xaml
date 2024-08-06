@@ -7,8 +7,10 @@
     xmlns:local="using:LauncherXWinUI.Controls"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     x:Name="GridViewTileControl"
-    Background="Red"
     mc:Ignorable="d">
 
-    <Grid Background="Red" />
+    <StackPanel
+        x:Name="TilePanel"
+        HorizontalAlignment="Stretch"
+        VerticalAlignment="Stretch" />
 </UserControl>

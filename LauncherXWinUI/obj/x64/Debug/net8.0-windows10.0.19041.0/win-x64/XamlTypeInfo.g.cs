@@ -235,8 +235,8 @@ namespace LauncherXWinUI.LauncherXWinUI_XamlTypeInfo
             _typeNameTable[7] = "WinUIEx.WindowEx";
             _typeNameTable[8] = "Microsoft.UI.Xaml.Window";
             _typeNameTable[9] = "String";
-            _typeNameTable[10] = "Microsoft.UI.Windowing.AppWindow";
-            _typeNameTable[11] = "WinUIEx.Icon";
+            _typeNameTable[10] = "WinUIEx.Icon";
+            _typeNameTable[11] = "Microsoft.UI.Windowing.AppWindow";
             _typeNameTable[12] = "WinUIEx.WindowState";
             _typeNameTable[13] = "System.Enum";
             _typeNameTable[14] = "System.ValueType";
@@ -266,8 +266,8 @@ namespace LauncherXWinUI.LauncherXWinUI_XamlTypeInfo
             _typeTable[7] = typeof(global::WinUIEx.WindowEx);
             _typeTable[8] = typeof(global::Microsoft.UI.Xaml.Window);
             _typeTable[9] = typeof(global::System.String);
-            _typeTable[10] = typeof(global::Microsoft.UI.Windowing.AppWindow);
-            _typeTable[11] = typeof(global::WinUIEx.Icon);
+            _typeTable[10] = typeof(global::WinUIEx.Icon);
+            _typeTable[11] = typeof(global::Microsoft.UI.Windowing.AppWindow);
             _typeTable[12] = typeof(global::WinUIEx.WindowState);
             _typeTable[13] = typeof(global::System.Enum);
             _typeTable[14] = typeof(global::System.ValueType);
@@ -398,8 +398,8 @@ namespace LauncherXWinUI.LauncherXWinUI_XamlTypeInfo
                 userType.AddMemberName("Height");
                 userType.AddMemberName("MinWidth");
                 userType.AddMemberName("MinHeight");
-                userType.AddMemberName("AppWindow");
                 userType.AddMemberName("TaskBarIcon");
+                userType.AddMemberName("AppWindow");
                 userType.AddMemberName("PersistenceId");
                 userType.AddMemberName("IsTitleBarVisible");
                 userType.AddMemberName("IsMinimizable");
@@ -424,15 +424,15 @@ namespace LauncherXWinUI.LauncherXWinUI_XamlTypeInfo
                 xamlType = new global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlSystemBaseType(typeName, type);
                 break;
 
-            case 10:   //  Microsoft.UI.Windowing.AppWindow
+            case 10:   //  WinUIEx.Icon
                 userType = new global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Object"));
+                userType.CreateFromStringMethod = global::WinUIEx.Icon.FromFile;
                 userType.SetIsReturnTypeStub();
                 xamlType = userType;
                 break;
 
-            case 11:   //  WinUIEx.Icon
+            case 11:   //  Microsoft.UI.Windowing.AppWindow
                 userType = new global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Object"));
-                userType.CreateFromStringMethod = global::WinUIEx.Icon.FromFile;
                 userType.SetIsReturnTypeStub();
                 xamlType = userType;
                 break;
@@ -689,20 +689,20 @@ namespace LauncherXWinUI.LauncherXWinUI_XamlTypeInfo
             var that = (global::WinUIEx.WindowEx)instance;
             that.MinHeight = (global::System.Double)Value;
         }
-        private object get_8_WindowEx_AppWindow(object instance)
-        {
-            var that = (global::WinUIEx.WindowEx)instance;
-            return that.AppWindow;
-        }
-        private object get_9_WindowEx_TaskBarIcon(object instance)
+        private object get_8_WindowEx_TaskBarIcon(object instance)
         {
             var that = (global::WinUIEx.WindowEx)instance;
             return that.TaskBarIcon;
         }
-        private void set_9_WindowEx_TaskBarIcon(object instance, object Value)
+        private void set_8_WindowEx_TaskBarIcon(object instance, object Value)
         {
             var that = (global::WinUIEx.WindowEx)instance;
             that.TaskBarIcon = (global::WinUIEx.Icon)Value;
+        }
+        private object get_9_WindowEx_AppWindow(object instance)
+        {
+            var that = (global::WinUIEx.WindowEx)instance;
+            return that.AppWindow;
         }
         private object get_10_WindowEx_PersistenceId(object instance)
         {
@@ -981,17 +981,17 @@ namespace LauncherXWinUI.LauncherXWinUI_XamlTypeInfo
                 xamlMember.Getter = get_7_WindowEx_MinHeight;
                 xamlMember.Setter = set_7_WindowEx_MinHeight;
                 break;
-            case "WinUIEx.WindowEx.AppWindow":
-                userType = (global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlUserType)GetXamlTypeByName("WinUIEx.WindowEx");
-                xamlMember = new global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlMember(this, "AppWindow", "Microsoft.UI.Windowing.AppWindow");
-                xamlMember.Getter = get_8_WindowEx_AppWindow;
-                xamlMember.SetIsReadOnly();
-                break;
             case "WinUIEx.WindowEx.TaskBarIcon":
                 userType = (global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlUserType)GetXamlTypeByName("WinUIEx.WindowEx");
                 xamlMember = new global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlMember(this, "TaskBarIcon", "WinUIEx.Icon");
-                xamlMember.Getter = get_9_WindowEx_TaskBarIcon;
-                xamlMember.Setter = set_9_WindowEx_TaskBarIcon;
+                xamlMember.Getter = get_8_WindowEx_TaskBarIcon;
+                xamlMember.Setter = set_8_WindowEx_TaskBarIcon;
+                break;
+            case "WinUIEx.WindowEx.AppWindow":
+                userType = (global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlUserType)GetXamlTypeByName("WinUIEx.WindowEx");
+                xamlMember = new global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlMember(this, "AppWindow", "Microsoft.UI.Windowing.AppWindow");
+                xamlMember.Getter = get_9_WindowEx_AppWindow;
+                xamlMember.SetIsReadOnly();
                 break;
             case "WinUIEx.WindowEx.PersistenceId":
                 userType = (global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlUserType)GetXamlTypeByName("WinUIEx.WindowEx");

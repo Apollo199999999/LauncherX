@@ -5,10 +5,10 @@
   },
   "projects": {
     "C:\\Users\\fligh\\source\\repos\\LauncherX\\LauncherXWinUI\\LauncherXWinUI.csproj": {
-      "version": "1.0.0",
+      "version": "2.1.0",
       "restore": {
         "projectUniqueName": "C:\\Users\\fligh\\source\\repos\\LauncherX\\LauncherXWinUI\\LauncherXWinUI.csproj",
-        "projectName": "LauncherXWinUI",
+        "projectName": "LauncherX",
         "projectPath": "C:\\Users\\fligh\\source\\repos\\LauncherX\\LauncherXWinUI\\LauncherXWinUI.csproj",
         "packagesPath": "C:\\Users\\fligh\\.nuget\\packages\\",
         "outputPath": "C:\\Users\\fligh\\source\\repos\\LauncherX\\LauncherXWinUI\\obj\\",
