@@ -95,7 +95,7 @@
                 </Grid.ColumnDefinitions>
 
                 <TextBlock
-                    x:Name="header"
+                    x:Name="HeaderTextBlock"
                     Grid.Column="0"
                     HorizontalAlignment="Stretch"
                     VerticalAlignment="Center"

@@ -27,7 +27,23 @@ namespace LauncherXWinUI
         public MainWindow()
         {
             this.InitializeComponent();
-            UserSettingsClass.UpgradeUserSettings();
+            
+            // Create settings directories and clear icon directories
+            UserSettingsClass.CreateSettingsDirectories();
+            UserSettingsClass.ClearIconDirectories();
+
+            // Upgrade settings and write new settings file if necessary
+            if (UserSettingsClass.UpgradeRequired())
+            {
+                UserSettingsClass.UpgradeUserSettings();
+                UserSettingsClass.WriteSettingsFile();
+            }
+
+            // Retrieve user settings from file
+            UserSettingsClass.ReadSettingsFile();
+
+            // Set header text
+            HeaderTextBlock.Text = UserSettingsClass.headerText;
         }
 
         private void Container_Loaded(object sender, RoutedEventArgs e)

@@ -3,10 +3,13 @@ using Microsoft.UI.Xaml.Media;
 
 namespace LauncherXWinUI.Classes
 {
+    /// <summary>
+    /// Class that handles all methods and variables relating to controlling the user interface of LauncherX
+    /// </summary>
     public static class UIFunctionsClass
     {
         /// <summary>
-        /// Function that sets the window background material (Mica, Acrylic, or Solid Color) of a window
+        /// Method that sets the window background material (Mica, Acrylic, or Solid Color) of a window
         /// </summary>
         /// <param name="window">Window to apply background to</param>
         /// <param name="gridFallbackBrush">Fallback SolidColorBrush in the XAML of the window</param>
