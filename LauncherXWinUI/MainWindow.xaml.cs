@@ -2,8 +2,9 @@ using LauncherXWinUI.Classes;
 using LauncherXWinUI.Controls;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
+using Microsoft.UI.Xaml.Media.Imaging;
 using System;
-using System.Collections.ObjectModel;
+using System.IO;
 using System.Diagnostics;
 
 // To learn more about WinUI, the WinUI project structure,
@@ -116,6 +117,42 @@ namespace LauncherXWinUI
                     gridViewTile.Size = UserSettingsClass.GridScale;
                     ItemsGridView.Items.Add(gridViewTile);
                 }
+            }
+        }
+
+        private async void AddWebsiteBtn_Click(object sender, RoutedEventArgs e)
+        {
+            AddWebsiteDialog addWebsiteDialog = new AddWebsiteDialog()
+            {
+                XamlRoot = Container.XamlRoot
+            };
+
+            ContentDialogResult result = await addWebsiteDialog.ShowAsync();
+
+            if (result == ContentDialogResult.Primary)
+            {
+                // Create new GridViewTile to display the website
+                GridViewTile gridViewTile = new GridViewTile();
+                gridViewTile.ExecutingPath = addWebsiteDialog.InputWebsiteUrl;
+                gridViewTile.ExecutingArguments = "";
+                gridViewTile.DisplayText = addWebsiteDialog.InputWebsiteUrl;
+                gridViewTile.Size = UserSettingsClass.GridScale;
+
+                // Get the icon of the website, using Google's favicon service
+                BitmapImage websiteIcon = new BitmapImage();
+                // Fallback icon
+                Uri defaultImageUri = new Uri(Path.GetFullPath(@"Resources\websitePlaceholder.png"), UriKind.Absolute);
+                websiteIcon.ImageFailed += (s, e) => 
+                {
+                    websiteIcon.UriSource = defaultImageUri;
+                    gridViewTile.ImageSource = websiteIcon;
+                };
+                // Try getting website icon
+                Uri iconUri = new Uri("https://www.google.com/s2/favicons?sz=128&domain_url=" + addWebsiteDialog.InputWebsiteUrl, UriKind.Absolute);
+                websiteIcon.UriSource = iconUri;
+                gridViewTile.ImageSource = websiteIcon;
+
+                ItemsGridView.Items.Add(gridViewTile);
             }
         }
     }

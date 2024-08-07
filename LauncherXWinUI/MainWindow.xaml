@@ -130,6 +130,7 @@
                         Width="120"
                         Height="32"
                         Margin="10,0,0,0"
+                        Click="AddWebsiteBtn_Click"
                         Content="Add a website" />
                 </StackPanel>
             </Grid>

@@ -3,5 +3,6 @@ Controls\AddFileDialog.xbf
 Controls\AddFileDialogListViewItem.xbf
 Controls\AddFolderDialog.xbf
 Controls\AddFolderDialogListViewItem.xbf
+Controls\AddWebsiteDialog.xbf
 Controls\GridViewTile.xbf
 MainWindow.xbf

@@ -497,3 +497,10 @@ C:\Users\fligh\source\repos\LauncherX\LauncherXWinUI\obj\x64\Debug\net8.0-window
 C:\Users\fligh\source\repos\LauncherX\LauncherXWinUI\obj\x64\Debug\net8.0-windows10.0.19041.0\win-x64\Controls\AddFolderDialogListViewItem.g.cs
 C:\Users\fligh\source\repos\LauncherX\LauncherXWinUI\obj\x64\Debug\net8.0-windows10.0.19041.0\win-x64\Controls\AddFolderDialogListViewItem.xaml
 C:\Users\fligh\source\repos\LauncherX\LauncherXWinUI\obj\x64\Debug\net8.0-windows10.0.19041.0\win-x64\Controls\AddFolderDialogListViewItem.xbf
+C:\Users\fligh\source\repos\LauncherX\LauncherXWinUI\bin\x64\Debug\net8.0-windows10.0.19041.0\win-x64\Controls\AddWebsiteDialog.xbf
+C:\Users\fligh\source\repos\LauncherX\LauncherXWinUI\obj\x64\Debug\net8.0-windows10.0.19041.0\win-x64\Controls\AddWebsiteDialog.g.i.cs
+C:\Users\fligh\source\repos\LauncherX\LauncherXWinUI\obj\x64\Debug\net8.0-windows10.0.19041.0\win-x64\Controls\AddWebsiteDialog.g.cs
+C:\Users\fligh\source\repos\LauncherX\LauncherXWinUI\obj\x64\Debug\net8.0-windows10.0.19041.0\win-x64\Controls\AddWebsiteDialog.xaml
+C:\Users\fligh\source\repos\LauncherX\LauncherXWinUI\obj\x64\Debug\net8.0-windows10.0.19041.0\win-x64\Controls\AddWebsiteDialog.xbf
+C:\Users\fligh\source\repos\LauncherX\LauncherXWinUI\bin\x64\Debug\net8.0-windows10.0.19041.0\win-x64\Resources\websitePlaceholder.png
+C:\Users\fligh\source\repos\LauncherX\LauncherXWinUI\bin\x64\Debug\net8.0-windows10.0.19041.0\win-x64\Resources\icon.png

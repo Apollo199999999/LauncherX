@@ -30,11 +30,15 @@
     <None Remove="Controls\AddFileDialogListViewItem.xaml" />
     <None Remove="Controls\AddFolderDialog.xaml" />
     <None Remove="Controls\AddFolderDialogListViewItem.xaml" />
+    <None Remove="Controls\AddWebsiteDialog.xaml" />
     <None Remove="Controls\GridViewTile.xaml" />
     <None Remove="Resources\icon.ico" />
+    <None Remove="Resources\websitePlaceholder.png" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Resources\icon.ico" />
+    <Content Include="Resources\icon.ico">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
 
   <ItemGroup>
@@ -74,9 +78,12 @@
     <Resource Include="Resources\icon.ico">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="Resources\icon.png">
+    <Content Include="Resources\icon.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Resource>
+    </Content>
+    <Content Include="Resources\websitePlaceholder.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Page Update="Controls\AddFileDialog.xaml">
@@ -86,6 +93,9 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Update="Controls\AddFolderDialogListViewItem.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Update="Controls\AddWebsiteDialog.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <None Update="Resources\icon.png">
