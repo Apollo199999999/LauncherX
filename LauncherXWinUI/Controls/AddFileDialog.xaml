@@ -33,7 +33,7 @@
                 x:Name="PickAFileButton"
                 Margin="10,0,0,10"
                 Click="PickAFileButton_Click"
-                Content="Select file(s)" />
+                Content="Open file(s)" />
         </StackPanel>
 
         <TextBlock Text="Files selected will show up in the list below. You can reorder your files after adding them." />

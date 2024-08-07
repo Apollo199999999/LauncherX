@@ -20,7 +20,7 @@
             <TextBox
                 x:Name="LaunchArgsTextBox"
                 Width="210"
-                PlaceholderText="Launch Arguments (optional)"
+                PlaceholderText="Launch arguments (optional)"
                 TextChanged="LaunchArgsTextBox_TextChanged" />
             <Button
                 x:Name="RemoveBtn"

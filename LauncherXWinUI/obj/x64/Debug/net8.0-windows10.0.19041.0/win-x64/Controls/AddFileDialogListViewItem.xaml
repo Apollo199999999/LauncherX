@@ -20,7 +20,7 @@
             <TextBox x:ConnectionId='3'
                 x:Name="LaunchArgsTextBox"
                 Width="210"
-                PlaceholderText="Launch Arguments (optional)"
+                PlaceholderText="Launch arguments (optional)"
                                                             />
             <Button x:ConnectionId='4'
                 x:Name="RemoveBtn"
