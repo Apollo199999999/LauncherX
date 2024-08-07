@@ -13,9 +13,8 @@
     Title="LauncherX - Modern app launcher for Windows"
     Width="855"
     Height="600"
-    MinWidth="630"
-    MinHeight="400"
-    TaskBarIcon="Resources\icon.ico"
+    MinWidth="650"
+    MinHeight="500"
     mc:Ignorable="d">
     <Grid
         x:Name="Container"

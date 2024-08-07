@@ -224,77 +224,81 @@ namespace LauncherXWinUI.LauncherXWinUI_XamlTypeInfo
 
         private void InitTypeTables()
         {
-            _typeNameTable = new string[33];
+            _typeNameTable = new string[35];
             _typeNameTable[0] = "Microsoft.UI.Xaml.Controls.XamlControlsResources";
             _typeNameTable[1] = "Microsoft.UI.Xaml.ResourceDictionary";
             _typeNameTable[2] = "Object";
             _typeNameTable[3] = "Boolean";
-            _typeNameTable[4] = "LauncherXWinUI.Controls.AddDialogListViewItem";
-            _typeNameTable[5] = "Microsoft.UI.Xaml.Controls.UserControl";
-            _typeNameTable[6] = "String";
-            _typeNameTable[7] = "LauncherXWinUI.Controls.AddFileDialog";
-            _typeNameTable[8] = "Microsoft.UI.Xaml.Controls.ContentDialog";
-            _typeNameTable[9] = "Microsoft.UI.Xaml.Controls.ContentControl";
-            _typeNameTable[10] = "LauncherXWinUI.Controls.GridViewTile";
-            _typeNameTable[11] = "Double";
-            _typeNameTable[12] = "WinUIEx.WindowEx";
-            _typeNameTable[13] = "Microsoft.UI.Xaml.Window";
-            _typeNameTable[14] = "WinUIEx.Icon";
-            _typeNameTable[15] = "Microsoft.UI.Windowing.AppWindow";
-            _typeNameTable[16] = "WinUIEx.WindowState";
-            _typeNameTable[17] = "System.Enum";
-            _typeNameTable[18] = "System.ValueType";
-            _typeNameTable[19] = "Microsoft.UI.Windowing.AppWindowPresenter";
-            _typeNameTable[20] = "Microsoft.UI.Windowing.AppWindowPresenterKind";
-            _typeNameTable[21] = "WinUIEx.SystemBackdrop";
-            _typeNameTable[22] = "Microsoft.UI.Xaml.Controls.AnimatedIcon";
-            _typeNameTable[23] = "Microsoft.UI.Xaml.Controls.IconElement";
-            _typeNameTable[24] = "Microsoft.UI.Xaml.Controls.IAnimatedVisualSource2";
-            _typeNameTable[25] = "Microsoft.UI.Xaml.Controls.IconSource";
-            _typeNameTable[26] = "Microsoft.UI.Xaml.DependencyObject";
-            _typeNameTable[27] = "Microsoft.UI.Xaml.Controls.AnimatedVisuals.AnimatedSettingsVisualSource";
-            _typeNameTable[28] = "System.Collections.Generic.IReadOnlyDictionary`2<String, Double>";
-            _typeNameTable[29] = "LauncherXWinUI.MainWindow";
-            _typeNameTable[30] = "Microsoft.UI.Xaml.Controls.TreeViewNode";
-            _typeNameTable[31] = "System.Collections.Generic.IList`1<Microsoft.UI.Xaml.Controls.TreeViewNode>";
-            _typeNameTable[32] = "Int32";
+            _typeNameTable[4] = "LauncherXWinUI.Controls.AddFileDialog";
+            _typeNameTable[5] = "Microsoft.UI.Xaml.Controls.ContentDialog";
+            _typeNameTable[6] = "Microsoft.UI.Xaml.Controls.ContentControl";
+            _typeNameTable[7] = "System.Collections.Generic.List`1<LauncherXWinUI.Controls.AddFileDialogListViewItem>";
+            _typeNameTable[8] = "LauncherXWinUI.Controls.AddFileDialogListViewItem";
+            _typeNameTable[9] = "Microsoft.UI.Xaml.Controls.UserControl";
+            _typeNameTable[10] = "String";
+            _typeNameTable[11] = "Microsoft.UI.Xaml.Media.Imaging.BitmapImage";
+            _typeNameTable[12] = "LauncherXWinUI.Controls.GridViewTile";
+            _typeNameTable[13] = "Double";
+            _typeNameTable[14] = "WinUIEx.WindowEx";
+            _typeNameTable[15] = "Microsoft.UI.Xaml.Window";
+            _typeNameTable[16] = "Microsoft.UI.Windowing.AppWindow";
+            _typeNameTable[17] = "WinUIEx.Icon";
+            _typeNameTable[18] = "WinUIEx.WindowState";
+            _typeNameTable[19] = "System.Enum";
+            _typeNameTable[20] = "System.ValueType";
+            _typeNameTable[21] = "Microsoft.UI.Windowing.AppWindowPresenter";
+            _typeNameTable[22] = "Microsoft.UI.Windowing.AppWindowPresenterKind";
+            _typeNameTable[23] = "WinUIEx.SystemBackdrop";
+            _typeNameTable[24] = "Microsoft.UI.Xaml.Controls.AnimatedIcon";
+            _typeNameTable[25] = "Microsoft.UI.Xaml.Controls.IconElement";
+            _typeNameTable[26] = "Microsoft.UI.Xaml.Controls.IAnimatedVisualSource2";
+            _typeNameTable[27] = "Microsoft.UI.Xaml.Controls.IconSource";
+            _typeNameTable[28] = "Microsoft.UI.Xaml.DependencyObject";
+            _typeNameTable[29] = "Microsoft.UI.Xaml.Controls.AnimatedVisuals.AnimatedSettingsVisualSource";
+            _typeNameTable[30] = "System.Collections.Generic.IReadOnlyDictionary`2<String, Double>";
+            _typeNameTable[31] = "LauncherXWinUI.MainWindow";
+            _typeNameTable[32] = "Microsoft.UI.Xaml.Controls.TreeViewNode";
+            _typeNameTable[33] = "System.Collections.Generic.IList`1<Microsoft.UI.Xaml.Controls.TreeViewNode>";
+            _typeNameTable[34] = "Int32";
 
-            _typeTable = new global::System.Type[33];
+            _typeTable = new global::System.Type[35];
             _typeTable[0] = typeof(global::Microsoft.UI.Xaml.Controls.XamlControlsResources);
             _typeTable[1] = typeof(global::Microsoft.UI.Xaml.ResourceDictionary);
             _typeTable[2] = typeof(global::System.Object);
             _typeTable[3] = typeof(global::System.Boolean);
-            _typeTable[4] = typeof(global::LauncherXWinUI.Controls.AddDialogListViewItem);
-            _typeTable[5] = typeof(global::Microsoft.UI.Xaml.Controls.UserControl);
-            _typeTable[6] = typeof(global::System.String);
-            _typeTable[7] = typeof(global::LauncherXWinUI.Controls.AddFileDialog);
-            _typeTable[8] = typeof(global::Microsoft.UI.Xaml.Controls.ContentDialog);
-            _typeTable[9] = typeof(global::Microsoft.UI.Xaml.Controls.ContentControl);
-            _typeTable[10] = typeof(global::LauncherXWinUI.Controls.GridViewTile);
-            _typeTable[11] = typeof(global::System.Double);
-            _typeTable[12] = typeof(global::WinUIEx.WindowEx);
-            _typeTable[13] = typeof(global::Microsoft.UI.Xaml.Window);
-            _typeTable[14] = typeof(global::WinUIEx.Icon);
-            _typeTable[15] = typeof(global::Microsoft.UI.Windowing.AppWindow);
-            _typeTable[16] = typeof(global::WinUIEx.WindowState);
-            _typeTable[17] = typeof(global::System.Enum);
-            _typeTable[18] = typeof(global::System.ValueType);
-            _typeTable[19] = typeof(global::Microsoft.UI.Windowing.AppWindowPresenter);
-            _typeTable[20] = typeof(global::Microsoft.UI.Windowing.AppWindowPresenterKind);
+            _typeTable[4] = typeof(global::LauncherXWinUI.Controls.AddFileDialog);
+            _typeTable[5] = typeof(global::Microsoft.UI.Xaml.Controls.ContentDialog);
+            _typeTable[6] = typeof(global::Microsoft.UI.Xaml.Controls.ContentControl);
+            _typeTable[7] = typeof(global::System.Collections.Generic.List<global::LauncherXWinUI.Controls.AddFileDialogListViewItem>);
+            _typeTable[8] = typeof(global::LauncherXWinUI.Controls.AddFileDialogListViewItem);
+            _typeTable[9] = typeof(global::Microsoft.UI.Xaml.Controls.UserControl);
+            _typeTable[10] = typeof(global::System.String);
+            _typeTable[11] = typeof(global::Microsoft.UI.Xaml.Media.Imaging.BitmapImage);
+            _typeTable[12] = typeof(global::LauncherXWinUI.Controls.GridViewTile);
+            _typeTable[13] = typeof(global::System.Double);
+            _typeTable[14] = typeof(global::WinUIEx.WindowEx);
+            _typeTable[15] = typeof(global::Microsoft.UI.Xaml.Window);
+            _typeTable[16] = typeof(global::Microsoft.UI.Windowing.AppWindow);
+            _typeTable[17] = typeof(global::WinUIEx.Icon);
+            _typeTable[18] = typeof(global::WinUIEx.WindowState);
+            _typeTable[19] = typeof(global::System.Enum);
+            _typeTable[20] = typeof(global::System.ValueType);
+            _typeTable[21] = typeof(global::Microsoft.UI.Windowing.AppWindowPresenter);
+            _typeTable[22] = typeof(global::Microsoft.UI.Windowing.AppWindowPresenterKind);
 #pragma warning disable 0618  //   Warning on Deprecated usage
-            _typeTable[21] = typeof(global::WinUIEx.SystemBackdrop);
+            _typeTable[23] = typeof(global::WinUIEx.SystemBackdrop);
 #pragma warning restore 0618
-            _typeTable[22] = typeof(global::Microsoft.UI.Xaml.Controls.AnimatedIcon);
-            _typeTable[23] = typeof(global::Microsoft.UI.Xaml.Controls.IconElement);
-            _typeTable[24] = typeof(global::Microsoft.UI.Xaml.Controls.IAnimatedVisualSource2);
-            _typeTable[25] = typeof(global::Microsoft.UI.Xaml.Controls.IconSource);
-            _typeTable[26] = typeof(global::Microsoft.UI.Xaml.DependencyObject);
-            _typeTable[27] = typeof(global::Microsoft.UI.Xaml.Controls.AnimatedVisuals.AnimatedSettingsVisualSource);
-            _typeTable[28] = typeof(global::System.Collections.Generic.IReadOnlyDictionary<global::System.String, global::System.Double>);
-            _typeTable[29] = typeof(global::LauncherXWinUI.MainWindow);
-            _typeTable[30] = typeof(global::Microsoft.UI.Xaml.Controls.TreeViewNode);
-            _typeTable[31] = typeof(global::System.Collections.Generic.IList<global::Microsoft.UI.Xaml.Controls.TreeViewNode>);
-            _typeTable[32] = typeof(global::System.Int32);
+            _typeTable[24] = typeof(global::Microsoft.UI.Xaml.Controls.AnimatedIcon);
+            _typeTable[25] = typeof(global::Microsoft.UI.Xaml.Controls.IconElement);
+            _typeTable[26] = typeof(global::Microsoft.UI.Xaml.Controls.IAnimatedVisualSource2);
+            _typeTable[27] = typeof(global::Microsoft.UI.Xaml.Controls.IconSource);
+            _typeTable[28] = typeof(global::Microsoft.UI.Xaml.DependencyObject);
+            _typeTable[29] = typeof(global::Microsoft.UI.Xaml.Controls.AnimatedVisuals.AnimatedSettingsVisualSource);
+            _typeTable[30] = typeof(global::System.Collections.Generic.IReadOnlyDictionary<global::System.String, global::System.Double>);
+            _typeTable[31] = typeof(global::LauncherXWinUI.MainWindow);
+            _typeTable[32] = typeof(global::Microsoft.UI.Xaml.Controls.TreeViewNode);
+            _typeTable[33] = typeof(global::System.Collections.Generic.IList<global::Microsoft.UI.Xaml.Controls.TreeViewNode>);
+            _typeTable[34] = typeof(global::System.Int32);
         }
 
         private int LookupTypeIndexByName(string typeName)
@@ -330,14 +334,15 @@ namespace LauncherXWinUI.LauncherXWinUI_XamlTypeInfo
         }
 
         private object Activate_0_XamlControlsResources() { return new global::Microsoft.UI.Xaml.Controls.XamlControlsResources(); }
-        private object Activate_4_AddDialogListViewItem() { return new global::LauncherXWinUI.Controls.AddDialogListViewItem(); }
-        private object Activate_7_AddFileDialog() { return new global::LauncherXWinUI.Controls.AddFileDialog(); }
-        private object Activate_10_GridViewTile() { return new global::LauncherXWinUI.Controls.GridViewTile(); }
-        private object Activate_12_WindowEx() { return new global::WinUIEx.WindowEx(); }
-        private object Activate_22_AnimatedIcon() { return new global::Microsoft.UI.Xaml.Controls.AnimatedIcon(); }
-        private object Activate_27_AnimatedSettingsVisualSource() { return new global::Microsoft.UI.Xaml.Controls.AnimatedVisuals.AnimatedSettingsVisualSource(); }
-        private object Activate_29_MainWindow() { return new global::LauncherXWinUI.MainWindow(); }
-        private object Activate_30_TreeViewNode() { return new global::Microsoft.UI.Xaml.Controls.TreeViewNode(); }
+        private object Activate_4_AddFileDialog() { return new global::LauncherXWinUI.Controls.AddFileDialog(); }
+        private object Activate_7_List() { return new global::System.Collections.Generic.List<global::LauncherXWinUI.Controls.AddFileDialogListViewItem>(); }
+        private object Activate_8_AddFileDialogListViewItem() { return new global::LauncherXWinUI.Controls.AddFileDialogListViewItem(); }
+        private object Activate_12_GridViewTile() { return new global::LauncherXWinUI.Controls.GridViewTile(); }
+        private object Activate_14_WindowEx() { return new global::WinUIEx.WindowEx(); }
+        private object Activate_24_AnimatedIcon() { return new global::Microsoft.UI.Xaml.Controls.AnimatedIcon(); }
+        private object Activate_29_AnimatedSettingsVisualSource() { return new global::Microsoft.UI.Xaml.Controls.AnimatedVisuals.AnimatedSettingsVisualSource(); }
+        private object Activate_31_MainWindow() { return new global::LauncherXWinUI.MainWindow(); }
+        private object Activate_32_TreeViewNode() { return new global::Microsoft.UI.Xaml.Controls.TreeViewNode(); }
         private void MapAdd_0_XamlControlsResources(object instance, object key, object item)
         {
             var collection = (global::System.Collections.Generic.IDictionary<global::System.Object, global::System.Object>)instance;
@@ -345,7 +350,13 @@ namespace LauncherXWinUI.LauncherXWinUI_XamlTypeInfo
             var newItem = (global::System.Object)item;
             collection.Add(newKey, newItem);
         }
-        private void VectorAdd_31_IList(object instance, object item)
+        private void VectorAdd_7_List(object instance, object item)
+        {
+            var collection = (global::System.Collections.Generic.ICollection<global::LauncherXWinUI.Controls.AddFileDialogListViewItem>)instance;
+            var newItem = (global::LauncherXWinUI.Controls.AddFileDialogListViewItem)item;
+            collection.Add(newItem);
+        }
+        private void VectorAdd_33_IList(object instance, object item)
         {
             var collection = (global::System.Collections.Generic.ICollection<global::Microsoft.UI.Xaml.Controls.TreeViewNode>)instance;
             var newItem = (global::Microsoft.UI.Xaml.Controls.TreeViewNode)item;
@@ -382,40 +393,55 @@ namespace LauncherXWinUI.LauncherXWinUI_XamlTypeInfo
                 xamlType = new global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlSystemBaseType(typeName, type);
                 break;
 
-            case 4:   //  LauncherXWinUI.Controls.AddDialogListViewItem
-                userType = new global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Microsoft.UI.Xaml.Controls.UserControl"));
-                userType.Activator = Activate_4_AddDialogListViewItem;
-                userType.AddMemberName("DisplayText");
-                userType.SetIsLocalType();
-                xamlType = userType;
-                break;
-
-            case 5:   //  Microsoft.UI.Xaml.Controls.UserControl
-                xamlType = new global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlSystemBaseType(typeName, type);
-                break;
-
-            case 6:   //  String
-                xamlType = new global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlSystemBaseType(typeName, type);
-                break;
-
-            case 7:   //  LauncherXWinUI.Controls.AddFileDialog
+            case 4:   //  LauncherXWinUI.Controls.AddFileDialog
                 userType = new global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Microsoft.UI.Xaml.Controls.ContentDialog"));
-                userType.Activator = Activate_7_AddFileDialog;
+                userType.Activator = Activate_4_AddFileDialog;
+                userType.AddMemberName("AddedFiles");
                 userType.SetIsLocalType();
                 xamlType = userType;
                 break;
 
-            case 8:   //  Microsoft.UI.Xaml.Controls.ContentDialog
+            case 5:   //  Microsoft.UI.Xaml.Controls.ContentDialog
                 xamlType = new global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlSystemBaseType(typeName, type);
                 break;
 
-            case 9:   //  Microsoft.UI.Xaml.Controls.ContentControl
+            case 6:   //  Microsoft.UI.Xaml.Controls.ContentControl
                 xamlType = new global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlSystemBaseType(typeName, type);
                 break;
 
-            case 10:   //  LauncherXWinUI.Controls.GridViewTile
+            case 7:   //  System.Collections.Generic.List`1<LauncherXWinUI.Controls.AddFileDialogListViewItem>
+                userType = new global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Object"));
+                userType.CollectionAdd = VectorAdd_7_List;
+                userType.SetIsReturnTypeStub();
+                xamlType = userType;
+                break;
+
+            case 8:   //  LauncherXWinUI.Controls.AddFileDialogListViewItem
                 userType = new global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Microsoft.UI.Xaml.Controls.UserControl"));
-                userType.Activator = Activate_10_GridViewTile;
+                userType.Activator = Activate_8_AddFileDialogListViewItem;
+                userType.AddMemberName("DisplayText");
+                userType.AddMemberName("ExecutingPath");
+                userType.AddMemberName("ExecutingArguments");
+                userType.AddMemberName("FileIcon");
+                userType.SetIsLocalType();
+                xamlType = userType;
+                break;
+
+            case 9:   //  Microsoft.UI.Xaml.Controls.UserControl
+                xamlType = new global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlSystemBaseType(typeName, type);
+                break;
+
+            case 10:   //  String
+                xamlType = new global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlSystemBaseType(typeName, type);
+                break;
+
+            case 11:   //  Microsoft.UI.Xaml.Media.Imaging.BitmapImage
+                xamlType = new global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlSystemBaseType(typeName, type);
+                break;
+
+            case 12:   //  LauncherXWinUI.Controls.GridViewTile
+                userType = new global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Microsoft.UI.Xaml.Controls.UserControl"));
+                userType.Activator = Activate_12_GridViewTile;
                 userType.AddMemberName("Size");
                 userType.AddMemberName("ImageSource");
                 userType.AddMemberName("DisplayText");
@@ -425,13 +451,13 @@ namespace LauncherXWinUI.LauncherXWinUI_XamlTypeInfo
                 xamlType = userType;
                 break;
 
-            case 11:   //  Double
+            case 13:   //  Double
                 xamlType = new global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlSystemBaseType(typeName, type);
                 break;
 
-            case 12:   //  WinUIEx.WindowEx
+            case 14:   //  WinUIEx.WindowEx
                 userType = new global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Microsoft.UI.Xaml.Window"));
-                userType.Activator = Activate_12_WindowEx;
+                userType.Activator = Activate_14_WindowEx;
                 userType.SetContentPropertyName("WinUIEx.WindowEx.WindowContent");
                 userType.AddMemberName("WindowContent");
                 userType.AddMemberName("Title");
@@ -439,8 +465,8 @@ namespace LauncherXWinUI.LauncherXWinUI_XamlTypeInfo
                 userType.AddMemberName("Height");
                 userType.AddMemberName("MinWidth");
                 userType.AddMemberName("MinHeight");
-                userType.AddMemberName("TaskBarIcon");
                 userType.AddMemberName("AppWindow");
+                userType.AddMemberName("TaskBarIcon");
                 userType.AddMemberName("PersistenceId");
                 userType.AddMemberName("IsTitleBarVisible");
                 userType.AddMemberName("IsMinimizable");
@@ -457,24 +483,24 @@ namespace LauncherXWinUI.LauncherXWinUI_XamlTypeInfo
                 xamlType = userType;
                 break;
 
-            case 13:   //  Microsoft.UI.Xaml.Window
+            case 15:   //  Microsoft.UI.Xaml.Window
                 xamlType = new global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlSystemBaseType(typeName, type);
                 break;
 
-            case 14:   //  WinUIEx.Icon
+            case 16:   //  Microsoft.UI.Windowing.AppWindow
+                userType = new global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Object"));
+                userType.SetIsReturnTypeStub();
+                xamlType = userType;
+                break;
+
+            case 17:   //  WinUIEx.Icon
                 userType = new global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Object"));
                 userType.CreateFromStringMethod = global::WinUIEx.Icon.FromFile;
                 userType.SetIsReturnTypeStub();
                 xamlType = userType;
                 break;
 
-            case 15:   //  Microsoft.UI.Windowing.AppWindow
-                userType = new global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Object"));
-                userType.SetIsReturnTypeStub();
-                xamlType = userType;
-                break;
-
-            case 16:   //  WinUIEx.WindowState
+            case 18:   //  WinUIEx.WindowState
                 userType = new global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("System.Enum"));
                 userType.AddEnumValue("Normal", global::WinUIEx.WindowState.Normal);
                 userType.AddEnumValue("Minimized", global::WinUIEx.WindowState.Minimized);
@@ -482,23 +508,23 @@ namespace LauncherXWinUI.LauncherXWinUI_XamlTypeInfo
                 xamlType = userType;
                 break;
 
-            case 17:   //  System.Enum
+            case 19:   //  System.Enum
                 userType = new global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("System.ValueType"));
                 xamlType = userType;
                 break;
 
-            case 18:   //  System.ValueType
+            case 20:   //  System.ValueType
                 userType = new global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Object"));
                 xamlType = userType;
                 break;
 
-            case 19:   //  Microsoft.UI.Windowing.AppWindowPresenter
+            case 21:   //  Microsoft.UI.Windowing.AppWindowPresenter
                 userType = new global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Object"));
                 userType.SetIsReturnTypeStub();
                 xamlType = userType;
                 break;
 
-            case 20:   //  Microsoft.UI.Windowing.AppWindowPresenterKind
+            case 22:   //  Microsoft.UI.Windowing.AppWindowPresenterKind
                 userType = new global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("System.Enum"));
                 userType.AddEnumValue("Default", global::Microsoft.UI.Windowing.AppWindowPresenterKind.Default);
                 userType.AddEnumValue("CompactOverlay", global::Microsoft.UI.Windowing.AppWindowPresenterKind.CompactOverlay);
@@ -507,15 +533,15 @@ namespace LauncherXWinUI.LauncherXWinUI_XamlTypeInfo
                 xamlType = userType;
                 break;
 
-            case 21:   //  WinUIEx.SystemBackdrop
+            case 23:   //  WinUIEx.SystemBackdrop
                 userType = new global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Object"));
                 userType.SetIsReturnTypeStub();
                 xamlType = userType;
                 break;
 
-            case 22:   //  Microsoft.UI.Xaml.Controls.AnimatedIcon
+            case 24:   //  Microsoft.UI.Xaml.Controls.AnimatedIcon
                 userType = new global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Microsoft.UI.Xaml.Controls.IconElement"));
-                userType.Activator = Activate_22_AnimatedIcon;
+                userType.Activator = Activate_24_AnimatedIcon;
                 userType.SetContentPropertyName("Microsoft.UI.Xaml.Controls.AnimatedIcon.Source");
                 userType.AddMemberName("Source");
                 userType.AddMemberName("FallbackIconSource");
@@ -524,48 +550,48 @@ namespace LauncherXWinUI.LauncherXWinUI_XamlTypeInfo
                 xamlType = userType;
                 break;
 
-            case 23:   //  Microsoft.UI.Xaml.Controls.IconElement
+            case 25:   //  Microsoft.UI.Xaml.Controls.IconElement
                 xamlType = new global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlSystemBaseType(typeName, type);
                 break;
 
-            case 24:   //  Microsoft.UI.Xaml.Controls.IAnimatedVisualSource2
+            case 26:   //  Microsoft.UI.Xaml.Controls.IAnimatedVisualSource2
                 userType = new global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlUserType(this, typeName, type, null);
                 userType.SetIsReturnTypeStub();
                 xamlType = userType;
                 break;
 
-            case 25:   //  Microsoft.UI.Xaml.Controls.IconSource
+            case 27:   //  Microsoft.UI.Xaml.Controls.IconSource
                 xamlType = new global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlSystemBaseType(typeName, type);
                 break;
 
-            case 26:   //  Microsoft.UI.Xaml.DependencyObject
+            case 28:   //  Microsoft.UI.Xaml.DependencyObject
                 xamlType = new global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlSystemBaseType(typeName, type);
                 break;
 
-            case 27:   //  Microsoft.UI.Xaml.Controls.AnimatedVisuals.AnimatedSettingsVisualSource
+            case 29:   //  Microsoft.UI.Xaml.Controls.AnimatedVisuals.AnimatedSettingsVisualSource
                 userType = new global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Object"));
-                userType.Activator = Activate_27_AnimatedSettingsVisualSource;
+                userType.Activator = Activate_29_AnimatedSettingsVisualSource;
                 userType.AddMemberName("Markers");
                 xamlType = userType;
                 break;
 
-            case 28:   //  System.Collections.Generic.IReadOnlyDictionary`2<String, Double>
+            case 30:   //  System.Collections.Generic.IReadOnlyDictionary`2<String, Double>
                 userType = new global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlUserType(this, typeName, type, null);
                 userType.SetIsReturnTypeStub();
                 xamlType = userType;
                 break;
 
-            case 29:   //  LauncherXWinUI.MainWindow
+            case 31:   //  LauncherXWinUI.MainWindow
                 userType = new global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("WinUIEx.WindowEx"));
-                userType.Activator = Activate_29_MainWindow;
+                userType.Activator = Activate_31_MainWindow;
                 userType.SetContentPropertyName("WinUIEx.WindowEx.WindowContent");
                 userType.SetIsLocalType();
                 xamlType = userType;
                 break;
 
-            case 30:   //  Microsoft.UI.Xaml.Controls.TreeViewNode
+            case 32:   //  Microsoft.UI.Xaml.Controls.TreeViewNode
                 userType = new global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Microsoft.UI.Xaml.DependencyObject"));
-                userType.Activator = Activate_30_TreeViewNode;
+                userType.Activator = Activate_32_TreeViewNode;
                 userType.AddMemberName("Children");
                 userType.AddMemberName("Content");
                 userType.AddMemberName("Depth");
@@ -577,14 +603,14 @@ namespace LauncherXWinUI.LauncherXWinUI_XamlTypeInfo
                 xamlType = userType;
                 break;
 
-            case 31:   //  System.Collections.Generic.IList`1<Microsoft.UI.Xaml.Controls.TreeViewNode>
+            case 33:   //  System.Collections.Generic.IList`1<Microsoft.UI.Xaml.Controls.TreeViewNode>
                 userType = new global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlUserType(this, typeName, type, null);
-                userType.CollectionAdd = VectorAdd_31_IList;
+                userType.CollectionAdd = VectorAdd_33_IList;
                 userType.SetIsReturnTypeStub();
                 xamlType = userType;
                 break;
 
-            case 32:   //  Int32
+            case 34:   //  Int32
                 xamlType = new global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlSystemBaseType(typeName, type);
                 break;
             }
@@ -656,357 +682,397 @@ namespace LauncherXWinUI.LauncherXWinUI_XamlTypeInfo
             var that = (global::Microsoft.UI.Xaml.Controls.XamlControlsResources)instance;
             that.UseCompactResources = (global::System.Boolean)Value;
         }
-        private object get_1_AddDialogListViewItem_DisplayText(object instance)
+        private object get_1_AddFileDialog_AddedFiles(object instance)
         {
-            var that = (global::LauncherXWinUI.Controls.AddDialogListViewItem)instance;
+            var that = (global::LauncherXWinUI.Controls.AddFileDialog)instance;
+            return that.AddedFiles;
+        }
+        private void set_1_AddFileDialog_AddedFiles(object instance, object Value)
+        {
+            var that = (global::LauncherXWinUI.Controls.AddFileDialog)instance;
+            that.AddedFiles = (global::System.Collections.Generic.List<global::LauncherXWinUI.Controls.AddFileDialogListViewItem>)Value;
+        }
+        private object get_2_AddFileDialogListViewItem_DisplayText(object instance)
+        {
+            var that = (global::LauncherXWinUI.Controls.AddFileDialogListViewItem)instance;
             return that.DisplayText;
         }
-        private void set_1_AddDialogListViewItem_DisplayText(object instance, object Value)
+        private void set_2_AddFileDialogListViewItem_DisplayText(object instance, object Value)
         {
-            var that = (global::LauncherXWinUI.Controls.AddDialogListViewItem)instance;
+            var that = (global::LauncherXWinUI.Controls.AddFileDialogListViewItem)instance;
             that.DisplayText = (global::System.String)Value;
         }
-        private object get_2_GridViewTile_Size(object instance)
+        private object get_3_AddFileDialogListViewItem_ExecutingPath(object instance)
+        {
+            var that = (global::LauncherXWinUI.Controls.AddFileDialogListViewItem)instance;
+            return that.ExecutingPath;
+        }
+        private void set_3_AddFileDialogListViewItem_ExecutingPath(object instance, object Value)
+        {
+            var that = (global::LauncherXWinUI.Controls.AddFileDialogListViewItem)instance;
+            that.ExecutingPath = (global::System.String)Value;
+        }
+        private object get_4_AddFileDialogListViewItem_ExecutingArguments(object instance)
+        {
+            var that = (global::LauncherXWinUI.Controls.AddFileDialogListViewItem)instance;
+            return that.ExecutingArguments;
+        }
+        private void set_4_AddFileDialogListViewItem_ExecutingArguments(object instance, object Value)
+        {
+            var that = (global::LauncherXWinUI.Controls.AddFileDialogListViewItem)instance;
+            that.ExecutingArguments = (global::System.String)Value;
+        }
+        private object get_5_AddFileDialogListViewItem_FileIcon(object instance)
+        {
+            var that = (global::LauncherXWinUI.Controls.AddFileDialogListViewItem)instance;
+            return that.FileIcon;
+        }
+        private void set_5_AddFileDialogListViewItem_FileIcon(object instance, object Value)
+        {
+            var that = (global::LauncherXWinUI.Controls.AddFileDialogListViewItem)instance;
+            that.FileIcon = (global::Microsoft.UI.Xaml.Media.Imaging.BitmapImage)Value;
+        }
+        private object get_6_GridViewTile_Size(object instance)
         {
             var that = (global::LauncherXWinUI.Controls.GridViewTile)instance;
             return that.Size;
         }
-        private void set_2_GridViewTile_Size(object instance, object Value)
+        private void set_6_GridViewTile_Size(object instance, object Value)
         {
             var that = (global::LauncherXWinUI.Controls.GridViewTile)instance;
             that.Size = (global::System.Double)Value;
         }
-        private object get_3_GridViewTile_ImageSource(object instance)
+        private object get_7_GridViewTile_ImageSource(object instance)
         {
             var that = (global::LauncherXWinUI.Controls.GridViewTile)instance;
             return that.ImageSource;
         }
-        private void set_3_GridViewTile_ImageSource(object instance, object Value)
+        private void set_7_GridViewTile_ImageSource(object instance, object Value)
         {
             var that = (global::LauncherXWinUI.Controls.GridViewTile)instance;
-            that.ImageSource = (global::System.String)Value;
+            that.ImageSource = (global::Microsoft.UI.Xaml.Media.Imaging.BitmapImage)Value;
         }
-        private object get_4_GridViewTile_DisplayText(object instance)
+        private object get_8_GridViewTile_DisplayText(object instance)
         {
             var that = (global::LauncherXWinUI.Controls.GridViewTile)instance;
             return that.DisplayText;
         }
-        private void set_4_GridViewTile_DisplayText(object instance, object Value)
+        private void set_8_GridViewTile_DisplayText(object instance, object Value)
         {
             var that = (global::LauncherXWinUI.Controls.GridViewTile)instance;
             that.DisplayText = (global::System.String)Value;
         }
-        private object get_5_GridViewTile_ExecutingPath(object instance)
+        private object get_9_GridViewTile_ExecutingPath(object instance)
         {
             var that = (global::LauncherXWinUI.Controls.GridViewTile)instance;
             return that.ExecutingPath;
         }
-        private void set_5_GridViewTile_ExecutingPath(object instance, object Value)
+        private void set_9_GridViewTile_ExecutingPath(object instance, object Value)
         {
             var that = (global::LauncherXWinUI.Controls.GridViewTile)instance;
             that.ExecutingPath = (global::System.String)Value;
         }
-        private object get_6_GridViewTile_ExecutingArguments(object instance)
+        private object get_10_GridViewTile_ExecutingArguments(object instance)
         {
             var that = (global::LauncherXWinUI.Controls.GridViewTile)instance;
             return that.ExecutingArguments;
         }
-        private void set_6_GridViewTile_ExecutingArguments(object instance, object Value)
+        private void set_10_GridViewTile_ExecutingArguments(object instance, object Value)
         {
             var that = (global::LauncherXWinUI.Controls.GridViewTile)instance;
             that.ExecutingArguments = (global::System.String)Value;
         }
-        private object get_7_WindowEx_WindowContent(object instance)
+        private object get_11_WindowEx_WindowContent(object instance)
         {
             var that = (global::WinUIEx.WindowEx)instance;
             return that.WindowContent;
         }
-        private void set_7_WindowEx_WindowContent(object instance, object Value)
+        private void set_11_WindowEx_WindowContent(object instance, object Value)
         {
             var that = (global::WinUIEx.WindowEx)instance;
             that.WindowContent = (global::System.Object)Value;
         }
-        private object get_8_WindowEx_Title(object instance)
+        private object get_12_WindowEx_Title(object instance)
         {
             var that = (global::WinUIEx.WindowEx)instance;
             return that.Title;
         }
-        private void set_8_WindowEx_Title(object instance, object Value)
+        private void set_12_WindowEx_Title(object instance, object Value)
         {
             var that = (global::WinUIEx.WindowEx)instance;
             that.Title = (global::System.String)Value;
         }
-        private object get_9_WindowEx_Width(object instance)
+        private object get_13_WindowEx_Width(object instance)
         {
             var that = (global::WinUIEx.WindowEx)instance;
             return that.Width;
         }
-        private void set_9_WindowEx_Width(object instance, object Value)
+        private void set_13_WindowEx_Width(object instance, object Value)
         {
             var that = (global::WinUIEx.WindowEx)instance;
             that.Width = (global::System.Double)Value;
         }
-        private object get_10_WindowEx_Height(object instance)
+        private object get_14_WindowEx_Height(object instance)
         {
             var that = (global::WinUIEx.WindowEx)instance;
             return that.Height;
         }
-        private void set_10_WindowEx_Height(object instance, object Value)
+        private void set_14_WindowEx_Height(object instance, object Value)
         {
             var that = (global::WinUIEx.WindowEx)instance;
             that.Height = (global::System.Double)Value;
         }
-        private object get_11_WindowEx_MinWidth(object instance)
+        private object get_15_WindowEx_MinWidth(object instance)
         {
             var that = (global::WinUIEx.WindowEx)instance;
             return that.MinWidth;
         }
-        private void set_11_WindowEx_MinWidth(object instance, object Value)
+        private void set_15_WindowEx_MinWidth(object instance, object Value)
         {
             var that = (global::WinUIEx.WindowEx)instance;
             that.MinWidth = (global::System.Double)Value;
         }
-        private object get_12_WindowEx_MinHeight(object instance)
+        private object get_16_WindowEx_MinHeight(object instance)
         {
             var that = (global::WinUIEx.WindowEx)instance;
             return that.MinHeight;
         }
-        private void set_12_WindowEx_MinHeight(object instance, object Value)
+        private void set_16_WindowEx_MinHeight(object instance, object Value)
         {
             var that = (global::WinUIEx.WindowEx)instance;
             that.MinHeight = (global::System.Double)Value;
         }
-        private object get_13_WindowEx_TaskBarIcon(object instance)
-        {
-            var that = (global::WinUIEx.WindowEx)instance;
-            return that.TaskBarIcon;
-        }
-        private void set_13_WindowEx_TaskBarIcon(object instance, object Value)
-        {
-            var that = (global::WinUIEx.WindowEx)instance;
-            that.TaskBarIcon = (global::WinUIEx.Icon)Value;
-        }
-        private object get_14_WindowEx_AppWindow(object instance)
+        private object get_17_WindowEx_AppWindow(object instance)
         {
             var that = (global::WinUIEx.WindowEx)instance;
             return that.AppWindow;
         }
-        private object get_15_WindowEx_PersistenceId(object instance)
+        private object get_18_WindowEx_TaskBarIcon(object instance)
+        {
+            var that = (global::WinUIEx.WindowEx)instance;
+            return that.TaskBarIcon;
+        }
+        private void set_18_WindowEx_TaskBarIcon(object instance, object Value)
+        {
+            var that = (global::WinUIEx.WindowEx)instance;
+            that.TaskBarIcon = (global::WinUIEx.Icon)Value;
+        }
+        private object get_19_WindowEx_PersistenceId(object instance)
         {
             var that = (global::WinUIEx.WindowEx)instance;
             return that.PersistenceId;
         }
-        private void set_15_WindowEx_PersistenceId(object instance, object Value)
+        private void set_19_WindowEx_PersistenceId(object instance, object Value)
         {
             var that = (global::WinUIEx.WindowEx)instance;
             that.PersistenceId = (global::System.String)Value;
         }
-        private object get_16_WindowEx_IsTitleBarVisible(object instance)
+        private object get_20_WindowEx_IsTitleBarVisible(object instance)
         {
             var that = (global::WinUIEx.WindowEx)instance;
             return that.IsTitleBarVisible;
         }
-        private void set_16_WindowEx_IsTitleBarVisible(object instance, object Value)
+        private void set_20_WindowEx_IsTitleBarVisible(object instance, object Value)
         {
             var that = (global::WinUIEx.WindowEx)instance;
             that.IsTitleBarVisible = (global::System.Boolean)Value;
         }
-        private object get_17_WindowEx_IsMinimizable(object instance)
+        private object get_21_WindowEx_IsMinimizable(object instance)
         {
             var that = (global::WinUIEx.WindowEx)instance;
             return that.IsMinimizable;
         }
-        private void set_17_WindowEx_IsMinimizable(object instance, object Value)
+        private void set_21_WindowEx_IsMinimizable(object instance, object Value)
         {
             var that = (global::WinUIEx.WindowEx)instance;
             that.IsMinimizable = (global::System.Boolean)Value;
         }
-        private object get_18_WindowEx_IsMaximizable(object instance)
+        private object get_22_WindowEx_IsMaximizable(object instance)
         {
             var that = (global::WinUIEx.WindowEx)instance;
             return that.IsMaximizable;
         }
-        private void set_18_WindowEx_IsMaximizable(object instance, object Value)
+        private void set_22_WindowEx_IsMaximizable(object instance, object Value)
         {
             var that = (global::WinUIEx.WindowEx)instance;
             that.IsMaximizable = (global::System.Boolean)Value;
         }
-        private object get_19_WindowEx_IsResizable(object instance)
+        private object get_23_WindowEx_IsResizable(object instance)
         {
             var that = (global::WinUIEx.WindowEx)instance;
             return that.IsResizable;
         }
-        private void set_19_WindowEx_IsResizable(object instance, object Value)
+        private void set_23_WindowEx_IsResizable(object instance, object Value)
         {
             var that = (global::WinUIEx.WindowEx)instance;
             that.IsResizable = (global::System.Boolean)Value;
         }
-        private object get_20_WindowEx_WindowState(object instance)
+        private object get_24_WindowEx_WindowState(object instance)
         {
             var that = (global::WinUIEx.WindowEx)instance;
             return that.WindowState;
         }
-        private void set_20_WindowEx_WindowState(object instance, object Value)
+        private void set_24_WindowEx_WindowState(object instance, object Value)
         {
             var that = (global::WinUIEx.WindowEx)instance;
             that.WindowState = (global::WinUIEx.WindowState)Value;
         }
-        private object get_21_WindowEx_IsShownInSwitchers(object instance)
+        private object get_25_WindowEx_IsShownInSwitchers(object instance)
         {
             var that = (global::WinUIEx.WindowEx)instance;
             return that.IsShownInSwitchers;
         }
-        private void set_21_WindowEx_IsShownInSwitchers(object instance, object Value)
+        private void set_25_WindowEx_IsShownInSwitchers(object instance, object Value)
         {
             var that = (global::WinUIEx.WindowEx)instance;
             that.IsShownInSwitchers = (global::System.Boolean)Value;
         }
-        private object get_22_WindowEx_IsAlwaysOnTop(object instance)
+        private object get_26_WindowEx_IsAlwaysOnTop(object instance)
         {
             var that = (global::WinUIEx.WindowEx)instance;
             return that.IsAlwaysOnTop;
         }
-        private void set_22_WindowEx_IsAlwaysOnTop(object instance, object Value)
+        private void set_26_WindowEx_IsAlwaysOnTop(object instance, object Value)
         {
             var that = (global::WinUIEx.WindowEx)instance;
             that.IsAlwaysOnTop = (global::System.Boolean)Value;
         }
-        private object get_23_WindowEx_Presenter(object instance)
+        private object get_27_WindowEx_Presenter(object instance)
         {
             var that = (global::WinUIEx.WindowEx)instance;
             return that.Presenter;
         }
-        private object get_24_WindowEx_PresenterKind(object instance)
+        private object get_28_WindowEx_PresenterKind(object instance)
         {
             var that = (global::WinUIEx.WindowEx)instance;
             return that.PresenterKind;
         }
-        private void set_24_WindowEx_PresenterKind(object instance, object Value)
+        private void set_28_WindowEx_PresenterKind(object instance, object Value)
         {
             var that = (global::WinUIEx.WindowEx)instance;
             that.PresenterKind = (global::Microsoft.UI.Windowing.AppWindowPresenterKind)Value;
         }
-        private object get_25_WindowEx_MaxWidth(object instance)
+        private object get_29_WindowEx_MaxWidth(object instance)
         {
             var that = (global::WinUIEx.WindowEx)instance;
             return that.MaxWidth;
         }
-        private void set_25_WindowEx_MaxWidth(object instance, object Value)
+        private void set_29_WindowEx_MaxWidth(object instance, object Value)
         {
             var that = (global::WinUIEx.WindowEx)instance;
             that.MaxWidth = (global::System.Double)Value;
         }
-        private object get_26_WindowEx_MaxHeight(object instance)
+        private object get_30_WindowEx_MaxHeight(object instance)
         {
             var that = (global::WinUIEx.WindowEx)instance;
             return that.MaxHeight;
         }
-        private void set_26_WindowEx_MaxHeight(object instance, object Value)
+        private void set_30_WindowEx_MaxHeight(object instance, object Value)
         {
             var that = (global::WinUIEx.WindowEx)instance;
             that.MaxHeight = (global::System.Double)Value;
         }
 #pragma warning disable 0618  //   Warning on Deprecated usage
-        private object get_27_WindowEx_Backdrop(object instance)
+        private object get_31_WindowEx_Backdrop(object instance)
         {
             var that = (global::WinUIEx.WindowEx)instance;
             return that.Backdrop;
         }
-        private void set_27_WindowEx_Backdrop(object instance, object Value)
+        private void set_31_WindowEx_Backdrop(object instance, object Value)
         {
             var that = (global::WinUIEx.WindowEx)instance;
             that.Backdrop = (global::WinUIEx.SystemBackdrop)Value;
         }
 #pragma warning restore 0618
-        private object get_28_AnimatedIcon_Source(object instance)
+        private object get_32_AnimatedIcon_Source(object instance)
         {
             var that = (global::Microsoft.UI.Xaml.Controls.AnimatedIcon)instance;
             return that.Source;
         }
-        private void set_28_AnimatedIcon_Source(object instance, object Value)
+        private void set_32_AnimatedIcon_Source(object instance, object Value)
         {
             var that = (global::Microsoft.UI.Xaml.Controls.AnimatedIcon)instance;
             that.Source = (global::Microsoft.UI.Xaml.Controls.IAnimatedVisualSource2)Value;
         }
-        private object get_29_AnimatedIcon_FallbackIconSource(object instance)
+        private object get_33_AnimatedIcon_FallbackIconSource(object instance)
         {
             var that = (global::Microsoft.UI.Xaml.Controls.AnimatedIcon)instance;
             return that.FallbackIconSource;
         }
-        private void set_29_AnimatedIcon_FallbackIconSource(object instance, object Value)
+        private void set_33_AnimatedIcon_FallbackIconSource(object instance, object Value)
         {
             var that = (global::Microsoft.UI.Xaml.Controls.AnimatedIcon)instance;
             that.FallbackIconSource = (global::Microsoft.UI.Xaml.Controls.IconSource)Value;
         }
-        private object get_30_AnimatedIcon_MirroredWhenRightToLeft(object instance)
+        private object get_34_AnimatedIcon_MirroredWhenRightToLeft(object instance)
         {
             var that = (global::Microsoft.UI.Xaml.Controls.AnimatedIcon)instance;
             return that.MirroredWhenRightToLeft;
         }
-        private void set_30_AnimatedIcon_MirroredWhenRightToLeft(object instance, object Value)
+        private void set_34_AnimatedIcon_MirroredWhenRightToLeft(object instance, object Value)
         {
             var that = (global::Microsoft.UI.Xaml.Controls.AnimatedIcon)instance;
             that.MirroredWhenRightToLeft = (global::System.Boolean)Value;
         }
-        private object get_31_AnimatedIcon_State(object instance)
+        private object get_35_AnimatedIcon_State(object instance)
         {
             return global::Microsoft.UI.Xaml.Controls.AnimatedIcon.GetState((global::Microsoft.UI.Xaml.DependencyObject)instance);
         }
-        private void set_31_AnimatedIcon_State(object instance, object Value)
+        private void set_35_AnimatedIcon_State(object instance, object Value)
         {
             global::Microsoft.UI.Xaml.Controls.AnimatedIcon.SetState((global::Microsoft.UI.Xaml.DependencyObject)instance, (global::System.String)Value);
         }
-        private object get_32_AnimatedSettingsVisualSource_Markers(object instance)
+        private object get_36_AnimatedSettingsVisualSource_Markers(object instance)
         {
             var that = (global::Microsoft.UI.Xaml.Controls.AnimatedVisuals.AnimatedSettingsVisualSource)instance;
             return that.Markers;
         }
-        private object get_33_TreeViewNode_Children(object instance)
+        private object get_37_TreeViewNode_Children(object instance)
         {
             var that = (global::Microsoft.UI.Xaml.Controls.TreeViewNode)instance;
             return that.Children;
         }
-        private object get_34_TreeViewNode_Content(object instance)
+        private object get_38_TreeViewNode_Content(object instance)
         {
             var that = (global::Microsoft.UI.Xaml.Controls.TreeViewNode)instance;
             return that.Content;
         }
-        private void set_34_TreeViewNode_Content(object instance, object Value)
+        private void set_38_TreeViewNode_Content(object instance, object Value)
         {
             var that = (global::Microsoft.UI.Xaml.Controls.TreeViewNode)instance;
             that.Content = (global::System.Object)Value;
         }
-        private object get_35_TreeViewNode_Depth(object instance)
+        private object get_39_TreeViewNode_Depth(object instance)
         {
             var that = (global::Microsoft.UI.Xaml.Controls.TreeViewNode)instance;
             return that.Depth;
         }
-        private object get_36_TreeViewNode_HasChildren(object instance)
+        private object get_40_TreeViewNode_HasChildren(object instance)
         {
             var that = (global::Microsoft.UI.Xaml.Controls.TreeViewNode)instance;
             return that.HasChildren;
         }
-        private object get_37_TreeViewNode_HasUnrealizedChildren(object instance)
+        private object get_41_TreeViewNode_HasUnrealizedChildren(object instance)
         {
             var that = (global::Microsoft.UI.Xaml.Controls.TreeViewNode)instance;
             return that.HasUnrealizedChildren;
         }
-        private void set_37_TreeViewNode_HasUnrealizedChildren(object instance, object Value)
+        private void set_41_TreeViewNode_HasUnrealizedChildren(object instance, object Value)
         {
             var that = (global::Microsoft.UI.Xaml.Controls.TreeViewNode)instance;
             that.HasUnrealizedChildren = (global::System.Boolean)Value;
         }
-        private object get_38_TreeViewNode_IsExpanded(object instance)
+        private object get_42_TreeViewNode_IsExpanded(object instance)
         {
             var that = (global::Microsoft.UI.Xaml.Controls.TreeViewNode)instance;
             return that.IsExpanded;
         }
-        private void set_38_TreeViewNode_IsExpanded(object instance, object Value)
+        private void set_42_TreeViewNode_IsExpanded(object instance, object Value)
         {
             var that = (global::Microsoft.UI.Xaml.Controls.TreeViewNode)instance;
             that.IsExpanded = (global::System.Boolean)Value;
         }
-        private object get_39_TreeViewNode_Parent(object instance)
+        private object get_43_TreeViewNode_Parent(object instance)
         {
             var that = (global::Microsoft.UI.Xaml.Controls.TreeViewNode)instance;
             return that.Parent;
@@ -1026,188 +1092,212 @@ namespace LauncherXWinUI.LauncherXWinUI_XamlTypeInfo
                 xamlMember.Getter = get_0_XamlControlsResources_UseCompactResources;
                 xamlMember.Setter = set_0_XamlControlsResources_UseCompactResources;
                 break;
-            case "LauncherXWinUI.Controls.AddDialogListViewItem.DisplayText":
-                userType = (global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlUserType)GetXamlTypeByName("LauncherXWinUI.Controls.AddDialogListViewItem");
+            case "LauncherXWinUI.Controls.AddFileDialog.AddedFiles":
+                userType = (global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlUserType)GetXamlTypeByName("LauncherXWinUI.Controls.AddFileDialog");
+                xamlMember = new global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlMember(this, "AddedFiles", "System.Collections.Generic.List`1<LauncherXWinUI.Controls.AddFileDialogListViewItem>");
+                xamlMember.Getter = get_1_AddFileDialog_AddedFiles;
+                xamlMember.Setter = set_1_AddFileDialog_AddedFiles;
+                break;
+            case "LauncherXWinUI.Controls.AddFileDialogListViewItem.DisplayText":
+                userType = (global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlUserType)GetXamlTypeByName("LauncherXWinUI.Controls.AddFileDialogListViewItem");
                 xamlMember = new global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlMember(this, "DisplayText", "String");
-                xamlMember.Getter = get_1_AddDialogListViewItem_DisplayText;
-                xamlMember.Setter = set_1_AddDialogListViewItem_DisplayText;
+                xamlMember.Getter = get_2_AddFileDialogListViewItem_DisplayText;
+                xamlMember.Setter = set_2_AddFileDialogListViewItem_DisplayText;
+                break;
+            case "LauncherXWinUI.Controls.AddFileDialogListViewItem.ExecutingPath":
+                userType = (global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlUserType)GetXamlTypeByName("LauncherXWinUI.Controls.AddFileDialogListViewItem");
+                xamlMember = new global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlMember(this, "ExecutingPath", "String");
+                xamlMember.Getter = get_3_AddFileDialogListViewItem_ExecutingPath;
+                xamlMember.Setter = set_3_AddFileDialogListViewItem_ExecutingPath;
+                break;
+            case "LauncherXWinUI.Controls.AddFileDialogListViewItem.ExecutingArguments":
+                userType = (global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlUserType)GetXamlTypeByName("LauncherXWinUI.Controls.AddFileDialogListViewItem");
+                xamlMember = new global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlMember(this, "ExecutingArguments", "String");
+                xamlMember.Getter = get_4_AddFileDialogListViewItem_ExecutingArguments;
+                xamlMember.Setter = set_4_AddFileDialogListViewItem_ExecutingArguments;
+                break;
+            case "LauncherXWinUI.Controls.AddFileDialogListViewItem.FileIcon":
+                userType = (global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlUserType)GetXamlTypeByName("LauncherXWinUI.Controls.AddFileDialogListViewItem");
+                xamlMember = new global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlMember(this, "FileIcon", "Microsoft.UI.Xaml.Media.Imaging.BitmapImage");
+                xamlMember.Getter = get_5_AddFileDialogListViewItem_FileIcon;
+                xamlMember.Setter = set_5_AddFileDialogListViewItem_FileIcon;
                 break;
             case "LauncherXWinUI.Controls.GridViewTile.Size":
                 userType = (global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlUserType)GetXamlTypeByName("LauncherXWinUI.Controls.GridViewTile");
                 xamlMember = new global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlMember(this, "Size", "Double");
-                xamlMember.Getter = get_2_GridViewTile_Size;
-                xamlMember.Setter = set_2_GridViewTile_Size;
+                xamlMember.Getter = get_6_GridViewTile_Size;
+                xamlMember.Setter = set_6_GridViewTile_Size;
                 break;
             case "LauncherXWinUI.Controls.GridViewTile.ImageSource":
                 userType = (global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlUserType)GetXamlTypeByName("LauncherXWinUI.Controls.GridViewTile");
-                xamlMember = new global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlMember(this, "ImageSource", "String");
-                xamlMember.Getter = get_3_GridViewTile_ImageSource;
-                xamlMember.Setter = set_3_GridViewTile_ImageSource;
+                xamlMember = new global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlMember(this, "ImageSource", "Microsoft.UI.Xaml.Media.Imaging.BitmapImage");
+                xamlMember.Getter = get_7_GridViewTile_ImageSource;
+                xamlMember.Setter = set_7_GridViewTile_ImageSource;
                 break;
             case "LauncherXWinUI.Controls.GridViewTile.DisplayText":
                 userType = (global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlUserType)GetXamlTypeByName("LauncherXWinUI.Controls.GridViewTile");
                 xamlMember = new global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlMember(this, "DisplayText", "String");
-                xamlMember.Getter = get_4_GridViewTile_DisplayText;
-                xamlMember.Setter = set_4_GridViewTile_DisplayText;
+                xamlMember.Getter = get_8_GridViewTile_DisplayText;
+                xamlMember.Setter = set_8_GridViewTile_DisplayText;
                 break;
             case "LauncherXWinUI.Controls.GridViewTile.ExecutingPath":
                 userType = (global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlUserType)GetXamlTypeByName("LauncherXWinUI.Controls.GridViewTile");
                 xamlMember = new global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlMember(this, "ExecutingPath", "String");
-                xamlMember.Getter = get_5_GridViewTile_ExecutingPath;
-                xamlMember.Setter = set_5_GridViewTile_ExecutingPath;
+                xamlMember.Getter = get_9_GridViewTile_ExecutingPath;
+                xamlMember.Setter = set_9_GridViewTile_ExecutingPath;
                 break;
             case "LauncherXWinUI.Controls.GridViewTile.ExecutingArguments":
                 userType = (global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlUserType)GetXamlTypeByName("LauncherXWinUI.Controls.GridViewTile");
                 xamlMember = new global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlMember(this, "ExecutingArguments", "String");
-                xamlMember.Getter = get_6_GridViewTile_ExecutingArguments;
-                xamlMember.Setter = set_6_GridViewTile_ExecutingArguments;
+                xamlMember.Getter = get_10_GridViewTile_ExecutingArguments;
+                xamlMember.Setter = set_10_GridViewTile_ExecutingArguments;
                 break;
             case "WinUIEx.WindowEx.WindowContent":
                 userType = (global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlUserType)GetXamlTypeByName("WinUIEx.WindowEx");
                 xamlMember = new global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlMember(this, "WindowContent", "Object");
-                xamlMember.Getter = get_7_WindowEx_WindowContent;
-                xamlMember.Setter = set_7_WindowEx_WindowContent;
+                xamlMember.Getter = get_11_WindowEx_WindowContent;
+                xamlMember.Setter = set_11_WindowEx_WindowContent;
                 break;
             case "WinUIEx.WindowEx.Title":
                 userType = (global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlUserType)GetXamlTypeByName("WinUIEx.WindowEx");
                 xamlMember = new global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlMember(this, "Title", "String");
-                xamlMember.Getter = get_8_WindowEx_Title;
-                xamlMember.Setter = set_8_WindowEx_Title;
+                xamlMember.Getter = get_12_WindowEx_Title;
+                xamlMember.Setter = set_12_WindowEx_Title;
                 break;
             case "WinUIEx.WindowEx.Width":
                 userType = (global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlUserType)GetXamlTypeByName("WinUIEx.WindowEx");
                 xamlMember = new global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlMember(this, "Width", "Double");
-                xamlMember.Getter = get_9_WindowEx_Width;
-                xamlMember.Setter = set_9_WindowEx_Width;
+                xamlMember.Getter = get_13_WindowEx_Width;
+                xamlMember.Setter = set_13_WindowEx_Width;
                 break;
             case "WinUIEx.WindowEx.Height":
                 userType = (global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlUserType)GetXamlTypeByName("WinUIEx.WindowEx");
                 xamlMember = new global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlMember(this, "Height", "Double");
-                xamlMember.Getter = get_10_WindowEx_Height;
-                xamlMember.Setter = set_10_WindowEx_Height;
+                xamlMember.Getter = get_14_WindowEx_Height;
+                xamlMember.Setter = set_14_WindowEx_Height;
                 break;
             case "WinUIEx.WindowEx.MinWidth":
                 userType = (global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlUserType)GetXamlTypeByName("WinUIEx.WindowEx");
                 xamlMember = new global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlMember(this, "MinWidth", "Double");
-                xamlMember.Getter = get_11_WindowEx_MinWidth;
-                xamlMember.Setter = set_11_WindowEx_MinWidth;
+                xamlMember.Getter = get_15_WindowEx_MinWidth;
+                xamlMember.Setter = set_15_WindowEx_MinWidth;
                 break;
             case "WinUIEx.WindowEx.MinHeight":
                 userType = (global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlUserType)GetXamlTypeByName("WinUIEx.WindowEx");
                 xamlMember = new global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlMember(this, "MinHeight", "Double");
-                xamlMember.Getter = get_12_WindowEx_MinHeight;
-                xamlMember.Setter = set_12_WindowEx_MinHeight;
-                break;
-            case "WinUIEx.WindowEx.TaskBarIcon":
-                userType = (global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlUserType)GetXamlTypeByName("WinUIEx.WindowEx");
-                xamlMember = new global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlMember(this, "TaskBarIcon", "WinUIEx.Icon");
-                xamlMember.Getter = get_13_WindowEx_TaskBarIcon;
-                xamlMember.Setter = set_13_WindowEx_TaskBarIcon;
+                xamlMember.Getter = get_16_WindowEx_MinHeight;
+                xamlMember.Setter = set_16_WindowEx_MinHeight;
                 break;
             case "WinUIEx.WindowEx.AppWindow":
                 userType = (global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlUserType)GetXamlTypeByName("WinUIEx.WindowEx");
                 xamlMember = new global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlMember(this, "AppWindow", "Microsoft.UI.Windowing.AppWindow");
-                xamlMember.Getter = get_14_WindowEx_AppWindow;
+                xamlMember.Getter = get_17_WindowEx_AppWindow;
                 xamlMember.SetIsReadOnly();
+                break;
+            case "WinUIEx.WindowEx.TaskBarIcon":
+                userType = (global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlUserType)GetXamlTypeByName("WinUIEx.WindowEx");
+                xamlMember = new global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlMember(this, "TaskBarIcon", "WinUIEx.Icon");
+                xamlMember.Getter = get_18_WindowEx_TaskBarIcon;
+                xamlMember.Setter = set_18_WindowEx_TaskBarIcon;
                 break;
             case "WinUIEx.WindowEx.PersistenceId":
                 userType = (global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlUserType)GetXamlTypeByName("WinUIEx.WindowEx");
                 xamlMember = new global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlMember(this, "PersistenceId", "String");
-                xamlMember.Getter = get_15_WindowEx_PersistenceId;
-                xamlMember.Setter = set_15_WindowEx_PersistenceId;
+                xamlMember.Getter = get_19_WindowEx_PersistenceId;
+                xamlMember.Setter = set_19_WindowEx_PersistenceId;
                 break;
             case "WinUIEx.WindowEx.IsTitleBarVisible":
                 userType = (global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlUserType)GetXamlTypeByName("WinUIEx.WindowEx");
                 xamlMember = new global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlMember(this, "IsTitleBarVisible", "Boolean");
-                xamlMember.Getter = get_16_WindowEx_IsTitleBarVisible;
-                xamlMember.Setter = set_16_WindowEx_IsTitleBarVisible;
+                xamlMember.Getter = get_20_WindowEx_IsTitleBarVisible;
+                xamlMember.Setter = set_20_WindowEx_IsTitleBarVisible;
                 break;
             case "WinUIEx.WindowEx.IsMinimizable":
                 userType = (global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlUserType)GetXamlTypeByName("WinUIEx.WindowEx");
                 xamlMember = new global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlMember(this, "IsMinimizable", "Boolean");
-                xamlMember.Getter = get_17_WindowEx_IsMinimizable;
-                xamlMember.Setter = set_17_WindowEx_IsMinimizable;
+                xamlMember.Getter = get_21_WindowEx_IsMinimizable;
+                xamlMember.Setter = set_21_WindowEx_IsMinimizable;
                 break;
             case "WinUIEx.WindowEx.IsMaximizable":
                 userType = (global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlUserType)GetXamlTypeByName("WinUIEx.WindowEx");
                 xamlMember = new global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlMember(this, "IsMaximizable", "Boolean");
-                xamlMember.Getter = get_18_WindowEx_IsMaximizable;
-                xamlMember.Setter = set_18_WindowEx_IsMaximizable;
+                xamlMember.Getter = get_22_WindowEx_IsMaximizable;
+                xamlMember.Setter = set_22_WindowEx_IsMaximizable;
                 break;
             case "WinUIEx.WindowEx.IsResizable":
                 userType = (global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlUserType)GetXamlTypeByName("WinUIEx.WindowEx");
                 xamlMember = new global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlMember(this, "IsResizable", "Boolean");
-                xamlMember.Getter = get_19_WindowEx_IsResizable;
-                xamlMember.Setter = set_19_WindowEx_IsResizable;
+                xamlMember.Getter = get_23_WindowEx_IsResizable;
+                xamlMember.Setter = set_23_WindowEx_IsResizable;
                 break;
             case "WinUIEx.WindowEx.WindowState":
                 userType = (global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlUserType)GetXamlTypeByName("WinUIEx.WindowEx");
                 xamlMember = new global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlMember(this, "WindowState", "WinUIEx.WindowState");
-                xamlMember.Getter = get_20_WindowEx_WindowState;
-                xamlMember.Setter = set_20_WindowEx_WindowState;
+                xamlMember.Getter = get_24_WindowEx_WindowState;
+                xamlMember.Setter = set_24_WindowEx_WindowState;
                 break;
             case "WinUIEx.WindowEx.IsShownInSwitchers":
                 userType = (global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlUserType)GetXamlTypeByName("WinUIEx.WindowEx");
                 xamlMember = new global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlMember(this, "IsShownInSwitchers", "Boolean");
-                xamlMember.Getter = get_21_WindowEx_IsShownInSwitchers;
-                xamlMember.Setter = set_21_WindowEx_IsShownInSwitchers;
+                xamlMember.Getter = get_25_WindowEx_IsShownInSwitchers;
+                xamlMember.Setter = set_25_WindowEx_IsShownInSwitchers;
                 break;
             case "WinUIEx.WindowEx.IsAlwaysOnTop":
                 userType = (global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlUserType)GetXamlTypeByName("WinUIEx.WindowEx");
                 xamlMember = new global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlMember(this, "IsAlwaysOnTop", "Boolean");
-                xamlMember.Getter = get_22_WindowEx_IsAlwaysOnTop;
-                xamlMember.Setter = set_22_WindowEx_IsAlwaysOnTop;
+                xamlMember.Getter = get_26_WindowEx_IsAlwaysOnTop;
+                xamlMember.Setter = set_26_WindowEx_IsAlwaysOnTop;
                 break;
             case "WinUIEx.WindowEx.Presenter":
                 userType = (global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlUserType)GetXamlTypeByName("WinUIEx.WindowEx");
                 xamlMember = new global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlMember(this, "Presenter", "Microsoft.UI.Windowing.AppWindowPresenter");
-                xamlMember.Getter = get_23_WindowEx_Presenter;
+                xamlMember.Getter = get_27_WindowEx_Presenter;
                 xamlMember.SetIsReadOnly();
                 break;
             case "WinUIEx.WindowEx.PresenterKind":
                 userType = (global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlUserType)GetXamlTypeByName("WinUIEx.WindowEx");
                 xamlMember = new global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlMember(this, "PresenterKind", "Microsoft.UI.Windowing.AppWindowPresenterKind");
-                xamlMember.Getter = get_24_WindowEx_PresenterKind;
-                xamlMember.Setter = set_24_WindowEx_PresenterKind;
+                xamlMember.Getter = get_28_WindowEx_PresenterKind;
+                xamlMember.Setter = set_28_WindowEx_PresenterKind;
                 break;
             case "WinUIEx.WindowEx.MaxWidth":
                 userType = (global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlUserType)GetXamlTypeByName("WinUIEx.WindowEx");
                 xamlMember = new global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlMember(this, "MaxWidth", "Double");
-                xamlMember.Getter = get_25_WindowEx_MaxWidth;
-                xamlMember.Setter = set_25_WindowEx_MaxWidth;
+                xamlMember.Getter = get_29_WindowEx_MaxWidth;
+                xamlMember.Setter = set_29_WindowEx_MaxWidth;
                 break;
             case "WinUIEx.WindowEx.MaxHeight":
                 userType = (global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlUserType)GetXamlTypeByName("WinUIEx.WindowEx");
                 xamlMember = new global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlMember(this, "MaxHeight", "Double");
-                xamlMember.Getter = get_26_WindowEx_MaxHeight;
-                xamlMember.Setter = set_26_WindowEx_MaxHeight;
+                xamlMember.Getter = get_30_WindowEx_MaxHeight;
+                xamlMember.Setter = set_30_WindowEx_MaxHeight;
                 break;
             case "WinUIEx.WindowEx.Backdrop":
                 userType = (global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlUserType)GetXamlTypeByName("WinUIEx.WindowEx");
                 xamlMember = new global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlMember(this, "Backdrop", "WinUIEx.SystemBackdrop");
-                xamlMember.Getter = get_27_WindowEx_Backdrop;
-                xamlMember.Setter = set_27_WindowEx_Backdrop;
+                xamlMember.Getter = get_31_WindowEx_Backdrop;
+                xamlMember.Setter = set_31_WindowEx_Backdrop;
                 break;
             case "Microsoft.UI.Xaml.Controls.AnimatedIcon.Source":
                 userType = (global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.UI.Xaml.Controls.AnimatedIcon");
                 xamlMember = new global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlMember(this, "Source", "Microsoft.UI.Xaml.Controls.IAnimatedVisualSource2");
                 xamlMember.SetIsDependencyProperty();
-                xamlMember.Getter = get_28_AnimatedIcon_Source;
-                xamlMember.Setter = set_28_AnimatedIcon_Source;
+                xamlMember.Getter = get_32_AnimatedIcon_Source;
+                xamlMember.Setter = set_32_AnimatedIcon_Source;
                 break;
             case "Microsoft.UI.Xaml.Controls.AnimatedIcon.FallbackIconSource":
                 userType = (global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.UI.Xaml.Controls.AnimatedIcon");
                 xamlMember = new global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlMember(this, "FallbackIconSource", "Microsoft.UI.Xaml.Controls.IconSource");
                 xamlMember.SetIsDependencyProperty();
-                xamlMember.Getter = get_29_AnimatedIcon_FallbackIconSource;
-                xamlMember.Setter = set_29_AnimatedIcon_FallbackIconSource;
+                xamlMember.Getter = get_33_AnimatedIcon_FallbackIconSource;
+                xamlMember.Setter = set_33_AnimatedIcon_FallbackIconSource;
                 break;
             case "Microsoft.UI.Xaml.Controls.AnimatedIcon.MirroredWhenRightToLeft":
                 userType = (global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.UI.Xaml.Controls.AnimatedIcon");
                 xamlMember = new global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlMember(this, "MirroredWhenRightToLeft", "Boolean");
                 xamlMember.SetIsDependencyProperty();
-                xamlMember.Getter = get_30_AnimatedIcon_MirroredWhenRightToLeft;
-                xamlMember.Setter = set_30_AnimatedIcon_MirroredWhenRightToLeft;
+                xamlMember.Getter = get_34_AnimatedIcon_MirroredWhenRightToLeft;
+                xamlMember.Setter = set_34_AnimatedIcon_MirroredWhenRightToLeft;
                 break;
             case "Microsoft.UI.Xaml.Controls.AnimatedIcon.State":
                 userType = (global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.UI.Xaml.Controls.AnimatedIcon");
@@ -1215,59 +1305,59 @@ namespace LauncherXWinUI.LauncherXWinUI_XamlTypeInfo
                 xamlMember.SetTargetTypeName("Microsoft.UI.Xaml.DependencyObject");
                 xamlMember.SetIsDependencyProperty();
                 xamlMember.SetIsAttachable();
-                xamlMember.Getter = get_31_AnimatedIcon_State;
-                xamlMember.Setter = set_31_AnimatedIcon_State;
+                xamlMember.Getter = get_35_AnimatedIcon_State;
+                xamlMember.Setter = set_35_AnimatedIcon_State;
                 break;
             case "Microsoft.UI.Xaml.Controls.AnimatedVisuals.AnimatedSettingsVisualSource.Markers":
                 userType = (global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.UI.Xaml.Controls.AnimatedVisuals.AnimatedSettingsVisualSource");
                 xamlMember = new global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlMember(this, "Markers", "System.Collections.Generic.IReadOnlyDictionary`2<String, Double>");
-                xamlMember.Getter = get_32_AnimatedSettingsVisualSource_Markers;
+                xamlMember.Getter = get_36_AnimatedSettingsVisualSource_Markers;
                 xamlMember.SetIsReadOnly();
                 break;
             case "Microsoft.UI.Xaml.Controls.TreeViewNode.Children":
                 userType = (global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.UI.Xaml.Controls.TreeViewNode");
                 xamlMember = new global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlMember(this, "Children", "System.Collections.Generic.IList`1<Microsoft.UI.Xaml.Controls.TreeViewNode>");
-                xamlMember.Getter = get_33_TreeViewNode_Children;
+                xamlMember.Getter = get_37_TreeViewNode_Children;
                 xamlMember.SetIsReadOnly();
                 break;
             case "Microsoft.UI.Xaml.Controls.TreeViewNode.Content":
                 userType = (global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.UI.Xaml.Controls.TreeViewNode");
                 xamlMember = new global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlMember(this, "Content", "Object");
                 xamlMember.SetIsDependencyProperty();
-                xamlMember.Getter = get_34_TreeViewNode_Content;
-                xamlMember.Setter = set_34_TreeViewNode_Content;
+                xamlMember.Getter = get_38_TreeViewNode_Content;
+                xamlMember.Setter = set_38_TreeViewNode_Content;
                 break;
             case "Microsoft.UI.Xaml.Controls.TreeViewNode.Depth":
                 userType = (global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.UI.Xaml.Controls.TreeViewNode");
                 xamlMember = new global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlMember(this, "Depth", "Int32");
                 xamlMember.SetIsDependencyProperty();
-                xamlMember.Getter = get_35_TreeViewNode_Depth;
+                xamlMember.Getter = get_39_TreeViewNode_Depth;
                 xamlMember.SetIsReadOnly();
                 break;
             case "Microsoft.UI.Xaml.Controls.TreeViewNode.HasChildren":
                 userType = (global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.UI.Xaml.Controls.TreeViewNode");
                 xamlMember = new global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlMember(this, "HasChildren", "Boolean");
                 xamlMember.SetIsDependencyProperty();
-                xamlMember.Getter = get_36_TreeViewNode_HasChildren;
+                xamlMember.Getter = get_40_TreeViewNode_HasChildren;
                 xamlMember.SetIsReadOnly();
                 break;
             case "Microsoft.UI.Xaml.Controls.TreeViewNode.HasUnrealizedChildren":
                 userType = (global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.UI.Xaml.Controls.TreeViewNode");
                 xamlMember = new global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlMember(this, "HasUnrealizedChildren", "Boolean");
-                xamlMember.Getter = get_37_TreeViewNode_HasUnrealizedChildren;
-                xamlMember.Setter = set_37_TreeViewNode_HasUnrealizedChildren;
+                xamlMember.Getter = get_41_TreeViewNode_HasUnrealizedChildren;
+                xamlMember.Setter = set_41_TreeViewNode_HasUnrealizedChildren;
                 break;
             case "Microsoft.UI.Xaml.Controls.TreeViewNode.IsExpanded":
                 userType = (global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.UI.Xaml.Controls.TreeViewNode");
                 xamlMember = new global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlMember(this, "IsExpanded", "Boolean");
                 xamlMember.SetIsDependencyProperty();
-                xamlMember.Getter = get_38_TreeViewNode_IsExpanded;
-                xamlMember.Setter = set_38_TreeViewNode_IsExpanded;
+                xamlMember.Getter = get_42_TreeViewNode_IsExpanded;
+                xamlMember.Setter = set_42_TreeViewNode_IsExpanded;
                 break;
             case "Microsoft.UI.Xaml.Controls.TreeViewNode.Parent":
                 userType = (global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.UI.Xaml.Controls.TreeViewNode");
                 xamlMember = new global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlMember(this, "Parent", "Microsoft.UI.Xaml.Controls.TreeViewNode");
-                xamlMember.Getter = get_39_TreeViewNode_Parent;
+                xamlMember.Getter = get_43_TreeViewNode_Parent;
                 xamlMember.SetIsReadOnly();
                 break;
             }

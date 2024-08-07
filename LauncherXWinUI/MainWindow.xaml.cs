@@ -54,6 +54,8 @@ namespace LauncherXWinUI
             this.ExtendsContentIntoTitleBar = true;
             this.SetTitleBar(AppTitleBar);
 
+            // Set Window icon
+            UIFunctionsClass.SetWindowLauncherXIcon(this);
 
             // Set Window Background
             UIFunctionsClass.SetWindowBackground(this, ContainerFallbackBackgroundBrush);
@@ -66,7 +68,22 @@ namespace LauncherXWinUI
                 XamlRoot = Container.XamlRoot
             };
 
-            await addFileDialog.ShowAsync();
+            ContentDialogResult result = await addFileDialog.ShowAsync();
+
+            if (result == ContentDialogResult.Primary)
+            {
+                // Add the files from the addFileDialog
+                foreach (AddFileDialogListViewItem fileItem in addFileDialog.AddedFiles)
+                {
+                    // Create new GridViewTile for each item
+                    GridViewTile gridViewTile = new GridViewTile();
+                    gridViewTile.ExecutingPath = fileItem.ExecutingPath;
+                    gridViewTile.ExecutingArguments = fileItem.ExecutingArguments;
+                    gridViewTile.DisplayText = fileItem.DisplayText;
+                    gridViewTile.ImageSource = fileItem.FileIcon;
+                    gridViewTile.Size = UserSettingsClass.GridScale;
+                    ItemsGridView.Items.Add(gridViewTile);
+                }   }
         }
     }
 }

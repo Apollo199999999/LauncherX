@@ -26,8 +26,8 @@
     <PackageIcon>icon.png</PackageIcon>
   </PropertyGroup>
   <ItemGroup>
-    <None Remove="Controls\AddDialogListViewItem.xaml" />
     <None Remove="Controls\AddFileDialog.xaml" />
+    <None Remove="Controls\AddFileDialogListViewItem.xaml" />
     <None Remove="Controls\GridViewTile.xaml" />
     <None Remove="Resources\icon.ico" />
   </ItemGroup>
@@ -80,7 +80,7 @@
     <Page Update="Controls\AddFileDialog.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Update="Controls\AddDialogListViewItem.xaml">
+    <Page Update="Controls\AddFileDialogListViewItem.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <None Update="Resources\icon.png">

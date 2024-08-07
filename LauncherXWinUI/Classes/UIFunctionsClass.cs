@@ -1,4 +1,5 @@
-﻿using Microsoft.UI.Xaml;
+﻿using Microsoft.UI.Windowing;
+using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Media;
 
 namespace LauncherXWinUI.Classes
@@ -35,6 +36,16 @@ namespace LauncherXWinUI.Classes
                 // Load fallback background colour
                 gridFallbackBrush.Opacity = 1.0;
             }
+        }
+
+        /// <summary>
+        /// Sets the icon of a window to use the LauncherX ico file
+        /// </summary>
+        /// <param name="window">Window to set the icon of</param>
+        public static void SetWindowLauncherXIcon(Window window)
+        {
+            AppWindow appWindow = window.AppWindow;
+            appWindow.SetIcon(@"Resources\icon.ico");
         }
     }
 }

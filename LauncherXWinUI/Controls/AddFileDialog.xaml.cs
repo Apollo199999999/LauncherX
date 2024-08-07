@@ -4,6 +4,7 @@ using Microsoft.UI.Xaml.Controls.Primitives;
 using Microsoft.UI.Xaml.Data;
 using Microsoft.UI.Xaml.Input;
 using Microsoft.UI.Xaml.Media;
+using Microsoft.UI.Xaml.Media.Imaging;
 using Microsoft.UI.Xaml.Navigation;
 using System;
 using System.Collections.Generic;
@@ -14,6 +15,7 @@ using System.Text;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.Storage;
+using Windows.Storage.FileProperties;
 using Windows.Storage.Pickers;
 
 // To learn more about WinUI, the WinUI project structure,
@@ -28,6 +30,22 @@ namespace LauncherXWinUI.Controls
             this.InitializeComponent();
         }
 
+        /// <summary>
+        /// Files added to the AddFileDialog
+        /// </summary>
+        public List<AddFileDialogListViewItem> AddedFiles
+        {
+            get => (List<AddFileDialogListViewItem>)GetValue(AddedFilesProperty);
+            set => SetValue(AddedFilesProperty, value);
+        }
+
+        DependencyProperty AddedFilesProperty = DependencyProperty.Register(
+            nameof(AddedFiles),
+            typeof(string),
+            typeof(AddFileDialog),
+            new PropertyMetadata(new List<AddFileDialogListViewItem>()));
+
+        // Event handlers
         private async void PickAFileButton_Click(object sender, RoutedEventArgs e)
         {
             // Create a file picker
@@ -55,11 +73,34 @@ namespace LauncherXWinUI.Controls
                 foreach (StorageFile file in files)
                 {
                     // Display the files in the ListView
-                    
-                    SelectedFilesListView.Items.Add(file.Name.ToString());
+                    AddFileDialogListViewItem addFileDialogListViewItem = new AddFileDialogListViewItem();
+                    addFileDialogListViewItem.ExecutingPath = file.Path;
+                    addFileDialogListViewItem.DisplayText = file.Name;
+                    SelectedFilesListView.Items.Add(addFileDialogListViewItem);
+
+                    // Get the thumbnail of the file
+                    StorageItemThumbnail thumbnail = await file.GetThumbnailAsync(ThumbnailMode.SingleItem);
+                    BitmapImage bitmapImage = new BitmapImage();
+                    bitmapImage.SetSource(thumbnail);
+                    addFileDialogListViewItem.FileIcon = bitmapImage;
+
                 }
             }
 
+        }
+
+        private void ContentDialog_PrimaryButtonClick(ContentDialog sender, ContentDialogButtonClickEventArgs args)
+        {
+            // Update the AddedFiles property
+            AddedFiles.Clear();
+            foreach (var item in SelectedFilesListView.Items)
+            {
+                AddFileDialogListViewItem fileItem = item as AddFileDialogListViewItem;
+                if (fileItem != null)
+                {
+                    AddedFiles.Add(fileItem);
+                }
+            }
         }
     }
 }

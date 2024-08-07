@@ -1,5 +1,5 @@
 App.xbf
-Controls\AddDialogListViewItem.xbf
 Controls\AddFileDialog.xbf
+Controls\AddFileDialogListViewItem.xbf
 Controls\GridViewTile.xbf
 MainWindow.xbf
