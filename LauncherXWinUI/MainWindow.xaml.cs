@@ -1,20 +1,10 @@
 using LauncherXWinUI.Classes;
 using LauncherXWinUI.Controls;
-using Microsoft.UI;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
-using Microsoft.UI.Xaml.Controls.Primitives;
-using Microsoft.UI.Xaml.Data;
-using Microsoft.UI.Xaml.Input;
-using Microsoft.UI.Xaml.Media;
-using Microsoft.UI.Xaml.Navigation;
 using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
+using System.Collections.ObjectModel;
+using System.Diagnostics;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -29,7 +19,10 @@ namespace LauncherXWinUI
         public MainWindow()
         {
             this.InitializeComponent();
-            
+
+            // Create a new event handler for when the items in the ItemsGridView have changed (either new items added/removed or items are reset)
+            ItemsGridView.Items.VectorChanged += ItemsGridViewItems_VectorChanged;
+
             // Create settings directories and clear icon directories
             UserSettingsClass.CreateSettingsDirectories();
             UserSettingsClass.ClearIconDirectories();
@@ -46,6 +39,19 @@ namespace LauncherXWinUI
 
             // Set header text
             HeaderTextBlock.Text = UserSettingsClass.HeaderText;
+        }
+
+        private void ItemsGridViewItems_VectorChanged(Windows.Foundation.Collections.IObservableVector<object> sender, Windows.Foundation.Collections.IVectorChangedEventArgs @event)
+        {
+            // Show/Hide the EmptyNotice depending on whether there are items in the ItemsGridView
+            if (ItemsGridView.Items.Count > 0)
+            {
+                EmptyNotice.Visibility = Visibility.Collapsed;
+            }
+            else
+            {
+                EmptyNotice.Visibility = Visibility.Visible;
+            }
         }
 
         private void Container_Loaded(object sender, RoutedEventArgs e)
@@ -83,7 +89,8 @@ namespace LauncherXWinUI
                     gridViewTile.ImageSource = fileItem.FileIcon;
                     gridViewTile.Size = UserSettingsClass.GridScale;
                     ItemsGridView.Items.Add(gridViewTile);
-                }   }
+                }
+            }
         }
     }
 }

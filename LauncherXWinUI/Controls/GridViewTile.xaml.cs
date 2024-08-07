@@ -121,9 +121,8 @@ namespace LauncherXWinUI.Controls
 
             if (newDisplayText != null)
             {
-                // Update textblock and tooltip
+                // Update textblock
                 gridViewTile.TileText.Text = newDisplayText;
-                ToolTipService.SetToolTip(gridViewTile.TilePanel, newDisplayText);
             }
         }
 
@@ -141,8 +140,19 @@ namespace LauncherXWinUI.Controls
             nameof(ExecutingPath),
             typeof(string),
             typeof(GridViewTile),
-            new PropertyMetadata(default(string)));
+            new PropertyMetadata(default(string), new PropertyChangedCallback(OnExecutingPathChanged)));
 
+        private static void OnExecutingPathChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            GridViewTile gridViewTile = d as GridViewTile;
+            string newExecutingPath = e.NewValue as string;
+
+            if (newExecutingPath != null)
+            {
+                // Update tooltip
+                ToolTipService.SetToolTip(gridViewTile.TilePanel, newExecutingPath);
+            }
+        }
 
         /// <summary>
         /// Launch arguments, if necessary
