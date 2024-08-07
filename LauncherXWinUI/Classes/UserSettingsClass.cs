@@ -25,48 +25,48 @@ namespace LauncherXWinUI.Classes
         ///<summary>
         /// Variable which stores what is displayed on the text beside the "add" buttons in MainWindow.xaml
         ///</summary>
-        public static string headerText = "My files, folders, and websites";
+        public static string HeaderText = "My files, folders, and websites";
 
         ///<summary>
         /// Variable which stores how large the controls are rendered in the GridView in MainWindow.xaml
         ///</summary>
-        public static double gridScale = 1.0f;
+        public static double GridScale = 1.0f;
 
         /// <summary>
         /// Root directory where user data for LauncherX is stored
         /// </summary>
-        public static string settingsDir = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\LauncherX\\";
+        public static string SettingsDir = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\LauncherX\\";
 
         /// <summary>
         /// Directory where the items added to LauncherX are stored
         /// </summary>
-        public static string dataDir = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\LauncherX\\Files";
+        public static string DataDir = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\LauncherX\\Files";
 
         /// <summary>
         /// Temporary directory to store the icons of files added to LauncherX
         /// </summary>
-        public static string fileIconDir = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\LauncherX\\Temp\\AppIcons\\";
+        public static string FileIconDir = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\LauncherX\\Temp\\AppIcons\\";
 
         /// <summary>
         /// Temporary directory to store the icons of folders added to LauncherX
         /// </summary>
-        public static string folderIconDir = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\LauncherX\\Temp\\FolderIcons\\";
+        public static string FolderIconDir = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\LauncherX\\Temp\\FolderIcons\\";
 
         /// <summary>
         /// Temporary directory to store the icons of websites added to LauncherX
         /// </summary>
-        public static string websiteIconDir = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\LauncherX\\Temp\\WebsiteIcons\\";
+        public static string WebsiteIconDir = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\LauncherX\\Temp\\WebsiteIcons\\";
 
         /// <summary>
         /// Method to create all of the directories that LauncherX will store user data in
         /// </summary>
         public static void CreateSettingsDirectories()
         {
-            Directory.CreateDirectory(settingsDir);
-            Directory.CreateDirectory(dataDir);
-            Directory.CreateDirectory(fileIconDir);
-            Directory.CreateDirectory(folderIconDir);
-            Directory.CreateDirectory(websiteIconDir);
+            Directory.CreateDirectory(SettingsDir);
+            Directory.CreateDirectory(DataDir);
+            Directory.CreateDirectory(FileIconDir);
+            Directory.CreateDirectory(FolderIconDir);
+            Directory.CreateDirectory(WebsiteIconDir);
         }
 
         /// <summary>
@@ -75,7 +75,7 @@ namespace LauncherXWinUI.Classes
         public static void ClearIconDirectories()
         {
             // Create a list of temp directories
-            List<string> tempDirs = new List<string>() { fileIconDir, folderIconDir, websiteIconDir };
+            List<string> tempDirs = new List<string>() { FileIconDir, FolderIconDir, WebsiteIconDir };
 
             foreach (string dir in tempDirs)
             {
@@ -103,9 +103,9 @@ namespace LauncherXWinUI.Classes
             string oldSettingsDir = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "ClickPhase");
             List<string> oldSettingsUserConfigFiles = new List<string>();
 
-            foreach (string settingsDir in Directory.GetDirectories(oldSettingsDir))
+            foreach (string SettingsDir in Directory.GetDirectories(oldSettingsDir))
             {
-                if (settingsDir.Contains("LauncherX.exe"))
+                if (SettingsDir.Contains("LauncherX.exe"))
                 {
                     // Old settings exist
                     oldSettingsFileExists = true;
@@ -114,7 +114,7 @@ namespace LauncherXWinUI.Classes
 
 
             // Next, we check if the new settings file exists
-            if (Directory.Exists(settingsDir) && File.Exists(Path.Combine(settingsDir, "userSettings.json")))
+            if (Directory.Exists(SettingsDir) && File.Exists(Path.Combine(SettingsDir, "userSettings.json")))
             {
                 newSettingsFileExists = true;
             }
@@ -131,11 +131,11 @@ namespace LauncherXWinUI.Classes
             string oldSettingsDir = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "ClickPhase");
             List<string> oldSettingsUserConfigFiles = new List<string>();
 
-            foreach (string settingsDir in Directory.GetDirectories(oldSettingsDir))
+            foreach (string SettingsDir in Directory.GetDirectories(oldSettingsDir))
             {
-                if (settingsDir.Contains("LauncherX.exe")) 
+                if (SettingsDir.Contains("LauncherX.exe")) 
                 {
-                    oldSettingsUserConfigFiles.AddRange(Directory.GetFiles(settingsDir, "*.config", SearchOption.AllDirectories).ToList());
+                    oldSettingsUserConfigFiles.AddRange(Directory.GetFiles(SettingsDir, "*.config", SearchOption.AllDirectories).ToList());
                 }
             }
 
@@ -180,11 +180,11 @@ namespace LauncherXWinUI.Classes
             // Assign the old settings variables just retrieved to the new variables in this class
             if (oldHeaderText != null)
             {
-                headerText = oldHeaderText;
+                HeaderText = oldHeaderText;
             }
             if (oldScale != null)
             {
-                gridScale = Convert.ToDouble(oldScale);
+                GridScale = Convert.ToDouble(oldScale);
             }
             
         }
@@ -197,11 +197,11 @@ namespace LauncherXWinUI.Classes
             // Use the UserSettingsJson class to write a json file
             var userSettingsJson = new UserSettingsJson
             {
-                headerText = headerText,
-                gridScale = gridScale
+                headerText = HeaderText,
+                gridScale = GridScale
             };
 
-            string settingsFilePath = Path.Combine(settingsDir, "userSettings.json");
+            string settingsFilePath = Path.Combine(SettingsDir, "userSettings.json");
             string jsonString = JsonSerializer.Serialize(userSettingsJson);
             File.WriteAllText(settingsFilePath, jsonString);
         }
@@ -211,7 +211,7 @@ namespace LauncherXWinUI.Classes
         /// </summary>
         public static void TryReadSettingsFile()
         {
-            string settingsFilePath = Path.Combine(settingsDir, "userSettings.json");
+            string settingsFilePath = Path.Combine(SettingsDir, "userSettings.json");
 
             if (File.Exists(settingsFilePath))
             {
@@ -219,8 +219,8 @@ namespace LauncherXWinUI.Classes
                 UserSettingsJson userSettingsJson = JsonSerializer.Deserialize<UserSettingsJson>(jsonString);
 
                 // Assign variables
-                headerText = userSettingsJson.headerText;
-                gridScale = userSettingsJson.gridScale;
+                HeaderText = userSettingsJson.headerText;
+                GridScale = userSettingsJson.gridScale;
             }
         }
     }

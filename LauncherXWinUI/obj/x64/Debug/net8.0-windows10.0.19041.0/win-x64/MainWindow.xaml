@@ -113,19 +113,20 @@
                     VerticalAlignment="Stretch"
                     Orientation="Horizontal">
                     <Button x:ConnectionId='11'
-                        x:Name="OpenFileBtn"
+                        x:Name="AddFileBtn"
                         Width="105"
                         Height="32"
+                                                
                         Content="Add a file"
                         Style="{ThemeResource AccentButtonStyle}" />
                     <Button x:ConnectionId='12'
-                        x:Name="OpenFolderBtn"
+                        x:Name="AddFolderBtn"
                         Width="110"
                         Height="32"
                         Margin="10,0,0,0"
                         Content="Add a folder" />
                     <Button x:ConnectionId='13'
-                        x:Name="OpenWebsiteBtn"
+                        x:Name="AddWebsiteBtn"
                         Width="120"
                         Height="32"
                         Margin="10,0,0,0"
@@ -147,15 +148,7 @@
                 AllowDrop="True"
                 CanDragItems="True"
                 CanReorderItems="True"
-                IsItemClickEnabled="True">
-                <GridView.Items>
-                    <controls:GridViewTile
-                        DisplayText="LauncherX"
-                        ExecutingPath="C:\Windows\System32\explorer.exe"
-                        ImageSource="C:\Users\fligh\source\repos\LauncherX\LauncherXWinUI\Resources\icon.png"
-                        Size="1.0" />
-                </GridView.Items>
-            </GridView>
+                IsItemClickEnabled="True" />
         </Grid>
 
     </Grid>

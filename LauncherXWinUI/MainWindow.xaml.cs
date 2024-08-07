@@ -1,4 +1,5 @@
 using LauncherXWinUI.Classes;
+using LauncherXWinUI.Controls;
 using Microsoft.UI;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
@@ -44,7 +45,7 @@ namespace LauncherXWinUI
             UserSettingsClass.TryReadSettingsFile();
 
             // Set header text
-            HeaderTextBlock.Text = UserSettingsClass.headerText;
+            HeaderTextBlock.Text = UserSettingsClass.HeaderText;
         }
 
         private void Container_Loaded(object sender, RoutedEventArgs e)
@@ -56,6 +57,16 @@ namespace LauncherXWinUI
 
             // Set Window Background
             UIFunctionsClass.SetWindowBackground(this, ContainerFallbackBackgroundBrush);
+        }
+
+        private async void AddFileBtn_Click(object sender, RoutedEventArgs e)
+        {
+            AddFileDialog addFileDialog = new AddFileDialog()
+            {
+                XamlRoot = Container.XamlRoot
+            };
+
+            await addFileDialog.ShowAsync();
         }
     }
 }

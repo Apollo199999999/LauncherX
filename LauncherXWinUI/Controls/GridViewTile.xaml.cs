@@ -144,13 +144,29 @@ namespace LauncherXWinUI.Controls
             new PropertyMetadata(default(string)));
 
 
+        /// <summary>
+        /// Launch arguments, if necessary
+        /// </summary>
+        public string ExecutingArguments
+        {
+            get => (string)GetValue(ExecutingArgumentsProperty);
+            set => SetValue(ExecutingArgumentsProperty, value);
+        }
+
+        DependencyProperty ExecutingArgumentsProperty = DependencyProperty.Register(
+            nameof(ExecutingArguments),
+            typeof(string),
+            typeof(GridViewTile),
+            new PropertyMetadata(default(string)));
+
+
         // Event handlers
         private async void GridViewTileControl_Tapped(object sender, TappedRoutedEventArgs e)
         {
             // Try to start the executing path
             try
             {
-                Process.Start(new ProcessStartInfo { FileName = ExecutingPath, UseShellExecute = true });
+                Process.Start(new ProcessStartInfo { FileName = ExecutingPath, UseShellExecute = true, Arguments = ExecutingArguments });
             }
             catch
             {
