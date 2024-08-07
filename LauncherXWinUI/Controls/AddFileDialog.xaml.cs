@@ -62,7 +62,6 @@ namespace LauncherXWinUI.Controls
 
             // Set options for your file picker
             openPicker.ViewMode = PickerViewMode.List;
-            openPicker.SuggestedStartLocation = PickerLocationId.DocumentsLibrary;
             openPicker.FileTypeFilter.Add("*");
 
             // Open the picker for the user to pick a file

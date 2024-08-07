@@ -28,6 +28,8 @@
   <ItemGroup>
     <None Remove="Controls\AddFileDialog.xaml" />
     <None Remove="Controls\AddFileDialogListViewItem.xaml" />
+    <None Remove="Controls\AddFolderDialog.xaml" />
+    <None Remove="Controls\AddFolderDialogListViewItem.xaml" />
     <None Remove="Controls\GridViewTile.xaml" />
     <None Remove="Resources\icon.ico" />
   </ItemGroup>
@@ -83,6 +85,9 @@
     <Page Update="Controls\AddFileDialogListViewItem.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Update="Controls\AddFolderDialogListViewItem.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <None Update="Resources\icon.png">
       <Pack>True</Pack>
       <PackagePath>\</PackagePath>
@@ -97,4 +102,10 @@
   <PropertyGroup Condition="'$(DisableHasPackageAndPublishMenuAddedByProject)'!='true' and '$(EnableMsixTooling)'=='true'">
     <HasPackageAndPublishMenu>true</HasPackageAndPublishMenu>
   </PropertyGroup>
+  <ItemGroup>
+    <CustomAdditionalCompileInputs Remove="Controls\AddFolderDialog.xaml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Remove="Controls\AddFolderDialog.xaml" />
+  </ItemGroup>
 </Project>

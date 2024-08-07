@@ -92,5 +92,31 @@ namespace LauncherXWinUI
                 }
             }
         }
+
+        private async void AddFolderBtn_Click(object sender, RoutedEventArgs e)
+        {
+            AddFolderDialog addFolderDialog = new AddFolderDialog()
+            {
+                XamlRoot = Container.XamlRoot
+            };
+
+            ContentDialogResult result = await addFolderDialog.ShowAsync();
+
+            if (result == ContentDialogResult.Primary)
+            {
+                // Add the files from the addFolderDialog
+                foreach (AddFolderDialogListViewItem folderItem in addFolderDialog.AddedFolders)
+                {
+                    // Create new GridViewTile for each item
+                    GridViewTile gridViewTile = new GridViewTile();
+                    gridViewTile.ExecutingPath = folderItem.ExecutingPath;
+                    gridViewTile.ExecutingArguments = "";
+                    gridViewTile.DisplayText = folderItem.DisplayText;
+                    gridViewTile.ImageSource = folderItem.FolderIcon;
+                    gridViewTile.Size = UserSettingsClass.GridScale;
+                    ItemsGridView.Items.Add(gridViewTile);
+                }
+            }
+        }
     }
 }

@@ -487,3 +487,13 @@ C:\Users\fligh\source\repos\LauncherX\LauncherXWinUI\obj\x64\Debug\net8.0-window
 C:\Users\fligh\source\repos\LauncherX\LauncherXWinUI\obj\x64\Debug\net8.0-windows10.0.19041.0\win-x64\Controls\AddFileDialogListViewItem.xaml
 C:\Users\fligh\source\repos\LauncherX\LauncherXWinUI\obj\x64\Debug\net8.0-windows10.0.19041.0\win-x64\Controls\AddFileDialogListViewItem.xbf
 C:\Users\fligh\source\repos\LauncherX\LauncherXWinUI\bin\x64\Debug\net8.0-windows10.0.19041.0\win-x64\Controls\AddFileDialogListViewItem.xbf
+C:\Users\fligh\source\repos\LauncherX\LauncherXWinUI\bin\x64\Debug\net8.0-windows10.0.19041.0\win-x64\Controls\AddFolderDialog.xbf
+C:\Users\fligh\source\repos\LauncherX\LauncherXWinUI\obj\x64\Debug\net8.0-windows10.0.19041.0\win-x64\Controls\AddFolderDialog.g.i.cs
+C:\Users\fligh\source\repos\LauncherX\LauncherXWinUI\obj\x64\Debug\net8.0-windows10.0.19041.0\win-x64\Controls\AddFolderDialog.g.cs
+C:\Users\fligh\source\repos\LauncherX\LauncherXWinUI\obj\x64\Debug\net8.0-windows10.0.19041.0\win-x64\Controls\AddFolderDialog.xaml
+C:\Users\fligh\source\repos\LauncherX\LauncherXWinUI\obj\x64\Debug\net8.0-windows10.0.19041.0\win-x64\Controls\AddFolderDialog.xbf
+C:\Users\fligh\source\repos\LauncherX\LauncherXWinUI\bin\x64\Debug\net8.0-windows10.0.19041.0\win-x64\Controls\AddFolderDialogListViewItem.xbf
+C:\Users\fligh\source\repos\LauncherX\LauncherXWinUI\obj\x64\Debug\net8.0-windows10.0.19041.0\win-x64\Controls\AddFolderDialogListViewItem.g.i.cs
+C:\Users\fligh\source\repos\LauncherX\LauncherXWinUI\obj\x64\Debug\net8.0-windows10.0.19041.0\win-x64\Controls\AddFolderDialogListViewItem.g.cs
+C:\Users\fligh\source\repos\LauncherX\LauncherXWinUI\obj\x64\Debug\net8.0-windows10.0.19041.0\win-x64\Controls\AddFolderDialogListViewItem.xaml
+C:\Users\fligh\source\repos\LauncherX\LauncherXWinUI\obj\x64\Debug\net8.0-windows10.0.19041.0\win-x64\Controls\AddFolderDialogListViewItem.xbf

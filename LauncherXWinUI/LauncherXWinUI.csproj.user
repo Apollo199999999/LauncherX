@@ -10,10 +10,16 @@
     <None Update="App.xaml">
       <SubType>Designer</SubType>
     </None>
+    <Page Update="Controls\AddFolderDialogListViewItem.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="Controls\AddFileDialogListViewItem.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Controls\AddFileDialog.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Controls\AddFolderDialog.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Controls\GridViewTile.xaml">

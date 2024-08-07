@@ -123,6 +123,7 @@
                         Width="110"
                         Height="32"
                         Margin="10,0,0,0"
+                        Click="AddFolderBtn_Click"
                         Content="Add a folder" />
                     <Button
                         x:Name="AddWebsiteBtn"

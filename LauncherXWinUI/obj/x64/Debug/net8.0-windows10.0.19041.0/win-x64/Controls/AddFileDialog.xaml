@@ -6,7 +6,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="using:LauncherXWinUI.Controls"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    Title="Add a file"
+    Title="Add file(s)"
     CloseButtonText="Cancel"
     DefaultButton="Primary"
                                                          
@@ -36,7 +36,7 @@
                 Content="Open file(s)" />
         </StackPanel>
 
-        <TextBlock Text="Files selected will show up in the list below. You can reorder your files after adding them." />
+        <TextBlock Text="Files selected will show up in the list below. You can reorder your files after adding them." TextWrapping="WrapWholeWords" />
         <ListView x:ConnectionId='2'
             x:Name="SelectedFilesListView"
             Height="200"
@@ -49,8 +49,6 @@
                 <TextBlock x:ConnectionId='3' x:Name="PlaceholderListViewItem" Text="No file(s) selected" />
             </ListView.Items>
         </ListView>
-
-
     </StackPanel>
 </ContentDialog>
 

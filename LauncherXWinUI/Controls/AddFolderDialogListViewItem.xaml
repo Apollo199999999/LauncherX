@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<UserControl
+    x:Class="LauncherXWinUI.Controls.AddFolderDialogListViewItem"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="using:LauncherXWinUI.Controls"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Grid>
+        <TextBlock
+            x:Name="ListItemTextBlock"
+            MaxWidth="360"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Center"
+            TextTrimming="CharacterEllipsis" />
+
+        <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
+            <Button
+                x:Name="RemoveBtn"
+                Margin="10,0,0,0"
+                Click="RemoveBtn_Click"
+                ToolTipService.ToolTip="Remove from LauncherX">
+                <Viewbox
+                    Width="18"
+                    Height="18"
+                    Stretch="Uniform"
+                    StretchDirection="Both">
+                    <SymbolIcon Symbol="Delete" />
+                </Viewbox>
+            </Button>
+        </StackPanel>
+    </Grid>
+</UserControl>
