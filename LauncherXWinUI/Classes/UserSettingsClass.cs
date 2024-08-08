@@ -5,23 +5,33 @@ using System.Linq;
 using System.Text.Json;
 using System.Diagnostics;
 using System.Xml;
+using System.Text.Json.Serialization;
 
 namespace LauncherXWinUI.Classes
 {
+    /// <summary>
+    /// Class to store variables to read/write user settings to a json file
+    /// </summary>
+    public class UserSettingsJson
+    {
+        public string headerText { get; set; }
+        public double gridScale { get; set; }
+    }
+
+    /// <summary>
+    /// To be used for json source generation
+    /// </summary>
+    [JsonSourceGenerationOptions(WriteIndented = true)]
+    [JsonSerializable(typeof(UserSettingsJson))]
+    internal partial class SourceGenerationContext : JsonSerializerContext
+    {
+    }
+
     /// <summary>
     /// Class that handles all methods and variables relating to storing and retrieving user settings
     /// </summary>
     public static class UserSettingsClass
     {
-        /// <summary>
-        /// Class to store variables to read/write user settings to a json file
-        /// </summary>
-        public class UserSettingsJson
-        {
-            public string headerText { get; set; }
-            public double gridScale { get; set; }
-        }
-
         ///<summary>
         /// Variable which stores what is displayed on the text beside the "add" buttons in MainWindow.xaml
         ///</summary>
@@ -72,6 +82,12 @@ namespace LauncherXWinUI.Classes
 
             // First, navigate to the directory where old user settings were stored
             string oldSettingsDir = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "ClickPhase");
+
+            if (!Directory.Exists(oldSettingsDir))
+            {
+                return false;
+            }
+
             List<string> oldSettingsUserConfigFiles = new List<string>();
 
             foreach (string SettingsDir in Directory.GetDirectories(oldSettingsDir))
@@ -173,7 +189,7 @@ namespace LauncherXWinUI.Classes
             };
 
             string settingsFilePath = Path.Combine(SettingsDir, "userSettings.json");
-            string jsonString = JsonSerializer.Serialize(userSettingsJson);
+            string jsonString = JsonSerializer.Serialize(userSettingsJson!, SourceGenerationContext.Default.UserSettingsJson);
             File.WriteAllText(settingsFilePath, jsonString);
         }
 
@@ -187,7 +203,7 @@ namespace LauncherXWinUI.Classes
             if (File.Exists(settingsFilePath))
             {
                 string jsonString = File.ReadAllText(settingsFilePath);
-                UserSettingsJson userSettingsJson = JsonSerializer.Deserialize<UserSettingsJson>(jsonString);
+                UserSettingsJson userSettingsJson = JsonSerializer.Deserialize<UserSettingsJson>(jsonString, SourceGenerationContext.Default.UserSettingsJson);
 
                 // Assign variables
                 HeaderText = userSettingsJson.headerText;

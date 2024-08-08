@@ -47,7 +47,6 @@
                 Text="LauncherX - Modern app launcher for Windows" />
         </Border>
 
-
         <Grid
             x:Name="ControlsGrid"
             Grid.Row="1"
@@ -68,7 +67,8 @@
                 HorizontalAlignment="Right"
                 VerticalAlignment="Top"
                 HorizontalContentAlignment="Center"
-                VerticalContentAlignment="Center">
+                VerticalContentAlignment="Center"
+                Click="SettingsButton_Click">
                 <!--  Animated Settings Icon  -->
                 <Viewbox
                     Width="18"

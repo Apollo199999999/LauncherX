@@ -42,6 +42,7 @@ namespace LauncherXWinUI
             HeaderTextBlock.Text = UserSettingsClass.HeaderText;
         }
 
+        // Event Handlers
         private void ItemsGridViewItems_VectorChanged(Windows.Foundation.Collections.IObservableVector<object> sender, Windows.Foundation.Collections.IVectorChangedEventArgs @event)
         {
             // Show/Hide the EmptyNotice depending on whether there are items in the ItemsGridView
@@ -154,6 +155,13 @@ namespace LauncherXWinUI
 
                 ItemsGridView.Items.Add(gridViewTile);
             }
+        }
+
+        private void SettingsButton_Click(object sender, RoutedEventArgs e)
+        {
+            // Open Settings Window
+            SettingsWindow settingsWindow = new SettingsWindow();
+            settingsWindow.Activate();
         }
     }
 }

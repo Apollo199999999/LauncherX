@@ -15,7 +15,6 @@
     <WindowsAppSDKSelfContained>true</WindowsAppSDKSelfContained>
     <GenerateDocumentationFile>False</GenerateDocumentationFile>
     <AssemblyName>LauncherX</AssemblyName>
-    <PlatformTarget>x64</PlatformTarget>
     <ApplicationIcon>Resources\icon.ico</ApplicationIcon>
     <Description>LauncherX - Modern app launcher for Windows</Description>
     <Copyright>Copyright © 2020-present ClickPhase</Copyright>
@@ -34,6 +33,7 @@
     <None Remove="Controls\GridViewTile.xaml" />
     <None Remove="Resources\icon.ico" />
     <None Remove="Resources\websitePlaceholder.png" />
+    <None Remove="SettingsWindow.xaml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Resources\icon.ico">
@@ -42,8 +42,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.Windows.SDK.BuildTools" Version="10.0.22621.756" />
+    <PackageReference Include="Microsoft.Windows.SDK.BuildTools" Version="10.0.26100.1" />
     <PackageReference Include="Microsoft.WindowsAppSDK" Version="1.5.240627000" />
+    <PackageReference Include="System.Text.Json" Version="8.0.4" />
     <PackageReference Include="WinUIEx" Version="2.3.4" />
     <Manifest Include="$(ApplicationManifest)" />
   </ItemGroup>
@@ -102,6 +103,9 @@
       <Pack>True</Pack>
       <PackagePath>\</PackagePath>
     </None>
+    <Page Update="SettingsWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
 
   <!--
@@ -111,6 +115,24 @@
   -->
   <PropertyGroup Condition="'$(DisableHasPackageAndPublishMenuAddedByProject)'!='true' and '$(EnableMsixTooling)'=='true'">
     <HasPackageAndPublishMenu>true</HasPackageAndPublishMenu>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x86'">
+    <Optimize>True</Optimize>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Optimize>True</Optimize>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">
+    <Optimize>True</Optimize>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">
+    <Optimize>False</Optimize>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Optimize>False</Optimize>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">
+    <Optimize>False</Optimize>
   </PropertyGroup>
   <ItemGroup>
     <CustomAdditionalCompileInputs Remove="Controls\AddFolderDialog.xaml" />

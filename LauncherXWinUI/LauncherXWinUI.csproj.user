@@ -5,11 +5,15 @@
   </PropertyGroup>
   <PropertyGroup>
     <ActiveDebugProfile>LauncherXWinUI (Unpackaged)</ActiveDebugProfile>
+    <_LastSelectedProfileId>C:\Users\fligh\source\repos\LauncherX\LauncherXWinUI\Properties\PublishProfiles\win-x64.pubxml</_LastSelectedProfileId>
   </PropertyGroup>
   <ItemGroup>
     <None Update="App.xaml">
       <SubType>Designer</SubType>
     </None>
+    <Page Update="SettingsWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="Controls\AddWebsiteDialog.xaml">
       <SubType>Designer</SubType>
     </Page>
