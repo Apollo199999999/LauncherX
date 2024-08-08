@@ -10,6 +10,7 @@
       "LauncherX/2.1.0.0": {
         "dependencies": {
           "CommunityToolkit.WinUI.Controls.SettingsControls": "8.0.240109",
+          "Microsoft.NET.ILLink.Tasks": "8.0.7",
           "Microsoft.Windows.SDK.BuildTools": "10.0.26100.1",
           "Microsoft.WindowsAppSDK": "1.5.240627000",
           "System.Text.Json": "8.0.4",
@@ -813,6 +814,7 @@
           }
         }
       },
+      "Microsoft.NET.ILLink.Tasks/8.0.7": {},
       "Microsoft.Windows.SDK.BuildTools/10.0.26100.1": {},
       "Microsoft.WindowsAppSDK/1.5.240627000": {
         "dependencies": {
@@ -955,6 +957,13 @@
       "sha512": "sha512-fJJ9IpxjyZUyEGjWLBGl7qq1fG70PGh6EPbZyyXtEiqdefkdN315mV5omMVDePZtImLqeQO5HWJnobRxedvxAw==",
       "path": "communitytoolkit.winui.triggers/8.0.240109",
       "hashPath": "communitytoolkit.winui.triggers.8.0.240109.nupkg.sha512"
+    },
+    "Microsoft.NET.ILLink.Tasks/8.0.7": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-iI52ptEKby2ymQ6B7h4TWbFmm85T4VvLgc/HvS45Yr3lgi4IIFbQtjON3bQbX/Vc94jXNSLvrDOp5Kh7SJyFYQ==",
+      "path": "microsoft.net.illink.tasks/8.0.7",
+      "hashPath": "microsoft.net.illink.tasks.8.0.7.nupkg.sha512"
     },
     "Microsoft.Windows.SDK.BuildTools/10.0.26100.1": {
       "type": "package",

@@ -25,6 +25,7 @@
     <PackageIcon>icon.png</PackageIcon>
   </PropertyGroup>
   <ItemGroup>
+    <None Remove="Controls\AboutSectionControl.xaml" />
     <None Remove="Controls\AddFileDialog.xaml" />
     <None Remove="Controls\AddFileDialogListViewItem.xaml" />
     <None Remove="Controls\AddFolderDialog.xaml" />
@@ -98,6 +99,9 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Update="Controls\AddWebsiteDialog.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Update="Controls\AboutSectionControl.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <None Update="Resources\icon.png">

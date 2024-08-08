@@ -159,9 +159,9 @@ namespace LauncherXWinUI
 
         private void SettingsButton_Click(object sender, RoutedEventArgs e)
         {
-            // Open Settings Window
+            // Open Settings Window as a modal window
             SettingsWindow settingsWindow = new SettingsWindow();
-            settingsWindow.Activate();
+            UIFunctionsClass.CreateModalWindow(settingsWindow, this);
         }
     }
 }

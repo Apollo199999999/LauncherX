@@ -514,3 +514,8 @@ C:\Users\fligh\source\repos\LauncherX\LauncherXWinUI\bin\x64\Release\net8.0-wind
 C:\Users\fligh\source\repos\LauncherX\LauncherXWinUI\bin\x64\Release\net8.0-windows10.0.19041.0\win-x64\CommunityToolkit.WinUI.Extensions.dll
 C:\Users\fligh\source\repos\LauncherX\LauncherXWinUI\bin\x64\Release\net8.0-windows10.0.19041.0\win-x64\CommunityToolkit.WinUI.Helpers.dll
 C:\Users\fligh\source\repos\LauncherX\LauncherXWinUI\bin\x64\Release\net8.0-windows10.0.19041.0\win-x64\CommunityToolkit.WinUI.Triggers.dll
+C:\Users\fligh\source\repos\LauncherX\LauncherXWinUI\bin\x64\Release\net8.0-windows10.0.19041.0\win-x64\Controls\AboutSectionControl.xbf
+C:\Users\fligh\source\repos\LauncherX\LauncherXWinUI\obj\x64\Release\net8.0-windows10.0.19041.0\win-x64\Controls\AboutSectionControl.g.i.cs
+C:\Users\fligh\source\repos\LauncherX\LauncherXWinUI\obj\x64\Release\net8.0-windows10.0.19041.0\win-x64\Controls\AboutSectionControl.g.cs
+C:\Users\fligh\source\repos\LauncherX\LauncherXWinUI\obj\x64\Release\net8.0-windows10.0.19041.0\win-x64\Controls\AboutSectionControl.xaml
+C:\Users\fligh\source\repos\LauncherX\LauncherXWinUI\obj\x64\Release\net8.0-windows10.0.19041.0\win-x64\Controls\AboutSectionControl.xbf

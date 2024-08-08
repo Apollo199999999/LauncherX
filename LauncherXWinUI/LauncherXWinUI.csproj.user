@@ -11,6 +11,9 @@
     <None Update="App.xaml">
       <SubType>Designer</SubType>
     </None>
+    <Page Update="Controls\AboutSectionControl.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="SettingsWindow.xaml">
       <SubType>Designer</SubType>
     </Page>

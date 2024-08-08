@@ -1,6 +1,9 @@
 ﻿using Microsoft.UI.Windowing;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Media;
+using System;
+using System.Runtime.InteropServices;
+using WinUIEx;
 
 namespace LauncherXWinUI.Classes
 {
@@ -9,6 +12,15 @@ namespace LauncherXWinUI.Classes
     /// </summary>
     public static class UIFunctionsClass
     {
+        /// <summary>
+        /// Enables/Disables a window using Win32 API, used to create modal windows
+        /// </summary>
+        /// <param name="hWnd">Handle of the window</param>
+        /// <param name="bEnable">Whether to enable the window or not</param>
+        /// <returns></returns>
+        [DllImport("User32.dll", SetLastError = true, CharSet = CharSet.Unicode)]
+        public static extern bool EnableWindow(IntPtr hWnd, bool bEnable);
+
         /// <summary>
         /// Method that sets the window background material (Mica, Acrylic, or Solid Color) of a window
         /// </summary>
@@ -47,5 +59,20 @@ namespace LauncherXWinUI.Classes
             AppWindow appWindow = window.AppWindow;
             appWindow.SetIcon(@"Resources\icon.ico");
         }
+
+        /// <summary>
+        /// Method that shows a window as a modal window, similar to ShowDialog() in WPF
+        /// </summary>
+        /// <param name="modalWindow">Window to show as the modal window</param>
+        /// <param name="parentWindow">Parent window of the modal window</param>
+        public static void CreateModalWindow(Window modalWindow, Window parentWindow)
+        {
+            // Disable parent window
+            EnableWindow(WinRT.Interop.WindowNative.GetWindowHandle(parentWindow), false);
+            // Enable parent window when the modalWindow is closed
+            modalWindow.Closed += (s, e) => EnableWindow(WinRT.Interop.WindowNative.GetWindowHandle(parentWindow), true);
+            modalWindow.Activate();
+        }
+
     }
 }
