@@ -6,6 +6,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="using:LauncherXWinUI"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:wct="using:CommunityToolkit.WinUI.Controls"
     xmlns:winex="using:WinUIEx"
     Title="LauncherX Settings"
     Width="650"
@@ -28,7 +29,6 @@
 
         <Grid.RowDefinitions>
             <RowDefinition Height="auto" />
-            <RowDefinition Height="auto" />
             <RowDefinition Height="*" />
             <RowDefinition Height="auto" />
         </Grid.RowDefinitions>
@@ -50,6 +50,8 @@
             Grid.Row="1"
             Margin="20,20,20,0"
             Orientation="Vertical">
+
+            <!--  Settings section  -->
             <TextBlock
                 FontSize="20"
                 FontWeight="Bold"
@@ -60,12 +62,46 @@
                 FontStyle="Italic"
                 Opacity="0.7"
                 Text="Settings are automatically saved once modified." />
-        </StackPanel>
 
-        <StackPanel
-            Grid.Row="2"
-            Margin="20,10,20,0"
-            Orientation="Vertical"
-            Spacing="4" />
+            <wct:SettingsCard
+                Margin="0,10,0,0"
+                Description="Adjust the scale of the icons displayed."
+                Header="Change icon scale">
+                <wct:SettingsCard.HeaderIcon>
+                    <FontIcon Glyph="&#xE740;" />
+                </wct:SettingsCard.HeaderIcon>
+                <Slider Width="200" />
+            </wct:SettingsCard>
+
+            <wct:SettingsCard
+                Margin="0,5,0,0"
+                Description="Modify the text shown below the search box."
+                Header="Change header text">
+                <wct:SettingsCard.HeaderIcon>
+                    <FontIcon Glyph="&#xE70F;" />
+                </wct:SettingsCard.HeaderIcon>
+                <TextBox Width="200" />
+            </wct:SettingsCard>
+
+            <wct:SettingsCard
+                Margin="0,5,0,0"
+                Description="Check if any new updates are available."
+                Header="Check for updates">
+                <wct:SettingsCard.HeaderIcon>
+                    <FontIcon Glyph="&#xE895;" />
+                </wct:SettingsCard.HeaderIcon>
+                <Button Content="Check for Updates" />
+            </wct:SettingsCard>
+
+            <!--  About section  -->
+            <TextBlock
+                Margin="0,20,0,0"
+                FontSize="20"
+                FontWeight="Bold"
+                Text="About" />
+
+
+
+        </StackPanel>
     </Grid>
 </winex:WindowEx>
