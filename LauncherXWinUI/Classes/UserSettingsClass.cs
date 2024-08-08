@@ -43,50 +43,21 @@ namespace LauncherXWinUI.Classes
         public static string DataDir = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\LauncherX\\Files";
 
         /// <summary>
-        /// Temporary directory to store the icons of files added to LauncherX
-        /// </summary>
-        public static string FileIconDir = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\LauncherX\\Temp\\AppIcons\\";
-
-        /// <summary>
-        /// Temporary directory to store the icons of folders added to LauncherX
-        /// </summary>
-        public static string FolderIconDir = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\LauncherX\\Temp\\FolderIcons\\";
-
-        /// <summary>
-        /// Temporary directory to store the icons of websites added to LauncherX
-        /// </summary>
-        public static string WebsiteIconDir = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\LauncherX\\Temp\\WebsiteIcons\\";
-
-        /// <summary>
         /// Method to create all of the directories that LauncherX will store user data in
         /// </summary>
         public static void CreateSettingsDirectories()
         {
             Directory.CreateDirectory(SettingsDir);
             Directory.CreateDirectory(DataDir);
-            Directory.CreateDirectory(FileIconDir);
-            Directory.CreateDirectory(FolderIconDir);
-            Directory.CreateDirectory(WebsiteIconDir);
         }
 
         /// <summary>
-        /// Method that clears the directories where icons are stored
+        /// Method that deletes the directories where file/folder/website icons are stored, that were used for older versions of LauncherX
         /// </summary>
-        public static void ClearIconDirectories()
+        public static void ClearOldTempDirectories()
         {
-            // Create a list of temp directories
-            List<string> tempDirs = new List<string>() { FileIconDir, FolderIconDir, WebsiteIconDir };
-
-            foreach (string dir in tempDirs)
-            {
-                System.IO.DirectoryInfo di = new DirectoryInfo(dir);
-
-                foreach (FileInfo file in di.GetFiles())
-                {
-                    file.Delete();
-                }
-
-            }
+            string oldTempDir = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\LauncherX\\Temp\\";
+            Directory.Delete(oldTempDir, true);
         }
 
         /// <summary>

@@ -42,6 +42,7 @@
                 Grid.Column="1"
                 Margin="10,0,0,0"
                 HorizontalAlignment="Stretch"
+                IsSpellCheckEnabled="False"
                 PlaceholderText="google.com"
                 TextChanged="UrlInputTextBox_TextChanged" />
         </Grid>

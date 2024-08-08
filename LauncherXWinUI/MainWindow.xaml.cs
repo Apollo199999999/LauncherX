@@ -24,15 +24,15 @@ namespace LauncherXWinUI
             // Create a new event handler for when the items in the ItemsGridView have changed (either new items added/removed or items are reset)
             ItemsGridView.Items.VectorChanged += ItemsGridViewItems_VectorChanged;
 
-            // Create settings directories and clear icon directories
+            // Create settings directories
             UserSettingsClass.CreateSettingsDirectories();
-            UserSettingsClass.ClearIconDirectories();
 
             // Upgrade settings and write new settings file if necessary
             if (UserSettingsClass.UpgradeRequired())
             {
                 UserSettingsClass.UpgradeUserSettings();
                 UserSettingsClass.WriteSettingsFile();
+                UserSettingsClass.ClearOldTempDirectories();
             }
 
             // Retrieve user settings from file

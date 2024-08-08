@@ -147,17 +147,17 @@
                 MinHeight="55"
                 MaxWidth="400"
                 Margin="0,0,0,20"
-                HorizontalAlignment="Left"
+                HorizontalAlignment="Center"
                 VerticalAlignment="Center"
                 Orientation="Vertical">
                 <FontIcon
-                    HorizontalAlignment="Left"
+                    HorizontalAlignment="Center"
                     FontSize="36"
                     Glyph="&#xE838;"
                     Opacity="0.7" />
                 <TextBlock
                     Margin="0,10,0,0"
-                    HorizontalAlignment="Left"
+                    HorizontalAlignment="Center"
                     FontSize="16"
                     FontWeight="Bold"
                     Opacity="0.7"
@@ -165,7 +165,7 @@
 
                 <TextBlock
                     Margin="0,5,0,0"
-                    HorizontalAlignment="Left"
+                    HorizontalAlignment="Center"
                     Opacity="0.7"
                     Text="To add an item, click the buttons at the top right corner, or simply drag them into this window."
                     TextAlignment="Center"
