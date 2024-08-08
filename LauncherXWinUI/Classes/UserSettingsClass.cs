@@ -90,9 +90,9 @@ namespace LauncherXWinUI.Classes
 
             List<string> oldSettingsUserConfigFiles = new List<string>();
 
-            foreach (string SettingsDir in Directory.GetDirectories(oldSettingsDir))
+            foreach (string settingsDir in Directory.GetDirectories(oldSettingsDir))
             {
-                if (SettingsDir.Contains("LauncherX.exe"))
+                if (settingsDir.Contains("LauncherX.exe"))
                 {
                     // Old settings exist
                     oldSettingsFileExists = true;
@@ -118,11 +118,11 @@ namespace LauncherXWinUI.Classes
             string oldSettingsDir = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "ClickPhase");
             List<string> oldSettingsUserConfigFiles = new List<string>();
 
-            foreach (string SettingsDir in Directory.GetDirectories(oldSettingsDir))
+            foreach (string settingsDir in Directory.GetDirectories(oldSettingsDir))
             {
-                if (SettingsDir.Contains("LauncherX.exe")) 
+                if (settingsDir.Contains("LauncherX.exe")) 
                 {
-                    oldSettingsUserConfigFiles.AddRange(Directory.GetFiles(SettingsDir, "*.config", SearchOption.AllDirectories).ToList());
+                    oldSettingsUserConfigFiles.AddRange(Directory.GetFiles(settingsDir, "*.config", SearchOption.AllDirectories).ToList());
                 }
             }
 
