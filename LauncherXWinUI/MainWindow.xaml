@@ -52,6 +52,7 @@
             Grid.Row="1"
             Margin="20,20,20,0">
 
+            <!--  Search Box + Settings Button  -->
             <AutoSuggestBox
                 x:Name="SearchBox"
                 Margin="0,10,45,0"
@@ -85,6 +86,7 @@
 
             </Button>
 
+            <!--  Header Text + Buttons  -->
             <Grid
                 Height="32"
                 Margin="0,62,0,0"
@@ -136,17 +138,44 @@
             </Grid>
         </Grid>
 
+
+        <!--  GridView, Update Notice, Empty Notice  -->
         <Grid
             x:Name="GridViewBackground"
             Grid.Row="2"
             Margin="0,10,0,0"
             Background="{ThemeResource ControlFillColorDefaultBrush}">
 
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <!--  IsOpen=False will still reserve space for the margins of the InfoBar, so we must adjust the margins of the other elements to account for that  -->
+            <InfoBar
+                x:Name="UpdateInfoBar"
+                Title="Update available"
+                Grid.Row="0"
+                Margin="20,10,20,0"
+                IsOpen="False"
+                Message="To download it, click the &quot;Get update&quot; button."
+                Severity="Informational">
+                <InfoBar.ActionButton>
+                    <Button
+                        x:Name="GetUpdateBtn"
+                        HorizontalAlignment="Right"
+                        Click="GetUpdateBtn_Click"
+                        Content="Get update"
+                        Style="{ThemeResource AccentButtonStyle}" />
+                </InfoBar.ActionButton>
+            </InfoBar>
+
             <StackPanel
                 x:Name="EmptyNotice"
+                Grid.Row="1"
                 MinHeight="55"
                 MaxWidth="400"
-                Margin="0,0,0,20"
+                Margin="0,-10,0,20"
                 HorizontalAlignment="Center"
                 VerticalAlignment="Center"
                 Orientation="Vertical">
@@ -174,7 +203,8 @@
 
             <GridView
                 x:Name="ItemsGridView"
-                Margin="20,20,20,20"
+                Grid.Row="1"
+                Margin="20,10,20,20"
                 HorizontalAlignment="Stretch"
                 VerticalAlignment="Stretch"
                 AllowDrop="True"

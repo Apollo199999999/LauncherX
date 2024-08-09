@@ -65,6 +65,7 @@
                     Opacity="0.7"
                     Text="Settings are automatically saved once modified." />
 
+                <!--  Icon Scale  -->
                 <wct:SettingsCard
                     Margin="0,10,0,0"
                     Description="Adjust the scale of the icons displayed."
@@ -81,9 +82,10 @@
                         SnapsTo="Ticks"
                         StepFrequency="0.05"
                         TickFrequency="0.05"
-                        TickPlacement="Outside" />
+                        TickPlacement="None" />
                 </wct:SettingsCard>
 
+                <!--  Header text  -->
                 <wct:SettingsCard
                     Margin="0,5,0,0"
                     Description="Modify the text shown below the search box."
@@ -94,6 +96,7 @@
                     <TextBox x:ConnectionId='12' x:Name="ChangeHeaderTextBox" Width="220" />
                 </wct:SettingsCard>
 
+                <!--  Check for updates  -->
                 <wct:SettingsCard
                     Margin="0,5,0,0"
                     Description="Check if any new updates are available."
@@ -113,40 +116,43 @@
                     </StackPanel>
                 </wct:SettingsCard>
 
-                <InfoBar x:ConnectionId='6'
-                    x:Name="UpdateInfoBar"
-                    Title="Update available"
-                    Margin="0,5,0,0"
-                    IsOpen="False"
-                    Message="To download it, click the button below"
-                    Severity="Informational">
-                    <Button x:ConnectionId='9'
-                        x:Name="GetUpdateBtn"
-                        Margin="0,0,0,20"
-                                                  
-                        Content="Get update"
-                        Style="{ThemeResource AccentButtonStyle}" />
-                </InfoBar>
+                <!--  Infobars for updates  -->
+                <!--  IsOpen=False will still reserve space for the margins of the InfoBar, so we should not use margins as far as possible  -->
+                <StackPanel Margin="0,5,0,0" Orientation="Vertical">
+                    <InfoBar x:ConnectionId='6'
+                        x:Name="UpdateInfoBar"
+                        Title="Update available"
+                        IsOpen="False"
+                        Message="To download it, click the &quot;Get update&quot; button."
+                        Severity="Informational">
+                        <InfoBar.ActionButton>
+                            <Button x:ConnectionId='9'
+                                x:Name="GetUpdateBtn"
+                                HorizontalAlignment="Right"
+                                                          
+                                Content="Get update"
+                                Style="{ThemeResource AccentButtonStyle}" />
+                        </InfoBar.ActionButton>
+                    </InfoBar>
 
-                <InfoBar x:ConnectionId='7'
-                    x:Name="NoUpdateInfoBar"
-                    Title="You're up to date!"
-                    Margin="0,5,0,0"
-                    IsOpen="False"
-                    Message="No updates are available."
-                    Severity="Success" />
+                    <InfoBar x:ConnectionId='7'
+                        x:Name="NoUpdateInfoBar"
+                        Title="You're up to date!"
+                        IsOpen="False"
+                        Message="No updates are available."
+                        Severity="Success" />
 
-                <InfoBar x:ConnectionId='8'
-                    x:Name="UpdateFailInfoBar"
-                    Title="Failed to check for updates"
-                    Margin="0,5,0,0"
-                    IsOpen="False"
-                    Message="Please check your internet connection, or try again later."
-                    Severity="Error" />
+                    <InfoBar x:ConnectionId='8'
+                        x:Name="UpdateFailInfoBar"
+                        Title="Failed to check for updates"
+                        IsOpen="False"
+                        Message="Please check your internet connection, or try again later."
+                        Severity="Error" />
+                </StackPanel>
 
                 <!--  About section  -->
                 <TextBlock
-                    Margin="0,20,0,0"
+                    Margin="0,15,0,0"
                     FontSize="20"
                     FontWeight="Bold"
                     Text="About" />

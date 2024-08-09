@@ -74,6 +74,11 @@ namespace LauncherXWinUI
             // Show infobars and progress ring depending on whether updates are available or not
             CheckUpdatesProgressRing.IsActive = true;
 
+            // Close all InfoBars first
+            UpdateFailInfoBar.IsOpen = false;
+            NoUpdateInfoBar.IsOpen = false;
+            UpdateFailInfoBar.IsOpen = false;
+
             bool? isUpdateAvailable = await UpdatesClass.IsUpdateAvailable();
             if (isUpdateAvailable == true)
             {

@@ -58,6 +58,13 @@ namespace LauncherXWinUI
         }
 
         // Event Handlers
+        private void GetUpdateBtn_Click(object sender, RoutedEventArgs e)
+        {
+            // Navigate to GitHub releases page and exit application
+            Process.Start(new ProcessStartInfo { FileName = "https://github.com/Apollo199999999/LauncherX/releases", UseShellExecute = true });
+            Application.Current.Exit();
+        }
+
         private void ItemsGridViewItems_VectorChanged(Windows.Foundation.Collections.IObservableVector<object> sender, Windows.Foundation.Collections.IVectorChangedEventArgs @event)
         {
             // Show/Hide the EmptyNotice depending on whether there are items in the ItemsGridView
@@ -71,7 +78,7 @@ namespace LauncherXWinUI
             }
         }
 
-        private void Container_Loaded(object sender, RoutedEventArgs e)
+        private async void Container_Loaded(object sender, RoutedEventArgs e)
         {
             // Set placeholder titlebar for now, before WASDK 1.6
             this.ExtendsContentIntoTitleBar = true;
@@ -82,6 +89,13 @@ namespace LauncherXWinUI
 
             // Set Window Background
             UIFunctionsClass.SetWindowBackground(this, ContainerFallbackBackgroundBrush);
+
+            // Check for updates and display the InfoBar if necessary
+            bool? isUpdateAvailable = await UpdatesClass.IsUpdateAvailable();
+            if (isUpdateAvailable == true)
+            {
+                UpdateInfoBar.IsOpen = true;
+            }
         }
 
         private async void AddFileBtn_Click(object sender, RoutedEventArgs e)

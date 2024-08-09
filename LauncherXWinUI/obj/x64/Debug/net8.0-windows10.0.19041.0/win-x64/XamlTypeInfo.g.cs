@@ -254,24 +254,24 @@ namespace LauncherXWinUI.LauncherXWinUI_XamlTypeInfo
             _typeNameTable[26] = "Microsoft.UI.Windowing.AppWindowPresenter";
             _typeNameTable[27] = "Microsoft.UI.Windowing.AppWindowPresenterKind";
             _typeNameTable[28] = "WinUIEx.SystemBackdrop";
-            _typeNameTable[29] = "Microsoft.UI.Xaml.Controls.AnimatedIcon";
-            _typeNameTable[30] = "Microsoft.UI.Xaml.Controls.IconElement";
-            _typeNameTable[31] = "Microsoft.UI.Xaml.Controls.IAnimatedVisualSource2";
-            _typeNameTable[32] = "Microsoft.UI.Xaml.Controls.IconSource";
-            _typeNameTable[33] = "Microsoft.UI.Xaml.DependencyObject";
-            _typeNameTable[34] = "Microsoft.UI.Xaml.Controls.AnimatedVisuals.AnimatedSettingsVisualSource";
-            _typeNameTable[35] = "System.Collections.Generic.IReadOnlyDictionary`2<String, Double>";
-            _typeNameTable[36] = "LauncherXWinUI.MainWindow";
-            _typeNameTable[37] = "CommunityToolkit.WinUI.Controls.SettingsCard";
-            _typeNameTable[38] = "Microsoft.UI.Xaml.Controls.Primitives.ButtonBase";
-            _typeNameTable[39] = "CommunityToolkit.WinUI.Controls.ContentAlignment";
-            _typeNameTable[40] = "Microsoft.UI.Xaml.Controls.InfoBar";
-            _typeNameTable[41] = "Microsoft.UI.Xaml.Controls.Control";
-            _typeNameTable[42] = "Microsoft.UI.Xaml.Controls.InfoBarSeverity";
-            _typeNameTable[43] = "System.Windows.Input.ICommand";
-            _typeNameTable[44] = "Microsoft.UI.Xaml.Style";
-            _typeNameTable[45] = "Microsoft.UI.Xaml.DataTemplate";
-            _typeNameTable[46] = "Microsoft.UI.Xaml.Controls.InfoBarTemplateSettings";
+            _typeNameTable[29] = "Microsoft.UI.Xaml.Controls.InfoBar";
+            _typeNameTable[30] = "Microsoft.UI.Xaml.Controls.Control";
+            _typeNameTable[31] = "Microsoft.UI.Xaml.Controls.InfoBarSeverity";
+            _typeNameTable[32] = "Microsoft.UI.Xaml.Controls.Primitives.ButtonBase";
+            _typeNameTable[33] = "System.Windows.Input.ICommand";
+            _typeNameTable[34] = "Microsoft.UI.Xaml.Style";
+            _typeNameTable[35] = "Microsoft.UI.Xaml.DataTemplate";
+            _typeNameTable[36] = "Microsoft.UI.Xaml.Controls.IconSource";
+            _typeNameTable[37] = "Microsoft.UI.Xaml.Controls.InfoBarTemplateSettings";
+            _typeNameTable[38] = "Microsoft.UI.Xaml.DependencyObject";
+            _typeNameTable[39] = "Microsoft.UI.Xaml.Controls.AnimatedIcon";
+            _typeNameTable[40] = "Microsoft.UI.Xaml.Controls.IconElement";
+            _typeNameTable[41] = "Microsoft.UI.Xaml.Controls.IAnimatedVisualSource2";
+            _typeNameTable[42] = "Microsoft.UI.Xaml.Controls.AnimatedVisuals.AnimatedSettingsVisualSource";
+            _typeNameTable[43] = "System.Collections.Generic.IReadOnlyDictionary`2<String, Double>";
+            _typeNameTable[44] = "LauncherXWinUI.MainWindow";
+            _typeNameTable[45] = "CommunityToolkit.WinUI.Controls.SettingsCard";
+            _typeNameTable[46] = "CommunityToolkit.WinUI.Controls.ContentAlignment";
             _typeNameTable[47] = "CommunityToolkit.WinUI.Controls.SettingsExpander";
             _typeNameTable[48] = "System.Collections.Generic.IList`1<Object>";
             _typeNameTable[49] = "Microsoft.UI.Xaml.Controls.StyleSelector";
@@ -315,24 +315,24 @@ namespace LauncherXWinUI.LauncherXWinUI_XamlTypeInfo
 #pragma warning disable 0618  //   Warning on Deprecated usage
             _typeTable[28] = typeof(global::WinUIEx.SystemBackdrop);
 #pragma warning restore 0618
-            _typeTable[29] = typeof(global::Microsoft.UI.Xaml.Controls.AnimatedIcon);
-            _typeTable[30] = typeof(global::Microsoft.UI.Xaml.Controls.IconElement);
-            _typeTable[31] = typeof(global::Microsoft.UI.Xaml.Controls.IAnimatedVisualSource2);
-            _typeTable[32] = typeof(global::Microsoft.UI.Xaml.Controls.IconSource);
-            _typeTable[33] = typeof(global::Microsoft.UI.Xaml.DependencyObject);
-            _typeTable[34] = typeof(global::Microsoft.UI.Xaml.Controls.AnimatedVisuals.AnimatedSettingsVisualSource);
-            _typeTable[35] = typeof(global::System.Collections.Generic.IReadOnlyDictionary<global::System.String, global::System.Double>);
-            _typeTable[36] = typeof(global::LauncherXWinUI.MainWindow);
-            _typeTable[37] = typeof(global::CommunityToolkit.WinUI.Controls.SettingsCard);
-            _typeTable[38] = typeof(global::Microsoft.UI.Xaml.Controls.Primitives.ButtonBase);
-            _typeTable[39] = typeof(global::CommunityToolkit.WinUI.Controls.ContentAlignment);
-            _typeTable[40] = typeof(global::Microsoft.UI.Xaml.Controls.InfoBar);
-            _typeTable[41] = typeof(global::Microsoft.UI.Xaml.Controls.Control);
-            _typeTable[42] = typeof(global::Microsoft.UI.Xaml.Controls.InfoBarSeverity);
-            _typeTable[43] = typeof(global::System.Windows.Input.ICommand);
-            _typeTable[44] = typeof(global::Microsoft.UI.Xaml.Style);
-            _typeTable[45] = typeof(global::Microsoft.UI.Xaml.DataTemplate);
-            _typeTable[46] = typeof(global::Microsoft.UI.Xaml.Controls.InfoBarTemplateSettings);
+            _typeTable[29] = typeof(global::Microsoft.UI.Xaml.Controls.InfoBar);
+            _typeTable[30] = typeof(global::Microsoft.UI.Xaml.Controls.Control);
+            _typeTable[31] = typeof(global::Microsoft.UI.Xaml.Controls.InfoBarSeverity);
+            _typeTable[32] = typeof(global::Microsoft.UI.Xaml.Controls.Primitives.ButtonBase);
+            _typeTable[33] = typeof(global::System.Windows.Input.ICommand);
+            _typeTable[34] = typeof(global::Microsoft.UI.Xaml.Style);
+            _typeTable[35] = typeof(global::Microsoft.UI.Xaml.DataTemplate);
+            _typeTable[36] = typeof(global::Microsoft.UI.Xaml.Controls.IconSource);
+            _typeTable[37] = typeof(global::Microsoft.UI.Xaml.Controls.InfoBarTemplateSettings);
+            _typeTable[38] = typeof(global::Microsoft.UI.Xaml.DependencyObject);
+            _typeTable[39] = typeof(global::Microsoft.UI.Xaml.Controls.AnimatedIcon);
+            _typeTable[40] = typeof(global::Microsoft.UI.Xaml.Controls.IconElement);
+            _typeTable[41] = typeof(global::Microsoft.UI.Xaml.Controls.IAnimatedVisualSource2);
+            _typeTable[42] = typeof(global::Microsoft.UI.Xaml.Controls.AnimatedVisuals.AnimatedSettingsVisualSource);
+            _typeTable[43] = typeof(global::System.Collections.Generic.IReadOnlyDictionary<global::System.String, global::System.Double>);
+            _typeTable[44] = typeof(global::LauncherXWinUI.MainWindow);
+            _typeTable[45] = typeof(global::CommunityToolkit.WinUI.Controls.SettingsCard);
+            _typeTable[46] = typeof(global::CommunityToolkit.WinUI.Controls.ContentAlignment);
             _typeTable[47] = typeof(global::CommunityToolkit.WinUI.Controls.SettingsExpander);
             _typeTable[48] = typeof(global::System.Collections.Generic.IList<global::System.Object>);
             _typeTable[49] = typeof(global::Microsoft.UI.Xaml.Controls.StyleSelector);
@@ -388,12 +388,12 @@ namespace LauncherXWinUI.LauncherXWinUI_XamlTypeInfo
         private object Activate_16_AddWebsiteDialog() { return new global::LauncherXWinUI.Controls.AddWebsiteDialog(); }
         private object Activate_17_GridViewTile() { return new global::LauncherXWinUI.Controls.GridViewTile(); }
         private object Activate_19_WindowEx() { return new global::WinUIEx.WindowEx(); }
-        private object Activate_29_AnimatedIcon() { return new global::Microsoft.UI.Xaml.Controls.AnimatedIcon(); }
-        private object Activate_34_AnimatedSettingsVisualSource() { return new global::Microsoft.UI.Xaml.Controls.AnimatedVisuals.AnimatedSettingsVisualSource(); }
-        private object Activate_36_MainWindow() { return new global::LauncherXWinUI.MainWindow(); }
-        private object Activate_37_SettingsCard() { return new global::CommunityToolkit.WinUI.Controls.SettingsCard(); }
-        private object Activate_40_InfoBar() { return new global::Microsoft.UI.Xaml.Controls.InfoBar(); }
-        private object Activate_46_InfoBarTemplateSettings() { return new global::Microsoft.UI.Xaml.Controls.InfoBarTemplateSettings(); }
+        private object Activate_29_InfoBar() { return new global::Microsoft.UI.Xaml.Controls.InfoBar(); }
+        private object Activate_37_InfoBarTemplateSettings() { return new global::Microsoft.UI.Xaml.Controls.InfoBarTemplateSettings(); }
+        private object Activate_39_AnimatedIcon() { return new global::Microsoft.UI.Xaml.Controls.AnimatedIcon(); }
+        private object Activate_42_AnimatedSettingsVisualSource() { return new global::Microsoft.UI.Xaml.Controls.AnimatedVisuals.AnimatedSettingsVisualSource(); }
+        private object Activate_44_MainWindow() { return new global::LauncherXWinUI.MainWindow(); }
+        private object Activate_45_SettingsCard() { return new global::CommunityToolkit.WinUI.Controls.SettingsCard(); }
         private object Activate_47_SettingsExpander() { return new global::CommunityToolkit.WinUI.Controls.SettingsExpander(); }
         private object Activate_51_ProgressRing() { return new global::Microsoft.UI.Xaml.Controls.ProgressRing(); }
         private object Activate_53_SettingsWindow() { return new global::LauncherXWinUI.SettingsWindow(); }
@@ -646,85 +646,9 @@ namespace LauncherXWinUI.LauncherXWinUI_XamlTypeInfo
                 xamlType = userType;
                 break;
 
-            case 29:   //  Microsoft.UI.Xaml.Controls.AnimatedIcon
-                userType = new global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Microsoft.UI.Xaml.Controls.IconElement"));
-                userType.Activator = Activate_29_AnimatedIcon;
-                userType.SetContentPropertyName("Microsoft.UI.Xaml.Controls.AnimatedIcon.Source");
-                userType.AddMemberName("Source");
-                userType.AddMemberName("FallbackIconSource");
-                userType.AddMemberName("MirroredWhenRightToLeft");
-                userType.AddMemberName("State");
-                xamlType = userType;
-                break;
-
-            case 30:   //  Microsoft.UI.Xaml.Controls.IconElement
-                xamlType = new global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlSystemBaseType(typeName, type);
-                break;
-
-            case 31:   //  Microsoft.UI.Xaml.Controls.IAnimatedVisualSource2
-                userType = new global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlUserType(this, typeName, type, null);
-                userType.SetIsReturnTypeStub();
-                xamlType = userType;
-                break;
-
-            case 32:   //  Microsoft.UI.Xaml.Controls.IconSource
-                xamlType = new global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlSystemBaseType(typeName, type);
-                break;
-
-            case 33:   //  Microsoft.UI.Xaml.DependencyObject
-                xamlType = new global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlSystemBaseType(typeName, type);
-                break;
-
-            case 34:   //  Microsoft.UI.Xaml.Controls.AnimatedVisuals.AnimatedSettingsVisualSource
-                userType = new global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Object"));
-                userType.Activator = Activate_34_AnimatedSettingsVisualSource;
-                userType.AddMemberName("Markers");
-                xamlType = userType;
-                break;
-
-            case 35:   //  System.Collections.Generic.IReadOnlyDictionary`2<String, Double>
-                userType = new global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlUserType(this, typeName, type, null);
-                userType.SetIsReturnTypeStub();
-                xamlType = userType;
-                break;
-
-            case 36:   //  LauncherXWinUI.MainWindow
-                userType = new global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("WinUIEx.WindowEx"));
-                userType.Activator = Activate_36_MainWindow;
-                userType.SetContentPropertyName("WinUIEx.WindowEx.WindowContent");
-                userType.SetIsLocalType();
-                xamlType = userType;
-                break;
-
-            case 37:   //  CommunityToolkit.WinUI.Controls.SettingsCard
-                userType = new global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Microsoft.UI.Xaml.Controls.Primitives.ButtonBase"));
-                userType.Activator = Activate_37_SettingsCard;
-                userType.AddMemberName("Description");
-                userType.AddMemberName("Header");
-                userType.AddMemberName("HeaderIcon");
-                userType.AddMemberName("ContentAlignment");
-                userType.AddMemberName("ActionIcon");
-                userType.AddMemberName("ActionIconToolTip");
-                userType.AddMemberName("IsClickEnabled");
-                userType.AddMemberName("IsActionIconVisible");
-                xamlType = userType;
-                break;
-
-            case 38:   //  Microsoft.UI.Xaml.Controls.Primitives.ButtonBase
-                xamlType = new global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlSystemBaseType(typeName, type);
-                break;
-
-            case 39:   //  CommunityToolkit.WinUI.Controls.ContentAlignment
-                userType = new global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("System.Enum"));
-                userType.AddEnumValue("Right", global::CommunityToolkit.WinUI.Controls.ContentAlignment.Right);
-                userType.AddEnumValue("Left", global::CommunityToolkit.WinUI.Controls.ContentAlignment.Left);
-                userType.AddEnumValue("Vertical", global::CommunityToolkit.WinUI.Controls.ContentAlignment.Vertical);
-                xamlType = userType;
-                break;
-
-            case 40:   //  Microsoft.UI.Xaml.Controls.InfoBar
+            case 29:   //  Microsoft.UI.Xaml.Controls.InfoBar
                 userType = new global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Microsoft.UI.Xaml.Controls.Control"));
-                userType.Activator = Activate_40_InfoBar;
+                userType.Activator = Activate_29_InfoBar;
                 userType.SetContentPropertyName("Microsoft.UI.Xaml.Controls.InfoBar.Content");
                 userType.AddMemberName("Content");
                 userType.AddMemberName("Title");
@@ -743,11 +667,11 @@ namespace LauncherXWinUI.LauncherXWinUI_XamlTypeInfo
                 xamlType = userType;
                 break;
 
-            case 41:   //  Microsoft.UI.Xaml.Controls.Control
+            case 30:   //  Microsoft.UI.Xaml.Controls.Control
                 xamlType = new global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlSystemBaseType(typeName, type);
                 break;
 
-            case 42:   //  Microsoft.UI.Xaml.Controls.InfoBarSeverity
+            case 31:   //  Microsoft.UI.Xaml.Controls.InfoBarSeverity
                 userType = new global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("System.Enum"));
                 userType.AddEnumValue("Informational", global::Microsoft.UI.Xaml.Controls.InfoBarSeverity.Informational);
                 userType.AddEnumValue("Success", global::Microsoft.UI.Xaml.Controls.InfoBarSeverity.Success);
@@ -756,23 +680,99 @@ namespace LauncherXWinUI.LauncherXWinUI_XamlTypeInfo
                 xamlType = userType;
                 break;
 
-            case 43:   //  System.Windows.Input.ICommand
+            case 32:   //  Microsoft.UI.Xaml.Controls.Primitives.ButtonBase
+                xamlType = new global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlSystemBaseType(typeName, type);
+                break;
+
+            case 33:   //  System.Windows.Input.ICommand
                 userType = new global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlUserType(this, typeName, type, null);
                 userType.SetIsReturnTypeStub();
                 xamlType = userType;
                 break;
 
-            case 44:   //  Microsoft.UI.Xaml.Style
+            case 34:   //  Microsoft.UI.Xaml.Style
                 xamlType = new global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlSystemBaseType(typeName, type);
                 break;
 
-            case 45:   //  Microsoft.UI.Xaml.DataTemplate
+            case 35:   //  Microsoft.UI.Xaml.DataTemplate
                 xamlType = new global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlSystemBaseType(typeName, type);
                 break;
 
-            case 46:   //  Microsoft.UI.Xaml.Controls.InfoBarTemplateSettings
+            case 36:   //  Microsoft.UI.Xaml.Controls.IconSource
+                xamlType = new global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlSystemBaseType(typeName, type);
+                break;
+
+            case 37:   //  Microsoft.UI.Xaml.Controls.InfoBarTemplateSettings
                 userType = new global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Microsoft.UI.Xaml.DependencyObject"));
                 userType.SetIsReturnTypeStub();
+                xamlType = userType;
+                break;
+
+            case 38:   //  Microsoft.UI.Xaml.DependencyObject
+                xamlType = new global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlSystemBaseType(typeName, type);
+                break;
+
+            case 39:   //  Microsoft.UI.Xaml.Controls.AnimatedIcon
+                userType = new global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Microsoft.UI.Xaml.Controls.IconElement"));
+                userType.Activator = Activate_39_AnimatedIcon;
+                userType.SetContentPropertyName("Microsoft.UI.Xaml.Controls.AnimatedIcon.Source");
+                userType.AddMemberName("Source");
+                userType.AddMemberName("FallbackIconSource");
+                userType.AddMemberName("MirroredWhenRightToLeft");
+                userType.AddMemberName("State");
+                xamlType = userType;
+                break;
+
+            case 40:   //  Microsoft.UI.Xaml.Controls.IconElement
+                xamlType = new global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlSystemBaseType(typeName, type);
+                break;
+
+            case 41:   //  Microsoft.UI.Xaml.Controls.IAnimatedVisualSource2
+                userType = new global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlUserType(this, typeName, type, null);
+                userType.SetIsReturnTypeStub();
+                xamlType = userType;
+                break;
+
+            case 42:   //  Microsoft.UI.Xaml.Controls.AnimatedVisuals.AnimatedSettingsVisualSource
+                userType = new global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Object"));
+                userType.Activator = Activate_42_AnimatedSettingsVisualSource;
+                userType.AddMemberName("Markers");
+                xamlType = userType;
+                break;
+
+            case 43:   //  System.Collections.Generic.IReadOnlyDictionary`2<String, Double>
+                userType = new global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlUserType(this, typeName, type, null);
+                userType.SetIsReturnTypeStub();
+                xamlType = userType;
+                break;
+
+            case 44:   //  LauncherXWinUI.MainWindow
+                userType = new global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("WinUIEx.WindowEx"));
+                userType.Activator = Activate_44_MainWindow;
+                userType.SetContentPropertyName("WinUIEx.WindowEx.WindowContent");
+                userType.SetIsLocalType();
+                xamlType = userType;
+                break;
+
+            case 45:   //  CommunityToolkit.WinUI.Controls.SettingsCard
+                userType = new global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Microsoft.UI.Xaml.Controls.Primitives.ButtonBase"));
+                userType.Activator = Activate_45_SettingsCard;
+                userType.AddMemberName("Description");
+                userType.AddMemberName("Header");
+                userType.AddMemberName("HeaderIcon");
+                userType.AddMemberName("ContentAlignment");
+                userType.AddMemberName("ActionIcon");
+                userType.AddMemberName("ActionIconToolTip");
+                userType.AddMemberName("IsClickEnabled");
+                userType.AddMemberName("IsActionIconVisible");
+                xamlType = userType;
+                break;
+
+            case 46:   //  CommunityToolkit.WinUI.Controls.ContentAlignment
+                userType = new global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("System.Enum"));
+                userType.AddEnumValue("Right", global::CommunityToolkit.WinUI.Controls.ContentAlignment.Right);
+                userType.AddEnumValue("Left", global::CommunityToolkit.WinUI.Controls.ContentAlignment.Left);
+                userType.AddEnumValue("Vertical", global::CommunityToolkit.WinUI.Controls.ContentAlignment.Vertical);
                 xamlType = userType;
                 break;
 
@@ -1282,263 +1282,263 @@ namespace LauncherXWinUI.LauncherXWinUI_XamlTypeInfo
             that.Backdrop = (global::WinUIEx.SystemBackdrop)Value;
         }
 #pragma warning restore 0618
-        private object get_37_AnimatedIcon_Source(object instance)
-        {
-            var that = (global::Microsoft.UI.Xaml.Controls.AnimatedIcon)instance;
-            return that.Source;
-        }
-        private void set_37_AnimatedIcon_Source(object instance, object Value)
-        {
-            var that = (global::Microsoft.UI.Xaml.Controls.AnimatedIcon)instance;
-            that.Source = (global::Microsoft.UI.Xaml.Controls.IAnimatedVisualSource2)Value;
-        }
-        private object get_38_AnimatedIcon_FallbackIconSource(object instance)
-        {
-            var that = (global::Microsoft.UI.Xaml.Controls.AnimatedIcon)instance;
-            return that.FallbackIconSource;
-        }
-        private void set_38_AnimatedIcon_FallbackIconSource(object instance, object Value)
-        {
-            var that = (global::Microsoft.UI.Xaml.Controls.AnimatedIcon)instance;
-            that.FallbackIconSource = (global::Microsoft.UI.Xaml.Controls.IconSource)Value;
-        }
-        private object get_39_AnimatedIcon_MirroredWhenRightToLeft(object instance)
-        {
-            var that = (global::Microsoft.UI.Xaml.Controls.AnimatedIcon)instance;
-            return that.MirroredWhenRightToLeft;
-        }
-        private void set_39_AnimatedIcon_MirroredWhenRightToLeft(object instance, object Value)
-        {
-            var that = (global::Microsoft.UI.Xaml.Controls.AnimatedIcon)instance;
-            that.MirroredWhenRightToLeft = (global::System.Boolean)Value;
-        }
-        private object get_40_AnimatedIcon_State(object instance)
-        {
-            return global::Microsoft.UI.Xaml.Controls.AnimatedIcon.GetState((global::Microsoft.UI.Xaml.DependencyObject)instance);
-        }
-        private void set_40_AnimatedIcon_State(object instance, object Value)
-        {
-            global::Microsoft.UI.Xaml.Controls.AnimatedIcon.SetState((global::Microsoft.UI.Xaml.DependencyObject)instance, (global::System.String)Value);
-        }
-        private object get_41_AnimatedSettingsVisualSource_Markers(object instance)
-        {
-            var that = (global::Microsoft.UI.Xaml.Controls.AnimatedVisuals.AnimatedSettingsVisualSource)instance;
-            return that.Markers;
-        }
-        private object get_42_SettingsCard_Description(object instance)
-        {
-            var that = (global::CommunityToolkit.WinUI.Controls.SettingsCard)instance;
-            return that.Description;
-        }
-        private void set_42_SettingsCard_Description(object instance, object Value)
-        {
-            var that = (global::CommunityToolkit.WinUI.Controls.SettingsCard)instance;
-            that.Description = (global::System.Object)Value;
-        }
-        private object get_43_SettingsCard_Header(object instance)
-        {
-            var that = (global::CommunityToolkit.WinUI.Controls.SettingsCard)instance;
-            return that.Header;
-        }
-        private void set_43_SettingsCard_Header(object instance, object Value)
-        {
-            var that = (global::CommunityToolkit.WinUI.Controls.SettingsCard)instance;
-            that.Header = (global::System.Object)Value;
-        }
-        private object get_44_SettingsCard_HeaderIcon(object instance)
-        {
-            var that = (global::CommunityToolkit.WinUI.Controls.SettingsCard)instance;
-            return that.HeaderIcon;
-        }
-        private void set_44_SettingsCard_HeaderIcon(object instance, object Value)
-        {
-            var that = (global::CommunityToolkit.WinUI.Controls.SettingsCard)instance;
-            that.HeaderIcon = (global::Microsoft.UI.Xaml.Controls.IconElement)Value;
-        }
-        private object get_45_SettingsCard_ContentAlignment(object instance)
-        {
-            var that = (global::CommunityToolkit.WinUI.Controls.SettingsCard)instance;
-            return that.ContentAlignment;
-        }
-        private void set_45_SettingsCard_ContentAlignment(object instance, object Value)
-        {
-            var that = (global::CommunityToolkit.WinUI.Controls.SettingsCard)instance;
-            that.ContentAlignment = (global::CommunityToolkit.WinUI.Controls.ContentAlignment)Value;
-        }
-        private object get_46_SettingsCard_ActionIcon(object instance)
-        {
-            var that = (global::CommunityToolkit.WinUI.Controls.SettingsCard)instance;
-            return that.ActionIcon;
-        }
-        private void set_46_SettingsCard_ActionIcon(object instance, object Value)
-        {
-            var that = (global::CommunityToolkit.WinUI.Controls.SettingsCard)instance;
-            that.ActionIcon = (global::Microsoft.UI.Xaml.Controls.IconElement)Value;
-        }
-        private object get_47_SettingsCard_ActionIconToolTip(object instance)
-        {
-            var that = (global::CommunityToolkit.WinUI.Controls.SettingsCard)instance;
-            return that.ActionIconToolTip;
-        }
-        private void set_47_SettingsCard_ActionIconToolTip(object instance, object Value)
-        {
-            var that = (global::CommunityToolkit.WinUI.Controls.SettingsCard)instance;
-            that.ActionIconToolTip = (global::System.String)Value;
-        }
-        private object get_48_SettingsCard_IsClickEnabled(object instance)
-        {
-            var that = (global::CommunityToolkit.WinUI.Controls.SettingsCard)instance;
-            return that.IsClickEnabled;
-        }
-        private void set_48_SettingsCard_IsClickEnabled(object instance, object Value)
-        {
-            var that = (global::CommunityToolkit.WinUI.Controls.SettingsCard)instance;
-            that.IsClickEnabled = (global::System.Boolean)Value;
-        }
-        private object get_49_SettingsCard_IsActionIconVisible(object instance)
-        {
-            var that = (global::CommunityToolkit.WinUI.Controls.SettingsCard)instance;
-            return that.IsActionIconVisible;
-        }
-        private void set_49_SettingsCard_IsActionIconVisible(object instance, object Value)
-        {
-            var that = (global::CommunityToolkit.WinUI.Controls.SettingsCard)instance;
-            that.IsActionIconVisible = (global::System.Boolean)Value;
-        }
-        private object get_50_InfoBar_Content(object instance)
+        private object get_37_InfoBar_Content(object instance)
         {
             var that = (global::Microsoft.UI.Xaml.Controls.InfoBar)instance;
             return that.Content;
         }
-        private void set_50_InfoBar_Content(object instance, object Value)
+        private void set_37_InfoBar_Content(object instance, object Value)
         {
             var that = (global::Microsoft.UI.Xaml.Controls.InfoBar)instance;
             that.Content = (global::System.Object)Value;
         }
-        private object get_51_InfoBar_Title(object instance)
+        private object get_38_InfoBar_Title(object instance)
         {
             var that = (global::Microsoft.UI.Xaml.Controls.InfoBar)instance;
             return that.Title;
         }
-        private void set_51_InfoBar_Title(object instance, object Value)
+        private void set_38_InfoBar_Title(object instance, object Value)
         {
             var that = (global::Microsoft.UI.Xaml.Controls.InfoBar)instance;
             that.Title = (global::System.String)Value;
         }
-        private object get_52_InfoBar_IsOpen(object instance)
+        private object get_39_InfoBar_IsOpen(object instance)
         {
             var that = (global::Microsoft.UI.Xaml.Controls.InfoBar)instance;
             return that.IsOpen;
         }
-        private void set_52_InfoBar_IsOpen(object instance, object Value)
+        private void set_39_InfoBar_IsOpen(object instance, object Value)
         {
             var that = (global::Microsoft.UI.Xaml.Controls.InfoBar)instance;
             that.IsOpen = (global::System.Boolean)Value;
         }
-        private object get_53_InfoBar_Message(object instance)
+        private object get_40_InfoBar_Message(object instance)
         {
             var that = (global::Microsoft.UI.Xaml.Controls.InfoBar)instance;
             return that.Message;
         }
-        private void set_53_InfoBar_Message(object instance, object Value)
+        private void set_40_InfoBar_Message(object instance, object Value)
         {
             var that = (global::Microsoft.UI.Xaml.Controls.InfoBar)instance;
             that.Message = (global::System.String)Value;
         }
-        private object get_54_InfoBar_Severity(object instance)
+        private object get_41_InfoBar_Severity(object instance)
         {
             var that = (global::Microsoft.UI.Xaml.Controls.InfoBar)instance;
             return that.Severity;
         }
-        private void set_54_InfoBar_Severity(object instance, object Value)
+        private void set_41_InfoBar_Severity(object instance, object Value)
         {
             var that = (global::Microsoft.UI.Xaml.Controls.InfoBar)instance;
             that.Severity = (global::Microsoft.UI.Xaml.Controls.InfoBarSeverity)Value;
         }
-        private object get_55_InfoBar_ActionButton(object instance)
+        private object get_42_InfoBar_ActionButton(object instance)
         {
             var that = (global::Microsoft.UI.Xaml.Controls.InfoBar)instance;
             return that.ActionButton;
         }
-        private void set_55_InfoBar_ActionButton(object instance, object Value)
+        private void set_42_InfoBar_ActionButton(object instance, object Value)
         {
             var that = (global::Microsoft.UI.Xaml.Controls.InfoBar)instance;
             that.ActionButton = (global::Microsoft.UI.Xaml.Controls.Primitives.ButtonBase)Value;
         }
-        private object get_56_InfoBar_CloseButtonCommand(object instance)
+        private object get_43_InfoBar_CloseButtonCommand(object instance)
         {
             var that = (global::Microsoft.UI.Xaml.Controls.InfoBar)instance;
             return that.CloseButtonCommand;
         }
-        private void set_56_InfoBar_CloseButtonCommand(object instance, object Value)
+        private void set_43_InfoBar_CloseButtonCommand(object instance, object Value)
         {
             var that = (global::Microsoft.UI.Xaml.Controls.InfoBar)instance;
             that.CloseButtonCommand = (global::System.Windows.Input.ICommand)Value;
         }
-        private object get_57_InfoBar_CloseButtonCommandParameter(object instance)
+        private object get_44_InfoBar_CloseButtonCommandParameter(object instance)
         {
             var that = (global::Microsoft.UI.Xaml.Controls.InfoBar)instance;
             return that.CloseButtonCommandParameter;
         }
-        private void set_57_InfoBar_CloseButtonCommandParameter(object instance, object Value)
+        private void set_44_InfoBar_CloseButtonCommandParameter(object instance, object Value)
         {
             var that = (global::Microsoft.UI.Xaml.Controls.InfoBar)instance;
             that.CloseButtonCommandParameter = (global::System.Object)Value;
         }
-        private object get_58_InfoBar_CloseButtonStyle(object instance)
+        private object get_45_InfoBar_CloseButtonStyle(object instance)
         {
             var that = (global::Microsoft.UI.Xaml.Controls.InfoBar)instance;
             return that.CloseButtonStyle;
         }
-        private void set_58_InfoBar_CloseButtonStyle(object instance, object Value)
+        private void set_45_InfoBar_CloseButtonStyle(object instance, object Value)
         {
             var that = (global::Microsoft.UI.Xaml.Controls.InfoBar)instance;
             that.CloseButtonStyle = (global::Microsoft.UI.Xaml.Style)Value;
         }
-        private object get_59_InfoBar_ContentTemplate(object instance)
+        private object get_46_InfoBar_ContentTemplate(object instance)
         {
             var that = (global::Microsoft.UI.Xaml.Controls.InfoBar)instance;
             return that.ContentTemplate;
         }
-        private void set_59_InfoBar_ContentTemplate(object instance, object Value)
+        private void set_46_InfoBar_ContentTemplate(object instance, object Value)
         {
             var that = (global::Microsoft.UI.Xaml.Controls.InfoBar)instance;
             that.ContentTemplate = (global::Microsoft.UI.Xaml.DataTemplate)Value;
         }
-        private object get_60_InfoBar_IconSource(object instance)
+        private object get_47_InfoBar_IconSource(object instance)
         {
             var that = (global::Microsoft.UI.Xaml.Controls.InfoBar)instance;
             return that.IconSource;
         }
-        private void set_60_InfoBar_IconSource(object instance, object Value)
+        private void set_47_InfoBar_IconSource(object instance, object Value)
         {
             var that = (global::Microsoft.UI.Xaml.Controls.InfoBar)instance;
             that.IconSource = (global::Microsoft.UI.Xaml.Controls.IconSource)Value;
         }
-        private object get_61_InfoBar_IsClosable(object instance)
+        private object get_48_InfoBar_IsClosable(object instance)
         {
             var that = (global::Microsoft.UI.Xaml.Controls.InfoBar)instance;
             return that.IsClosable;
         }
-        private void set_61_InfoBar_IsClosable(object instance, object Value)
+        private void set_48_InfoBar_IsClosable(object instance, object Value)
         {
             var that = (global::Microsoft.UI.Xaml.Controls.InfoBar)instance;
             that.IsClosable = (global::System.Boolean)Value;
         }
-        private object get_62_InfoBar_IsIconVisible(object instance)
+        private object get_49_InfoBar_IsIconVisible(object instance)
         {
             var that = (global::Microsoft.UI.Xaml.Controls.InfoBar)instance;
             return that.IsIconVisible;
         }
-        private void set_62_InfoBar_IsIconVisible(object instance, object Value)
+        private void set_49_InfoBar_IsIconVisible(object instance, object Value)
         {
             var that = (global::Microsoft.UI.Xaml.Controls.InfoBar)instance;
             that.IsIconVisible = (global::System.Boolean)Value;
         }
-        private object get_63_InfoBar_TemplateSettings(object instance)
+        private object get_50_InfoBar_TemplateSettings(object instance)
         {
             var that = (global::Microsoft.UI.Xaml.Controls.InfoBar)instance;
             return that.TemplateSettings;
+        }
+        private object get_51_AnimatedIcon_Source(object instance)
+        {
+            var that = (global::Microsoft.UI.Xaml.Controls.AnimatedIcon)instance;
+            return that.Source;
+        }
+        private void set_51_AnimatedIcon_Source(object instance, object Value)
+        {
+            var that = (global::Microsoft.UI.Xaml.Controls.AnimatedIcon)instance;
+            that.Source = (global::Microsoft.UI.Xaml.Controls.IAnimatedVisualSource2)Value;
+        }
+        private object get_52_AnimatedIcon_FallbackIconSource(object instance)
+        {
+            var that = (global::Microsoft.UI.Xaml.Controls.AnimatedIcon)instance;
+            return that.FallbackIconSource;
+        }
+        private void set_52_AnimatedIcon_FallbackIconSource(object instance, object Value)
+        {
+            var that = (global::Microsoft.UI.Xaml.Controls.AnimatedIcon)instance;
+            that.FallbackIconSource = (global::Microsoft.UI.Xaml.Controls.IconSource)Value;
+        }
+        private object get_53_AnimatedIcon_MirroredWhenRightToLeft(object instance)
+        {
+            var that = (global::Microsoft.UI.Xaml.Controls.AnimatedIcon)instance;
+            return that.MirroredWhenRightToLeft;
+        }
+        private void set_53_AnimatedIcon_MirroredWhenRightToLeft(object instance, object Value)
+        {
+            var that = (global::Microsoft.UI.Xaml.Controls.AnimatedIcon)instance;
+            that.MirroredWhenRightToLeft = (global::System.Boolean)Value;
+        }
+        private object get_54_AnimatedIcon_State(object instance)
+        {
+            return global::Microsoft.UI.Xaml.Controls.AnimatedIcon.GetState((global::Microsoft.UI.Xaml.DependencyObject)instance);
+        }
+        private void set_54_AnimatedIcon_State(object instance, object Value)
+        {
+            global::Microsoft.UI.Xaml.Controls.AnimatedIcon.SetState((global::Microsoft.UI.Xaml.DependencyObject)instance, (global::System.String)Value);
+        }
+        private object get_55_AnimatedSettingsVisualSource_Markers(object instance)
+        {
+            var that = (global::Microsoft.UI.Xaml.Controls.AnimatedVisuals.AnimatedSettingsVisualSource)instance;
+            return that.Markers;
+        }
+        private object get_56_SettingsCard_Description(object instance)
+        {
+            var that = (global::CommunityToolkit.WinUI.Controls.SettingsCard)instance;
+            return that.Description;
+        }
+        private void set_56_SettingsCard_Description(object instance, object Value)
+        {
+            var that = (global::CommunityToolkit.WinUI.Controls.SettingsCard)instance;
+            that.Description = (global::System.Object)Value;
+        }
+        private object get_57_SettingsCard_Header(object instance)
+        {
+            var that = (global::CommunityToolkit.WinUI.Controls.SettingsCard)instance;
+            return that.Header;
+        }
+        private void set_57_SettingsCard_Header(object instance, object Value)
+        {
+            var that = (global::CommunityToolkit.WinUI.Controls.SettingsCard)instance;
+            that.Header = (global::System.Object)Value;
+        }
+        private object get_58_SettingsCard_HeaderIcon(object instance)
+        {
+            var that = (global::CommunityToolkit.WinUI.Controls.SettingsCard)instance;
+            return that.HeaderIcon;
+        }
+        private void set_58_SettingsCard_HeaderIcon(object instance, object Value)
+        {
+            var that = (global::CommunityToolkit.WinUI.Controls.SettingsCard)instance;
+            that.HeaderIcon = (global::Microsoft.UI.Xaml.Controls.IconElement)Value;
+        }
+        private object get_59_SettingsCard_ContentAlignment(object instance)
+        {
+            var that = (global::CommunityToolkit.WinUI.Controls.SettingsCard)instance;
+            return that.ContentAlignment;
+        }
+        private void set_59_SettingsCard_ContentAlignment(object instance, object Value)
+        {
+            var that = (global::CommunityToolkit.WinUI.Controls.SettingsCard)instance;
+            that.ContentAlignment = (global::CommunityToolkit.WinUI.Controls.ContentAlignment)Value;
+        }
+        private object get_60_SettingsCard_ActionIcon(object instance)
+        {
+            var that = (global::CommunityToolkit.WinUI.Controls.SettingsCard)instance;
+            return that.ActionIcon;
+        }
+        private void set_60_SettingsCard_ActionIcon(object instance, object Value)
+        {
+            var that = (global::CommunityToolkit.WinUI.Controls.SettingsCard)instance;
+            that.ActionIcon = (global::Microsoft.UI.Xaml.Controls.IconElement)Value;
+        }
+        private object get_61_SettingsCard_ActionIconToolTip(object instance)
+        {
+            var that = (global::CommunityToolkit.WinUI.Controls.SettingsCard)instance;
+            return that.ActionIconToolTip;
+        }
+        private void set_61_SettingsCard_ActionIconToolTip(object instance, object Value)
+        {
+            var that = (global::CommunityToolkit.WinUI.Controls.SettingsCard)instance;
+            that.ActionIconToolTip = (global::System.String)Value;
+        }
+        private object get_62_SettingsCard_IsClickEnabled(object instance)
+        {
+            var that = (global::CommunityToolkit.WinUI.Controls.SettingsCard)instance;
+            return that.IsClickEnabled;
+        }
+        private void set_62_SettingsCard_IsClickEnabled(object instance, object Value)
+        {
+            var that = (global::CommunityToolkit.WinUI.Controls.SettingsCard)instance;
+            that.IsClickEnabled = (global::System.Boolean)Value;
+        }
+        private object get_63_SettingsCard_IsActionIconVisible(object instance)
+        {
+            var that = (global::CommunityToolkit.WinUI.Controls.SettingsCard)instance;
+            return that.IsActionIconVisible;
+        }
+        private void set_63_SettingsCard_IsActionIconVisible(object instance, object Value)
+        {
+            var that = (global::CommunityToolkit.WinUI.Controls.SettingsCard)instance;
+            that.IsActionIconVisible = (global::System.Boolean)Value;
         }
         private object get_64_SettingsExpander_Content(object instance)
         {
@@ -1986,26 +1986,124 @@ namespace LauncherXWinUI.LauncherXWinUI_XamlTypeInfo
                 xamlMember.Getter = get_36_WindowEx_Backdrop;
                 xamlMember.Setter = set_36_WindowEx_Backdrop;
                 break;
+            case "Microsoft.UI.Xaml.Controls.InfoBar.Content":
+                userType = (global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.UI.Xaml.Controls.InfoBar");
+                xamlMember = new global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlMember(this, "Content", "Object");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_37_InfoBar_Content;
+                xamlMember.Setter = set_37_InfoBar_Content;
+                break;
+            case "Microsoft.UI.Xaml.Controls.InfoBar.Title":
+                userType = (global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.UI.Xaml.Controls.InfoBar");
+                xamlMember = new global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlMember(this, "Title", "String");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_38_InfoBar_Title;
+                xamlMember.Setter = set_38_InfoBar_Title;
+                break;
+            case "Microsoft.UI.Xaml.Controls.InfoBar.IsOpen":
+                userType = (global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.UI.Xaml.Controls.InfoBar");
+                xamlMember = new global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlMember(this, "IsOpen", "Boolean");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_39_InfoBar_IsOpen;
+                xamlMember.Setter = set_39_InfoBar_IsOpen;
+                break;
+            case "Microsoft.UI.Xaml.Controls.InfoBar.Message":
+                userType = (global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.UI.Xaml.Controls.InfoBar");
+                xamlMember = new global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlMember(this, "Message", "String");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_40_InfoBar_Message;
+                xamlMember.Setter = set_40_InfoBar_Message;
+                break;
+            case "Microsoft.UI.Xaml.Controls.InfoBar.Severity":
+                userType = (global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.UI.Xaml.Controls.InfoBar");
+                xamlMember = new global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlMember(this, "Severity", "Microsoft.UI.Xaml.Controls.InfoBarSeverity");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_41_InfoBar_Severity;
+                xamlMember.Setter = set_41_InfoBar_Severity;
+                break;
+            case "Microsoft.UI.Xaml.Controls.InfoBar.ActionButton":
+                userType = (global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.UI.Xaml.Controls.InfoBar");
+                xamlMember = new global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlMember(this, "ActionButton", "Microsoft.UI.Xaml.Controls.Primitives.ButtonBase");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_42_InfoBar_ActionButton;
+                xamlMember.Setter = set_42_InfoBar_ActionButton;
+                break;
+            case "Microsoft.UI.Xaml.Controls.InfoBar.CloseButtonCommand":
+                userType = (global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.UI.Xaml.Controls.InfoBar");
+                xamlMember = new global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlMember(this, "CloseButtonCommand", "System.Windows.Input.ICommand");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_43_InfoBar_CloseButtonCommand;
+                xamlMember.Setter = set_43_InfoBar_CloseButtonCommand;
+                break;
+            case "Microsoft.UI.Xaml.Controls.InfoBar.CloseButtonCommandParameter":
+                userType = (global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.UI.Xaml.Controls.InfoBar");
+                xamlMember = new global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlMember(this, "CloseButtonCommandParameter", "Object");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_44_InfoBar_CloseButtonCommandParameter;
+                xamlMember.Setter = set_44_InfoBar_CloseButtonCommandParameter;
+                break;
+            case "Microsoft.UI.Xaml.Controls.InfoBar.CloseButtonStyle":
+                userType = (global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.UI.Xaml.Controls.InfoBar");
+                xamlMember = new global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlMember(this, "CloseButtonStyle", "Microsoft.UI.Xaml.Style");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_45_InfoBar_CloseButtonStyle;
+                xamlMember.Setter = set_45_InfoBar_CloseButtonStyle;
+                break;
+            case "Microsoft.UI.Xaml.Controls.InfoBar.ContentTemplate":
+                userType = (global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.UI.Xaml.Controls.InfoBar");
+                xamlMember = new global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlMember(this, "ContentTemplate", "Microsoft.UI.Xaml.DataTemplate");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_46_InfoBar_ContentTemplate;
+                xamlMember.Setter = set_46_InfoBar_ContentTemplate;
+                break;
+            case "Microsoft.UI.Xaml.Controls.InfoBar.IconSource":
+                userType = (global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.UI.Xaml.Controls.InfoBar");
+                xamlMember = new global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlMember(this, "IconSource", "Microsoft.UI.Xaml.Controls.IconSource");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_47_InfoBar_IconSource;
+                xamlMember.Setter = set_47_InfoBar_IconSource;
+                break;
+            case "Microsoft.UI.Xaml.Controls.InfoBar.IsClosable":
+                userType = (global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.UI.Xaml.Controls.InfoBar");
+                xamlMember = new global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlMember(this, "IsClosable", "Boolean");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_48_InfoBar_IsClosable;
+                xamlMember.Setter = set_48_InfoBar_IsClosable;
+                break;
+            case "Microsoft.UI.Xaml.Controls.InfoBar.IsIconVisible":
+                userType = (global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.UI.Xaml.Controls.InfoBar");
+                xamlMember = new global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlMember(this, "IsIconVisible", "Boolean");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_49_InfoBar_IsIconVisible;
+                xamlMember.Setter = set_49_InfoBar_IsIconVisible;
+                break;
+            case "Microsoft.UI.Xaml.Controls.InfoBar.TemplateSettings":
+                userType = (global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.UI.Xaml.Controls.InfoBar");
+                xamlMember = new global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlMember(this, "TemplateSettings", "Microsoft.UI.Xaml.Controls.InfoBarTemplateSettings");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_50_InfoBar_TemplateSettings;
+                xamlMember.SetIsReadOnly();
+                break;
             case "Microsoft.UI.Xaml.Controls.AnimatedIcon.Source":
                 userType = (global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.UI.Xaml.Controls.AnimatedIcon");
                 xamlMember = new global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlMember(this, "Source", "Microsoft.UI.Xaml.Controls.IAnimatedVisualSource2");
                 xamlMember.SetIsDependencyProperty();
-                xamlMember.Getter = get_37_AnimatedIcon_Source;
-                xamlMember.Setter = set_37_AnimatedIcon_Source;
+                xamlMember.Getter = get_51_AnimatedIcon_Source;
+                xamlMember.Setter = set_51_AnimatedIcon_Source;
                 break;
             case "Microsoft.UI.Xaml.Controls.AnimatedIcon.FallbackIconSource":
                 userType = (global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.UI.Xaml.Controls.AnimatedIcon");
                 xamlMember = new global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlMember(this, "FallbackIconSource", "Microsoft.UI.Xaml.Controls.IconSource");
                 xamlMember.SetIsDependencyProperty();
-                xamlMember.Getter = get_38_AnimatedIcon_FallbackIconSource;
-                xamlMember.Setter = set_38_AnimatedIcon_FallbackIconSource;
+                xamlMember.Getter = get_52_AnimatedIcon_FallbackIconSource;
+                xamlMember.Setter = set_52_AnimatedIcon_FallbackIconSource;
                 break;
             case "Microsoft.UI.Xaml.Controls.AnimatedIcon.MirroredWhenRightToLeft":
                 userType = (global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.UI.Xaml.Controls.AnimatedIcon");
                 xamlMember = new global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlMember(this, "MirroredWhenRightToLeft", "Boolean");
                 xamlMember.SetIsDependencyProperty();
-                xamlMember.Getter = get_39_AnimatedIcon_MirroredWhenRightToLeft;
-                xamlMember.Setter = set_39_AnimatedIcon_MirroredWhenRightToLeft;
+                xamlMember.Getter = get_53_AnimatedIcon_MirroredWhenRightToLeft;
+                xamlMember.Setter = set_53_AnimatedIcon_MirroredWhenRightToLeft;
                 break;
             case "Microsoft.UI.Xaml.Controls.AnimatedIcon.State":
                 userType = (global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.UI.Xaml.Controls.AnimatedIcon");
@@ -2013,168 +2111,70 @@ namespace LauncherXWinUI.LauncherXWinUI_XamlTypeInfo
                 xamlMember.SetTargetTypeName("Microsoft.UI.Xaml.DependencyObject");
                 xamlMember.SetIsDependencyProperty();
                 xamlMember.SetIsAttachable();
-                xamlMember.Getter = get_40_AnimatedIcon_State;
-                xamlMember.Setter = set_40_AnimatedIcon_State;
+                xamlMember.Getter = get_54_AnimatedIcon_State;
+                xamlMember.Setter = set_54_AnimatedIcon_State;
                 break;
             case "Microsoft.UI.Xaml.Controls.AnimatedVisuals.AnimatedSettingsVisualSource.Markers":
                 userType = (global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.UI.Xaml.Controls.AnimatedVisuals.AnimatedSettingsVisualSource");
                 xamlMember = new global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlMember(this, "Markers", "System.Collections.Generic.IReadOnlyDictionary`2<String, Double>");
-                xamlMember.Getter = get_41_AnimatedSettingsVisualSource_Markers;
+                xamlMember.Getter = get_55_AnimatedSettingsVisualSource_Markers;
                 xamlMember.SetIsReadOnly();
                 break;
             case "CommunityToolkit.WinUI.Controls.SettingsCard.Description":
                 userType = (global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlUserType)GetXamlTypeByName("CommunityToolkit.WinUI.Controls.SettingsCard");
                 xamlMember = new global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlMember(this, "Description", "Object");
                 xamlMember.SetIsDependencyProperty();
-                xamlMember.Getter = get_42_SettingsCard_Description;
-                xamlMember.Setter = set_42_SettingsCard_Description;
+                xamlMember.Getter = get_56_SettingsCard_Description;
+                xamlMember.Setter = set_56_SettingsCard_Description;
                 break;
             case "CommunityToolkit.WinUI.Controls.SettingsCard.Header":
                 userType = (global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlUserType)GetXamlTypeByName("CommunityToolkit.WinUI.Controls.SettingsCard");
                 xamlMember = new global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlMember(this, "Header", "Object");
                 xamlMember.SetIsDependencyProperty();
-                xamlMember.Getter = get_43_SettingsCard_Header;
-                xamlMember.Setter = set_43_SettingsCard_Header;
+                xamlMember.Getter = get_57_SettingsCard_Header;
+                xamlMember.Setter = set_57_SettingsCard_Header;
                 break;
             case "CommunityToolkit.WinUI.Controls.SettingsCard.HeaderIcon":
                 userType = (global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlUserType)GetXamlTypeByName("CommunityToolkit.WinUI.Controls.SettingsCard");
                 xamlMember = new global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlMember(this, "HeaderIcon", "Microsoft.UI.Xaml.Controls.IconElement");
                 xamlMember.SetIsDependencyProperty();
-                xamlMember.Getter = get_44_SettingsCard_HeaderIcon;
-                xamlMember.Setter = set_44_SettingsCard_HeaderIcon;
+                xamlMember.Getter = get_58_SettingsCard_HeaderIcon;
+                xamlMember.Setter = set_58_SettingsCard_HeaderIcon;
                 break;
             case "CommunityToolkit.WinUI.Controls.SettingsCard.ContentAlignment":
                 userType = (global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlUserType)GetXamlTypeByName("CommunityToolkit.WinUI.Controls.SettingsCard");
                 xamlMember = new global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlMember(this, "ContentAlignment", "CommunityToolkit.WinUI.Controls.ContentAlignment");
                 xamlMember.SetIsDependencyProperty();
-                xamlMember.Getter = get_45_SettingsCard_ContentAlignment;
-                xamlMember.Setter = set_45_SettingsCard_ContentAlignment;
+                xamlMember.Getter = get_59_SettingsCard_ContentAlignment;
+                xamlMember.Setter = set_59_SettingsCard_ContentAlignment;
                 break;
             case "CommunityToolkit.WinUI.Controls.SettingsCard.ActionIcon":
                 userType = (global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlUserType)GetXamlTypeByName("CommunityToolkit.WinUI.Controls.SettingsCard");
                 xamlMember = new global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlMember(this, "ActionIcon", "Microsoft.UI.Xaml.Controls.IconElement");
                 xamlMember.SetIsDependencyProperty();
-                xamlMember.Getter = get_46_SettingsCard_ActionIcon;
-                xamlMember.Setter = set_46_SettingsCard_ActionIcon;
+                xamlMember.Getter = get_60_SettingsCard_ActionIcon;
+                xamlMember.Setter = set_60_SettingsCard_ActionIcon;
                 break;
             case "CommunityToolkit.WinUI.Controls.SettingsCard.ActionIconToolTip":
                 userType = (global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlUserType)GetXamlTypeByName("CommunityToolkit.WinUI.Controls.SettingsCard");
                 xamlMember = new global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlMember(this, "ActionIconToolTip", "String");
                 xamlMember.SetIsDependencyProperty();
-                xamlMember.Getter = get_47_SettingsCard_ActionIconToolTip;
-                xamlMember.Setter = set_47_SettingsCard_ActionIconToolTip;
+                xamlMember.Getter = get_61_SettingsCard_ActionIconToolTip;
+                xamlMember.Setter = set_61_SettingsCard_ActionIconToolTip;
                 break;
             case "CommunityToolkit.WinUI.Controls.SettingsCard.IsClickEnabled":
                 userType = (global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlUserType)GetXamlTypeByName("CommunityToolkit.WinUI.Controls.SettingsCard");
                 xamlMember = new global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlMember(this, "IsClickEnabled", "Boolean");
                 xamlMember.SetIsDependencyProperty();
-                xamlMember.Getter = get_48_SettingsCard_IsClickEnabled;
-                xamlMember.Setter = set_48_SettingsCard_IsClickEnabled;
+                xamlMember.Getter = get_62_SettingsCard_IsClickEnabled;
+                xamlMember.Setter = set_62_SettingsCard_IsClickEnabled;
                 break;
             case "CommunityToolkit.WinUI.Controls.SettingsCard.IsActionIconVisible":
                 userType = (global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlUserType)GetXamlTypeByName("CommunityToolkit.WinUI.Controls.SettingsCard");
                 xamlMember = new global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlMember(this, "IsActionIconVisible", "Boolean");
                 xamlMember.SetIsDependencyProperty();
-                xamlMember.Getter = get_49_SettingsCard_IsActionIconVisible;
-                xamlMember.Setter = set_49_SettingsCard_IsActionIconVisible;
-                break;
-            case "Microsoft.UI.Xaml.Controls.InfoBar.Content":
-                userType = (global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.UI.Xaml.Controls.InfoBar");
-                xamlMember = new global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlMember(this, "Content", "Object");
-                xamlMember.SetIsDependencyProperty();
-                xamlMember.Getter = get_50_InfoBar_Content;
-                xamlMember.Setter = set_50_InfoBar_Content;
-                break;
-            case "Microsoft.UI.Xaml.Controls.InfoBar.Title":
-                userType = (global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.UI.Xaml.Controls.InfoBar");
-                xamlMember = new global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlMember(this, "Title", "String");
-                xamlMember.SetIsDependencyProperty();
-                xamlMember.Getter = get_51_InfoBar_Title;
-                xamlMember.Setter = set_51_InfoBar_Title;
-                break;
-            case "Microsoft.UI.Xaml.Controls.InfoBar.IsOpen":
-                userType = (global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.UI.Xaml.Controls.InfoBar");
-                xamlMember = new global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlMember(this, "IsOpen", "Boolean");
-                xamlMember.SetIsDependencyProperty();
-                xamlMember.Getter = get_52_InfoBar_IsOpen;
-                xamlMember.Setter = set_52_InfoBar_IsOpen;
-                break;
-            case "Microsoft.UI.Xaml.Controls.InfoBar.Message":
-                userType = (global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.UI.Xaml.Controls.InfoBar");
-                xamlMember = new global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlMember(this, "Message", "String");
-                xamlMember.SetIsDependencyProperty();
-                xamlMember.Getter = get_53_InfoBar_Message;
-                xamlMember.Setter = set_53_InfoBar_Message;
-                break;
-            case "Microsoft.UI.Xaml.Controls.InfoBar.Severity":
-                userType = (global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.UI.Xaml.Controls.InfoBar");
-                xamlMember = new global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlMember(this, "Severity", "Microsoft.UI.Xaml.Controls.InfoBarSeverity");
-                xamlMember.SetIsDependencyProperty();
-                xamlMember.Getter = get_54_InfoBar_Severity;
-                xamlMember.Setter = set_54_InfoBar_Severity;
-                break;
-            case "Microsoft.UI.Xaml.Controls.InfoBar.ActionButton":
-                userType = (global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.UI.Xaml.Controls.InfoBar");
-                xamlMember = new global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlMember(this, "ActionButton", "Microsoft.UI.Xaml.Controls.Primitives.ButtonBase");
-                xamlMember.SetIsDependencyProperty();
-                xamlMember.Getter = get_55_InfoBar_ActionButton;
-                xamlMember.Setter = set_55_InfoBar_ActionButton;
-                break;
-            case "Microsoft.UI.Xaml.Controls.InfoBar.CloseButtonCommand":
-                userType = (global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.UI.Xaml.Controls.InfoBar");
-                xamlMember = new global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlMember(this, "CloseButtonCommand", "System.Windows.Input.ICommand");
-                xamlMember.SetIsDependencyProperty();
-                xamlMember.Getter = get_56_InfoBar_CloseButtonCommand;
-                xamlMember.Setter = set_56_InfoBar_CloseButtonCommand;
-                break;
-            case "Microsoft.UI.Xaml.Controls.InfoBar.CloseButtonCommandParameter":
-                userType = (global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.UI.Xaml.Controls.InfoBar");
-                xamlMember = new global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlMember(this, "CloseButtonCommandParameter", "Object");
-                xamlMember.SetIsDependencyProperty();
-                xamlMember.Getter = get_57_InfoBar_CloseButtonCommandParameter;
-                xamlMember.Setter = set_57_InfoBar_CloseButtonCommandParameter;
-                break;
-            case "Microsoft.UI.Xaml.Controls.InfoBar.CloseButtonStyle":
-                userType = (global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.UI.Xaml.Controls.InfoBar");
-                xamlMember = new global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlMember(this, "CloseButtonStyle", "Microsoft.UI.Xaml.Style");
-                xamlMember.SetIsDependencyProperty();
-                xamlMember.Getter = get_58_InfoBar_CloseButtonStyle;
-                xamlMember.Setter = set_58_InfoBar_CloseButtonStyle;
-                break;
-            case "Microsoft.UI.Xaml.Controls.InfoBar.ContentTemplate":
-                userType = (global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.UI.Xaml.Controls.InfoBar");
-                xamlMember = new global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlMember(this, "ContentTemplate", "Microsoft.UI.Xaml.DataTemplate");
-                xamlMember.SetIsDependencyProperty();
-                xamlMember.Getter = get_59_InfoBar_ContentTemplate;
-                xamlMember.Setter = set_59_InfoBar_ContentTemplate;
-                break;
-            case "Microsoft.UI.Xaml.Controls.InfoBar.IconSource":
-                userType = (global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.UI.Xaml.Controls.InfoBar");
-                xamlMember = new global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlMember(this, "IconSource", "Microsoft.UI.Xaml.Controls.IconSource");
-                xamlMember.SetIsDependencyProperty();
-                xamlMember.Getter = get_60_InfoBar_IconSource;
-                xamlMember.Setter = set_60_InfoBar_IconSource;
-                break;
-            case "Microsoft.UI.Xaml.Controls.InfoBar.IsClosable":
-                userType = (global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.UI.Xaml.Controls.InfoBar");
-                xamlMember = new global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlMember(this, "IsClosable", "Boolean");
-                xamlMember.SetIsDependencyProperty();
-                xamlMember.Getter = get_61_InfoBar_IsClosable;
-                xamlMember.Setter = set_61_InfoBar_IsClosable;
-                break;
-            case "Microsoft.UI.Xaml.Controls.InfoBar.IsIconVisible":
-                userType = (global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.UI.Xaml.Controls.InfoBar");
-                xamlMember = new global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlMember(this, "IsIconVisible", "Boolean");
-                xamlMember.SetIsDependencyProperty();
-                xamlMember.Getter = get_62_InfoBar_IsIconVisible;
-                xamlMember.Setter = set_62_InfoBar_IsIconVisible;
-                break;
-            case "Microsoft.UI.Xaml.Controls.InfoBar.TemplateSettings":
-                userType = (global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.UI.Xaml.Controls.InfoBar");
-                xamlMember = new global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlMember(this, "TemplateSettings", "Microsoft.UI.Xaml.Controls.InfoBarTemplateSettings");
-                xamlMember.SetIsDependencyProperty();
-                xamlMember.Getter = get_63_InfoBar_TemplateSettings;
-                xamlMember.SetIsReadOnly();
+                xamlMember.Getter = get_63_SettingsCard_IsActionIconVisible;
+                xamlMember.Setter = set_63_SettingsCard_IsActionIconVisible;
                 break;
             case "CommunityToolkit.WinUI.Controls.SettingsExpander.Content":
                 userType = (global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlUserType)GetXamlTypeByName("CommunityToolkit.WinUI.Controls.SettingsExpander");
