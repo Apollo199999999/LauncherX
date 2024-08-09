@@ -1,3 +1,4 @@
+using Microsoft.UI.Text;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Controls.Primitives;
@@ -9,6 +10,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
@@ -23,6 +25,14 @@ namespace LauncherXWinUI.Controls
         public AboutSectionControl()
         {
             this.InitializeComponent();
+        }
+
+        private void VersionText_Loaded(object sender, RoutedEventArgs e)
+        {
+            // Update the version string
+            string versionString = Assembly.GetExecutingAssembly().GetName().Version.ToString();
+            // Do not display the last .0
+            VersionText.Text = versionString.Substring(0, versionString.Length - 2);
         }
     }
 }

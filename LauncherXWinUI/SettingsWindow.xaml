@@ -9,7 +9,7 @@
     xmlns:wct="using:CommunityToolkit.WinUI.Controls"
     xmlns:winex="using:WinUIEx"
     Title="LauncherX Settings"
-    Width="650"
+    Width="670"
     Height="550"
     IsMaximizable="False"
     IsMinimizable="False"
@@ -72,7 +72,16 @@
                     <wct:SettingsCard.HeaderIcon>
                         <FontIcon Glyph="&#xE740;" />
                     </wct:SettingsCard.HeaderIcon>
-                    <Slider Width="200" />
+                    <Slider
+                        x:Name="ScaleSlider"
+                        Width="220"
+                        Maximum="6.00"
+                        Minimum="0.25"
+                        SmallChange="0.05"
+                        SnapsTo="Ticks"
+                        StepFrequency="0.05"
+                        TickFrequency="0.05"
+                        TickPlacement="Outside" />
                 </wct:SettingsCard>
 
                 <wct:SettingsCard
@@ -82,7 +91,7 @@
                     <wct:SettingsCard.HeaderIcon>
                         <FontIcon Glyph="&#xE70F;" />
                     </wct:SettingsCard.HeaderIcon>
-                    <TextBox Width="200" />
+                    <TextBox x:Name="ChangeHeaderTextBox" Width="220" />
                 </wct:SettingsCard>
 
                 <wct:SettingsCard
@@ -122,10 +131,12 @@
         </ScrollViewer>
 
         <Button
+            x:Name="CloseButton"
             Grid.Row="2"
             Width="100"
             Margin="20,10,20,20"
             HorizontalAlignment="Right"
+            Click="CloseButton_Click"
             Content="Close"
             Style="{ThemeResource AccentButtonStyle}" />
     </Grid>

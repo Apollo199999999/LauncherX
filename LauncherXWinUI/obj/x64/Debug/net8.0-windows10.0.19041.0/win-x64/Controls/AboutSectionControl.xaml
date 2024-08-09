@@ -96,6 +96,7 @@
                 <TextBlock x:ConnectionId='3'
                     x:Name="VersionText"
                     FontSize="13"
+                                               
                     Opacity="0.7"
                     Text="x.x.x" />
 

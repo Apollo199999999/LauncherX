@@ -38,8 +38,23 @@ namespace LauncherXWinUI
             // Retrieve user settings from file
             UserSettingsClass.TryReadSettingsFile();
 
+            // Once we have initialised the UserSettingsClass with the correct values, update the UI
+            UpdateUIFromSettings();
+        }
+
+        // Helper methods
+        private void UpdateUIFromSettings()
+        {
             // Set header text
             HeaderTextBlock.Text = UserSettingsClass.HeaderText;
+
+            // Adjust the size of items in ItemsGridView
+            foreach (var gridViewItem in ItemsGridView.Items) {
+                if (gridViewItem is GridViewTile)
+                {
+                    ((GridViewTile)gridViewItem).Size = UserSettingsClass.GridScale;
+                }
+            }
         }
 
         // Event Handlers
@@ -162,6 +177,9 @@ namespace LauncherXWinUI
             // Open Settings Window as a modal window
             SettingsWindow settingsWindow = new SettingsWindow();
             UIFunctionsClass.CreateModalWindow(settingsWindow, this);
+
+            // Update the UI once the SettingsWindow is closed
+            settingsWindow.Closed += (s, e) => UpdateUIFromSettings();
         }
     }
 }

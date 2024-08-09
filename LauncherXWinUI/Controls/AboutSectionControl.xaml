@@ -96,6 +96,7 @@
                 <TextBlock
                     x:Name="VersionText"
                     FontSize="13"
+                    Loaded="VersionText_Loaded"
                     Opacity="0.7"
                     Text="x.x.x" />
 

@@ -8,6 +8,7 @@ using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Navigation;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
@@ -41,6 +42,41 @@ namespace LauncherXWinUI
 
             // Set Window Background
             UIFunctionsClass.SetWindowBackground(this, ContainerFallbackBackgroundBrush);
+
+            // Update the textbox and slider to show correct values
+            ScaleSlider.Value = UserSettingsClass.GridScale;
+            ChangeHeaderTextBox.Text = UserSettingsClass.HeaderText;
+
+            // Create event handlers for the textbox and slider to update settings when their value is changed
+            // We only create the event handlers here to prevent them from firing when the window loads
+            // Since we are updating the settings using these event handlers, if they fire when the window is created, 
+            // they will write wrong (blank) values to the UserSettingsClass
+            ScaleSlider.ValueChanged += ScaleSlider_ValueChanged;
+            ChangeHeaderTextBox.TextChanged += ChangeHeaderTextBox_TextChanged;
+
+            // Make sure to unsubscribe from the event handlers after
+            ScaleSlider.Unloaded += (s, e) => ScaleSlider.ValueChanged -= ScaleSlider_ValueChanged;
+            ChangeHeaderTextBox.Unloaded += (s, e) => ChangeHeaderTextBox.TextChanged -= ChangeHeaderTextBox_TextChanged;
+        }
+
+        private void ScaleSlider_ValueChanged(object sender, RangeBaseValueChangedEventArgs e)
+        {
+            // Update UserSettingsClass
+            UserSettingsClass.GridScale = Math.Round(ScaleSlider.Value, 2);
+            UserSettingsClass.WriteSettingsFile();
+        }
+
+        private void ChangeHeaderTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            // Update UserSettingsClass
+            UserSettingsClass.HeaderText = ChangeHeaderTextBox.Text;
+            UserSettingsClass.WriteSettingsFile();
+        }
+
+        private void CloseButton_Click(object sender, RoutedEventArgs e)
+        {
+            // Close Window
+            this.Close();
         }
     }
 }
