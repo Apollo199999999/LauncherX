@@ -12,6 +12,7 @@
           "CommunityToolkit.WinUI.Controls.SettingsControls": "8.0.240109",
           "Microsoft.Windows.SDK.BuildTools": "10.0.26100.1",
           "Microsoft.WindowsAppSDK": "1.5.240627000",
+          "Octokit": "13.0.1",
           "System.Text.Json": "8.0.4",
           "WinUIEx": "2.3.4",
           "runtimepack.Microsoft.NETCore.App.Runtime.win-x64": "8.0.7",
@@ -886,6 +887,14 @@
           }
         }
       },
+      "Octokit/13.0.1": {
+        "runtime": {
+          "lib/netstandard2.0/Octokit.dll": {
+            "assemblyVersion": "13.0.1.0",
+            "fileVersion": "13.0.1.0"
+          }
+        }
+      },
       "System.Text.Encodings.Web/8.0.0": {},
       "System.Text.Json/8.0.4": {
         "dependencies": {
@@ -969,6 +978,13 @@
       "sha512": "sha512-qzzWG8rxZyzKzBuUdwr4ApezMINf+NT2b8EiEE5fchczNJJmDwlHImMWxX1pHK1W8Yby99alqLyC8DB0fIrhuA==",
       "path": "microsoft.windowsappsdk/1.5.240627000",
       "hashPath": "microsoft.windowsappsdk.1.5.240627000.nupkg.sha512"
+    },
+    "Octokit/13.0.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-tjXTa2FXzbd3n17VWpi8UXe05EIJqHcWJW8C2kukftIve00duWiZL8x4i1vlZQ0zQ4RbRANbRc7J5K7Co/1spQ==",
+      "path": "octokit/13.0.1",
+      "hashPath": "octokit.13.0.1.nupkg.sha512"
     },
     "System.Text.Encodings.Web/8.0.0": {
       "type": "package",

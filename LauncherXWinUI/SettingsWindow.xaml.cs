@@ -2,18 +2,8 @@ using LauncherXWinUI.Classes;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Controls.Primitives;
-using Microsoft.UI.Xaml.Data;
-using Microsoft.UI.Xaml.Input;
-using Microsoft.UI.Xaml.Media;
-using Microsoft.UI.Xaml.Navigation;
 using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -77,6 +67,35 @@ namespace LauncherXWinUI
         {
             // Close Window
             this.Close();
+        }
+
+        private async void CheckUpdatesBtn_Click(object sender, RoutedEventArgs e)
+        {
+            // Show infobars and progress ring depending on whether updates are available or not
+            CheckUpdatesProgressRing.IsActive = true;
+
+            bool? isUpdateAvailable = await UpdatesClass.IsUpdateAvailable();
+            if (isUpdateAvailable == true)
+            {
+                UpdateInfoBar.IsOpen = true;
+            }
+            else if (isUpdateAvailable == false)
+            {
+                NoUpdateInfoBar.IsOpen = true;
+            }
+            else
+            {
+                UpdateFailInfoBar.IsOpen = true;
+            }
+
+            CheckUpdatesProgressRing.IsActive = false;
+        }
+
+        private void GetUpdateBtn_Click(object sender, RoutedEventArgs e)
+        {
+            // Navigate to GitHub releases page and exit application
+            Process.Start(new ProcessStartInfo { FileName = "https://github.com/Apollo199999999/LauncherX/releases", UseShellExecute = true});
+            Application.Current.Exit();
         }
     }
 }

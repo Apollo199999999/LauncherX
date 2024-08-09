@@ -570,11 +570,11 @@ namespace LauncherXWinUI.LauncherXWinUI_XamlTypeInfo
                 userType.AddMemberName("Title");
                 userType.AddMemberName("Width");
                 userType.AddMemberName("Height");
-                userType.AddMemberName("MinWidth");
-                userType.AddMemberName("MinHeight");
                 userType.AddMemberName("IsMaximizable");
                 userType.AddMemberName("IsMinimizable");
                 userType.AddMemberName("IsResizable");
+                userType.AddMemberName("MinWidth");
+                userType.AddMemberName("MinHeight");
                 userType.AddMemberName("AppWindow");
                 userType.AddMemberName("TaskBarIcon");
                 userType.AddMemberName("PersistenceId");
@@ -1120,55 +1120,55 @@ namespace LauncherXWinUI.LauncherXWinUI_XamlTypeInfo
             var that = (global::WinUIEx.WindowEx)instance;
             that.Height = (global::System.Double)Value;
         }
-        private object get_20_WindowEx_MinWidth(object instance)
-        {
-            var that = (global::WinUIEx.WindowEx)instance;
-            return that.MinWidth;
-        }
-        private void set_20_WindowEx_MinWidth(object instance, object Value)
-        {
-            var that = (global::WinUIEx.WindowEx)instance;
-            that.MinWidth = (global::System.Double)Value;
-        }
-        private object get_21_WindowEx_MinHeight(object instance)
-        {
-            var that = (global::WinUIEx.WindowEx)instance;
-            return that.MinHeight;
-        }
-        private void set_21_WindowEx_MinHeight(object instance, object Value)
-        {
-            var that = (global::WinUIEx.WindowEx)instance;
-            that.MinHeight = (global::System.Double)Value;
-        }
-        private object get_22_WindowEx_IsMaximizable(object instance)
+        private object get_20_WindowEx_IsMaximizable(object instance)
         {
             var that = (global::WinUIEx.WindowEx)instance;
             return that.IsMaximizable;
         }
-        private void set_22_WindowEx_IsMaximizable(object instance, object Value)
+        private void set_20_WindowEx_IsMaximizable(object instance, object Value)
         {
             var that = (global::WinUIEx.WindowEx)instance;
             that.IsMaximizable = (global::System.Boolean)Value;
         }
-        private object get_23_WindowEx_IsMinimizable(object instance)
+        private object get_21_WindowEx_IsMinimizable(object instance)
         {
             var that = (global::WinUIEx.WindowEx)instance;
             return that.IsMinimizable;
         }
-        private void set_23_WindowEx_IsMinimizable(object instance, object Value)
+        private void set_21_WindowEx_IsMinimizable(object instance, object Value)
         {
             var that = (global::WinUIEx.WindowEx)instance;
             that.IsMinimizable = (global::System.Boolean)Value;
         }
-        private object get_24_WindowEx_IsResizable(object instance)
+        private object get_22_WindowEx_IsResizable(object instance)
         {
             var that = (global::WinUIEx.WindowEx)instance;
             return that.IsResizable;
         }
-        private void set_24_WindowEx_IsResizable(object instance, object Value)
+        private void set_22_WindowEx_IsResizable(object instance, object Value)
         {
             var that = (global::WinUIEx.WindowEx)instance;
             that.IsResizable = (global::System.Boolean)Value;
+        }
+        private object get_23_WindowEx_MinWidth(object instance)
+        {
+            var that = (global::WinUIEx.WindowEx)instance;
+            return that.MinWidth;
+        }
+        private void set_23_WindowEx_MinWidth(object instance, object Value)
+        {
+            var that = (global::WinUIEx.WindowEx)instance;
+            that.MinWidth = (global::System.Double)Value;
+        }
+        private object get_24_WindowEx_MinHeight(object instance)
+        {
+            var that = (global::WinUIEx.WindowEx)instance;
+            return that.MinHeight;
+        }
+        private void set_24_WindowEx_MinHeight(object instance, object Value)
+        {
+            var that = (global::WinUIEx.WindowEx)instance;
+            that.MinHeight = (global::System.Double)Value;
         }
         private object get_25_WindowEx_AppWindow(object instance)
         {
@@ -1884,35 +1884,35 @@ namespace LauncherXWinUI.LauncherXWinUI_XamlTypeInfo
                 xamlMember.Getter = get_19_WindowEx_Height;
                 xamlMember.Setter = set_19_WindowEx_Height;
                 break;
-            case "WinUIEx.WindowEx.MinWidth":
-                userType = (global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlUserType)GetXamlTypeByName("WinUIEx.WindowEx");
-                xamlMember = new global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlMember(this, "MinWidth", "Double");
-                xamlMember.Getter = get_20_WindowEx_MinWidth;
-                xamlMember.Setter = set_20_WindowEx_MinWidth;
-                break;
-            case "WinUIEx.WindowEx.MinHeight":
-                userType = (global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlUserType)GetXamlTypeByName("WinUIEx.WindowEx");
-                xamlMember = new global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlMember(this, "MinHeight", "Double");
-                xamlMember.Getter = get_21_WindowEx_MinHeight;
-                xamlMember.Setter = set_21_WindowEx_MinHeight;
-                break;
             case "WinUIEx.WindowEx.IsMaximizable":
                 userType = (global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlUserType)GetXamlTypeByName("WinUIEx.WindowEx");
                 xamlMember = new global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlMember(this, "IsMaximizable", "Boolean");
-                xamlMember.Getter = get_22_WindowEx_IsMaximizable;
-                xamlMember.Setter = set_22_WindowEx_IsMaximizable;
+                xamlMember.Getter = get_20_WindowEx_IsMaximizable;
+                xamlMember.Setter = set_20_WindowEx_IsMaximizable;
                 break;
             case "WinUIEx.WindowEx.IsMinimizable":
                 userType = (global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlUserType)GetXamlTypeByName("WinUIEx.WindowEx");
                 xamlMember = new global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlMember(this, "IsMinimizable", "Boolean");
-                xamlMember.Getter = get_23_WindowEx_IsMinimizable;
-                xamlMember.Setter = set_23_WindowEx_IsMinimizable;
+                xamlMember.Getter = get_21_WindowEx_IsMinimizable;
+                xamlMember.Setter = set_21_WindowEx_IsMinimizable;
                 break;
             case "WinUIEx.WindowEx.IsResizable":
                 userType = (global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlUserType)GetXamlTypeByName("WinUIEx.WindowEx");
                 xamlMember = new global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlMember(this, "IsResizable", "Boolean");
-                xamlMember.Getter = get_24_WindowEx_IsResizable;
-                xamlMember.Setter = set_24_WindowEx_IsResizable;
+                xamlMember.Getter = get_22_WindowEx_IsResizable;
+                xamlMember.Setter = set_22_WindowEx_IsResizable;
+                break;
+            case "WinUIEx.WindowEx.MinWidth":
+                userType = (global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlUserType)GetXamlTypeByName("WinUIEx.WindowEx");
+                xamlMember = new global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlMember(this, "MinWidth", "Double");
+                xamlMember.Getter = get_23_WindowEx_MinWidth;
+                xamlMember.Setter = set_23_WindowEx_MinWidth;
+                break;
+            case "WinUIEx.WindowEx.MinHeight":
+                userType = (global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlUserType)GetXamlTypeByName("WinUIEx.WindowEx");
+                xamlMember = new global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlMember(this, "MinHeight", "Double");
+                xamlMember.Getter = get_24_WindowEx_MinHeight;
+                xamlMember.Setter = set_24_WindowEx_MinHeight;
                 break;
             case "WinUIEx.WindowEx.AppWindow":
                 userType = (global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlUserType)GetXamlTypeByName("WinUIEx.WindowEx");

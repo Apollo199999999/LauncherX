@@ -62,6 +62,10 @@
               "target": "Package",
               "version": "[1.5.240627000, )"
             },
+            "Octokit": {
+              "target": "Package",
+              "version": "[13.0.1, )"
+            },
             "System.Text.Json": {
               "target": "Package",
               "version": "[8.0.4, )"

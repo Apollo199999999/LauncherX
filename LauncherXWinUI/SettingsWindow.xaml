@@ -101,8 +101,48 @@
                     <wct:SettingsCard.HeaderIcon>
                         <FontIcon Glyph="&#xE895;" />
                     </wct:SettingsCard.HeaderIcon>
-                    <Button Content="Check for updates" />
+                    <StackPanel Orientation="Horizontal">
+                        <ProgressRing
+                            x:Name="CheckUpdatesProgressRing"
+                            Margin="0,0,10,0"
+                            IsActive="False" />
+                        <Button
+                            x:Name="CheckUpdatesBtn"
+                            Click="CheckUpdatesBtn_Click"
+                            Content="Check for updates" />
+                    </StackPanel>
                 </wct:SettingsCard>
+
+                <InfoBar
+                    x:Name="UpdateInfoBar"
+                    Title="Update available"
+                    Margin="0,5,0,0"
+                    IsOpen="False"
+                    Message="To download it, click the button below"
+                    Severity="Informational">
+                    <Button
+                        x:Name="GetUpdateBtn"
+                        Margin="0,0,0,20"
+                        Click="GetUpdateBtn_Click"
+                        Content="Get update"
+                        Style="{ThemeResource AccentButtonStyle}" />
+                </InfoBar>
+
+                <InfoBar
+                    x:Name="NoUpdateInfoBar"
+                    Title="You're up to date!"
+                    Margin="0,5,0,0"
+                    IsOpen="False"
+                    Message="No updates are available."
+                    Severity="Success" />
+
+                <InfoBar
+                    x:Name="UpdateFailInfoBar"
+                    Title="Failed to check for updates"
+                    Margin="0,5,0,0"
+                    IsOpen="False"
+                    Message="Please check your internet connection, or try again later."
+                    Severity="Error" />
 
                 <!--  About section  -->
                 <TextBlock

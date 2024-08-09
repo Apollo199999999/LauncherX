@@ -40,7 +40,7 @@
             x:Name="AppTitleBar"
             Grid.Row="0"
             VerticalAlignment="Top">
-            <TextBlock x:ConnectionId='8'
+            <TextBlock x:ConnectionId='14'
                 x:Name="AppTitle"
                 Margin="8,8,0,0"
                 VerticalAlignment="Top"
@@ -72,7 +72,7 @@
                     <wct:SettingsCard.HeaderIcon>
                         <FontIcon Glyph="&#xE740;" />
                     </wct:SettingsCard.HeaderIcon>
-                    <Slider x:ConnectionId='7'
+                    <Slider x:ConnectionId='13'
                         x:Name="ScaleSlider"
                         Width="220"
                         Maximum="6.00"
@@ -91,7 +91,7 @@
                     <wct:SettingsCard.HeaderIcon>
                         <FontIcon Glyph="&#xE70F;" />
                     </wct:SettingsCard.HeaderIcon>
-                    <TextBox x:ConnectionId='6' x:Name="ChangeHeaderTextBox" Width="220" />
+                    <TextBox x:ConnectionId='12' x:Name="ChangeHeaderTextBox" Width="220" />
                 </wct:SettingsCard>
 
                 <wct:SettingsCard
@@ -101,8 +101,48 @@
                     <wct:SettingsCard.HeaderIcon>
                         <FontIcon Glyph="&#xE895;" />
                     </wct:SettingsCard.HeaderIcon>
-                    <Button Content="Check for updates" />
+                    <StackPanel Orientation="Horizontal">
+                        <ProgressRing x:ConnectionId='10'
+                            x:Name="CheckUpdatesProgressRing"
+                            Margin="0,0,10,0"
+                            IsActive="False" />
+                        <Button x:ConnectionId='11'
+                            x:Name="CheckUpdatesBtn"
+                                                         
+                            Content="Check for updates" />
+                    </StackPanel>
                 </wct:SettingsCard>
+
+                <InfoBar x:ConnectionId='6'
+                    x:Name="UpdateInfoBar"
+                    Title="Update available"
+                    Margin="0,5,0,0"
+                    IsOpen="False"
+                    Message="To download it, click the button below"
+                    Severity="Informational">
+                    <Button x:ConnectionId='9'
+                        x:Name="GetUpdateBtn"
+                        Margin="0,0,0,20"
+                                                  
+                        Content="Get update"
+                        Style="{ThemeResource AccentButtonStyle}" />
+                </InfoBar>
+
+                <InfoBar x:ConnectionId='7'
+                    x:Name="NoUpdateInfoBar"
+                    Title="You're up to date!"
+                    Margin="0,5,0,0"
+                    IsOpen="False"
+                    Message="No updates are available."
+                    Severity="Success" />
+
+                <InfoBar x:ConnectionId='8'
+                    x:Name="UpdateFailInfoBar"
+                    Title="Failed to check for updates"
+                    Margin="0,5,0,0"
+                    IsOpen="False"
+                    Message="Please check your internet connection, or try again later."
+                    Severity="Error" />
 
                 <!--  About section  -->
                 <TextBlock
