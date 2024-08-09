@@ -48,6 +48,10 @@ namespace LauncherXWinUI.Controls
         // Event Handlers
         private async void PickAFolderButton_Click(object sender, RoutedEventArgs e)
         {
+            // Configure UI
+            this.IsPrimaryButtonEnabled = false;
+            OpenFolderProgressRing.IsActive = true;
+
             // Create a folder picker
             FolderPicker openPicker = new Windows.Storage.Pickers.FolderPicker();
 
@@ -80,9 +84,11 @@ namespace LauncherXWinUI.Controls
                 BitmapImage bitmapImage = new BitmapImage();
                 bitmapImage.SetSource(thumbnail);
                 addFolderDialogListViewItem.FolderIcon = bitmapImage;
-
             }
 
+            // Configure UI
+            this.IsPrimaryButtonEnabled = true;
+            OpenFolderProgressRing.IsActive = false;
         }
 
         private void ContentDialog_PrimaryButtonClick(ContentDialog sender, ContentDialogButtonClickEventArgs args)

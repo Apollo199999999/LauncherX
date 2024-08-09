@@ -48,6 +48,10 @@ namespace LauncherXWinUI.Controls
         // Event handlers
         private async void PickAFileButton_Click(object sender, RoutedEventArgs e)
         {
+            // Configure UI
+            this.IsPrimaryButtonEnabled = false;
+            OpenFilesProgressRing.IsActive = true;
+
             // Create a file picker
             var openPicker = new Windows.Storage.Pickers.FileOpenPicker();
 
@@ -86,6 +90,9 @@ namespace LauncherXWinUI.Controls
                 }
             }
 
+            // Configure UI
+            this.IsPrimaryButtonEnabled = true;
+            OpenFilesProgressRing.IsActive = false;
         }
 
         private void ContentDialog_PrimaryButtonClick(ContentDialog sender, ContentDialogButtonClickEventArgs args)

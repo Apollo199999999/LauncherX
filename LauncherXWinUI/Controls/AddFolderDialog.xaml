@@ -9,6 +9,7 @@
     Title="Add folder(s)"
     CloseButtonText="Cancel"
     DefaultButton="Primary"
+    IsPrimaryButtonEnabled="True"
     PrimaryButtonClick="ContentDialog_PrimaryButtonClick"
     PrimaryButtonText="Add folder(s)"
     mc:Ignorable="d">
@@ -33,6 +34,11 @@
                 Margin="10,0,0,10"
                 Click="PickAFolderButton_Click"
                 Content="Open a folder" />
+            <ProgressRing
+                x:Name="OpenFolderProgressRing"
+                Margin="10,0,0,10"
+                VerticalAlignment="Center"
+                IsActive="False" />
         </StackPanel>
 
         <TextBlock Text="Folders selected will show up in the list below. You can reorder your folders after adding them." TextWrapping="WrapWholeWords" />
