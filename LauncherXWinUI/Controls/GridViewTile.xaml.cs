@@ -1,3 +1,4 @@
+using LauncherXWinUI.Classes;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Controls.Primitives;
@@ -24,9 +25,28 @@ namespace LauncherXWinUI.Controls
 
             // For some reason, StackPanel needs a background for right tap to work
             TilePanel.Background = new SolidColorBrush(Color.FromArgb(0, 0, 0, 0));
+
+            // Set the unique id to some guid
+            this.UniqueId = System.Guid.NewGuid().ToString();
         }
 
         // Declare properties that this control will have
+
+        /// <summary>
+        /// Launch arguments, if necessary
+        /// </summary>
+        public string UniqueId
+        {
+            get => (string)GetValue(UniqueIdProperty);
+            set => SetValue(UniqueIdProperty, value);
+        }
+
+        DependencyProperty UniqueIdProperty = DependencyProperty.Register(
+            nameof(UniqueId),
+            typeof(string),
+            typeof(GridViewTile),
+            new PropertyMetadata(default(string)));
+
 
         /// <summary>
         /// Size of the control
@@ -169,6 +189,33 @@ namespace LauncherXWinUI.Controls
             typeof(GridViewTile),
             new PropertyMetadata(default(string)));
 
+        // Helper functions
+        /// <summary>
+        /// Determines if a given path belongs to that of a file or folder
+        /// </summary>
+        /// <param name="path">Path of file/folder</param>
+        /// <returns>Returns true if path is a folder, false otherwise</returns>
+        /// <exception cref="ArgumentNullException">Thrown when no path argument is input.</exception>
+        private bool IsPathDirectory(string path)
+        {
+            if (path == null) throw new ArgumentNullException("path");
+            path = path.Trim();
+
+            if (Directory.Exists(path))
+                return true;
+
+            if (File.Exists(path))
+                return false;
+
+            // neither file nor directory exists. guess intention
+
+            // if has trailing slash then it's a directory
+            if (new[] { "\\", "/" }.Any(x => path.EndsWith(x)))
+                return true; // ends with slash
+
+            // if has extension then its a file; directory otherwise
+            return string.IsNullOrWhiteSpace(Path.GetExtension(path));
+        }
 
         // Event handlers
         private async void GridViewTileControl_Tapped(object sender, TappedRoutedEventArgs e)
@@ -273,34 +320,5 @@ namespace LauncherXWinUI.Controls
             }
         }
 
-        // Helper functions
-        /// <summary>
-        /// Determines if a given path belongs to that of a file or folder
-        /// </summary>
-        /// <param name="path">Path of file/folder</param>
-        /// <returns>Returns true if path is a folder, false otherwise</returns>
-        /// <exception cref="ArgumentNullException">Thrown when no path argument is input.</exception>
-        private bool IsPathDirectory(string path)
-        {
-            if (path == null) throw new ArgumentNullException("path");
-            path = path.Trim();
-
-            if (Directory.Exists(path))
-                return true;
-
-            if (File.Exists(path))
-                return false;
-
-            // neither file nor directory exists. guess intention
-
-            // if has trailing slash then it's a directory
-            if (new[] { "\\", "/" }.Any(x => path.EndsWith(x)))
-                return true; // ends with slash
-
-            // if has extension then its a file; directory otherwise
-            return string.IsNullOrWhiteSpace(Path.GetExtension(path));
-        }
-
-        
     }
 }

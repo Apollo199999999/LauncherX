@@ -6,6 +6,7 @@ using Microsoft.UI.Xaml.Media.Imaging;
 using System;
 using System.IO;
 using System.Diagnostics;
+using Windows.ApplicationModel.DataTransfer;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -119,6 +120,7 @@ namespace LauncherXWinUI
                     gridViewTile.DisplayText = fileItem.DisplayText;
                     gridViewTile.ImageSource = fileItem.FileIcon;
                     gridViewTile.Size = UserSettingsClass.GridScale;
+                    gridViewTile.Drop += GridViewTtem_Drop;
                     ItemsGridView.Items.Add(gridViewTile);
                 }
             }
@@ -145,6 +147,7 @@ namespace LauncherXWinUI
                     gridViewTile.DisplayText = folderItem.DisplayText;
                     gridViewTile.ImageSource = folderItem.FolderIcon;
                     gridViewTile.Size = UserSettingsClass.GridScale;
+                    gridViewTile.Drop += GridViewTtem_Drop;
                     ItemsGridView.Items.Add(gridViewTile);
                 }
             }
@@ -167,6 +170,7 @@ namespace LauncherXWinUI
                 gridViewTile.ExecutingArguments = "";
                 gridViewTile.DisplayText = addWebsiteDialog.InputWebsiteUrl;
                 gridViewTile.Size = UserSettingsClass.GridScale;
+                gridViewTile.Drop += GridViewTtem_Drop;
 
                 // Get the icon of the website, using Google's favicon service
                 BitmapImage websiteIcon = new BitmapImage();
@@ -195,5 +199,20 @@ namespace LauncherXWinUI
             // Update the UI once the SettingsWindow is closed
             settingsWindow.Closed += (s, e) => UpdateUIFromSettings();
         }
+
+        // This section of event handlers handles dragging items in the GridView to make groups
+        private void ItemsGridView_DragItemsStarting(object sender, DragItemsStartingEventArgs e)
+        {
+            e.Data.Properties.Add("DraggedControl", (e.Items[0] as GridViewTile));
+            Debug.WriteLine("drag: " + (e.Items[0] as GridViewTile).UniqueId);
+        }
+
+        private void GridViewTtem_Drop(object sender, DragEventArgs e)
+        {
+            GridViewTile DroppedOnTile = sender as GridViewTile;
+            GridViewTile DraggedTile = e.Data.Properties["DraggedControl"] as GridViewTile;
+            Debug.WriteLine("drop: " + DraggedTile.UniqueId);
+        }
+
     }
 }

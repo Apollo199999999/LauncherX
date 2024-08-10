@@ -7,6 +7,7 @@
     xmlns:local="using:LauncherXWinUI.Controls"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     x:Name="GridViewTileControl"
+    AllowDrop="True"
     IsRightTapEnabled="True"
     RightTapped="GridViewTileControl_RightTapped"
     Tapped="GridViewTileControl_Tapped"
