@@ -7,14 +7,21 @@
     xmlns:local="using:LauncherXWinUI.Controls"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     x:Name="GridViewTileGroupControl"
+    AllowDrop="True"
     mc:Ignorable="d">
 
-    <Border x:ConnectionId='2'
+    <FlyoutBase.AttachedFlyout>
+        <MenuFlyout x:ConnectionId='2' x:Name="AddItemFlyout">
+            <MenuFlyoutItem Text="Add item to group" />
+        </MenuFlyout>
+    </FlyoutBase.AttachedFlyout>
+
+    <Border x:ConnectionId='3'
         x:Name="ControlBorder"
         BorderBrush="{ThemeResource AccentFillColorDefaultBrush}"
         BorderThickness="0">
-        <StackPanel x:ConnectionId='3' x:Name="GroupPanel">
-            <Grid x:ConnectionId='4'
+        <StackPanel x:ConnectionId='4' x:Name="GroupPanel">
+            <Grid x:ConnectionId='5'
                 x:Name="ItemsPreviewGrid"
                 HorizontalAlignment="Center"
                 VerticalAlignment="Center">
@@ -27,7 +34,7 @@
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
             </Grid>
-            <TextBlock x:ConnectionId='5'
+            <TextBlock x:ConnectionId='6'
                 x:Name="TileText"
                 Margin="5,5,5,5"
                 HorizontalAlignment="Center"

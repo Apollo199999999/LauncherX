@@ -269,14 +269,20 @@ namespace LauncherXWinUI
                 GridViewTile DroppedOnTile = sender as GridViewTile;
                 GridViewTile DraggedTile = e.Data.Properties["DraggedControl"] as GridViewTile;
 
+                if (DroppedOnTile.UniqueId == DraggedTile.UniqueId)
+                {
+                    return;
+                }
+
                 // Create a new group when a GridViewTile is dropped over another GridViewTile
                 newGridViewTileGroup = new GridViewTileGroup();
                 newGridViewTileGroup.Size = UserSettingsClass.GridScale;
                 newGridViewTileGroup.DisplayText = "New group";
                 newGridViewTileGroup.Items.Add(DraggedTile);
                 newGridViewTileGroup.Items.Add(DroppedOnTile);
-                newGridViewTileGroup.Items.Add(DraggedTile);
-                newGridViewTileGroup.Items.Add(DroppedOnTile);
+                newGridViewTileGroup.DragEnter += GridViewTileGroup_DragEnter;
+                newGridViewTileGroup.DragLeave += GridViewTileGroup_DragLeave;
+                newGridViewTileGroup.Drop += GridViewTileGroup_Drop;
 
                 // Add the GridViewTileGroup
                 int index = ItemsGridView.Items.IndexOf(DroppedOnTile);
@@ -284,12 +290,57 @@ namespace LauncherXWinUI
             }
         }
 
+        // GridViewTileGroup drag events
+      
+        private void GridViewTileGroup_DragEnter(object sender, DragEventArgs e)
+        {
+            if (e.Data.Properties["DraggedControl"] != null && e.Data.Properties["DraggedControl"] is GridViewTile)
+            {
+                GridViewTileGroup DraggedOverTileGroup = sender as GridViewTileGroup;
+
+                // Show some indication that a item can be added to the group
+                DraggedOverTileGroup.ShowAddItemIndicator();
+            }
+        }
+
+        private void GridViewTileGroup_DragLeave(object sender, DragEventArgs e)
+        {
+            if (e.Data.Properties["DraggedControl"] != null && e.Data.Properties["DraggedControl"] is GridViewTile)
+            {
+                GridViewTileGroup DraggedOverTileGroup = sender as GridViewTileGroup;
+
+                // Show some indication that a item can be added to the group
+                DraggedOverTileGroup.HideAddItemIndicator();
+            }
+        }
+
+        GridViewTileGroup existingGridViewTileGroup;
+        private void GridViewTileGroup_Drop(object sender, DragEventArgs e)
+        {
+            if (e.Data.Properties["DraggedControl"] != null && e.Data.Properties["DraggedControl"] is GridViewTile)
+            {
+                existingGridViewTileGroup = sender as GridViewTileGroup;
+                GridViewTile DraggedTile = e.Data.Properties["DraggedControl"] as GridViewTile;
+
+                // Add the GridViewTile to the existing GridViewTileGroup
+                existingGridViewTileGroup.HideAddItemIndicator();
+                existingGridViewTileGroup.Items.Add(DraggedTile);
+            }
+        }
+
+
         private void ItemsGridView_DragItemsCompleted(ListViewBase sender, DragItemsCompletedEventArgs args)
         {
-            // Remove the old GridViewTileObjects if applicable
+            // Remove the old GridViewTile objects if applicable
             if (newGridViewTileGroup != null)
             {
                 newGridViewTileGroup.RemoveGroupItemsFromGridView();
+                newGridViewTileGroup = null;
+            }
+            if (existingGridViewTileGroup != null)
+            {
+                existingGridViewTileGroup.RemoveGroupItemsFromGridView();
+                existingGridViewTileGroup = null;
             }
             
         }

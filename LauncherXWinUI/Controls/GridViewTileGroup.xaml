@@ -7,7 +7,14 @@
     xmlns:local="using:LauncherXWinUI.Controls"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     x:Name="GridViewTileGroupControl"
+    AllowDrop="True"
     mc:Ignorable="d">
+
+    <FlyoutBase.AttachedFlyout>
+        <MenuFlyout x:Name="AddItemFlyout">
+            <MenuFlyoutItem Text="Add item to group" />
+        </MenuFlyout>
+    </FlyoutBase.AttachedFlyout>
 
     <Border
         x:Name="ControlBorder"
