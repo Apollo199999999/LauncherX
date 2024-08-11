@@ -57,6 +57,10 @@ namespace LauncherXWinUI
                 {
                     ((GridViewTile)gridViewItem).Size = UserSettingsClass.GridScale;
                 }
+                else if (gridViewItem is GridViewTileGroup)
+                {
+                    ((GridViewTileGroup)gridViewItem).Size = UserSettingsClass.GridScale;
+                }
             }
         }
 
@@ -125,7 +129,6 @@ namespace LauncherXWinUI
                     gridViewTile.DragEnter += GridViewTile_DragEnter;
                     gridViewTile.DragLeave += GridViewTile_DragLeave;
                     gridViewTile.Drop += GridViewTile_Drop;
-                    gridViewTile.DropCompleted += GridViewTile_DropCompleted;
                     ItemsGridView.Items.Add(gridViewTile);
                 }
             }
@@ -257,6 +260,7 @@ namespace LauncherXWinUI
             }
         }
 
+        GridViewTileGroup newGridViewTileGroup;
 
         private void GridViewTile_Drop(object sender, DragEventArgs e)
         {
@@ -266,22 +270,28 @@ namespace LauncherXWinUI
                 GridViewTile DraggedTile = e.Data.Properties["DraggedControl"] as GridViewTile;
 
                 // Create a new group when a GridViewTile is dropped over another GridViewTile
-                GridViewTileGroup gridViewTileGroup = new GridViewTileGroup();
-                gridViewTileGroup.Items.Add(DraggedTile);
-                gridViewTileGroup.Items.Add(DroppedOnTile);
+                newGridViewTileGroup = new GridViewTileGroup();
+                newGridViewTileGroup.Size = UserSettingsClass.GridScale;
+                newGridViewTileGroup.DisplayText = "New group";
+                newGridViewTileGroup.Items.Add(DraggedTile);
+                newGridViewTileGroup.Items.Add(DroppedOnTile);
+                newGridViewTileGroup.Items.Add(DraggedTile);
+                newGridViewTileGroup.Items.Add(DroppedOnTile);
 
                 // Add the GridViewTileGroup
-                // TODO: Fix removal of both tiles 
                 int index = ItemsGridView.Items.IndexOf(DroppedOnTile);
-                ItemsGridView.Items.Insert(index, gridViewTileGroup);
+                ItemsGridView.Items.Insert(index, newGridViewTileGroup);
             }
         }
 
-        private void GridViewTile_DropCompleted(UIElement sender, DropCompletedEventArgs args)
+        private void ItemsGridView_DragItemsCompleted(ListViewBase sender, DragItemsCompletedEventArgs args)
         {
+            // Remove the old GridViewTileObjects if applicable
+            if (newGridViewTileGroup != null)
+            {
+                newGridViewTileGroup.RemoveGroupItemsFromGridView();
+            }
             
         }
-
-
     }
 }

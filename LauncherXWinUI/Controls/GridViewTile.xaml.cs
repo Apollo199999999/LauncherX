@@ -245,7 +245,6 @@ namespace LauncherXWinUI.Controls
             // Try to start the executing path
             try
             {
-                Debug.WriteLine(ExecutingPath);
                 ProcessStartInfo processStartInfo = new ProcessStartInfo { FileName = ExecutingPath, UseShellExecute = true, Arguments = ExecutingArguments };
                 Process.Start(processStartInfo);
             }

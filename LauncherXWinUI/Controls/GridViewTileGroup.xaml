@@ -13,8 +13,27 @@
         x:Name="ControlBorder"
         BorderBrush="{ThemeResource AccentFillColorDefaultBrush}"
         BorderThickness="0">
-        <Grid x:Name="GroupGrid">
-            <GridView x:Name="ItemsPreviewGridView" SelectionMode="None" />
-        </Grid>
+        <StackPanel x:Name="GroupPanel">
+            <Grid
+                x:Name="ItemsPreviewGrid"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+            </Grid>
+            <TextBlock
+                x:Name="TileText"
+                Margin="5,5,5,5"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Bottom"
+                TextAlignment="Center"
+                TextTrimming="CharacterEllipsis" />
+        </StackPanel>
     </Border>
 </UserControl>

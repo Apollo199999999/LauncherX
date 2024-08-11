@@ -1,3 +1,4 @@
+using LauncherXWinUI.Classes;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Controls.Primitives;
@@ -81,11 +82,49 @@ namespace LauncherXWinUI.Controls
                 // Update control dimensions
                 gridViewTileGroup.GridViewTileGroupControl.Width = newWidth;
                 gridViewTileGroup.GridViewTileGroupControl.Height = newHeight;
-                gridViewTileGroup.GroupGrid.Width = newWidth;
-                gridViewTileGroup.GroupGrid.Height = newHeight;
+                gridViewTileGroup.GroupPanel.Width = newWidth;
+                gridViewTileGroup.GroupPanel.Height = newHeight;
+                gridViewTileGroup.ItemsPreviewGrid.Margin = new Thickness(newSize * 22.5, newSize * 5, newSize * 22.5, 0);
+                gridViewTileGroup.ItemsPreviewGrid.Height = newWidth - newSize * 22.5 - newSize * 22.5;
+                gridViewTileGroup.ItemsPreviewGrid.Width = newWidth - newSize * 22.5 - newSize * 22.5;
 
-                // TODO: Update image margin and dimensions
-               
+                // Update image controls
+                foreach (Image image in gridViewTileGroup.ItemsPreviewGrid.Children)
+                {
+                    image.Width = gridViewTileGroup.ItemsPreviewGrid.Width / 2.5;
+                    image.Height = gridViewTileGroup.ItemsPreviewGrid.Width / 2.5;
+                    image.Stretch = Stretch.Uniform;
+                }
+
+                // Update the font size of the textblock
+                gridViewTileGroup.TileText.FontSize = newSize * 12;
+            }
+        }
+
+        /// <summary>
+        /// Text that is displayed below the ItemsPreviewGridView
+        /// </summary>
+        public string DisplayText
+        {
+            get => (string)GetValue(DisplayTextProperty);
+            set => SetValue(DisplayTextProperty, value);
+        }
+
+        DependencyProperty DisplayTextProperty = DependencyProperty.Register(
+            nameof(DisplayText),
+            typeof(string),
+            typeof(GridViewTileGroup),
+            new PropertyMetadata(default(string), new PropertyChangedCallback(OnDisplayTextChanged)));
+
+        private static void OnDisplayTextChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            GridViewTileGroup gridViewTileGroup = d as GridViewTileGroup;
+            string newDisplayText = e.NewValue as string;
+
+            if (newDisplayText != null)
+            {
+                // Update textblock
+                gridViewTileGroup.TileText.Text = newDisplayText;
             }
         }
 
@@ -107,7 +146,28 @@ namespace LauncherXWinUI.Controls
 
         private void Items_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
-            
+            ItemsPreviewGrid.Children.Clear();
+
+            // Create new image objects to display the first 4 items in the items collection
+            for (int i = 0; i < Items.Count; i++)
+            {
+                if (i >= 4)
+                {
+                    break;
+                }
+
+                Image image = new Image();
+                image.Source = Items[i].ImageSource;
+                image.Width = ItemsPreviewGrid.Width / 2.5;
+                image.Height = ItemsPreviewGrid.Width / 2.5;
+                image.Stretch = Stretch.Uniform;
+                image.HorizontalAlignment = HorizontalAlignment.Center;
+                image.VerticalAlignment = VerticalAlignment.Center;
+                image.SetValue(Grid.RowProperty, Math.Floor((double)i / 2));
+                image.SetValue(Grid.ColumnProperty, i % 2);
+                ItemsPreviewGrid.Children.Add(image);
+            }
+
         }
 
 
@@ -126,6 +186,24 @@ namespace LauncherXWinUI.Controls
         public void UnhighlightControl()
         {
             ControlBorder.BorderThickness = new Thickness(0);
+        }
+
+        /// <summary>
+        /// Remove the items in this GridViewTileGroup from the parent GridView
+        /// </summary>
+        public void RemoveGroupItemsFromGridView()
+        {
+            GridView parentGridView = this.Parent as GridView;
+            if (parentGridView != null)
+            {
+                foreach (GridViewTile gridViewTile in this.Items)
+                {
+                    if (parentGridView.Items.Contains(gridViewTile))
+                    {
+                        parentGridView.Items.Remove(gridViewTile);
+                    }
+                }
+            }
         }
     }
 }

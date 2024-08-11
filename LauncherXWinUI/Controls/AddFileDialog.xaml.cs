@@ -81,7 +81,6 @@ namespace LauncherXWinUI.Controls
                     // Display the files in the ListView
                     AddFileDialogListViewItem addFileDialogListViewItem = new AddFileDialogListViewItem();
                     addFileDialogListViewItem.ExecutingPath = file.Path;
-                    Debug.WriteLine(file.Path);
                     addFileDialogListViewItem.DisplayText = file.Name;
                     SelectedFilesListView.Items.Add(addFileDialogListViewItem);
 
