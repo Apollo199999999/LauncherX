@@ -96,22 +96,22 @@ namespace LauncherXWinUI.Controls
         /// <summary>
         /// Path to the image file to be rendered in the control
         /// </summary>
-        public BitmapImage ImageSource
+        public ImageSource ImageSource
         {
-            get => (BitmapImage)GetValue(ImageSourceProperty);
+            get => (ImageSource)GetValue(ImageSourceProperty);
             set => SetValue(ImageSourceProperty, value);
         }
 
         DependencyProperty ImageSourceProperty = DependencyProperty.Register(
             nameof(ImageSource),
-            typeof(BitmapImage),
+            typeof(ImageSource),
             typeof(GridViewTile),
-            new PropertyMetadata(default(BitmapImage), new PropertyChangedCallback(OnImageSourceChanged)));
+            new PropertyMetadata(default(ImageSource), new PropertyChangedCallback(OnImageSourceChanged)));
 
         private static void OnImageSourceChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             GridViewTile gridViewTile = d as GridViewTile;
-            BitmapImage newImageSource = e.NewValue as BitmapImage;
+            ImageSource newImageSource = e.NewValue as ImageSource;
 
             if (newImageSource != null)
             {

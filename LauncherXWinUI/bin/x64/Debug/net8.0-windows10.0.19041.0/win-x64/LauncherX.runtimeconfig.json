@@ -5,6 +5,10 @@
       {
         "name": "Microsoft.NETCore.App",
         "version": "8.0.7"
+      },
+      {
+        "name": "Microsoft.WindowsDesktop.App",
+        "version": "8.0.7"
       }
     ],
     "configProperties": {

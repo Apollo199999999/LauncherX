@@ -237,7 +237,7 @@ namespace LauncherXWinUI.LauncherXWinUI_XamlTypeInfo
             _typeNameTable[9] = "System.Collections.Generic.List`1<LauncherXWinUI.Controls.AddFileDialogListViewItem>";
             _typeNameTable[10] = "LauncherXWinUI.Controls.AddFileDialogListViewItem";
             _typeNameTable[11] = "String";
-            _typeNameTable[12] = "Microsoft.UI.Xaml.Media.Imaging.BitmapImage";
+            _typeNameTable[12] = "Microsoft.UI.Xaml.Media.ImageSource";
             _typeNameTable[13] = "Microsoft.UI.Xaml.Controls.ProgressRing";
             _typeNameTable[14] = "Microsoft.UI.Xaml.Controls.Control";
             _typeNameTable[15] = "Double";
@@ -299,7 +299,7 @@ namespace LauncherXWinUI.LauncherXWinUI_XamlTypeInfo
             _typeTable[9] = typeof(global::System.Collections.Generic.List<global::LauncherXWinUI.Controls.AddFileDialogListViewItem>);
             _typeTable[10] = typeof(global::LauncherXWinUI.Controls.AddFileDialogListViewItem);
             _typeTable[11] = typeof(global::System.String);
-            _typeTable[12] = typeof(global::Microsoft.UI.Xaml.Media.Imaging.BitmapImage);
+            _typeTable[12] = typeof(global::Microsoft.UI.Xaml.Media.ImageSource);
             _typeTable[13] = typeof(global::Microsoft.UI.Xaml.Controls.ProgressRing);
             _typeTable[14] = typeof(global::Microsoft.UI.Xaml.Controls.Control);
             _typeTable[15] = typeof(global::System.Double);
@@ -530,7 +530,7 @@ namespace LauncherXWinUI.LauncherXWinUI_XamlTypeInfo
                 xamlType = new global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlSystemBaseType(typeName, type);
                 break;
 
-            case 12:   //  Microsoft.UI.Xaml.Media.Imaging.BitmapImage
+            case 12:   //  Microsoft.UI.Xaml.Media.ImageSource
                 xamlType = new global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlSystemBaseType(typeName, type);
                 break;
 
@@ -1025,7 +1025,7 @@ namespace LauncherXWinUI.LauncherXWinUI_XamlTypeInfo
         private void set_5_AddFileDialogListViewItem_FileIcon(object instance, object Value)
         {
             var that = (global::LauncherXWinUI.Controls.AddFileDialogListViewItem)instance;
-            that.FileIcon = (global::Microsoft.UI.Xaml.Media.Imaging.BitmapImage)Value;
+            that.FileIcon = (global::Microsoft.UI.Xaml.Media.ImageSource)Value;
         }
         private object get_6_ProgressRing_IsActive(object instance)
         {
@@ -1120,7 +1120,7 @@ namespace LauncherXWinUI.LauncherXWinUI_XamlTypeInfo
         private void set_15_AddFolderDialogListViewItem_FolderIcon(object instance, object Value)
         {
             var that = (global::LauncherXWinUI.Controls.AddFolderDialogListViewItem)instance;
-            that.FolderIcon = (global::Microsoft.UI.Xaml.Media.Imaging.BitmapImage)Value;
+            that.FolderIcon = (global::Microsoft.UI.Xaml.Media.ImageSource)Value;
         }
         private object get_16_AddWebsiteDialog_InputWebsiteUrl(object instance)
         {
@@ -1160,7 +1160,7 @@ namespace LauncherXWinUI.LauncherXWinUI_XamlTypeInfo
         private void set_19_GridViewTile_ImageSource(object instance, object Value)
         {
             var that = (global::LauncherXWinUI.Controls.GridViewTile)instance;
-            that.ImageSource = (global::Microsoft.UI.Xaml.Media.Imaging.BitmapImage)Value;
+            that.ImageSource = (global::Microsoft.UI.Xaml.Media.ImageSource)Value;
         }
         private object get_20_GridViewTile_DisplayText(object instance)
         {
@@ -1893,7 +1893,7 @@ namespace LauncherXWinUI.LauncherXWinUI_XamlTypeInfo
                 break;
             case "LauncherXWinUI.Controls.AddFileDialogListViewItem.FileIcon":
                 userType = (global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlUserType)GetXamlTypeByName("LauncherXWinUI.Controls.AddFileDialogListViewItem");
-                xamlMember = new global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlMember(this, "FileIcon", "Microsoft.UI.Xaml.Media.Imaging.BitmapImage");
+                xamlMember = new global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlMember(this, "FileIcon", "Microsoft.UI.Xaml.Media.ImageSource");
                 xamlMember.Getter = get_5_AddFileDialogListViewItem_FileIcon;
                 xamlMember.Setter = set_5_AddFileDialogListViewItem_FileIcon;
                 break;
@@ -1958,7 +1958,7 @@ namespace LauncherXWinUI.LauncherXWinUI_XamlTypeInfo
                 break;
             case "LauncherXWinUI.Controls.AddFolderDialogListViewItem.FolderIcon":
                 userType = (global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlUserType)GetXamlTypeByName("LauncherXWinUI.Controls.AddFolderDialogListViewItem");
-                xamlMember = new global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlMember(this, "FolderIcon", "Microsoft.UI.Xaml.Media.Imaging.BitmapImage");
+                xamlMember = new global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlMember(this, "FolderIcon", "Microsoft.UI.Xaml.Media.ImageSource");
                 xamlMember.Getter = get_15_AddFolderDialogListViewItem_FolderIcon;
                 xamlMember.Setter = set_15_AddFolderDialogListViewItem_FolderIcon;
                 break;
@@ -1982,7 +1982,7 @@ namespace LauncherXWinUI.LauncherXWinUI_XamlTypeInfo
                 break;
             case "LauncherXWinUI.Controls.GridViewTile.ImageSource":
                 userType = (global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlUserType)GetXamlTypeByName("LauncherXWinUI.Controls.GridViewTile");
-                xamlMember = new global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlMember(this, "ImageSource", "Microsoft.UI.Xaml.Media.Imaging.BitmapImage");
+                xamlMember = new global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlMember(this, "ImageSource", "Microsoft.UI.Xaml.Media.ImageSource");
                 xamlMember.Getter = get_19_GridViewTile_ImageSource;
                 xamlMember.Setter = set_19_GridViewTile_ImageSource;
                 break;

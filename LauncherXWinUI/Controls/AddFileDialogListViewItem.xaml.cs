@@ -1,5 +1,6 @@
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
+using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Media.Imaging;
 
 // To learn more about WinUI, the WinUI project structure,
@@ -83,17 +84,17 @@ namespace LauncherXWinUI.Controls
         /// <summary>
         /// Path to the icon of the file
         /// </summary>
-        public BitmapImage FileIcon
+        public ImageSource FileIcon
         {
-            get => (BitmapImage)GetValue(FileIconProperty);
+            get => (ImageSource)GetValue(FileIconProperty);
             set => SetValue(FileIconProperty, value);
         }
 
         DependencyProperty FileIconProperty = DependencyProperty.Register(
             nameof(FileIcon),
-            typeof(BitmapImage),
+            typeof(ImageSource),
             typeof(AddFileDialogListViewItem),
-            new PropertyMetadata(default(BitmapImage)));
+            new PropertyMetadata(default(ImageSource)));
 
         // Event Handlers
         private void RemoveBtn_Click(object sender, RoutedEventArgs e)

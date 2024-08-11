@@ -14,11 +14,6 @@ namespace LauncherXWinUI.Classes
     /// </summary>
     public static class UpdatesClass
     {
-        //Check Internet Connection Function
-        //Creating the extern function...  
-        [DllImport("wininet.dll")]
-        private extern static bool InternetGetConnectedState(out int Description, int ReservedValue);
-
         /// <summary>
         /// Use Win32 API to check whether an internet connection exists
         /// </summary>
@@ -26,7 +21,7 @@ namespace LauncherXWinUI.Classes
         private static bool CheckForInternetConnection()
         {
             int Desc;
-            return InternetGetConnectedState(out Desc, 0);
+            return Shell32.InternetGetConnectedState(out Desc, 0);
         }
 
         /// <summary>

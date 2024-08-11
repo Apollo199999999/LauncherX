@@ -261,6 +261,19 @@
             "related": ".pri;.xml"
           }
         }
+      },
+      "WinFormsClassLibrary/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v8.0",
+        "compile": {
+          "bin/placeholder/WinFormsClassLibrary.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/WinFormsClassLibrary.dll": {}
+        },
+        "frameworkReferences": [
+          "Microsoft.WindowsDesktop.App.WindowsForms"
+        ]
       }
     },
     "net8.0-windows10.0.19041/win-arm64": {
@@ -494,6 +507,19 @@
             "related": ".pri;.xml"
           }
         }
+      },
+      "WinFormsClassLibrary/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v8.0",
+        "compile": {
+          "bin/placeholder/WinFormsClassLibrary.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/WinFormsClassLibrary.dll": {}
+        },
+        "frameworkReferences": [
+          "Microsoft.WindowsDesktop.App.WindowsForms"
+        ]
       }
     },
     "net8.0-windows10.0.19041/win-x64": {
@@ -727,6 +753,19 @@
             "related": ".pri;.xml"
           }
         }
+      },
+      "WinFormsClassLibrary/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v8.0",
+        "compile": {
+          "bin/placeholder/WinFormsClassLibrary.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/WinFormsClassLibrary.dll": {}
+        },
+        "frameworkReferences": [
+          "Microsoft.WindowsDesktop.App.WindowsForms"
+        ]
       }
     },
     "net8.0-windows10.0.19041/win-x86": {
@@ -960,6 +999,19 @@
             "related": ".pri;.xml"
           }
         }
+      },
+      "WinFormsClassLibrary/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v8.0",
+        "compile": {
+          "bin/placeholder/WinFormsClassLibrary.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/WinFormsClassLibrary.dll": {}
+        },
+        "frameworkReferences": [
+          "Microsoft.WindowsDesktop.App.WindowsForms"
+        ]
       }
     }
   },
@@ -2101,6 +2153,11 @@
         "winuiex.2.3.4.nupkg.sha512",
         "winuiex.nuspec"
       ]
+    },
+    "WinFormsClassLibrary/1.0.0": {
+      "type": "project",
+      "path": "../WinFormsClassLibrary/WinFormsClassLibrary.csproj",
+      "msbuildProject": "../WinFormsClassLibrary/WinFormsClassLibrary.csproj"
     }
   },
   "projectFileDependencyGroups": {
@@ -2110,6 +2167,7 @@
       "Microsoft.WindowsAppSDK >= 1.5.240627000",
       "Octokit >= 13.0.1",
       "System.Text.Json >= 8.0.4",
+      "WinFormsClassLibrary >= 1.0.0",
       "WinUIEx >= 2.3.4"
     ]
   },
@@ -2145,7 +2203,11 @@
       "frameworks": {
         "net8.0-windows10.0.19041": {
           "targetAlias": "net8.0-windows10.0.19041.0",
-          "projectReferences": {}
+          "projectReferences": {
+            "C:\\Users\\fligh\\source\\repos\\LauncherX\\WinFormsClassLibrary\\WinFormsClassLibrary.csproj": {
+              "projectPath": "C:\\Users\\fligh\\source\\repos\\LauncherX\\WinFormsClassLibrary\\WinFormsClassLibrary.csproj"
+            }
+          }
         }
       },
       "warningProperties": {

@@ -79,17 +79,17 @@ namespace LauncherXWinUI.Controls
         /// <summary>
         /// Path to the icon of the folder
         /// </summary>
-        public BitmapImage FolderIcon
+        public ImageSource FolderIcon
         {
-            get => (BitmapImage)GetValue(FileIconProperty);
+            get => (ImageSource)GetValue(FileIconProperty);
             set => SetValue(FileIconProperty, value);
         }
 
         DependencyProperty FileIconProperty = DependencyProperty.Register(
             nameof(FolderIcon),
-            typeof(BitmapImage),
+            typeof(ImageSource),
             typeof(AddFolderDialogListViewItem),
-            new PropertyMetadata(default(BitmapImage)));
+            new PropertyMetadata(default(ImageSource)));
 
         // Event Handlers
         private void RemoveBtn_Click(object sender, RoutedEventArgs e)
