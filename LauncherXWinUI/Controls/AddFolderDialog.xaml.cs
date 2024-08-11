@@ -17,6 +17,7 @@ using Windows.Storage;
 using Windows.Storage.AccessCache;
 using Microsoft.UI.Xaml.Media.Imaging;
 using Windows.Storage.FileProperties;
+using System.Windows.Forms;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -52,26 +53,20 @@ namespace LauncherXWinUI.Controls
             this.IsPrimaryButtonEnabled = false;
             OpenFolderProgressRing.IsActive = true;
 
-            // Create a folder picker
-            FolderPicker openPicker = new Windows.Storage.Pickers.FolderPicker();
-
-            // See the sample code below for how to make the window accessible from the App class.
-            var window = App.MainWindow;
-
-            // Retrieve the window handle (HWND) of the current WinUI 3 window.
-            var hWnd = WinRT.Interop.WindowNative.GetWindowHandle(window);
-
-            // Initialize the folder picker with the window handle (HWND).
-            WinRT.Interop.InitializeWithWindow.Initialize(openPicker, hWnd);
-
-            // Set options for your folder picker
-            openPicker.FileTypeFilter.Add("*");
-
-            // Open the picker for the user to pick a folder
-            StorageFolder folder = await openPicker.PickSingleFolderAsync();
-            if (folder != null)
+            // Unfortunately, WASDK has a 2 year old issue (at the time of writing) about FolderPickers breaking when the app is run as admin: https://github.com/microsoft/WindowsAppSDK/issues/2504
+            // WHY THE FUCK IS MICROSHIT DIDDLING AROUND WITH COPILOT AND AI WHEN THEY CANT EVEN GET THIS SHIT RIGHT??!??!?
+            // aNYWAYS, we must use the WinForms FolderBrowserDialog as a replacement for now
+            // System.Windows.Forms is exposed via the "WinForms Class Library" project
+            FolderBrowserDialog folderBrowserDialog = new FolderBrowserDialog();
+            if (folderBrowserDialog.ShowDialog() == DialogResult.OK)
             {
+                string folderPath = folderBrowserDialog.SelectedPath;
+
+                // We can use WASDK APIs from here on out
                 SelectedFoldersListView.Items.Remove(PlaceholderListViewItem);
+
+                // Initialize a new StorageFolder object to use WASDK APIs
+                StorageFolder folder = await StorageFolder.GetFolderFromPathAsync(folderPath);
 
                 // Display the folder in the ListView
                 AddFolderDialogListViewItem addFolderDialogListViewItem = new AddFolderDialogListViewItem();
@@ -84,8 +79,9 @@ namespace LauncherXWinUI.Controls
                 BitmapImage bitmapImage = new BitmapImage();
                 bitmapImage.SetSource(thumbnail);
                 addFolderDialogListViewItem.FolderIcon = bitmapImage;
-            }
 
+            }
+           
             // Configure UI
             this.IsPrimaryButtonEnabled = true;
             OpenFolderProgressRing.IsActive = false;

@@ -1,31 +1,15 @@
 using LauncherXWinUI.Classes;
-using Microsoft.UI;
-using Microsoft.UI.Windowing;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
-using Microsoft.UI.Xaml.Controls.Primitives;
-using Microsoft.UI.Xaml.Data;
-using Microsoft.UI.Xaml.Input;
-using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Media.Imaging;
-using Microsoft.UI.Xaml.Navigation;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
-
-using System.Drawing.Imaging;
 using System.IO;
-using System.Linq;
 using System.Runtime.InteropServices;
 using System.Runtime.InteropServices.WindowsRuntime;
-using System.Text;
 using System.Threading.Tasks;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
-using Windows.Management.Deployment;
 using Windows.Storage;
 using Windows.Storage.FileProperties;
-using Windows.Storage.Pickers;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -137,7 +121,7 @@ namespace LauncherXWinUI.Controls
             this.IsPrimaryButtonEnabled = false;
             OpenFilesProgressRing.IsActive = true;
 
-            // Unfortuantely, the FileOpenPicker that WASDK provides does not support opening .lnk, .url, and .wsh files,
+            // Unfortuantely, the FileOpenPicker that WASDK provides does not support opening .lnk, .url, and .wsh files (because StorageFile doesn't support it),
             // which is unacceptable, hence we must use the OpenFilePicker from WinForms to pick files
             // The System.Windows.Forms namespace is accessed via a project reference to the "WinFormsClassLibrary" project
             System.Windows.Forms.OpenFileDialog openFileDialog = new System.Windows.Forms.OpenFileDialog();
@@ -188,6 +172,9 @@ namespace LauncherXWinUI.Controls
                     }
                 }
             }
+
+            // Clean up
+            openFileDialog.Dispose();
 
             // Configure UI
             this.IsPrimaryButtonEnabled = true;
