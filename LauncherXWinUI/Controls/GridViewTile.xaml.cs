@@ -10,6 +10,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using Windows.ApplicationModel.Core;
 using Windows.UI;
 
 // To learn more about WinUI, the WinUI project structure,
@@ -33,7 +34,7 @@ namespace LauncherXWinUI.Controls
         // Declare properties that this control will have
 
         /// <summary>
-        /// Launch arguments, if necessary
+        /// A unique GUID to identify each item in the ItemsGridView
         /// </summary>
         public string UniqueId
         {
@@ -188,6 +189,27 @@ namespace LauncherXWinUI.Controls
             typeof(string),
             typeof(GridViewTile),
             new PropertyMetadata(default(string)));
+        
+        // Methods
+        /// <summary>
+        /// Show the flyout to indicate that a new group can be created and highlight the control
+        /// </summary>
+        public void ShowCreateGroupIndicator()
+        {
+            MenuFlyout flyoutBase = (MenuFlyout)FlyoutBase.GetAttachedFlyout(GridViewTileControl);
+            flyoutBase.ShowAt(GridViewTileControl);
+            ControlBorder.BorderThickness = new Thickness(2);
+        }
+
+        /// <summary>
+        /// Hide the flyout that indicates that a new group can be created and unhighlight the control
+        /// </summary>
+        public void HideCreateGroupIndicator()
+        {
+            MenuFlyout flyoutBase = (MenuFlyout)FlyoutBase.GetAttachedFlyout(GridViewTileControl);
+            flyoutBase.Hide();
+            ControlBorder.BorderThickness = new Thickness(0);
+        }
 
         // Helper functions
         /// <summary>
@@ -223,7 +245,9 @@ namespace LauncherXWinUI.Controls
             // Try to start the executing path
             try
             {
-                Process.Start(new ProcessStartInfo { FileName = ExecutingPath, UseShellExecute = true, Arguments = ExecutingArguments });
+                Debug.WriteLine(ExecutingPath);
+                ProcessStartInfo processStartInfo = new ProcessStartInfo { FileName = ExecutingPath, UseShellExecute = true, Arguments = ExecutingArguments };
+                Process.Start(processStartInfo);
             }
             catch
             {

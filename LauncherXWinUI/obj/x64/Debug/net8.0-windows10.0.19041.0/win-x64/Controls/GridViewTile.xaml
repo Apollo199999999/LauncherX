@@ -12,52 +12,61 @@
                                                  
                                        
     mc:Ignorable="d">
+    <FlyoutBase.AttachedFlyout>
+        <MenuFlyout x:ConnectionId='2' x:Name="CreateGroupFlyout">
+            <MenuFlyoutItem Text="Create new group" />
+        </MenuFlyout>
+    </FlyoutBase.AttachedFlyout>
+    <Border x:ConnectionId='3'
+        x:Name="ControlBorder"
+        BorderBrush="{ThemeResource AccentFillColorDefaultBrush}"
+        BorderThickness="0">
+        <StackPanel x:ConnectionId='4'
+            x:Name="TilePanel"
+            HorizontalAlignment="Stretch"
+            VerticalAlignment="Stretch">
+            <Image x:ConnectionId='5'
+                x:Name="TileImage"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Stretch="Uniform" />
 
-    <StackPanel x:ConnectionId='2'
-        x:Name="TilePanel"
-        HorizontalAlignment="Stretch"
-        VerticalAlignment="Stretch">
-        <Image x:ConnectionId='3'
-            x:Name="TileImage"
-            HorizontalAlignment="Center"
-            VerticalAlignment="Center"
-            Stretch="Uniform" />
+            <TextBlock x:ConnectionId='6'
+                x:Name="TileText"
+                Margin="5,5,5,5"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Bottom"
+                TextAlignment="Center"
+                TextTrimming="CharacterEllipsis" />
 
-        <TextBlock x:ConnectionId='4'
-            x:Name="TileText"
-            Margin="5,5,5,5"
-            HorizontalAlignment="Center"
-            VerticalAlignment="Bottom"
-            TextAlignment="Center"
-            TextTrimming="CharacterEllipsis" />
+            <FlyoutBase.AttachedFlyout>
+                <MenuFlyout x:ConnectionId='7' x:Name="RightClickMenu">
+                    <MenuFlyoutItem x:ConnectionId='8'
+                        x:Name="MenuOpenOption"
+                                                    
+                        Text="Open">
+                        <MenuFlyoutItem.Icon>
+                            <FontIcon x:ConnectionId='12' x:Name="MenuOpenOptionIcon" Glyph="&#xE8E5;" />
+                        </MenuFlyoutItem.Icon>
+                    </MenuFlyoutItem>
 
-        <FlyoutBase.AttachedFlyout>
-            <MenuFlyout x:ConnectionId='5' x:Name="RightClickMenu">
-                <MenuFlyoutItem x:ConnectionId='6'
-                    x:Name="MenuOpenOption"
-                                                
-                    Text="Open">
-                    <MenuFlyoutItem.Icon>
-                        <FontIcon x:ConnectionId='10' x:Name="MenuOpenOptionIcon" Glyph="&#xE8E5;" />
-                    </MenuFlyoutItem.Icon>
-                </MenuFlyoutItem>
+                    <MenuFlyoutItem x:ConnectionId='9'
+                        x:Name="MenuOpenLocOption"
+                                                       
+                        Text="Open Location">
+                        <MenuFlyoutItem.Icon>
+                            <FontIcon x:ConnectionId='11' x:Name="MenuOpenLocOptionIcon" Glyph="&#xE838;" />
+                        </MenuFlyoutItem.Icon>
+                    </MenuFlyoutItem>
 
-                <MenuFlyoutItem x:ConnectionId='7'
-                    x:Name="MenuOpenLocOption"
-                                                   
-                    Text="Open Location">
-                    <MenuFlyoutItem.Icon>
-                        <FontIcon x:ConnectionId='9' x:Name="MenuOpenLocOptionIcon" Glyph="&#xE838;" />
-                    </MenuFlyoutItem.Icon>
-                </MenuFlyoutItem>
-
-                <MenuFlyoutItem x:ConnectionId='8'
-                    x:Name="MenuRemoveOption"
-                                                  
-                    Icon="Delete"
-                    Text="Remove from LauncherX" />
-            </MenuFlyout>
-        </FlyoutBase.AttachedFlyout>
-    </StackPanel>
+                    <MenuFlyoutItem x:ConnectionId='10'
+                        x:Name="MenuRemoveOption"
+                                                      
+                        Icon="Delete"
+                        Text="Remove from LauncherX" />
+                </MenuFlyout>
+            </FlyoutBase.AttachedFlyout>
+        </StackPanel>
+    </Border>
 </UserControl>
 

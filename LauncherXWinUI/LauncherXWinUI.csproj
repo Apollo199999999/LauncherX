@@ -32,6 +32,7 @@
     <None Remove="Controls\AddFolderDialogListViewItem.xaml" />
     <None Remove="Controls\AddWebsiteDialog.xaml" />
     <None Remove="Controls\GridViewTile.xaml" />
+    <None Remove="Controls\GridViewTileGroup.xaml" />
     <None Remove="Resources\icon.ico" />
     <None Remove="Resources\websitePlaceholder.png" />
     <None Remove="SettingsWindow.xaml" />
@@ -145,5 +146,11 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Remove="Controls\AddFolderDialog.xaml" />
+  </ItemGroup>
+  <ItemGroup>
+    <CustomAdditionalCompileInputs Remove="Controls\GridViewTileGroup.xaml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Remove="Controls\GridViewTileGroup.xaml" />
   </ItemGroup>
 </Project>

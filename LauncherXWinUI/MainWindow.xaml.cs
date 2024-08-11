@@ -6,6 +6,8 @@ using Microsoft.UI.Xaml.Media.Imaging;
 using System;
 using System.IO;
 using System.Diagnostics;
+using Microsoft.UI.Xaml.Media;
+using Windows.UI;
 using Windows.ApplicationModel.DataTransfer;
 
 // To learn more about WinUI, the WinUI project structure,
@@ -120,7 +122,10 @@ namespace LauncherXWinUI
                     gridViewTile.DisplayText = fileItem.DisplayText;
                     gridViewTile.ImageSource = fileItem.FileIcon;
                     gridViewTile.Size = UserSettingsClass.GridScale;
-                    gridViewTile.Drop += GridViewTtem_Drop;
+                    gridViewTile.DragEnter += GridViewTile_DragEnter;
+                    gridViewTile.DragLeave += GridViewTile_DragLeave;
+                    gridViewTile.Drop += GridViewTile_Drop;
+                    gridViewTile.DropCompleted += GridViewTile_DropCompleted;
                     ItemsGridView.Items.Add(gridViewTile);
                 }
             }
@@ -147,7 +152,9 @@ namespace LauncherXWinUI
                     gridViewTile.DisplayText = folderItem.DisplayText;
                     gridViewTile.ImageSource = folderItem.FolderIcon;
                     gridViewTile.Size = UserSettingsClass.GridScale;
-                    gridViewTile.Drop += GridViewTtem_Drop;
+                    gridViewTile.Drop += GridViewTile_Drop;
+                    gridViewTile.DragEnter += GridViewTile_DragEnter;
+                    gridViewTile.DragLeave += GridViewTile_DragLeave;
                     ItemsGridView.Items.Add(gridViewTile);
                 }
             }
@@ -170,7 +177,9 @@ namespace LauncherXWinUI
                 gridViewTile.ExecutingArguments = "";
                 gridViewTile.DisplayText = addWebsiteDialog.InputWebsiteUrl;
                 gridViewTile.Size = UserSettingsClass.GridScale;
-                gridViewTile.Drop += GridViewTtem_Drop;
+                gridViewTile.Drop += GridViewTile_Drop;
+                gridViewTile.DragEnter += GridViewTile_DragEnter;
+                gridViewTile.DragLeave += GridViewTile_DragLeave;
 
                 // Get the icon of the website, using Google's favicon service
                 BitmapImage websiteIcon = new BitmapImage();
@@ -201,18 +210,78 @@ namespace LauncherXWinUI
         }
 
         // This section of event handlers handles dragging items in the GridView to make groups
+
+        // When an item in the GridView is being dragged, add the control to the data package that is transferred in Drag-Drop operations
         private void ItemsGridView_DragItemsStarting(object sender, DragItemsStartingEventArgs e)
         {
-            e.Data.Properties.Add("DraggedControl", (e.Items[0] as GridViewTile));
-            Debug.WriteLine("drag: " + (e.Items[0] as GridViewTile).UniqueId);
+            if (e.Items[0] is GridViewTile)
+            {
+                e.Data.Properties.Add("DraggedControl", (e.Items[0] as GridViewTile));
+            }
+            else if (e.Items[0] is GridViewTileGroup)
+            {
+                e.Data.Properties.Add("DraggedControl", (e.Items[0] as GridViewTileGroup));
+            }
         }
 
-        private void GridViewTtem_Drop(object sender, DragEventArgs e)
+        // Drag event handlers for GridViewTile: When something is dragged over a GridViewTile, highlight it
+        // When a GridViewTile is dropped over a GridViewTile, create a new group
+        // Prevent anything from happening when a GridViewTileGroup is dragged over a GridViewTile
+        private void GridViewTile_DragEnter(object sender, DragEventArgs e)
         {
-            GridViewTile DroppedOnTile = sender as GridViewTile;
-            GridViewTile DraggedTile = e.Data.Properties["DraggedControl"] as GridViewTile;
-            Debug.WriteLine("drop: " + DraggedTile.UniqueId);
+            if (e.Data.Properties["DraggedControl"] != null && e.Data.Properties["DraggedControl"] is GridViewTile)
+            {
+                GridViewTile DraggedTile = e.Data.Properties["DraggedControl"] as GridViewTile;
+                GridViewTile DraggedOverTile = sender as GridViewTile;
+
+                if (DraggedTile.UniqueId != DraggedOverTile.UniqueId)
+                {
+                    // Show some indication that a group can be formed
+                    DraggedOverTile.ShowCreateGroupIndicator();
+                }
+            }
+           
         }
+        private void GridViewTile_DragLeave(object sender, DragEventArgs e)
+        {
+            if (e.Data.Properties["DraggedControl"] != null && e.Data.Properties["DraggedControl"] is GridViewTile)
+            {
+                GridViewTile DraggedTile = e.Data.Properties["DraggedControl"] as GridViewTile;
+                GridViewTile DraggedOverTile = sender as GridViewTile;
+
+                if (DraggedTile.UniqueId != DraggedOverTile.UniqueId)
+                {
+                    // Hide the create group indicator
+                    DraggedOverTile.HideCreateGroupIndicator();
+                }
+            }
+        }
+
+
+        private void GridViewTile_Drop(object sender, DragEventArgs e)
+        {
+            if (e.Data.Properties["DraggedControl"] != null && e.Data.Properties["DraggedControl"] is GridViewTile)
+            {
+                GridViewTile DroppedOnTile = sender as GridViewTile;
+                GridViewTile DraggedTile = e.Data.Properties["DraggedControl"] as GridViewTile;
+
+                // Create a new group when a GridViewTile is dropped over another GridViewTile
+                GridViewTileGroup gridViewTileGroup = new GridViewTileGroup();
+                gridViewTileGroup.Items.Add(DraggedTile);
+                gridViewTileGroup.Items.Add(DroppedOnTile);
+
+                // Add the GridViewTileGroup
+                // TODO: Fix removal of both tiles 
+                int index = ItemsGridView.Items.IndexOf(DroppedOnTile);
+                ItemsGridView.Items.Insert(index, gridViewTileGroup);
+            }
+        }
+
+        private void GridViewTile_DropCompleted(UIElement sender, DropCompletedEventArgs args)
+        {
+            
+        }
+
 
     }
 }

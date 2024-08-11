@@ -211,7 +211,8 @@
                 CanDragItems="True"
                 CanReorderItems="True"
                                                                    
-                IsItemClickEnabled="True" />
+                IsItemClickEnabled="True"
+                SelectionMode="Single" />
         </Grid>
 
     </Grid>

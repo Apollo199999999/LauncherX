@@ -14,6 +14,9 @@
     <Page Update="Controls\AboutSectionControl.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="Controls\GridViewTileGroup.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="SettingsWindow.xaml">
       <SubType>Designer</SubType>
     </Page>

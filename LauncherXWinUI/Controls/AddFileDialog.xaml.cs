@@ -8,12 +8,14 @@ using Microsoft.UI.Xaml.Media.Imaging;
 using Microsoft.UI.Xaml.Navigation;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using System.Text;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.Management.Deployment;
 using Windows.Storage;
 using Windows.Storage.FileProperties;
 using Windows.Storage.Pickers;
@@ -68,6 +70,7 @@ namespace LauncherXWinUI.Controls
             openPicker.ViewMode = PickerViewMode.List;
             openPicker.FileTypeFilter.Add("*");
 
+            // TODO: Deal with shorttcuts
             // Open the picker for the user to pick a file
             IReadOnlyList<StorageFile> files = await openPicker.PickMultipleFilesAsync();
             if (files.Count > 0)
@@ -78,6 +81,7 @@ namespace LauncherXWinUI.Controls
                     // Display the files in the ListView
                     AddFileDialogListViewItem addFileDialogListViewItem = new AddFileDialogListViewItem();
                     addFileDialogListViewItem.ExecutingPath = file.Path;
+                    Debug.WriteLine(file.Path);
                     addFileDialogListViewItem.DisplayText = file.Name;
                     SelectedFilesListView.Items.Add(addFileDialogListViewItem);
 
@@ -86,7 +90,6 @@ namespace LauncherXWinUI.Controls
                     BitmapImage bitmapImage = new BitmapImage();
                     bitmapImage.SetSource(thumbnail);
                     addFileDialogListViewItem.FileIcon = bitmapImage;
-
                 }
             }
 

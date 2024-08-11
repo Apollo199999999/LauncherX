@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<UserControl
+    x:Class="LauncherXWinUI.Controls.GridViewTileGroup"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="using:LauncherXWinUI.Controls"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    x:Name="GridViewTileGroupControl"
+    mc:Ignorable="d">
+
+    <Border
+        x:Name="ControlBorder"
+        BorderBrush="{ThemeResource AccentFillColorDefaultBrush}"
+        BorderThickness="0">
+        <Grid x:Name="GroupGrid">
+            <GridView x:Name="ItemsPreviewGridView" SelectionMode="None" />
+        </Grid>
+    </Border>
+</UserControl>
