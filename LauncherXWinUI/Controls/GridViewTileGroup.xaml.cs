@@ -5,7 +5,9 @@ using Microsoft.UI.Xaml.Media;
 using System;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
+using System.Threading.Tasks;
 using Windows.UI;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.Window;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -163,7 +165,6 @@ namespace LauncherXWinUI.Controls
 
         }
 
-
         // Methods
         /// <summary>
         /// Show the flyout to indicate that a item can be added to this group
@@ -185,22 +186,66 @@ namespace LauncherXWinUI.Controls
             ControlBorder.BorderThickness = new Thickness(0);
         }
 
-        /// <summary>
-        /// Remove the items in this GridViewTileGroup from the parent GridView
-        /// </summary>
-        public void RemoveGroupItemsFromGridView()
+        // Event Handlers
+        private async void GroupPanel_Tapped(object sender, Microsoft.UI.Xaml.Input.TappedRoutedEventArgs e)
         {
+            // Show the ContentDialog to display the items in this Group
+            ItemsGridView.Items.Clear();
+            foreach (GridViewTile gridViewTile in Items)
+            {
+                ItemsGridView.Items.Add(gridViewTile);
+            }
+
+            ItemsGridView.Items.VectorChanged += ItemsGridViewItems_VectorChanged;
+
+            // When the dialog is closed, do 3 things:
+            // 1. Unsubscribe from the VectorChanged event, so that it doesn't start anyhow clearing the Items property
+            // 2. Clear the items in the ItemsGridView, so that when GridViewTiles from this control are added to a new GridViewTileGroup control to add more GridViewTiles (see MainWindow.xaml.cs),
+            // there won't be a case where a GridViewTile has 2 parents
+            // 3. Unselect this control in the ItemsGridView in MainWindow
+            GroupDialog.CloseButtonClick += (s, e) =>
+            {
+                ItemsGridView.Items.VectorChanged -= ItemsGridViewItems_VectorChanged;
+                ItemsGridView.Items.Clear();
+
+                // Unselect this item
+                GridView parentGridView = this.Parent as GridView;
+                if (parentGridView != null)
+                {
+                    parentGridView.SelectedItem = null;
+                }
+            };
+
+            var result = await GroupDialog.ShowAsync();
+        }
+
+        // Only fires when the GroupDialog is open
+        private void ItemsGridViewItems_VectorChanged(Windows.Foundation.Collections.IObservableVector<object> sender, Windows.Foundation.Collections.IVectorChangedEventArgs @event)
+        {
+            // Update the ItemsProperty based on the items in the ItemsGridView
+            Items.Clear();
+            foreach (GridViewTile gridViewTile in ItemsGridView.Items)
+            {
+                Items.Add(gridViewTile);
+            }
+        }
+
+        private void GroupPanel_RightTapped(object sender, Microsoft.UI.Xaml.Input.RightTappedRoutedEventArgs e)
+        {
+            // Show right click menu options
+            MenuFlyout flyoutBase = (MenuFlyout)FlyoutBase.GetAttachedFlyout(GroupPanel);
+            flyoutBase.ShowAt(GroupPanel, e.GetPosition(GroupPanel));
+        }
+
+        private void MenuRemoveOption_Click(object sender, RoutedEventArgs e)
+        {
+            // Remove this group
             GridView parentGridView = this.Parent as GridView;
             if (parentGridView != null)
             {
-                foreach (GridViewTile gridViewTile in this.Items)
-                {
-                    if (parentGridView.Items.Contains(gridViewTile))
-                    {
-                        parentGridView.Items.Remove(gridViewTile);
-                    }
-                }
+                parentGridView.Items.Remove(this);
             }
         }
+
     }
 }

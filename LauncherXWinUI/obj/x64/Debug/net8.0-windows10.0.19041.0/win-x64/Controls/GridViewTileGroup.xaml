@@ -20,7 +20,10 @@
         x:Name="ControlBorder"
         BorderBrush="{ThemeResource AccentFillColorDefaultBrush}"
         BorderThickness="0">
-        <StackPanel x:ConnectionId='4' x:Name="GroupPanel">
+        <StackPanel x:ConnectionId='4'
+            x:Name="GroupPanel"
+                                                
+                                      >
             <Grid x:ConnectionId='5'
                 x:Name="ItemsPreviewGrid"
                 HorizontalAlignment="Center"
@@ -41,6 +44,37 @@
                 VerticalAlignment="Bottom"
                 TextAlignment="Center"
                 TextTrimming="CharacterEllipsis" />
+
+            <ContentDialog x:ConnectionId='7'
+                x:Name="GroupDialog"
+                Title="New group"
+                CloseButtonText="Close"
+                DefaultButton="Close">
+                <ContentDialog.Resources>
+                    <!--  Change MaxWidth of ContentDialog  -->
+                    <x:Double x:Key="ContentDialogMaxWidth">800</x:Double>
+                </ContentDialog.Resources>
+                <GridView x:ConnectionId='8'
+                    x:Name="ItemsGridView"
+                    Width="550"
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Stretch"
+                    AllowDrop="True"
+                    CanDragItems="True"
+                    CanReorderItems="True"
+                    IsItemClickEnabled="True"
+                    SelectionMode="Single" />
+            </ContentDialog>
+
+            <FlyoutBase.AttachedFlyout>
+                <MenuFlyout x:ConnectionId='9' x:Name="RightClickMenu">
+                    <MenuFlyoutItem x:ConnectionId='10'
+                        x:Name="MenuRemoveOption"
+                                                      
+                        Icon="Delete"
+                        Text="Remove group from LauncherX" />
+                </MenuFlyout>
+            </FlyoutBase.AttachedFlyout>
         </StackPanel>
     </Border>
 </UserControl>

@@ -75,11 +75,10 @@ namespace LauncherXWinUI.Controls
                 SelectedFoldersListView.Items.Add(addFolderDialogListViewItem);
 
                 // Get the thumbnail of the folder
-                StorageItemThumbnail thumbnail = await folder.GetThumbnailAsync(ThumbnailMode.SingleItem);
+                StorageItemThumbnail thumbnail = await folder.GetThumbnailAsync(ThumbnailMode.SingleItem, 256);
                 BitmapImage bitmapImage = new BitmapImage();
                 bitmapImage.SetSource(thumbnail);
                 addFolderDialogListViewItem.FolderIcon = bitmapImage;
-
             }
            
             // Configure UI

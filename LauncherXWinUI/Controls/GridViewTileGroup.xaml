@@ -20,7 +20,10 @@
         x:Name="ControlBorder"
         BorderBrush="{ThemeResource AccentFillColorDefaultBrush}"
         BorderThickness="0">
-        <StackPanel x:Name="GroupPanel">
+        <StackPanel
+            x:Name="GroupPanel"
+            RightTapped="GroupPanel_RightTapped"
+            Tapped="GroupPanel_Tapped">
             <Grid
                 x:Name="ItemsPreviewGrid"
                 HorizontalAlignment="Center"
@@ -41,6 +44,37 @@
                 VerticalAlignment="Bottom"
                 TextAlignment="Center"
                 TextTrimming="CharacterEllipsis" />
+
+            <ContentDialog
+                x:Name="GroupDialog"
+                Title="New group"
+                CloseButtonText="Close"
+                DefaultButton="Close">
+                <ContentDialog.Resources>
+                    <!--  Change MaxWidth of ContentDialog  -->
+                    <x:Double x:Key="ContentDialogMaxWidth">800</x:Double>
+                </ContentDialog.Resources>
+                <GridView
+                    x:Name="ItemsGridView"
+                    Width="550"
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Stretch"
+                    AllowDrop="True"
+                    CanDragItems="True"
+                    CanReorderItems="True"
+                    IsItemClickEnabled="True"
+                    SelectionMode="Single" />
+            </ContentDialog>
+
+            <FlyoutBase.AttachedFlyout>
+                <MenuFlyout x:Name="RightClickMenu">
+                    <MenuFlyoutItem
+                        x:Name="MenuRemoveOption"
+                        Click="MenuRemoveOption_Click"
+                        Icon="Delete"
+                        Text="Remove group from LauncherX" />
+                </MenuFlyout>
+            </FlyoutBase.AttachedFlyout>
         </StackPanel>
     </Border>
 </UserControl>

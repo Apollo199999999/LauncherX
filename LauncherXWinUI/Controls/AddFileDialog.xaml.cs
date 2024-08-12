@@ -165,7 +165,7 @@ namespace LauncherXWinUI.Controls
                         SelectedFilesListView.Items.Add(addFileDialogListViewItem);
 
                         // Get the thumbnail of the file
-                        StorageItemThumbnail thumbnail = await file.GetThumbnailAsync(ThumbnailMode.SingleItem);
+                        StorageItemThumbnail thumbnail = await file.GetThumbnailAsync(ThumbnailMode.SingleItem, 256);
                         BitmapImage bitmapImage = new BitmapImage();
                         bitmapImage.SetSource(thumbnail);
                         addFileDialogListViewItem.FileIcon = bitmapImage;
