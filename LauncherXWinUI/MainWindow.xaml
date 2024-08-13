@@ -207,13 +207,21 @@
                 Margin="20,10,20,20"
                 HorizontalAlignment="Stretch"
                 VerticalAlignment="Stretch"
+                x:FieldModifier="public"
                 AllowDrop="True"
                 CanDragItems="True"
                 CanReorderItems="True"
                 DragItemsCompleted="ItemsGridView_DragItemsCompleted"
                 DragItemsStarting="ItemsGridView_DragItemsStarting"
                 IsItemClickEnabled="True"
-                SelectionMode="Single" />
+                SelectionMode="Single">
+                <GridView.ItemContainerStyle>
+                    <Style TargetType="GridViewItem">
+                        <!--  Set a background property for GridViewItem for drag and drop events to work properly  -->
+                        <Setter Property="Background" Value="Transparent" />
+                    </Style>
+                </GridView.ItemContainerStyle>
+            </GridView>
         </Grid>
 
     </Grid>

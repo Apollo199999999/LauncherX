@@ -18,16 +18,19 @@
 
     <Border x:ConnectionId='3'
         x:Name="ControlBorder"
+        AllowDrop="True"
         BorderBrush="{ThemeResource AccentFillColorDefaultBrush}"
         BorderThickness="0">
         <StackPanel x:ConnectionId='4'
             x:Name="GroupPanel"
+            AllowDrop="True"
                                                 
                                       >
             <Grid x:ConnectionId='5'
                 x:Name="ItemsPreviewGrid"
                 HorizontalAlignment="Center"
-                VerticalAlignment="Center">
+                VerticalAlignment="Center"
+                AllowDrop="True">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*" />
                     <RowDefinition Height="*" />
@@ -42,33 +45,53 @@
                 Margin="5,5,5,5"
                 HorizontalAlignment="Center"
                 VerticalAlignment="Bottom"
+                AllowDrop="True"
                 TextAlignment="Center"
                 TextTrimming="CharacterEllipsis" />
 
             <ContentDialog x:ConnectionId='7'
                 x:Name="GroupDialog"
-                Title="New group"
                 CloseButtonText="Close"
                 DefaultButton="Close">
                 <ContentDialog.Resources>
-                    <!--  Change MaxWidth of ContentDialog  -->
-                    <x:Double x:Key="ContentDialogMaxWidth">800</x:Double>
+                    <!--  Change MaxWidth and MaxHeight of ContentDialog  -->
+                    <x:Double x:Key="ContentDialogMaxWidth">999999999</x:Double>
+                    <x:Double x:Key="ContentDialogMaxHeight">999999999</x:Double>
                 </ContentDialog.Resources>
-                <GridView x:ConnectionId='8'
-                    x:Name="ItemsGridView"
-                    Width="550"
-                    HorizontalAlignment="Stretch"
-                    VerticalAlignment="Stretch"
-                    AllowDrop="True"
-                    CanDragItems="True"
-                    CanReorderItems="True"
-                    IsItemClickEnabled="True"
-                    SelectionMode="Single" />
+                <Grid x:ConnectionId='8' x:Name="GroupDialogContent">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <TextBox x:ConnectionId='9'
+                        x:Name="GroupDialogTitleTextBox"
+                        Grid.Row="0"
+                        Width="300"
+                        HorizontalAlignment="Left" />
+                    <GridView x:ConnectionId='10'
+                        x:Name="ItemsGridView"
+                        Grid.Row="1"
+                        Margin="0,20,0,0"
+                        HorizontalAlignment="Stretch"
+                        VerticalAlignment="Stretch"
+                        AllowDrop="True"
+                        CanDragItems="True"
+                        CanReorderItems="True"
+                        IsItemClickEnabled="True"
+                        SelectionMode="Single">
+                        <GridView.ItemContainerStyle>
+                            <Style TargetType="GridViewItem">
+                                <!--  Set a background property for GridViewItem for drag and drop events to work properly  -->
+                                <Setter Property="Background" Value="Transparent" />
+                            </Style>
+                        </GridView.ItemContainerStyle>
+                    </GridView>
+                </Grid>
             </ContentDialog>
 
             <FlyoutBase.AttachedFlyout>
-                <MenuFlyout x:ConnectionId='9' x:Name="RightClickMenu">
-                    <MenuFlyoutItem x:ConnectionId='10'
+                <MenuFlyout x:ConnectionId='11' x:Name="RightClickMenu">
+                    <MenuFlyoutItem x:ConnectionId='12'
                         x:Name="MenuRemoveOption"
                                                       
                         Icon="Delete"

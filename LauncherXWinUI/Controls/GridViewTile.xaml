@@ -19,23 +19,33 @@
     </FlyoutBase.AttachedFlyout>
     <Border
         x:Name="ControlBorder"
+        AllowDrop="True"
         BorderBrush="{ThemeResource AccentFillColorDefaultBrush}"
         BorderThickness="0">
-        <StackPanel
+        <Grid
             x:Name="TilePanel"
             HorizontalAlignment="Stretch"
-            VerticalAlignment="Stretch">
+            VerticalAlignment="Stretch"
+            AllowDrop="True">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
             <Image
                 x:Name="TileImage"
+                Grid.Row="0"
                 HorizontalAlignment="Center"
                 VerticalAlignment="Center"
+                AllowDrop="True"
                 Stretch="Uniform" />
 
             <TextBlock
                 x:Name="TileText"
+                Grid.Row="1"
                 Margin="5,5,5,5"
                 HorizontalAlignment="Center"
                 VerticalAlignment="Bottom"
+                AllowDrop="True"
                 TextAlignment="Center"
                 TextTrimming="CharacterEllipsis" />
 
@@ -60,12 +70,19 @@
                     </MenuFlyoutItem>
 
                     <MenuFlyoutItem
+                        x:Name="MenuRemoveGroupOption"
+                        Click="MenuRemoveGroupOption_Click"
+                        Icon="Remove"
+                        Text="Remove from group"
+                        Visibility="Collapsed" />
+
+                    <MenuFlyoutItem
                         x:Name="MenuRemoveOption"
                         Click="MenuRemoveOption_Click"
                         Icon="Delete"
                         Text="Remove from LauncherX" />
                 </MenuFlyout>
             </FlyoutBase.AttachedFlyout>
-        </StackPanel>
+        </Grid>
     </Border>
 </UserControl>

@@ -16,7 +16,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCopyrightAttribute("Copyright © 2020-present ClickPhase")]
 [assembly: System.Reflection.AssemblyDescriptionAttribute("LauncherX - Modern app launcher for Windows")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("2.1.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("2.1.0.0+da59bedfc9f1166604944501d1b082945d85b8c0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("2.1.0.0+69ecd9bd99a5db1d4709f30573261c89203ad4fe")]
 [assembly: System.Reflection.AssemblyProductAttribute("LauncherX")]
 [assembly: System.Reflection.AssemblyTitleAttribute("LauncherX")]
 [assembly: System.Reflection.AssemblyVersionAttribute("2.1.0.0")]

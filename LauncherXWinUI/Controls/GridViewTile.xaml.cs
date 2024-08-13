@@ -211,6 +211,14 @@ namespace LauncherXWinUI.Controls
             ControlBorder.BorderThickness = new Thickness(0);
         }
 
+        /// <summary>
+        /// Method that shows the "Remove from group" option in the right click menu
+        /// </summary>
+        public void ShowRemoveFromGroupOption()
+        {
+            MenuRemoveGroupOption.Visibility = Visibility.Visible;
+        }
+
         // Helper functions
         /// <summary>
         /// Determines if a given path belongs to that of a file or folder
@@ -282,6 +290,7 @@ namespace LauncherXWinUI.Controls
                 MenuOpenOptionIcon.Glyph = "\uE774";
                 MenuOpenOption.Text = "Open website";
                 MenuOpenLocOption.Visibility = Visibility.Collapsed;
+                MenuRemoveGroupOption.Text = "Remove website from group";
                 MenuRemoveOption.Text = "Remove website from LauncherX";
             }
             else if (IsPathDirectory(ExecutingPath))
@@ -289,6 +298,7 @@ namespace LauncherXWinUI.Controls
                 MenuOpenOptionIcon.Glyph = "\uE8DA";
                 MenuOpenOption.Text = "Open folder";
                 MenuOpenLocOption.Text = "Open folder location";
+                MenuRemoveGroupOption.Text = "Remove folder from group";
                 MenuRemoveOption.Text = "Remove folder from LauncherX";
             }
             else
@@ -296,6 +306,7 @@ namespace LauncherXWinUI.Controls
                 MenuOpenOptionIcon.Glyph = "\uE8E5";
                 MenuOpenOption.Text = "Open file";
                 MenuOpenLocOption.Text = "Open file location";
+                MenuRemoveGroupOption.Text = "Remove file from group";
                 MenuRemoveOption.Text = "Remove file from LauncherX";
             }
 
@@ -343,5 +354,20 @@ namespace LauncherXWinUI.Controls
             }
         }
 
+        private void MenuRemoveGroupOption_Click(object sender, RoutedEventArgs e)
+        {
+            // Remove this item from the group
+            GridView tileGroupGridView = this.Parent as GridView;
+            if (tileGroupGridView != null)
+            {
+                tileGroupGridView.Items.Remove(this);
+            }
+
+            // Add this item to the GridView in MainWindow
+            GridView mainWindowGridView = App.MainWindow.ItemsGridView;
+            MenuRemoveGroupOption.Visibility = Visibility.Collapsed;
+            mainWindowGridView.Items.Add(this);
+
+        }
     }
 }

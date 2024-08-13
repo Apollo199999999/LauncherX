@@ -40,7 +40,7 @@
             x:Name="AppTitleBar"
             Grid.Row="0"
             VerticalAlignment="Top">
-            <TextBlock x:ConnectionId='15'
+            <TextBlock x:ConnectionId='17'
                 x:Name="AppTitle"
                 Margin="8,8,0,0"
                 VerticalAlignment="Top"
@@ -52,13 +52,14 @@
             Grid.Row="1"
             Margin="20,20,20,0">
 
-            <AutoSuggestBox x:ConnectionId='9'
+            <!--  Search Box + Settings Button  -->
+            <AutoSuggestBox x:ConnectionId='11'
                 x:Name="SearchBox"
                 Margin="0,10,45,0"
                 VerticalAlignment="Top"
                 PlaceholderText="Search through everything in LauncherX"
                 QueryIcon="Find" />
-            <Button x:ConnectionId='10'
+            <Button x:ConnectionId='12'
                 x:Name="SettingsButton"
                 Width="35"
                 Height="35"
@@ -85,6 +86,7 @@
 
             </Button>
 
+            <!--  Header Text + Buttons  -->
             <Grid
                 Height="32"
                 Margin="0,62,0,0"
@@ -95,7 +97,7 @@
                     <ColumnDefinition Width="365" />
                 </Grid.ColumnDefinitions>
 
-                <TextBlock x:ConnectionId='11'
+                <TextBlock x:ConnectionId='13'
                     x:Name="HeaderTextBlock"
                     Grid.Column="0"
                     HorizontalAlignment="Stretch"
@@ -111,21 +113,21 @@
                     HorizontalAlignment="Right"
                     VerticalAlignment="Stretch"
                     Orientation="Horizontal">
-                    <Button x:ConnectionId='12'
+                    <Button x:ConnectionId='14'
                         x:Name="AddFileBtn"
                         Width="105"
                         Height="32"
                                                 
                         Content="Add a file"
                         Style="{ThemeResource AccentButtonStyle}" />
-                    <Button x:ConnectionId='13'
+                    <Button x:ConnectionId='15'
                         x:Name="AddFolderBtn"
                         Width="110"
                         Height="32"
                         Margin="10,0,0,0"
                                                   
                         Content="Add a folder" />
-                    <Button x:ConnectionId='14'
+                    <Button x:ConnectionId='16'
                         x:Name="AddWebsiteBtn"
                         Width="120"
                         Height="32"
@@ -136,17 +138,44 @@
             </Grid>
         </Grid>
 
+
+        <!--  GridView, Update Notice, Empty Notice  -->
         <Grid x:ConnectionId='6'
             x:Name="GridViewBackground"
             Grid.Row="2"
             Margin="0,10,0,0"
             Background="{ThemeResource ControlFillColorDefaultBrush}">
 
-            <StackPanel x:ConnectionId='7'
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <!--  IsOpen=False will still reserve space for the margins of the InfoBar, so we must adjust the margins of the other elements to account for that  -->
+            <InfoBar x:ConnectionId='7'
+                x:Name="UpdateInfoBar"
+                Title="Update available"
+                Grid.Row="0"
+                Margin="20,10,20,0"
+                IsOpen="False"
+                Message="To download it, click the &quot;Get update&quot; button."
+                Severity="Informational">
+                <InfoBar.ActionButton>
+                    <Button x:ConnectionId='10'
+                        x:Name="GetUpdateBtn"
+                        HorizontalAlignment="Right"
+                                                  
+                        Content="Get update"
+                        Style="{ThemeResource AccentButtonStyle}" />
+                </InfoBar.ActionButton>
+            </InfoBar>
+
+            <StackPanel x:ConnectionId='8'
                 x:Name="EmptyNotice"
+                Grid.Row="1"
                 MinHeight="55"
                 MaxWidth="400"
-                Margin="0,0,0,20"
+                Margin="0,-10,0,20"
                 HorizontalAlignment="Center"
                 VerticalAlignment="Center"
                 Orientation="Vertical">
@@ -172,15 +201,19 @@
                     TextWrapping="Wrap" />
             </StackPanel>
 
-            <GridView x:ConnectionId='8'
+            <GridView x:ConnectionId='9'
                 x:Name="ItemsGridView"
-                Margin="20,20,20,20"
+                Grid.Row="1"
+                Margin="20,10,20,20"
                 HorizontalAlignment="Stretch"
                 VerticalAlignment="Stretch"
                 AllowDrop="True"
                 CanDragItems="True"
                 CanReorderItems="True"
-                IsItemClickEnabled="True" />
+                                                                     
+                                                                   
+                IsItemClickEnabled="True"
+                SelectionMode="Single" />
         </Grid>
 
     </Grid>

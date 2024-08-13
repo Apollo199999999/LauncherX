@@ -271,6 +271,8 @@ namespace LauncherXWinUI
                 GridViewTile DroppedOnTile = sender as GridViewTile;
                 GridViewTile DraggedTile = e.Data.Properties["DraggedControl"] as GridViewTile;
                 DroppedOnTile.HideCreateGroupIndicator();
+                DraggedTile.ShowRemoveFromGroupOption();
+                DroppedOnTile.ShowRemoveFromGroupOption();
 
                 if (DroppedOnTile.UniqueId == DraggedTile.UniqueId)
                 {
@@ -320,34 +322,20 @@ namespace LauncherXWinUI
             }
         }
 
-        GridViewTileGroup existingGridViewTileGroup;
         private void GridViewTileGroup_Drop(object sender, DragEventArgs e)
         {
             if (e.Data.Properties["DraggedControl"] != null && e.Data.Properties["DraggedControl"] is GridViewTile)
             {
-                existingGridViewTileGroup = sender as GridViewTileGroup;
+                GridViewTileGroup existingGridViewTileGroup = sender as GridViewTileGroup;
                 GridViewTile DraggedTile = e.Data.Properties["DraggedControl"] as GridViewTile;
+                DraggedTile.ShowRemoveFromGroupOption();
 
-                // Create a new GridViewTileGroup to add to the ItemsGridView, to fix a bug where the background of the existingGridViewTileGroup remains selected
-                GridViewTileGroup newGridViewTileGroup = new GridViewTileGroup();
-                newGridViewTileGroup.Size = UserSettingsClass.GridScale;
-                newGridViewTileGroup.DisplayText = existingGridViewTileGroup.DisplayText;
-                foreach(GridViewTile tile in existingGridViewTileGroup.Items)
-                {
-                    newGridViewTileGroup.Items.Add(tile);
-                }
-                newGridViewTileGroup.Items.Add(DraggedTile);
-                newGridViewTileGroup.DragEnter += GridViewTileGroup_DragEnter;
-                newGridViewTileGroup.DragLeave += GridViewTileGroup_DragLeave;
-                newGridViewTileGroup.Drop += GridViewTileGroup_Drop;
-
-                // Add the new GridViewTileGroup
-                int index = ItemsGridView.Items.IndexOf(existingGridViewTileGroup);
-                ItemsGridView.Items.Insert(index, newGridViewTileGroup);
-
+                // Add the DraggedTile to the existingGridViewTileGroup
+                existingGridViewTileGroup.HideAddItemIndicator();
+                existingGridViewTileGroup.Items.Add(DraggedTile);
+               
                 // Mark objects for deletion
                 GridViewItemsToRemove.Add(DraggedTile);
-                GridViewItemsToRemove.Add(existingGridViewTileGroup);
             }
         }
 
@@ -358,7 +346,7 @@ namespace LauncherXWinUI
             foreach (UserControl control in GridViewItemsToRemove) {
                 ItemsGridView.Items.Remove(control);
             }
-
+            GridViewItemsToRemove.Clear();
         }
     }
 }

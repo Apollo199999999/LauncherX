@@ -9,6 +9,7 @@
     Title="Add file(s)"
     CloseButtonText="Cancel"
     DefaultButton="Primary"
+    IsPrimaryButtonEnabled="True"
                                                          
     PrimaryButtonText="Add file(s)"
     mc:Ignorable="d">
@@ -34,6 +35,11 @@
                 Margin="10,0,0,10"
                                              
                 Content="Open file(s)" />
+            <ProgressRing x:ConnectionId='5'
+                x:Name="OpenFilesProgressRing"
+                Margin="10,0,0,10"
+                VerticalAlignment="Center"
+                IsActive="False" />
         </StackPanel>
 
         <TextBlock Text="Files selected will show up in the list below. You can reorder your files after adding them." TextWrapping="WrapWholeWords" />

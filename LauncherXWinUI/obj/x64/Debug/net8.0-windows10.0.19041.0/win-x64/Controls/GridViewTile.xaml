@@ -19,23 +19,33 @@
     </FlyoutBase.AttachedFlyout>
     <Border x:ConnectionId='3'
         x:Name="ControlBorder"
+        AllowDrop="True"
         BorderBrush="{ThemeResource AccentFillColorDefaultBrush}"
         BorderThickness="0">
-        <StackPanel x:ConnectionId='4'
+        <Grid x:ConnectionId='4'
             x:Name="TilePanel"
             HorizontalAlignment="Stretch"
-            VerticalAlignment="Stretch">
+            VerticalAlignment="Stretch"
+            AllowDrop="True">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
             <Image x:ConnectionId='5'
                 x:Name="TileImage"
+                Grid.Row="0"
                 HorizontalAlignment="Center"
                 VerticalAlignment="Center"
+                AllowDrop="True"
                 Stretch="Uniform" />
 
             <TextBlock x:ConnectionId='6'
                 x:Name="TileText"
+                Grid.Row="1"
                 Margin="5,5,5,5"
                 HorizontalAlignment="Center"
                 VerticalAlignment="Bottom"
+                AllowDrop="True"
                 TextAlignment="Center"
                 TextTrimming="CharacterEllipsis" />
 
@@ -46,7 +56,7 @@
                                                     
                         Text="Open">
                         <MenuFlyoutItem.Icon>
-                            <FontIcon x:ConnectionId='12' x:Name="MenuOpenOptionIcon" Glyph="&#xE8E5;" />
+                            <FontIcon x:ConnectionId='13' x:Name="MenuOpenOptionIcon" Glyph="&#xE8E5;" />
                         </MenuFlyoutItem.Icon>
                     </MenuFlyoutItem>
 
@@ -55,18 +65,25 @@
                                                        
                         Text="Open Location">
                         <MenuFlyoutItem.Icon>
-                            <FontIcon x:ConnectionId='11' x:Name="MenuOpenLocOptionIcon" Glyph="&#xE838;" />
+                            <FontIcon x:ConnectionId='12' x:Name="MenuOpenLocOptionIcon" Glyph="&#xE838;" />
                         </MenuFlyoutItem.Icon>
                     </MenuFlyoutItem>
 
                     <MenuFlyoutItem x:ConnectionId='10'
+                        x:Name="MenuRemoveGroupOption"
+                                                           
+                        Icon="Remove"
+                        Text="Remove from group"
+                        Visibility="Collapsed" />
+
+                    <MenuFlyoutItem x:ConnectionId='11'
                         x:Name="MenuRemoveOption"
                                                       
                         Icon="Delete"
                         Text="Remove from LauncherX" />
                 </MenuFlyout>
             </FlyoutBase.AttachedFlyout>
-        </StackPanel>
+        </Grid>
     </Border>
 </UserControl>
 
