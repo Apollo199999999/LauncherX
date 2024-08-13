@@ -216,7 +216,7 @@
                 IsItemClickEnabled="True"
                 SelectionMode="Single">
                 <GridView.ItemContainerStyle>
-                    <Style BasedOn="{StaticResource GridViewItemExpanded}" TargetType="GridViewItem">
+                    <Style TargetType="GridViewItem">
                         <!--  Set a background property for GridViewItem for drag and drop events to work properly  -->
                         <Setter Property="Background" Value="Transparent" />
                     </Style>

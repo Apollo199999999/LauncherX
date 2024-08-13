@@ -187,8 +187,25 @@ namespace LauncherXWinUI.Controls
             typeof(string),
             typeof(GridViewTile),
             new PropertyMetadata(default(string)));
-        
+
         // Methods
+
+        /// <summary>
+        /// Highlights the control by drawing a border around it
+        /// </summary>
+        public void HighlightControl()
+        {
+            ControlBorder.BorderBrush = Application.Current.Resources["AccentFillColorDefaultBrush"] as SolidColorBrush;
+        }
+
+        /// <summary>
+        /// Unhighlights the control by removing the border around it
+        /// </summary>
+        public void UnhighlightControl()
+        {
+            ControlBorder.BorderBrush = null;
+        }
+
         /// <summary>
         /// Show the flyout to indicate that a new group can be created and highlight the control
         /// </summary>
@@ -196,7 +213,7 @@ namespace LauncherXWinUI.Controls
         {
             MenuFlyout flyoutBase = (MenuFlyout)FlyoutBase.GetAttachedFlyout(GridViewTileControl);
             flyoutBase.ShowAt(GridViewTileControl);
-            ControlBorder.BorderThickness = new Thickness(2);
+            HighlightControl();
         }
 
         /// <summary>
@@ -206,7 +223,7 @@ namespace LauncherXWinUI.Controls
         {
             MenuFlyout flyoutBase = (MenuFlyout)FlyoutBase.GetAttachedFlyout(GridViewTileControl);
             flyoutBase.Hide();
-            ControlBorder.BorderThickness = new Thickness(0);
+            UnhighlightControl();
         }
 
         /// <summary>
@@ -253,6 +270,7 @@ namespace LauncherXWinUI.Controls
             // Try to start the executing path
             try
             {
+                HighlightControl();
                 ProcessStartInfo processStartInfo = new ProcessStartInfo { FileName = ExecutingPath, UseShellExecute = true, Arguments = ExecutingArguments };
                 Process.Start(processStartInfo);
             }
@@ -278,6 +296,7 @@ namespace LauncherXWinUI.Controls
 
             // Unselect this item
             await Task.Delay(500);
+            UnhighlightControl();
             GridView parentGridView = this.Parent as GridView;
             if (parentGridView != null)
             {

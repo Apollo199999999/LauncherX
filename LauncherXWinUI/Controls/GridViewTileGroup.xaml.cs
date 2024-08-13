@@ -165,6 +165,23 @@ namespace LauncherXWinUI.Controls
         }
 
         // Methods
+
+        /// <summary>
+        /// Highlights the control by drawing a border around it
+        /// </summary>
+        public void HighlightControl()
+        {
+            ControlBorder.BorderBrush = Application.Current.Resources["AccentFillColorDefaultBrush"] as SolidColorBrush;
+        }
+
+        /// <summary>
+        /// Unhighlights the control by removing the border around it
+        /// </summary>
+        public void UnhighlightControl()
+        {
+            ControlBorder.BorderBrush = null;
+        }
+
         /// <summary>
         /// Show the flyout to indicate that a item can be added to this group
         /// </summary>
@@ -172,7 +189,7 @@ namespace LauncherXWinUI.Controls
         {
             MenuFlyout flyoutBase = (MenuFlyout)FlyoutBase.GetAttachedFlyout(GridViewTileGroupControl);
             flyoutBase.ShowAt(GridViewTileGroupControl);
-            ControlBorder.BorderThickness = new Thickness(2);
+            HighlightControl();
         }
 
         /// <summary>
@@ -182,13 +199,14 @@ namespace LauncherXWinUI.Controls
         {
             MenuFlyout flyoutBase = (MenuFlyout)FlyoutBase.GetAttachedFlyout(GridViewTileGroupControl);
             flyoutBase.Hide();
-            ControlBorder.BorderThickness = new Thickness(0);
+            UnhighlightControl();
         }
 
         // Event Handlers
         private async void GroupPanel_Tapped(object sender, Microsoft.UI.Xaml.Input.TappedRoutedEventArgs e)
         {
             // Show the ContentDialog to display the items in this Group
+            HighlightControl();
             ItemsGridView.Items.Clear();
             foreach (GridViewTile gridViewTile in Items)
             {
@@ -209,6 +227,7 @@ namespace LauncherXWinUI.Controls
                 ItemsGridView.Items.Clear();
 
                 // Unselect this item
+                UnhighlightControl();
                 GridView parentGridView = this.Parent as GridView;
                 if (parentGridView != null)
                 {

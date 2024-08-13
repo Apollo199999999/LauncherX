@@ -17,11 +17,11 @@
             <MenuFlyoutItem Text="Create new group" />
         </MenuFlyout>
     </FlyoutBase.AttachedFlyout>
+    <!--  The BorderThickness is set as such because when clicking on the GridViewTile, the highlight happens too quickly which causes the bottom border to be too thin  -->
     <Border
         x:Name="ControlBorder"
         AllowDrop="True"
-        BorderBrush="{ThemeResource AccentFillColorDefaultBrush}"
-        BorderThickness="0"
+        BorderThickness="2,2,2,3"
         CornerRadius="{ThemeResource ControlCornerRadius}">
         <Grid
             x:Name="TilePanel"
