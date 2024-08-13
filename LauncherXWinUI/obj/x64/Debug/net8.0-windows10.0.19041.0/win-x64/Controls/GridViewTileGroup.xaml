@@ -20,7 +20,8 @@
         x:Name="ControlBorder"
         AllowDrop="True"
         BorderBrush="{ThemeResource AccentFillColorDefaultBrush}"
-        BorderThickness="0">
+        BorderThickness="0"
+        CornerRadius="{ThemeResource ControlCornerRadius}">
         <StackPanel x:ConnectionId='4'
             x:Name="GroupPanel"
             AllowDrop="True"
@@ -80,7 +81,7 @@
                         IsItemClickEnabled="True"
                         SelectionMode="Single">
                         <GridView.ItemContainerStyle>
-                            <Style TargetType="GridViewItem">
+                            <Style BasedOn="{StaticResource GridViewItemExpanded}" TargetType="GridViewItem">
                                 <!--  Set a background property for GridViewItem for drag and drop events to work properly  -->
                                 <Setter Property="Background" Value="Transparent" />
                             </Style>

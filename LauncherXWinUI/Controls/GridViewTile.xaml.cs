@@ -76,10 +76,8 @@ namespace LauncherXWinUI.Controls
                 double newHeight = 95 * newSize;
 
                 // Update control dimensions
-                gridViewTile.GridViewTileControl.Width = newWidth;
-                gridViewTile.GridViewTileControl.Height = newHeight;
-                gridViewTile.TilePanel.Width = newWidth;
-                gridViewTile.TilePanel.Height = newHeight;
+                gridViewTile.ControlBorder.Width = newWidth;
+                gridViewTile.ControlBorder.Height = newHeight;
 
                 // Update image margin and dimensions
                 gridViewTile.TileImage.Margin = new Thickness(newSize * 22.5, newSize * 5, newSize * 22.5, 0);
@@ -247,8 +245,10 @@ namespace LauncherXWinUI.Controls
             return string.IsNullOrWhiteSpace(Path.GetExtension(path));
         }
 
-        // Event handlers
-        private async void GridViewTileControl_Tapped(object sender, TappedRoutedEventArgs e)
+        /// <summary>
+        /// Method to start the process associated with this GridViewTile
+        /// </summary>
+        private async Task StartAssociatedProcess()
         {
             // Try to start the executing path
             try
@@ -258,17 +258,22 @@ namespace LauncherXWinUI.Controls
             }
             catch
             {
-                // Show a content dialog to tell the user something went wrong
-                ContentDialog procErrorDialog = new ContentDialog()
+                // Second try-catch as the error ContentDialog will not show if this GridViewTile is in a GridViewTileGroup
+                // Show a ContentDialog to tell the user something went wrong
+                try
                 {
-                    XamlRoot = this.XamlRoot,
-                    Title = "Error running process",
-                    Content = "Unable to run process. Check that the file/folder has not been moved or deleted, or try again later.",
-                    CloseButtonText = "OK",
-                    DefaultButton = ContentDialogButton.Close
-                };
+                    ContentDialog procErrorDialog = new ContentDialog()
+                    {
+                        XamlRoot = this.XamlRoot,
+                        Title = "Error running process",
+                        Content = "Unable to run process. Check that the file/folder has not been moved or deleted, or try again later.",
+                        CloseButtonText = "OK",
+                        DefaultButton = ContentDialogButton.Close
+                    };
 
-                await procErrorDialog.ShowAsync();
+                    await procErrorDialog.ShowAsync();
+                }
+                catch { }
             }
 
             // Unselect this item
@@ -278,6 +283,12 @@ namespace LauncherXWinUI.Controls
             {
                 parentGridView.SelectedItem = null;
             }
+        }
+
+        // Event handlers
+        private async void GridViewTileControl_Tapped(object sender, TappedRoutedEventArgs e)
+        {
+            await StartAssociatedProcess();
         }
 
         private void GridViewTileControl_RightTapped(object sender, RightTappedRoutedEventArgs e)
@@ -315,10 +326,10 @@ namespace LauncherXWinUI.Controls
         }
 
         // Event handlers for right click menu options
-        private void MenuOpenOption_Click(object sender, RoutedEventArgs e)
+        private async void MenuOpenOption_Click(object sender, RoutedEventArgs e)
         {
             // Start the process
-            GridViewTileControl_Tapped(null, null);
+            await StartAssociatedProcess();
         }
 
         private async void MenuOpenLocOption_Click(object sender, RoutedEventArgs e)

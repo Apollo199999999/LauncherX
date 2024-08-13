@@ -76,10 +76,8 @@ namespace LauncherXWinUI.Controls
                 double newHeight = 95 * newSize;
 
                 // Update control dimensions
-                gridViewTileGroup.GridViewTileGroupControl.Width = newWidth;
-                gridViewTileGroup.GridViewTileGroupControl.Height = newHeight;
-                gridViewTileGroup.GroupPanel.Width = newWidth;
-                gridViewTileGroup.GroupPanel.Height = newHeight;
+                gridViewTileGroup.ControlBorder.Width = newWidth;
+                gridViewTileGroup.ControlBorder.Height = newHeight;
                 gridViewTileGroup.ItemsPreviewGrid.Margin = new Thickness(newSize * 22.5, newSize * 5, newSize * 22.5, 0);
                 gridViewTileGroup.ItemsPreviewGrid.Height = newWidth - newSize * 22.5 - newSize * 22.5;
                 gridViewTileGroup.ItemsPreviewGrid.Width = newWidth - newSize * 22.5 - newSize * 22.5;
