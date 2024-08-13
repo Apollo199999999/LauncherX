@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" ?>
+﻿<?xml version="1.0" encoding="utf-8" ?>
 <winex:WindowEx
     x:Class="LauncherXWinUI.MainWindow"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
@@ -16,13 +16,13 @@
     MinWidth="650"
     MinHeight="500"
     mc:Ignorable="d">
-    <Grid
+    <Grid x:ConnectionId='2'
         x:Name="Container"
         VerticalAlignment="Stretch"
-        Loaded="Container_Loaded">
+                                 >
         <Grid.Background>
             <!--  Fallback solid colour in case both Mica and Acrylic are unsupported  -->
-            <SolidColorBrush
+            <SolidColorBrush x:ConnectionId='3'
                 x:Name="ContainerFallbackBackgroundBrush"
                 Opacity="0.0"
                 Color="{ThemeResource SolidBackgroundFillColorBase}" />
@@ -36,34 +36,34 @@
 
         <!--  TODO: SET CUSTOM TITLEBAR IN 1.6  -->
         <!--  Placeholder titlebar for now  -->
-        <Border
+        <Border x:ConnectionId='4'
             x:Name="AppTitleBar"
             Grid.Row="0"
             VerticalAlignment="Top">
-            <TextBlock
+            <TextBlock x:ConnectionId='17'
                 x:Name="AppTitle"
                 Margin="8,8,0,0"
                 VerticalAlignment="Top"
                 Text="LauncherX - Modern app launcher for Windows" />
         </Border>
 
-        <Grid
+        <Grid x:ConnectionId='5'
             x:Name="ControlsGrid"
             Grid.Row="1"
             Margin="20,20,20,0">
 
             <!--  Search Box + Settings Button  -->
-            <AutoSuggestBox
+            <AutoSuggestBox x:ConnectionId='11'
                 x:Name="SearchBox"
                 Margin="0,10,45,0"
                 VerticalAlignment="Top"
-                GotFocus="SearchBox_GotFocus"
+                                             
                 PlaceholderText="Search through everything in LauncherX"
                 QueryIcon="Find"
-                QuerySubmitted="SearchBox_QuerySubmitted"
-                SuggestionChosen="SearchBox_SuggestionChosen"
-                TextChanged="SearchBox_TextChanged" />
-            <Button
+                                                         
+                                                             
+                                                    />
+            <Button x:ConnectionId='12'
                 x:Name="SettingsButton"
                 Width="35"
                 Height="35"
@@ -73,7 +73,7 @@
                 VerticalAlignment="Top"
                 HorizontalContentAlignment="Center"
                 VerticalContentAlignment="Center"
-                Click="SettingsButton_Click">
+                                            >
                 <!--  Animated Settings Icon  -->
                 <Viewbox
                     Width="18"
@@ -101,7 +101,7 @@
                     <ColumnDefinition Width="365" />
                 </Grid.ColumnDefinitions>
 
-                <TextBlock
+                <TextBlock x:ConnectionId='13'
                     x:Name="HeaderTextBlock"
                     Grid.Column="0"
                     HorizontalAlignment="Stretch"
@@ -117,26 +117,26 @@
                     HorizontalAlignment="Right"
                     VerticalAlignment="Stretch"
                     Orientation="Horizontal">
-                    <Button
+                    <Button x:ConnectionId='14'
                         x:Name="AddFileBtn"
                         Width="105"
                         Height="32"
-                        Click="AddFileBtn_Click"
+                                                
                         Content="Add a file"
                         Style="{ThemeResource AccentButtonStyle}" />
-                    <Button
+                    <Button x:ConnectionId='15'
                         x:Name="AddFolderBtn"
                         Width="110"
                         Height="32"
                         Margin="10,0,0,0"
-                        Click="AddFolderBtn_Click"
+                                                  
                         Content="Add a folder" />
-                    <Button
+                    <Button x:ConnectionId='16'
                         x:Name="AddWebsiteBtn"
                         Width="120"
                         Height="32"
                         Margin="10,0,0,0"
-                        Click="AddWebsiteBtn_Click"
+                                                   
                         Content="Add a website" />
                 </StackPanel>
             </Grid>
@@ -144,7 +144,7 @@
 
 
         <!--  GridView, Update Notice, Empty Notice  -->
-        <Grid
+        <Grid x:ConnectionId='6'
             x:Name="GridViewBackground"
             Grid.Row="2"
             Margin="0,10,0,0"
@@ -156,7 +156,7 @@
             </Grid.RowDefinitions>
 
             <!--  IsOpen=False will still reserve space for the margins of the InfoBar, so we must adjust the margins of the other elements to account for that  -->
-            <InfoBar
+            <InfoBar x:ConnectionId='7'
                 x:Name="UpdateInfoBar"
                 Title="Update available"
                 Grid.Row="0"
@@ -165,16 +165,16 @@
                 Message="To download it, click the &quot;Get update&quot; button."
                 Severity="Informational">
                 <InfoBar.ActionButton>
-                    <Button
+                    <Button x:ConnectionId='10'
                         x:Name="GetUpdateBtn"
                         HorizontalAlignment="Right"
-                        Click="GetUpdateBtn_Click"
+                                                  
                         Content="Get update"
                         Style="{ThemeResource AccentButtonStyle}" />
                 </InfoBar.ActionButton>
             </InfoBar>
 
-            <StackPanel
+            <StackPanel x:ConnectionId='8'
                 x:Name="EmptyNotice"
                 Grid.Row="1"
                 MinHeight="55"
@@ -205,7 +205,7 @@
                     TextWrapping="Wrap" />
             </StackPanel>
 
-            <GridView
+            <GridView x:ConnectionId='9'
                 x:Name="ItemsGridView"
                 Grid.Row="1"
                 Margin="20,10,20,20"
@@ -215,8 +215,8 @@
                 AllowDrop="True"
                 CanDragItems="True"
                 CanReorderItems="True"
-                DragItemsCompleted="ItemsGridView_DragItemsCompleted"
-                DragItemsStarting="ItemsGridView_DragItemsStarting"
+                                                                     
+                                                                   
                 IsItemClickEnabled="True"
                 SelectionMode="Single">
                 <GridView.ItemContainerStyle>
@@ -230,3 +230,4 @@
 
     </Grid>
 </winex:WindowEx>
+

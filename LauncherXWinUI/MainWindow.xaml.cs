@@ -11,6 +11,7 @@ using Windows.UI;
 using Windows.ApplicationModel.DataTransfer;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using System.Linq;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -271,6 +272,7 @@ namespace LauncherXWinUI
                 GridViewTile DroppedOnTile = sender as GridViewTile;
                 GridViewTile DraggedTile = e.Data.Properties["DraggedControl"] as GridViewTile;
                 DroppedOnTile.HideCreateGroupIndicator();
+                DraggedTile.UnhighlightControl();
                 DraggedTile.ShowRemoveFromGroupOption();
                 DroppedOnTile.ShowRemoveFromGroupOption();
 
@@ -328,6 +330,7 @@ namespace LauncherXWinUI
             {
                 GridViewTileGroup existingGridViewTileGroup = sender as GridViewTileGroup;
                 GridViewTile DraggedTile = e.Data.Properties["DraggedControl"] as GridViewTile;
+                DraggedTile.UnhighlightControl();
                 DraggedTile.ShowRemoveFromGroupOption();
 
                 // Add the DraggedTile to the existingGridViewTileGroup
@@ -339,7 +342,6 @@ namespace LauncherXWinUI
             }
         }
 
-
         private void ItemsGridView_DragItemsCompleted(ListViewBase sender, DragItemsCompletedEventArgs args)
         {
             // Remove the old GridView items if applicable
@@ -347,6 +349,107 @@ namespace LauncherXWinUI
                 ItemsGridView.Items.Remove(control);
             }
             GridViewItemsToRemove.Clear();
+
+            // Unhighlight all controls, just in case
+            foreach (UserControl gridViewItem in ItemsGridView.Items)
+            {
+                if (gridViewItem is GridViewTile)
+                {
+                    GridViewTile gridViewTile = gridViewItem as GridViewTile;
+                    gridViewTile.UnhighlightControl();
+                }
+                else if (gridViewItem is GridViewTileGroup)
+                {
+                    GridViewTileGroup gridViewTileGroup = gridViewItem as GridViewTileGroup;
+                    gridViewTileGroup.UnhighlightControl();
+                }
+            }
+        }
+
+        // This section of event handlers handles the AutoSuggestBox, which allows the user to search for things in LauncherX
+
+        List<GridViewTile> AllLauncherXItems = new List<GridViewTile>();
+        List<string> SearchBoxDropdownItems = new List<string>();
+        private void SearchBox_GotFocus(object sender, RoutedEventArgs e)
+        {
+            AllLauncherXItems.Clear();
+
+            // Retrieve all the items in LauncherX
+            foreach (UserControl gridViewItem in ItemsGridView.Items)
+            {
+                if (gridViewItem is GridViewTile)
+                {
+                    GridViewTile gridViewTile = gridViewItem as GridViewTile;
+                    AllLauncherXItems.Add(gridViewTile);
+                }
+                else if (gridViewItem is GridViewTileGroup)
+                {
+                    GridViewTileGroup gridViewTileGroup = gridViewItem as GridViewTileGroup;
+                    foreach (GridViewTile tile in gridViewTileGroup.Items)
+                    {
+                        AllLauncherXItems.Add(tile);
+                    }
+                }
+            }
+        }
+
+        private void SearchBox_TextChanged(AutoSuggestBox sender, AutoSuggestBoxTextChangedEventArgs args)
+        {
+            // Only get results when it was a user typing, 
+            // otherwise assume the value got filled in by TextMemberPath 
+            // or the handler for SuggestionChosen.
+            if (args.Reason == AutoSuggestionBoxTextChangeReason.UserInput)
+            {
+                // Set the ItemsSource to be your filtered dataset
+                SearchBoxDropdownItems = new List<string>();
+                foreach (GridViewTile gridViewTile in AllLauncherXItems)
+                {
+                    if (gridViewTile.DisplayText.ToLower().Contains(sender.Text.ToLower()))
+                    {
+                        SearchBoxDropdownItems.Add(gridViewTile.DisplayText);
+                    }
+                }
+                sender.ItemsSource = SearchBoxDropdownItems;
+            }
+        }
+
+        private void SearchBox_SuggestionChosen(AutoSuggestBox sender, AutoSuggestBoxSuggestionChosenEventArgs args)
+        {
+            sender.Text = args.SelectedItem.ToString();
+        }
+
+        private async void SearchBox_QuerySubmitted(AutoSuggestBox sender, AutoSuggestBoxQuerySubmittedEventArgs args)
+        {
+            // If there's nothing in the dropdown of the SearchBox, don't do anything
+            if (SearchBoxDropdownItems.Count <= 0)
+            {
+                return;
+            }
+
+            string chosenSuggestion = "";
+            if (args.ChosenSuggestion != null)
+            {
+                // User selected an item from the suggestion list, take an action on it here.
+                chosenSuggestion = args.ChosenSuggestion.ToString();
+            }
+            else
+            {
+                chosenSuggestion = SearchBoxDropdownItems[0];   
+            }
+
+            sender.Text = chosenSuggestion;
+
+            // Find the corresponding GridViewTile, and start its associated process
+            foreach (GridViewTile gridViewTile in AllLauncherXItems)
+            {
+                if (gridViewTile.DisplayText.ToLower() == chosenSuggestion.ToLower())
+                {
+                    await gridViewTile.StartAssociatedProcess();
+                }
+            }
+
+            AllLauncherXItems.Clear();
+            SearchBoxDropdownItems.Clear();
         }
     }
 }

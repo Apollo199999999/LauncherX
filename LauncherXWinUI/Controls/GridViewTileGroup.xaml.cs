@@ -203,10 +203,19 @@ namespace LauncherXWinUI.Controls
         }
 
         // Event Handlers
+        private void GroupPanel_PointerPressed(object sender, Microsoft.UI.Xaml.Input.PointerRoutedEventArgs e)
+        {
+            HighlightControl();
+        }
+
+        private void GroupPanel_PointerReleased(object sender, Microsoft.UI.Xaml.Input.PointerRoutedEventArgs e)
+        {
+            UnhighlightControl();
+        }
+
         private async void GroupPanel_Tapped(object sender, Microsoft.UI.Xaml.Input.TappedRoutedEventArgs e)
         {
             // Show the ContentDialog to display the items in this Group
-            HighlightControl();
             ItemsGridView.Items.Clear();
             foreach (GridViewTile gridViewTile in Items)
             {
@@ -227,7 +236,6 @@ namespace LauncherXWinUI.Controls
                 ItemsGridView.Items.Clear();
 
                 // Unselect this item
-                UnhighlightControl();
                 GridView parentGridView = this.Parent as GridView;
                 if (parentGridView != null)
                 {
@@ -249,6 +257,7 @@ namespace LauncherXWinUI.Controls
             };
 
             var result = await GroupDialog.ShowAsync();
+            UnhighlightControl();
         }
 
         // Only fires when the GroupDialog is open
@@ -284,5 +293,6 @@ namespace LauncherXWinUI.Controls
                 parentGridView.Items.Remove(this);
             }
         }
+
     }
 }

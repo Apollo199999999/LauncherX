@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="utf-8" ?>
-<UserControl
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<UserControl x:ConnectionId='1'
     x:Class="LauncherXWinUI.Controls.GridViewTile"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -9,23 +9,23 @@
     x:Name="GridViewTileControl"
     AllowDrop="True"
     IsRightTapEnabled="True"
-    PointerPressed="GridViewTileControl_PointerPressed"
-    PointerReleased="GridViewTileControl_PointerReleased"
-    RightTapped="GridViewTileControl_RightTapped"
-    Tapped="GridViewTileControl_Tapped"
+                                                       
+                                                         
+                                                 
+                                       
     mc:Ignorable="d">
     <FlyoutBase.AttachedFlyout>
-        <MenuFlyout x:Name="CreateGroupFlyout">
+        <MenuFlyout x:ConnectionId='2' x:Name="CreateGroupFlyout">
             <MenuFlyoutItem Text="Create new group" />
         </MenuFlyout>
     </FlyoutBase.AttachedFlyout>
     <!--  The BorderThickness is set as such because when clicking on the GridViewTile, the highlight happens too quickly which causes the bottom border to be too thin  -->
-    <Border
+    <Border x:ConnectionId='3'
         x:Name="ControlBorder"
         AllowDrop="True"
         BorderThickness="2,2,2,3"
         CornerRadius="{ThemeResource ControlCornerRadius}">
-        <Grid
+        <Grid x:ConnectionId='4'
             x:Name="TilePanel"
             HorizontalAlignment="Stretch"
             VerticalAlignment="Stretch"
@@ -34,7 +34,7 @@
                 <RowDefinition Height="auto" />
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
-            <Image
+            <Image x:ConnectionId='5'
                 x:Name="TileImage"
                 Grid.Row="0"
                 HorizontalAlignment="Center"
@@ -42,7 +42,7 @@
                 AllowDrop="True"
                 Stretch="Uniform" />
 
-            <TextBlock
+            <TextBlock x:ConnectionId='6'
                 x:Name="TileText"
                 Grid.Row="1"
                 Margin="5,5,5,5"
@@ -53,35 +53,35 @@
                 TextTrimming="CharacterEllipsis" />
 
             <FlyoutBase.AttachedFlyout>
-                <MenuFlyout x:Name="RightClickMenu">
-                    <MenuFlyoutItem
+                <MenuFlyout x:ConnectionId='7' x:Name="RightClickMenu">
+                    <MenuFlyoutItem x:ConnectionId='8'
                         x:Name="MenuOpenOption"
-                        Click="MenuOpenOption_Click"
+                                                    
                         Text="Open">
                         <MenuFlyoutItem.Icon>
-                            <FontIcon x:Name="MenuOpenOptionIcon" Glyph="&#xE8E5;" />
+                            <FontIcon x:ConnectionId='13' x:Name="MenuOpenOptionIcon" Glyph="&#xE8E5;" />
                         </MenuFlyoutItem.Icon>
                     </MenuFlyoutItem>
 
-                    <MenuFlyoutItem
+                    <MenuFlyoutItem x:ConnectionId='9'
                         x:Name="MenuOpenLocOption"
-                        Click="MenuOpenLocOption_Click"
+                                                       
                         Text="Open Location">
                         <MenuFlyoutItem.Icon>
-                            <FontIcon x:Name="MenuOpenLocOptionIcon" Glyph="&#xE838;" />
+                            <FontIcon x:ConnectionId='12' x:Name="MenuOpenLocOptionIcon" Glyph="&#xE838;" />
                         </MenuFlyoutItem.Icon>
                     </MenuFlyoutItem>
 
-                    <MenuFlyoutItem
+                    <MenuFlyoutItem x:ConnectionId='10'
                         x:Name="MenuRemoveGroupOption"
-                        Click="MenuRemoveGroupOption_Click"
+                                                           
                         Icon="Remove"
                         Text="Remove from group"
                         Visibility="Collapsed" />
 
-                    <MenuFlyoutItem
+                    <MenuFlyoutItem x:ConnectionId='11'
                         x:Name="MenuRemoveOption"
-                        Click="MenuRemoveOption_Click"
+                                                      
                         Icon="Delete"
                         Text="Remove from LauncherX" />
                 </MenuFlyout>
@@ -89,3 +89,4 @@
         </Grid>
     </Border>
 </UserControl>
+

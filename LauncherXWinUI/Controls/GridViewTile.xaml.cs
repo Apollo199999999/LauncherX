@@ -265,12 +265,11 @@ namespace LauncherXWinUI.Controls
         /// <summary>
         /// Method to start the process associated with this GridViewTile
         /// </summary>
-        private async Task StartAssociatedProcess()
+        public async Task StartAssociatedProcess()
         {
             // Try to start the executing path
             try
             {
-                HighlightControl();
                 ProcessStartInfo processStartInfo = new ProcessStartInfo { FileName = ExecutingPath, UseShellExecute = true, Arguments = ExecutingArguments };
                 Process.Start(processStartInfo);
             }
@@ -305,6 +304,16 @@ namespace LauncherXWinUI.Controls
         }
 
         // Event handlers
+        private void GridViewTileControl_PointerPressed(object sender, PointerRoutedEventArgs e)
+        {
+            HighlightControl();
+        }
+
+        private void GridViewTileControl_PointerReleased(object sender, PointerRoutedEventArgs e)
+        {
+            UnhighlightControl();
+        }
+
         private async void GridViewTileControl_Tapped(object sender, TappedRoutedEventArgs e)
         {
             await StartAssociatedProcess();
