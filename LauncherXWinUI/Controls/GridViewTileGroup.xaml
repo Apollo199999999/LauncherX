@@ -29,6 +29,7 @@
             PointerReleased="GroupPanel_PointerReleased"
             RightTapped="GroupPanel_RightTapped"
             Tapped="GroupPanel_Tapped">
+
             <Grid
                 x:Name="ItemsPreviewGrid"
                 HorizontalAlignment="Center"
@@ -43,6 +44,7 @@
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
             </Grid>
+
             <TextBlock
                 x:Name="TileText"
                 Margin="5,5,5,5"
@@ -61,16 +63,25 @@
                     <x:Double x:Key="ContentDialogMaxWidth">999999999</x:Double>
                     <x:Double x:Key="ContentDialogMaxHeight">999999999</x:Double>
                 </ContentDialog.Resources>
+
                 <Grid x:Name="GroupDialogContent">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="auto" />
                         <RowDefinition Height="*" />
                     </Grid.RowDefinitions>
-                    <TextBox
-                        x:Name="GroupDialogTitleTextBox"
-                        Grid.Row="0"
-                        Width="300"
-                        HorizontalAlignment="Left" />
+
+                    <StackPanel Grid.Row="0" Orientation="Horizontal">
+                        <TextBlock
+                            VerticalAlignment="Center"
+                            Style="{ThemeResource SubtitleTextBlockStyle}"
+                            Text="Name of group:" />
+                        <TextBox
+                            x:Name="GroupDialogTitleTextBox"
+                            Width="250"
+                            Margin="10,0,0,0"
+                            HorizontalAlignment="Left" />
+                    </StackPanel>
+
                     <GridView
                         x:Name="ItemsGridView"
                         Grid.Row="1"

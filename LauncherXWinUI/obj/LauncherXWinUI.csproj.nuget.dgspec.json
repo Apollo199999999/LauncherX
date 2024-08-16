@@ -64,7 +64,7 @@
             },
             "Microsoft.WindowsAppSDK": {
               "target": "Package",
-              "version": "[1.5.240627000, )"
+              "version": "[1.5.240802000, )"
             },
             "Octokit": {
               "target": "Package",

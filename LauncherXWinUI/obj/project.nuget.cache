@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "+3uX0ASBJIg=",
+  "dgSpecHash": "coEShKfFuW4=",
   "success": true,
   "projectFilePath": "C:\\Users\\fligh\\source\\repos\\LauncherX\\LauncherXWinUI\\LauncherXWinUI.csproj",
   "expectedPackageFiles": [
@@ -10,7 +10,7 @@
     "C:\\Users\\fligh\\.nuget\\packages\\communitytoolkit.winui.helpers\\8.0.240109\\communitytoolkit.winui.helpers.8.0.240109.nupkg.sha512",
     "C:\\Users\\fligh\\.nuget\\packages\\communitytoolkit.winui.triggers\\8.0.240109\\communitytoolkit.winui.triggers.8.0.240109.nupkg.sha512",
     "C:\\Users\\fligh\\.nuget\\packages\\microsoft.windows.sdk.buildtools\\10.0.26100.1\\microsoft.windows.sdk.buildtools.10.0.26100.1.nupkg.sha512",
-    "C:\\Users\\fligh\\.nuget\\packages\\microsoft.windowsappsdk\\1.5.240627000\\microsoft.windowsappsdk.1.5.240627000.nupkg.sha512",
+    "C:\\Users\\fligh\\.nuget\\packages\\microsoft.windowsappsdk\\1.5.240802000\\microsoft.windowsappsdk.1.5.240802000.nupkg.sha512",
     "C:\\Users\\fligh\\.nuget\\packages\\octokit\\13.0.1\\octokit.13.0.1.nupkg.sha512",
     "C:\\Users\\fligh\\.nuget\\packages\\system.text.encodings.web\\8.0.0\\system.text.encodings.web.8.0.0.nupkg.sha512",
     "C:\\Users\\fligh\\.nuget\\packages\\system.text.json\\8.0.4\\system.text.json.8.0.4.nupkg.sha512",

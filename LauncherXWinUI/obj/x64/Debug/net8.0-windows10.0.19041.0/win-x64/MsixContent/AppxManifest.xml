@@ -1,11 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Package xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10" xmlns:deployment="http://schemas.microsoft.com/appx/manifest/deployment/windows10" IgnorableNamespaces="mp deployment" xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest">
-  <Identity Name="Microsoft.WindowsAppRuntime.1.5" Publisher="CN=Microsoft Corporation, O=Microsoft Corporation, L=Redmond, S=Washington, C=US" ProcessorArchitecture="x64" Version="5001.178.1908.0" />
+  <Identity Name="Microsoft.WindowsAppRuntime.1.5" Publisher="CN=Microsoft Corporation, O=Microsoft Corporation, L=Redmond, S=Washington, C=US" ProcessorArchitecture="x64" Version="5001.214.1843.0" />
   <Properties>
     <Framework>true</Framework>
     <DisplayName>WindowsAppRuntime.1.5</DisplayName>
     <PublisherDisplayName>Microsoft Corporation</PublisherDisplayName>
-    <Description>Microsoft Windows App Runtime 1.5 (5001.178.1908.0 x64 )</Description>
+    <Description>Microsoft Windows App Runtime 1.5 (5001.214.1843.0 x64 )</Description>
     <Logo>WindowsAppRuntime.png</Logo>
   </Properties>
   <Resources>

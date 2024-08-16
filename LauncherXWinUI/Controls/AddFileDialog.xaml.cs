@@ -39,80 +39,6 @@ namespace LauncherXWinUI.Controls
             new PropertyMetadata(new List<AddFileDialogListViewItem>()));
 
         // Helper functions
-        // THANK GOD FOR STACKOVERFLOW: https://stackoverflow.com/questions/28525925/get-icon-128128-file-type-c-sharp/28530403#28530403
-        // Get high-resolution icon of a file using Shell32/Win32 API
-        int GetIconIndex(string pszFile)
-        {
-            SHFILEINFO sfi = new SHFILEINFO();
-            Shell32.SHGetFileInfo(pszFile
-                , 0
-                , ref sfi
-                , (uint)System.Runtime.InteropServices.Marshal.SizeOf(sfi)
-                , (uint)(SHGFI.SysIconIndex | SHGFI.LargeIcon | SHGFI.UseFileAttributes));
-            return sfi.iIcon;
-        }
-
-        // 256*256
-        IntPtr GetJumboIcon(int iImage)
-        {
-            const string IID_IImageList = "46EB5926-582E-4017-9FDF-E8998DAA0950";
-            const string IID_IImageList2 = "192B9D83-50FC-457B-90A0-2B82A8B5DAE1";
-
-            IImageList spiml = null;
-            Guid guil = new Guid(IID_IImageList2);//or IID_IImageList
-
-            Shell32.SHGetImageList(Shell32.SHIL_JUMBO, ref guil, ref spiml);
-            IntPtr hIcon = IntPtr.Zero;
-            spiml.GetIcon(iImage, Shell32.ILD_TRANSPARENT | Shell32.ILD_IMAGE, ref hIcon); //
-
-            return hIcon;
-        }
-
-        // THANK GOD FOR STACKOVERFLOW: https://stackoverflow.com/questions/76640972/convert-system-drawing-icon-to-microsoft-ui-xaml-imagesource
-        /// <summary>
-        /// Converts System.Drawing.Icon to SoftwareBitmapSource
-        /// </summary>
-        /// <param name="icon">Icon to convert</param>
-        /// <returns>SoftwareBitmapSource for Image Control</returns>
-        public static async Task<SoftwareBitmapSource> GetWinUI3BitmapSourceFromIcon(System.Drawing.Icon icon)
-        {
-            if (icon == null)
-                return null;
-
-            // convert to bitmap
-            using var bmp = icon.ToBitmap();
-            return await GetWinUI3BitmapSourceFromGdiBitmap(bmp);
-        }
-
-        /// <summary>
-        /// Converts System.Drawing.Bitmap to SoftwareBitmapSource
-        /// </summary>
-        /// <param name="bmp">Bitmap to convert</param>
-        /// <returns>SoftwareBitmapSource for Image Control</returns>
-        public static async Task<SoftwareBitmapSource> GetWinUI3BitmapSourceFromGdiBitmap(System.Drawing.Bitmap bmp)
-        {
-            if (bmp == null)
-                return null;
-
-            // get pixels as an array of bytes
-            var data = bmp.LockBits(new System.Drawing.Rectangle(0, 0, bmp.Width, bmp.Height), System.Drawing.Imaging.ImageLockMode.ReadOnly, bmp.PixelFormat);
-            var bytes = new byte[data.Stride * data.Height];
-            Marshal.Copy(data.Scan0, bytes, 0, bytes.Length);
-            bmp.UnlockBits(data);
-
-            // get WinRT SoftwareBitmap
-            var softwareBitmap = new Windows.Graphics.Imaging.SoftwareBitmap(
-                Windows.Graphics.Imaging.BitmapPixelFormat.Bgra8,
-                bmp.Width,
-                bmp.Height,
-                Windows.Graphics.Imaging.BitmapAlphaMode.Premultiplied);
-            softwareBitmap.CopyFromBuffer(bytes.AsBuffer());
-
-            // build WinUI3 SoftwareBitmapSource
-            var source = new Microsoft.UI.Xaml.Media.Imaging.SoftwareBitmapSource();
-            await source.SetBitmapAsync(softwareBitmap);
-            return source;
-        }
 
         /// <summary>
         /// Creates an AddFileDialogListViewItem and add it to the SelectedFilesListView, using Win32 APIs
@@ -127,9 +53,9 @@ namespace LauncherXWinUI.Controls
             SelectedFilesListView.Items.Add(addFileDialogListViewItem);
 
             // Get the thumbnail of the file using Win32 APIs
-            IntPtr hIcon = GetJumboIcon(GetIconIndex(filePath));
+            IntPtr hIcon = Shell32.GetJumboIcon(Shell32.GetIconIndex(filePath));
             System.Drawing.Icon ico = (System.Drawing.Icon)System.Drawing.Icon.FromHandle(hIcon).Clone();
-            SoftwareBitmapSource fileIcon = await GetWinUI3BitmapSourceFromIcon(ico);
+            SoftwareBitmapSource fileIcon = await Shell32.GetWinUI3BitmapSourceFromIcon(ico);
             addFileDialogListViewItem.FileIcon = fileIcon;
 
             // Clean up

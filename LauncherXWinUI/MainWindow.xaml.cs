@@ -12,6 +12,9 @@ using Windows.ApplicationModel.DataTransfer;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Linq;
+using System.IO.Compression;
+using Windows.Storage;
+using Windows.Storage.FileProperties;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -49,6 +52,9 @@ namespace LauncherXWinUI
         }
 
         // Helper methods
+        /// <summary>
+        /// Method that updates the UI based on the UserSettingsClass
+        /// </summary>
         private void UpdateUIFromSettings()
         {
             // Set header text
@@ -65,6 +71,46 @@ namespace LauncherXWinUI
                     ((GridViewTileGroup)gridViewItem).Size = UserSettingsClass.GridScale;
                 }
             }
+        }
+
+        /// <summary>
+        /// Method that tries to show the DragDropInterface, if the data dragged in is valid
+        /// </summary>
+        /// <param name="e">The DragEventArgs from the event handler</param>
+        public void TryShowDragDropInterface(DragEventArgs e)
+        {
+            if (e.DataView.Contains(StandardDataFormats.StorageItems) || e.DataView.Contains(StandardDataFormats.WebLink))
+            {
+                // User is dragging files/folders/websites into LauncherX
+                DragDropInterface.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                DragDropInterface.Visibility = Visibility.Collapsed;
+            }
+
+        }
+
+        /// <summary>
+        /// Method that adds a new GridViewTile to the ItemsGridView
+        /// </summary>
+        /// <param name="executingPath">ExecutingPath in GridViewTile</param>
+        /// <param name="executingArguments">ExecutingArguments in GridViewTile</param>
+        /// <param name="displayText">DisplayText in GridViewTile</param>
+        /// <param name="imageSource">ImageSource in GridViewTile</param>
+        private void AddGridViewTile(string executingPath, string executingArguments, string displayText, ImageSource imageSource)
+        {
+            // Create new GridViewTile for each item
+            GridViewTile gridViewTile = new GridViewTile();
+            gridViewTile.ExecutingPath = executingPath;
+            gridViewTile.ExecutingArguments = executingArguments;
+            gridViewTile.DisplayText = displayText;
+            gridViewTile.ImageSource = imageSource;
+            gridViewTile.Size = UserSettingsClass.GridScale;
+            gridViewTile.Drop += GridViewTile_Drop;
+            gridViewTile.DragEnter += GridViewTile_DragEnter;
+            gridViewTile.DragLeave += GridViewTile_DragLeave;
+            ItemsGridView.Items.Add(gridViewTile);
         }
 
         // Event Handlers
@@ -123,16 +169,7 @@ namespace LauncherXWinUI
                 foreach (AddFileDialogListViewItem fileItem in addFileDialog.AddedFiles)
                 {
                     // Create new GridViewTile for each item
-                    GridViewTile gridViewTile = new GridViewTile();
-                    gridViewTile.ExecutingPath = fileItem.ExecutingPath;
-                    gridViewTile.ExecutingArguments = fileItem.ExecutingArguments;
-                    gridViewTile.DisplayText = fileItem.DisplayText;
-                    gridViewTile.ImageSource = fileItem.FileIcon;
-                    gridViewTile.Size = UserSettingsClass.GridScale;
-                    gridViewTile.DragEnter += GridViewTile_DragEnter;
-                    gridViewTile.DragLeave += GridViewTile_DragLeave;
-                    gridViewTile.Drop += GridViewTile_Drop;
-                    ItemsGridView.Items.Add(gridViewTile);
+                    AddGridViewTile(fileItem.ExecutingPath, fileItem.ExecutingArguments, fileItem.DisplayText, fileItem.FileIcon);
                 }
             }
         }
@@ -148,20 +185,11 @@ namespace LauncherXWinUI
 
             if (result == ContentDialogResult.Primary)
             {
-                // Add the files from the addFolderDialog
+                // Add the folders from the addFolderDialog
                 foreach (AddFolderDialogListViewItem folderItem in addFolderDialog.AddedFolders)
                 {
                     // Create new GridViewTile for each item
-                    GridViewTile gridViewTile = new GridViewTile();
-                    gridViewTile.ExecutingPath = folderItem.ExecutingPath;
-                    gridViewTile.ExecutingArguments = "";
-                    gridViewTile.DisplayText = folderItem.DisplayText;
-                    gridViewTile.ImageSource = folderItem.FolderIcon;
-                    gridViewTile.Size = UserSettingsClass.GridScale;
-                    gridViewTile.Drop += GridViewTile_Drop;
-                    gridViewTile.DragEnter += GridViewTile_DragEnter;
-                    gridViewTile.DragLeave += GridViewTile_DragLeave;
-                    ItemsGridView.Items.Add(gridViewTile);
+                    AddGridViewTile(folderItem.ExecutingPath, "", folderItem.DisplayText, folderItem.FolderIcon);
                 }
             }
         }
@@ -177,16 +205,6 @@ namespace LauncherXWinUI
 
             if (result == ContentDialogResult.Primary)
             {
-                // Create new GridViewTile to display the website
-                GridViewTile gridViewTile = new GridViewTile();
-                gridViewTile.ExecutingPath = addWebsiteDialog.InputWebsiteUrl;
-                gridViewTile.ExecutingArguments = "";
-                gridViewTile.DisplayText = addWebsiteDialog.InputWebsiteUrl;
-                gridViewTile.Size = UserSettingsClass.GridScale;
-                gridViewTile.Drop += GridViewTile_Drop;
-                gridViewTile.DragEnter += GridViewTile_DragEnter;
-                gridViewTile.DragLeave += GridViewTile_DragLeave;
-
                 // Get the icon of the website, using Google's favicon service
                 BitmapImage websiteIcon = new BitmapImage();
                 // Fallback icon
@@ -194,14 +212,13 @@ namespace LauncherXWinUI
                 websiteIcon.ImageFailed += (s, e) => 
                 {
                     websiteIcon.UriSource = defaultImageUri;
-                    gridViewTile.ImageSource = websiteIcon;
                 };
                 // Try getting website icon
                 Uri iconUri = new Uri("https://www.google.com/s2/favicons?sz=128&domain_url=" + addWebsiteDialog.InputWebsiteUrl, UriKind.Absolute);
                 websiteIcon.UriSource = iconUri;
-                gridViewTile.ImageSource = websiteIcon;
 
-                ItemsGridView.Items.Add(gridViewTile);
+                // Create new GridViewTile to display the website
+                AddGridViewTile(addWebsiteDialog.InputWebsiteUrl, "", addWebsiteDialog.InputWebsiteUrl, websiteIcon);
             }
         }
 
@@ -235,7 +252,7 @@ namespace LauncherXWinUI
         // Prevent anything from happening when a GridViewTileGroup is dragged over a GridViewTile
         private void GridViewTile_DragEnter(object sender, DragEventArgs e)
         {
-            if (e.Data.Properties["DraggedControl"] != null && e.Data.Properties["DraggedControl"] is GridViewTile)
+            if (e.Data != null && e.Data.Properties["DraggedControl"] != null && e.Data.Properties["DraggedControl"] is GridViewTile)
             {
                 GridViewTile DraggedTile = e.Data.Properties["DraggedControl"] as GridViewTile;
                 GridViewTile DraggedOverTile = sender as GridViewTile;
@@ -250,7 +267,7 @@ namespace LauncherXWinUI
         }
         private void GridViewTile_DragLeave(object sender, DragEventArgs e)
         {
-            if (e.Data.Properties["DraggedControl"] != null && e.Data.Properties["DraggedControl"] is GridViewTile)
+            if (e.Data != null && e.Data.Properties["DraggedControl"] != null && e.Data.Properties["DraggedControl"] is GridViewTile)
             {
                 GridViewTile DraggedTile = e.Data.Properties["DraggedControl"] as GridViewTile;
                 GridViewTile DraggedOverTile = sender as GridViewTile;
@@ -267,7 +284,7 @@ namespace LauncherXWinUI
 
         private void GridViewTile_Drop(object sender, DragEventArgs e)
         {
-            if (e.Data.Properties["DraggedControl"] != null && e.Data.Properties["DraggedControl"] is GridViewTile)
+            if (e.Data != null && e.Data.Properties["DraggedControl"] != null && e.Data.Properties["DraggedControl"] is GridViewTile)
             {
                 GridViewTile DroppedOnTile = sender as GridViewTile;
                 GridViewTile DraggedTile = e.Data.Properties["DraggedControl"] as GridViewTile;
@@ -304,7 +321,7 @@ namespace LauncherXWinUI
         // GridViewTileGroup drag events
         private void GridViewTileGroup_DragEnter(object sender, DragEventArgs e)
         {
-            if (e.Data.Properties["DraggedControl"] != null && e.Data.Properties["DraggedControl"] is GridViewTile)
+            if (e.Data != null && e.Data.Properties["DraggedControl"] != null && e.Data.Properties["DraggedControl"] is GridViewTile)
             {
                 GridViewTileGroup DraggedOverTileGroup = sender as GridViewTileGroup;
 
@@ -315,7 +332,7 @@ namespace LauncherXWinUI
 
         private void GridViewTileGroup_DragLeave(object sender, DragEventArgs e)
         {
-            if (e.Data.Properties["DraggedControl"] != null && e.Data.Properties["DraggedControl"] is GridViewTile)
+            if (e.Data != null && e.Data.Properties["DraggedControl"] != null && e.Data.Properties["DraggedControl"] is GridViewTile)
             {
                 GridViewTileGroup DraggedOverTileGroup = sender as GridViewTileGroup;
 
@@ -326,7 +343,7 @@ namespace LauncherXWinUI
 
         private void GridViewTileGroup_Drop(object sender, DragEventArgs e)
         {
-            if (e.Data.Properties["DraggedControl"] != null && e.Data.Properties["DraggedControl"] is GridViewTile)
+            if (e.Data != null && e.Data.Properties["DraggedControl"] != null && e.Data.Properties["DraggedControl"] is GridViewTile)
             {
                 GridViewTileGroup existingGridViewTileGroup = sender as GridViewTileGroup;
                 GridViewTile DraggedTile = e.Data.Properties["DraggedControl"] as GridViewTile;
@@ -450,6 +467,120 @@ namespace LauncherXWinUI
 
             AllLauncherXItems.Clear();
             SearchBoxDropdownItems.Clear();
+        }
+
+        // This section of event handlers handles the user dragging files/folders/websites into LauncherX
+        private void DragDropParent_DragEnter(object sender, DragEventArgs e)
+        {
+            TryShowDragDropInterface(e);
+        }
+
+        private void DragDropParent_DragOver(object sender, DragEventArgs e)
+        {
+            TryShowDragDropInterface(e);
+        }
+
+        private void DragDropParent_DragLeave(object sender, DragEventArgs e)
+        {
+            DragDropInterface.Visibility = Visibility.Collapsed;
+        }
+
+        private void DragDropInterface_DragEnter(object sender, DragEventArgs e)
+        {
+            // Modify the caption that shows when something is dragged into LauncherX
+            e.AcceptedOperation = DataPackageOperation.Copy;
+            if (e.DragUIOverride != null)
+            {
+                e.DragUIOverride.Caption = "Add item to LauncherX";
+                e.DragUIOverride.IsContentVisible = true;
+            }
+        }
+
+        private void DragDropInterface_DragOver(object sender, DragEventArgs e)
+        {
+            // Modify the caption that shows when something is dragged into LauncherX
+            e.AcceptedOperation = DataPackageOperation.Copy;
+            if (e.DragUIOverride != null)
+            {
+                e.DragUIOverride.Caption = "Add item to LauncherX";
+                e.DragUIOverride.IsContentVisible = true;
+            }
+        }
+
+        private async void DragDropInterface_Drop(object sender, DragEventArgs e)
+        {
+            DragDropInterface.Visibility = Visibility.Collapsed;
+
+            // When a URL is dragged in, it technicallu qualifies as both a internet shortcut (.url) file, and a WebLink
+            // Thus, we check if the DataView contains a WebLink first, so that URLs dragged in are added as websites instead of files
+            // Source: https://stackoverflow.com/questions/66973410/drag-and-drop-items-in-windows-application-and-get-the-standarddataformats-of-th
+            if (e.DataView.Contains(StandardDataFormats.WebLink))
+            {
+                Debug.WriteLine("hello");
+                // Add the website
+                Uri websiteUri = await e.DataView.GetWebLinkAsync();
+
+                // Get the icon of the website, using Google's favicon service
+                BitmapImage websiteIcon = new BitmapImage();
+                // Fallback icon
+                Uri defaultImageUri = new Uri(Path.GetFullPath(@"Resources\websitePlaceholder.png"), UriKind.Absolute);
+                websiteIcon.ImageFailed += (s, e) =>
+                {
+                    websiteIcon.UriSource = defaultImageUri;
+                };
+                // Try getting website icon
+                Uri iconUri = new Uri("https://www.google.com/s2/favicons?sz=128&domain_url=" + websiteUri.ToString(), UriKind.Absolute);
+                websiteIcon.UriSource = iconUri;
+
+                // Create new GridViewTile to display the website
+                AddGridViewTile(websiteUri.ToString(), "", websiteUri.ToString(), websiteIcon);
+            }
+            else if (e.DataView.Contains(StandardDataFormats.StorageItems))
+            {
+                var items = await e.DataView.GetStorageItemsAsync();
+
+                // Folder
+                foreach (var storageItem in items.OfType<StorageFolder>())
+                {
+                    // This is a folder
+                    string folderPath = storageItem.Path;
+
+                    // Get the thumbnail of the folder
+                    StorageItemThumbnail thumbnail = await storageItem.GetThumbnailAsync(ThumbnailMode.SingleItem, 256);
+                    BitmapImage bitmapImage = new BitmapImage();
+                    bitmapImage.SetSource(thumbnail);
+
+                    // Add folder to ItemsGridView
+                    AddGridViewTile(folderPath, "", storageItem.Name, bitmapImage);
+                }
+
+                // File
+                foreach (var storageItem in items.OfType<StorageFile>())
+                {
+                    // This is a file
+                    string filePath = storageItem.Path;
+                    string ext = Path.GetExtension(filePath);
+
+                    // Get the thumbnail of the file, depending on its extension (explanation in AddFileDialog.xaml.cs)
+                    if (ext == ".lnk" || ext == ".url" || ext == ".wsh")
+                    {
+                        // Get the thumbnail of the file using Win32 APIs
+                        IntPtr hIcon = Shell32.GetJumboIcon(Shell32.GetIconIndex(filePath));
+                        System.Drawing.Icon ico = (System.Drawing.Icon)System.Drawing.Icon.FromHandle(hIcon).Clone();
+                        SoftwareBitmapSource fileIcon = await Shell32.GetWinUI3BitmapSourceFromIcon(ico);
+                        AddGridViewTile(filePath, "", storageItem.Name, fileIcon);
+                    }
+                    else
+                    {
+                        // Get the thumbnail of the file using WinRT APIs
+                        StorageItemThumbnail thumbnail = await storageItem.GetThumbnailAsync(ThumbnailMode.SingleItem, 256);
+                        BitmapImage bitmapImage = new BitmapImage();
+                        bitmapImage.SetSource(thumbnail);
+                        AddGridViewTile(filePath, "", storageItem.Name, bitmapImage);
+                    }
+                }
+            }
+            
         }
     }
 }

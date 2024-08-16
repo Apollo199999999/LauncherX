@@ -29,6 +29,7 @@
                                                         
                                                 
                                       >
+
             <Grid x:ConnectionId='5'
                 x:Name="ItemsPreviewGrid"
                 HorizontalAlignment="Center"
@@ -43,6 +44,7 @@
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
             </Grid>
+
             <TextBlock x:ConnectionId='6'
                 x:Name="TileText"
                 Margin="5,5,5,5"
@@ -61,17 +63,26 @@
                     <x:Double x:Key="ContentDialogMaxWidth">999999999</x:Double>
                     <x:Double x:Key="ContentDialogMaxHeight">999999999</x:Double>
                 </ContentDialog.Resources>
+
                 <Grid x:ConnectionId='8' x:Name="GroupDialogContent">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="auto" />
                         <RowDefinition Height="*" />
                     </Grid.RowDefinitions>
-                    <TextBox x:ConnectionId='9'
-                        x:Name="GroupDialogTitleTextBox"
-                        Grid.Row="0"
-                        Width="300"
-                        HorizontalAlignment="Left" />
-                    <GridView x:ConnectionId='10'
+
+                    <StackPanel Grid.Row="0" Orientation="Horizontal">
+                        <TextBlock
+                            VerticalAlignment="Center"
+                            Style="{ThemeResource SubtitleTextBlockStyle}"
+                            Text="Name of group:" />
+                        <TextBox x:ConnectionId='10'
+                            x:Name="GroupDialogTitleTextBox"
+                            Width="250"
+                            Margin="10,0,0,0"
+                            HorizontalAlignment="Left" />
+                    </StackPanel>
+
+                    <GridView x:ConnectionId='9'
                         x:Name="ItemsGridView"
                         Grid.Row="1"
                         Margin="0,20,0,0"
