@@ -491,7 +491,7 @@ namespace LauncherXWinUI
             e.AcceptedOperation = DataPackageOperation.Copy;
             if (e.DragUIOverride != null)
             {
-                e.DragUIOverride.Caption = "Add item to LauncherX";
+                e.DragUIOverride.Caption = "Add to LauncherX";
                 e.DragUIOverride.IsContentVisible = true;
             }
         }
@@ -502,7 +502,7 @@ namespace LauncherXWinUI
             e.AcceptedOperation = DataPackageOperation.Copy;
             if (e.DragUIOverride != null)
             {
-                e.DragUIOverride.Caption = "Add item to LauncherX";
+                e.DragUIOverride.Caption = "Add to LauncherX";
                 e.DragUIOverride.IsContentVisible = true;
             }
         }
