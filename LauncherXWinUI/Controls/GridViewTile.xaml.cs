@@ -82,7 +82,7 @@ namespace LauncherXWinUI.Controls
                 // Update image margin and dimensions
                 gridViewTile.TileImage.Margin = new Thickness(newSize * 22.5, newSize * 5, newSize * 22.5, 0);
                 gridViewTile.TileImage.Height = newWidth - newSize * 22.5 - newSize * 22.5;
-                gridViewTile.TileImage.Width = newWidth - newSize * 22.5 - newSize * 22.5;
+                //gridViewTile.TileImage.Width = newWidth - newSize * 22.5 - newSize * 22.5;
                 gridViewTile.TileImage.Stretch = Stretch.Uniform;
 
                 // Update the font size of the textblock

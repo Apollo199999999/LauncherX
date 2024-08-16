@@ -38,7 +38,7 @@
             <Image x:ConnectionId='5'
                 x:Name="TileImage"
                 Grid.Row="0"
-                HorizontalAlignment="Center"
+                HorizontalAlignment="Stretch"
                 VerticalAlignment="Center"
                 AllowDrop="True"
                 Stretch="Uniform" />
