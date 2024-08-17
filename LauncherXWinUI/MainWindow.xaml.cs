@@ -32,23 +32,6 @@ namespace LauncherXWinUI
 
             // Create a new event handler for when the items in the ItemsGridView have changed (either new items added/removed or items are reset)
             ItemsGridView.Items.VectorChanged += ItemsGridViewItems_VectorChanged;
-
-            // Create settings directories
-            UserSettingsClass.CreateSettingsDirectories();
-
-            // Upgrade settings and write new settings file if necessary
-            if (UserSettingsClass.UpgradeRequired())
-            {
-                UserSettingsClass.UpgradeUserSettings();
-                UserSettingsClass.WriteSettingsFile();
-                UserSettingsClass.ClearOldTempDirectories();
-            }
-
-            // Retrieve user settings from file
-            UserSettingsClass.TryReadSettingsFile();
-
-            // Once we have initialised the UserSettingsClass with the correct values, update the UI
-            UpdateUIFromSettings();
         }
 
         // Helper methods
@@ -114,6 +97,56 @@ namespace LauncherXWinUI
         }
 
         // Event Handlers
+        private async void Container_Loaded(object sender, RoutedEventArgs e)
+        {
+            // Set placeholder titlebar for now, before WASDK 1.6
+            this.ExtendsContentIntoTitleBar = true;
+            this.SetTitleBar(AppTitleBar);
+
+            // Set Window icon
+            UIFunctionsClass.SetWindowLauncherXIcon(this);
+
+            // Set Window Background
+            UIFunctionsClass.SetWindowBackground(this, ContainerFallbackBackgroundBrush);
+
+            // Create settings directories
+            UserSettingsClass.CreateSettingsDirectories();
+
+            // Upgrade settings and write new settings file if necessary
+            if (UserSettingsClass.UpgradeRequired())
+            {
+                UserSettingsClass.UpgradeUserSettings();
+                UserSettingsClass.WriteSettingsFile();
+                UserSettingsClass.ClearOldTempDirectories();
+
+                // Upgrade items as well
+                List<Dictionary<string, object>> oldLauncherXItems = await UserSettingsClass.UpgradeOldLauncherXItems();
+
+                foreach (Dictionary<string, object> gridViewTileProps in oldLauncherXItems)
+                {
+                    string executingPath = gridViewTileProps["ExecutingPath"] as string;
+                    string executingArguments = gridViewTileProps["ExecutingArguments"] as string;
+                    string displayText = gridViewTileProps["DisplayText"] as string;
+                    ImageSource imageSource = gridViewTileProps["ImageSource"] as ImageSource;
+                    AddGridViewTile(executingPath, executingArguments, displayText, imageSource);
+                }
+            }
+
+            // Retrieve user settings from file
+            UserSettingsClass.TryReadSettingsFile();
+
+            // Once we have initialised the UserSettingsClass with the correct values, update the UI
+            UpdateUIFromSettings();
+
+            // Check for updates and display the InfoBar if necessary
+            bool? isUpdateAvailable = await UpdatesClass.IsUpdateAvailable();
+            if (isUpdateAvailable == true)
+            {
+                UpdateInfoBar.IsOpen = true;
+            }
+        }
+
+
         private void GetUpdateBtn_Click(object sender, RoutedEventArgs e)
         {
             // Navigate to GitHub releases page and exit application
@@ -131,26 +164,6 @@ namespace LauncherXWinUI
             else
             {
                 EmptyNotice.Visibility = Visibility.Visible;
-            }
-        }
-
-        private async void Container_Loaded(object sender, RoutedEventArgs e)
-        {
-            // Set placeholder titlebar for now, before WASDK 1.6
-            this.ExtendsContentIntoTitleBar = true;
-            this.SetTitleBar(AppTitleBar);
-
-            // Set Window icon
-            UIFunctionsClass.SetWindowLauncherXIcon(this);
-
-            // Set Window Background
-            UIFunctionsClass.SetWindowBackground(this, ContainerFallbackBackgroundBrush);
-
-            // Check for updates and display the InfoBar if necessary
-            bool? isUpdateAvailable = await UpdatesClass.IsUpdateAvailable();
-            if (isUpdateAvailable == true)
-            {
-                UpdateInfoBar.IsOpen = true;
             }
         }
 

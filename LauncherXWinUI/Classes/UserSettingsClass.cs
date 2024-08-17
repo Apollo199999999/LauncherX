@@ -6,6 +6,11 @@ using System.Text.Json;
 using System.Diagnostics;
 using System.Xml;
 using System.Text.Json.Serialization;
+using LauncherXWinUI.Controls;
+using Windows.Storage;
+using System.Threading.Tasks;
+using Microsoft.UI.Xaml.Media.Imaging;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace LauncherXWinUI.Classes
 {
@@ -52,6 +57,35 @@ namespace LauncherXWinUI.Classes
         /// </summary>
         public static string DataDir = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\LauncherX\\Files";
 
+        // Helper methods
+        /// <summary>
+        /// Determines if a given path belongs to that of a file or folder
+        /// </summary>
+        /// <param name="path">Path of file/folder</param>
+        /// <returns>Returns true if path is a folder, false otherwise</returns>
+        /// <exception cref="ArgumentNullException">Thrown when no path argument is input.</exception>
+        private static bool IsPathDirectory(string path)
+        {
+            if (path == null) throw new ArgumentNullException("path");
+            path = path.Trim();
+
+            if (Directory.Exists(path))
+                return true;
+
+            if (File.Exists(path))
+                return false;
+
+            // neither file nor directory exists. guess intention
+
+            // if has trailing slash then it's a directory
+            if (new[] { "\\", "/" }.Any(x => path.EndsWith(x)))
+                return true; // ends with slash
+
+            // if has extension then its a file; directory otherwise
+            return string.IsNullOrWhiteSpace(Path.GetExtension(path));
+        }
+
+        // Public methods
         /// <summary>
         /// Method to create all of the directories that LauncherX will store user data in
         /// </summary>
@@ -120,7 +154,7 @@ namespace LauncherXWinUI.Classes
 
             foreach (string settingsDir in Directory.GetDirectories(oldSettingsDir))
             {
-                if (settingsDir.Contains("LauncherX.exe")) 
+                if (settingsDir.Contains("LauncherX.exe"))
                 {
                     oldSettingsUserConfigFiles.AddRange(Directory.GetFiles(settingsDir, "*.config", SearchOption.AllDirectories).ToList());
                 }
@@ -153,7 +187,7 @@ namespace LauncherXWinUI.Classes
             foreach (XmlNode settingsTag in settingsTags)
             {
                 string oldSettingVariable = settingsTag.Attributes["name"].Value;
-                
+
                 if (oldSettingVariable == "scale")
                 {
                     oldScale = settingsTag.FirstChild.InnerText;
@@ -173,7 +207,7 @@ namespace LauncherXWinUI.Classes
             {
                 GridScale = Convert.ToDouble(oldScale);
             }
-            
+
         }
 
         /// <summary>
@@ -209,6 +243,90 @@ namespace LauncherXWinUI.Classes
                 HeaderText = userSettingsJson.headerText;
                 GridScale = userSettingsJson.gridScale;
             }
+        }
+
+        /// <summary>
+        /// Method to add items from versions of LauncherX less than 2.1.0 to versions of LauncherX greater than 2.1.0
+        /// Dictionary<string, object> is in the format of {"ExecutingPath": string, "ExecutingArguments": string, "DisplayText": string, "ImageSource": BitmapImage or SoftwareBitmapSource}
+        /// </summary>
+        /// <returns>List of dictionaries that stores all the necessary properties to create the GridViewTiles in MainWindow.xaml.cs</returns>
+        public async static Task<List<Dictionary<string, object>>> UpgradeOldLauncherXItems()
+        {
+            // List of Dictionaries that will be returned
+            List<Dictionary<string, object>> gridViewTilesProps = new List<Dictionary<string, object>>();
+
+            if (Directory.GetFiles(DataDir).Length == 0)
+            {
+                return gridViewTilesProps;
+            }
+
+            // Create a new list and sort the files
+            var list = Directory.GetFiles(DataDir);
+            Array.Sort(list, new AlphanumComparatorFast());
+
+            // Loop through the files, and create GridViewTiles as we go
+            foreach (string file in list)
+            {
+                // Open the file to read from.
+                StreamReader sr = File.OpenText(file);
+                string executingPath = "";
+
+                // Read the first line of the text document, which will give us the ExecutingPath for a GridViewTile
+                executingPath = sr.ReadLine();
+
+                // Create a new dictionary to store props
+                Dictionary<string, object> tileProps = new Dictionary<string, object>();
+                tileProps.Add("ExecutingPath", executingPath);
+                tileProps.Add("ExecutingArguments", "");
+
+                // Next, depending on if the executingPath is a file, folder, or website, we need to add props differently
+                if (executingPath.StartsWith("https://") || executingPath.StartsWith("http://"))
+                {
+                    // Website
+                    tileProps.Add("DisplayText", executingPath);
+                    tileProps.Add("ImageSource", IconHelpers.GetWebsiteIcon(executingPath));
+                }
+                else if (IsPathDirectory(executingPath))
+                {
+                    // Folder
+                    StorageFolder storageFolder = await StorageFolder.GetFolderFromPathAsync(executingPath);
+                    BitmapImage folderIcon = await IconHelpers.GetFolderIcon(storageFolder);
+                    tileProps.Add("DisplayText", storageFolder.Name);
+                    tileProps.Add("ImageSource", folderIcon);
+                }
+                else if (!IsPathDirectory(executingPath))
+                {
+                    // File
+                    tileProps.Add("DisplayText", Path.GetFileName(executingPath));
+                    string ext = Path.GetExtension(executingPath);
+                    if (ext == ".lnk" || ext == ".url" || ext == ".wsh")
+                    {
+                        // Use Win32 methods
+                        SoftwareBitmapSource src =  await IconHelpers.GetFileIconWin32(executingPath);
+                        tileProps.Add("ImageSource", src);
+                    }
+                    else
+                    {
+                        try
+                        {
+                            // Use WinRT methods
+                            StorageFile storageFile = await StorageFile.GetFileFromPathAsync(executingPath);
+                            BitmapImage fileIcon = await IconHelpers.GetFileIcon(storageFile);
+                            tileProps.Add("ImageSource", fileIcon);
+                        }
+                        catch
+                        {
+                            // Use Win32 methods
+                            SoftwareBitmapSource src = await IconHelpers.GetFileIconWin32(executingPath);
+                            tileProps.Add("ImageSource", src);
+                        }
+                    }
+                }
+
+                gridViewTilesProps.Add(tileProps);
+            }
+
+            return gridViewTilesProps;
         }
     }
 }
