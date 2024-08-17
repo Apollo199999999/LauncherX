@@ -265,12 +265,16 @@ namespace LauncherXWinUI.Controls
         /// <summary>
         /// Method to start the process associated with this GridViewTile
         /// </summary>
-        public async Task StartAssociatedProcess()
+        public async Task StartAssociatedProcess(bool runAsAdmin = false)
         {
             // Try to start the executing path
             try
             {
                 ProcessStartInfo processStartInfo = new ProcessStartInfo { FileName = ExecutingPath, UseShellExecute = true, Arguments = ExecutingArguments };
+                if (runAsAdmin == true)
+                {
+                    processStartInfo.Verb = "runas";
+                }
                 Process.Start(processStartInfo);
             }
             catch
@@ -282,9 +286,11 @@ namespace LauncherXWinUI.Controls
                     ContentDialog procErrorDialog = new ContentDialog()
                     {
                         XamlRoot = this.XamlRoot,
-                        Title = "Error running process",
-                        Content = "Unable to run process. Check that the file/folder has not been moved or deleted, or try again later.",
+                        Title = "Error running item",
+                        Content = "If you are attempting to run this item as an administrator, check that it is possible to do so in the first place. " +
+                                  "Finally, check that the file/folder has not been moved or deleted.",
                         CloseButtonText = "OK",
+                        Width = 300,
                         DefaultButton = ContentDialogButton.Close
                     };
 
@@ -360,6 +366,12 @@ namespace LauncherXWinUI.Controls
             await StartAssociatedProcess();
         }
 
+        private async void MenuAdminOption_Click(object sender, RoutedEventArgs e)
+        { 
+            // Start the process as admin
+            await StartAssociatedProcess(true);
+        }
+
         private async void MenuOpenLocOption_Click(object sender, RoutedEventArgs e)
         {
             // Try to open file location
@@ -407,6 +419,11 @@ namespace LauncherXWinUI.Controls
             MenuRemoveGroupOption.Visibility = Visibility.Collapsed;
             mainWindowGridView.Items.Add(this);
 
+        }
+
+        private void MenuEditOption_Click(object sender, RoutedEventArgs e)
+        {
+            // Show the EditItemDialog
         }
     }
 }

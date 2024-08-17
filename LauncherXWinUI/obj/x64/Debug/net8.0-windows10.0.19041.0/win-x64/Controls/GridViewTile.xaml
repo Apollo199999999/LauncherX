@@ -60,31 +60,46 @@
                                                     
                         Text="Open">
                         <MenuFlyoutItem.Icon>
-                            <FontIcon x:ConnectionId='13' x:Name="MenuOpenOptionIcon" Glyph="&#xE8E5;" />
+                            <FontIcon x:ConnectionId='16' x:Name="MenuOpenOptionIcon" Glyph="&#xE8E5;" />
                         </MenuFlyoutItem.Icon>
                     </MenuFlyoutItem>
 
                     <MenuFlyoutItem x:ConnectionId='9'
-                        x:Name="MenuOpenLocOption"
-                                                       
-                        Text="Open Location">
+                        x:Name="MenuAdminOption"
+                                                     
+                        Text="Attempt to run as administrator">
                         <MenuFlyoutItem.Icon>
-                            <FontIcon x:ConnectionId='12' x:Name="MenuOpenLocOptionIcon" Glyph="&#xE838;" />
+                            <FontIcon x:ConnectionId='15' x:Name="MenuAdminOptionIcon" Glyph="&#xE7EF;" />
                         </MenuFlyoutItem.Icon>
                     </MenuFlyoutItem>
 
                     <MenuFlyoutItem x:ConnectionId='10'
+                        x:Name="MenuOpenLocOption"
+                                                       
+                        Text="Open Location">
+                        <MenuFlyoutItem.Icon>
+                            <FontIcon x:ConnectionId='14' x:Name="MenuOpenLocOptionIcon" Glyph="&#xE838;" />
+                        </MenuFlyoutItem.Icon>
+                    </MenuFlyoutItem>
+
+                    <MenuFlyoutItem x:ConnectionId='11'
                         x:Name="MenuRemoveGroupOption"
                                                            
                         Icon="Remove"
                         Text="Remove from group"
                         Visibility="Collapsed" />
 
-                    <MenuFlyoutItem x:ConnectionId='11'
+                    <MenuFlyoutItem x:ConnectionId='12'
                         x:Name="MenuRemoveOption"
                                                       
                         Icon="Delete"
                         Text="Remove from LauncherX" />
+
+                    <MenuFlyoutItem x:ConnectionId='13'
+                        x:Name="MenuEditOption"
+                                                    
+                        Icon="Edit"
+                        Text="Edit item" />
                 </MenuFlyout>
             </FlyoutBase.AttachedFlyout>
         </Grid>

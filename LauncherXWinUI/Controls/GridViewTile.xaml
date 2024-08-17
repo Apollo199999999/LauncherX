@@ -65,6 +65,15 @@
                     </MenuFlyoutItem>
 
                     <MenuFlyoutItem
+                        x:Name="MenuAdminOption"
+                        Click="MenuAdminOption_Click"
+                        Text="Attempt to run as administrator">
+                        <MenuFlyoutItem.Icon>
+                            <FontIcon x:Name="MenuAdminOptionIcon" Glyph="&#xE7EF;" />
+                        </MenuFlyoutItem.Icon>
+                    </MenuFlyoutItem>
+
+                    <MenuFlyoutItem
                         x:Name="MenuOpenLocOption"
                         Click="MenuOpenLocOption_Click"
                         Text="Open Location">
@@ -85,6 +94,12 @@
                         Click="MenuRemoveOption_Click"
                         Icon="Delete"
                         Text="Remove from LauncherX" />
+
+                    <MenuFlyoutItem
+                        x:Name="MenuEditOption"
+                        Click="MenuEditOption_Click"
+                        Icon="Edit"
+                        Text="Edit item" />
                 </MenuFlyout>
             </FlyoutBase.AttachedFlyout>
         </Grid>

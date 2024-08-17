@@ -516,7 +516,8 @@ namespace LauncherXWinUI
             // Source: https://stackoverflow.com/questions/66973410/drag-and-drop-items-in-windows-application-and-get-the-standarddataformats-of-th
             if (e.DataView.Contains(StandardDataFormats.WebLink))
             {
-                Debug.WriteLine("hello");
+                // Dragged item is a website
+
                 // Add the website
                 Uri websiteUri = await e.DataView.GetWebLinkAsync();
 
@@ -537,6 +538,7 @@ namespace LauncherXWinUI
             }
             else if (e.DataView.Contains(StandardDataFormats.StorageItems))
             {
+                // Dragged item(s) are folders/files
                 var items = await e.DataView.GetStorageItemsAsync();
 
                 // Folder
