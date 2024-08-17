@@ -7,11 +7,10 @@ using Microsoft.UI.Xaml.Media.Imaging;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
 using Windows.ApplicationModel.DataTransfer;
 using Windows.Storage;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -121,6 +120,9 @@ namespace LauncherXWinUI
             // Set Window Background
             UIFunctionsClass.SetWindowBackground(this, ContainerFallbackBackgroundBrush);
 
+            // Show LoadingDialog while loading items and settings
+            LoadingDialog.Visibility = Visibility.Visible;
+
             // Create settings directories
             UserSettingsClass.CreateSettingsDirectories();
 
@@ -191,6 +193,10 @@ namespace LauncherXWinUI
 
             // Once we have initialised the UserSettingsClass with the correct values, update the UI
             UpdateUIFromSettings();
+
+            // Hide LoadingDialog once done
+            await Task.Delay(20);
+            LoadingDialog.Visibility = Visibility.Collapsed;
 
             // Start saving items every 10s automatically
             SaveItemsTimer.Interval = TimeSpan.FromSeconds(10);
