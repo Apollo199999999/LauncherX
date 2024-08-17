@@ -11,6 +11,7 @@ using System.IO;
 using System.Linq;
 using Windows.ApplicationModel.DataTransfer;
 using Windows.Storage;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -31,6 +32,17 @@ namespace LauncherXWinUI
 
             // Create a new event handler for when the items in the ItemsGridView have changed (either new items added/removed or items are reset)
             ItemsGridView.Items.VectorChanged += ItemsGridViewItems_VectorChanged;
+
+            // Workaround for full screen window messing up the taskbar
+            // https://github.com/microsoft/microsoft-ui-xaml/issues/8431
+            // This property should only be set if the "Automatically hide the taskbar" in Windows 11,
+            // or "Automatically hide the taskbar in desktop mode" in Windows 10 is enabled.
+            // Setting this property when the setting is disabled will result in the taskbar overlapping the application
+            if (Shell32.IsAutoHideTaskbarEnabled())
+                Shell32.SetPropW(WinRT.Interop.WindowNative.GetWindowHandle(this), "NonRudeHWND", new IntPtr(1));
+
+            // Used in-tandem with the code in App.xaml.cs, for WinUIEx to save window position: https://github.com/dotMorten/WinUIEx/issues/61
+            this.PersistenceId = "LauncherX-250f2258-1995-4edb-9db7-329a61a90a07";
         }
 
         // Helper methods
@@ -609,7 +621,6 @@ namespace LauncherXWinUI
                     AddGridViewTile(filePath, "", storageItem.Name, await IconHelpers.GetFileIcon(filePath));
                 }
             }
-
         }
 
         // The last event handler - stop timer and save items when the window is closed

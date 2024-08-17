@@ -79,6 +79,25 @@ namespace LauncherXWinUI.Classes
 
             return hIcon;
         }
+
+        [DllImport("user32.dll", SetLastError = true, CharSet = CharSet.Unicode)]
+        public static extern bool SetPropW(IntPtr hWnd, string lpString, IntPtr hData);
+
+        /// <summary>
+		///	Checks if the taskbar is set to auto-hide.
+		/// </summary>
+		public static bool IsAutoHideTaskbarEnabled()
+        {
+            const string registryKey = @"Software\Microsoft\Windows\CurrentVersion\Explorer\StuckRects3";
+            const string valueName = "Settings";
+
+            using var key = Microsoft.Win32.Registry.CurrentUser.OpenSubKey(registryKey);
+
+            var value = key?.GetValue(valueName) as byte[];
+
+            // The least significant bit of the 9th byte controls the auto-hide setting																		
+            return value != null && ((value[8] & 0x01) == 1);
+        }
     }
 
     [Flags]

@@ -132,6 +132,13 @@ namespace LauncherXWinUI.Classes
             {
                 Directory.Delete(oldTempDir, true);
             }
+
+            // Delete the old placement.config used to save window positions for older versions of LauncherX, if it exists: https://github.com/Apollo199999999/LauncherX/blob/v2.1/LauncherXWPFOld/App.xaml.cs
+            string oldPlacementConfigFile = Path.Combine(SettingsDir, "placement.config");
+            if (File.Exists(oldPlacementConfigFile))
+            {
+                File.Delete(oldPlacementConfigFile);
+            }
         }
 
         /// <summary>
