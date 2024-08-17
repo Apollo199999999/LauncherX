@@ -131,6 +131,24 @@ namespace LauncherXWinUI
                     AddGridViewTile(executingPath, executingArguments, displayText, imageSource);
                 }
             }
+            else
+            {
+                // Load LauncherX items as normal
+
+            }
+
+            // Check if there were errors adding files
+            if (UserSettingsClass.ErrorAddingItems() == true)
+            {
+                AddItemsErrorWindow addItemsErrorWindow = new AddItemsErrorWindow();
+
+                foreach (string path in UserSettingsClass.ErrorPaths)
+                {
+                    addItemsErrorWindow.Items.Add(path);
+                }
+
+                UIFunctionsClass.CreateModalWindow(addItemsErrorWindow, this);
+            }
 
             // Retrieve user settings from file
             UserSettingsClass.TryReadSettingsFile();

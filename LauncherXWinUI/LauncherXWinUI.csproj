@@ -26,6 +26,7 @@
     <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
   </PropertyGroup>
   <ItemGroup>
+    <None Remove="AddItemsErrorWindow.xaml" />
     <None Remove="Controls\AboutSectionControl.xaml" />
     <None Remove="Controls\AddFileDialog.xaml" />
     <None Remove="Controls\AddFileDialogListViewItem.xaml" />
@@ -105,6 +106,9 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Update="Controls\AboutSectionControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Update="AddItemsErrorWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <None Update="Resources\icon.png">

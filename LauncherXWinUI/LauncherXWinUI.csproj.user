@@ -8,6 +8,9 @@
     <_LastSelectedProfileId>C:\Users\fligh\source\repos\LauncherX\LauncherXWinUI\Properties\PublishProfiles\win-x64.pubxml</_LastSelectedProfileId>
   </PropertyGroup>
   <ItemGroup>
+    <Page Update="AddItemsErrorWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <None Update="App.xaml">
       <SubType>Designer</SubType>
     </None>

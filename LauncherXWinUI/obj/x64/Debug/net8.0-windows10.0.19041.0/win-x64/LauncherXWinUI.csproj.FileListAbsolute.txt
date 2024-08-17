@@ -804,3 +804,8 @@ C:\Users\fligh\source\repos\LauncherX\LauncherXWinUI\obj\x64\Debug\net8.0-window
 C:\Users\fligh\source\repos\LauncherX\LauncherXWinUI\obj\x64\Debug\net8.0-windows10.0.19041.0\win-x64\qualifiers.txt
 C:\Users\fligh\source\repos\LauncherX\LauncherXWinUI\obj\x64\Debug\net8.0-windows10.0.19041.0\win-x64\qualifiers.txt.intermediate
 C:\Users\fligh\source\repos\LauncherX\LauncherXWinUI\obj\x64\Debug\net8.0-windows10.0.19041.0\win-x64\MultipleQualifiersPerDimensionFound.txt
+C:\Users\fligh\source\repos\LauncherX\LauncherXWinUI\bin\x64\Debug\net8.0-windows10.0.19041.0\win-x64\AddItemsErrorWindow.xbf
+C:\Users\fligh\source\repos\LauncherX\LauncherXWinUI\obj\x64\Debug\net8.0-windows10.0.19041.0\win-x64\AddItemsErrorWindow.g.i.cs
+C:\Users\fligh\source\repos\LauncherX\LauncherXWinUI\obj\x64\Debug\net8.0-windows10.0.19041.0\win-x64\AddItemsErrorWindow.g.cs
+C:\Users\fligh\source\repos\LauncherX\LauncherXWinUI\obj\x64\Debug\net8.0-windows10.0.19041.0\win-x64\AddItemsErrorWindow.xaml
+C:\Users\fligh\source\repos\LauncherX\LauncherXWinUI\obj\x64\Debug\net8.0-windows10.0.19041.0\win-x64\AddItemsErrorWindow.xbf

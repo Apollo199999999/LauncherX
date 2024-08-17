@@ -57,6 +57,11 @@ namespace LauncherXWinUI.Classes
         /// </summary>
         public static string DataDir = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\LauncherX\\Files";
 
+        /// <summary>
+        /// Variable which stores items that could not be added to LauncherX as their file paths no longer exist
+        /// </summary>
+        public static List<string> ErrorPaths = new List<string>();
+
         // Helper methods
         /// <summary>
         /// Determines if a given path belongs to that of a file or folder
@@ -101,7 +106,10 @@ namespace LauncherXWinUI.Classes
         public static void ClearOldTempDirectories()
         {
             string oldTempDir = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\LauncherX\\Temp\\";
-            Directory.Delete(oldTempDir, true);
+            if (Directory.Exists(oldTempDir))
+            {
+                Directory.Delete(oldTempDir, true);
+            }
         }
 
         /// <summary>
@@ -285,16 +293,18 @@ namespace LauncherXWinUI.Classes
                     // Website
                     tileProps.Add("DisplayText", executingPath);
                     tileProps.Add("ImageSource", IconHelpers.GetWebsiteIcon(executingPath));
+                    gridViewTilesProps.Add(tileProps);
                 }
-                else if (IsPathDirectory(executingPath))
+                else if (IsPathDirectory(executingPath) && Path.Exists(executingPath))
                 {
                     // Folder
                     StorageFolder storageFolder = await StorageFolder.GetFolderFromPathAsync(executingPath);
                     BitmapImage folderIcon = await IconHelpers.GetFolderIcon(storageFolder);
                     tileProps.Add("DisplayText", storageFolder.Name);
                     tileProps.Add("ImageSource", folderIcon);
+                    gridViewTilesProps.Add(tileProps);
                 }
-                else if (!IsPathDirectory(executingPath))
+                else if (!IsPathDirectory(executingPath) && Path.Exists(executingPath))
                 {
                     // File
                     tileProps.Add("DisplayText", Path.GetFileName(executingPath));
@@ -321,12 +331,25 @@ namespace LauncherXWinUI.Classes
                             tileProps.Add("ImageSource", src);
                         }
                     }
+                    gridViewTilesProps.Add(tileProps);
                 }
-
-                gridViewTilesProps.Add(tileProps);
+                else if (!Path.Exists(executingPath))
+                {
+                    // Not a website, and path doesn't exist
+                    ErrorPaths.Add(executingPath);
+                }
             }
 
             return gridViewTilesProps;
+        }
+
+        /// <summary>
+        /// Method that checks whether there were any errors adding items to LauncherX
+        /// </summary>
+        /// <returns></returns>
+        public static bool ErrorAddingItems()
+        {
+            return ErrorPaths.Count > 0;
         }
     }
 }
