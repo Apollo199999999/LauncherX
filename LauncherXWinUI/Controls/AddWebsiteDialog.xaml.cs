@@ -32,8 +32,23 @@ namespace LauncherXWinUI.Controls
         // Event Handlers
         private void ContentDialog_PrimaryButtonClick(ContentDialog sender, ContentDialogButtonClickEventArgs args)
         {
+            // If the UrlInputTextBox text starts with a https:// or http://, it is most likely a mistake
+            string websiteUrl = UrlInputTextBox.Text;
+            if (websiteUrl.StartsWith("https://"))
+            {
+                // Remove the https://
+                websiteUrl = websiteUrl.Substring(8, websiteUrl.Length - 8);
+                HttpComboBox.SelectedIndex = 0;
+            }
+            else if (websiteUrl.StartsWith("http://"))
+            {
+                // Remove the http://
+                websiteUrl = websiteUrl.Substring(7, websiteUrl.Length - 7); 
+                HttpComboBox.SelectedIndex = 1;
+            }
+
             // Assign the user input to the InputWebsiteUrl property of this control
-            InputWebsiteUrl = HttpComboBox.SelectedItem.ToString() + UrlInputTextBox.Text;
+            InputWebsiteUrl = HttpComboBox.SelectedItem.ToString() + websiteUrl;
         }
 
         private void UrlInputTextBox_TextChanged(object sender, TextChangedEventArgs e)

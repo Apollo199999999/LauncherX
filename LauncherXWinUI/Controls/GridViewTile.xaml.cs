@@ -9,6 +9,7 @@ using System;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using Windows.Storage;
 using Windows.UI;
@@ -157,6 +158,10 @@ namespace LauncherXWinUI.Controls
             {
                 // Update textblock
                 gridViewTile.TileText.Text = newDisplayText;
+
+                // Update tooltip
+                string tooltipString = newDisplayText + " - " + gridViewTile.ExecutingPath;
+                ToolTipService.SetToolTip(gridViewTile.TilePanel, tooltipString);
             }
         }
 
@@ -184,7 +189,8 @@ namespace LauncherXWinUI.Controls
             if (newExecutingPath != null)
             {
                 // Update tooltip
-                ToolTipService.SetToolTip(gridViewTile.TilePanel, newExecutingPath);
+                string tooltipString = gridViewTile.DisplayText + " - " + newExecutingPath;
+                ToolTipService.SetToolTip(gridViewTile.TilePanel, tooltipString);
             }
         }
 

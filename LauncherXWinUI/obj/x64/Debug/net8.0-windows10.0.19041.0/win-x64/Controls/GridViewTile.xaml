@@ -76,16 +76,17 @@
                             Width="100"
                             Height="100" />
 
-                        <StackPanel Margin="0,10,0,0" Orientation="Horizontal">
+                        <StackPanel
+                            Margin="0,10,0,0"
+                            HorizontalAlignment="Center"
+                            Orientation="Horizontal">
                             <Button x:ConnectionId='12'
                                 x:Name="EditIconBtn"
-                                HorizontalAlignment="Center"
                                                          
                                 Content="Edit icon" />
                             <Button x:ConnectionId='13'
                                 x:Name="ResetIconBtn"
                                 Margin="10,0,0,0"
-                                HorizontalAlignment="Center"
                                                           
                                 Content="Reset icon" />
                         </StackPanel>
