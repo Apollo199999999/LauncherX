@@ -205,17 +205,8 @@ namespace LauncherXWinUI
 
             if (result == ContentDialogResult.Primary)
             {
-                // Get the icon of the website, using Google's favicon service
-                BitmapImage websiteIcon = new BitmapImage();
-                // Fallback icon
-                Uri defaultImageUri = new Uri(Path.GetFullPath(@"Resources\websitePlaceholder.png"), UriKind.Absolute);
-                websiteIcon.ImageFailed += (s, e) => 
-                {
-                    websiteIcon.UriSource = defaultImageUri;
-                };
-                // Try getting website icon
-                Uri iconUri = new Uri("https://www.google.com/s2/favicons?sz=128&domain_url=" + addWebsiteDialog.InputWebsiteUrl, UriKind.Absolute);
-                websiteIcon.UriSource = iconUri;
+                // Get the icon of the website
+                BitmapImage websiteIcon = IconHelpers.GetWebsiteIcon(addWebsiteDialog.InputWebsiteUrl);
 
                 // Create new GridViewTile to display the website
                 AddGridViewTile(addWebsiteDialog.InputWebsiteUrl, "", addWebsiteDialog.InputWebsiteUrl, websiteIcon);
@@ -517,21 +508,10 @@ namespace LauncherXWinUI
             if (e.DataView.Contains(StandardDataFormats.WebLink))
             {
                 // Dragged item is a website
-
-                // Add the website
                 Uri websiteUri = await e.DataView.GetWebLinkAsync();
 
-                // Get the icon of the website, using Google's favicon service
-                BitmapImage websiteIcon = new BitmapImage();
-                // Fallback icon
-                Uri defaultImageUri = new Uri(Path.GetFullPath(@"Resources\websitePlaceholder.png"), UriKind.Absolute);
-                websiteIcon.ImageFailed += (s, e) =>
-                {
-                    websiteIcon.UriSource = defaultImageUri;
-                };
-                // Try getting website icon
-                Uri iconUri = new Uri("https://www.google.com/s2/favicons?sz=128&domain_url=" + websiteUri.ToString(), UriKind.Absolute);
-                websiteIcon.UriSource = iconUri;
+                // Add the website
+                BitmapImage websiteIcon = IconHelpers.GetWebsiteIcon(websiteUri.ToString());
 
                 // Create new GridViewTile to display the website
                 AddGridViewTile(websiteUri.ToString(), "", websiteUri.ToString(), websiteIcon);
@@ -545,15 +525,11 @@ namespace LauncherXWinUI
                 foreach (var storageItem in items.OfType<StorageFolder>())
                 {
                     // This is a folder
-                    string folderPath = storageItem.Path;
-
-                    // Get the thumbnail of the folder
-                    StorageItemThumbnail thumbnail = await storageItem.GetThumbnailAsync(ThumbnailMode.SingleItem, 256);
-                    BitmapImage bitmapImage = new BitmapImage();
-                    bitmapImage.SetSource(thumbnail);
+                    // Get folder icon
+                    BitmapImage bitmapImage = await IconHelpers.GetFolderIcon(storageItem);
 
                     // Add folder to ItemsGridView
-                    AddGridViewTile(folderPath, "", storageItem.Name, bitmapImage);
+                    AddGridViewTile(storageItem.Path, "", storageItem.Name, bitmapImage);
                 }
 
                 // File
@@ -567,17 +543,13 @@ namespace LauncherXWinUI
                     if (ext == ".lnk" || ext == ".url" || ext == ".wsh")
                     {
                         // Get the thumbnail of the file using Win32 APIs
-                        IntPtr hIcon = Shell32.GetJumboIcon(Shell32.GetIconIndex(filePath));
-                        System.Drawing.Icon ico = (System.Drawing.Icon)System.Drawing.Icon.FromHandle(hIcon).Clone();
-                        SoftwareBitmapSource fileIcon = await Shell32.GetWinUI3BitmapSourceFromIcon(ico);
+                        SoftwareBitmapSource fileIcon = await IconHelpers.GetFileIconWin32(filePath);
                         AddGridViewTile(filePath, "", storageItem.Name, fileIcon);
                     }
                     else
                     {
                         // Get the thumbnail of the file using WinRT APIs
-                        StorageItemThumbnail thumbnail = await storageItem.GetThumbnailAsync(ThumbnailMode.SingleItem, 256);
-                        BitmapImage bitmapImage = new BitmapImage();
-                        bitmapImage.SetSource(thumbnail);
+                        BitmapImage bitmapImage = await IconHelpers.GetFileIcon(storageItem);
                         AddGridViewTile(filePath, "", storageItem.Name, bitmapImage);
                     }
                 }

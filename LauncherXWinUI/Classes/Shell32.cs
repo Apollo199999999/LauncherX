@@ -79,52 +79,6 @@ namespace LauncherXWinUI.Classes
 
             return hIcon;
         }
-
-        // THANK GOD FOR STACKOVERFLOW: https://stackoverflow.com/questions/76640972/convert-system-drawing-icon-to-microsoft-ui-xaml-imagesource
-        /// <summary>
-        /// Converts System.Drawing.Icon to SoftwareBitmapSource
-        /// </summary>
-        /// <param name="icon">Icon to convert</param>
-        /// <returns>SoftwareBitmapSource for Image Control</returns>
-        public static async Task<SoftwareBitmapSource> GetWinUI3BitmapSourceFromIcon(System.Drawing.Icon icon)
-        {
-            if (icon == null)
-                return null;
-
-            // convert to bitmap
-            using var bmp = icon.ToBitmap();
-            return await GetWinUI3BitmapSourceFromGdiBitmap(bmp);
-        }
-
-        /// <summary>
-        /// Converts System.Drawing.Bitmap to SoftwareBitmapSource
-        /// </summary>
-        /// <param name="bmp">Bitmap to convert</param>
-        /// <returns>SoftwareBitmapSource for Image Control</returns>
-        public static async Task<SoftwareBitmapSource> GetWinUI3BitmapSourceFromGdiBitmap(System.Drawing.Bitmap bmp)
-        {
-            if (bmp == null)
-                return null;
-
-            // get pixels as an array of bytes
-            var data = bmp.LockBits(new System.Drawing.Rectangle(0, 0, bmp.Width, bmp.Height), System.Drawing.Imaging.ImageLockMode.ReadOnly, bmp.PixelFormat);
-            var bytes = new byte[data.Stride * data.Height];
-            Marshal.Copy(data.Scan0, bytes, 0, bytes.Length);
-            bmp.UnlockBits(data);
-
-            // get WinRT SoftwareBitmap
-            var softwareBitmap = new Windows.Graphics.Imaging.SoftwareBitmap(
-                Windows.Graphics.Imaging.BitmapPixelFormat.Bgra8,
-                bmp.Width,
-                bmp.Height,
-                Windows.Graphics.Imaging.BitmapAlphaMode.Premultiplied);
-            softwareBitmap.CopyFromBuffer(bytes.AsBuffer());
-
-            // build WinUI3 SoftwareBitmapSource
-            var source = new Microsoft.UI.Xaml.Media.Imaging.SoftwareBitmapSource();
-            await source.SetBitmapAsync(softwareBitmap);
-            return source;
-        }
     }
 
     [Flags]

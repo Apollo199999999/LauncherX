@@ -18,6 +18,7 @@ using Windows.Storage.AccessCache;
 using Microsoft.UI.Xaml.Media.Imaging;
 using Windows.Storage.FileProperties;
 using System.Windows.Forms;
+using LauncherXWinUI.Classes;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -75,9 +76,7 @@ namespace LauncherXWinUI.Controls
                 SelectedFoldersListView.Items.Add(addFolderDialogListViewItem);
 
                 // Get the thumbnail of the folder
-                StorageItemThumbnail thumbnail = await folder.GetThumbnailAsync(ThumbnailMode.SingleItem, 256);
-                BitmapImage bitmapImage = new BitmapImage();
-                bitmapImage.SetSource(thumbnail);
+                BitmapImage bitmapImage = await IconHelpers.GetFolderIcon(folder);
                 addFolderDialogListViewItem.FolderIcon = bitmapImage;
             }
            

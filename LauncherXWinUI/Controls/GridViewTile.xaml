@@ -53,6 +53,96 @@
                 TextAlignment="Center"
                 TextTrimming="CharacterEllipsis" />
 
+            <!--  EditItemDialog  -->
+            <ContentDialog
+                x:Name="EditItemDialog"
+                Title="Edit item"
+                CloseButtonText="Close"
+                DefaultButton="Primary"
+                PrimaryButtonText="Save and Exit">
+                <Grid Width="400">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+
+                    <!--  Edit/Reset Icon  -->
+                    <StackPanel
+                        Grid.Row="0"
+                        VerticalAlignment="Center"
+                        Orientation="Vertical">
+                        <Image
+                            x:Name="EditDialogImage"
+                            Width="100"
+                            Height="100" />
+
+                        <StackPanel
+                            Margin="0,10,0,0"
+                            HorizontalAlignment="Center"
+                            Orientation="Horizontal">
+                            <Button
+                                x:Name="EditIconBtn"
+                                Click="EditIconBtn_Click"
+                                Content="Edit icon" />
+                            <Button
+                                x:Name="ResetIconBtn"
+                                Margin="10,0,0,0"
+                                Click="ResetIconBtn_Click"
+                                Content="Reset icon" />
+                        </StackPanel>
+
+                    </StackPanel>
+
+
+                    <Grid
+                        Grid.Row="1"
+                        Margin="0,20,0,0"
+                        HorizontalAlignment="Stretch">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="auto" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto" />
+                            <RowDefinition Height="auto" />
+                        </Grid.RowDefinitions>
+
+                        <!--  Edit display text  -->
+                        <TextBlock
+                            Grid.Row="0"
+                            Grid.Column="0"
+                            VerticalAlignment="Center"
+                            Text="Display Text:" />
+                        <TextBox
+                            x:Name="EditDisplayTextTextBox"
+                            Grid.Row="0"
+                            Grid.Column="1"
+                            Margin="10,0,0,0"
+                            HorizontalAlignment="Stretch" />
+
+                        <!--  Edit launch args  -->
+                        <TextBlock
+                            x:Name="LaunchArgsTextBlock"
+                            Grid.Row="1"
+                            Grid.Column="0"
+                            Margin="0,10,0,0"
+                            VerticalAlignment="Center"
+                            Text="Launch arguments:"
+                            Visibility="Collapsed" />
+                        <TextBox
+                            x:Name="EditLaunchArgsTextBox"
+                            Grid.Row="1"
+                            Grid.Column="1"
+                            Margin="10,10,0,0"
+                            HorizontalAlignment="Stretch"
+                            PlaceholderText="Launch arguments (optional)"
+                            Visibility="Collapsed" />
+                    </Grid>
+                </Grid>
+            </ContentDialog>
+
+            <!--  Right click menu  -->
             <FlyoutBase.AttachedFlyout>
                 <MenuFlyout x:Name="RightClickMenu">
                     <MenuFlyoutItem

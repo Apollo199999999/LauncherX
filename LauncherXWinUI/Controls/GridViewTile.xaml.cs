@@ -10,7 +10,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
-using Windows.ApplicationModel.Core;
+using Windows.Storage;
 using Windows.UI;
 
 // To learn more about WinUI, the WinUI project structure,
@@ -117,6 +117,21 @@ namespace LauncherXWinUI.Controls
             }
         }
 
+        // Properties that allow the GridViewTile to display custom images selected by the user
+        /// <summary>
+        /// Path to the custom image
+        /// </summary>
+        public string CustomImagePath
+        {
+            get => (string)GetValue(CustomImagePathProperty);
+            set => SetValue(CustomImagePathProperty, value);
+        }
+
+        DependencyProperty CustomImagePathProperty = DependencyProperty.Register(
+            nameof(CustomImagePath),
+            typeof(string),
+            typeof(GridViewTile),
+            new PropertyMetadata(""));
 
         /// <summary>
         /// Text that is displayed below the image
@@ -367,7 +382,7 @@ namespace LauncherXWinUI.Controls
         }
 
         private async void MenuAdminOption_Click(object sender, RoutedEventArgs e)
-        { 
+        {
             // Start the process as admin
             await StartAssociatedProcess(true);
         }
@@ -421,9 +436,97 @@ namespace LauncherXWinUI.Controls
 
         }
 
-        private void MenuEditOption_Click(object sender, RoutedEventArgs e)
+        // This section handles events for the EditItemDialog and its associated functions
+        private string TempCustomImagePath = "";
+        private async void MenuEditOption_Click(object sender, RoutedEventArgs e)
         {
             // Show the EditItemDialog
+            EditDialogImage.Source = this.ImageSource;
+            EditDisplayTextTextBox.Text = this.DisplayText;
+            TempCustomImagePath = this.CustomImagePath;
+
+            // Show the launch args section only if this is a file
+            if (this.ExecutingPath.StartsWith("http") == false && IsPathDirectory(this.ExecutingPath) == false)
+            {
+                EditLaunchArgsTextBox.Visibility = Visibility.Visible;
+                LaunchArgsTextBlock.Visibility = Visibility.Visible;
+                EditLaunchArgsTextBox.Text = this.ExecutingArguments;
+            }
+
+            ContentDialogResult result = await EditItemDialog.ShowAsync();
+
+            if (result == ContentDialogResult.Primary)
+            {
+                // Update props of this GridViewTile
+                this.DisplayText = EditDisplayTextTextBox.Text;
+                this.ImageSource = EditDialogImage.Source;
+                this.CustomImagePath = TempCustomImagePath;
+
+                // Update launch args only if file
+                // Show the launch args section only if this is a file
+                if (this.ExecutingPath.StartsWith("http") == false && IsPathDirectory(this.ExecutingPath) == false)
+                {
+                    this.ExecutingArguments = EditLaunchArgsTextBox.Text;
+                }
+            }
+        }
+
+        private void EditIconBtn_Click(object sender, RoutedEventArgs e)
+        {
+            // Let the user select an image file
+            System.Windows.Forms.OpenFileDialog openFileDialog = new System.Windows.Forms.OpenFileDialog();
+            openFileDialog.DereferenceLinks = false;
+            openFileDialog.Multiselect = false;
+            openFileDialog.Filter = "Image Files|*.jpg;*.jpeg;*.png;*.tif;*.tiff;*.bmp;*.ico";
+
+            // When the user select the image
+            if (openFileDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                // Get the file's image
+                string filePath = openFileDialog.FileName;
+
+                // Set the image source of the EditDialogImage
+                BitmapImage bitmapImage = new BitmapImage();
+                bitmapImage.UriSource = new Uri(filePath, UriKind.Absolute);
+                EditDialogImage.Source = bitmapImage;
+                TempCustomImagePath = filePath;
+            }
+
+        }
+
+        private async void ResetIconBtn_Click(object sender, RoutedEventArgs e)
+        {
+            // Depending on the executable path, reset the icon in different ways
+            if (this.ExecutingPath.StartsWith("http"))
+            {
+                // Website
+                // Get the icon of the website
+                BitmapImage websiteIcon = IconHelpers.GetWebsiteIcon(this.ExecutingPath);
+                EditDialogImage.Source = websiteIcon;
+            }
+            else if (IsPathDirectory(this.ExecutingPath))
+            {
+                // Folder
+                StorageFolder storageFolder = await StorageFolder.GetFolderFromPathAsync(this.ExecutingPath);
+                BitmapImage folderIcon = await IconHelpers.GetFolderIcon(storageFolder);
+                EditDialogImage.Source = folderIcon;
+            }
+            else if (IsPathDirectory(this.ExecutingPath) == false)
+            {
+                // File
+                try
+                {
+                    StorageFile storageFile = await StorageFile.GetFileFromPathAsync(this.ExecutingPath);
+                    BitmapImage fileIcon = await IconHelpers.GetFileIcon(storageFile);
+                    EditDialogImage.Source = fileIcon;
+                }
+                catch
+                {
+                    EditDialogImage.Source = await IconHelpers.GetFileIconWin32(this.ExecutingPath);
+                }
+            }
+
+            TempCustomImagePath = "";
         }
     }
 }

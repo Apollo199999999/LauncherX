@@ -53,13 +53,8 @@ namespace LauncherXWinUI.Controls
             SelectedFilesListView.Items.Add(addFileDialogListViewItem);
 
             // Get the thumbnail of the file using Win32 APIs
-            IntPtr hIcon = Shell32.GetJumboIcon(Shell32.GetIconIndex(filePath));
-            System.Drawing.Icon ico = (System.Drawing.Icon)System.Drawing.Icon.FromHandle(hIcon).Clone();
-            SoftwareBitmapSource fileIcon = await Shell32.GetWinUI3BitmapSourceFromIcon(ico);
+            SoftwareBitmapSource fileIcon = await IconHelpers.GetFileIconWin32(filePath);
             addFileDialogListViewItem.FileIcon = fileIcon;
-
-            // Clean up
-            Shell32.DestroyIcon(hIcon);
         }
 
         /// <summary>
@@ -78,9 +73,7 @@ namespace LauncherXWinUI.Controls
             SelectedFilesListView.Items.Add(addFileDialogListViewItem);
 
             // Get the thumbnail of the file
-            StorageItemThumbnail thumbnail = await file.GetThumbnailAsync(ThumbnailMode.SingleItem, 256);
-            BitmapImage bitmapImage = new BitmapImage();
-            bitmapImage.SetSource(thumbnail);
+            BitmapImage bitmapImage = await IconHelpers.GetFileIcon(file);
             addFileDialogListViewItem.FileIcon = bitmapImage;
         }
 
