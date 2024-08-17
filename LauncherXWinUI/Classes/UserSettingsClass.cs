@@ -10,7 +10,6 @@ using LauncherXWinUI.Controls;
 using Windows.Storage;
 using System.Threading.Tasks;
 using Microsoft.UI.Xaml.Media.Imaging;
-using static System.Net.Mime.MediaTypeNames;
 using Microsoft.UI.Xaml.Controls;
 
 namespace LauncherXWinUI.Classes
@@ -383,6 +382,7 @@ namespace LauncherXWinUI.Classes
         private static void SerialiseGridViewTileGroupToJson(GridViewTileGroup gridViewTileGroup, string gridViewTileGroupDir)
         {
             // Use the GridViewTileGroupJson class to write a json file
+            // Save details about the GridViewTileGroup in a props.json file
             var gridViewTileGroupJson = new GridViewTileGroupJson
             {
                 displayText = gridViewTileGroup.DisplayText,
@@ -446,11 +446,107 @@ namespace LauncherXWinUI.Classes
             }
         }
 
+        // Helper methods for loading items
+
+        /// <summary>
+        /// Create a GridViewTile object from a Json file
+        /// </summary>
+        /// <param name="jsonFile">Path to Json file</param>
+        /// <returns>GridViewTile</returns>
+        private async static Task<GridViewTile> DeserialiseJsonToGridViewTile(string jsonFile)
+        {
+            // Deserialise the json
+            string jsonString = File.ReadAllText(jsonFile);
+            GridViewTileJson gridViewTileJson = JsonSerializer.Deserialize<GridViewTileJson>(jsonString, SourceGenerationContext.Default.GridViewTileJson);
+            Debug.WriteLine(jsonFile);
+            // Create a new GridViewTile
+            GridViewTile gridViewTile = new GridViewTile();
+            gridViewTile.ExecutingPath = gridViewTileJson.executingPath;
+            gridViewTile.ExecutingArguments = gridViewTileJson.executingArguments;
+            gridViewTile.DisplayText = gridViewTileJson.displayText;
+            gridViewTile.Size = GridScale;
+
+            // Depending on if a custom icon is used, we need to retrieve the icon in different ways
+            if (gridViewTileJson.customImagePath != "" && File.Exists(gridViewTileJson.customImagePath))
+            {
+                // Load the custom image in GridViewTile
+                BitmapImage image = new BitmapImage();
+                image.UriSource = new Uri(gridViewTileJson.customImagePath, UriKind.Absolute);
+                gridViewTile.CustomImagePath = gridViewTileJson.customImagePath;
+                gridViewTile.ImageSource = image;
+            }
+            // Manually retrieve the icon depending on if its a website, folder, or file
+            else if (gridViewTileJson.executingPath.StartsWith("https://") || gridViewTileJson.executingPath.StartsWith("http://"))
+            {
+                // Website
+                gridViewTile.ImageSource = IconHelpers.GetWebsiteIcon(gridViewTileJson.executingPath);
+            }
+            else if (IsPathDirectory(gridViewTileJson.executingPath) && Path.Exists(gridViewTileJson.executingPath))
+            {
+                // Folder
+                StorageFolder storageFolder = await StorageFolder.GetFolderFromPathAsync(gridViewTileJson.executingPath);
+                BitmapImage folderIcon = await IconHelpers.GetFolderIcon(storageFolder);
+                gridViewTile.ImageSource = folderIcon;
+            }
+            else if (!IsPathDirectory(gridViewTileJson.executingPath) && Path.Exists(gridViewTileJson.executingPath))
+            {
+                // File
+                gridViewTile.ImageSource = await IconHelpers.GetFileIcon(gridViewTileJson.executingPath);
+
+            }
+            else if (!Path.Exists(gridViewTileJson.executingPath))
+            {
+                // Not a website, and path doesn't exist
+                ErrorPaths.Add(gridViewTileJson.executingPath);
+                return null;
+            }
+
+            return gridViewTile;
+        }
+
+        /// <summary>
+        /// Create a GridViewTileGroup object from a json file
+        /// </summary>
+        /// <param name="tileGroupDir">Directory where the group is serialised</param>
+        /// <returns>GridViewTileGroup</returns>
+        private async static Task<GridViewTileGroup> DeserialiseDirectoryToGridViewTileGroup(string tileGroupDir)
+        {
+            // Find the props.json file and deserialise it
+
+            // Create a new GridViewTileGroup
+            GridViewTileGroup gridViewTileGroup = new GridViewTileGroup();
+            gridViewTileGroup.Size = GridScale;
+
+            string jsonString = File.ReadAllText(Path.Combine(tileGroupDir, "props.json"));
+            GridViewTileGroupJson gridViewTileGroupJson = JsonSerializer.Deserialize<GridViewTileGroupJson>(jsonString, SourceGenerationContext.Default.GridViewTileGroupJson);
+
+            // Assign props to GridViewTileGroup
+            gridViewTileGroup.DisplayText = gridViewTileGroupJson.displayText;
+
+            // Next, get all the Json files in the directory where the Group was serialised to
+            string[] jsonFiles = Directory.GetFiles(tileGroupDir);
+            Array.Sort(jsonFiles, new AlphanumComparatorFast());
+            foreach (string jsonFile in jsonFiles)
+            {
+                if (Path.GetExtension(jsonFile) == ".json" && Path.GetFileNameWithoutExtension(jsonFile) != "props")
+                {
+                    // Deserialise it to a GridViewTile
+                    GridViewTile gridViewTile = await DeserialiseJsonToGridViewTile(jsonFile);
+                    if (gridViewTile != null)
+                    {
+                        gridViewTileGroup.Items.Add(gridViewTile);
+                    }
+                }
+            }
+
+            return gridViewTileGroup;
+        }
+
         /// <summary>
         /// Method that loads GridViewTiles/GridViewTileGroups from Json files
         /// </summary>
         /// <returns>A list of GridViewTiles/GridViewTileGroups, that can be used in MainWindow to load the items in the GridView</returns>
-        public static List<UserControl> LoadLauncherXItems()
+        public async static Task<List<UserControl>> LoadLauncherXItems()
         {
             // List to return
             List<UserControl> loadedItems = new List<UserControl>();
@@ -468,23 +564,20 @@ namespace LauncherXWinUI.Classes
             {
                 if (Path.GetExtension(path) == ".json")
                 {
-                    // Deserialise the json
-                    string jsonString = File.ReadAllText(path);
-                    GridViewTileJson gridViewTileJson = JsonSerializer.Deserialize<GridViewTileJson>(jsonString, SourceGenerationContext.Default.GridViewTileJson);
-
-                    // Create a new GridViewTile
-                    GridViewTile gridViewTile = new GridViewTile();
-                    gridViewTile.ExecutingPath = gridViewTileJson.executingPath;
-                    gridViewTile.ExecutingArguments = gridViewTileJson.executingArguments;
-                    gridViewTile.DisplayText = gridViewTileJson.displayText;
-                    
+                    GridViewTile gridViewTile = await DeserialiseJsonToGridViewTile(path);
+                    if (gridViewTile != null)
+                    {
+                        loadedItems.Add(gridViewTile);
+                    }
                 }
                 else
                 {
                     // Create a new GridViewTileGroup
+                    GridViewTileGroup gridViewTileGroup = await DeserialiseDirectoryToGridViewTileGroup(path);
+                    loadedItems.Add(gridViewTileGroup);
                 }
             }
-            return loadedItems ;
+            return loadedItems;
         }
     }
 }

@@ -134,7 +134,31 @@ namespace LauncherXWinUI
             else
             {
                 // Load LauncherX items as normal
-                UserSettingsClass.LoadLauncherXItems();
+                List<UserControl> controls = await UserSettingsClass.LoadLauncherXItems();
+
+                // Add the loaded controls to the ItemsGridView
+                foreach (UserControl control in controls)
+                {
+                    if (control is GridViewTile)
+                    {
+                        // Hook up event handlers
+                        GridViewTile gridViewTile = (GridViewTile)control;
+                        gridViewTile.Drop += GridViewTile_Drop;
+                        gridViewTile.DragEnter += GridViewTile_DragEnter;
+                        gridViewTile.DragLeave += GridViewTile_DragLeave;
+                        ItemsGridView.Items.Add(gridViewTile);
+                    }
+                    else if (control is GridViewTileGroup)
+                    {
+                        // Hook up event handlers
+                        GridViewTileGroup gridViewTileGroup = (GridViewTileGroup)control;
+                        gridViewTileGroup.DragEnter += GridViewTileGroup_DragEnter;
+                        gridViewTileGroup.DragLeave += GridViewTileGroup_DragLeave;
+                        gridViewTileGroup.Drop += GridViewTileGroup_Drop;
+                        ItemsGridView.Items.Add(gridViewTileGroup);
+
+                    }
+                }
             }
 
             // Check if there were errors adding files
