@@ -2,19 +2,15 @@ using LauncherXWinUI.Classes;
 using LauncherXWinUI.Controls;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
+using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Media.Imaging;
 using System;
-using System.IO;
-using System.Diagnostics;
-using Microsoft.UI.Xaml.Media;
-using Windows.UI;
-using Windows.ApplicationModel.DataTransfer;
 using System.Collections.Generic;
-using System.Threading.Tasks;
+using System.Diagnostics;
+using System.IO;
 using System.Linq;
-using System.IO.Compression;
+using Windows.ApplicationModel.DataTransfer;
 using Windows.Storage;
-using Windows.Storage.FileProperties;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -26,6 +22,9 @@ namespace LauncherXWinUI
     /// </summary>
     public sealed partial class MainWindow : WinUIEx.WindowEx
     {
+        // Create a new dispatcher timer to save items
+        DispatcherTimer SaveItemsTimer = new DispatcherTimer();
+
         public MainWindow()
         {
             this.InitializeComponent();
@@ -44,7 +43,8 @@ namespace LauncherXWinUI
             HeaderTextBlock.Text = UserSettingsClass.HeaderText;
 
             // Adjust the size of items in ItemsGridView
-            foreach (var gridViewItem in ItemsGridView.Items) {
+            foreach (var gridViewItem in ItemsGridView.Items)
+            {
                 if (gridViewItem is GridViewTile)
                 {
                     ((GridViewTile)gridViewItem).Size = UserSettingsClass.GridScale;
@@ -134,7 +134,7 @@ namespace LauncherXWinUI
             else
             {
                 // Load LauncherX items as normal
-
+                UserSettingsClass.LoadLauncherXItems();
             }
 
             // Check if there were errors adding files
@@ -156,14 +156,25 @@ namespace LauncherXWinUI
             // Once we have initialised the UserSettingsClass with the correct values, update the UI
             UpdateUIFromSettings();
 
+            // Start saving items every 10s automatically
+            SaveItemsTimer.Interval = TimeSpan.FromSeconds(10);
+            SaveItemsTimer.Tick += SaveItemsTimer_Tick;
+            SaveItemsTimer.Start();
+
             // Check for updates and display the InfoBar if necessary
             bool? isUpdateAvailable = await UpdatesClass.IsUpdateAvailable();
             if (isUpdateAvailable == true)
             {
                 UpdateInfoBar.IsOpen = true;
             }
+
         }
 
+        private void SaveItemsTimer_Tick(object sender, object e)
+        {
+            // Save items
+            UserSettingsClass.SaveLauncherXItems(ItemsGridView.Items);
+        }
 
         private void GetUpdateBtn_Click(object sender, RoutedEventArgs e)
         {
@@ -285,7 +296,7 @@ namespace LauncherXWinUI
                     DraggedOverTile.ShowCreateGroupIndicator();
                 }
             }
-           
+
         }
         private void GridViewTile_DragLeave(object sender, DragEventArgs e)
         {
@@ -375,7 +386,7 @@ namespace LauncherXWinUI
                 // Add the DraggedTile to the existingGridViewTileGroup
                 existingGridViewTileGroup.HideAddItemIndicator();
                 existingGridViewTileGroup.Items.Add(DraggedTile);
-               
+
                 // Mark objects for deletion
                 GridViewItemsToRemove.Add(DraggedTile);
             }
@@ -384,7 +395,8 @@ namespace LauncherXWinUI
         private void ItemsGridView_DragItemsCompleted(ListViewBase sender, DragItemsCompletedEventArgs args)
         {
             // Remove the old GridView items if applicable
-            foreach (UserControl control in GridViewItemsToRemove) {
+            foreach (UserControl control in GridViewItemsToRemove)
+            {
                 ItemsGridView.Items.Remove(control);
             }
             GridViewItemsToRemove.Clear();
@@ -473,7 +485,7 @@ namespace LauncherXWinUI
             }
             else
             {
-                chosenSuggestion = SearchBoxDropdownItems[0];   
+                chosenSuggestion = SearchBoxDropdownItems[0];
             }
 
             sender.Text = chosenSuggestion;
@@ -568,24 +580,19 @@ namespace LauncherXWinUI
                 {
                     // This is a file
                     string filePath = storageItem.Path;
-                    string ext = Path.GetExtension(filePath);
 
-                    // Get the thumbnail of the file, depending on its extension (explanation in AddFileDialog.xaml.cs)
-                    if (ext == ".lnk" || ext == ".url" || ext == ".wsh")
-                    {
-                        // Get the thumbnail of the file using Win32 APIs
-                        SoftwareBitmapSource fileIcon = await IconHelpers.GetFileIconWin32(filePath);
-                        AddGridViewTile(filePath, "", storageItem.Name, fileIcon);
-                    }
-                    else
-                    {
-                        // Get the thumbnail of the file using WinRT APIs
-                        BitmapImage bitmapImage = await IconHelpers.GetFileIcon(storageItem);
-                        AddGridViewTile(filePath, "", storageItem.Name, bitmapImage);
-                    }
+                    // Get the thumbnail of the file and add it to ItemsGridView
+                    AddGridViewTile(filePath, "", storageItem.Name, await IconHelpers.GetFileIcon(filePath));
                 }
             }
-            
+
+        }
+
+        // The last event handler - stop timer and save items when the window is closed
+        private void WindowEx_Closed(object sender, WindowEventArgs args)
+        {
+            SaveItemsTimer.Stop();
+            UserSettingsClass.SaveLauncherXItems(ItemsGridView.Items);
         }
     }
 }

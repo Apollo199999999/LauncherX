@@ -38,45 +38,6 @@ namespace LauncherXWinUI.Controls
             typeof(AddFileDialog),
             new PropertyMetadata(new List<AddFileDialogListViewItem>()));
 
-        // Helper functions
-
-        /// <summary>
-        /// Creates an AddFileDialogListViewItem and add it to the SelectedFilesListView, using Win32 APIs
-        /// </summary>
-        /// <param name="filePath">The filepath of the file</param>
-        private async Task Win32CreateAddFileDialogListViewItem(string filePath)
-        {
-            // Manually configure the AddFileDialogListViewItem without using StorageFile
-            AddFileDialogListViewItem addFileDialogListViewItem = new AddFileDialogListViewItem();
-            addFileDialogListViewItem.ExecutingPath = filePath;
-            addFileDialogListViewItem.DisplayText = Path.GetFileName(filePath);
-            SelectedFilesListView.Items.Add(addFileDialogListViewItem);
-
-            // Get the thumbnail of the file using Win32 APIs
-            SoftwareBitmapSource fileIcon = await IconHelpers.GetFileIconWin32(filePath);
-            addFileDialogListViewItem.FileIcon = fileIcon;
-        }
-
-        /// <summary>
-        /// Creates an AddFileDialogListViewItem and add it to the SelectedFilesListView, using WinRT APIs
-        /// </summary>
-        /// <param name="filePath">The filepath of the file</param>
-        private async Task WinRTCreateAddFileDialogListViewItem(string filePath)
-        {
-            // Create a StorageFile
-            StorageFile file = await StorageFile.GetFileFromPathAsync(filePath);
-
-            // Display the files in the ListView
-            AddFileDialogListViewItem addFileDialogListViewItem = new AddFileDialogListViewItem();
-            addFileDialogListViewItem.ExecutingPath = file.Path;
-            addFileDialogListViewItem.DisplayText = file.Name;
-            SelectedFilesListView.Items.Add(addFileDialogListViewItem);
-
-            // Get the thumbnail of the file
-            BitmapImage bitmapImage = await IconHelpers.GetFileIcon(file);
-            addFileDialogListViewItem.FileIcon = bitmapImage;
-        }
-
         // Event handlers
         private async void PickAFileButton_Click(object sender, RoutedEventArgs e)
         {
@@ -97,23 +58,14 @@ namespace LauncherXWinUI.Controls
                 {
                     SelectedFilesListView.Items.Remove(PlaceholderListViewItem);
 
-                    string ext = Path.GetExtension(filePath);
-                    if (ext == ".lnk" || ext == ".url" || ext == ".wsh")
-                    {
-                        await Win32CreateAddFileDialogListViewItem(filePath);
-                    }
-                    else
-                    {
-                        // We can use WASDK APIs to continue, however take note this might fail for hidden files, so we need to use Win32 methods as a backup
-                        try 
-                        { 
-                            await WinRTCreateAddFileDialogListViewItem(filePath); 
-                        }
-                        catch 
-                        { 
-                            await Win32CreateAddFileDialogListViewItem(filePath); 
-                        }                        
-                    }
+                    // Manually configure the AddFileDialogListViewItem without using StorageFile
+                    AddFileDialogListViewItem addFileDialogListViewItem = new AddFileDialogListViewItem();
+                    addFileDialogListViewItem.ExecutingPath = filePath;
+                    addFileDialogListViewItem.DisplayText = Path.GetFileName(filePath);
+                    SelectedFilesListView.Items.Add(addFileDialogListViewItem);
+
+                    // Get the thumbnail of the file using IconHelpers, which will automatically select the most optimal method
+                    addFileDialogListViewItem.FileIcon = await IconHelpers.GetFileIcon(filePath);
                 }
             }
 

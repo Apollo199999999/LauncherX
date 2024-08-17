@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Windows.Storage;
 using Windows.Storage.FileProperties;
+using Microsoft.UI.Xaml.Media;
 
 namespace LauncherXWinUI.Classes
 {
@@ -103,11 +104,11 @@ namespace LauncherXWinUI.Classes
 
 
         /// <summary>
-        /// Method to get the icon of a file
+        /// Method to get the icon of a file, using WinRT/WASDK APIs
         /// </summary>
         /// <param name="storageFile">StorageFile object storing the file</param>
         /// <returns></returns>
-        public async static Task<BitmapImage> GetFileIcon(StorageFile storageFile)
+        private async static Task<BitmapImage> GetFileIconWinRT(StorageFile storageFile)
         {
             // Get the thumbnail of the folder
             StorageItemThumbnail thumbnail = await storageFile.GetThumbnailAsync(ThumbnailMode.SingleItem, 256);
@@ -121,7 +122,7 @@ namespace LauncherXWinUI.Classes
         /// Method to get the icon of a file, using Win32 methods
         /// </summary>
         /// <param name="filePath">Path to file</param>
-        public async static Task<SoftwareBitmapSource> GetFileIconWin32(string filePath)
+        private async static Task<SoftwareBitmapSource> GetFileIconWin32(string filePath)
         {
             IntPtr hIcon = Shell32.GetJumboIcon(Shell32.GetIconIndex(filePath));
             System.Drawing.Icon ico = (System.Drawing.Icon)System.Drawing.Icon.FromHandle(hIcon).Clone();
@@ -131,6 +132,38 @@ namespace LauncherXWinUI.Classes
             Shell32.DestroyIcon(hIcon);
 
             return fileIcon;
+        }
+
+        /// <summary>
+        /// One unified method that works with all file types to get the icon of a file
+        /// </summary>
+        /// <returns>ImageSource that can be used directly with an image control</returns>
+        public async static Task<ImageSource> GetFileIcon(string filePath)
+        {
+            // Get the extension of the file
+            string ext = Path.GetExtension(filePath);
+
+            // StorageFile is not compatible with files of extension .lnk, .wsh, or .url, thus if our file has those extensions, we must use Win32 methods to retrieve the file icon
+            if (ext == ".lnk" || ext == ".url" || ext == ".wsh")
+            {
+                SoftwareBitmapSource fileIcon = await GetFileIconWin32(filePath);
+                return fileIcon;
+            }
+            else
+            {
+                // Try to use WinRT methods, which might still fail if the item is hidden, so wrap in try-catch
+                try
+                {
+                    StorageFile storageFile = await StorageFile.GetFileFromPathAsync(filePath);
+                    BitmapImage fileIcon = await GetFileIconWinRT(storageFile);
+                    return fileIcon;
+                }
+                catch
+                {
+                    SoftwareBitmapSource fileIcon = await GetFileIconWin32(filePath);
+                    return fileIcon;
+                }
+            }
         }
     }
 }

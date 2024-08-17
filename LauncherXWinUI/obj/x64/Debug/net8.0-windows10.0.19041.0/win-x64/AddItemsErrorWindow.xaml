@@ -56,22 +56,27 @@
                 Grid.Row="0"
                 HorizontalAlignment="Stretch"
                 VerticalAlignment="Top"
-                FontSize="14"
                 Text="The following items could not be loaded into LauncherX. The file(s)/folder(s) may have been moved or deleted. Please check that they are in the correct location, and re-add the file(s)/folder(s) when you are done."
                 TextWrapping="Wrap" />
 
             <ListView x:ConnectionId='5'
                 x:Name="ErrorItemsListView"
                 Grid.Row="1"
+                Margin="0,10,0,0"
+                BorderBrush="{ThemeResource SystemControlForegroundBaseMediumLowBrush}"
+                BorderThickness="1"
                                              />
 
             <Button x:ConnectionId='6'
                 x:Name="CloseBtn"
+                Grid.Row="2"
                 Width="75"
+                Margin="0,10,0,0"
                 HorizontalAlignment="Right"
                 VerticalAlignment="Bottom"
                                       
-                Content="OK" />
+                Content="OK"
+                Style="{ThemeResource AccentButtonStyle}" />
         </Grid>
     </Grid>
 </winex:WindowEx>

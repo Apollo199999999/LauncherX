@@ -15,6 +15,7 @@
     Height="600"
     MinWidth="650"
     MinHeight="500"
+    Closed="WindowEx_Closed"
     mc:Ignorable="d">
     <Grid
         x:Name="DragDropParent"

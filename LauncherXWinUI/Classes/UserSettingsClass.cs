@@ -11,6 +11,7 @@ using Windows.Storage;
 using System.Threading.Tasks;
 using Microsoft.UI.Xaml.Media.Imaging;
 using static System.Net.Mime.MediaTypeNames;
+using Microsoft.UI.Xaml.Controls;
 
 namespace LauncherXWinUI.Classes
 {
@@ -24,13 +25,35 @@ namespace LauncherXWinUI.Classes
     }
 
     /// <summary>
+    /// Class to store variables to read/write a GridViewTile to a json file
+    /// </summary>
+    public class GridViewTileJson
+    {
+        public string executingPath { get; set; }
+        public string executingArguments { get; set; }
+        public string displayText { get; set; }
+        public string customImagePath { get; set; }
+    }
+
+    /// <summary>
+    /// Class to store variables to read/write a GridViewTileGroup to a json file
+    /// </summary>
+    public class GridViewTileGroupJson
+    {
+        public string displayText { get; set; }
+    }
+
+    /// <summary>
     /// To be used for json source generation
     /// </summary>
     [JsonSourceGenerationOptions(WriteIndented = true)]
     [JsonSerializable(typeof(UserSettingsJson))]
+    [JsonSerializable(typeof(GridViewTileJson))]
+    [JsonSerializable(typeof(GridViewTileGroupJson))]
     internal partial class SourceGenerationContext : JsonSerializerContext
     {
     }
+    
 
     /// <summary>
     /// Class that handles all methods and variables relating to storing and retrieving user settings
@@ -308,29 +331,7 @@ namespace LauncherXWinUI.Classes
                 {
                     // File
                     tileProps.Add("DisplayText", Path.GetFileName(executingPath));
-                    string ext = Path.GetExtension(executingPath);
-                    if (ext == ".lnk" || ext == ".url" || ext == ".wsh")
-                    {
-                        // Use Win32 methods
-                        SoftwareBitmapSource src =  await IconHelpers.GetFileIconWin32(executingPath);
-                        tileProps.Add("ImageSource", src);
-                    }
-                    else
-                    {
-                        try
-                        {
-                            // Use WinRT methods
-                            StorageFile storageFile = await StorageFile.GetFileFromPathAsync(executingPath);
-                            BitmapImage fileIcon = await IconHelpers.GetFileIcon(storageFile);
-                            tileProps.Add("ImageSource", fileIcon);
-                        }
-                        catch
-                        {
-                            // Use Win32 methods
-                            SoftwareBitmapSource src = await IconHelpers.GetFileIconWin32(executingPath);
-                            tileProps.Add("ImageSource", src);
-                        }
-                    }
+                    tileProps.Add("ImageSource", await IconHelpers.GetFileIcon(executingPath));
                     gridViewTilesProps.Add(tileProps);
                 }
                 else if (!Path.Exists(executingPath))
@@ -350,6 +351,140 @@ namespace LauncherXWinUI.Classes
         public static bool ErrorAddingItems()
         {
             return ErrorPaths.Count > 0;
+        }
+
+        // Helper methods for saving items
+        /// <summary>
+        /// Method that serialises a GridViewTile object to a Json file
+        /// </summary>
+        /// <param name="gridViewTile">GridViewTile to save</param>
+        /// <param name="jsonFilePath">Path to save Json file at</param>
+        private static void SerialiseGridViewTileToJson(GridViewTile gridViewTile, string jsonFilePath)
+        {
+            // Use the GridViewTileJson class to write a json file
+            var gridViewTileJson = new GridViewTileJson
+            {
+                executingPath = gridViewTile.ExecutingPath,
+                executingArguments = gridViewTile.ExecutingArguments,
+                displayText = gridViewTile.DisplayText,
+                customImagePath = gridViewTile.CustomImagePath
+            };
+
+            string itemFilePath = Path.Combine(DataDir, jsonFilePath);
+            string jsonString = JsonSerializer.Serialize(gridViewTileJson!, SourceGenerationContext.Default.GridViewTileJson);
+            File.WriteAllText(itemFilePath, jsonString);
+        }
+
+        /// <summary>
+        /// Method that serialises a GridViewTileGroup object to a Json file
+        /// </summary>
+        /// <param name="gridViewTileGroup">GridViewTileGroup to save</param>
+        /// <param name="gridViewTileGroupDir">Path to the directory where files relating to the GridViewTileGroup will be stored</param>
+        private static void SerialiseGridViewTileGroupToJson(GridViewTileGroup gridViewTileGroup, string gridViewTileGroupDir)
+        {
+            // Use the GridViewTileGroupJson class to write a json file
+            var gridViewTileGroupJson = new GridViewTileGroupJson
+            {
+                displayText = gridViewTileGroup.DisplayText,
+
+            };
+
+            string grpJsonFilePath = Path.Combine(gridViewTileGroupDir, "props.json");
+            string grpJsonString = JsonSerializer.Serialize(gridViewTileGroupJson!, SourceGenerationContext.Default.GridViewTileGroupJson);
+            File.WriteAllText(grpJsonFilePath, grpJsonString);
+
+            // Next, iterate through the items in the GridViewTileGroup, and save the GridViewItems inside to json files
+            int localFilename = 0;
+            foreach (GridViewTile gridViewTile in gridViewTileGroup.Items)
+            {
+                SerialiseGridViewTileToJson(gridViewTile, Path.Combine(gridViewTileGroupDir, localFilename.ToString() + ".json"));
+                localFilename += 1;
+            }
+        }
+
+        /// <summary>
+        /// Method to write the items in LauncherX to disk
+        /// </summary>
+        /// <param name="gridViewItems">GridView.Items property</param>
+        public static void SaveLauncherXItems(ItemCollection gridViewItems) 
+        {
+            // Clear the DataDir
+            System.IO.DirectoryInfo di = new DirectoryInfo(DataDir);
+
+            foreach (FileInfo file in di.GetFiles())
+            {
+                file.Delete();
+            }
+            foreach (DirectoryInfo dir in di.GetDirectories())
+            {
+                dir.Delete(true);
+            }
+
+            int globalFilename = 0;
+
+            // Start saving the items in the GridView
+            // Name each file 1.json, 2.json in order for each GridViewTile
+            // For a GridViewTileGroup, create a folder
+            foreach (UserControl userControl in gridViewItems)
+            {
+                if (userControl is GridViewTile)
+                {
+                    GridViewTile gridViewTile = userControl as GridViewTile;
+                    SerialiseGridViewTileToJson(gridViewTile, Path.Combine(DataDir, globalFilename.ToString() + ".json"));
+
+                }
+                else if (userControl is GridViewTileGroup)
+                {
+                    GridViewTileGroup gridViewTileGroup = userControl as GridViewTileGroup;
+                    string tileGroupDir = Path.Combine(DataDir, globalFilename.ToString());
+                    Directory.CreateDirectory(tileGroupDir);
+                    
+                    SerialiseGridViewTileGroupToJson(gridViewTileGroup, tileGroupDir);
+                }
+
+                globalFilename += 1;
+            }
+        }
+
+        /// <summary>
+        /// Method that loads GridViewTiles/GridViewTileGroups from Json files
+        /// </summary>
+        /// <returns>A list of GridViewTiles/GridViewTileGroups, that can be used in MainWindow to load the items in the GridView</returns>
+        public static List<UserControl> LoadLauncherXItems()
+        {
+            // List to return
+            List<UserControl> loadedItems = new List<UserControl>();
+
+            // Get a list of all paths in the DataDir, and sort them numerically
+            List<string> files = Directory.GetFiles(DataDir).ToList();
+            List<string> folders = Directory.GetDirectories(DataDir).ToList();
+            files.AddRange(folders);
+
+            // allPaths stores the serialised items from LauncherX, in order
+            string[] allPaths = files.ToArray();
+            Array.Sort(allPaths, new AlphanumComparatorFast());
+
+            foreach (string path in allPaths)
+            {
+                if (Path.GetExtension(path) == ".json")
+                {
+                    // Deserialise the json
+                    string jsonString = File.ReadAllText(path);
+                    GridViewTileJson gridViewTileJson = JsonSerializer.Deserialize<GridViewTileJson>(jsonString, SourceGenerationContext.Default.GridViewTileJson);
+
+                    // Create a new GridViewTile
+                    GridViewTile gridViewTile = new GridViewTile();
+                    gridViewTile.ExecutingPath = gridViewTileJson.executingPath;
+                    gridViewTile.ExecutingArguments = gridViewTileJson.executingArguments;
+                    gridViewTile.DisplayText = gridViewTileJson.displayText;
+                    
+                }
+                else
+                {
+                    // Create a new GridViewTileGroup
+                }
+            }
+            return loadedItems ;
         }
     }
 }

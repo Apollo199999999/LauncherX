@@ -523,26 +523,7 @@ namespace LauncherXWinUI.Controls
             else if (IsPathDirectory(this.ExecutingPath) == false)
             {
                 // File
-                string ext = Path.GetExtension(this.ExecutingPath);
-
-                if (ext == ".lnk" || ext == ".url" || ext == ".wsh")
-                {
-                    // Use Win32 methods
-                    EditDialogImage.Source = await IconHelpers.GetFileIconWin32(this.ExecutingPath);
-                }
-                else
-                {
-                    try
-                    {
-                        StorageFile storageFile = await StorageFile.GetFileFromPathAsync(this.ExecutingPath);
-                        BitmapImage fileIcon = await IconHelpers.GetFileIcon(storageFile);
-                        EditDialogImage.Source = fileIcon;
-                    }
-                    catch
-                    {
-                        EditDialogImage.Source = await IconHelpers.GetFileIconWin32(this.ExecutingPath);
-                    }
-                }
+                EditDialogImage.Source = await IconHelpers.GetFileIcon(this.ExecutingPath);
             }
 
             TempCustomImagePath = "";
