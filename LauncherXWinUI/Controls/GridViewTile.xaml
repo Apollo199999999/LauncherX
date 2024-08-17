@@ -113,7 +113,8 @@
                             Grid.Row="0"
                             Grid.Column="0"
                             VerticalAlignment="Center"
-                            Text="Display Text:" />
+                            Text="Display Text:"
+                            ToolTipService.ToolTip="The text that is displayed on this item in LauncherX. Does not affect what is launched when this item is clicked." />
                         <TextBox
                             x:Name="EditDisplayTextTextBox"
                             Grid.Row="0"
@@ -157,7 +158,8 @@
                     <MenuFlyoutItem
                         x:Name="MenuAdminOption"
                         Click="MenuAdminOption_Click"
-                        Text="Attempt to run as administrator">
+                        Text="Attempt to run as administrator"
+                        Visibility="Collapsed">
                         <MenuFlyoutItem.Icon>
                             <FontIcon x:Name="MenuAdminOptionIcon" Glyph="&#xE7EF;" />
                         </MenuFlyoutItem.Icon>

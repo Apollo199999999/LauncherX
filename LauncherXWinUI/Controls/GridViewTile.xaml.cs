@@ -356,6 +356,7 @@ namespace LauncherXWinUI.Controls
                 MenuOpenOptionIcon.Glyph = "\uE774";
                 MenuOpenOption.Text = "Open website";
                 MenuOpenLocOption.Visibility = Visibility.Collapsed;
+                MenuAdminOption.Visibility = Visibility.Collapsed;
                 MenuRemoveGroupOption.Text = "Remove website from group";
                 MenuRemoveOption.Text = "Remove website from LauncherX";
             }
@@ -366,6 +367,7 @@ namespace LauncherXWinUI.Controls
                 MenuOpenLocOption.Text = "Open folder location";
                 MenuRemoveGroupOption.Text = "Remove folder from group";
                 MenuRemoveOption.Text = "Remove folder from LauncherX";
+                MenuAdminOption.Visibility = Visibility.Collapsed;
             }
             else
             {
@@ -374,6 +376,7 @@ namespace LauncherXWinUI.Controls
                 MenuOpenLocOption.Text = "Open file location";
                 MenuRemoveGroupOption.Text = "Remove file from group";
                 MenuRemoveOption.Text = "Remove file from LauncherX";
+                MenuAdminOption.Visibility = Visibility.Visible;
             }
 
             MenuFlyout flyoutBase = (MenuFlyout)FlyoutBase.GetAttachedFlyout(TilePanel);
@@ -452,7 +455,7 @@ namespace LauncherXWinUI.Controls
             TempCustomImagePath = this.CustomImagePath;
 
             // Show the launch args section only if this is a file
-            if (this.ExecutingPath.StartsWith("http") == false && IsPathDirectory(this.ExecutingPath) == false)
+            if (!this.ExecutingPath.StartsWith("https://") && !this.ExecutingPath.StartsWith("http://") && IsPathDirectory(this.ExecutingPath) == false)
             {
                 EditLaunchArgsTextBox.Visibility = Visibility.Visible;
                 LaunchArgsTextBlock.Visibility = Visibility.Visible;
