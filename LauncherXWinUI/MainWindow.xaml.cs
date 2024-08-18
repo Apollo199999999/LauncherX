@@ -1,5 +1,6 @@
 using LauncherXWinUI.Classes;
-using LauncherXWinUI.Controls;
+using LauncherXWinUI.Controls.GridViewItems;
+using LauncherXWinUI.Controls.Dialogs;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Media;
@@ -391,8 +392,6 @@ namespace LauncherXWinUI
                 GridViewTile DraggedTile = e.Data.Properties["DraggedControl"] as GridViewTile;
                 DroppedOnTile.HideCreateGroupIndicator();
                 DraggedTile.UnhighlightControl();
-                DraggedTile.ShowRemoveFromGroupOption();
-                DroppedOnTile.ShowRemoveFromGroupOption();
 
                 if (DroppedOnTile.UniqueId == DraggedTile.UniqueId)
                 {
@@ -403,11 +402,15 @@ namespace LauncherXWinUI
                 GridViewTileGroup newGridViewTileGroup = new GridViewTileGroup();
                 newGridViewTileGroup.Size = UserSettingsClass.GridScale;
                 newGridViewTileGroup.DisplayText = "New group";
-                newGridViewTileGroup.Items.Add(DraggedTile);
-                newGridViewTileGroup.Items.Add(DroppedOnTile);
                 newGridViewTileGroup.DragEnter += GridViewTileGroup_DragEnter;
                 newGridViewTileGroup.DragLeave += GridViewTileGroup_DragLeave;
                 newGridViewTileGroup.Drop += GridViewTileGroup_Drop;
+
+                // Add GridViewTiles
+                DraggedTile.AssociateGroup(newGridViewTileGroup);
+                DroppedOnTile.AssociateGroup(newGridViewTileGroup);
+                newGridViewTileGroup.Items.Add(DraggedTile);
+                newGridViewTileGroup.Items.Add(DroppedOnTile);
 
                 // Add the GridViewTileGroup
                 int index = ItemsGridView.Items.IndexOf(DroppedOnTile);
@@ -449,10 +452,10 @@ namespace LauncherXWinUI
                 GridViewTileGroup existingGridViewTileGroup = sender as GridViewTileGroup;
                 GridViewTile DraggedTile = e.Data.Properties["DraggedControl"] as GridViewTile;
                 DraggedTile.UnhighlightControl();
-                DraggedTile.ShowRemoveFromGroupOption();
 
                 // Add the DraggedTile to the existingGridViewTileGroup
                 existingGridViewTileGroup.HideAddItemIndicator();
+                DraggedTile.AssociateGroup(existingGridViewTileGroup);
                 existingGridViewTileGroup.Items.Add(DraggedTile);
 
                 // Mark objects for deletion

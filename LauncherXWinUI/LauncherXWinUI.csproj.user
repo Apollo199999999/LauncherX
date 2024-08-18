@@ -14,34 +14,16 @@
     <None Update="App.xaml">
       <SubType>Designer</SubType>
     </None>
+    <Page Update="Controls\GridViewItems\EditItemWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="Controls\Titlebar.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Controls\AboutSectionControl.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Controls\GridViewTileGroup.xaml">
-      <SubType>Designer</SubType>
-    </Page>
     <Page Update="SettingsWindow.xaml">
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="Controls\AddWebsiteDialog.xaml">
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="Controls\AddFolderDialogListViewItem.xaml">
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="Controls\AddFileDialogListViewItem.xaml">
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="Controls\AddFileDialog.xaml">
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="Controls\AddFolderDialog.xaml">
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="Controls\GridViewTile.xaml">
       <SubType>Designer</SubType>
     </Page>
     <None Update="MainWindow.xaml">

@@ -33,6 +33,7 @@
     <None Remove="Controls\AddFolderDialog.xaml" />
     <None Remove="Controls\AddFolderDialogListViewItem.xaml" />
     <None Remove="Controls\AddWebsiteDialog.xaml" />
+    <None Remove="Controls\GridViewItems\EditItemWindow.xaml" />
     <None Remove="Controls\GridViewTile.xaml" />
     <None Remove="Controls\GridViewTileGroup.xaml" />
     <None Remove="Controls\Titlebar.xaml" />
@@ -115,6 +116,9 @@
     <Page Update="Controls\Titlebar.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Update="Controls\GridViewItems\EditItemWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <None Update="Resources\icon.png">
       <Pack>True</Pack>
       <PackagePath>\</PackagePath>
@@ -164,5 +168,8 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\WinFormsClassLibrary\WinFormsClassLibrary.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Controls\Dialogs\" />
   </ItemGroup>
 </Project>

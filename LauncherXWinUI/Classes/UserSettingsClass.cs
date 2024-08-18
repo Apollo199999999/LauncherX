@@ -6,7 +6,7 @@ using System.Text.Json;
 using System.Diagnostics;
 using System.Xml;
 using System.Text.Json.Serialization;
-using LauncherXWinUI.Controls;
+using LauncherXWinUI.Controls.GridViewItems;
 using Windows.Storage;
 using System.Threading.Tasks;
 using Microsoft.UI.Xaml.Media.Imaging;
@@ -541,7 +541,7 @@ namespace LauncherXWinUI.Classes
                     GridViewTile gridViewTile = await DeserialiseJsonToGridViewTile(jsonFile);
                     if (gridViewTile != null)
                     {
-                        gridViewTile.ShowRemoveFromGroupOption();
+                        gridViewTile.AssociateGroup(gridViewTileGroup);
                         gridViewTileGroup.Items.Add(gridViewTile);
                     }
                 }
