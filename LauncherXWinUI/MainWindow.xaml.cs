@@ -59,7 +59,14 @@ namespace LauncherXWinUI
                 }
                 else if (gridViewItem is GridViewTileGroup)
                 {
-                    ((GridViewTileGroup)gridViewItem).Size = UserSettingsClass.GridScale;
+                    GridViewTileGroup gridViewTileGroup = gridViewItem as GridViewTileGroup;
+                    gridViewTileGroup.Size = UserSettingsClass.GridScale;
+
+                    // Update the size of the items in the GridViewTileGroup as well
+                    foreach (GridViewTile gridViewTile in gridViewTileGroup.Items)
+                    {
+                        gridViewTile.Size = UserSettingsClass.GridScale;
+                    }
                 }
             }
         }
@@ -606,7 +613,7 @@ namespace LauncherXWinUI
         {
             DragDropInterface.Visibility = Visibility.Collapsed;
 
-            // When a URL is dragged in, it technicallu qualifies as both a internet shortcut (.url) file, and a WebLink
+            // When a URL is dragged in, it technically qualifies as both a internet shortcut (.url) file, and a WebLink
             // Thus, we check if the DataView contains a WebLink first, so that URLs dragged in are added as websites instead of files
             // Source: https://stackoverflow.com/questions/66973410/drag-and-drop-items-in-windows-application-and-get-the-standarddataformats-of-th
             if (e.DataView.Contains(StandardDataFormats.WebLink))

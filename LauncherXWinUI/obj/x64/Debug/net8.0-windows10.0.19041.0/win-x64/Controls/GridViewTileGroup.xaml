@@ -91,6 +91,7 @@
                         AllowDrop="True"
                         CanDragItems="True"
                         CanReorderItems="True"
+                                                                             
                         IsItemClickEnabled="True"
                         SelectionMode="Single">
                         <GridView.ItemContainerStyle>

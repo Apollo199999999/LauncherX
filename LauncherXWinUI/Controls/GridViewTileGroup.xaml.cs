@@ -277,6 +277,19 @@ namespace LauncherXWinUI.Controls
             }
         }
 
+        private void ItemsGridView_DragItemsCompleted(ListViewBase sender, DragItemsCompletedEventArgs args)
+        {
+            // Unhighlight all controls, just in case
+            foreach (UserControl gridViewItem in ItemsGridView.Items)
+            {
+                if (gridViewItem is GridViewTile)
+                {
+                    GridViewTile gridViewTile = gridViewItem as GridViewTile;
+                    gridViewTile.UnhighlightControl();
+                }
+            }
+        }
+
         private void GroupPanel_RightTapped(object sender, Microsoft.UI.Xaml.Input.RightTappedRoutedEventArgs e)
         {
             // Show right click menu options
@@ -293,6 +306,5 @@ namespace LauncherXWinUI.Controls
                 parentGridView.Items.Remove(this);
             }
         }
-
     }
 }

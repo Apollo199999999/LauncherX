@@ -465,7 +465,7 @@ namespace LauncherXWinUI.Classes
             // Deserialise the json
             string jsonString = File.ReadAllText(jsonFile);
             GridViewTileJson gridViewTileJson = JsonSerializer.Deserialize<GridViewTileJson>(jsonString, SourceGenerationContext.Default.GridViewTileJson);
-            Debug.WriteLine(jsonFile);
+
             // Create a new GridViewTile
             GridViewTile gridViewTile = new GridViewTile();
             gridViewTile.ExecutingPath = gridViewTileJson.executingPath;

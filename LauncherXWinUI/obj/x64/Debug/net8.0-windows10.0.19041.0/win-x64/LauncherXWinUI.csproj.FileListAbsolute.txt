@@ -8,6 +8,7 @@ C:\Users\fligh\source\repos\LauncherX\LauncherXWinUI\bin\x64\Debug\net8.0-window
 C:\Users\fligh\source\repos\LauncherX\LauncherXWinUI\bin\x64\Debug\net8.0-windows10.0.19041.0\win-x64\Controls\AddWebsiteDialog.xbf
 C:\Users\fligh\source\repos\LauncherX\LauncherXWinUI\bin\x64\Debug\net8.0-windows10.0.19041.0\win-x64\Controls\GridViewTile.xbf
 C:\Users\fligh\source\repos\LauncherX\LauncherXWinUI\bin\x64\Debug\net8.0-windows10.0.19041.0\win-x64\Controls\GridViewTileGroup.xbf
+C:\Users\fligh\source\repos\LauncherX\LauncherXWinUI\bin\x64\Debug\net8.0-windows10.0.19041.0\win-x64\Controls\Titlebar.xbf
 C:\Users\fligh\source\repos\LauncherX\LauncherXWinUI\bin\x64\Debug\net8.0-windows10.0.19041.0\win-x64\MainWindow.xbf
 C:\Users\fligh\source\repos\LauncherX\LauncherXWinUI\bin\x64\Debug\net8.0-windows10.0.19041.0\win-x64\SettingsWindow.xbf
 C:\Users\fligh\source\repos\LauncherX\LauncherXWinUI\bin\x64\Debug\net8.0-windows10.0.19041.0\win-x64\CoreMessagingXP.dll
@@ -753,6 +754,8 @@ C:\Users\fligh\source\repos\LauncherX\LauncherXWinUI\obj\x64\Debug\net8.0-window
 C:\Users\fligh\source\repos\LauncherX\LauncherXWinUI\obj\x64\Debug\net8.0-windows10.0.19041.0\win-x64\Controls\GridViewTile.g.cs
 C:\Users\fligh\source\repos\LauncherX\LauncherXWinUI\obj\x64\Debug\net8.0-windows10.0.19041.0\win-x64\Controls\GridViewTileGroup.g.i.cs
 C:\Users\fligh\source\repos\LauncherX\LauncherXWinUI\obj\x64\Debug\net8.0-windows10.0.19041.0\win-x64\Controls\GridViewTileGroup.g.cs
+C:\Users\fligh\source\repos\LauncherX\LauncherXWinUI\obj\x64\Debug\net8.0-windows10.0.19041.0\win-x64\Controls\Titlebar.g.i.cs
+C:\Users\fligh\source\repos\LauncherX\LauncherXWinUI\obj\x64\Debug\net8.0-windows10.0.19041.0\win-x64\Controls\Titlebar.g.cs
 C:\Users\fligh\source\repos\LauncherX\LauncherXWinUI\obj\x64\Debug\net8.0-windows10.0.19041.0\win-x64\MainWindow.g.i.cs
 C:\Users\fligh\source\repos\LauncherX\LauncherXWinUI\obj\x64\Debug\net8.0-windows10.0.19041.0\win-x64\MainWindow.g.cs
 C:\Users\fligh\source\repos\LauncherX\LauncherXWinUI\obj\x64\Debug\net8.0-windows10.0.19041.0\win-x64\SettingsWindow.g.i.cs
@@ -768,6 +771,7 @@ C:\Users\fligh\source\repos\LauncherX\LauncherXWinUI\obj\x64\Debug\net8.0-window
 C:\Users\fligh\source\repos\LauncherX\LauncherXWinUI\obj\x64\Debug\net8.0-windows10.0.19041.0\win-x64\Controls\AddWebsiteDialog.xaml
 C:\Users\fligh\source\repos\LauncherX\LauncherXWinUI\obj\x64\Debug\net8.0-windows10.0.19041.0\win-x64\Controls\GridViewTile.xaml
 C:\Users\fligh\source\repos\LauncherX\LauncherXWinUI\obj\x64\Debug\net8.0-windows10.0.19041.0\win-x64\Controls\GridViewTileGroup.xaml
+C:\Users\fligh\source\repos\LauncherX\LauncherXWinUI\obj\x64\Debug\net8.0-windows10.0.19041.0\win-x64\Controls\Titlebar.xaml
 C:\Users\fligh\source\repos\LauncherX\LauncherXWinUI\obj\x64\Debug\net8.0-windows10.0.19041.0\win-x64\MainWindow.xaml
 C:\Users\fligh\source\repos\LauncherX\LauncherXWinUI\obj\x64\Debug\net8.0-windows10.0.19041.0\win-x64\SettingsWindow.xaml
 C:\Users\fligh\source\repos\LauncherX\LauncherXWinUI\obj\x64\Debug\net8.0-windows10.0.19041.0\win-x64\App.xbf
@@ -780,6 +784,7 @@ C:\Users\fligh\source\repos\LauncherX\LauncherXWinUI\obj\x64\Debug\net8.0-window
 C:\Users\fligh\source\repos\LauncherX\LauncherXWinUI\obj\x64\Debug\net8.0-windows10.0.19041.0\win-x64\Controls\AddWebsiteDialog.xbf
 C:\Users\fligh\source\repos\LauncherX\LauncherXWinUI\obj\x64\Debug\net8.0-windows10.0.19041.0\win-x64\Controls\GridViewTile.xbf
 C:\Users\fligh\source\repos\LauncherX\LauncherXWinUI\obj\x64\Debug\net8.0-windows10.0.19041.0\win-x64\Controls\GridViewTileGroup.xbf
+C:\Users\fligh\source\repos\LauncherX\LauncherXWinUI\obj\x64\Debug\net8.0-windows10.0.19041.0\win-x64\Controls\Titlebar.xbf
 C:\Users\fligh\source\repos\LauncherX\LauncherXWinUI\obj\x64\Debug\net8.0-windows10.0.19041.0\win-x64\MainWindow.xbf
 C:\Users\fligh\source\repos\LauncherX\LauncherXWinUI\obj\x64\Debug\net8.0-windows10.0.19041.0\win-x64\SettingsWindow.xbf
 C:\Users\fligh\source\repos\LauncherX\LauncherXWinUI\obj\x64\Debug\net8.0-windows10.0.19041.0\win-x64\XamlSaveStateFile.xml
@@ -809,8 +814,3 @@ C:\Users\fligh\source\repos\LauncherX\LauncherXWinUI\obj\x64\Debug\net8.0-window
 C:\Users\fligh\source\repos\LauncherX\LauncherXWinUI\obj\x64\Debug\net8.0-windows10.0.19041.0\win-x64\qualifiers.txt
 C:\Users\fligh\source\repos\LauncherX\LauncherXWinUI\obj\x64\Debug\net8.0-windows10.0.19041.0\win-x64\qualifiers.txt.intermediate
 C:\Users\fligh\source\repos\LauncherX\LauncherXWinUI\obj\x64\Debug\net8.0-windows10.0.19041.0\win-x64\MultipleQualifiersPerDimensionFound.txt
-C:\Users\fligh\source\repos\LauncherX\LauncherXWinUI\obj\x64\Debug\net8.0-windows10.0.19041.0\win-x64\Controls\Titlebar.g.i.cs
-C:\Users\fligh\source\repos\LauncherX\LauncherXWinUI\obj\x64\Debug\net8.0-windows10.0.19041.0\win-x64\Controls\Titlebar.g.cs
-C:\Users\fligh\source\repos\LauncherX\LauncherXWinUI\obj\x64\Debug\net8.0-windows10.0.19041.0\win-x64\Controls\Titlebar.xaml
-C:\Users\fligh\source\repos\LauncherX\LauncherXWinUI\obj\x64\Debug\net8.0-windows10.0.19041.0\win-x64\Controls\Titlebar.xbf
-C:\Users\fligh\source\repos\LauncherX\LauncherXWinUI\bin\x64\Debug\net8.0-windows10.0.19041.0\win-x64\Controls\Titlebar.xbf

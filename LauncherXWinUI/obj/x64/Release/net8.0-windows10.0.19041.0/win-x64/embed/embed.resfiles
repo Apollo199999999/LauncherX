@@ -1,0 +1,13 @@
+AddItemsErrorWindow.xbf
+App.xbf
+Controls\AboutSectionControl.xbf
+Controls\AddFileDialog.xbf
+Controls\AddFileDialogListViewItem.xbf
+Controls\AddFolderDialog.xbf
+Controls\AddFolderDialogListViewItem.xbf
+Controls\AddWebsiteDialog.xbf
+Controls\GridViewTile.xbf
+Controls\GridViewTileGroup.xbf
+Controls\Titlebar.xbf
+MainWindow.xbf
+SettingsWindow.xbf
