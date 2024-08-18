@@ -136,7 +136,7 @@
                 <HyperlinkButton
                     Margin="0,5,0,0"
                     Padding="0"
-                    Content="View licenses and notices for third party libraries used"
+                    Content="View third party notices and licenses"
                     FontSize="13"
                     NavigateUri="https://github.com/Apollo199999999/LauncherX/blob/master/NOTICE.txt" />
 

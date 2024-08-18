@@ -541,6 +541,7 @@ namespace LauncherXWinUI.Classes
                     GridViewTile gridViewTile = await DeserialiseJsonToGridViewTile(jsonFile);
                     if (gridViewTile != null)
                     {
+                        gridViewTile.ShowRemoveFromGroupOption();
                         gridViewTileGroup.Items.Add(gridViewTile);
                     }
                 }

@@ -22,9 +22,6 @@ namespace LauncherXWinUI
     /// </summary>
     public sealed partial class MainWindow : WinUIEx.WindowEx
     {
-        // Create a new dispatcher timer to save items
-        DispatcherTimer SaveItemsTimer = new DispatcherTimer();
-
         public MainWindow()
         {
             this.InitializeComponent();
@@ -198,11 +195,6 @@ namespace LauncherXWinUI
             await Task.Delay(20);
             LoadingDialog.Visibility = Visibility.Collapsed;
 
-            // Start saving items every 10s automatically
-            SaveItemsTimer.Interval = TimeSpan.FromSeconds(10);
-            SaveItemsTimer.Tick += SaveItemsTimer_Tick;
-            SaveItemsTimer.Start();
-
             // Check for updates and display the InfoBar if necessary
             bool? isUpdateAvailable = await UpdatesClass.IsUpdateAvailable();
             if (isUpdateAvailable == true)
@@ -210,12 +202,6 @@ namespace LauncherXWinUI
                 UpdateInfoBar.IsOpen = true;
             }
 
-        }
-
-        private void SaveItemsTimer_Tick(object sender, object e)
-        {
-            // Save items
-            UserSettingsClass.SaveLauncherXItems(ItemsGridView.Items);
         }
 
         private void GetUpdateBtn_Click(object sender, RoutedEventArgs e)
@@ -249,12 +235,23 @@ namespace LauncherXWinUI
 
             if (result == ContentDialogResult.Primary)
             {
+                // Show LoadingDialog while loading items and settings
+                LoadingDialog.Visibility = Visibility.Visible;
+                await Task.Delay(10);
+
                 // Add the files from the addFileDialog
                 foreach (AddFileDialogListViewItem fileItem in addFileDialog.AddedFiles)
                 {
                     // Create new GridViewTile for each item
                     AddGridViewTile(fileItem.ExecutingPath, fileItem.ExecutingArguments, fileItem.DisplayText, fileItem.FileIcon);
                 }
+
+                // Save items
+                UserSettingsClass.SaveLauncherXItems(ItemsGridView.Items);
+
+                // Hide LoadingDialog
+                await Task.Delay(20);
+                LoadingDialog.Visibility = Visibility.Collapsed;
             }
         }
 
@@ -269,12 +266,23 @@ namespace LauncherXWinUI
 
             if (result == ContentDialogResult.Primary)
             {
+                // Show LoadingDialog while loading items and settings
+                LoadingDialog.Visibility = Visibility.Visible;
+                await Task.Delay(10);
+
                 // Add the folders from the addFolderDialog
                 foreach (AddFolderDialogListViewItem folderItem in addFolderDialog.AddedFolders)
                 {
                     // Create new GridViewTile for each item
                     AddGridViewTile(folderItem.ExecutingPath, "", folderItem.DisplayText, folderItem.FolderIcon);
                 }
+
+                // Save items
+                UserSettingsClass.SaveLauncherXItems(ItemsGridView.Items);
+
+                // Hide LoadingDialog
+                await Task.Delay(20);
+                LoadingDialog.Visibility = Visibility.Collapsed;
             }
         }
 
@@ -289,12 +297,23 @@ namespace LauncherXWinUI
 
             if (result == ContentDialogResult.Primary)
             {
+                // Show LoadingDialog while loading items and settings
+                LoadingDialog.Visibility = Visibility.Visible;
+                await Task.Delay(10);
+
                 // Get the icon of the website
                 BitmapImage websiteIcon = IconHelpers.GetWebsiteIcon(addWebsiteDialog.InputWebsiteUrl);
 
                 // Create new GridViewTile to display the website
                 AddGridViewTile(addWebsiteDialog.InputWebsiteUrl, "", addWebsiteDialog.InputWebsiteUrl, websiteIcon);
             }
+
+            // Save items
+            UserSettingsClass.SaveLauncherXItems(ItemsGridView.Items);
+
+            // Hide LoadingDialog
+            await Task.Delay(20);
+            LoadingDialog.Visibility = Visibility.Collapsed;
         }
 
         private void SettingsButton_Click(object sender, RoutedEventArgs e)
@@ -632,7 +651,6 @@ namespace LauncherXWinUI
         // The last event handler - stop timer and save items when the window is closed
         private void WindowEx_Closed(object sender, WindowEventArgs args)
         {
-            SaveItemsTimer.Stop();
             UserSettingsClass.SaveLauncherXItems(ItemsGridView.Items);
         }
     }
