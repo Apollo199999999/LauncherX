@@ -118,6 +118,9 @@ namespace LauncherXWinUI.Controls.GridViewItems
             {
                 // Update textblock
                 gridViewTileGroup.TileText.Text = newDisplayText;
+
+                // Update tooltip
+                ToolTipService.SetToolTip(gridViewTileGroup.GroupPanel, newDisplayText);
             }
         }
 
