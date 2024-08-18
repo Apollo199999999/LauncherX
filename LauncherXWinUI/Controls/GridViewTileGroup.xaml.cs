@@ -229,7 +229,7 @@ namespace LauncherXWinUI.Controls
             // 2. Clear the items in the ItemsGridView, so that when GridViewTiles from this control are added to a new GridViewTileGroup control to add more GridViewTiles (see MainWindow.xaml.cs),
             // there won't be a case where a GridViewTile has 2 parents
             // 3. Unselect this control in the ItemsGridView in MainWindow
-            GroupDialog.CloseButtonClick += (s, e) =>
+            GroupDialog.Closing += (s, e) =>
             {
                 GroupDialogTitleTextBox.TextChanged -= GroupDialogTitleTextBox_TextChanged;
                 ItemsGridView.Items.VectorChanged -= ItemsGridViewItems_VectorChanged;

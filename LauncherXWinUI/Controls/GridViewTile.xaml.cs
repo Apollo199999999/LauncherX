@@ -13,10 +13,12 @@ using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using Windows.Storage;
 using Windows.UI;
+using Windows.UI.Popups;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
 
+// Because the GridViewTile may be a child of a GridViewTileGroup, which has a ContentDialog, the GridViewTile cannot implement any ContentDialogs
 namespace LauncherXWinUI.Controls
 {
     public sealed partial class GridViewTile : UserControl
@@ -83,7 +85,6 @@ namespace LauncherXWinUI.Controls
                 // Update image margin and dimensions
                 gridViewTile.TileImage.Margin = new Thickness(newSize * 22.5, newSize * 5, newSize * 22.5, 0);
                 gridViewTile.TileImage.Height = newWidth - newSize * 22.5 - newSize * 22.5;
-                //gridViewTile.TileImage.Width = newWidth - newSize * 22.5 - newSize * 22.5;
                 gridViewTile.TileImage.Stretch = Stretch.Uniform;
 
                 // Update the font size of the textblock
@@ -300,24 +301,12 @@ namespace LauncherXWinUI.Controls
             }
             catch
             {
-                // Second try-catch as the error ContentDialog will not show if this GridViewTile is in a GridViewTileGroup
-                // Show a ContentDialog to tell the user something went wrong
-                try
-                {
-                    ContentDialog procErrorDialog = new ContentDialog()
-                    {
-                        XamlRoot = this.XamlRoot,
-                        Title = "Error running item",
-                        Content = "If you are attempting to run this item as an administrator, check that it is possible to do so in the first place. " +
-                                  "Finally, check that the file/folder has not been moved or deleted.",
-                        CloseButtonText = "OK",
-                        Width = 300,
-                        DefaultButton = ContentDialogButton.Close
-                    };
+                // Use a MessageDialog to show the error message
+                MessageDialog messageDialog = new MessageDialog("If you are attempting to run this item as an administrator, check that it is possible to do so in the first place. " +
+                                  "Finally, check that the file/folder has not been moved or deleted.", "Error running item");
+                WinRT.Interop.InitializeWithWindow.Initialize(messageDialog, WinRT.Interop.WindowNative.GetWindowHandle(App.MainWindow));
 
-                    await procErrorDialog.ShowAsync();
-                }
-                catch { }
+                await messageDialog.ShowAsync();
             }
 
             // Unselect this item
@@ -406,16 +395,12 @@ namespace LauncherXWinUI.Controls
             catch
             {
                 // Show error message if unable to open file location
-                ContentDialog procErrorDialog = new ContentDialog()
-                {
-                    XamlRoot = this.XamlRoot,
-                    Title = "Error opening location",
-                    Content = "Unable to open location on disk. Check that the file/folder has not been moved or deleted, or try again later.",
-                    CloseButtonText = "OK",
-                    DefaultButton = ContentDialogButton.Close
-                };
+                // Use a MessageDialog to show the error message
+                MessageDialog messageDialog = new MessageDialog("Unable to open location on disk. Check that the file/folder has not been moved or deleted, or try again later.",
+                    "Error opening location");
+                WinRT.Interop.InitializeWithWindow.Initialize(messageDialog, WinRT.Interop.WindowNative.GetWindowHandle(App.MainWindow));
 
-                await procErrorDialog.ShowAsync();
+                await messageDialog.ShowAsync();
             }
         }
 
@@ -449,35 +434,35 @@ namespace LauncherXWinUI.Controls
         private string TempCustomImagePath = "";
         private async void MenuEditOption_Click(object sender, RoutedEventArgs e)
         {
-            // Show the EditItemDialog
-            EditDialogImage.Source = this.ImageSource;
-            EditDisplayTextTextBox.Text = this.DisplayText;
-            TempCustomImagePath = this.CustomImagePath;
+            //// Show the EditItemDialog
+            //EditDialogImage.Source = this.ImageSource;
+            //EditDisplayTextTextBox.Text = this.DisplayText;
+            //TempCustomImagePath = this.CustomImagePath;
 
-            // Show the launch args section only if this is a file
-            if (!this.ExecutingPath.StartsWith("https://") && !this.ExecutingPath.StartsWith("http://") && IsPathDirectory(this.ExecutingPath) == false)
-            {
-                EditLaunchArgsTextBox.Visibility = Visibility.Visible;
-                LaunchArgsTextBlock.Visibility = Visibility.Visible;
-                EditLaunchArgsTextBox.Text = this.ExecutingArguments;
-            }
+            //// Show the launch args section only if this is a file
+            //if (!this.ExecutingPath.StartsWith("https://") && !this.ExecutingPath.StartsWith("http://") && IsPathDirectory(this.ExecutingPath) == false)
+            //{
+            //    EditLaunchArgsTextBox.Visibility = Visibility.Visible;
+            //    LaunchArgsTextBlock.Visibility = Visibility.Visible;
+            //    EditLaunchArgsTextBox.Text = this.ExecutingArguments;
+            //}
 
-            ContentDialogResult result = await EditItemDialog.ShowAsync();
+            //ContentDialogResult result = await EditItemDialog.ShowAsync();
 
-            if (result == ContentDialogResult.Primary)
-            {
-                // Update props of this GridViewTile
-                this.DisplayText = EditDisplayTextTextBox.Text;
-                this.ImageSource = EditDialogImage.Source;
-                this.CustomImagePath = TempCustomImagePath;
+            //if (result == ContentDialogResult.Primary)
+            //{
+            //    // Update props of this GridViewTile
+            //    this.DisplayText = EditDisplayTextTextBox.Text;
+            //    this.ImageSource = EditDialogImage.Source;
+            //    this.CustomImagePath = TempCustomImagePath;
 
-                // Update launch args only if file
-                // Show the launch args section only if this is a file
-                if (this.ExecutingPath.StartsWith("http") == false && IsPathDirectory(this.ExecutingPath) == false)
-                {
-                    this.ExecutingArguments = EditLaunchArgsTextBox.Text;
-                }
-            }
+            //    // Update launch args only if file
+            //    // Show the launch args section only if this is a file
+            //    if (this.ExecutingPath.StartsWith("http") == false && IsPathDirectory(this.ExecutingPath) == false)
+            //    {
+            //        this.ExecutingArguments = EditLaunchArgsTextBox.Text;
+            //    }
+            //}
         }
 
         private void EditIconBtn_Click(object sender, RoutedEventArgs e)

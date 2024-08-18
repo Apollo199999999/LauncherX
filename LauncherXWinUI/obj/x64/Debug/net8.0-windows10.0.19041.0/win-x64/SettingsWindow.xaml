@@ -11,6 +11,7 @@
     Title="LauncherX Settings"
     Width="670"
     Height="550"
+    IsAlwaysOnTop="True"
     IsMaximizable="False"
     IsMinimizable="False"
     IsResizable="False"
