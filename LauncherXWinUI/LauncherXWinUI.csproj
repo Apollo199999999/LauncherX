@@ -35,6 +35,7 @@
     <None Remove="Controls\AddWebsiteDialog.xaml" />
     <None Remove="Controls\GridViewTile.xaml" />
     <None Remove="Controls\GridViewTileGroup.xaml" />
+    <None Remove="Controls\Titlebar.xaml" />
     <None Remove="Resources\icon.ico" />
     <None Remove="Resources\websitePlaceholder.png" />
     <None Remove="SettingsWindow.xaml" />
@@ -109,6 +110,9 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Update="AddItemsErrorWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Update="Controls\Titlebar.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <None Update="Resources\icon.png">

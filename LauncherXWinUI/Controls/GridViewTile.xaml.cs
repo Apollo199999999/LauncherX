@@ -93,7 +93,7 @@ namespace LauncherXWinUI.Controls
 
 
         /// <summary>
-        /// Path to the image file to be rendered in the control
+        /// ImageSource object to be rendered in the control
         /// </summary>
         public ImageSource ImageSource
         {

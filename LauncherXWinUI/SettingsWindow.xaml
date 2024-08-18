@@ -34,23 +34,17 @@
             <RowDefinition Height="auto" />
         </Grid.RowDefinitions>
 
-        <!--  TODO: SET CUSTOM TITLEBAR IN 1.6  -->
-        <!--  Placeholder titlebar for now  -->
-        <Border
+        <!--  Use our custom titlebar control  -->
+        <local:Titlebar
             x:Name="AppTitleBar"
+            Title="LauncherX Settings"
             Grid.Row="0"
-            VerticalAlignment="Top">
-            <TextBlock
-                x:Name="AppTitle"
-                Margin="8,8,0,0"
-                VerticalAlignment="Top"
-                Text="LauncherX Settings" />
-        </Border>
+            Icon="Resources\icon.ico" />
 
         <ScrollViewer
             Grid.Row="1"
-            Margin="10,10,10,0"
-            Padding="10,10,10,0"
+            Margin="10,0,10,0"
+            Padding="10,0,10,0"
             VerticalAlignment="Stretch">
             <StackPanel Orientation="Vertical">
                 <!--  Settings section  -->

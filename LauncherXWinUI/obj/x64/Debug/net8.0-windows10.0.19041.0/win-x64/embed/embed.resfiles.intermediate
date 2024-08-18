@@ -8,5 +8,6 @@ Controls\AddFolderDialogListViewItem.xbf
 Controls\AddWebsiteDialog.xbf
 Controls\GridViewTile.xbf
 Controls\GridViewTileGroup.xbf
+Controls\Titlebar.xbf
 MainWindow.xbf
 SettingsWindow.xbf
