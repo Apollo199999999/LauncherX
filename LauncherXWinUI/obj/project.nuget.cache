@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "coEShKfFuW4=",
+  "dgSpecHash": "U4p47g6ZnNU=",
   "success": true,
   "projectFilePath": "C:\\Users\\fligh\\source\\repos\\LauncherX\\LauncherXWinUI\\LauncherXWinUI.csproj",
   "expectedPackageFiles": [
@@ -9,6 +9,7 @@
     "C:\\Users\\fligh\\.nuget\\packages\\communitytoolkit.winui.extensions\\8.0.240109\\communitytoolkit.winui.extensions.8.0.240109.nupkg.sha512",
     "C:\\Users\\fligh\\.nuget\\packages\\communitytoolkit.winui.helpers\\8.0.240109\\communitytoolkit.winui.helpers.8.0.240109.nupkg.sha512",
     "C:\\Users\\fligh\\.nuget\\packages\\communitytoolkit.winui.triggers\\8.0.240109\\communitytoolkit.winui.triggers.8.0.240109.nupkg.sha512",
+    "C:\\Users\\fligh\\.nuget\\packages\\microsoft.net.illink.tasks\\8.0.7\\microsoft.net.illink.tasks.8.0.7.nupkg.sha512",
     "C:\\Users\\fligh\\.nuget\\packages\\microsoft.windows.sdk.buildtools\\10.0.26100.1\\microsoft.windows.sdk.buildtools.10.0.26100.1.nupkg.sha512",
     "C:\\Users\\fligh\\.nuget\\packages\\microsoft.windowsappsdk\\1.5.240802000\\microsoft.windowsappsdk.1.5.240802000.nupkg.sha512",
     "C:\\Users\\fligh\\.nuget\\packages\\octokit\\13.0.1\\octokit.13.0.1.nupkg.sha512",
@@ -16,6 +17,7 @@
     "C:\\Users\\fligh\\.nuget\\packages\\system.text.json\\8.0.4\\system.text.json.8.0.4.nupkg.sha512",
     "C:\\Users\\fligh\\.nuget\\packages\\winuiex\\2.3.4\\winuiex.2.3.4.nupkg.sha512",
     "C:\\Users\\fligh\\.nuget\\packages\\microsoft.netcore.app.runtime.win-x86\\8.0.7\\microsoft.netcore.app.runtime.win-x86.8.0.7.nupkg.sha512",
+    "C:\\Users\\fligh\\.nuget\\packages\\microsoft.netcore.app.crossgen2.win-x64\\8.0.7\\microsoft.netcore.app.crossgen2.win-x64.8.0.7.nupkg.sha512",
     "C:\\Users\\fligh\\.nuget\\packages\\microsoft.windows.sdk.net.ref\\10.0.19041.31\\microsoft.windows.sdk.net.ref.10.0.19041.31.nupkg.sha512",
     "C:\\Users\\fligh\\.nuget\\packages\\microsoft.aspnetcore.app.runtime.win-x86\\8.0.7\\microsoft.aspnetcore.app.runtime.win-x86.8.0.7.nupkg.sha512",
     "C:\\Users\\fligh\\.nuget\\packages\\microsoft.netcore.app.runtime.win-arm64\\8.0.7\\microsoft.netcore.app.runtime.win-arm64.8.0.7.nupkg.sha512",
