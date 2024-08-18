@@ -108,7 +108,7 @@
                 VerticalAlignment="Center"
                 x:FieldModifier="Public"
                 Text="Launch arguments:"
-                Visibility="Visible" />
+                Visibility="Collapsed" />
             <TextBox
                 x:Name="EditLaunchArgsTextBox"
                 Grid.Row="1"
@@ -117,7 +117,7 @@
                 HorizontalAlignment="Stretch"
                 x:FieldModifier="Public"
                 PlaceholderText="Launch arguments (optional)"
-                Visibility="Visible" />
+                Visibility="Collapsed" />
         </Grid>
 
         <!--  Dialog buttons  -->
