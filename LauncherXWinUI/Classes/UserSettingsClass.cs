@@ -345,6 +345,8 @@ namespace LauncherXWinUI.Classes
                     // Not a website, and path doesn't exist
                     ErrorPaths.Add(executingPath);
                 }
+
+                sr.Close();
             }
 
             return gridViewTilesProps;

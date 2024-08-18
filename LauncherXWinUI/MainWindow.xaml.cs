@@ -149,6 +149,9 @@ namespace LauncherXWinUI
                     ImageSource imageSource = gridViewTileProps["ImageSource"] as ImageSource;
                     AddGridViewTile(executingPath, executingArguments, displayText, imageSource);
                 }
+
+                // Save items after
+                UserSettingsClass.SaveLauncherXItems(ItemsGridView.Items);
             }
             else
             {
