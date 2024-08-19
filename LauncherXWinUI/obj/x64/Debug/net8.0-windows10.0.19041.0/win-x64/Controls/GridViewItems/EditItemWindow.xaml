@@ -7,7 +7,7 @@
     xmlns:local="using:LauncherXWinUI.Controls"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:winex="using:WinUIEx"
-    Width="380"
+    Width="385"
     Height="370"
     IsAlwaysOnTop="True"
     IsMaximizable="False"
@@ -108,7 +108,7 @@
                 VerticalAlignment="Center"
                 x:FieldModifier="Public"
                 Text="Launch arguments:"
-                Visibility="Visible" />
+                Visibility="Collapsed" />
             <TextBox x:ConnectionId='9'
                 x:Name="EditLaunchArgsTextBox"
                 Grid.Row="1"
@@ -117,7 +117,7 @@
                 HorizontalAlignment="Stretch"
                 x:FieldModifier="Public"
                 PlaceholderText="Launch arguments (optional)"
-                Visibility="Visible" />
+                Visibility="Collapsed" />
         </Grid>
 
         <!--  Dialog buttons  -->

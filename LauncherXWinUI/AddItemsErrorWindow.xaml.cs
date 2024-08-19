@@ -49,6 +49,9 @@ namespace LauncherXWinUI
 
             // Set Window Background
             UIFunctionsClass.SetWindowBackground(this, ContainerFallbackBackgroundBrush);
+
+            // Disable maximise
+            UIFunctionsClass.PreventWindowMaximise(this);
         }
 
         private void CloseBtn_Click(object sender, RoutedEventArgs e)

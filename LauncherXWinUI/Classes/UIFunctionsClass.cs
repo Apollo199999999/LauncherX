@@ -2,8 +2,8 @@
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Media;
 using System;
-using System.Runtime.InteropServices;
-using WinUIEx;
+using System.Diagnostics;
+using WinUIEx.Messaging;
 
 namespace LauncherXWinUI.Classes
 {
@@ -65,6 +65,26 @@ namespace LauncherXWinUI.Classes
             // Enable parent window when the modalWindow is closed
             modalWindow.Closed += (s, e) => Shell32.EnableWindow(WinRT.Interop.WindowNative.GetWindowHandle(parentWindow), true);
             modalWindow.Activate();
+        }
+
+        /// <summary>
+        /// Method to prevent a window from maximising, even if the user double clicks on the titlebar
+        /// </summary>
+        /// <param name="window">Window to prevent from maximising</param>
+        public static void PreventWindowMaximise(Window window)
+        {
+            // Use WinUIEx to intercept the WM_NCLBUTTONDBLCLK event
+            var monitor = new WindowMessageMonitor(window);
+            monitor.WindowMessageReceived += (s, e) =>
+            {
+                int WM_NCLBUTTONDBLCLK = 0x00A3;
+
+                if (e.Message.MessageId == WM_NCLBUTTONDBLCLK)
+                {
+                    e.Handled = true;
+                    e.Result = IntPtr.Zero;
+                }
+            };
         }
 
     }

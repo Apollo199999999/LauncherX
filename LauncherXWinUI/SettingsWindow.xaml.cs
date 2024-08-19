@@ -4,6 +4,7 @@ using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Controls.Primitives;
 using System;
 using System.Diagnostics;
+using WinUIEx.Messaging;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -32,6 +33,9 @@ namespace LauncherXWinUI
 
             // Set Window Background
             UIFunctionsClass.SetWindowBackground(this, ContainerFallbackBackgroundBrush);
+
+            // Disable maximise
+            UIFunctionsClass.PreventWindowMaximise(this);
 
             // Update the textbox and slider to show correct values
             ScaleSlider.Value = UserSettingsClass.GridScale;
