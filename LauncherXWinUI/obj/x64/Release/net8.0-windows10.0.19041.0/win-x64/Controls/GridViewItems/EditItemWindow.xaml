@@ -38,7 +38,7 @@
         <!--  Use our custom titlebar control  -->
         <local:Titlebar x:ConnectionId='4'
             x:Name="AppTitleBar"
-            Title="LauncherX Settings"
+            Title="Edit item"
             Grid.Row="0"
             Icon="..\..\Resources\icon.ico" />
 
