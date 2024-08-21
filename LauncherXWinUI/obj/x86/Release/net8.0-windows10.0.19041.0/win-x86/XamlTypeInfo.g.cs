@@ -231,8 +231,8 @@ namespace LauncherXWinUI.LauncherXWinUI_XamlTypeInfo
             _typeNameTable[3] = "Boolean";
             _typeNameTable[4] = "WinUIEx.WindowEx";
             _typeNameTable[5] = "Microsoft.UI.Xaml.Window";
-            _typeNameTable[6] = "Double";
-            _typeNameTable[7] = "String";
+            _typeNameTable[6] = "String";
+            _typeNameTable[7] = "Double";
             _typeNameTable[8] = "Microsoft.UI.Windowing.AppWindow";
             _typeNameTable[9] = "WinUIEx.Icon";
             _typeNameTable[10] = "WinUIEx.WindowState";
@@ -296,8 +296,8 @@ namespace LauncherXWinUI.LauncherXWinUI_XamlTypeInfo
             _typeTable[3] = typeof(global::System.Boolean);
             _typeTable[4] = typeof(global::WinUIEx.WindowEx);
             _typeTable[5] = typeof(global::Microsoft.UI.Xaml.Window);
-            _typeTable[6] = typeof(global::System.Double);
-            _typeTable[7] = typeof(global::System.String);
+            _typeTable[6] = typeof(global::System.String);
+            _typeTable[7] = typeof(global::System.Double);
             _typeTable[8] = typeof(global::Microsoft.UI.Windowing.AppWindow);
             _typeTable[9] = typeof(global::WinUIEx.Icon);
             _typeTable[10] = typeof(global::WinUIEx.WindowState);
@@ -495,13 +495,13 @@ namespace LauncherXWinUI.LauncherXWinUI_XamlTypeInfo
                 userType.Activator = Activate_4_WindowEx;
                 userType.SetContentPropertyName("WinUIEx.WindowEx.WindowContent");
                 userType.AddMemberName("WindowContent");
+                userType.AddMemberName("Title");
                 userType.AddMemberName("Width");
                 userType.AddMemberName("Height");
                 userType.AddMemberName("IsAlwaysOnTop");
                 userType.AddMemberName("IsMaximizable");
                 userType.AddMemberName("IsMinimizable");
                 userType.AddMemberName("IsResizable");
-                userType.AddMemberName("Title");
                 userType.AddMemberName("AppWindow");
                 userType.AddMemberName("TaskBarIcon");
                 userType.AddMemberName("PersistenceId");
@@ -522,11 +522,11 @@ namespace LauncherXWinUI.LauncherXWinUI_XamlTypeInfo
                 xamlType = new global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlSystemBaseType(typeName, type);
                 break;
 
-            case 6:   //  Double
+            case 6:   //  String
                 xamlType = new global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlSystemBaseType(typeName, type);
                 break;
 
-            case 7:   //  String
+            case 7:   //  Double
                 xamlType = new global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlSystemBaseType(typeName, type);
                 break;
 
@@ -1023,75 +1023,75 @@ namespace LauncherXWinUI.LauncherXWinUI_XamlTypeInfo
             var that = (global::WinUIEx.WindowEx)instance;
             that.WindowContent = (global::System.Object)Value;
         }
-        private object get_2_WindowEx_Width(object instance)
-        {
-            var that = (global::WinUIEx.WindowEx)instance;
-            return that.Width;
-        }
-        private void set_2_WindowEx_Width(object instance, object Value)
-        {
-            var that = (global::WinUIEx.WindowEx)instance;
-            that.Width = (global::System.Double)Value;
-        }
-        private object get_3_WindowEx_Height(object instance)
-        {
-            var that = (global::WinUIEx.WindowEx)instance;
-            return that.Height;
-        }
-        private void set_3_WindowEx_Height(object instance, object Value)
-        {
-            var that = (global::WinUIEx.WindowEx)instance;
-            that.Height = (global::System.Double)Value;
-        }
-        private object get_4_WindowEx_IsAlwaysOnTop(object instance)
-        {
-            var that = (global::WinUIEx.WindowEx)instance;
-            return that.IsAlwaysOnTop;
-        }
-        private void set_4_WindowEx_IsAlwaysOnTop(object instance, object Value)
-        {
-            var that = (global::WinUIEx.WindowEx)instance;
-            that.IsAlwaysOnTop = (global::System.Boolean)Value;
-        }
-        private object get_5_WindowEx_IsMaximizable(object instance)
-        {
-            var that = (global::WinUIEx.WindowEx)instance;
-            return that.IsMaximizable;
-        }
-        private void set_5_WindowEx_IsMaximizable(object instance, object Value)
-        {
-            var that = (global::WinUIEx.WindowEx)instance;
-            that.IsMaximizable = (global::System.Boolean)Value;
-        }
-        private object get_6_WindowEx_IsMinimizable(object instance)
-        {
-            var that = (global::WinUIEx.WindowEx)instance;
-            return that.IsMinimizable;
-        }
-        private void set_6_WindowEx_IsMinimizable(object instance, object Value)
-        {
-            var that = (global::WinUIEx.WindowEx)instance;
-            that.IsMinimizable = (global::System.Boolean)Value;
-        }
-        private object get_7_WindowEx_IsResizable(object instance)
-        {
-            var that = (global::WinUIEx.WindowEx)instance;
-            return that.IsResizable;
-        }
-        private void set_7_WindowEx_IsResizable(object instance, object Value)
-        {
-            var that = (global::WinUIEx.WindowEx)instance;
-            that.IsResizable = (global::System.Boolean)Value;
-        }
-        private object get_8_WindowEx_Title(object instance)
+        private object get_2_WindowEx_Title(object instance)
         {
             var that = (global::WinUIEx.WindowEx)instance;
             return that.Title;
         }
-        private void set_8_WindowEx_Title(object instance, object Value)
+        private void set_2_WindowEx_Title(object instance, object Value)
         {
             var that = (global::WinUIEx.WindowEx)instance;
             that.Title = (global::System.String)Value;
+        }
+        private object get_3_WindowEx_Width(object instance)
+        {
+            var that = (global::WinUIEx.WindowEx)instance;
+            return that.Width;
+        }
+        private void set_3_WindowEx_Width(object instance, object Value)
+        {
+            var that = (global::WinUIEx.WindowEx)instance;
+            that.Width = (global::System.Double)Value;
+        }
+        private object get_4_WindowEx_Height(object instance)
+        {
+            var that = (global::WinUIEx.WindowEx)instance;
+            return that.Height;
+        }
+        private void set_4_WindowEx_Height(object instance, object Value)
+        {
+            var that = (global::WinUIEx.WindowEx)instance;
+            that.Height = (global::System.Double)Value;
+        }
+        private object get_5_WindowEx_IsAlwaysOnTop(object instance)
+        {
+            var that = (global::WinUIEx.WindowEx)instance;
+            return that.IsAlwaysOnTop;
+        }
+        private void set_5_WindowEx_IsAlwaysOnTop(object instance, object Value)
+        {
+            var that = (global::WinUIEx.WindowEx)instance;
+            that.IsAlwaysOnTop = (global::System.Boolean)Value;
+        }
+        private object get_6_WindowEx_IsMaximizable(object instance)
+        {
+            var that = (global::WinUIEx.WindowEx)instance;
+            return that.IsMaximizable;
+        }
+        private void set_6_WindowEx_IsMaximizable(object instance, object Value)
+        {
+            var that = (global::WinUIEx.WindowEx)instance;
+            that.IsMaximizable = (global::System.Boolean)Value;
+        }
+        private object get_7_WindowEx_IsMinimizable(object instance)
+        {
+            var that = (global::WinUIEx.WindowEx)instance;
+            return that.IsMinimizable;
+        }
+        private void set_7_WindowEx_IsMinimizable(object instance, object Value)
+        {
+            var that = (global::WinUIEx.WindowEx)instance;
+            that.IsMinimizable = (global::System.Boolean)Value;
+        }
+        private object get_8_WindowEx_IsResizable(object instance)
+        {
+            var that = (global::WinUIEx.WindowEx)instance;
+            return that.IsResizable;
+        }
+        private void set_8_WindowEx_IsResizable(object instance, object Value)
+        {
+            var that = (global::WinUIEx.WindowEx)instance;
+            that.IsResizable = (global::System.Boolean)Value;
         }
         private object get_9_WindowEx_AppWindow(object instance)
         {
@@ -1949,47 +1949,47 @@ namespace LauncherXWinUI.LauncherXWinUI_XamlTypeInfo
                 xamlMember.Getter = get_1_WindowEx_WindowContent;
                 xamlMember.Setter = set_1_WindowEx_WindowContent;
                 break;
+            case "WinUIEx.WindowEx.Title":
+                userType = (global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlUserType)GetXamlTypeByName("WinUIEx.WindowEx");
+                xamlMember = new global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlMember(this, "Title", "String");
+                xamlMember.Getter = get_2_WindowEx_Title;
+                xamlMember.Setter = set_2_WindowEx_Title;
+                break;
             case "WinUIEx.WindowEx.Width":
                 userType = (global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlUserType)GetXamlTypeByName("WinUIEx.WindowEx");
                 xamlMember = new global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlMember(this, "Width", "Double");
-                xamlMember.Getter = get_2_WindowEx_Width;
-                xamlMember.Setter = set_2_WindowEx_Width;
+                xamlMember.Getter = get_3_WindowEx_Width;
+                xamlMember.Setter = set_3_WindowEx_Width;
                 break;
             case "WinUIEx.WindowEx.Height":
                 userType = (global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlUserType)GetXamlTypeByName("WinUIEx.WindowEx");
                 xamlMember = new global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlMember(this, "Height", "Double");
-                xamlMember.Getter = get_3_WindowEx_Height;
-                xamlMember.Setter = set_3_WindowEx_Height;
+                xamlMember.Getter = get_4_WindowEx_Height;
+                xamlMember.Setter = set_4_WindowEx_Height;
                 break;
             case "WinUIEx.WindowEx.IsAlwaysOnTop":
                 userType = (global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlUserType)GetXamlTypeByName("WinUIEx.WindowEx");
                 xamlMember = new global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlMember(this, "IsAlwaysOnTop", "Boolean");
-                xamlMember.Getter = get_4_WindowEx_IsAlwaysOnTop;
-                xamlMember.Setter = set_4_WindowEx_IsAlwaysOnTop;
+                xamlMember.Getter = get_5_WindowEx_IsAlwaysOnTop;
+                xamlMember.Setter = set_5_WindowEx_IsAlwaysOnTop;
                 break;
             case "WinUIEx.WindowEx.IsMaximizable":
                 userType = (global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlUserType)GetXamlTypeByName("WinUIEx.WindowEx");
                 xamlMember = new global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlMember(this, "IsMaximizable", "Boolean");
-                xamlMember.Getter = get_5_WindowEx_IsMaximizable;
-                xamlMember.Setter = set_5_WindowEx_IsMaximizable;
+                xamlMember.Getter = get_6_WindowEx_IsMaximizable;
+                xamlMember.Setter = set_6_WindowEx_IsMaximizable;
                 break;
             case "WinUIEx.WindowEx.IsMinimizable":
                 userType = (global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlUserType)GetXamlTypeByName("WinUIEx.WindowEx");
                 xamlMember = new global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlMember(this, "IsMinimizable", "Boolean");
-                xamlMember.Getter = get_6_WindowEx_IsMinimizable;
-                xamlMember.Setter = set_6_WindowEx_IsMinimizable;
+                xamlMember.Getter = get_7_WindowEx_IsMinimizable;
+                xamlMember.Setter = set_7_WindowEx_IsMinimizable;
                 break;
             case "WinUIEx.WindowEx.IsResizable":
                 userType = (global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlUserType)GetXamlTypeByName("WinUIEx.WindowEx");
                 xamlMember = new global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlMember(this, "IsResizable", "Boolean");
-                xamlMember.Getter = get_7_WindowEx_IsResizable;
-                xamlMember.Setter = set_7_WindowEx_IsResizable;
-                break;
-            case "WinUIEx.WindowEx.Title":
-                userType = (global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlUserType)GetXamlTypeByName("WinUIEx.WindowEx");
-                xamlMember = new global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlMember(this, "Title", "String");
-                xamlMember.Getter = get_8_WindowEx_Title;
-                xamlMember.Setter = set_8_WindowEx_Title;
+                xamlMember.Getter = get_8_WindowEx_IsResizable;
+                xamlMember.Setter = set_8_WindowEx_IsResizable;
                 break;
             case "WinUIEx.WindowEx.AppWindow":
                 userType = (global::LauncherXWinUI.LauncherXWinUI_XamlTypeInfo.XamlUserType)GetXamlTypeByName("WinUIEx.WindowEx");

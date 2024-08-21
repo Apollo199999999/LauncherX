@@ -7,6 +7,7 @@
     xmlns:local="using:LauncherXWinUI.Controls"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:winex="using:WinUIEx"
+    Title="Edit item"
     Width="385"
     Height="370"
     IsAlwaysOnTop="True"
