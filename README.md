@@ -27,7 +27,7 @@
 * To compile LauncherX, clone this repository, then open the LauncherX.sln file in Visual Studio.
 * Build all of the projects (including the WinFormsClassLibrary project), then run the "LauncherX (Unpackaged)" build configuration.\
   ![Visual Studio Screenshot](https://github.com/user-attachments/assets/ca206224-71d9-4410-b7c7-e96d9718fe78)
-* LauncherX now uses the WindowsAppSDK framework with WinUI 3, so to view more detailed build instructions, please head here: https://learn.microsoft.com/en-us/windows/apps/get-started/start-here
+* LauncherX is now based on the WindowsAppSDK framework with WinUI 3, so to view more detailed build instructions, please head here: https://learn.microsoft.com/en-us/windows/apps/get-started/start-here
 ## Privacy Policy
 * LauncherX's privacy policy can be viewed here: [PRIVACYPOLICY.md](https://github.com/Apollo199999999/LauncherX/blob/master/PRIVACYPOLICY.md)
 ## Licensing
