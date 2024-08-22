@@ -619,6 +619,10 @@ namespace LauncherXWinUI
         {
             DragDropInterface.Visibility = Visibility.Collapsed;
 
+            // Show LoadingDialog while loading items and settings
+            LoadingDialog.Visibility = Visibility.Visible;
+            await Task.Delay(10);
+
             // When a URL is dragged in, it technically qualifies as both a internet shortcut (.url) file, and a WebLink
             // Thus, we check if the DataView contains a WebLink first, so that URLs dragged in are added as websites instead of files
             // Source: https://stackoverflow.com/questions/66973410/drag-and-drop-items-in-windows-application-and-get-the-standarddataformats-of-th
@@ -659,6 +663,10 @@ namespace LauncherXWinUI
                     AddGridViewTile(filePath, "", storageItem.Name, await IconHelpers.GetFileIcon(filePath));
                 }
             }
+
+            // Hide LoadingDialog
+            await Task.Delay(20);
+            LoadingDialog.Visibility = Visibility.Collapsed;
         }
 
         // The last event handler - stop timer and save items when the window is closed
