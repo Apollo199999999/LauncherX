@@ -102,6 +102,21 @@
                     <ToggleSwitch OffContent="No" OnContent="Yes" />
                 </wct:SettingsCard>
 
+                <!--  Align GridView  -->
+                <wct:SettingsCard
+                    Margin="0,5,0,0"
+                    Description="Grid alignment"
+                    Header="Choose how to align the grid where your items are displayed.">
+                    <wct:SettingsCard.HeaderIcon>
+                        <FontIcon Glyph="&#xF0E2;" />
+                    </wct:SettingsCard.HeaderIcon>
+                    <ComboBox Width="200">
+                        <x:String>Left</x:String>
+                        <x:String>Center</x:String>
+                        <x:String>Right</x:String>
+                    </ComboBox>
+                </wct:SettingsCard>
+
                 <!--  Check for updates  -->
                 <wct:SettingsCard
                     Margin="0,5,0,0"
