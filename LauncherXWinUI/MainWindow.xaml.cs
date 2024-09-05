@@ -97,7 +97,7 @@ namespace LauncherXWinUI
         /// <param name="executingArguments">ExecutingArguments in GridViewTile</param>
         /// <param name="displayText">DisplayText in GridViewTile</param>
         /// <param name="imageSource">ImageSource in GridViewTile</param>
-        private void AddGridViewTile(string executingPath, string executingArguments, string displayText, ImageSource imageSource)
+        private void AddGridViewTile(string executingPath, string executingArguments, string displayText, BitmapImage imageSource)
         {
             // Create new GridViewTile for each item
             GridViewTile gridViewTile = new GridViewTile();
@@ -146,7 +146,7 @@ namespace LauncherXWinUI
                     string executingPath = gridViewTileProps["ExecutingPath"] as string;
                     string executingArguments = gridViewTileProps["ExecutingArguments"] as string;
                     string displayText = gridViewTileProps["DisplayText"] as string;
-                    ImageSource imageSource = gridViewTileProps["ImageSource"] as ImageSource;
+                    BitmapImage imageSource = gridViewTileProps["ImageSource"] as BitmapImage;
                     AddGridViewTile(executingPath, executingArguments, displayText, imageSource);
                 }
 

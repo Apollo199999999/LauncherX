@@ -89,6 +89,14 @@ namespace LauncherXWinUI.Controls.GridViewItems
 
                 // Update the font size of the textblock
                 gridViewTile.TileText.FontSize = newSize * 12;
+
+                // Update the DecodePixelWidth of the Image control, for anti-aliased rendering
+                BitmapImage imgSource = gridViewTile.TileImage.Source as BitmapImage;
+                if (imgSource != null)
+                {
+                    imgSource.DecodePixelWidth = (int)gridViewTile.ControlBorder.Width;
+                    gridViewTile.TileImage.Source = imgSource;
+                }
             }
         }
 
@@ -96,25 +104,27 @@ namespace LauncherXWinUI.Controls.GridViewItems
         /// <summary>
         /// ImageSource object to be rendered in the control
         /// </summary>
-        public ImageSource ImageSource
+        public BitmapImage ImageSource
         {
-            get => (ImageSource)GetValue(ImageSourceProperty);
+            get => (BitmapImage)GetValue(ImageSourceProperty);
             set => SetValue(ImageSourceProperty, value);
         }
 
         DependencyProperty ImageSourceProperty = DependencyProperty.Register(
             nameof(ImageSource),
-            typeof(ImageSource),
+            typeof(BitmapImage),
             typeof(GridViewTile),
-            new PropertyMetadata(default(ImageSource), new PropertyChangedCallback(OnImageSourceChanged)));
+            new PropertyMetadata(default(BitmapImage), new PropertyChangedCallback(OnImageSourceChanged)));
 
         private static void OnImageSourceChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             GridViewTile gridViewTile = d as GridViewTile;
-            ImageSource newImageSource = e.NewValue as ImageSource;
+            BitmapImage newImageSource = e.NewValue as BitmapImage;
 
             if (newImageSource != null)
             {
+                // Manually set DecodePixelWidth for anti-aliased rendering
+                newImageSource.DecodePixelWidth = (int)gridViewTile.ControlBorder.Width;
                 gridViewTile.TileImage.Source = newImageSource;
             }
         }
@@ -495,7 +505,7 @@ namespace LauncherXWinUI.Controls.GridViewItems
         {
             // Update props of this GridViewTile
             this.DisplayText = editItemWindow.EditDisplayTextTextBox.Text;
-            this.ImageSource = editItemWindow.EditDialogImage.Source;
+            this.ImageSource = editItemWindow.EditDialogImage.Source as BitmapImage;
             this.CustomImagePath = TempCustomImagePath;
 
             // Update launch args only if file

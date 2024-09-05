@@ -7,6 +7,7 @@
     xmlns:local="using:LauncherXWinUI.Controls"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:winex="using:WinUIEx"
+    Title="Edit item"
     Width="385"
     Height="370"
     IsAlwaysOnTop="True"
@@ -38,7 +39,7 @@
         <!--  Use our custom titlebar control  -->
         <local:Titlebar x:ConnectionId='4'
             x:Name="AppTitleBar"
-            Title="LauncherX Settings"
+            Title="Edit item"
             Grid.Row="0"
             Icon="..\..\Resources\icon.ico" />
 

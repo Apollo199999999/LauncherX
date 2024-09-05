@@ -11,6 +11,10 @@ using Windows.Storage;
 using Windows.Storage.FileProperties;
 using Microsoft.UI.Xaml.Media;
 using Windows.UI.Popups;
+using System.Drawing;
+using System.Drawing.Imaging;
+using Windows.Graphics.Imaging;
+using Windows.Storage.Streams;
 
 namespace LauncherXWinUI.Classes
 {
@@ -24,8 +28,8 @@ namespace LauncherXWinUI.Classes
         /// Converts System.Drawing.Icon to SoftwareBitmapSource
         /// </summary>
         /// <param name="icon">Icon to convert</param>
-        /// <returns>SoftwareBitmapSource for Image Control</returns>
-        private static async Task<SoftwareBitmapSource> GetWinUI3BitmapSourceFromIcon(System.Drawing.Icon icon)
+        /// <returns>BitmapImage for Image Control</returns>
+        private static async Task<BitmapImage> GetWinUI3BitmapSourceFromIcon(System.Drawing.Icon icon)
         {
             if (icon == null)
                 return null;
@@ -39,8 +43,8 @@ namespace LauncherXWinUI.Classes
         /// Converts System.Drawing.Bitmap to SoftwareBitmapSource
         /// </summary>
         /// <param name="bmp">Bitmap to convert</param>
-        /// <returns>SoftwareBitmapSource for Image Control</returns>
-        private static async Task<SoftwareBitmapSource> GetWinUI3BitmapSourceFromGdiBitmap(System.Drawing.Bitmap bmp)
+        /// <returns>BitmapImage for Image Control</returns>
+        private static async Task<BitmapImage> GetWinUI3BitmapSourceFromGdiBitmap(System.Drawing.Bitmap bmp)
         {
             if (bmp == null)
                 return null;
@@ -51,18 +55,22 @@ namespace LauncherXWinUI.Classes
             Marshal.Copy(data.Scan0, bytes, 0, bytes.Length);
             bmp.UnlockBits(data);
 
-            // get WinRT SoftwareBitmap
-            var softwareBitmap = new Windows.Graphics.Imaging.SoftwareBitmap(
-                Windows.Graphics.Imaging.BitmapPixelFormat.Bgra8,
-                bmp.Width,
-                bmp.Height,
-                Windows.Graphics.Imaging.BitmapAlphaMode.Premultiplied);
-            softwareBitmap.CopyFromBuffer(bytes.AsBuffer());
+            // Create WriteableBitmap from byte array
+            WriteableBitmap writableBitmap = new WriteableBitmap(bmp.Width, bmp.Height);
+            await writableBitmap.PixelBuffer.AsStream().WriteAsync(bytes, 0, bytes.Length);
 
-            // build WinUI3 SoftwareBitmapSource
-            var source = new Microsoft.UI.Xaml.Media.Imaging.SoftwareBitmapSource();
-            await source.SetBitmapAsync(softwareBitmap);
-            return source;
+            // Convert WriteableBitmap to BitmapImage
+            InMemoryRandomAccessStream inMemoryRandomAccessStream = new InMemoryRandomAccessStream();
+            BitmapEncoder encoder = await BitmapEncoder.CreateAsync(BitmapEncoder.PngEncoderId, inMemoryRandomAccessStream);
+            Stream pixelStream = writableBitmap.PixelBuffer.AsStream();
+            byte[] pixels = new byte[pixelStream.Length];
+            await pixelStream.ReadAsync(pixels, 0, pixels.Length);
+            encoder.SetPixelData(BitmapPixelFormat.Bgra8, BitmapAlphaMode.Straight, (uint)writableBitmap.PixelWidth, (uint)writableBitmap.PixelHeight, 96.0, 96.0, pixels);
+            await encoder.FlushAsync();
+            BitmapImage bitmapImage = new BitmapImage();
+            bitmapImage.SetSource(inMemoryRandomAccessStream);
+
+            return bitmapImage;
         }
 
         /// <summary>
@@ -123,11 +131,11 @@ namespace LauncherXWinUI.Classes
         /// Method to get the icon of a file, using Win32 methods
         /// </summary>
         /// <param name="filePath">Path to file</param>
-        private async static Task<SoftwareBitmapSource> GetFileIconWin32(string filePath)
+        private async static Task<BitmapImage> GetFileIconWin32(string filePath)
         {
             IntPtr hIcon = Shell32.GetJumboIcon(Shell32.GetIconIndex(filePath));
             System.Drawing.Icon ico = (System.Drawing.Icon)System.Drawing.Icon.FromHandle(hIcon).Clone();
-            SoftwareBitmapSource fileIcon = await GetWinUI3BitmapSourceFromIcon(ico);
+            BitmapImage fileIcon = await GetWinUI3BitmapSourceFromIcon(ico);
 
             // Clean up
             Shell32.DestroyIcon(hIcon);
@@ -138,8 +146,8 @@ namespace LauncherXWinUI.Classes
         /// <summary>
         /// One unified method that works with all file types to get the icon of a file
         /// </summary>
-        /// <returns>ImageSource that can be used directly with an image control</returns>
-        public async static Task<ImageSource> GetFileIcon(string filePath)
+        /// <returns>BitmapImage that can be used directly with an image control</returns>
+        public async static Task<BitmapImage> GetFileIcon(string filePath)
         {
             // Get the extension of the file
             string ext = Path.GetExtension(filePath);
@@ -147,7 +155,7 @@ namespace LauncherXWinUI.Classes
             // StorageFile is not compatible with files of extension .lnk, .wsh, or .url, thus if our file has those extensions, we must use Win32 methods to retrieve the file icon
             if (ext == ".lnk" || ext == ".url" || ext == ".wsh")
             {
-                SoftwareBitmapSource fileIcon = await GetFileIconWin32(filePath);
+                BitmapImage fileIcon = await GetFileIconWin32(filePath);
                 return fileIcon;
             }
             else
@@ -161,7 +169,7 @@ namespace LauncherXWinUI.Classes
                 }
                 catch
                 {
-                    SoftwareBitmapSource fileIcon = await GetFileIconWin32(filePath);
+                    BitmapImage fileIcon = await GetFileIconWin32(filePath);
                     return fileIcon;
                 }
             }
