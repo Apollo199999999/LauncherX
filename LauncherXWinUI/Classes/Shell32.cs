@@ -1,4 +1,5 @@
-﻿using Microsoft.UI.Xaml.Media.Imaging;
+﻿using Microsoft.UI.Xaml;
+using Microsoft.UI.Xaml.Media.Imaging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -98,6 +99,18 @@ namespace LauncherXWinUI.Classes
             // The least significant bit of the 9th byte controls the auto-hide setting																		
             return value != null && ((value[8] & 0x01) == 1);
         }
+
+        // Get DPI
+        [DllImport("User32.dll", SetLastError = true, CharSet = CharSet.Unicode)]
+        public static extern int GetDpiForWindow(IntPtr hwnd);
+     
+        public static int GetDPI(Window window)
+        {
+            IntPtr hWnd = WinRT.Interop.WindowNative.GetWindowHandle(window);
+            int dpi = GetDpiForWindow(hWnd);
+            return dpi;
+        }
+
     }
 
     [Flags]
