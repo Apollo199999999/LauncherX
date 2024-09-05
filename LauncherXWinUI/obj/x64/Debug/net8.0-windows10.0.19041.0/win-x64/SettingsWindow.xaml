@@ -66,7 +66,7 @@
                     Description="Adjust the scale of the icons displayed."
                     Header="Change icon scale">
                     <wct:SettingsCard.HeaderIcon>
-                        <FontIcon Glyph="&#xE740;" />
+                        <FontIcon Glyph="&#xE73F;" />
                     </wct:SettingsCard.HeaderIcon>
                     <Slider x:ConnectionId='13'
                         x:Name="ScaleSlider"
@@ -89,6 +89,17 @@
                         <FontIcon Glyph="&#xE70F;" />
                     </wct:SettingsCard.HeaderIcon>
                     <TextBox x:ConnectionId='12' x:Name="ChangeHeaderTextBox" Width="220" />
+                </wct:SettingsCard>
+
+                <!--  Fullscreen  -->
+                <wct:SettingsCard
+                    Margin="0,5,0,0"
+                    Description="Enable fullscreen"
+                    Header="Use LauncherX in fullscreen mode.">
+                    <wct:SettingsCard.HeaderIcon>
+                        <FontIcon Glyph="&#xE740;" />
+                    </wct:SettingsCard.HeaderIcon>
+                    <ToggleSwitch OffContent="No" OnContent="Yes" />
                 </wct:SettingsCard>
 
                 <!--  Check for updates  -->
