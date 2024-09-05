@@ -2,6 +2,7 @@ using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Controls.Primitives;
 using Microsoft.UI.Xaml.Media;
+using Microsoft.UI.Xaml.Media.Imaging;
 using System;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
@@ -87,6 +88,17 @@ namespace LauncherXWinUI.Controls.GridViewItems
                     image.Width = gridViewTileGroup.ItemsPreviewGrid.Width / 2.5;
                     image.Height = gridViewTileGroup.ItemsPreviewGrid.Width / 2.5;
                     image.Stretch = Stretch.Uniform;
+
+                    // Try to manually set the DecodePixelWidth of the ImageSource for anti-aliased rendering
+                    BitmapImage bitmapImage = image.Source as BitmapImage;
+
+                    if (bitmapImage == null)
+                    {
+                        continue;
+                    }
+
+                    bitmapImage.DecodePixelWidth = (int)image.Width;
+                    image.Source = bitmapImage;
                 }
 
                 // Update the font size of the textblock
@@ -163,7 +175,6 @@ namespace LauncherXWinUI.Controls.GridViewItems
                 }
 
                 Image image = new Image();
-                image.Source = Items[i].ImageSource;
                 image.Width = ItemsPreviewGrid.Width / 2.5;
                 image.Height = ItemsPreviewGrid.Width / 2.5;
                 image.Stretch = Stretch.Uniform;
@@ -172,6 +183,11 @@ namespace LauncherXWinUI.Controls.GridViewItems
                 image.SetValue(Grid.RowProperty, Math.Floor((double)i / 2));
                 image.SetValue(Grid.ColumnProperty, i % 2);
                 ItemsPreviewGrid.Children.Add(image);
+
+                // Try to manually set the DecodePixelWidth of the ImageSource for anti-aliased rendering
+                BitmapImage bitmapImage = Items[i].ImageSource;
+                bitmapImage.DecodePixelWidth = (int)image.Width;
+                image.Source = bitmapImage;
             }
         }
 
