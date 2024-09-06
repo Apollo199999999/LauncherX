@@ -30,7 +30,7 @@ namespace LauncherXWinUI
 
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.UI.Xaml.Markup.Compiler"," 3.0.0.2408")]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        private class AddItemsErrorWindow_obj1_Bindings :
+        private partial class AddItemsErrorWindow_obj1_Bindings :
             global::Microsoft.UI.Xaml.Markup.IDataTemplateComponent,
             global::Microsoft.UI.Xaml.Markup.IXamlBindScopeDiagnostics,
             global::Microsoft.UI.Xaml.Markup.IComponentConnector,
@@ -201,6 +201,7 @@ namespace LauncherXWinUI
             }
             this._contentLoaded = true;
         }
+
 
         /// <summary>
         /// GetBindingConnector(int connectionId, object target)

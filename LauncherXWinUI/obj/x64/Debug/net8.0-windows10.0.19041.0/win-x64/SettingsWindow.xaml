@@ -94,8 +94,8 @@
                 <!--  Fullscreen  -->
                 <wct:SettingsCard
                     Margin="0,5,0,0"
-                    Description="Enable fullscreen"
-                    Header="Use LauncherX in fullscreen mode.">
+                    Description="Use LauncherX in fullscreen mode."
+                    Header="Enable fullscreen">
                     <wct:SettingsCard.HeaderIcon>
                         <FontIcon Glyph="&#xE740;" />
                     </wct:SettingsCard.HeaderIcon>
@@ -105,12 +105,12 @@
                 <!--  Align GridView  -->
                 <wct:SettingsCard
                     Margin="0,5,0,0"
-                    Description="Grid alignment"
-                    Header="Choose how to align the grid where your items are displayed.">
+                    Description="Choose how to align the grid where your items are displayed."
+                    Header="Grid alignment">
                     <wct:SettingsCard.HeaderIcon>
                         <FontIcon Glyph="&#xF0E2;" />
                     </wct:SettingsCard.HeaderIcon>
-                    <ComboBox Width="200">
+                    <ComboBox Width="150" SelectedIndex="0">
                         <x:String>Left</x:String>
                         <x:String>Center</x:String>
                         <x:String>Right</x:String>

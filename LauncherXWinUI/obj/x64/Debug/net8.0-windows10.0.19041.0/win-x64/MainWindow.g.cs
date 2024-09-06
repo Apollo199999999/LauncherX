@@ -144,6 +144,7 @@ namespace LauncherXWinUI
             this._contentLoaded = true;
         }
 
+
         /// <summary>
         /// GetBindingConnector(int connectionId, object target)
         /// </summary>

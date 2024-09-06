@@ -94,8 +94,8 @@
                 <!--  Fullscreen  -->
                 <wct:SettingsCard
                     Margin="0,5,0,0"
-                    Description="Enable fullscreen"
-                    Header="Use LauncherX in fullscreen mode.">
+                    Description="Use LauncherX in fullscreen mode."
+                    Header="Enable fullscreen">
                     <wct:SettingsCard.HeaderIcon>
                         <FontIcon Glyph="&#xE740;" />
                     </wct:SettingsCard.HeaderIcon>

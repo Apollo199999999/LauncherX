@@ -4,11 +4,11 @@
     "includedFrameworks": [
       {
         "name": "Microsoft.NETCore.App",
-        "version": "8.0.7"
+        "version": "8.0.8"
       },
       {
         "name": "Microsoft.WindowsDesktop.App",
-        "version": "8.0.7"
+        "version": "8.0.8"
       }
     ],
     "configProperties": {
