@@ -78,7 +78,11 @@ namespace LauncherXWinUI
                 this.ExtendsContentIntoTitleBar = false;
                 AppTitleBar.Visibility = Visibility.Collapsed;
 
+                // Adjust controls
                 CloseButton.Visibility = Visibility.Visible;
+                ControlsGrid.Margin = new Thickness(20, 10, 20, 0);
+
+                // Set fullscreen
                 this.AppWindow.SetPresenter(Microsoft.UI.Windowing.AppWindowPresenterKind.FullScreen);
             }
             else
@@ -88,7 +92,11 @@ namespace LauncherXWinUI
                 AppTitleBar.Visibility = Visibility.Visible;
                 this.SetTitleBar(AppTitleBar);
 
+                // Adjust controls
                 CloseButton.Visibility = Visibility.Collapsed;
+                ControlsGrid.Margin = new Thickness(20, 0, 20, 0);
+
+                // Set normal windowing mode
                 this.AppWindow.SetPresenter(Microsoft.UI.Windowing.AppWindowPresenterKind.Default);
             }
         }
