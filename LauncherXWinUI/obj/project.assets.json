@@ -2261,6 +2261,7 @@
   "projectFileDependencyGroups": {
     "net8.0-windows10.0.22621": [
       "CommunityToolkit.WinUI.Controls.SettingsControls >= 8.1.240821",
+      "CommunityToolkit.WinUI.Extensions >= 8.1.240821",
       "Microsoft.Windows.SDK.BuildTools >= 10.0.26100.1",
       "Microsoft.WindowsAppSDK >= 1.6.240829007",
       "Octokit >= 13.0.1",
@@ -2324,6 +2325,10 @@
         "targetAlias": "net8.0-windows10.0.22621.0",
         "dependencies": {
           "CommunityToolkit.WinUI.Controls.SettingsControls": {
+            "target": "Package",
+            "version": "[8.1.240821, )"
+          },
+          "CommunityToolkit.WinUI.Extensions": {
             "target": "Package",
             "version": "[8.1.240821, )"
           },

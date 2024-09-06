@@ -10,6 +10,7 @@
       "LauncherX/2.1.0.0": {
         "dependencies": {
           "CommunityToolkit.WinUI.Controls.SettingsControls": "8.1.240821",
+          "CommunityToolkit.WinUI.Extensions": "8.1.240821",
           "Microsoft.Windows.SDK.BuildTools": "10.0.26100.1",
           "Microsoft.WindowsAppSDK": "1.6.240829007",
           "Octokit": "13.0.1",

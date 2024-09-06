@@ -12,6 +12,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Windows.ApplicationModel.DataTransfer;
 using Windows.Storage;
+using CommunityToolkit.WinUI;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -120,6 +121,9 @@ namespace LauncherXWinUI
 
             // Fix the width of the ItemsGridView to take up the entire space available
             ItemsGridView.Width = ControlsGrid.Width;
+
+            // Adjust scrollbar margins as well
+            ScrollViewerExtensions.SetVerticalScrollBarMargin(ItemsGridView, new Thickness(0, 0, 0, 0));
         }
 
         private void AlignGridViewCenter()
@@ -131,6 +135,9 @@ namespace LauncherXWinUI
             // Since the ItemsGridView has HorizontalAlignment = Center, this will thus center the ItemsGridView
             // +4 is because by default, a GridViewItem has a right margin of 4
             ItemsGridView.Width = Math.Floor(ControlsGrid.Width / (firstGridViewItem.Width + 4)) * (firstGridViewItem.Width + 4);
+
+            // Adjust scrollbar margins as well
+            ScrollViewerExtensions.SetVerticalScrollBarMargin(ItemsGridView, new Thickness(0, 0, -20, 0));
         }
 
         /// <summary>

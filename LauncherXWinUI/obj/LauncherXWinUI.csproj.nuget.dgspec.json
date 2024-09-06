@@ -58,6 +58,10 @@
               "target": "Package",
               "version": "[8.1.240821, )"
             },
+            "CommunityToolkit.WinUI.Extensions": {
+              "target": "Package",
+              "version": "[8.1.240821, )"
+            },
             "Microsoft.Windows.SDK.BuildTools": {
               "target": "Package",
               "version": "[10.0.26100.1, )"
