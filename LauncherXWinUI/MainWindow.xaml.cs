@@ -70,6 +70,27 @@ namespace LauncherXWinUI
                     }
                 }
             }
+
+            // Set windowing mode to fullscreen if applicable
+            if (UserSettingsClass.UseFullscreen == true)
+            {
+                // Hide custom titlebar
+                this.ExtendsContentIntoTitleBar = false;
+                AppTitleBar.Visibility = Visibility.Collapsed;
+
+                CloseButton.Visibility = Visibility.Visible;
+                this.AppWindow.SetPresenter(Microsoft.UI.Windowing.AppWindowPresenterKind.FullScreen);
+            }
+            else
+            {
+                // Set custom titlebar
+                this.ExtendsContentIntoTitleBar = true;
+                AppTitleBar.Visibility = Visibility.Visible;
+                this.SetTitleBar(AppTitleBar);
+
+                CloseButton.Visibility = Visibility.Collapsed;
+                this.AppWindow.SetPresenter(Microsoft.UI.Windowing.AppWindowPresenterKind.Default);
+            }
         }
 
         /// <summary>
@@ -115,10 +136,7 @@ namespace LauncherXWinUI
         // Event Handlers
         private async void Container_Loaded(object sender, RoutedEventArgs e)
         {
-            // Set placeholder titlebar for now, before WASDK 1.6
-            this.ExtendsContentIntoTitleBar = true;
-            this.SetTitleBar(AppTitleBar);
-
+            
             // Set Window icon
             UIFunctionsClass.SetWindowLauncherXIcon(this);
 
@@ -669,7 +687,13 @@ namespace LauncherXWinUI
             LoadingDialog.Visibility = Visibility.Collapsed;
         }
 
-        // The last event handler - stop timer and save items when the window is closed
+        // For fullscreen mode - Exit LauncherX
+        private void CloseButton_Click(object sender, RoutedEventArgs e)
+        {
+            Application.Current.Exit();
+        }
+
+        // The last event handler - save items when the window is closed
         private void WindowEx_Closed(object sender, WindowEventArgs args)
         {
             UserSettingsClass.SaveLauncherXItems(ItemsGridView.Items);

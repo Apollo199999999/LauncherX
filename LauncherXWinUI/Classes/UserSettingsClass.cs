@@ -19,8 +19,11 @@ namespace LauncherXWinUI.Classes
     /// </summary>
     public class UserSettingsJson
     {
-        public string headerText { get; set; }
-        public double gridScale { get; set; }
+        // Intialise this class with default values, in case some values dont exist in userSettings.json
+        public string headerText { get; set; } = "My files, folders, and websites";
+        public double gridScale { get; set; } = 1.0f;
+        public bool useFullscreen { get; set; } = false;
+        public string gridPosition { get; set; } = "Left";
     }
 
     /// <summary>
@@ -59,6 +62,7 @@ namespace LauncherXWinUI.Classes
     /// </summary>
     public static class UserSettingsClass
     {
+        // USER SETTINGS VARIABLES
         ///<summary>
         /// Variable which stores what is displayed on the text beside the "add" buttons in MainWindow.xaml
         ///</summary>
@@ -69,6 +73,17 @@ namespace LauncherXWinUI.Classes
         ///</summary>
         public static double GridScale = 1.0f;
 
+        /// <summary>
+        /// Variable which stores whether LauncherX should be in fullscreen
+        /// </summary>
+        public static bool UseFullscreen = false;
+
+        /// <summary>
+        /// Variable which stores which position the app grid is in
+        /// </summary>
+        public static string GridPosition = "Left";
+
+        // DIRECTORIES
         /// <summary>
         /// Root directory where user data for LauncherX is stored
         /// </summary>
@@ -84,7 +99,8 @@ namespace LauncherXWinUI.Classes
         /// </summary>
         public static List<string> ErrorPaths = new List<string>();
 
-        // Helper methods
+
+        // HELPER METHODS
         /// <summary>
         /// Determines if a given path belongs to that of a file or folder
         /// </summary>
@@ -182,6 +198,8 @@ namespace LauncherXWinUI.Classes
 
         /// <summary>
         /// Method to retrieve user settings from LauncherX versions less than 2.0.1 
+        /// Note that for LauncherX versions less than 2.0.1, they only have 2 upgradable settings: GridScale and HeaderText
+        /// The other settings (e.g. fullscreen) were introduced in later versions and do not need to be upgraded
         /// </summary>
         public static void UpgradeUserSettings()
         {
@@ -256,7 +274,9 @@ namespace LauncherXWinUI.Classes
             var userSettingsJson = new UserSettingsJson
             {
                 headerText = HeaderText,
-                gridScale = GridScale
+                gridScale = GridScale,
+                useFullscreen = UseFullscreen,
+                gridPosition = GridPosition
             };
 
             string settingsFilePath = Path.Combine(SettingsDir, "userSettings.json");
@@ -279,6 +299,8 @@ namespace LauncherXWinUI.Classes
                 // Assign variables
                 HeaderText = userSettingsJson.headerText;
                 GridScale = userSettingsJson.gridScale;
+                UseFullscreen = userSettingsJson.useFullscreen;
+                GridPosition = userSettingsJson.gridPosition;
             }
         }
 

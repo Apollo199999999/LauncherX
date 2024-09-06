@@ -46,50 +46,85 @@
                 x:Name="AppTitleBar"
                 Title="LauncherX - Modern app launcher for Windows"
                 Grid.Row="0"
-                Icon="Resources\icon.ico" />
+                Icon="Resources\icon.ico"
+                Visibility="Collapsed" />
 
             <Grid
                 x:Name="ControlsGrid"
                 Grid.Row="1"
                 Margin="20,0,20,0">
 
-                <!--  Search Box + Settings Button  -->
-                <AutoSuggestBox
-                    x:Name="SearchBox"
-                    Margin="0,10,45,0"
-                    VerticalAlignment="Top"
-                    GotFocus="SearchBox_GotFocus"
-                    PlaceholderText="Search through everything in LauncherX"
-                    QueryIcon="Find"
-                    QuerySubmitted="SearchBox_QuerySubmitted"
-                    SuggestionChosen="SearchBox_SuggestionChosen"
-                    TextChanged="SearchBox_TextChanged" />
-                <Button
-                    x:Name="SettingsButton"
-                    Width="35"
-                    Height="35"
-                    Margin="0,10,0,0"
-                    Padding="6"
-                    HorizontalAlignment="Right"
-                    VerticalAlignment="Top"
-                    HorizontalContentAlignment="Center"
-                    VerticalContentAlignment="Center"
-                    Click="SettingsButton_Click">
-                    <!--  Animated Settings Icon  -->
-                    <Viewbox
-                        Width="18"
-                        Height="18"
-                        Stretch="Uniform"
-                        StretchDirection="Both">
-                        <muxc:AnimatedIcon>
-                            <animatedvisuals:AnimatedSettingsVisualSource />
-                            <muxc:AnimatedIcon.FallbackIconSource>
-                                <muxc:SymbolIconSource Symbol="Setting" />
-                            </muxc:AnimatedIcon.FallbackIconSource>
-                        </muxc:AnimatedIcon>
-                    </Viewbox>
+                <!--  Search Box + Settings Button + Close button (for fullscreen mode)  -->
+                <Grid Margin="0,10,0,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="auto" />
+                        <ColumnDefinition Width="auto" />
+                    </Grid.ColumnDefinitions>
 
-                </Button>
+                    <AutoSuggestBox
+                        x:Name="SearchBox"
+                        Grid.Column="0"
+                        VerticalAlignment="Top"
+                        GotFocus="SearchBox_GotFocus"
+                        PlaceholderText="Search through everything in LauncherX"
+                        QueryIcon="Find"
+                        QuerySubmitted="SearchBox_QuerySubmitted"
+                        SuggestionChosen="SearchBox_SuggestionChosen"
+                        TextChanged="SearchBox_TextChanged" />
+
+                    <Button
+                        x:Name="SettingsButton"
+                        Grid.Column="1"
+                        Width="35"
+                        Height="35"
+                        Margin="10,0,0,0"
+                        Padding="6"
+                        HorizontalAlignment="Right"
+                        VerticalAlignment="Top"
+                        HorizontalContentAlignment="Center"
+                        VerticalContentAlignment="Center"
+                        Click="SettingsButton_Click"
+                        ToolTipService.ToolTip="Settings">
+                        <!--  Animated Settings Icon  -->
+                        <Viewbox
+                            Width="18"
+                            Height="18"
+                            Stretch="Uniform"
+                            StretchDirection="Both">
+                            <muxc:AnimatedIcon>
+                                <animatedvisuals:AnimatedSettingsVisualSource />
+                                <muxc:AnimatedIcon.FallbackIconSource>
+                                    <muxc:SymbolIconSource Symbol="Setting" />
+                                </muxc:AnimatedIcon.FallbackIconSource>
+                            </muxc:AnimatedIcon>
+                        </Viewbox>
+                    </Button>
+
+                    <Button
+                        x:Name="CloseButton"
+                        Grid.Column="2"
+                        Width="35"
+                        Height="35"
+                        Margin="10,0,0,0"
+                        Padding="6"
+                        HorizontalAlignment="Right"
+                        VerticalAlignment="Top"
+                        HorizontalContentAlignment="Center"
+                        VerticalContentAlignment="Center"
+                        Click="CloseButton_Click"
+                        ToolTipService.ToolTip="Close LauncherX"
+                        Visibility="Collapsed">
+                        <!--  Close Icon  -->
+                        <Viewbox
+                            Width="18"
+                            Height="18"
+                            Stretch="Uniform"
+                            StretchDirection="Both">
+                            <FontIcon Glyph="&#xE711;" />
+                        </Viewbox>
+                    </Button>
+                </Grid>
 
                 <!--  Header Text + Buttons  -->
                 <Grid

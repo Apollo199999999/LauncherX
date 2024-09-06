@@ -99,7 +99,10 @@
                     <wct:SettingsCard.HeaderIcon>
                         <FontIcon Glyph="&#xE740;" />
                     </wct:SettingsCard.HeaderIcon>
-                    <ToggleSwitch OffContent="No" OnContent="Yes" />
+                    <ToggleSwitch
+                        x:Name="FullscreenToggleSwitch"
+                        OffContent="No"
+                        OnContent="Yes" />
                 </wct:SettingsCard>
 
                 <!--  Align GridView  -->
@@ -113,7 +116,6 @@
                     <ComboBox Width="150" SelectedIndex="0">
                         <x:String>Left</x:String>
                         <x:String>Center</x:String>
-                        <x:String>Right</x:String>
                     </ComboBox>
                 </wct:SettingsCard>
 

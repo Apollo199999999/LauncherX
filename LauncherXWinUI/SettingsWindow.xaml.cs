@@ -40,6 +40,7 @@ namespace LauncherXWinUI
             // Update the textbox and slider to show correct values
             ScaleSlider.Value = UserSettingsClass.GridScale;
             ChangeHeaderTextBox.Text = UserSettingsClass.HeaderText;
+            FullscreenToggleSwitch.IsOn = UserSettingsClass.UseFullscreen;
 
             // Create event handlers for the textbox and slider to update settings when their value is changed
             // We only create the event handlers here to prevent them from firing when the window loads
@@ -47,10 +48,19 @@ namespace LauncherXWinUI
             // they will write wrong (blank) values to the UserSettingsClass
             ScaleSlider.ValueChanged += ScaleSlider_ValueChanged;
             ChangeHeaderTextBox.TextChanged += ChangeHeaderTextBox_TextChanged;
+            FullscreenToggleSwitch.Toggled += FullscreenToggleSwitch_Toggled;
 
             // Make sure to unsubscribe from the event handlers after
             ScaleSlider.Unloaded += (s, e) => ScaleSlider.ValueChanged -= ScaleSlider_ValueChanged;
             ChangeHeaderTextBox.Unloaded += (s, e) => ChangeHeaderTextBox.TextChanged -= ChangeHeaderTextBox_TextChanged;
+            FullscreenToggleSwitch.Unloaded += (s, e) => FullscreenToggleSwitch.Toggled -= FullscreenToggleSwitch_Toggled;
+        }
+
+        private void FullscreenToggleSwitch_Toggled(object sender, RoutedEventArgs e)
+        {
+            // Update UserSettingsClass
+            UserSettingsClass.UseFullscreen = FullscreenToggleSwitch.IsOn;
+            UserSettingsClass.WriteSettingsFile();
         }
 
         private void ScaleSlider_ValueChanged(object sender, RangeBaseValueChangedEventArgs e)
