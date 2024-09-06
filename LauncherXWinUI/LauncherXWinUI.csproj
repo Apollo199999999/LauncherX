@@ -19,9 +19,9 @@
     <Description>LauncherX - Modern app launcher for Windows</Description>
     <Copyright>Copyright © 2020-present ClickPhase</Copyright>
     <PackageProjectUrl>https://clickphase.vercel.app/launcherx</PackageProjectUrl>
-    <AssemblyVersion>2.1.0.0</AssemblyVersion>
-    <FileVersion>2.1.0.0</FileVersion>
-    <Version>2.1.0.0</Version>
+    <AssemblyVersion>2.1.1.0</AssemblyVersion>
+    <FileVersion>2.1.1.0</FileVersion>
+    <Version>2.1.1.0</Version>
     <PackageIcon>icon.png</PackageIcon>
     <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
     <BuiltInComInteropSupport>true</BuiltInComInteropSupport>
