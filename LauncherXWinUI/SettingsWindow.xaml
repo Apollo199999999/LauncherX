@@ -113,7 +113,10 @@
                     <wct:SettingsCard.HeaderIcon>
                         <FontIcon Glyph="&#xF0E2;" />
                     </wct:SettingsCard.HeaderIcon>
-                    <ComboBox Width="150" SelectedIndex="0">
+                    <ComboBox
+                        x:Name="GridAlignComboBox"
+                        Width="150"
+                        SelectedIndex="0">
                         <x:String>Left</x:String>
                         <x:String>Center</x:String>
                     </ComboBox>

@@ -68,7 +68,7 @@
                     <wct:SettingsCard.HeaderIcon>
                         <FontIcon Glyph="&#xE73F;" />
                     </wct:SettingsCard.HeaderIcon>
-                    <Slider x:ConnectionId='14'
+                    <Slider x:ConnectionId='15'
                         x:Name="ScaleSlider"
                         Width="220"
                         Maximum="6.00"
@@ -88,7 +88,7 @@
                     <wct:SettingsCard.HeaderIcon>
                         <FontIcon Glyph="&#xE70F;" />
                     </wct:SettingsCard.HeaderIcon>
-                    <TextBox x:ConnectionId='13' x:Name="ChangeHeaderTextBox" Width="220" />
+                    <TextBox x:ConnectionId='14' x:Name="ChangeHeaderTextBox" Width="220" />
                 </wct:SettingsCard>
 
                 <!--  Fullscreen  -->
@@ -99,7 +99,7 @@
                     <wct:SettingsCard.HeaderIcon>
                         <FontIcon Glyph="&#xE740;" />
                     </wct:SettingsCard.HeaderIcon>
-                    <ToggleSwitch x:ConnectionId='12'
+                    <ToggleSwitch x:ConnectionId='13'
                         x:Name="FullscreenToggleSwitch"
                         OffContent="No"
                         OnContent="Yes" />
@@ -113,7 +113,10 @@
                     <wct:SettingsCard.HeaderIcon>
                         <FontIcon Glyph="&#xF0E2;" />
                     </wct:SettingsCard.HeaderIcon>
-                    <ComboBox Width="150" SelectedIndex="0">
+                    <ComboBox x:ConnectionId='12'
+                        x:Name="GridAlignComboBox"
+                        Width="150"
+                        SelectedIndex="0">
                         <x:String>Left</x:String>
                         <x:String>Center</x:String>
                     </ComboBox>

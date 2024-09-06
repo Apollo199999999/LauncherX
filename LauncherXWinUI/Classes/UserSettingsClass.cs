@@ -80,6 +80,7 @@ namespace LauncherXWinUI.Classes
 
         /// <summary>
         /// Variable which stores which position the app grid is in
+        /// Valid values are "Left" or "Center"
         /// </summary>
         public static string GridPosition = "Left";
 

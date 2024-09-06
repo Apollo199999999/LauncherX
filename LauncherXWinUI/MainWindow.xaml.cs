@@ -48,10 +48,10 @@ namespace LauncherXWinUI
         /// </summary>
         private void UpdateUIFromSettings()
         {
-            // Set header text
+            // Set header text (Update from HeaderText)
             HeaderTextBlock.Text = UserSettingsClass.HeaderText;
 
-            // Adjust the size of items in ItemsGridView
+            // Adjust the size of items in ItemsGridView (Update from GridScale)
             foreach (var gridViewItem in ItemsGridView.Items)
             {
                 if (gridViewItem is GridViewTile)
@@ -71,7 +71,7 @@ namespace LauncherXWinUI
                 }
             }
 
-            // Set windowing mode to fullscreen if applicable
+            // Set windowing mode to fullscreen if applicable (Update from UseFullscreen)
             if (UserSettingsClass.UseFullscreen == true)
             {
                 // Hide custom titlebar
@@ -99,6 +99,38 @@ namespace LauncherXWinUI
                 // Set normal windowing mode
                 this.AppWindow.SetPresenter(Microsoft.UI.Windowing.AppWindowPresenterKind.Default);
             }
+
+            // Align the GridView (Update from GridPosition)
+            if (UserSettingsClass.GridPosition == "Left")
+            {
+                AlignGridViewLeft();
+            }
+            else if (UserSettingsClass.GridPosition == "Center")
+            {
+                AlignGridViewCenter();
+            }
+        }
+
+        /// <summary>
+        /// Method that aligns the ItemsGridView to the left
+        /// </summary>
+        private void AlignGridViewLeft()
+        {
+            ItemsGridView.HorizontalAlignment = HorizontalAlignment.Stretch;
+
+            // Fix the width of the ItemsGridView to take up the entire space available
+            ItemsGridView.Width = ControlsGrid.Width;
+        }
+
+        private void AlignGridViewCenter()
+        {
+            ItemsGridView.HorizontalAlignment = HorizontalAlignment.Center;
+            UserControl firstGridViewItem = ItemsGridView.Items[0] as UserControl;
+
+            // Fix the width of the ItemsGridView to perfectly match the row of GridViewTiles/GridViewTileGroups
+            // Since the ItemsGridView has HorizontalAlignment = Center, this will thus center the ItemsGridView
+            // +4 is because by default, a GridViewItem has a right margin of 4
+            ItemsGridView.Width = Math.Floor(ControlsGrid.Width / (firstGridViewItem.Width + 4)) * (firstGridViewItem.Width + 4);
         }
 
         /// <summary>
@@ -227,6 +259,9 @@ namespace LauncherXWinUI
 
             // Once we have initialised the UserSettingsClass with the correct values, update the UI
             UpdateUIFromSettings();
+
+            // Monitor when the window is resized so that we can adjust the position of the GridView as necesssary
+            this.SizeChanged += WindowEx_SizeChanged;
 
             // Hide LoadingDialog once done
             await Task.Delay(20);
@@ -699,6 +734,20 @@ namespace LauncherXWinUI
         private void CloseButton_Click(object sender, RoutedEventArgs e)
         {
             Application.Current.Exit();
+        }
+
+        // When window resized
+        private void WindowEx_SizeChanged(object sender, WindowSizeChangedEventArgs args)
+        {
+            // Align the GridView (Update from GridPosition)
+            if (UserSettingsClass.GridPosition == "Left")
+            {
+                AlignGridViewLeft();
+            }
+            else if (UserSettingsClass.GridPosition == "Center")
+            {
+                AlignGridViewCenter();
+            }
         }
 
         // The last event handler - save items when the window is closed

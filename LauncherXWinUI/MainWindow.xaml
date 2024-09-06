@@ -245,7 +245,7 @@
                     x:Name="ItemsGridView"
                     Grid.Row="1"
                     Margin="20,10,20,20"
-                    HorizontalAlignment="Stretch"
+                    HorizontalAlignment="Center"
                     VerticalAlignment="Stretch"
                     x:FieldModifier="public"
                     AllowDrop="True"
