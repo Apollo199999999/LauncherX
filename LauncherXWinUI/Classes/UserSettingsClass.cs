@@ -350,9 +350,8 @@ namespace LauncherXWinUI.Classes
                 else if (IsPathDirectory(executingPath) && Path.Exists(executingPath))
                 {
                     // Folder
-                    StorageFolder storageFolder = await StorageFolder.GetFolderFromPathAsync(executingPath);
-                    BitmapImage folderIcon = await IconHelpers.GetFolderIcon(storageFolder);
-                    tileProps.Add("DisplayText", storageFolder.Name);
+                    BitmapImage folderIcon = await IconHelpers.GetFolderIcon(executingPath);
+                    tileProps.Add("DisplayText", Path.GetFileName(executingPath));
                     tileProps.Add("ImageSource", folderIcon);
                     gridViewTilesProps.Add(tileProps);
                 }
@@ -516,8 +515,7 @@ namespace LauncherXWinUI.Classes
             else if (IsPathDirectory(gridViewTileJson.executingPath) && Path.Exists(gridViewTileJson.executingPath))
             {
                 // Folder
-                StorageFolder storageFolder = await StorageFolder.GetFolderFromPathAsync(gridViewTileJson.executingPath);
-                BitmapImage folderIcon = await IconHelpers.GetFolderIcon(storageFolder);
+                BitmapImage folderIcon = await IconHelpers.GetFolderIcon(gridViewTileJson.executingPath);
                 gridViewTile.ImageSource = folderIcon;
             }
             else if (!IsPathDirectory(gridViewTileJson.executingPath) && Path.Exists(gridViewTileJson.executingPath))

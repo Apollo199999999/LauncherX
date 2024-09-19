@@ -13,6 +13,7 @@ using System.Threading.Tasks;
 using Windows.ApplicationModel.DataTransfer;
 using Windows.Storage;
 using CommunityToolkit.WinUI;
+using System.IO;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -129,12 +130,11 @@ namespace LauncherXWinUI
         private void AlignGridViewCenter()
         {
             ItemsGridView.HorizontalAlignment = HorizontalAlignment.Center;
-            UserControl firstGridViewItem = ItemsGridView.Items[0] as UserControl;
 
             // Fix the width of the ItemsGridView to perfectly match the row of GridViewTiles/GridViewTileGroups
             // Since the ItemsGridView has HorizontalAlignment = Center, this will thus center the ItemsGridView
             // +4 is because by default, a GridViewItem has a right margin of 4
-            ItemsGridView.Width = Math.Floor(ControlsGrid.Width / (firstGridViewItem.Width + 4)) * (firstGridViewItem.Width + 4);
+            ItemsGridView.Width = Math.Floor(ControlsGrid.Width / (105 * Math.Sqrt(UserSettingsClass.GridScale) + 4)) * ((105 * Math.Sqrt(UserSettingsClass.GridScale) + 4));
 
             // Adjust scrollbar margins as well
             ScrollViewerExtensions.SetVerticalScrollBarMargin(ItemsGridView, new Thickness(0, 0, -20, 0));
@@ -183,7 +183,6 @@ namespace LauncherXWinUI
         // Event Handlers
         private async void Container_Loaded(object sender, RoutedEventArgs e)
         {
-            
             // Set Window icon
             UIFunctionsClass.SetWindowLauncherXIcon(this);
 
@@ -203,6 +202,15 @@ namespace LauncherXWinUI
                 UserSettingsClass.WriteSettingsFile();
                 UserSettingsClass.ClearOldTempDirectories();
 
+                // Retrieve user settings from file
+                UserSettingsClass.TryReadSettingsFile();
+
+                // Once we have initialised the UserSettingsClass with the correct values, update the UI
+                UpdateUIFromSettings();
+
+                // Monitor when the window is resized so that we can adjust the position of the GridView as necesssary
+                this.SizeChanged += WindowEx_SizeChanged;
+
                 // Upgrade items as well
                 List<Dictionary<string, object>> oldLauncherXItems = await UserSettingsClass.UpgradeOldLauncherXItems();
 
@@ -220,6 +228,15 @@ namespace LauncherXWinUI
             }
             else
             {
+                // Retrieve user settings from file
+                UserSettingsClass.TryReadSettingsFile();
+
+                // Once we have initialised the UserSettingsClass with the correct values, update the UI
+                UpdateUIFromSettings();
+
+                // Monitor when the window is resized so that we can adjust the position of the GridView as necesssary
+                this.SizeChanged += WindowEx_SizeChanged;
+
                 // Load LauncherX items as normal
                 List<UserControl> controls = await UserSettingsClass.LoadLauncherXItems();
 
@@ -260,15 +277,6 @@ namespace LauncherXWinUI
 
                 UIFunctionsClass.CreateModalWindow(addItemsErrorWindow, this);
             }
-
-            // Retrieve user settings from file
-            UserSettingsClass.TryReadSettingsFile();
-
-            // Once we have initialised the UserSettingsClass with the correct values, update the UI
-            UpdateUIFromSettings();
-
-            // Monitor when the window is resized so that we can adjust the position of the GridView as necesssary
-            this.SizeChanged += WindowEx_SizeChanged;
 
             // Hide LoadingDialog once done
             await Task.Delay(20);
@@ -343,26 +351,48 @@ namespace LauncherXWinUI
 
             ContentDialogResult result = await addFolderDialog.ShowAsync();
 
-            if (result == ContentDialogResult.Primary)
+            if (result != ContentDialogResult.Primary)
             {
-                // Show LoadingDialog while loading items and settings
-                LoadingDialog.Visibility = Visibility.Visible;
-                await Task.Delay(10);
+                return;    
+            }
 
-                // Add the folders from the addFolderDialog
-                foreach (AddFolderDialogListViewItem folderItem in addFolderDialog.AddedFolders)
+            // Show LoadingDialog while loading items and settings
+            LoadingDialog.Visibility = Visibility.Visible;
+            await Task.Delay(10);
+
+            // Add the folders from the addFolderDialog
+            foreach (AddFolderDialogListViewItem folderItem in addFolderDialog.AddedFolders)
+            {
+                // Create new GridViewTile for each item
+                // Depending if FolderType is Shortcut or Linked, we need to add it differently
+                if (folderItem.FolderType == "Shortcut")
                 {
-                    // Create new GridViewTile for each item
                     AddGridViewTile(folderItem.ExecutingPath, "", folderItem.DisplayText, folderItem.FolderIcon);
                 }
+                else if (folderItem.FolderType == "Linked")
+                {
+                    // Get all the paths in the folder
+                    List<string> files = Directory.GetFiles(folderItem.ExecutingPath).ToList();
+                    foreach (string filePath in files)
+                    {
+                        AddGridViewTile(filePath, "", Path.GetFileName(filePath), await IconHelpers.GetFileIcon(filePath));
+                    }
 
-                // Save items
-                UserSettingsClass.SaveLauncherXItems(ItemsGridView.Items);
+                    List<string> folders = Directory.GetDirectories(folderItem.ExecutingPath).ToList();
+                    foreach (string folderPath in folders)
+                    {
+                        AddGridViewTile(folderPath, "", Path.GetFileName(folderPath), await IconHelpers.GetFolderIcon(folderPath));
+                    }
+                }
 
-                // Hide LoadingDialog
-                await Task.Delay(20);
-                LoadingDialog.Visibility = Visibility.Collapsed;
             }
+
+            // Save items
+            UserSettingsClass.SaveLauncherXItems(ItemsGridView.Items);
+
+            // Hide LoadingDialog
+            await Task.Delay(20);
+            LoadingDialog.Visibility = Visibility.Collapsed;
         }
 
         private async void AddWebsiteBtn_Click(object sender, RoutedEventArgs e)
@@ -715,7 +745,7 @@ namespace LauncherXWinUI
                 {
                     // This is a folder
                     // Get folder icon
-                    BitmapImage bitmapImage = await IconHelpers.GetFolderIcon(storageItem);
+                    BitmapImage bitmapImage = await IconHelpers.GetFolderIcon(storageItem.Path);
 
                     // Add folder to ItemsGridView
                     AddGridViewTile(storageItem.Path, "", storageItem.Name, bitmapImage);

@@ -160,11 +160,11 @@ namespace LauncherXWinUI.Classes
         }
 
         /// <summary>
-        /// Method to get the icon of a folder
+        /// Method to get the icon of a folder, using WinRT/WASDK APIs
         /// </summary>
         /// <param name="storageFolder">StorageFolder object storing the folder</param>
         /// <returns></returns>
-        public async static Task<BitmapImage> GetFolderIcon(StorageFolder storageFolder)
+        private async static Task<BitmapImage> GetFolderIconWinRT(StorageFolder storageFolder)
         {
             // Get the thumbnail of the folder
             StorageItemThumbnail thumbnail = await storageFolder.GetThumbnailAsync(ThumbnailMode.SingleItem, 256);
@@ -174,6 +174,22 @@ namespace LauncherXWinUI.Classes
             return bitmapImage;
         }
 
+        /// <summary>
+        /// One unified method that works with all folders, hidden or not, to get the icon of a folder
+        /// </summary>
+        /// <returns>BitmapImage that can be used directly with an image control</returns>
+        public async static Task<BitmapImage> GetFolderIcon(string folderPath)
+        {
+            try
+            {
+                StorageFolder folder = await StorageFolder.GetFolderFromPathAsync(folderPath);
+                return await GetFolderIconWinRT(folder);
+            }
+            catch
+            {
+                return await GetFileIconWin32(folderPath);
+            }
+        }
 
         /// <summary>
         /// Method to get the icon of a file, using WinRT/WASDK APIs

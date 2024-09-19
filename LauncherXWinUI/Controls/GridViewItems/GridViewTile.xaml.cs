@@ -561,8 +561,7 @@ namespace LauncherXWinUI.Controls.GridViewItems
             else if (IsPathDirectory(this.ExecutingPath))
             {
                 // Folder
-                StorageFolder storageFolder = await StorageFolder.GetFolderFromPathAsync(this.ExecutingPath);
-                BitmapImage folderIcon = await IconHelpers.GetFolderIcon(storageFolder);
+                BitmapImage folderIcon = await IconHelpers.GetFolderIcon(this.ExecutingPath);
                 editItemWindow.EditDialogImage.Source = folderIcon;
             }
             else if (IsPathDirectory(this.ExecutingPath) == false)
