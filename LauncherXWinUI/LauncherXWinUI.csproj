@@ -40,11 +40,15 @@
     <None Remove="Controls\GridViewTileGroup.xaml" />
     <None Remove="Controls\Titlebar.xaml" />
     <None Remove="Resources\icon.ico" />
+    <None Remove="Resources\LinkedFolderIcon.png" />
     <None Remove="Resources\websitePlaceholder.png" />
     <None Remove="SettingsWindow.xaml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Resources\icon.ico">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\LinkedFolderIcon.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

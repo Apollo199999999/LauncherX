@@ -6,6 +6,7 @@ using Microsoft.UI.Xaml.Input;
 using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Media.Imaging;
 using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
@@ -86,6 +87,9 @@ namespace LauncherXWinUI.Controls.GridViewItems
                 gridViewTile.TileImage.Margin = new Thickness(newSize * 22.5, newSize * 5, newSize * 22.5, 0);
                 gridViewTile.TileImage.Height = newWidth - newSize * 22.5 - newSize * 22.5;
                 gridViewTile.TileImage.Stretch = Stretch.Uniform;
+                gridViewTile.LinkedFolderImage.Margin = new Thickness(newSize * 10, newSize * 5, newSize * 22.5, 0);
+                gridViewTile.LinkedFolderImage.Height = newWidth - newSize * 22.5 - newSize * 22.5;
+                gridViewTile.LinkedFolderImage.Stretch = Stretch.Fill;
 
                 // Update the font size of the textblock
                 gridViewTile.TileText.FontSize = newSize * 12;
@@ -99,7 +103,6 @@ namespace LauncherXWinUI.Controls.GridViewItems
                 }
             }
         }
-
 
         /// <summary>
         /// ImageSource object to be rendered in the control
@@ -235,6 +238,44 @@ namespace LauncherXWinUI.Controls.GridViewItems
             typeof(GridViewTileGroup),
             typeof(GridViewTile),
             new PropertyMetadata(null));
+
+        /// <summary>
+        /// Whether this item belongs to a "Linked Folder"
+        /// </summary>
+        public bool IsLinkedFolder
+        {
+            get => (bool)GetValue(IsLinkedFolderProperty);
+            set => SetValue(IsLinkedFolderProperty, value);
+        }
+
+        DependencyProperty IsLinkedFolderProperty = DependencyProperty.Register(
+            nameof(IsLinkedFolder),
+            typeof(bool),
+            typeof(GridViewTile),
+            new PropertyMetadata(false, new PropertyChangedCallback(OnIsLinkedFolderChanged)));
+
+        private static void OnIsLinkedFolderChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            GridViewTile gridViewTile = d as GridViewTile;
+            bool? newIsLinkedFolder = e.NewValue as bool?;
+
+            if (newIsLinkedFolder == null)
+            {
+                return;
+            }
+            else if (newIsLinkedFolder == true)
+            {
+                gridViewTile.LinkedFolderImage.Visibility = Visibility.Visible;
+                gridViewTile.MenuUnlinkOption.Visibility = Visibility.Visible;
+                gridViewTile.MenuRemoveOption.Visibility = Visibility.Collapsed;
+            }
+            else if (newIsLinkedFolder == false)
+            {
+                gridViewTile.LinkedFolderImage.Visibility = Visibility.Collapsed;
+                gridViewTile.MenuUnlinkOption.Visibility = Visibility.Collapsed;
+                gridViewTile.MenuRemoveOption.Visibility = Visibility.Visible;
+            }
+        }
 
         // Methods
 
@@ -464,6 +505,33 @@ namespace LauncherXWinUI.Controls.GridViewItems
             UnassociateGroup();
             mainWindowGridView.Items.Add(this);
 
+        }
+        private void MenuUnlinkOption_Click(object sender, RoutedEventArgs e)
+        {
+            // Find all items in LauncherX that are part of linked folders
+            List<UserControl> launcherXItems = new List<UserControl>();
+
+            foreach (UserControl userControl in App.MainWindow.ItemsGridView.Items.Cast<UserControl>())
+            {
+                launcherXItems.Add(userControl);
+            }
+
+            List<GridViewTile> linkedFolderGridViewTiles = UserSettingsClass.FindAllLinkedFolderGridViewTiles(launcherXItems);
+
+            // Get the linked folder associated with this GridViewTile
+            string linkedFolder = Path.GetDirectoryName(ExecutingPath);
+
+            // Unlink all GridViewTiles with this linked folder
+            foreach (GridViewTile linkedTile in linkedFolderGridViewTiles)
+            {
+                if (Path.GetDirectoryName(linkedTile.ExecutingPath) == linkedFolder)
+                {
+                    linkedTile.IsLinkedFolder = false;
+                }
+                
+            }
+
+            this.IsLinkedFolder = false;
         }
 
         // This section handles events for the EditItemWindow and its associated functions

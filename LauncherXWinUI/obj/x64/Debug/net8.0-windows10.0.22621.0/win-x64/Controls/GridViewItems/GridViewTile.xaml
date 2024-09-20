@@ -35,15 +35,21 @@
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
 
-            <Image x:ConnectionId='5'
-                x:Name="TileImage"
+            <Grid
                 Grid.Row="0"
                 HorizontalAlignment="Stretch"
                 VerticalAlignment="Center"
-                AllowDrop="True"
-                Stretch="Uniform" />
+                AllowDrop="True">
+                <Image x:ConnectionId='6' x:Name="TileImage" Stretch="Uniform" />
 
-            <TextBlock x:ConnectionId='6'
+                <Image x:ConnectionId='7'
+                    x:Name="LinkedFolderImage"
+                    Source="../../Resources/LinkedFolderIcon.png"
+                    Stretch="Uniform"
+                    Visibility="Collapsed" />
+            </Grid>
+
+            <TextBlock x:ConnectionId='5'
                 x:Name="TileText"
                 Grid.Row="1"
                 Margin="5,5,5,5"
@@ -55,49 +61,56 @@
 
             <!--  Right click menu  -->
             <FlyoutBase.AttachedFlyout>
-                <MenuFlyout x:ConnectionId='7' x:Name="RightClickMenu">
-                    <MenuFlyoutItem x:ConnectionId='8'
+                <MenuFlyout x:ConnectionId='8' x:Name="RightClickMenu">
+                    <MenuFlyoutItem x:ConnectionId='9'
                         x:Name="MenuOpenOption"
                                                     
                         Text="Open">
                         <MenuFlyoutItem.Icon>
-                            <FontIcon x:ConnectionId='16' x:Name="MenuOpenOptionIcon" Glyph="&#xE8E5;" />
+                            <FontIcon x:ConnectionId='18' x:Name="MenuOpenOptionIcon" Glyph="&#xE8E5;" />
                         </MenuFlyoutItem.Icon>
                     </MenuFlyoutItem>
 
-                    <MenuFlyoutItem x:ConnectionId='9'
+                    <MenuFlyoutItem x:ConnectionId='10'
                         x:Name="MenuAdminOption"
                                                      
                         Text="Attempt to run as administrator"
                         Visibility="Collapsed">
                         <MenuFlyoutItem.Icon>
-                            <FontIcon x:ConnectionId='15' x:Name="MenuAdminOptionIcon" Glyph="&#xE7EF;" />
-                        </MenuFlyoutItem.Icon>
-                    </MenuFlyoutItem>
-
-                    <MenuFlyoutItem x:ConnectionId='10'
-                        x:Name="MenuOpenLocOption"
-                                                       
-                        Text="Open Location">
-                        <MenuFlyoutItem.Icon>
-                            <FontIcon x:ConnectionId='14' x:Name="MenuOpenLocOptionIcon" Glyph="&#xE838;" />
+                            <FontIcon x:ConnectionId='17' x:Name="MenuAdminOptionIcon" Glyph="&#xE7EF;" />
                         </MenuFlyoutItem.Icon>
                     </MenuFlyoutItem>
 
                     <MenuFlyoutItem x:ConnectionId='11'
+                        x:Name="MenuOpenLocOption"
+                                                       
+                        Text="Open Location">
+                        <MenuFlyoutItem.Icon>
+                            <FontIcon x:ConnectionId='16' x:Name="MenuOpenLocOptionIcon" Glyph="&#xE838;" />
+                        </MenuFlyoutItem.Icon>
+                    </MenuFlyoutItem>
+
+                    <MenuFlyoutItem x:ConnectionId='12'
                         x:Name="MenuRemoveGroupOption"
                                                            
                         Icon="Remove"
                         Text="Remove from group"
                         Visibility="Collapsed" />
 
-                    <MenuFlyoutItem x:ConnectionId='12'
+                    <MenuFlyoutItem x:ConnectionId='13'
                         x:Name="MenuRemoveOption"
                                                       
                         Icon="Delete"
                         Text="Remove from LauncherX" />
 
-                    <MenuFlyoutItem x:ConnectionId='13'
+                    <MenuFlyoutItem x:ConnectionId='14'
+                        x:Name="MenuUnlinkOption"
+                                                      
+                        Icon="UnSyncFolder"
+                        Text="Unlink parent folder from LauncherX"
+                        Visibility="Collapsed" />
+
+                    <MenuFlyoutItem x:ConnectionId='15'
                         x:Name="MenuEditOption"
                                                     
                         Icon="Edit"

@@ -29,7 +29,7 @@
                             <LineBreak />
                             Shortcut - A shortcut to the whole folder itself is added to LauncherX. When this shortcut is clicked, the folder is opened in File Explorer.<LineBreak />
                             <LineBreak />
-                            Linked - The contents of the folder are added to LauncherX instead of the folder itself. When the contents of this folder changes, these changes will also automatically be reflected in LauncherX. Contents of a "linked" folder added to LauncherX are indicated with an arrow at the bottom left corner.</TextBlock>
+                            Linked - The contents of the folder are added to LauncherX instead of the folder itself. When the contents of this folder changes, these changes will also automatically be reflected in LauncherX. Contents of a "linked" folder added to LauncherX are indicated with a "link" icon at the bottom left corner.</TextBlock>
                     </ToolTipService.ToolTip>
                 </Grid>
 

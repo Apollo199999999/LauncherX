@@ -825,3 +825,4 @@ C:\Users\fligh\source\repos\LauncherX\LauncherXWinUI\obj\x64\Debug\net8.0-window
 C:\Users\fligh\source\repos\LauncherX\LauncherXWinUI\obj\x64\Debug\net8.0-windows10.0.22621.0\win-x64\qualifiers.txt
 C:\Users\fligh\source\repos\LauncherX\LauncherXWinUI\obj\x64\Debug\net8.0-windows10.0.22621.0\win-x64\qualifiers.txt.intermediate
 C:\Users\fligh\source\repos\LauncherX\LauncherXWinUI\obj\x64\Debug\net8.0-windows10.0.22621.0\win-x64\MultipleQualifiersPerDimensionFound.txt
+C:\Users\fligh\source\repos\LauncherX\LauncherXWinUI\bin\x64\Debug\net8.0-windows10.0.22621.0\win-x64\Resources\LinkedFolderIcon.png

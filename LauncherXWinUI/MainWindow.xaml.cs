@@ -165,7 +165,8 @@ namespace LauncherXWinUI
         /// <param name="executingArguments">ExecutingArguments in GridViewTile</param>
         /// <param name="displayText">DisplayText in GridViewTile</param>
         /// <param name="imageSource">ImageSource in GridViewTile</param>
-        private void AddGridViewTile(string executingPath, string executingArguments, string displayText, BitmapImage imageSource)
+        /// <returns>The GridViewTile created</returns>
+        private GridViewTile AddGridViewTile(string executingPath, string executingArguments, string displayText, BitmapImage imageSource)
         {
             // Create new GridViewTile for each item
             GridViewTile gridViewTile = new GridViewTile();
@@ -178,6 +179,8 @@ namespace LauncherXWinUI
             gridViewTile.DragEnter += GridViewTile_DragEnter;
             gridViewTile.DragLeave += GridViewTile_DragLeave;
             ItemsGridView.Items.Add(gridViewTile);
+
+            return gridViewTile;
         }
 
         // Event Handlers
@@ -375,13 +378,15 @@ namespace LauncherXWinUI
                     List<string> files = Directory.GetFiles(folderItem.ExecutingPath).ToList();
                     foreach (string filePath in files)
                     {
-                        AddGridViewTile(filePath, "", Path.GetFileName(filePath), await IconHelpers.GetFileIcon(filePath));
+                        GridViewTile gridViewTile = AddGridViewTile(filePath, "", Path.GetFileName(filePath), await IconHelpers.GetFileIcon(filePath));
+                        gridViewTile.IsLinkedFolder = true;
                     }
 
                     List<string> folders = Directory.GetDirectories(folderItem.ExecutingPath).ToList();
                     foreach (string folderPath in folders)
                     {
-                        AddGridViewTile(folderPath, "", Path.GetFileName(folderPath), await IconHelpers.GetFolderIcon(folderPath));
+                        GridViewTile gridViewTile = AddGridViewTile(folderPath, "", new DirectoryInfo(folderPath).Name, await IconHelpers.GetFolderIcon(folderPath));
+                        gridViewTile.IsLinkedFolder = true;
                     }
                 }
 
