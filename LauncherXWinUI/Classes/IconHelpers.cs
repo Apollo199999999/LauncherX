@@ -160,6 +160,45 @@ namespace LauncherXWinUI.Classes
         }
 
         /// <summary>
+        /// Method to get the icon of a path, using Win32 methods
+        /// </summary>
+        /// <param name="path">Path to file/folder</param>
+        /// <param name="isDirectory">Whether the path belongs to a folder</param>
+        private async static Task<BitmapImage> GetPathIconWin32(string path, bool isDirectory)
+        {
+            IntPtr hIcon;
+
+            if (isDirectory)
+            {
+                hIcon = Shell32.GetJumboIcon(Shell32.GetFolderIconIndex(path));
+            }
+            else
+            {
+                hIcon = Shell32.GetJumboIcon(Shell32.GetFileIconIndex(path));
+            }
+
+            System.Drawing.Icon ico = (System.Drawing.Icon)System.Drawing.Icon.FromHandle(hIcon).Clone();
+            System.Drawing.Bitmap bitmapIcon = ico.ToBitmap();
+            ico.Dispose();
+
+            // For some files, the 256x256 icon may not be available, and we need to account for that to prevent this bug: https://github.com/Apollo199999999/LauncherX/issues/14
+            if (IsScaledDown(bitmapIcon))
+            {
+                bitmapIcon = ResizeJumbo(bitmapIcon, new System.Drawing.Size(200, 200));
+            }
+
+            // Convert Bitmap to BitmapImage
+            BitmapImage fileIcon = await GetWinUI3BitmapSourceFromGdiBitmap(bitmapIcon);
+
+            // Clean up
+            Shell32.DestroyIcon(hIcon);
+            bitmapIcon.Dispose();
+
+            return fileIcon;
+        }
+
+
+        /// <summary>
         /// Method to get the icon of a folder, using WinRT/WASDK APIs
         /// </summary>
         /// <param name="storageFolder">StorageFolder object storing the folder</param>
@@ -187,7 +226,7 @@ namespace LauncherXWinUI.Classes
             }
             catch
             {
-                return await GetFileIconWin32(folderPath);
+                return await GetPathIconWin32(folderPath, true);
             }
         }
 
@@ -206,32 +245,6 @@ namespace LauncherXWinUI.Classes
             return bitmapImage;
         }
 
-        /// <summary>
-        /// Method to get the icon of a file, using Win32 methods
-        /// </summary>
-        /// <param name="filePath">Path to file</param>
-        private async static Task<BitmapImage> GetFileIconWin32(string filePath)
-        {
-            IntPtr hIcon = Shell32.GetJumboIcon(Shell32.GetIconIndex(filePath));
-            System.Drawing.Icon ico = (System.Drawing.Icon)System.Drawing.Icon.FromHandle(hIcon).Clone();
-            System.Drawing.Bitmap bitmapIcon = ico.ToBitmap();
-            ico.Dispose();
-
-            // For some files, the 256x256 icon may not be available, and we need to account for that to prevent this bug: https://github.com/Apollo199999999/LauncherX/issues/14
-            if (IsScaledDown(bitmapIcon))
-            {
-                bitmapIcon = ResizeJumbo(bitmapIcon, new System.Drawing.Size(200, 200));
-            }
-
-            // Convert Bitmap to BitmapImage
-            BitmapImage fileIcon = await GetWinUI3BitmapSourceFromGdiBitmap(bitmapIcon);
-
-            // Clean up
-            Shell32.DestroyIcon(hIcon);
-            bitmapIcon.Dispose();
-
-            return fileIcon;
-        }
 
         /// <summary>
         /// One unified method that works with all file types to get the icon of a file
@@ -245,7 +258,7 @@ namespace LauncherXWinUI.Classes
             // StorageFile is not compatible with files of extension .lnk, .wsh, or .url, thus if our file has those extensions, we must use Win32 methods to retrieve the file icon
             if (ext == ".lnk" || ext == ".url" || ext == ".wsh")
             {
-                BitmapImage fileIcon = await GetFileIconWin32(filePath);
+                BitmapImage fileIcon = await GetPathIconWin32(filePath, false);
                 return fileIcon;
             }
             else if (ImageFileExtensions.Contains(ext))
@@ -258,7 +271,7 @@ namespace LauncherXWinUI.Classes
             else
             {
                 // Use Win32 methods
-                BitmapImage fileIcon = await GetFileIconWin32(filePath);
+                BitmapImage fileIcon = await GetPathIconWin32(filePath, false);
                 return fileIcon;
             }
         }

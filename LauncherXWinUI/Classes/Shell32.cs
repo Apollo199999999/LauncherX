@@ -24,6 +24,7 @@ namespace LauncherXWinUI.Classes
         public const int SHIL_SYSSMALL = 0x3;
         public const int SHIL_JUMBO = 0x4;
         public const int SHIL_LAST = 0x4;
+        public const uint FILE_ATTRIBUTE_DIRECTORY = 0x00000010;
 
         public const int ILD_TRANSPARENT = 0x00000001;
         public const int ILD_IMAGE = 0x00000020;
@@ -53,12 +54,24 @@ namespace LauncherXWinUI.Classes
         public extern static bool InternetGetConnectedState(out int Description, int ReservedValue);
 
         // THANK GOD FOR STACKOVERFLOW: https://stackoverflow.com/questions/28525925/get-icon-128128-file-type-c-sharp/28530403#28530403
-        // Get high-resolution icon of a file using Shell32/Win32 API
-        public static int GetIconIndex(string pszFile)
+        // Get high-resolution icon index of a file using Shell32/Win32 API
+        public static int GetFileIconIndex(string pszFile)
         {
             SHFILEINFO sfi = new SHFILEINFO();
             Shell32.SHGetFileInfo(pszFile
                 , 0
+                , ref sfi
+                , (uint)System.Runtime.InteropServices.Marshal.SizeOf(sfi)
+                , (uint)(SHGFI.SysIconIndex | SHGFI.LargeIcon | SHGFI.UseFileAttributes));
+            return sfi.iIcon;
+        }
+
+        // Get high-resolution icon index of a folder using Shell32/Win32 API
+        public static int GetFolderIconIndex(string pszFolder)
+        {
+            SHFILEINFO sfi = new SHFILEINFO();
+            Shell32.SHGetFileInfo(pszFolder
+                , FILE_ATTRIBUTE_DIRECTORY
                 , ref sfi
                 , (uint)System.Runtime.InteropServices.Marshal.SizeOf(sfi)
                 , (uint)(SHGFI.SysIconIndex | SHGFI.LargeIcon | SHGFI.UseFileAttributes));

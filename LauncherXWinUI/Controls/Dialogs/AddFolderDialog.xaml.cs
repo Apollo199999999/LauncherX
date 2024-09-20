@@ -68,7 +68,7 @@ namespace LauncherXWinUI.Controls.Dialogs
                 // Display the folder in the ListView
                 AddFolderDialogListViewItem addFolderDialogListViewItem = new AddFolderDialogListViewItem();
                 addFolderDialogListViewItem.ExecutingPath = folderPath;
-                addFolderDialogListViewItem.DisplayText = Path.GetFileName(folderPath);
+                addFolderDialogListViewItem.DisplayText = new DirectoryInfo(folderPath).Name;
                 SelectedFoldersListView.Items.Add(addFolderDialogListViewItem);
 
                 // Get the thumbnail of the folder

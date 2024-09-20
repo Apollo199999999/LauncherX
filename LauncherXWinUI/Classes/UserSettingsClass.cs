@@ -351,7 +351,7 @@ namespace LauncherXWinUI.Classes
                 {
                     // Folder
                     BitmapImage folderIcon = await IconHelpers.GetFolderIcon(executingPath);
-                    tileProps.Add("DisplayText", Path.GetFileName(executingPath));
+                    tileProps.Add("DisplayText", new DirectoryInfo(executingPath).Name);
                     tileProps.Add("ImageSource", folderIcon);
                     gridViewTilesProps.Add(tileProps);
                 }
