@@ -44,7 +44,7 @@
 
                 <Image
                     x:Name="LinkedFolderImage"
-                    Source="../../Resources/LinkedFolderIcon.png"
+                    Source="../../Resources/linkedFolderIcon.png"
                     Stretch="Uniform"
                     Visibility="Collapsed" />
             </Grid>

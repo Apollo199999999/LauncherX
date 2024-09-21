@@ -89,7 +89,7 @@ namespace LauncherXWinUI.Controls.GridViewItems
                 gridViewTile.TileImage.Stretch = Stretch.Uniform;
                 gridViewTile.LinkedFolderImage.Margin = new Thickness(newSize * 10, newSize * 5, newSize * 22.5, 0);
                 gridViewTile.LinkedFolderImage.Height = newWidth - newSize * 22.5 - newSize * 22.5;
-                gridViewTile.LinkedFolderImage.Stretch = Stretch.Fill;
+                gridViewTile.LinkedFolderImage.Stretch = Stretch.Uniform;
 
                 // Update the font size of the textblock
                 gridViewTile.TileText.FontSize = newSize * 12;
