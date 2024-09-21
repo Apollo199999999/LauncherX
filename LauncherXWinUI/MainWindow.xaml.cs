@@ -437,8 +437,10 @@ namespace LauncherXWinUI
                 }
                 else if (folderItem.FolderType == "Linked")
                 {
+                    multiFileSystemWatcher.WatchedPaths.Add(folderItem.ExecutingPath);
+
                     // Get all the paths in the folder
-                    List<string> files = Directory.GetFiles(folderItem.ExecutingPath).ToList();
+                    List<string> files = Directory.GetFiles(folderItem.ExecutingPath).Where(x => (new FileInfo(x).Attributes & System.IO.FileAttributes.System) == 0).ToList();
                     foreach (string filePath in files)
                     {
                         GridViewTile gridViewTile = AddGridViewTile(filePath, "", Path.GetFileName(filePath), await IconHelpers.GetFileIcon(filePath));

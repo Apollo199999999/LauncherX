@@ -329,6 +329,11 @@ namespace LauncherXWinUI.Classes
             // Loop through the files, and create GridViewTiles as we go
             foreach (string file in list)
             {
+                if (Path.GetExtension(file) != ".txt")
+                {
+                    continue;
+                }
+
                 // Open the file to read from.
                 StreamReader sr = File.OpenText(file);
                 string executingPath = "";
@@ -626,7 +631,11 @@ namespace LauncherXWinUI.Classes
 
                 if (!Directory.Exists(parentDir))
                 {
-                    ErrorPaths.Add(parentDir + " (linked folder)");
+                    if (!ErrorPaths.Contains(parentDir + " (linked folder)"))
+                    {
+                        ErrorPaths.Add(parentDir + " (linked folder)");
+                    }
+                    continue;
                 }
 
                 if (LinkedFolderPaths.Contains(parentDir) == true)
@@ -713,7 +722,8 @@ namespace LauncherXWinUI.Classes
             foreach (string linkedFolder in LinkedFolderPaths)
             {
                 // Get all files in the linkedFolder
-                List<string> linkedFolderContents = Directory.GetFiles(linkedFolder).ToList();
+                // Exclude system files
+                List<string> linkedFolderContents = Directory.GetFiles(linkedFolder).Where(x => (new FileInfo(x).Attributes & System.IO.FileAttributes.System) == 0).ToList();
                 List<string> linkedFolderFolders = Directory.GetDirectories(linkedFolder).ToList();
                 linkedFolderContents.AddRange(linkedFolderFolders);
 
@@ -777,7 +787,7 @@ namespace LauncherXWinUI.Classes
                         loadedItems.Add(gridViewTile);
                     }
                 }
-                else
+                else if (IsPathDirectory(path))
                 {
                     // Create a new GridViewTileGroup
                     GridViewTileGroup gridViewTileGroup = await DeserialiseDirectoryToGridViewTileGroup(path);

@@ -263,10 +263,19 @@ namespace LauncherXWinUI.Classes
             }
             else if (ImageFileExtensions.Contains(ext))
             {
-                // Use WinRT methods to get the thumbnail of the image
-                StorageFile storageFile = await StorageFile.GetFileFromPathAsync(filePath);
-                BitmapImage fileIcon = await GetFileIconWinRT(storageFile);
-                return fileIcon;
+                try
+                {
+                    // Use WinRT methods to get the thumbnail of the image
+                    StorageFile storageFile = await StorageFile.GetFileFromPathAsync(filePath);
+                    BitmapImage fileIcon = await GetFileIconWinRT(storageFile);
+                    return fileIcon;
+                }
+                catch
+                {
+                    // Use Win32 methods
+                    BitmapImage fileIcon = await GetPathIconWin32(filePath, false);
+                    return fileIcon;
+                }
             }
             else
             {
