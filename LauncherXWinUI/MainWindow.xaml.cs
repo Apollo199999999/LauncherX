@@ -25,12 +25,20 @@ namespace LauncherXWinUI
     /// </summary>
     public sealed partial class MainWindow : WinUIEx.WindowEx
     {
+        /// <summary>
+        /// To watch for changes in linked folders
+        /// </summary>
+        MultiFileSystemWatcher multiFileSystemWatcher = new MultiFileSystemWatcher();
+
         public MainWindow()
         {
             this.InitializeComponent();
 
             // Create a new event handler for when the items in the ItemsGridView have changed (either new items added/removed or items are reset)
             ItemsGridView.Items.VectorChanged += ItemsGridViewItems_VectorChanged;
+
+            // Create a new event handler for when contents of linked folder changes
+            multiFileSystemWatcher.WatchedChanged += MultiFileSystemWatcher_WatchedChanged;
 
             // Workaround for full screen window messing up the taskbar
             // https://github.com/microsoft/microsoft-ui-xaml/issues/8431
@@ -183,6 +191,65 @@ namespace LauncherXWinUI
             return gridViewTile;
         }
 
+        /// <summary>
+        /// Method that converts the items in the ItemsGridView to a List of UserControls (containing both GridViewTile and GridViewTileGroups, in order)
+        /// </summary>
+        /// <returns>List of UserControls in ItemsGridView</returns>
+        private List<UserControl> SerialiseGridViewItemsToList()
+        {
+            List<UserControl> controls = new List<UserControl>(); 
+
+            // Retrieve all the items in LauncherX
+            foreach (UserControl gridViewItem in ItemsGridView.Items)
+            {
+                if (gridViewItem is GridViewTile)
+                {
+                    GridViewTile gridViewTile = gridViewItem as GridViewTile;
+                    controls.Add(gridViewTile);
+                }
+                else if (gridViewItem is GridViewTileGroup)
+                {
+                    GridViewTileGroup gridViewTileGroup = gridViewItem as GridViewTileGroup;
+                    controls.Add(gridViewTileGroup);
+                }
+            }
+
+            return controls;
+        }
+
+        /// <summary>
+        /// Converts a list of UserControls (containing both GridViewTile and GridViewTileGroups, in order) to items in the ItemsGridView
+        /// </summary>
+        /// <param name="controls"></param>
+        private void DeserialiseListToGridViewItems(List<UserControl> controls)
+        {
+            ItemsGridView.Items.Clear();
+
+            // Add the loaded controls to the ItemsGridView
+            foreach (UserControl control in controls)
+            {
+                if (control is GridViewTile)
+                {
+                    // Hook up event handlers
+                    GridViewTile gridViewTile = (GridViewTile)control;
+                    gridViewTile.Drop += GridViewTile_Drop;
+                    gridViewTile.DragEnter += GridViewTile_DragEnter;
+                    gridViewTile.DragLeave += GridViewTile_DragLeave;
+                    ItemsGridView.Items.Add(gridViewTile);
+                }
+                else if (control is GridViewTileGroup)
+                {
+                    // Hook up event handlers
+                    GridViewTileGroup gridViewTileGroup = (GridViewTileGroup)control;
+                    gridViewTileGroup.DragEnter += GridViewTileGroup_DragEnter;
+                    gridViewTileGroup.DragLeave += GridViewTileGroup_DragLeave;
+                    gridViewTileGroup.Drop += GridViewTileGroup_Drop;
+                    ItemsGridView.Items.Add(gridViewTileGroup);
+
+                }
+            }
+        }
+
         // Event Handlers
         private async void Container_Loaded(object sender, RoutedEventArgs e)
         {
@@ -243,31 +310,17 @@ namespace LauncherXWinUI
                 // Load LauncherX items as normal
                 List<UserControl> controls = await UserSettingsClass.LoadLauncherXItems();
 
-                // Add the loaded controls to the ItemsGridView
-                foreach (UserControl control in controls)
-                {
-                    if (control is GridViewTile)
-                    {
-                        // Hook up event handlers
-                        GridViewTile gridViewTile = (GridViewTile)control;
-                        gridViewTile.Drop += GridViewTile_Drop;
-                        gridViewTile.DragEnter += GridViewTile_DragEnter;
-                        gridViewTile.DragLeave += GridViewTile_DragLeave;
-                        ItemsGridView.Items.Add(gridViewTile);
-                    }
-                    else if (control is GridViewTileGroup)
-                    {
-                        // Hook up event handlers
-                        GridViewTileGroup gridViewTileGroup = (GridViewTileGroup)control;
-                        gridViewTileGroup.DragEnter += GridViewTileGroup_DragEnter;
-                        gridViewTileGroup.DragLeave += GridViewTileGroup_DragLeave;
-                        gridViewTileGroup.Drop += GridViewTileGroup_Drop;
-                        ItemsGridView.Items.Add(gridViewTileGroup);
-
-                    }
-                }
+                DeserialiseListToGridViewItems(controls);
             }
 
+            // Monitor the linked folders to check for changes
+            List<GridViewTile> LinkedFolderGridViewTiles = UserSettingsClass.FindAllLinkedFolderGridViewTiles(SerialiseGridViewItemsToList());
+            List<string> LinkedFolderPaths = UserSettingsClass.FindLinkedFolderPaths(LinkedFolderGridViewTiles);
+            foreach (string folder in LinkedFolderPaths)
+            {
+                multiFileSystemWatcher.WatchedPaths.Add(folder);
+            }
+           
             // Check if there were errors adding files
             if (UserSettingsClass.ErrorAddingItems() == true)
             {
@@ -292,6 +345,16 @@ namespace LauncherXWinUI
                 UpdateInfoBar.IsOpen = true;
             }
 
+        }
+
+        private async void MultiFileSystemWatcher_WatchedChanged(object sender, EventArgs e)
+        {
+            // Update the ItemsGridView
+            await DispatcherQueue.EnqueueAsync(async () => {
+                List<UserControl> gridViewItems = SerialiseGridViewItemsToList();
+                await UserSettingsClass.UpdateItemsFromLinkedFolders(gridViewItems);
+                DeserialiseListToGridViewItems(gridViewItems);
+            });
         }
 
         private void GetUpdateBtn_Click(object sender, RoutedEventArgs e)
@@ -795,6 +858,7 @@ namespace LauncherXWinUI
         // The last event handler - save items when the window is closed
         private void WindowEx_Closed(object sender, WindowEventArgs args)
         {
+            multiFileSystemWatcher.Dispose();
             UserSettingsClass.SaveLauncherXItems(ItemsGridView.Items);
         }
     }

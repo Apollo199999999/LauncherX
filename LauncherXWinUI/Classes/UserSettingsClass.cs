@@ -11,6 +11,7 @@ using Windows.Storage;
 using System.Threading.Tasks;
 using Microsoft.UI.Xaml.Media.Imaging;
 using Microsoft.UI.Xaml.Controls;
+using System.Runtime.CompilerServices;
 
 namespace LauncherXWinUI.Classes
 {
@@ -616,7 +617,7 @@ namespace LauncherXWinUI.Classes
         /// </summary>
         /// <param name="linkedFolderItems">List of items that are marked as belonging to a linked folder in LauncherX</param>
         /// <returns>List containing all the paths of linked folders</returns>
-        private static List<string> FindLinkedFolderPaths(List<GridViewTile> linkedFolderItems)
+        public static List<string> FindLinkedFolderPaths(List<GridViewTile> linkedFolderItems)
         {
             List<string> LinkedFolderPaths = new List<string>();
             foreach (GridViewTile viewTile in linkedFolderItems)
@@ -672,49 +673,18 @@ namespace LauncherXWinUI.Classes
         }
 
         /// <summary>
-        /// Method that loads GridViewTiles/GridViewTileGroups from Json files
+        /// Method that updates the items in LauncherX from the linked folders
         /// </summary>
         /// <returns>A list of GridViewTiles/GridViewTileGroups, that can be used in MainWindow to load the items in the GridView</returns>
-        public async static Task<List<UserControl>> LoadLauncherXItems()
+        public async static Task UpdateItemsFromLinkedFolders(List<UserControl> loadedItems)
         {
-            // List to return
-            List<UserControl> loadedItems = new List<UserControl>();
-
-            // Get a list of all paths in the DataDir, and sort them numerically
-            List<string> files = Directory.GetFiles(DataDir).ToList();
-            List<string> folders = Directory.GetDirectories(DataDir).ToList();
-            files.AddRange(folders);
-
-            // allPaths stores the serialised items from LauncherX, in order
-            string[] allPaths = files.ToArray();
-            Array.Sort(allPaths, new AlphanumComparatorFast());
-
-            foreach (string path in allPaths)
-            {
-                if (Path.GetExtension(path) == ".json")
-                {
-                    GridViewTile gridViewTile = await DeserialiseJsonToGridViewTile(path);
-                    if (gridViewTile != null)
-                    {
-                        loadedItems.Add(gridViewTile);
-                    }
-                }
-                else
-                {
-                    // Create a new GridViewTileGroup
-                    GridViewTileGroup gridViewTileGroup = await DeserialiseDirectoryToGridViewTileGroup(path);
-                    loadedItems.Add(gridViewTileGroup);
-                }
-            }
-
-            // Now, we need to deal with linked folders
             // First, we find all the items in LauncherX that belong to linked folders
             List<GridViewTile> LinkedFolderGridViewTiles = FindAllLinkedFolderGridViewTiles(loadedItems);
 
             if (LinkedFolderGridViewTiles.Count <= 0)
             {
                 // No linked folders at all, do not proceed
-                return loadedItems;
+                return;
             }
 
             // The user updates a linked folder by creating new files or deleting files from the folder
@@ -734,7 +704,7 @@ namespace LauncherXWinUI.Classes
             if (LinkedFolderPaths.Count <= 0)
             {
                 // No linked folders at all, do not proceed
-                return loadedItems;
+                return;
             }
 
             // Retrieve the list of all the executingPaths of all items marked as belonging to a linked folder in LauncherX
@@ -777,6 +747,46 @@ namespace LauncherXWinUI.Classes
                     loadedItems.Add(gridViewTile);
                 }
             }
+        }
+
+        /// <summary>
+        /// Method that loads GridViewTiles/GridViewTileGroups from Json files
+        /// </summary>
+        /// <returns>A list of GridViewTiles/GridViewTileGroups, that can be used in MainWindow to load the items in the GridView</returns>
+        public async static Task<List<UserControl>> LoadLauncherXItems()
+        {
+            // List to return
+            List<UserControl> loadedItems = new List<UserControl>();
+
+            // Get a list of all paths in the DataDir, and sort them numerically
+            List<string> files = Directory.GetFiles(DataDir).ToList();
+            List<string> folders = Directory.GetDirectories(DataDir).ToList();
+            files.AddRange(folders);
+
+            // allPaths stores the serialised items from LauncherX, in order
+            string[] allPaths = files.ToArray();
+            Array.Sort(allPaths, new AlphanumComparatorFast());
+
+            foreach (string path in allPaths)
+            {
+                if (Path.GetExtension(path) == ".json")
+                {
+                    GridViewTile gridViewTile = await DeserialiseJsonToGridViewTile(path);
+                    if (gridViewTile != null)
+                    {
+                        loadedItems.Add(gridViewTile);
+                    }
+                }
+                else
+                {
+                    // Create a new GridViewTileGroup
+                    GridViewTileGroup gridViewTileGroup = await DeserialiseDirectoryToGridViewTileGroup(path);
+                    loadedItems.Add(gridViewTileGroup);
+                }
+            }
+
+            // Now, we need to deal with linked folders
+            await UpdateItemsFromLinkedFolders(loadedItems);
 
             return loadedItems;
         }
