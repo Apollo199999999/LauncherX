@@ -520,6 +520,7 @@ namespace LauncherXWinUI.Controls.GridViewItems
 
             // Get the linked folder associated with this GridViewTile
             string linkedFolder = Path.GetDirectoryName(ExecutingPath);
+            App.MainWindow.multiFileSystemWatcher.WatchedPaths.Remove(linkedFolder);
 
             // Unlink all GridViewTiles with this linked folder
             foreach (GridViewTile linkedTile in linkedFolderGridViewTiles)

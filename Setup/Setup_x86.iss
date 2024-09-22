@@ -2,7 +2,7 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "LauncherX"
-#define MyAppVersion "2.1.0"
+#define MyAppVersion "2.1.1"
 #define MyAppPublisher "ClickPhase"
 #define MyAppURL "https://clickphase.vercel.app/launcherx"
 #define MyAppExeName "LauncherX.exe"
@@ -27,12 +27,12 @@ LicenseFile=C:\Users\fligh\source\repos\LauncherX\Setup\COMBINED_LICENSES.TXT
 ; Uncomment the following line to run in non administrative install mode (install for current user only.)
 ;PrivilegesRequired=lowest
 OutputDir=C:\Users\fligh\source\repos\LauncherX\Setup
-OutputBaseFilename=LauncherX_2.1.0_x86_Setup
+OutputBaseFilename=LauncherX_2.1.1_x86_Setup
 SetupIconFile=C:\Users\fligh\source\repos\LauncherX\LauncherXWinUI\Resources\icon.ico
 Compression=lzma
 SolidCompression=yes
 WizardStyle=modern
-VersionInfoVersion = 2.1.0
+VersionInfoVersion = 2.1.1
 UninstallDisplayIcon={app}\LauncherX.exe
 UninstallDisplayName=LauncherX
 
@@ -43,8 +43,8 @@ Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{
 Name: "english"; MessagesFile: "compiler:Default.isl"
 
 [Files]
-Source: "C:\Users\fligh\source\repos\LauncherX\LauncherXWinUI\bin\x86\Release\net8.0-windows10.0.19041.0\win-x86\{#MyAppExeName}"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\Users\fligh\source\repos\LauncherX\LauncherXWinUI\bin\x86\Release\net8.0-windows10.0.19041.0\win-x86\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: "C:\Users\fligh\source\repos\LauncherX\LauncherXWinUI\bin\x86\Release\net8.0-windows10.0.22621.0\win-x86\{#MyAppExeName}"; DestDir: "{app}"; Flags: ignoreversion
+Source: "C:\Users\fligh\source\repos\LauncherX\LauncherXWinUI\bin\x86\Release\net8.0-windows10.0.22621.0\win-x86\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
 
 
 [Icons]

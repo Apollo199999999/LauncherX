@@ -28,7 +28,7 @@ namespace LauncherXWinUI
         /// <summary>
         /// To watch for changes in linked folders
         /// </summary>
-        MultiFileSystemWatcher multiFileSystemWatcher = new MultiFileSystemWatcher();
+        public MultiFileSystemWatcher multiFileSystemWatcher = new MultiFileSystemWatcher();
 
         public MainWindow()
         {
