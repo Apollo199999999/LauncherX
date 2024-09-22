@@ -60,7 +60,9 @@
                 Margin="0,10,0,0"
                 BorderBrush="{ThemeResource SystemControlForegroundBaseMediumLowBrush}"
                 BorderThickness="1"
-                                             />
+                                            
+                ScrollViewer.HorizontalScrollBarVisibility="Auto"
+                ScrollViewer.HorizontalScrollMode="Enabled" />
 
             <Button x:ConnectionId='6'
                 x:Name="CloseBtn"
