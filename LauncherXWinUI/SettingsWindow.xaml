@@ -66,7 +66,7 @@
                     Description="Adjust the scale of the icons displayed."
                     Header="Change icon scale">
                     <wct:SettingsCard.HeaderIcon>
-                        <FontIcon Glyph="&#xE740;" />
+                        <FontIcon Glyph="&#xE73F;" />
                     </wct:SettingsCard.HeaderIcon>
                     <Slider
                         x:Name="ScaleSlider"
@@ -89,6 +89,37 @@
                         <FontIcon Glyph="&#xE70F;" />
                     </wct:SettingsCard.HeaderIcon>
                     <TextBox x:Name="ChangeHeaderTextBox" Width="220" />
+                </wct:SettingsCard>
+
+                <!--  Fullscreen  -->
+                <wct:SettingsCard
+                    Margin="0,5,0,0"
+                    Description="Use LauncherX in fullscreen mode."
+                    Header="Enable fullscreen">
+                    <wct:SettingsCard.HeaderIcon>
+                        <FontIcon Glyph="&#xE740;" />
+                    </wct:SettingsCard.HeaderIcon>
+                    <ToggleSwitch
+                        x:Name="FullscreenToggleSwitch"
+                        OffContent="No"
+                        OnContent="Yes" />
+                </wct:SettingsCard>
+
+                <!--  Align GridView  -->
+                <wct:SettingsCard
+                    Margin="0,5,0,0"
+                    Description="Choose how to align the grid where your items are displayed."
+                    Header="Grid alignment">
+                    <wct:SettingsCard.HeaderIcon>
+                        <FontIcon Glyph="&#xF0E2;" />
+                    </wct:SettingsCard.HeaderIcon>
+                    <ComboBox
+                        x:Name="GridAlignComboBox"
+                        Width="150"
+                        SelectedIndex="0">
+                        <x:String>Left</x:String>
+                        <x:String>Center</x:String>
+                    </ComboBox>
                 </wct:SettingsCard>
 
                 <!--  Check for updates  -->

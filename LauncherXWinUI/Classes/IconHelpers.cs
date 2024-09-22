@@ -11,6 +11,13 @@ using Windows.Storage;
 using Windows.Storage.FileProperties;
 using Microsoft.UI.Xaml.Media;
 using Windows.UI.Popups;
+using System.Drawing;
+using System.Drawing.Imaging;
+using Windows.Graphics.Imaging;
+using Windows.Storage.Streams;
+using Microsoft.Graphics.Display;
+using WinUIEx;
+using System.Runtime.CompilerServices;
 
 namespace LauncherXWinUI.Classes
 {
@@ -19,28 +26,88 @@ namespace LauncherXWinUI.Classes
     /// </summary>
     public static class IconHelpers
     {
-        // THANK GOD FOR STACKOVERFLOW: https://stackoverflow.com/questions/76640972/convert-system-drawing-icon-to-microsoft-ui-xaml-imagesource
-        /// <summary>
-        /// Converts System.Drawing.Icon to SoftwareBitmapSource
-        /// </summary>
-        /// <param name="icon">Icon to convert</param>
-        /// <returns>SoftwareBitmapSource for Image Control</returns>
-        private static async Task<SoftwareBitmapSource> GetWinUI3BitmapSourceFromIcon(System.Drawing.Icon icon)
-        {
-            if (icon == null)
-                return null;
+        // Get a list of all image file extensions
+        public static List<string> ImageFileExtensions = ImageCodecInfo.GetImageEncoders()
+                                                            .Select(c => c.FilenameExtension)
+                                                            .SelectMany(e => e.Split(';'))
+                                                            .Select(e => e.Replace("*", "").ToLower())
+                                                            .ToList();
 
-            // convert to bitmap
-            using var bmp = icon.ToBitmap();
-            return await GetWinUI3BitmapSourceFromGdiBitmap(bmp);
+        // The following 2 functions are modified from WinLaunch
+        // The problem is this - when a file does not have a 256x256 icon,
+        // WinAPI just retrieves the 48x48 icon and draws it in the top left corner, leading to this bug: https://github.com/Apollo199999999/LauncherX/issues/14
+
+        /// <summary>
+        /// Resuzes a Jumbo (256x256) icon with a 48x48 icon on the top left to the specified size, for files that do not have a 256x256 icon
+        /// </summary>
+        /// <param name="imgToResize">Jumbo icon</param>
+        /// <param name="size">Final size to resize it to</param>
+        /// <returns>System.Drawing.Bitmap</returns>
+        private static System.Drawing.Bitmap ResizeJumbo(System.Drawing.Bitmap imgToResize, System.Drawing.Size size)
+        {
+            System.Drawing.Bitmap b = new System.Drawing.Bitmap(size.Width, size.Height);
+            System.Drawing.Graphics g = System.Drawing.Graphics.FromImage((System.Drawing.Image)b);
+            g.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.High;
+
+            int sourceWidth = (int)(48 * Shell32.GetDPI(App.MainWindow) / 96);
+            int sourceHeight = (int)(48 * Shell32.GetDPI(App.MainWindow) / 96);
+
+            double WidthScale = ((double)size.Width / (double)sourceWidth);
+            double HeightScale = ((double)size.Height / (double)sourceHeight);
+
+            g.DrawImage(imgToResize, 0, 0, (int)(256 * WidthScale), (int)(256 * HeightScale));
+            g.Dispose();
+
+            return b;
         }
 
+        /// <summary>
+        /// Check whether a Jumbo icon is just a 48x48 icon at the top left 
+        /// </summary>
+        /// <param name="bitmap">Jumbo icon</param>
+        /// <returns>Boolean telling you whether a Jumbo icon just contains a 48x48 icon at the top left</returns>
+        private static bool IsScaledDown(System.Drawing.Bitmap bitmap)
+        {
+            System.Drawing.Color empty = System.Drawing.Color.FromArgb(0, 0, 0, 0);
+
+            if (bitmap != null)
+            {
+                if (bitmap.Width <= 48)
+                    return false;
+
+                int checks = 5;
+                double SmallImageSize = 48.0 * Shell32.GetDPI(App.MainWindow) / 96 + 1;
+                double CheckDistance = (bitmap.Width - SmallImageSize) / (double)(checks + 1);
+
+                for (int x = 0; x < checks + 1; x++)
+                {
+                    for (int y = 0; y < checks + 1; y++)
+                    {
+                        int xpos = (int)(SmallImageSize + (double)x * CheckDistance);
+                        int ypos = (int)(SmallImageSize + (double)y * CheckDistance);
+                        try
+                        {
+                            if (bitmap.GetPixel(xpos, ypos) != empty)
+                            {
+                                //not an empty pixel
+                                return false;
+                            }
+                        }
+                        catch { }
+                    }
+                }
+            }
+
+            return true;
+        }
+
+        // THANK GOD FOR STACKOVERFLOW: https://stackoverflow.com/questions/76640972/convert-system-drawing-icon-to-microsoft-ui-xaml-imagesource
         /// <summary>
         /// Converts System.Drawing.Bitmap to SoftwareBitmapSource
         /// </summary>
         /// <param name="bmp">Bitmap to convert</param>
-        /// <returns>SoftwareBitmapSource for Image Control</returns>
-        private static async Task<SoftwareBitmapSource> GetWinUI3BitmapSourceFromGdiBitmap(System.Drawing.Bitmap bmp)
+        /// <returns>BitmapImage for Image Control</returns>
+        private static async Task<BitmapImage> GetWinUI3BitmapSourceFromGdiBitmap(System.Drawing.Bitmap bmp)
         {
             if (bmp == null)
                 return null;
@@ -51,18 +118,22 @@ namespace LauncherXWinUI.Classes
             Marshal.Copy(data.Scan0, bytes, 0, bytes.Length);
             bmp.UnlockBits(data);
 
-            // get WinRT SoftwareBitmap
-            var softwareBitmap = new Windows.Graphics.Imaging.SoftwareBitmap(
-                Windows.Graphics.Imaging.BitmapPixelFormat.Bgra8,
-                bmp.Width,
-                bmp.Height,
-                Windows.Graphics.Imaging.BitmapAlphaMode.Premultiplied);
-            softwareBitmap.CopyFromBuffer(bytes.AsBuffer());
+            // Create WriteableBitmap from byte array
+            WriteableBitmap writableBitmap = new WriteableBitmap(bmp.Width, bmp.Height);
+            await writableBitmap.PixelBuffer.AsStream().WriteAsync(bytes, 0, bytes.Length);
 
-            // build WinUI3 SoftwareBitmapSource
-            var source = new Microsoft.UI.Xaml.Media.Imaging.SoftwareBitmapSource();
-            await source.SetBitmapAsync(softwareBitmap);
-            return source;
+            // Convert WriteableBitmap to BitmapImage
+            InMemoryRandomAccessStream inMemoryRandomAccessStream = new InMemoryRandomAccessStream();
+            BitmapEncoder encoder = await BitmapEncoder.CreateAsync(BitmapEncoder.PngEncoderId, inMemoryRandomAccessStream);
+            Stream pixelStream = writableBitmap.PixelBuffer.AsStream();
+            byte[] pixels = new byte[pixelStream.Length];
+            await pixelStream.ReadAsync(pixels, 0, pixels.Length);
+            encoder.SetPixelData(BitmapPixelFormat.Bgra8, BitmapAlphaMode.Straight, (uint)writableBitmap.PixelWidth, (uint)writableBitmap.PixelHeight, 96.0, 96.0, pixels);
+            await encoder.FlushAsync();
+            BitmapImage bitmapImage = new BitmapImage();
+            bitmapImage.SetSource(inMemoryRandomAccessStream);
+
+            return bitmapImage;
         }
 
         /// <summary>
@@ -89,11 +160,50 @@ namespace LauncherXWinUI.Classes
         }
 
         /// <summary>
-        /// Method to get the icon of a folder
+        /// Method to get the icon of a path, using Win32 methods
+        /// </summary>
+        /// <param name="path">Path to file/folder</param>
+        /// <param name="isDirectory">Whether the path belongs to a folder</param>
+        private async static Task<BitmapImage> GetPathIconWin32(string path, bool isDirectory)
+        {
+            IntPtr hIcon;
+
+            if (isDirectory)
+            {
+                hIcon = Shell32.GetJumboIcon(Shell32.GetFolderIconIndex(path));
+            }
+            else
+            {
+                hIcon = Shell32.GetJumboIcon(Shell32.GetFileIconIndex(path));
+            }
+
+            System.Drawing.Icon ico = (System.Drawing.Icon)System.Drawing.Icon.FromHandle(hIcon).Clone();
+            System.Drawing.Bitmap bitmapIcon = ico.ToBitmap();
+            ico.Dispose();
+
+            // For some files, the 256x256 icon may not be available, and we need to account for that to prevent this bug: https://github.com/Apollo199999999/LauncherX/issues/14
+            if (IsScaledDown(bitmapIcon))
+            {
+                bitmapIcon = ResizeJumbo(bitmapIcon, new System.Drawing.Size(200, 200));
+            }
+
+            // Convert Bitmap to BitmapImage
+            BitmapImage fileIcon = await GetWinUI3BitmapSourceFromGdiBitmap(bitmapIcon);
+
+            // Clean up
+            Shell32.DestroyIcon(hIcon);
+            bitmapIcon.Dispose();
+
+            return fileIcon;
+        }
+
+
+        /// <summary>
+        /// Method to get the icon of a folder, using WinRT/WASDK APIs
         /// </summary>
         /// <param name="storageFolder">StorageFolder object storing the folder</param>
         /// <returns></returns>
-        public async static Task<BitmapImage> GetFolderIcon(StorageFolder storageFolder)
+        private async static Task<BitmapImage> GetFolderIconWinRT(StorageFolder storageFolder)
         {
             // Get the thumbnail of the folder
             StorageItemThumbnail thumbnail = await storageFolder.GetThumbnailAsync(ThumbnailMode.SingleItem, 256);
@@ -103,6 +213,22 @@ namespace LauncherXWinUI.Classes
             return bitmapImage;
         }
 
+        /// <summary>
+        /// One unified method that works with all folders, hidden or not, to get the icon of a folder
+        /// </summary>
+        /// <returns>BitmapImage that can be used directly with an image control</returns>
+        public async static Task<BitmapImage> GetFolderIcon(string folderPath)
+        {
+            try
+            {
+                StorageFolder folder = await StorageFolder.GetFolderFromPathAsync(folderPath);
+                return await GetFolderIconWinRT(folder);
+            }
+            catch
+            {
+                return await GetPathIconWin32(folderPath, true);
+            }
+        }
 
         /// <summary>
         /// Method to get the icon of a file, using WinRT/WASDK APIs
@@ -119,27 +245,12 @@ namespace LauncherXWinUI.Classes
             return bitmapImage;
         }
 
-        /// <summary>
-        /// Method to get the icon of a file, using Win32 methods
-        /// </summary>
-        /// <param name="filePath">Path to file</param>
-        private async static Task<SoftwareBitmapSource> GetFileIconWin32(string filePath)
-        {
-            IntPtr hIcon = Shell32.GetJumboIcon(Shell32.GetIconIndex(filePath));
-            System.Drawing.Icon ico = (System.Drawing.Icon)System.Drawing.Icon.FromHandle(hIcon).Clone();
-            SoftwareBitmapSource fileIcon = await GetWinUI3BitmapSourceFromIcon(ico);
-
-            // Clean up
-            Shell32.DestroyIcon(hIcon);
-
-            return fileIcon;
-        }
 
         /// <summary>
         /// One unified method that works with all file types to get the icon of a file
         /// </summary>
-        /// <returns>ImageSource that can be used directly with an image control</returns>
-        public async static Task<ImageSource> GetFileIcon(string filePath)
+        /// <returns>BitmapImage that can be used directly with an image control</returns>
+        public async static Task<BitmapImage> GetFileIcon(string filePath)
         {
             // Get the extension of the file
             string ext = Path.GetExtension(filePath);
@@ -147,23 +258,30 @@ namespace LauncherXWinUI.Classes
             // StorageFile is not compatible with files of extension .lnk, .wsh, or .url, thus if our file has those extensions, we must use Win32 methods to retrieve the file icon
             if (ext == ".lnk" || ext == ".url" || ext == ".wsh")
             {
-                SoftwareBitmapSource fileIcon = await GetFileIconWin32(filePath);
+                BitmapImage fileIcon = await GetPathIconWin32(filePath, false);
                 return fileIcon;
             }
-            else
+            else if (ImageFileExtensions.Contains(ext))
             {
-                // Try to use WinRT methods, which might still fail if the item is hidden, so wrap in try-catch
                 try
                 {
+                    // Use WinRT methods to get the thumbnail of the image
                     StorageFile storageFile = await StorageFile.GetFileFromPathAsync(filePath);
                     BitmapImage fileIcon = await GetFileIconWinRT(storageFile);
                     return fileIcon;
                 }
                 catch
                 {
-                    SoftwareBitmapSource fileIcon = await GetFileIconWin32(filePath);
+                    // Use Win32 methods
+                    BitmapImage fileIcon = await GetPathIconWin32(filePath, false);
                     return fileIcon;
                 }
+            }
+            else
+            {
+                // Use Win32 methods
+                BitmapImage fileIcon = await GetPathIconWin32(filePath, false);
+                return fileIcon;
             }
         }
     }

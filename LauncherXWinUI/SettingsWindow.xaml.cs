@@ -40,6 +40,8 @@ namespace LauncherXWinUI
             // Update the textbox and slider to show correct values
             ScaleSlider.Value = UserSettingsClass.GridScale;
             ChangeHeaderTextBox.Text = UserSettingsClass.HeaderText;
+            FullscreenToggleSwitch.IsOn = UserSettingsClass.UseFullscreen;
+            GridAlignComboBox.SelectedItem = UserSettingsClass.GridPosition;
 
             // Create event handlers for the textbox and slider to update settings when their value is changed
             // We only create the event handlers here to prevent them from firing when the window loads
@@ -47,10 +49,14 @@ namespace LauncherXWinUI
             // they will write wrong (blank) values to the UserSettingsClass
             ScaleSlider.ValueChanged += ScaleSlider_ValueChanged;
             ChangeHeaderTextBox.TextChanged += ChangeHeaderTextBox_TextChanged;
+            FullscreenToggleSwitch.Toggled += FullscreenToggleSwitch_Toggled;
+            GridAlignComboBox.SelectionChanged += GridAlignComboBox_SelectionChanged;
 
             // Make sure to unsubscribe from the event handlers after
             ScaleSlider.Unloaded += (s, e) => ScaleSlider.ValueChanged -= ScaleSlider_ValueChanged;
             ChangeHeaderTextBox.Unloaded += (s, e) => ChangeHeaderTextBox.TextChanged -= ChangeHeaderTextBox_TextChanged;
+            FullscreenToggleSwitch.Unloaded += (s, e) => FullscreenToggleSwitch.Toggled -= FullscreenToggleSwitch_Toggled;
+            GridAlignComboBox.Unloaded += (s, e) => GridAlignComboBox.SelectionChanged -= GridAlignComboBox_SelectionChanged;
         }
 
         private void ScaleSlider_ValueChanged(object sender, RangeBaseValueChangedEventArgs e)
@@ -64,6 +70,19 @@ namespace LauncherXWinUI
         {
             // Update UserSettingsClass
             UserSettingsClass.HeaderText = ChangeHeaderTextBox.Text;
+            UserSettingsClass.WriteSettingsFile();
+        }
+
+        private void FullscreenToggleSwitch_Toggled(object sender, RoutedEventArgs e)
+        {
+            // Update UserSettingsClass
+            UserSettingsClass.UseFullscreen = FullscreenToggleSwitch.IsOn;
+            UserSettingsClass.WriteSettingsFile();
+        }
+        private void GridAlignComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            // Update UserSettingsClass
+            UserSettingsClass.GridPosition = GridAlignComboBox.SelectedItem.ToString();
             UserSettingsClass.WriteSettingsFile();
         }
 

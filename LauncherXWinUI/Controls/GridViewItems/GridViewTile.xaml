@@ -35,13 +35,19 @@
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
 
-            <Image
-                x:Name="TileImage"
+            <Grid
                 Grid.Row="0"
                 HorizontalAlignment="Stretch"
                 VerticalAlignment="Center"
-                AllowDrop="True"
-                Stretch="Uniform" />
+                AllowDrop="True">
+                <Image x:Name="TileImage" Stretch="Uniform" />
+
+                <Image
+                    x:Name="LinkedFolderImage"
+                    Source="../../Resources/linkedFolderIcon.png"
+                    Stretch="Uniform"
+                    Visibility="Collapsed" />
+            </Grid>
 
             <TextBlock
                 x:Name="TileText"
@@ -96,6 +102,13 @@
                         Click="MenuRemoveOption_Click"
                         Icon="Delete"
                         Text="Remove from LauncherX" />
+
+                    <MenuFlyoutItem
+                        x:Name="MenuUnlinkOption"
+                        Click="MenuUnlinkOption_Click"
+                        Icon="UnSyncFolder"
+                        Text="Unlink parent folder from LauncherX"
+                        Visibility="Collapsed" />
 
                     <MenuFlyoutItem
                         x:Name="MenuEditOption"

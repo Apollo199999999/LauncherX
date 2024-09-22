@@ -63,20 +63,16 @@ namespace LauncherXWinUI.Controls.Dialogs
             {
                 string folderPath = folderBrowserDialog.SelectedPath;
 
-                // We can use WASDK APIs from here on out
                 SelectedFoldersListView.Items.Remove(PlaceholderListViewItem);
-
-                // Initialize a new StorageFolder object to use WASDK APIs
-                StorageFolder folder = await StorageFolder.GetFolderFromPathAsync(folderPath);
 
                 // Display the folder in the ListView
                 AddFolderDialogListViewItem addFolderDialogListViewItem = new AddFolderDialogListViewItem();
-                addFolderDialogListViewItem.ExecutingPath = folder.Path;
-                addFolderDialogListViewItem.DisplayText = folder.Name;
+                addFolderDialogListViewItem.ExecutingPath = folderPath;
+                addFolderDialogListViewItem.DisplayText = new DirectoryInfo(folderPath).Name;
                 SelectedFoldersListView.Items.Add(addFolderDialogListViewItem);
 
                 // Get the thumbnail of the folder
-                BitmapImage bitmapImage = await IconHelpers.GetFolderIcon(folder);
+                BitmapImage bitmapImage = await IconHelpers.GetFolderIcon(folderPath);
                 addFolderDialogListViewItem.FolderIcon = bitmapImage;
             }
            

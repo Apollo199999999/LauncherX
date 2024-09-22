@@ -12,6 +12,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using Windows.ApplicationModel.DataTransfer;
 using Windows.Storage;
+using CommunityToolkit.WinUI;
+using System.IO;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -23,12 +25,20 @@ namespace LauncherXWinUI
     /// </summary>
     public sealed partial class MainWindow : WinUIEx.WindowEx
     {
+        /// <summary>
+        /// To watch for changes in linked folders
+        /// </summary>
+        public MultiFileSystemWatcher multiFileSystemWatcher = new MultiFileSystemWatcher();
+
         public MainWindow()
         {
             this.InitializeComponent();
 
             // Create a new event handler for when the items in the ItemsGridView have changed (either new items added/removed or items are reset)
             ItemsGridView.Items.VectorChanged += ItemsGridViewItems_VectorChanged;
+
+            // Create a new event handler for when contents of linked folder changes
+            multiFileSystemWatcher.WatchedChanged += MultiFileSystemWatcher_WatchedChanged;
 
             // Workaround for full screen window messing up the taskbar
             // https://github.com/microsoft/microsoft-ui-xaml/issues/8431
@@ -48,10 +58,10 @@ namespace LauncherXWinUI
         /// </summary>
         private void UpdateUIFromSettings()
         {
-            // Set header text
+            // Set header text (Update from HeaderText)
             HeaderTextBlock.Text = UserSettingsClass.HeaderText;
 
-            // Adjust the size of items in ItemsGridView
+            // Adjust the size of items in ItemsGridView (Update from GridScale)
             foreach (var gridViewItem in ItemsGridView.Items)
             {
                 if (gridViewItem is GridViewTile)
@@ -70,6 +80,72 @@ namespace LauncherXWinUI
                     }
                 }
             }
+
+            // Set windowing mode to fullscreen if applicable (Update from UseFullscreen)
+            if (UserSettingsClass.UseFullscreen == true)
+            {
+                // Hide custom titlebar
+                this.ExtendsContentIntoTitleBar = false;
+                AppTitleBar.Visibility = Visibility.Collapsed;
+
+                // Adjust controls
+                CloseButton.Visibility = Visibility.Visible;
+                ControlsGrid.Margin = new Thickness(20, 10, 20, 0);
+
+                // Set fullscreen
+                this.AppWindow.SetPresenter(Microsoft.UI.Windowing.AppWindowPresenterKind.FullScreen);
+            }
+            else
+            {
+                // Set custom titlebar
+                this.ExtendsContentIntoTitleBar = true;
+                AppTitleBar.Visibility = Visibility.Visible;
+                this.SetTitleBar(AppTitleBar);
+
+                // Adjust controls
+                CloseButton.Visibility = Visibility.Collapsed;
+                ControlsGrid.Margin = new Thickness(20, 0, 20, 0);
+
+                // Set normal windowing mode
+                this.AppWindow.SetPresenter(Microsoft.UI.Windowing.AppWindowPresenterKind.Default);
+            }
+
+            // Align the GridView (Update from GridPosition)
+            if (UserSettingsClass.GridPosition == "Left")
+            {
+                AlignGridViewLeft();
+            }
+            else if (UserSettingsClass.GridPosition == "Center")
+            {
+                AlignGridViewCenter();
+            }
+        }
+
+        /// <summary>
+        /// Method that aligns the ItemsGridView to the left
+        /// </summary>
+        private void AlignGridViewLeft()
+        {
+            ItemsGridView.HorizontalAlignment = HorizontalAlignment.Stretch;
+
+            // Fix the width of the ItemsGridView to take up the entire space available
+            ItemsGridView.Width = ControlsGrid.Width;
+
+            // Adjust scrollbar margins as well
+            ScrollViewerExtensions.SetVerticalScrollBarMargin(ItemsGridView, new Thickness(0, 0, 0, 0));
+        }
+
+        private void AlignGridViewCenter()
+        {
+            ItemsGridView.HorizontalAlignment = HorizontalAlignment.Center;
+
+            // Fix the width of the ItemsGridView to perfectly match the row of GridViewTiles/GridViewTileGroups
+            // Since the ItemsGridView has HorizontalAlignment = Center, this will thus center the ItemsGridView
+            // +4 is because by default, a GridViewItem has a right margin of 4
+            ItemsGridView.Width = Math.Floor(ControlsGrid.Width / (105 * Math.Sqrt(UserSettingsClass.GridScale) + 4)) * ((105 * Math.Sqrt(UserSettingsClass.GridScale) + 4));
+
+            // Adjust scrollbar margins as well
+            ScrollViewerExtensions.SetVerticalScrollBarMargin(ItemsGridView, new Thickness(0, 0, -20, 0));
         }
 
         /// <summary>
@@ -97,7 +173,8 @@ namespace LauncherXWinUI
         /// <param name="executingArguments">ExecutingArguments in GridViewTile</param>
         /// <param name="displayText">DisplayText in GridViewTile</param>
         /// <param name="imageSource">ImageSource in GridViewTile</param>
-        private void AddGridViewTile(string executingPath, string executingArguments, string displayText, ImageSource imageSource)
+        /// <returns>The GridViewTile created</returns>
+        private GridViewTile AddGridViewTile(string executingPath, string executingArguments, string displayText, BitmapImage imageSource)
         {
             // Create new GridViewTile for each item
             GridViewTile gridViewTile = new GridViewTile();
@@ -110,15 +187,72 @@ namespace LauncherXWinUI
             gridViewTile.DragEnter += GridViewTile_DragEnter;
             gridViewTile.DragLeave += GridViewTile_DragLeave;
             ItemsGridView.Items.Add(gridViewTile);
+
+            return gridViewTile;
+        }
+
+        /// <summary>
+        /// Method that converts the items in the ItemsGridView to a List of UserControls (containing both GridViewTile and GridViewTileGroups, in order)
+        /// </summary>
+        /// <returns>List of UserControls in ItemsGridView</returns>
+        private List<UserControl> SerialiseGridViewItemsToList()
+        {
+            List<UserControl> controls = new List<UserControl>(); 
+
+            // Retrieve all the items in LauncherX
+            foreach (UserControl gridViewItem in ItemsGridView.Items)
+            {
+                if (gridViewItem is GridViewTile)
+                {
+                    GridViewTile gridViewTile = gridViewItem as GridViewTile;
+                    controls.Add(gridViewTile);
+                }
+                else if (gridViewItem is GridViewTileGroup)
+                {
+                    GridViewTileGroup gridViewTileGroup = gridViewItem as GridViewTileGroup;
+                    controls.Add(gridViewTileGroup);
+                }
+            }
+
+            return controls;
+        }
+
+        /// <summary>
+        /// Converts a list of UserControls (containing both GridViewTile and GridViewTileGroups, in order) to items in the ItemsGridView
+        /// </summary>
+        /// <param name="controls"></param>
+        private void DeserialiseListToGridViewItems(List<UserControl> controls)
+        {
+            ItemsGridView.Items.Clear();
+
+            // Add the loaded controls to the ItemsGridView
+            foreach (UserControl control in controls)
+            {
+                if (control is GridViewTile)
+                {
+                    // Hook up event handlers
+                    GridViewTile gridViewTile = (GridViewTile)control;
+                    gridViewTile.Drop += GridViewTile_Drop;
+                    gridViewTile.DragEnter += GridViewTile_DragEnter;
+                    gridViewTile.DragLeave += GridViewTile_DragLeave;
+                    ItemsGridView.Items.Add(gridViewTile);
+                }
+                else if (control is GridViewTileGroup)
+                {
+                    // Hook up event handlers
+                    GridViewTileGroup gridViewTileGroup = (GridViewTileGroup)control;
+                    gridViewTileGroup.DragEnter += GridViewTileGroup_DragEnter;
+                    gridViewTileGroup.DragLeave += GridViewTileGroup_DragLeave;
+                    gridViewTileGroup.Drop += GridViewTileGroup_Drop;
+                    ItemsGridView.Items.Add(gridViewTileGroup);
+
+                }
+            }
         }
 
         // Event Handlers
         private async void Container_Loaded(object sender, RoutedEventArgs e)
         {
-            // Set placeholder titlebar for now, before WASDK 1.6
-            this.ExtendsContentIntoTitleBar = true;
-            this.SetTitleBar(AppTitleBar);
-
             // Set Window icon
             UIFunctionsClass.SetWindowLauncherXIcon(this);
 
@@ -138,6 +272,15 @@ namespace LauncherXWinUI
                 UserSettingsClass.WriteSettingsFile();
                 UserSettingsClass.ClearOldTempDirectories();
 
+                // Retrieve user settings from file
+                UserSettingsClass.TryReadSettingsFile();
+
+                // Once we have initialised the UserSettingsClass with the correct values, update the UI
+                UpdateUIFromSettings();
+
+                // Monitor when the window is resized so that we can adjust the position of the GridView as necesssary
+                this.SizeChanged += WindowEx_SizeChanged;
+
                 // Upgrade items as well
                 List<Dictionary<string, object>> oldLauncherXItems = await UserSettingsClass.UpgradeOldLauncherXItems();
 
@@ -146,7 +289,7 @@ namespace LauncherXWinUI
                     string executingPath = gridViewTileProps["ExecutingPath"] as string;
                     string executingArguments = gridViewTileProps["ExecutingArguments"] as string;
                     string displayText = gridViewTileProps["DisplayText"] as string;
-                    ImageSource imageSource = gridViewTileProps["ImageSource"] as ImageSource;
+                    BitmapImage imageSource = gridViewTileProps["ImageSource"] as BitmapImage;
                     AddGridViewTile(executingPath, executingArguments, displayText, imageSource);
                 }
 
@@ -155,34 +298,29 @@ namespace LauncherXWinUI
             }
             else
             {
+                // Retrieve user settings from file
+                UserSettingsClass.TryReadSettingsFile();
+
+                // Once we have initialised the UserSettingsClass with the correct values, update the UI
+                UpdateUIFromSettings();
+
+                // Monitor when the window is resized so that we can adjust the position of the GridView as necesssary
+                this.SizeChanged += WindowEx_SizeChanged;
+
                 // Load LauncherX items as normal
                 List<UserControl> controls = await UserSettingsClass.LoadLauncherXItems();
 
-                // Add the loaded controls to the ItemsGridView
-                foreach (UserControl control in controls)
-                {
-                    if (control is GridViewTile)
-                    {
-                        // Hook up event handlers
-                        GridViewTile gridViewTile = (GridViewTile)control;
-                        gridViewTile.Drop += GridViewTile_Drop;
-                        gridViewTile.DragEnter += GridViewTile_DragEnter;
-                        gridViewTile.DragLeave += GridViewTile_DragLeave;
-                        ItemsGridView.Items.Add(gridViewTile);
-                    }
-                    else if (control is GridViewTileGroup)
-                    {
-                        // Hook up event handlers
-                        GridViewTileGroup gridViewTileGroup = (GridViewTileGroup)control;
-                        gridViewTileGroup.DragEnter += GridViewTileGroup_DragEnter;
-                        gridViewTileGroup.DragLeave += GridViewTileGroup_DragLeave;
-                        gridViewTileGroup.Drop += GridViewTileGroup_Drop;
-                        ItemsGridView.Items.Add(gridViewTileGroup);
-
-                    }
-                }
+                DeserialiseListToGridViewItems(controls);
             }
 
+            // Monitor the linked folders to check for changes
+            List<GridViewTile> LinkedFolderGridViewTiles = UserSettingsClass.FindAllLinkedFolderGridViewTiles(SerialiseGridViewItemsToList());
+            List<string> LinkedFolderPaths = UserSettingsClass.FindLinkedFolderPaths(LinkedFolderGridViewTiles);
+            foreach (string folder in LinkedFolderPaths)
+            {
+                multiFileSystemWatcher.WatchedPaths.Add(folder);
+            }
+           
             // Check if there were errors adding files
             if (UserSettingsClass.ErrorAddingItems() == true)
             {
@@ -196,12 +334,6 @@ namespace LauncherXWinUI
                 UIFunctionsClass.CreateModalWindow(addItemsErrorWindow, this);
             }
 
-            // Retrieve user settings from file
-            UserSettingsClass.TryReadSettingsFile();
-
-            // Once we have initialised the UserSettingsClass with the correct values, update the UI
-            UpdateUIFromSettings();
-
             // Hide LoadingDialog once done
             await Task.Delay(20);
             LoadingDialog.Visibility = Visibility.Collapsed;
@@ -213,6 +345,16 @@ namespace LauncherXWinUI
                 UpdateInfoBar.IsOpen = true;
             }
 
+        }
+
+        private async void MultiFileSystemWatcher_WatchedChanged(object sender, EventArgs e)
+        {
+            // Update the ItemsGridView
+            await DispatcherQueue.EnqueueAsync(async () => {
+                List<UserControl> gridViewItems = SerialiseGridViewItemsToList();
+                await UserSettingsClass.UpdateItemsFromLinkedFolders(gridViewItems);
+                DeserialiseListToGridViewItems(gridViewItems);
+            });
         }
 
         private void GetUpdateBtn_Click(object sender, RoutedEventArgs e)
@@ -275,26 +417,52 @@ namespace LauncherXWinUI
 
             ContentDialogResult result = await addFolderDialog.ShowAsync();
 
-            if (result == ContentDialogResult.Primary)
+            if (result != ContentDialogResult.Primary)
             {
-                // Show LoadingDialog while loading items and settings
-                LoadingDialog.Visibility = Visibility.Visible;
-                await Task.Delay(10);
+                return;    
+            }
 
-                // Add the folders from the addFolderDialog
-                foreach (AddFolderDialogListViewItem folderItem in addFolderDialog.AddedFolders)
+            // Show LoadingDialog while loading items and settings
+            LoadingDialog.Visibility = Visibility.Visible;
+            await Task.Delay(10);
+
+            // Add the folders from the addFolderDialog
+            foreach (AddFolderDialogListViewItem folderItem in addFolderDialog.AddedFolders)
+            {
+                // Create new GridViewTile for each item
+                // Depending if FolderType is Shortcut or Linked, we need to add it differently
+                if (folderItem.FolderType == "Shortcut")
                 {
-                    // Create new GridViewTile for each item
                     AddGridViewTile(folderItem.ExecutingPath, "", folderItem.DisplayText, folderItem.FolderIcon);
                 }
+                else if (folderItem.FolderType == "Linked")
+                {
+                    multiFileSystemWatcher.WatchedPaths.Add(folderItem.ExecutingPath);
 
-                // Save items
-                UserSettingsClass.SaveLauncherXItems(ItemsGridView.Items);
+                    // Get all the paths in the folder
+                    List<string> files = Directory.GetFiles(folderItem.ExecutingPath).Where(x => (new FileInfo(x).Attributes & System.IO.FileAttributes.System) == 0).ToList();
+                    foreach (string filePath in files)
+                    {
+                        GridViewTile gridViewTile = AddGridViewTile(filePath, "", Path.GetFileName(filePath), await IconHelpers.GetFileIcon(filePath));
+                        gridViewTile.IsLinkedFolder = true;
+                    }
 
-                // Hide LoadingDialog
-                await Task.Delay(20);
-                LoadingDialog.Visibility = Visibility.Collapsed;
+                    List<string> folders = Directory.GetDirectories(folderItem.ExecutingPath).ToList();
+                    foreach (string folderPath in folders)
+                    {
+                        GridViewTile gridViewTile = AddGridViewTile(folderPath, "", new DirectoryInfo(folderPath).Name, await IconHelpers.GetFolderIcon(folderPath));
+                        gridViewTile.IsLinkedFolder = true;
+                    }
+                }
+
             }
+
+            // Save items
+            UserSettingsClass.SaveLauncherXItems(ItemsGridView.Items);
+
+            // Hide LoadingDialog
+            await Task.Delay(20);
+            LoadingDialog.Visibility = Visibility.Collapsed;
         }
 
         private async void AddWebsiteBtn_Click(object sender, RoutedEventArgs e)
@@ -647,7 +815,7 @@ namespace LauncherXWinUI
                 {
                     // This is a folder
                     // Get folder icon
-                    BitmapImage bitmapImage = await IconHelpers.GetFolderIcon(storageItem);
+                    BitmapImage bitmapImage = await IconHelpers.GetFolderIcon(storageItem.Path);
 
                     // Add folder to ItemsGridView
                     AddGridViewTile(storageItem.Path, "", storageItem.Name, bitmapImage);
@@ -669,9 +837,30 @@ namespace LauncherXWinUI
             LoadingDialog.Visibility = Visibility.Collapsed;
         }
 
-        // The last event handler - stop timer and save items when the window is closed
+        // For fullscreen mode - Exit LauncherX
+        private void CloseButton_Click(object sender, RoutedEventArgs e)
+        {
+            Application.Current.Exit();
+        }
+
+        // When window resized
+        private void WindowEx_SizeChanged(object sender, WindowSizeChangedEventArgs args)
+        {
+            // Align the GridView (Update from GridPosition)
+            if (UserSettingsClass.GridPosition == "Left")
+            {
+                AlignGridViewLeft();
+            }
+            else if (UserSettingsClass.GridPosition == "Center")
+            {
+                AlignGridViewCenter();
+            }
+        }
+
+        // The last event handler - save items when the window is closed
         private void WindowEx_Closed(object sender, WindowEventArgs args)
         {
+            multiFileSystemWatcher.Dispose();
             UserSettingsClass.SaveLauncherXItems(ItemsGridView.Items);
         }
     }

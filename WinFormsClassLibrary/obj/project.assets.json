@@ -1,11 +1,11 @@
 {
   "version": 3,
   "targets": {
-    "net8.0-windows10.0.19041": {}
+    "net8.0-windows10.0.22621": {}
   },
   "libraries": {},
   "projectFileDependencyGroups": {
-    "net8.0-windows10.0.19041": []
+    "net8.0-windows10.0.22621": []
   },
   "packageFolders": {
     "C:\\Users\\fligh\\.nuget\\packages\\": {},
@@ -29,7 +29,7 @@
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
-        "net8.0-windows10.0.19041.0"
+        "net8.0-windows10.0.22621.0"
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
@@ -37,8 +37,8 @@
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
-        "net8.0-windows10.0.19041": {
-          "targetAlias": "net8.0-windows10.0.19041.0",
+        "net8.0-windows10.0.22621": {
+          "targetAlias": "net8.0-windows10.0.22621.0",
           "projectReferences": {}
         }
       },
@@ -54,8 +54,8 @@
       }
     },
     "frameworks": {
-      "net8.0-windows10.0.19041": {
-        "targetAlias": "net8.0-windows10.0.19041.0",
+      "net8.0-windows10.0.22621": {
+        "targetAlias": "net8.0-windows10.0.22621.0",
         "imports": [
           "net461",
           "net462",
@@ -70,7 +70,7 @@
         "downloadDependencies": [
           {
             "name": "Microsoft.Windows.SDK.NET.Ref",
-            "version": "[10.0.19041.31, 10.0.19041.31]"
+            "version": "[10.0.22621.34, 10.0.22621.34]"
           }
         ],
         "frameworkReferences": {
@@ -84,7 +84,7 @@
             "privateAssets": "none"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.303/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.400/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

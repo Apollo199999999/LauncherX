@@ -148,7 +148,7 @@
                     NavigateUri="https://github.com/Apollo199999999/LauncherX/blob/master/PRIVACYPOLICY.md" />
 
                 <TextBlock
-                    Margin="0,5,0,0"
+                    Margin="0,5,0,10"
                     HorizontalAlignment="Stretch"
                     FontSize="13"
                     Opacity="0.7"

@@ -11,6 +11,7 @@ using Windows.Storage;
 using System.Threading.Tasks;
 using Microsoft.UI.Xaml.Media.Imaging;
 using Microsoft.UI.Xaml.Controls;
+using System.Runtime.CompilerServices;
 
 namespace LauncherXWinUI.Classes
 {
@@ -19,8 +20,11 @@ namespace LauncherXWinUI.Classes
     /// </summary>
     public class UserSettingsJson
     {
-        public string headerText { get; set; }
-        public double gridScale { get; set; }
+        // Intialise this class with default values, in case some values dont exist in userSettings.json
+        public string headerText { get; set; } = "My files, folders, and websites";
+        public double gridScale { get; set; } = 1.0f;
+        public bool useFullscreen { get; set; } = false;
+        public string gridPosition { get; set; } = "Left";
     }
 
     /// <summary>
@@ -28,10 +32,11 @@ namespace LauncherXWinUI.Classes
     /// </summary>
     public class GridViewTileJson
     {
-        public string executingPath { get; set; }
-        public string executingArguments { get; set; }
-        public string displayText { get; set; }
-        public string customImagePath { get; set; }
+        public string executingPath { get; set; } = "";
+        public string executingArguments { get; set; } = "";
+        public string displayText { get; set; } = "";
+        public string customImagePath { get; set; } = "";
+        public bool isLinkedFolder { get; set; } = false;
     }
 
     /// <summary>
@@ -59,6 +64,7 @@ namespace LauncherXWinUI.Classes
     /// </summary>
     public static class UserSettingsClass
     {
+        // USER SETTINGS VARIABLES
         ///<summary>
         /// Variable which stores what is displayed on the text beside the "add" buttons in MainWindow.xaml
         ///</summary>
@@ -69,6 +75,18 @@ namespace LauncherXWinUI.Classes
         ///</summary>
         public static double GridScale = 1.0f;
 
+        /// <summary>
+        /// Variable which stores whether LauncherX should be in fullscreen
+        /// </summary>
+        public static bool UseFullscreen = false;
+
+        /// <summary>
+        /// Variable which stores which position the app grid is in
+        /// Valid values are "Left" or "Center"
+        /// </summary>
+        public static string GridPosition = "Left";
+
+        // DIRECTORIES
         /// <summary>
         /// Root directory where user data for LauncherX is stored
         /// </summary>
@@ -84,7 +102,8 @@ namespace LauncherXWinUI.Classes
         /// </summary>
         public static List<string> ErrorPaths = new List<string>();
 
-        // Helper methods
+
+        // HELPER METHODS
         /// <summary>
         /// Determines if a given path belongs to that of a file or folder
         /// </summary>
@@ -182,6 +201,8 @@ namespace LauncherXWinUI.Classes
 
         /// <summary>
         /// Method to retrieve user settings from LauncherX versions less than 2.0.1 
+        /// Note that for LauncherX versions less than 2.0.1, they only have 2 upgradable settings: GridScale and HeaderText
+        /// The other settings (e.g. fullscreen) were introduced in later versions and do not need to be upgraded
         /// </summary>
         public static void UpgradeUserSettings()
         {
@@ -256,7 +277,9 @@ namespace LauncherXWinUI.Classes
             var userSettingsJson = new UserSettingsJson
             {
                 headerText = HeaderText,
-                gridScale = GridScale
+                gridScale = GridScale,
+                useFullscreen = UseFullscreen,
+                gridPosition = GridPosition
             };
 
             string settingsFilePath = Path.Combine(SettingsDir, "userSettings.json");
@@ -279,6 +302,8 @@ namespace LauncherXWinUI.Classes
                 // Assign variables
                 HeaderText = userSettingsJson.headerText;
                 GridScale = userSettingsJson.gridScale;
+                UseFullscreen = userSettingsJson.useFullscreen;
+                GridPosition = userSettingsJson.gridPosition;
             }
         }
 
@@ -304,6 +329,11 @@ namespace LauncherXWinUI.Classes
             // Loop through the files, and create GridViewTiles as we go
             foreach (string file in list)
             {
+                if (Path.GetExtension(file) != ".txt")
+                {
+                    continue;
+                }
+
                 // Open the file to read from.
                 StreamReader sr = File.OpenText(file);
                 string executingPath = "";
@@ -327,9 +357,8 @@ namespace LauncherXWinUI.Classes
                 else if (IsPathDirectory(executingPath) && Path.Exists(executingPath))
                 {
                     // Folder
-                    StorageFolder storageFolder = await StorageFolder.GetFolderFromPathAsync(executingPath);
-                    BitmapImage folderIcon = await IconHelpers.GetFolderIcon(storageFolder);
-                    tileProps.Add("DisplayText", storageFolder.Name);
+                    BitmapImage folderIcon = await IconHelpers.GetFolderIcon(executingPath);
+                    tileProps.Add("DisplayText", new DirectoryInfo(executingPath).Name);
                     tileProps.Add("ImageSource", folderIcon);
                     gridViewTilesProps.Add(tileProps);
                 }
@@ -375,7 +404,8 @@ namespace LauncherXWinUI.Classes
                 executingPath = gridViewTile.ExecutingPath,
                 executingArguments = gridViewTile.ExecutingArguments,
                 displayText = gridViewTile.DisplayText,
-                customImagePath = gridViewTile.CustomImagePath
+                customImagePath = gridViewTile.CustomImagePath,
+                isLinkedFolder = gridViewTile.IsLinkedFolder
             };
 
             string itemFilePath = Path.Combine(DataDir, jsonFilePath);
@@ -415,7 +445,7 @@ namespace LauncherXWinUI.Classes
         /// Method to write the items in LauncherX to disk
         /// </summary>
         /// <param name="gridViewItems">GridView.Items property</param>
-        public static void SaveLauncherXItems(ItemCollection gridViewItems) 
+        public static void SaveLauncherXItems(ItemCollection gridViewItems)
         {
             // Clear the DataDir
             System.IO.DirectoryInfo di = new DirectoryInfo(DataDir);
@@ -447,7 +477,7 @@ namespace LauncherXWinUI.Classes
                     GridViewTileGroup gridViewTileGroup = userControl as GridViewTileGroup;
                     string tileGroupDir = Path.Combine(DataDir, globalFilename.ToString());
                     Directory.CreateDirectory(tileGroupDir);
-                    
+
                     SerialiseGridViewTileGroupToJson(gridViewTileGroup, tileGroupDir);
                 }
 
@@ -473,6 +503,7 @@ namespace LauncherXWinUI.Classes
             gridViewTile.ExecutingPath = gridViewTileJson.executingPath;
             gridViewTile.ExecutingArguments = gridViewTileJson.executingArguments;
             gridViewTile.DisplayText = gridViewTileJson.displayText;
+            gridViewTile.IsLinkedFolder = gridViewTileJson.isLinkedFolder;
             gridViewTile.Size = GridScale;
 
             // Depending on if a custom icon is used, we need to retrieve the icon in different ways
@@ -493,8 +524,7 @@ namespace LauncherXWinUI.Classes
             else if (IsPathDirectory(gridViewTileJson.executingPath) && Path.Exists(gridViewTileJson.executingPath))
             {
                 // Folder
-                StorageFolder storageFolder = await StorageFolder.GetFolderFromPathAsync(gridViewTileJson.executingPath);
-                BitmapImage folderIcon = await IconHelpers.GetFolderIcon(storageFolder);
+                BitmapImage folderIcon = await IconHelpers.GetFolderIcon(gridViewTileJson.executingPath);
                 gridViewTile.ImageSource = folderIcon;
             }
             else if (!IsPathDirectory(gridViewTileJson.executingPath) && Path.Exists(gridViewTileJson.executingPath))
@@ -503,9 +533,9 @@ namespace LauncherXWinUI.Classes
                 gridViewTile.ImageSource = await IconHelpers.GetFileIcon(gridViewTileJson.executingPath);
 
             }
-            else if (!Path.Exists(gridViewTileJson.executingPath))
+            else if (!Path.Exists(gridViewTileJson.executingPath) && gridViewTileJson.isLinkedFolder == false)
             {
-                // Not a website, and path doesn't exist
+                // Not a website, not part of a linked folder, and path doesn't exist
                 ErrorPaths.Add(gridViewTileJson.executingPath);
                 return null;
             }
@@ -553,6 +583,183 @@ namespace LauncherXWinUI.Classes
         }
 
         /// <summary>
+        /// Method that finds all the GridViewTiles in LauncherX that belong to a linked folder
+        /// </summary>
+        /// <param name="launcherXItems">List of UserControls in LauncherX</param>
+        /// <returns>List of GridViewTiles that belong to a linked folder</returns>
+        public static List<GridViewTile> FindAllLinkedFolderGridViewTiles(List<UserControl> launcherXItems)
+        {
+            List<GridViewTile> LinkedFolderItems = new List<GridViewTile>();
+            foreach (UserControl gridViewItem in launcherXItems)
+            {
+                if (gridViewItem is GridViewTile)
+                {
+                    GridViewTile gridViewTile = gridViewItem as GridViewTile;
+
+                    if (gridViewTile.IsLinkedFolder == true)
+                    {
+                        LinkedFolderItems.Add(gridViewTile);
+                    }
+                }
+                else if (gridViewItem is GridViewTileGroup)
+                {
+                    GridViewTileGroup gridViewTileGroup = gridViewItem as GridViewTileGroup;
+                    foreach (GridViewTile tile in gridViewTileGroup.Items)
+                    {
+                        if (tile.IsLinkedFolder == true)
+                        {
+                            LinkedFolderItems.Add(tile);
+                        }
+                    }
+                }
+            }
+
+            return LinkedFolderItems;
+        }
+
+        /// <summary>
+        /// Method that retrieves a list of linked folders to LauncherX, based on the list of items that are marked as belonging to a linked folder in LauncherX
+        /// </summary>
+        /// <param name="linkedFolderItems">List of items that are marked as belonging to a linked folder in LauncherX</param>
+        /// <returns>List containing all the paths of linked folders</returns>
+        public static List<string> FindLinkedFolderPaths(List<GridViewTile> linkedFolderItems)
+        {
+            List<string> LinkedFolderPaths = new List<string>();
+            foreach (GridViewTile viewTile in linkedFolderItems)
+            {
+                string parentDir = Path.GetDirectoryName(viewTile.ExecutingPath);
+
+                if (!Directory.Exists(parentDir))
+                {
+                    if (!ErrorPaths.Contains(parentDir + " (linked folder)"))
+                    {
+                        ErrorPaths.Add(parentDir + " (linked folder)");
+                    }
+                    continue;
+                }
+
+                if (LinkedFolderPaths.Contains(parentDir) == true)
+                {
+                    continue;
+                }
+
+                LinkedFolderPaths.Add(parentDir);
+            }
+
+            return LinkedFolderPaths;
+        }
+
+        /// <summary>
+        /// Method that removes a specific GridViewTile from a list of UserControls that store a record of the items in LauncherX
+        /// </summary>
+        /// <param name="launcherXItems">List of UserControls in LauncherX</param>
+        /// <param name="itemToRemove">GridViewTile to remove</param>
+        private static void RemoveGridViewTileFromLauncherXItemsList(List<UserControl> launcherXItems, GridViewTile itemToRemove)
+        {
+            // Iterate backwards because we are removing items
+            for (int i = launcherXItems.Count - 1; i >= 0; i--)
+            {
+                if (launcherXItems[i] is GridViewTile)
+                {
+                    GridViewTile gridViewTile = launcherXItems[i] as GridViewTile;
+
+                    if (gridViewTile == itemToRemove)
+                    {
+                        launcherXItems.RemoveAt(i);
+                        break;
+                    }
+                }
+                else if (launcherXItems[i] is GridViewTileGroup) 
+                {
+                    GridViewTileGroup gridViewTileGroup = launcherXItems[i] as GridViewTileGroup;
+                    if (gridViewTileGroup.Items.Contains(itemToRemove))
+                    {
+                        gridViewTileGroup.Items.Remove(itemToRemove);
+                        break;
+                    }
+                }
+            }
+        }
+
+        /// <summary>
+        /// Method that updates the items in LauncherX from the linked folders
+        /// </summary>
+        /// <returns>A list of GridViewTiles/GridViewTileGroups, that can be used in MainWindow to load the items in the GridView</returns>
+        public async static Task UpdateItemsFromLinkedFolders(List<UserControl> loadedItems)
+        {
+            // First, we find all the items in LauncherX that belong to linked folders
+            List<GridViewTile> LinkedFolderGridViewTiles = FindAllLinkedFolderGridViewTiles(loadedItems);
+
+            if (LinkedFolderGridViewTiles.Count <= 0)
+            {
+                // No linked folders at all, do not proceed
+                return;
+            }
+
+            // The user updates a linked folder by creating new files or deleting files from the folder
+            // Account for both types of updates
+            // Update type 1: file is deleted from linked folder, remove the corresponding item in LauncherX
+            foreach (GridViewTile linkedTile in LinkedFolderGridViewTiles)
+            {
+                if (!Path.Exists(linkedTile.ExecutingPath))
+                {
+                    RemoveGridViewTileFromLauncherXItemsList(loadedItems, linkedTile);
+                }
+            }
+
+            // Update type 2: New files/folders are added to the linked folder
+            // Retrieve the list of linked folders added to LauncherX
+            List<string> LinkedFolderPaths = FindLinkedFolderPaths(LinkedFolderGridViewTiles);
+            if (LinkedFolderPaths.Count <= 0)
+            {
+                // No linked folders at all, do not proceed
+                return;
+            }
+
+            // Retrieve the list of all the executingPaths of all items marked as belonging to a linked folder in LauncherX
+            List<string> LinkedFolderGridViewTilesExecutingPaths = LinkedFolderGridViewTiles.Select(x => x.ExecutingPath).ToList();
+
+            foreach (string linkedFolder in LinkedFolderPaths)
+            {
+                // Get all files in the linkedFolder
+                // Exclude system files
+                List<string> linkedFolderContents = Directory.GetFiles(linkedFolder).Where(x => (new FileInfo(x).Attributes & System.IO.FileAttributes.System) == 0).ToList();
+                List<string> linkedFolderFolders = Directory.GetDirectories(linkedFolder).ToList();
+                linkedFolderContents.AddRange(linkedFolderFolders);
+
+                foreach (string linkedFolderContent in linkedFolderContents)
+                {
+                    if (LinkedFolderGridViewTilesExecutingPaths.Contains(linkedFolderContent) == true)
+                    {
+                        continue;
+                    }
+
+                    // Create a new GridViewTile
+                    GridViewTile gridViewTile = new GridViewTile();
+                    gridViewTile.ExecutingPath = linkedFolderContent;
+                    gridViewTile.ExecutingArguments = "";
+                    gridViewTile.IsLinkedFolder = true;
+                    gridViewTile.Size = GridScale;
+
+                    if (IsPathDirectory(linkedFolderContent))
+                    {
+                        // Folder
+                        gridViewTile.DisplayText = new DirectoryInfo(linkedFolderContent).Name;
+                        gridViewTile.ImageSource = await IconHelpers.GetFolderIcon(linkedFolderContent);
+                    }
+                    else
+                    {
+                        // File
+                        gridViewTile.DisplayText = Path.GetFileName(linkedFolderContent);
+                        gridViewTile.ImageSource = await IconHelpers.GetFileIcon(linkedFolderContent);
+                    }
+
+                    loadedItems.Add(gridViewTile);
+                }
+            }
+        }
+
+        /// <summary>
         /// Method that loads GridViewTiles/GridViewTileGroups from Json files
         /// </summary>
         /// <returns>A list of GridViewTiles/GridViewTileGroups, that can be used in MainWindow to load the items in the GridView</returns>
@@ -580,13 +787,17 @@ namespace LauncherXWinUI.Classes
                         loadedItems.Add(gridViewTile);
                     }
                 }
-                else
+                else if (IsPathDirectory(path))
                 {
                     // Create a new GridViewTileGroup
                     GridViewTileGroup gridViewTileGroup = await DeserialiseDirectoryToGridViewTileGroup(path);
                     loadedItems.Add(gridViewTileGroup);
                 }
             }
+
+            // Now, we need to deal with linked folders
+            await UpdateItemsFromLinkedFolders(loadedItems);
+
             return loadedItems;
         }
     }

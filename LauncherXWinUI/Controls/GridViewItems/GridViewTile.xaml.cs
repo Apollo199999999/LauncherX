@@ -6,6 +6,7 @@ using Microsoft.UI.Xaml.Input;
 using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Media.Imaging;
 using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
@@ -86,35 +87,47 @@ namespace LauncherXWinUI.Controls.GridViewItems
                 gridViewTile.TileImage.Margin = new Thickness(newSize * 22.5, newSize * 5, newSize * 22.5, 0);
                 gridViewTile.TileImage.Height = newWidth - newSize * 22.5 - newSize * 22.5;
                 gridViewTile.TileImage.Stretch = Stretch.Uniform;
+                gridViewTile.LinkedFolderImage.Margin = new Thickness(newSize * 10, newSize * 5, newSize * 22.5, 0);
+                gridViewTile.LinkedFolderImage.Height = newWidth - newSize * 22.5 - newSize * 22.5;
+                gridViewTile.LinkedFolderImage.Stretch = Stretch.Uniform;
 
                 // Update the font size of the textblock
                 gridViewTile.TileText.FontSize = newSize * 12;
+
+                // Update the DecodePixelWidth of the Image control, for anti-aliased rendering
+                BitmapImage imgSource = gridViewTile.TileImage.Source as BitmapImage;
+                if (imgSource != null)
+                {
+                    imgSource.DecodePixelWidth = (int)gridViewTile.ControlBorder.Width;
+                    gridViewTile.TileImage.Source = imgSource;
+                }
             }
         }
-
 
         /// <summary>
         /// ImageSource object to be rendered in the control
         /// </summary>
-        public ImageSource ImageSource
+        public BitmapImage ImageSource
         {
-            get => (ImageSource)GetValue(ImageSourceProperty);
+            get => (BitmapImage)GetValue(ImageSourceProperty);
             set => SetValue(ImageSourceProperty, value);
         }
 
         DependencyProperty ImageSourceProperty = DependencyProperty.Register(
             nameof(ImageSource),
-            typeof(ImageSource),
+            typeof(BitmapImage),
             typeof(GridViewTile),
-            new PropertyMetadata(default(ImageSource), new PropertyChangedCallback(OnImageSourceChanged)));
+            new PropertyMetadata(default(BitmapImage), new PropertyChangedCallback(OnImageSourceChanged)));
 
         private static void OnImageSourceChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             GridViewTile gridViewTile = d as GridViewTile;
-            ImageSource newImageSource = e.NewValue as ImageSource;
+            BitmapImage newImageSource = e.NewValue as BitmapImage;
 
             if (newImageSource != null)
             {
+                // Manually set DecodePixelWidth for anti-aliased rendering
+                newImageSource.DecodePixelWidth = (int)gridViewTile.ControlBorder.Width;
                 gridViewTile.TileImage.Source = newImageSource;
             }
         }
@@ -225,6 +238,44 @@ namespace LauncherXWinUI.Controls.GridViewItems
             typeof(GridViewTileGroup),
             typeof(GridViewTile),
             new PropertyMetadata(null));
+
+        /// <summary>
+        /// Whether this item belongs to a "Linked Folder"
+        /// </summary>
+        public bool IsLinkedFolder
+        {
+            get => (bool)GetValue(IsLinkedFolderProperty);
+            set => SetValue(IsLinkedFolderProperty, value);
+        }
+
+        DependencyProperty IsLinkedFolderProperty = DependencyProperty.Register(
+            nameof(IsLinkedFolder),
+            typeof(bool),
+            typeof(GridViewTile),
+            new PropertyMetadata(false, new PropertyChangedCallback(OnIsLinkedFolderChanged)));
+
+        private static void OnIsLinkedFolderChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            GridViewTile gridViewTile = d as GridViewTile;
+            bool? newIsLinkedFolder = e.NewValue as bool?;
+
+            if (newIsLinkedFolder == null)
+            {
+                return;
+            }
+            else if (newIsLinkedFolder == true)
+            {
+                gridViewTile.LinkedFolderImage.Visibility = Visibility.Visible;
+                gridViewTile.MenuUnlinkOption.Visibility = Visibility.Visible;
+                gridViewTile.MenuRemoveOption.Visibility = Visibility.Collapsed;
+            }
+            else if (newIsLinkedFolder == false)
+            {
+                gridViewTile.LinkedFolderImage.Visibility = Visibility.Collapsed;
+                gridViewTile.MenuUnlinkOption.Visibility = Visibility.Collapsed;
+                gridViewTile.MenuRemoveOption.Visibility = Visibility.Visible;
+            }
+        }
 
         // Methods
 
@@ -455,6 +506,34 @@ namespace LauncherXWinUI.Controls.GridViewItems
             mainWindowGridView.Items.Add(this);
 
         }
+        private void MenuUnlinkOption_Click(object sender, RoutedEventArgs e)
+        {
+            // Find all items in LauncherX that are part of linked folders
+            List<UserControl> launcherXItems = new List<UserControl>();
+
+            foreach (UserControl userControl in App.MainWindow.ItemsGridView.Items.Cast<UserControl>())
+            {
+                launcherXItems.Add(userControl);
+            }
+
+            List<GridViewTile> linkedFolderGridViewTiles = UserSettingsClass.FindAllLinkedFolderGridViewTiles(launcherXItems);
+
+            // Get the linked folder associated with this GridViewTile
+            string linkedFolder = Path.GetDirectoryName(ExecutingPath);
+            App.MainWindow.multiFileSystemWatcher.WatchedPaths.Remove(linkedFolder);
+
+            // Unlink all GridViewTiles with this linked folder
+            foreach (GridViewTile linkedTile in linkedFolderGridViewTiles)
+            {
+                if (Path.GetDirectoryName(linkedTile.ExecutingPath) == linkedFolder)
+                {
+                    linkedTile.IsLinkedFolder = false;
+                }
+                
+            }
+
+            this.IsLinkedFolder = false;
+        }
 
         // This section handles events for the EditItemWindow and its associated functions
         private string TempCustomImagePath = "";
@@ -495,7 +574,7 @@ namespace LauncherXWinUI.Controls.GridViewItems
         {
             // Update props of this GridViewTile
             this.DisplayText = editItemWindow.EditDisplayTextTextBox.Text;
-            this.ImageSource = editItemWindow.EditDialogImage.Source;
+            this.ImageSource = editItemWindow.EditDialogImage.Source as BitmapImage;
             this.CustomImagePath = TempCustomImagePath;
 
             // Update launch args only if file
@@ -551,8 +630,7 @@ namespace LauncherXWinUI.Controls.GridViewItems
             else if (IsPathDirectory(this.ExecutingPath))
             {
                 // Folder
-                StorageFolder storageFolder = await StorageFolder.GetFolderFromPathAsync(this.ExecutingPath);
-                BitmapImage folderIcon = await IconHelpers.GetFolderIcon(storageFolder);
+                BitmapImage folderIcon = await IconHelpers.GetFolderIcon(this.ExecutingPath);
                 editItemWindow.EditDialogImage.Source = folderIcon;
             }
             else if (IsPathDirectory(this.ExecutingPath) == false)

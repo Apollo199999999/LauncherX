@@ -79,17 +79,33 @@ namespace LauncherXWinUI.Controls.Dialogs
         /// <summary>
         /// Path to the icon of the folder
         /// </summary>
-        public ImageSource FolderIcon
+        public BitmapImage FolderIcon
         {
-            get => (ImageSource)GetValue(FileIconProperty);
-            set => SetValue(FileIconProperty, value);
+            get => (BitmapImage)GetValue(FolderIconProperty);
+            set => SetValue(FolderIconProperty, value);
         }
 
-        DependencyProperty FileIconProperty = DependencyProperty.Register(
+        DependencyProperty FolderIconProperty = DependencyProperty.Register(
             nameof(FolderIcon),
-            typeof(ImageSource),
+            typeof(BitmapImage),
             typeof(AddFolderDialogListViewItem),
             new PropertyMetadata(default(ImageSource)));
+
+        /// <summary>
+        /// Whether the folder should be added as shortcut or "linked"
+        /// </summary>
+        public string FolderType
+        {
+            get => (string)GetValue(FolderTypeProperty);
+            set => SetValue(FolderTypeProperty, value);
+        }
+
+        DependencyProperty FolderTypeProperty = DependencyProperty.Register(
+            nameof(FolderType),
+            typeof(string),
+            typeof(AddFolderDialogListViewItem),
+            new PropertyMetadata(default(string)));
+
 
         // Event Handlers
         private void RemoveBtn_Click(object sender, RoutedEventArgs e)
@@ -100,6 +116,12 @@ namespace LauncherXWinUI.Controls.Dialogs
             {
                 parentListView.Items.Remove(this);
             }
+        }
+
+        private void FolderTypeComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            // Update FolderType property
+            FolderType = FolderTypeComboBox.SelectedItem.ToString();
         }
     }
 }
