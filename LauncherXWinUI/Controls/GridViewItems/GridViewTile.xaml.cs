@@ -540,7 +540,6 @@ namespace LauncherXWinUI.Controls.GridViewItems
         {
             // Show the EditItemWindow
             editItemWindow = new EditItemWindow();
-
             editItemWindow.EditDialogImage.Source = this.ImageSource;
             editItemWindow.EditDisplayTextTextBox.Text = this.DisplayText;
             TempCustomImagePath = this.CustomImagePath;

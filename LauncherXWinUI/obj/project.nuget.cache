@@ -1,21 +1,22 @@
 {
   "version": 2,
-  "dgSpecHash": "mgJ7gjscLX8=",
+  "dgSpecHash": "3cf65CZRZsk=",
   "success": true,
   "projectFilePath": "C:\\Users\\fligh\\source\\repos\\LauncherX\\LauncherXWinUI\\LauncherXWinUI.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\fligh\\.nuget\\packages\\communitytoolkit.common\\8.2.1\\communitytoolkit.common.8.2.1.nupkg.sha512",
-    "C:\\Users\\fligh\\.nuget\\packages\\communitytoolkit.winui.controls.settingscontrols\\8.1.240821\\communitytoolkit.winui.controls.settingscontrols.8.1.240821.nupkg.sha512",
-    "C:\\Users\\fligh\\.nuget\\packages\\communitytoolkit.winui.extensions\\8.1.240821\\communitytoolkit.winui.extensions.8.1.240821.nupkg.sha512",
-    "C:\\Users\\fligh\\.nuget\\packages\\communitytoolkit.winui.helpers\\8.1.240821\\communitytoolkit.winui.helpers.8.1.240821.nupkg.sha512",
-    "C:\\Users\\fligh\\.nuget\\packages\\communitytoolkit.winui.triggers\\8.1.240821\\communitytoolkit.winui.triggers.8.1.240821.nupkg.sha512",
+    "C:\\Users\\fligh\\.nuget\\packages\\communitytoolkit.winui.controls.settingscontrols\\8.1.240916\\communitytoolkit.winui.controls.settingscontrols.8.1.240916.nupkg.sha512",
+    "C:\\Users\\fligh\\.nuget\\packages\\communitytoolkit.winui.extensions\\8.1.240916\\communitytoolkit.winui.extensions.8.1.240916.nupkg.sha512",
+    "C:\\Users\\fligh\\.nuget\\packages\\communitytoolkit.winui.helpers\\8.1.240916\\communitytoolkit.winui.helpers.8.1.240916.nupkg.sha512",
+    "C:\\Users\\fligh\\.nuget\\packages\\communitytoolkit.winui.triggers\\8.1.240916\\communitytoolkit.winui.triggers.8.1.240916.nupkg.sha512",
     "C:\\Users\\fligh\\.nuget\\packages\\microsoft.web.webview2\\1.0.2651.64\\microsoft.web.webview2.1.0.2651.64.nupkg.sha512",
-    "C:\\Users\\fligh\\.nuget\\packages\\microsoft.windows.sdk.buildtools\\10.0.26100.1\\microsoft.windows.sdk.buildtools.10.0.26100.1.nupkg.sha512",
-    "C:\\Users\\fligh\\.nuget\\packages\\microsoft.windowsappsdk\\1.6.240829007\\microsoft.windowsappsdk.1.6.240829007.nupkg.sha512",
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages\\microsoft.windows.sdk.buildtools\\10.0.26100.1742\\microsoft.windows.sdk.buildtools.10.0.26100.1742.nupkg.sha512",
+    "C:\\Users\\fligh\\.nuget\\packages\\microsoft.windowsappsdk\\1.6.241114003\\microsoft.windowsappsdk.1.6.241114003.nupkg.sha512",
     "C:\\Users\\fligh\\.nuget\\packages\\octokit\\13.0.1\\octokit.13.0.1.nupkg.sha512",
-    "C:\\Users\\fligh\\.nuget\\packages\\system.text.encodings.web\\8.0.0\\system.text.encodings.web.8.0.0.nupkg.sha512",
-    "C:\\Users\\fligh\\.nuget\\packages\\system.text.json\\8.0.4\\system.text.json.8.0.4.nupkg.sha512",
-    "C:\\Users\\fligh\\.nuget\\packages\\winuiex\\2.3.4\\winuiex.2.3.4.nupkg.sha512",
+    "C:\\Users\\fligh\\.nuget\\packages\\system.io.pipelines\\9.0.0\\system.io.pipelines.9.0.0.nupkg.sha512",
+    "C:\\Users\\fligh\\.nuget\\packages\\system.text.encodings.web\\9.0.0\\system.text.encodings.web.9.0.0.nupkg.sha512",
+    "C:\\Users\\fligh\\.nuget\\packages\\system.text.json\\9.0.0\\system.text.json.9.0.0.nupkg.sha512",
+    "C:\\Users\\fligh\\.nuget\\packages\\winuiex\\2.5.0\\winuiex.2.5.0.nupkg.sha512",
     "C:\\Users\\fligh\\.nuget\\packages\\microsoft.netcore.app.runtime.win-x86\\8.0.11\\microsoft.netcore.app.runtime.win-x86.8.0.11.nupkg.sha512",
     "C:\\Users\\fligh\\.nuget\\packages\\microsoft.windows.sdk.net.ref\\10.0.22621.38\\microsoft.windows.sdk.net.ref.10.0.22621.38.nupkg.sha512",
     "C:\\Users\\fligh\\.nuget\\packages\\microsoft.aspnetcore.app.runtime.win-x86\\8.0.11\\microsoft.aspnetcore.app.runtime.win-x86.8.0.11.nupkg.sha512",
@@ -27,19 +28,5 @@
     "C:\\Users\\fligh\\.nuget\\packages\\microsoft.netcore.app.runtime.win-x64\\8.0.11\\microsoft.netcore.app.runtime.win-x64.8.0.11.nupkg.sha512",
     "C:\\Users\\fligh\\.nuget\\packages\\microsoft.windowsdesktop.app.runtime.win-x86\\8.0.11\\microsoft.windowsdesktop.app.runtime.win-x86.8.0.11.nupkg.sha512"
   ],
-  "logs": [
-    {
-      "code": "NU1903",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Package 'System.Text.Json' 8.0.4 has a known high severity vulnerability, https://github.com/advisories/GHSA-8g4q-xg66-9fp4",
-      "libraryId": "System.Text.Json",
-      "targetGraphs": [
-        "net8.0-windows10.0.22621",
-        "net8.0-windows10.0.22621/win-arm64",
-        "net8.0-windows10.0.22621/win-x64",
-        "net8.0-windows10.0.22621/win-x86"
-      ]
-    }
-  ]
+  "logs": []
 }

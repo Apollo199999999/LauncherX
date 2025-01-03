@@ -7,16 +7,16 @@
   "targets": {
     ".NETCoreApp,Version=v8.0": {},
     ".NETCoreApp,Version=v8.0/win-x64": {
-      "LauncherX/2.1.1.0": {
+      "LauncherX/2.1.2.0": {
         "dependencies": {
-          "CommunityToolkit.WinUI.Controls.SettingsControls": "8.1.240821",
-          "CommunityToolkit.WinUI.Extensions": "8.1.240821",
-          "Microsoft.Windows.SDK.BuildTools": "10.0.26100.1",
-          "Microsoft.WindowsAppSDK": "1.6.240829007",
+          "CommunityToolkit.WinUI.Controls.SettingsControls": "8.1.240916",
+          "CommunityToolkit.WinUI.Extensions": "8.1.240916",
+          "Microsoft.Windows.SDK.BuildTools": "10.0.26100.1742",
+          "Microsoft.WindowsAppSDK": "1.6.241114003",
           "Octokit": "13.0.1",
-          "System.Text.Json": "8.0.4",
+          "System.Text.Json": "9.0.0",
           "WinFormsClassLibrary": "1.0.0",
-          "WinUIEx": "2.3.4",
+          "WinUIEx": "2.5.0",
           "Microsoft.Web.WebView2.Core.Projection": "1.0.2651.64",
           "runtimepack.Microsoft.NETCore.App.Runtime.win-x64": "8.0.11",
           "runtimepack.Microsoft.WindowsDesktop.App.Runtime.win-x64": "8.0.11",
@@ -564,14 +564,6 @@
             "assemblyVersion": "8.0.0.0",
             "fileVersion": "8.0.1124.51707"
           },
-          "System.Text.Encodings.Web.dll": {
-            "assemblyVersion": "8.0.0.0",
-            "fileVersion": "8.0.1124.51707"
-          },
-          "System.Text.Json.dll": {
-            "assemblyVersion": "8.0.0.0",
-            "fileVersion": "8.0.1124.51707"
-          },
           "System.Text.RegularExpressions.dll": {
             "assemblyVersion": "8.0.0.0",
             "fileVersion": "8.0.1124.51707"
@@ -991,11 +983,11 @@
           }
         }
       },
-      "CommunityToolkit.WinUI.Controls.SettingsControls/8.1.240821": {
+      "CommunityToolkit.WinUI.Controls.SettingsControls/8.1.240916": {
         "dependencies": {
-          "CommunityToolkit.WinUI.Triggers": "8.1.240821",
-          "Microsoft.Windows.SDK.BuildTools": "10.0.26100.1",
-          "Microsoft.WindowsAppSDK": "1.6.240829007"
+          "CommunityToolkit.WinUI.Triggers": "8.1.240916",
+          "Microsoft.Windows.SDK.BuildTools": "10.0.26100.1742",
+          "Microsoft.WindowsAppSDK": "1.6.241114003"
         },
         "runtime": {
           "lib/net8.0-windows10.0.22621/CommunityToolkit.WinUI.Controls.SettingsControls.dll": {
@@ -1004,11 +996,11 @@
           }
         }
       },
-      "CommunityToolkit.WinUI.Extensions/8.1.240821": {
+      "CommunityToolkit.WinUI.Extensions/8.1.240916": {
         "dependencies": {
           "CommunityToolkit.Common": "8.2.1",
-          "Microsoft.Windows.SDK.BuildTools": "10.0.26100.1",
-          "Microsoft.WindowsAppSDK": "1.6.240829007"
+          "Microsoft.Windows.SDK.BuildTools": "10.0.26100.1742",
+          "Microsoft.WindowsAppSDK": "1.6.241114003"
         },
         "runtime": {
           "lib/net8.0-windows10.0.22621/CommunityToolkit.WinUI.Extensions.dll": {
@@ -1017,11 +1009,11 @@
           }
         }
       },
-      "CommunityToolkit.WinUI.Helpers/8.1.240821": {
+      "CommunityToolkit.WinUI.Helpers/8.1.240916": {
         "dependencies": {
-          "CommunityToolkit.WinUI.Extensions": "8.1.240821",
-          "Microsoft.Windows.SDK.BuildTools": "10.0.26100.1",
-          "Microsoft.WindowsAppSDK": "1.6.240829007"
+          "CommunityToolkit.WinUI.Extensions": "8.1.240916",
+          "Microsoft.Windows.SDK.BuildTools": "10.0.26100.1742",
+          "Microsoft.WindowsAppSDK": "1.6.241114003"
         },
         "runtime": {
           "lib/net8.0-windows10.0.22621/CommunityToolkit.WinUI.Helpers.dll": {
@@ -1030,11 +1022,11 @@
           }
         }
       },
-      "CommunityToolkit.WinUI.Triggers/8.1.240821": {
+      "CommunityToolkit.WinUI.Triggers/8.1.240916": {
         "dependencies": {
-          "CommunityToolkit.WinUI.Helpers": "8.1.240821",
-          "Microsoft.Windows.SDK.BuildTools": "10.0.26100.1",
-          "Microsoft.WindowsAppSDK": "1.6.240829007"
+          "CommunityToolkit.WinUI.Helpers": "8.1.240916",
+          "Microsoft.Windows.SDK.BuildTools": "10.0.26100.1742",
+          "Microsoft.WindowsAppSDK": "1.6.241114003"
         },
         "runtime": {
           "lib/net8.0-windows10.0.22621/CommunityToolkit.WinUI.Triggers.dll": {
@@ -1050,20 +1042,20 @@
           }
         }
       },
-      "Microsoft.Windows.SDK.BuildTools/10.0.26100.1": {},
-      "Microsoft.WindowsAppSDK/1.6.240829007": {
+      "Microsoft.Windows.SDK.BuildTools/10.0.26100.1742": {},
+      "Microsoft.WindowsAppSDK/1.6.241114003": {
         "dependencies": {
           "Microsoft.Web.WebView2": "1.0.2651.64",
-          "Microsoft.Windows.SDK.BuildTools": "10.0.26100.1"
+          "Microsoft.Windows.SDK.BuildTools": "10.0.26100.1742"
         },
         "runtime": {
           "lib/net6.0-windows10.0.18362.0/Microsoft.InteractiveExperiences.Projection.dll": {
             "assemblyVersion": "10.0.0.0",
-            "fileVersion": "10.0.26107.1010"
+            "fileVersion": "10.0.26107.1015"
           },
           "lib/net6.0-windows10.0.18362.0/Microsoft.WinUI.dll": {
             "assemblyVersion": "3.0.0.0",
-            "fileVersion": "3.0.0.2408"
+            "fileVersion": "3.0.0.2411"
           },
           "lib/net6.0-windows10.0.18362.0/Microsoft.Windows.AppLifecycle.Projection.dll": {
             "assemblyVersion": "1.6.0.0",
@@ -1136,20 +1128,42 @@
           }
         }
       },
-      "System.Text.Encodings.Web/8.0.0": {},
-      "System.Text.Json/8.0.4": {
-        "dependencies": {
-          "System.Text.Encodings.Web": "8.0.0"
+      "System.IO.Pipelines/9.0.0": {
+        "runtime": {
+          "lib/net8.0/System.IO.Pipelines.dll": {
+            "assemblyVersion": "9.0.0.0",
+            "fileVersion": "9.0.24.52809"
+          }
         }
       },
-      "WinUIEx/2.3.4": {
+      "System.Text.Encodings.Web/9.0.0": {
+        "runtime": {
+          "lib/net8.0/System.Text.Encodings.Web.dll": {
+            "assemblyVersion": "9.0.0.0",
+            "fileVersion": "9.0.24.52809"
+          }
+        }
+      },
+      "System.Text.Json/9.0.0": {
         "dependencies": {
-          "Microsoft.WindowsAppSDK": "1.6.240829007"
+          "System.IO.Pipelines": "9.0.0",
+          "System.Text.Encodings.Web": "9.0.0"
         },
         "runtime": {
-          "lib/net6.0-windows10.0.18362/WinUIEx.dll": {
-            "assemblyVersion": "2.3.4.0",
-            "fileVersion": "2.3.4.0"
+          "lib/net8.0/System.Text.Json.dll": {
+            "assemblyVersion": "9.0.0.0",
+            "fileVersion": "9.0.24.52809"
+          }
+        }
+      },
+      "WinUIEx/2.5.0": {
+        "dependencies": {
+          "Microsoft.WindowsAppSDK": "1.6.241114003"
+        },
+        "runtime": {
+          "lib/net6.0-windows10.0.19041/WinUIEx.dll": {
+            "assemblyVersion": "2.5.0.0",
+            "fileVersion": "2.5.0.0"
           }
         }
       },
@@ -1172,7 +1186,7 @@
     }
   },
   "libraries": {
-    "LauncherX/2.1.1.0": {
+    "LauncherX/2.1.2.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
@@ -1199,33 +1213,33 @@
       "path": "communitytoolkit.common/8.2.1",
       "hashPath": "communitytoolkit.common.8.2.1.nupkg.sha512"
     },
-    "CommunityToolkit.WinUI.Controls.SettingsControls/8.1.240821": {
+    "CommunityToolkit.WinUI.Controls.SettingsControls/8.1.240916": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-a5eEsR1wQSuVUsQALEpZiq6dNrTuw0POQCD6NXMBID+mY0g672Pg8OPG4MyTbwOgj+1NPua51WM22WFVGteRlQ==",
-      "path": "communitytoolkit.winui.controls.settingscontrols/8.1.240821",
-      "hashPath": "communitytoolkit.winui.controls.settingscontrols.8.1.240821.nupkg.sha512"
+      "sha512": "sha512-KLdK3ibSzuz8xg5jIawC7xFXRQDOCFzTjF471fTD1gCsKTG44H8D39+6NhGKmXMRwlk6i2sidWb+jLUitzFeHw==",
+      "path": "communitytoolkit.winui.controls.settingscontrols/8.1.240916",
+      "hashPath": "communitytoolkit.winui.controls.settingscontrols.8.1.240916.nupkg.sha512"
     },
-    "CommunityToolkit.WinUI.Extensions/8.1.240821": {
+    "CommunityToolkit.WinUI.Extensions/8.1.240916": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-mYVvEWQYF6keFQ0X2yEcTFNCarhw9fTSqMDFM00/fxWmGG2RvyyC0t8k/BeqAuV9azM9ZkRNTCqRt36usUsdFg==",
-      "path": "communitytoolkit.winui.extensions/8.1.240821",
-      "hashPath": "communitytoolkit.winui.extensions.8.1.240821.nupkg.sha512"
+      "sha512": "sha512-y8FEzoy5HF3dBkxe/pU87hlh0QACtGZhnv881x2SFq9fvDjukLQz6VpoOkjxSZjEILmYu1NoI/tYjqXlETRGlw==",
+      "path": "communitytoolkit.winui.extensions/8.1.240916",
+      "hashPath": "communitytoolkit.winui.extensions.8.1.240916.nupkg.sha512"
     },
-    "CommunityToolkit.WinUI.Helpers/8.1.240821": {
+    "CommunityToolkit.WinUI.Helpers/8.1.240916": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-/h4p1+5Hv9j61mp++IfiWxVihq0yb6maRcIRrehzB4YTXFU60P3pZwQShNytTVnGMDRm6AgupbtnBoG+38PBnA==",
-      "path": "communitytoolkit.winui.helpers/8.1.240821",
-      "hashPath": "communitytoolkit.winui.helpers.8.1.240821.nupkg.sha512"
+      "sha512": "sha512-Q2eipdR9ntktYT1b3Dn927lZjdwQsmSU9cq6Pf2GwXW+R2IwkbGn7uYKJhmr5athOT6mnNgc7pMmfwFHIsFPLQ==",
+      "path": "communitytoolkit.winui.helpers/8.1.240916",
+      "hashPath": "communitytoolkit.winui.helpers.8.1.240916.nupkg.sha512"
     },
-    "CommunityToolkit.WinUI.Triggers/8.1.240821": {
+    "CommunityToolkit.WinUI.Triggers/8.1.240916": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-D5Xr3MsJX1n3iIi7SnAW29Nec6K1rQDSfuFNZGHrdIsqnVw5Tu8ITmWjv3oWQAdEWql7vcyY/Hezb7l4uFXP0w==",
-      "path": "communitytoolkit.winui.triggers/8.1.240821",
-      "hashPath": "communitytoolkit.winui.triggers.8.1.240821.nupkg.sha512"
+      "sha512": "sha512-4XUtIdhjTj9mTWgqUvnVIa3Ox+CW+fBks94DUOndAuxtHlDf9Oc8EguHXp4W8qxp7x4tUeYDoRPmcsnXgjt3Sw==",
+      "path": "communitytoolkit.winui.triggers/8.1.240916",
+      "hashPath": "communitytoolkit.winui.triggers.8.1.240916.nupkg.sha512"
     },
     "Microsoft.Web.WebView2/1.0.2651.64": {
       "type": "package",
@@ -1234,19 +1248,19 @@
       "path": "microsoft.web.webview2/1.0.2651.64",
       "hashPath": "microsoft.web.webview2.1.0.2651.64.nupkg.sha512"
     },
-    "Microsoft.Windows.SDK.BuildTools/10.0.26100.1": {
+    "Microsoft.Windows.SDK.BuildTools/10.0.26100.1742": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-ju02pHSp1LDEIvFgLIDbCbXGPpTTrXJrH90HxC6neclpbRpdS8RxeRbYOzPQFByUPCgT/Egbz4s/cpNMamW1Sg==",
-      "path": "microsoft.windows.sdk.buildtools/10.0.26100.1",
-      "hashPath": "microsoft.windows.sdk.buildtools.10.0.26100.1.nupkg.sha512"
+      "sha512": "sha512-ypcHjr4KEi6xQhgClnbXoANHcyyX/QsC4Rky4igs6M4GiDa+weegPo8JuV/VMxqrZCV4zlqDsp2krgkN7ReAAg==",
+      "path": "microsoft.windows.sdk.buildtools/10.0.26100.1742",
+      "hashPath": "microsoft.windows.sdk.buildtools.10.0.26100.1742.nupkg.sha512"
     },
-    "Microsoft.WindowsAppSDK/1.6.240829007": {
+    "Microsoft.WindowsAppSDK/1.6.241114003": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-Ij0jXARFOlRY+n7M32ZS9Kbf+x7gmnhWVnMP3eKHe83eu/2pzh9f4gjmoZ5fAgoZaKWCa2PvcxzHx0gtRXcKRQ==",
-      "path": "microsoft.windowsappsdk/1.6.240829007",
-      "hashPath": "microsoft.windowsappsdk.1.6.240829007.nupkg.sha512"
+      "sha512": "sha512-5XBNubjJi7+7DDI5lUXR3Jc0/memeFJyP6zmGTGgQcmTTbUf2T6U1f+qwcXHT+2yoXpaDuZCE86/aDLdU30e5A==",
+      "path": "microsoft.windowsappsdk/1.6.241114003",
+      "hashPath": "microsoft.windowsappsdk.1.6.241114003.nupkg.sha512"
     },
     "Octokit/13.0.1": {
       "type": "package",
@@ -1255,26 +1269,33 @@
       "path": "octokit/13.0.1",
       "hashPath": "octokit.13.0.1.nupkg.sha512"
     },
-    "System.Text.Encodings.Web/8.0.0": {
+    "System.IO.Pipelines/9.0.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-yev/k9GHAEGx2Rg3/tU6MQh4HGBXJs70y7j1LaM1i/ER9po+6nnQ6RRqTJn1E7Xu0fbIFK80Nh5EoODxrbxwBQ==",
-      "path": "system.text.encodings.web/8.0.0",
-      "hashPath": "system.text.encodings.web.8.0.0.nupkg.sha512"
+      "sha512": "sha512-eA3cinogwaNB4jdjQHOP3Z3EuyiDII7MT35jgtnsA4vkn0LUrrSHsU0nzHTzFzmaFYeKV7MYyMxOocFzsBHpTw==",
+      "path": "system.io.pipelines/9.0.0",
+      "hashPath": "system.io.pipelines.9.0.0.nupkg.sha512"
     },
-    "System.Text.Json/8.0.4": {
+    "System.Text.Encodings.Web/9.0.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-bAkhgDJ88XTsqczoxEMliSrpijKZHhbJQldhAmObj/RbrN3sU5dcokuXmWJWsdQAhiMJ9bTayWsL1C9fbbCRhw==",
-      "path": "system.text.json/8.0.4",
-      "hashPath": "system.text.json.8.0.4.nupkg.sha512"
+      "sha512": "sha512-e2hMgAErLbKyUUwt18qSBf9T5Y+SFAL3ZedM8fLupkVj8Rj2PZ9oxQ37XX2LF8fTO1wNIxvKpihD7Of7D/NxZw==",
+      "path": "system.text.encodings.web/9.0.0",
+      "hashPath": "system.text.encodings.web.9.0.0.nupkg.sha512"
     },
-    "WinUIEx/2.3.4": {
+    "System.Text.Json/9.0.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-wtptPKduMiTjfVhTQAcA7PHvY6NTAEkDj5zvW+4QbHg1YdUv8NFAU9CSH37OXBkBlHrsuyDIoHuF7xAMR8iqJw==",
-      "path": "winuiex/2.3.4",
-      "hashPath": "winuiex.2.3.4.nupkg.sha512"
+      "sha512": "sha512-js7+qAu/9mQvnhA4EfGMZNEzXtJCDxgkgj8ohuxq/Qxv+R56G+ljefhiJHOxTNiw54q8vmABCWUwkMulNdlZ4A==",
+      "path": "system.text.json/9.0.0",
+      "hashPath": "system.text.json.9.0.0.nupkg.sha512"
+    },
+    "WinUIEx/2.5.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-KYX704oFXOrI3VqU3tAL6/WfvgA3LbiwitawTl8FaPuiCk8sO67Rs8Yd4V3dkVaFFb+Tf/9Hztl7cO60nHDvfg==",
+      "path": "winuiex/2.5.0",
+      "hashPath": "winuiex.2.5.0.nupkg.sha512"
     },
     "WinFormsClassLibrary/1.0.0": {
       "type": "project",

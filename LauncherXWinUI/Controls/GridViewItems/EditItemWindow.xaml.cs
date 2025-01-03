@@ -1,5 +1,6 @@
 using LauncherXWinUI.Classes;
 using Microsoft.UI.Xaml;
+using Microsoft.UI.Xaml.Media.Imaging;
 using WinUIEx;
 
 // To learn more about WinUI, the WinUI project structure,
@@ -13,6 +14,9 @@ namespace LauncherXWinUI.Controls.GridViewItems
     /// </summary>
     public sealed partial class EditItemWindow : WinUIEx.WindowEx
     {
+        // Variables to store the original DecodeWidth in the EditDialogImage
+        public int OriginalDecodeWidth = 0;
+
         public EditItemWindow()
         {
             this.InitializeComponent();
@@ -33,10 +37,18 @@ namespace LauncherXWinUI.Controls.GridViewItems
 
             // Disable maximise
             UIFunctionsClass.PreventWindowMaximise(this);
+
+            // Properly set the decode pixel width and height of the icon rendered
+            BitmapImage ItemIcon = EditDialogImage.Source as BitmapImage;
+            OriginalDecodeWidth = ItemIcon.DecodePixelWidth;
+            ItemIcon.DecodePixelWidth = (int)EditDialogImage.Width * 2;
         }
 
         private void CloseBtn_Click(object sender, RoutedEventArgs e)
         {
+            // Reset DecodePixelWidth and DecodePixelHeight of the BitmapImage in the EditDialogImage control - otherwise things will look weird in the main items grid
+            BitmapImage ItemIcon = EditDialogImage.Source as BitmapImage;
+            ItemIcon.DecodePixelWidth = OriginalDecodeWidth;
             this.Close();
         }
     }
