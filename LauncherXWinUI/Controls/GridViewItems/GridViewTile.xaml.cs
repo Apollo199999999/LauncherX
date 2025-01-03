@@ -84,11 +84,9 @@ namespace LauncherXWinUI.Controls.GridViewItems
                 gridViewTile.ControlBorder.Height = newHeight;
 
                 // Update image margin and dimensions
-                gridViewTile.TileImage.Margin = new Thickness(newSize * 22.5, newSize * 5, newSize * 22.5, 0);
-                gridViewTile.TileImage.Height = newWidth - newSize * 22.5 - newSize * 22.5;
+                gridViewTile.TileImage.Margin = new Thickness(0, newSize * 5, 0, 0);
                 gridViewTile.TileImage.Stretch = Stretch.Uniform;
                 gridViewTile.LinkedFolderImage.Margin = new Thickness(newSize * 10, newSize * 5, newSize * 22.5, 0);
-                gridViewTile.LinkedFolderImage.Height = newWidth - newSize * 22.5 - newSize * 22.5;
                 gridViewTile.LinkedFolderImage.Stretch = Stretch.Uniform;
 
                 // Update the font size of the textblock
@@ -542,7 +540,6 @@ namespace LauncherXWinUI.Controls.GridViewItems
         {
             // Show the EditItemWindow
             editItemWindow = new EditItemWindow();
-
             editItemWindow.EditDialogImage.Source = this.ImageSource;
             editItemWindow.EditDisplayTextTextBox.Text = this.DisplayText;
             TempCustomImagePath = this.CustomImagePath;

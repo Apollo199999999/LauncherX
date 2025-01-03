@@ -7,6 +7,7 @@ using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.Diagnostics;
 using System.Threading.Tasks;
+using Windows.Security.Cryptography.Certificates;
 using Windows.UI;
 
 // To learn more about WinUI, the WinUI project structure,
@@ -77,15 +78,12 @@ namespace LauncherXWinUI.Controls.GridViewItems
                 // Update control dimensions
                 gridViewTileGroup.ControlBorder.Width = newWidth;
                 gridViewTileGroup.ControlBorder.Height = newHeight;
-                gridViewTileGroup.ItemsPreviewGrid.Margin = new Thickness(newSize * 22.5, newSize * 5, newSize * 22.5, 0);
-                gridViewTileGroup.ItemsPreviewGrid.Height = newWidth - newSize * 22.5 - newSize * 22.5;
-                gridViewTileGroup.ItemsPreviewGrid.Width = newWidth - newSize * 22.5 - newSize * 22.5;
+                gridViewTileGroup.ItemsPreviewGrid.Margin = new Thickness(0, newSize * 2.5, 0, 0);
 
                 // Update image controls
                 foreach (Image image in gridViewTileGroup.ItemsPreviewGrid.Children)
                 {
-                    image.Width = gridViewTileGroup.ItemsPreviewGrid.Width / 2.5;
-                    image.Height = gridViewTileGroup.ItemsPreviewGrid.Width / 2.5;
+                    image.Margin = new Thickness(newSize * 2.5);
                     image.Stretch = Stretch.Uniform;
                 }
 
@@ -162,10 +160,10 @@ namespace LauncherXWinUI.Controls.GridViewItems
                     break;
                 }
 
+                double ControlSize = Math.Sqrt(Size);
                 Image image = new Image();
                 image.Source = Items[i].ImageSource;
-                image.Width = ItemsPreviewGrid.Width / 2.5;
-                image.Height = ItemsPreviewGrid.Width / 2.5;
+                image.Margin = new Thickness(ControlSize * 2.5);
                 image.Stretch = Stretch.Uniform;
                 image.HorizontalAlignment = HorizontalAlignment.Center;
                 image.VerticalAlignment = VerticalAlignment.Center;
