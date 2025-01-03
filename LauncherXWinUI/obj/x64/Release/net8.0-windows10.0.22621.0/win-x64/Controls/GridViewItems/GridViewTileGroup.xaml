@@ -22,16 +22,23 @@
         AllowDrop="True"
         BorderThickness="2,2,2,3"
         CornerRadius="{ThemeResource ControlCornerRadius}">
-        <StackPanel x:ConnectionId='4'
+        <Grid x:ConnectionId='4'
             x:Name="GroupPanel"
             AllowDrop="True"
                                                       
                                                         
                                                 
                                       >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="5*" />
+                <RowDefinition Height="2*" />
+            </Grid.RowDefinitions>
 
             <Grid x:ConnectionId='5'
                 x:Name="ItemsPreviewGrid"
+                Grid.Row="0"
+                Height="Auto"
+                MinWidth="{Binding ActualHeight, RelativeSource={RelativeSource Self}}"
                 HorizontalAlignment="Center"
                 VerticalAlignment="Center"
                 AllowDrop="True">
@@ -47,9 +54,9 @@
 
             <TextBlock x:ConnectionId='6'
                 x:Name="TileText"
-                Margin="5,5,5,5"
+                Grid.Row="1"
                 HorizontalAlignment="Center"
-                VerticalAlignment="Bottom"
+                VerticalAlignment="Center"
                 AllowDrop="True"
                 TextAlignment="Center"
                 TextTrimming="CharacterEllipsis" />
@@ -113,7 +120,7 @@
                         Text="Remove group from LauncherX" />
                 </MenuFlyout>
             </FlyoutBase.AttachedFlyout>
-        </StackPanel>
+        </Grid>
     </Border>
 </UserControl>
 

@@ -40,6 +40,7 @@ C:\Users\fligh\source\repos\LauncherX\LauncherXWinUI\bin\x64\Release\net8.0-wind
 C:\Users\fligh\source\repos\LauncherX\LauncherXWinUI\bin\x64\Release\net8.0-windows10.0.22621.0\win-x64\Microsoft.WindowsAppRuntime.Insights.Resource.dll
 C:\Users\fligh\source\repos\LauncherX\LauncherXWinUI\bin\x64\Release\net8.0-windows10.0.22621.0\win-x64\MRM.dll
 C:\Users\fligh\source\repos\LauncherX\LauncherXWinUI\bin\x64\Release\net8.0-windows10.0.22621.0\win-x64\PushNotificationsLongRunningTask.ProxyStub.dll
+C:\Users\fligh\source\repos\LauncherX\LauncherXWinUI\bin\x64\Release\net8.0-windows10.0.22621.0\win-x64\WindowsAppRuntime.DeploymentExtensions.OneCore.dll
 C:\Users\fligh\source\repos\LauncherX\LauncherXWinUI\bin\x64\Release\net8.0-windows10.0.22621.0\win-x64\WindowsAppSdk.AppxDeploymentExtensions.Desktop-EventLog-Instrumentation.dll
 C:\Users\fligh\source\repos\LauncherX\LauncherXWinUI\bin\x64\Release\net8.0-windows10.0.22621.0\win-x64\WindowsAppSdk.AppxDeploymentExtensions.Desktop.dll
 C:\Users\fligh\source\repos\LauncherX\LauncherXWinUI\bin\x64\Release\net8.0-windows10.0.22621.0\win-x64\WinUIEdit.dll
@@ -272,6 +273,9 @@ C:\Users\fligh\source\repos\LauncherX\LauncherXWinUI\bin\x64\Release\net8.0-wind
 C:\Users\fligh\source\repos\LauncherX\LauncherXWinUI\bin\x64\Release\net8.0-windows10.0.22621.0\win-x64\Microsoft.Windows.Widgets.Projection.dll
 C:\Users\fligh\source\repos\LauncherX\LauncherXWinUI\bin\x64\Release\net8.0-windows10.0.22621.0\win-x64\Microsoft.WindowsAppRuntime.Bootstrap.Net.dll
 C:\Users\fligh\source\repos\LauncherX\LauncherXWinUI\bin\x64\Release\net8.0-windows10.0.22621.0\win-x64\Octokit.dll
+C:\Users\fligh\source\repos\LauncherX\LauncherXWinUI\bin\x64\Release\net8.0-windows10.0.22621.0\win-x64\System.IO.Pipelines.dll
+C:\Users\fligh\source\repos\LauncherX\LauncherXWinUI\bin\x64\Release\net8.0-windows10.0.22621.0\win-x64\System.Text.Encodings.Web.dll
+C:\Users\fligh\source\repos\LauncherX\LauncherXWinUI\bin\x64\Release\net8.0-windows10.0.22621.0\win-x64\System.Text.Json.dll
 C:\Users\fligh\source\repos\LauncherX\LauncherXWinUI\bin\x64\Release\net8.0-windows10.0.22621.0\win-x64\WinUIEx.dll
 C:\Users\fligh\source\repos\LauncherX\LauncherXWinUI\bin\x64\Release\net8.0-windows10.0.22621.0\win-x64\WebView2Loader.dll
 C:\Users\fligh\source\repos\LauncherX\LauncherXWinUI\bin\x64\Release\net8.0-windows10.0.22621.0\win-x64\Microsoft.WindowsAppRuntime.Bootstrap.dll
@@ -409,8 +413,6 @@ C:\Users\fligh\source\repos\LauncherX\LauncherXWinUI\bin\x64\Release\net8.0-wind
 C:\Users\fligh\source\repos\LauncherX\LauncherXWinUI\bin\x64\Release\net8.0-windows10.0.22621.0\win-x64\System.Text.Encoding.CodePages.dll
 C:\Users\fligh\source\repos\LauncherX\LauncherXWinUI\bin\x64\Release\net8.0-windows10.0.22621.0\win-x64\System.Text.Encoding.Extensions.dll
 C:\Users\fligh\source\repos\LauncherX\LauncherXWinUI\bin\x64\Release\net8.0-windows10.0.22621.0\win-x64\System.Text.Encoding.dll
-C:\Users\fligh\source\repos\LauncherX\LauncherXWinUI\bin\x64\Release\net8.0-windows10.0.22621.0\win-x64\System.Text.Encodings.Web.dll
-C:\Users\fligh\source\repos\LauncherX\LauncherXWinUI\bin\x64\Release\net8.0-windows10.0.22621.0\win-x64\System.Text.Json.dll
 C:\Users\fligh\source\repos\LauncherX\LauncherXWinUI\bin\x64\Release\net8.0-windows10.0.22621.0\win-x64\System.Text.RegularExpressions.dll
 C:\Users\fligh\source\repos\LauncherX\LauncherXWinUI\bin\x64\Release\net8.0-windows10.0.22621.0\win-x64\System.Threading.Channels.dll
 C:\Users\fligh\source\repos\LauncherX\LauncherXWinUI\bin\x64\Release\net8.0-windows10.0.22621.0\win-x64\System.Threading.Overlapped.dll
@@ -504,7 +506,7 @@ C:\Users\fligh\source\repos\LauncherX\LauncherXWinUI\bin\x64\Release\net8.0-wind
 C:\Users\fligh\source\repos\LauncherX\LauncherXWinUI\bin\x64\Release\net8.0-windows10.0.22621.0\win-x64\hostfxr.dll
 C:\Users\fligh\source\repos\LauncherX\LauncherXWinUI\bin\x64\Release\net8.0-windows10.0.22621.0\win-x64\hostpolicy.dll
 C:\Users\fligh\source\repos\LauncherX\LauncherXWinUI\bin\x64\Release\net8.0-windows10.0.22621.0\win-x64\mscordaccore.dll
-C:\Users\fligh\source\repos\LauncherX\LauncherXWinUI\bin\x64\Release\net8.0-windows10.0.22621.0\win-x64\mscordaccore_amd64_amd64_8.0.824.36612.dll
+C:\Users\fligh\source\repos\LauncherX\LauncherXWinUI\bin\x64\Release\net8.0-windows10.0.22621.0\win-x64\mscordaccore_amd64_amd64_8.0.1124.51707.dll
 C:\Users\fligh\source\repos\LauncherX\LauncherXWinUI\bin\x64\Release\net8.0-windows10.0.22621.0\win-x64\mscordbi.dll
 C:\Users\fligh\source\repos\LauncherX\LauncherXWinUI\bin\x64\Release\net8.0-windows10.0.22621.0\win-x64\mscorrc.dll
 C:\Users\fligh\source\repos\LauncherX\LauncherXWinUI\bin\x64\Release\net8.0-windows10.0.22621.0\win-x64\msquic.dll

@@ -1,11 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Package xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10" xmlns:deployment="http://schemas.microsoft.com/appx/manifest/deployment/windows10" IgnorableNamespaces="mp deployment" xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest">
-  <Identity Name="Microsoft.WindowsAppRuntime.1.6" Publisher="CN=Microsoft Corporation, O=Microsoft Corporation, L=Redmond, S=Washington, C=US" ProcessorArchitecture="arm64" Version="6000.242.101.0" />
+  <Identity Name="Microsoft.WindowsAppRuntime.1.6" Publisher="CN=Microsoft Corporation, O=Microsoft Corporation, L=Redmond, S=Washington, C=US" ProcessorArchitecture="arm64" Version="6000.318.2304.0" />
   <Properties>
     <Framework>true</Framework>
     <DisplayName>WindowsAppRuntime.1.6</DisplayName>
     <PublisherDisplayName>Microsoft Corporation</PublisherDisplayName>
-    <Description>Microsoft Windows App Runtime 1.6 (6000.242.101.0 arm64 )</Description>
+    <Description>Microsoft Windows App Runtime 1.6 (6000.318.2304.0 arm64 )</Description>
     <Logo>WindowsAppRuntime.png</Logo>
   </Properties>
   <Resources>
@@ -1041,6 +1041,9 @@
       <deployment:DeploymentExtensionHandler>
         <deployment:Files>
           <deployment:File>WindowsAppSdk.AppxDeploymentExtensions.Desktop.dll</deployment:File>
+          <!-- Temporarily disabled while an issue is addressed
+            <deployment:File>WindowsAppRuntime.DeploymentExtensions.OneCore.dll</deployment:File>
+            -->
         </deployment:Files>
       </deployment:DeploymentExtensionHandler>
     </deployment:Extension>
