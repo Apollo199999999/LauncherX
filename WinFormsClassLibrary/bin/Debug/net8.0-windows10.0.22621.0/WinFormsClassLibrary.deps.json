@@ -8,21 +8,21 @@
     ".NETCoreApp,Version=v8.0": {
       "WinFormsClassLibrary/1.0.0": {
         "dependencies": {
-          "runtimepack.Microsoft.Windows.SDK.NET.Ref": "10.0.22621.54"
+          "runtimepack.Microsoft.Windows.SDK.NET.Ref": "10.0.22621.57"
         },
         "runtime": {
           "WinFormsClassLibrary.dll": {}
         }
       },
-      "runtimepack.Microsoft.Windows.SDK.NET.Ref/10.0.22621.54": {
+      "runtimepack.Microsoft.Windows.SDK.NET.Ref/10.0.22621.57": {
         "runtime": {
           "Microsoft.Windows.SDK.NET.dll": {
             "assemblyVersion": "10.0.22621.38",
-            "fileVersion": "10.0.22621.52"
+            "fileVersion": "10.0.22621.55"
           },
           "WinRT.Runtime.dll": {
-            "assemblyVersion": "2.1.0.0",
-            "fileVersion": "2.1.6.47881"
+            "assemblyVersion": "2.2.0.0",
+            "fileVersion": "2.2.0.48161"
           }
         }
       }
@@ -34,7 +34,7 @@
       "serviceable": false,
       "sha512": ""
     },
-    "runtimepack.Microsoft.Windows.SDK.NET.Ref/10.0.22621.54": {
+    "runtimepack.Microsoft.Windows.SDK.NET.Ref/10.0.22621.57": {
       "type": "runtimepack",
       "serviceable": false,
       "sha512": ""
