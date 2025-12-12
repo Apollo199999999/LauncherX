@@ -4366,7 +4366,7 @@
           },
           {
             "name": "Microsoft.Windows.SDK.NET.Ref",
-            "version": "[10.0.22621.38, 10.0.22621.38]"
+            "version": "[10.0.22621.57, 10.0.22621.57]"
           },
           {
             "name": "Microsoft.WindowsDesktop.App.Runtime.win-arm64",
