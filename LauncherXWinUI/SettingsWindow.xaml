@@ -176,6 +176,53 @@
                         Severity="Error" />
                 </StackPanel>
 
+                <!--  Import/Export user data section  -->
+                <TextBlock
+                    Margin="0,15,0,0"
+                    FontSize="20"
+                    FontWeight="Bold"
+                    Text="Import / Export data" />
+
+                <wct:SettingsCard
+                    Margin="0,10,0,0"
+                    Description="Clears existing user data and imports LauncherX settings and items from the selected file."
+                    Header="Import user data">
+                    <wct:SettingsCard.HeaderIcon>
+                        <FontIcon Glyph="&#xE8B5;" />
+                    </wct:SettingsCard.HeaderIcon>
+                    <StackPanel Orientation="Horizontal">
+                        <ProgressRing
+                            x:Name="ImportProgressRing"
+                            Margin="0,0,10,0"
+                            IsActive="False" />
+                        <Button
+                            x:Name="ImportDataBtn"
+                            Click="ImportDataBtn_Click"
+                            Content="Import data" />
+                    </StackPanel>
+                </wct:SettingsCard>
+
+                <wct:SettingsCard
+                    Margin="0,5,0,0"
+                    Description="Export LauncherX settings and items to a file."
+                    Header="Export user data">
+                    <wct:SettingsCard.HeaderIcon>
+                        <FontIcon Glyph="&#xEDE1;" />
+                    </wct:SettingsCard.HeaderIcon>
+                    <StackPanel Orientation="Horizontal">
+                        <ProgressRing
+                            x:Name="ExportProgressRing"
+                            Margin="0,0,10,0"
+                            IsActive="False" />
+                        <Button
+                            x:Name="ExportDataBtn"
+                            Click="ExportDataBtn_Click"
+                            Content="Export data" />
+                    </StackPanel>
+                </wct:SettingsCard>
+
+
+
                 <!--  About section  -->
                 <TextBlock
                     Margin="0,15,0,0"

@@ -251,7 +251,7 @@ namespace LauncherXWinUI
         }
 
         // Event Handlers
-        private async void Container_Loaded(object sender, RoutedEventArgs e)
+        public async void Container_Loaded(object sender, RoutedEventArgs e)
         {
             // Set Window icon
             UIFunctionsClass.SetWindowLauncherXIcon(this);

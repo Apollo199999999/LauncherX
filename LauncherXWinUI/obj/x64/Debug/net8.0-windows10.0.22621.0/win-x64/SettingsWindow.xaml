@@ -68,7 +68,7 @@
                     <wct:SettingsCard.HeaderIcon>
                         <FontIcon Glyph="&#xE73F;" />
                     </wct:SettingsCard.HeaderIcon>
-                    <Slider x:ConnectionId='15'
+                    <Slider x:ConnectionId='19'
                         x:Name="ScaleSlider"
                         Width="220"
                         Maximum="6.00"
@@ -88,7 +88,7 @@
                     <wct:SettingsCard.HeaderIcon>
                         <FontIcon Glyph="&#xE70F;" />
                     </wct:SettingsCard.HeaderIcon>
-                    <TextBox x:ConnectionId='14' x:Name="ChangeHeaderTextBox" Width="220" />
+                    <TextBox x:ConnectionId='18' x:Name="ChangeHeaderTextBox" Width="220" />
                 </wct:SettingsCard>
 
                 <!--  Fullscreen  -->
@@ -99,7 +99,7 @@
                     <wct:SettingsCard.HeaderIcon>
                         <FontIcon Glyph="&#xE740;" />
                     </wct:SettingsCard.HeaderIcon>
-                    <ToggleSwitch x:ConnectionId='13'
+                    <ToggleSwitch x:ConnectionId='17'
                         x:Name="FullscreenToggleSwitch"
                         OffContent="No"
                         OnContent="Yes" />
@@ -113,7 +113,7 @@
                     <wct:SettingsCard.HeaderIcon>
                         <FontIcon Glyph="&#xF0E2;" />
                     </wct:SettingsCard.HeaderIcon>
-                    <ComboBox x:ConnectionId='12'
+                    <ComboBox x:ConnectionId='16'
                         x:Name="GridAlignComboBox"
                         Width="150"
                         SelectedIndex="0">
@@ -131,11 +131,11 @@
                         <FontIcon Glyph="&#xE895;" />
                     </wct:SettingsCard.HeaderIcon>
                     <StackPanel Orientation="Horizontal">
-                        <ProgressRing x:ConnectionId='10'
+                        <ProgressRing x:ConnectionId='14'
                             x:Name="CheckUpdatesProgressRing"
                             Margin="0,0,10,0"
                             IsActive="False" />
-                        <Button x:ConnectionId='11'
+                        <Button x:ConnectionId='15'
                             x:Name="CheckUpdatesBtn"
                                                          
                             Content="Check for updates" />
@@ -145,14 +145,14 @@
                 <!--  Infobars for updates  -->
                 <!--  IsOpen=False will still reserve space for the margins of the InfoBar, so we should not use margins as far as possible  -->
                 <StackPanel Margin="0,5,0,0" Orientation="Vertical">
-                    <InfoBar x:ConnectionId='6'
+                    <InfoBar x:ConnectionId='10'
                         x:Name="UpdateInfoBar"
                         Title="Update available"
                         IsOpen="False"
                         Message="To download it, click the &quot;Get update&quot; button."
                         Severity="Informational">
                         <InfoBar.ActionButton>
-                            <Button x:ConnectionId='9'
+                            <Button x:ConnectionId='13'
                                 x:Name="GetUpdateBtn"
                                 HorizontalAlignment="Right"
                                                           
@@ -161,20 +161,67 @@
                         </InfoBar.ActionButton>
                     </InfoBar>
 
-                    <InfoBar x:ConnectionId='7'
+                    <InfoBar x:ConnectionId='11'
                         x:Name="NoUpdateInfoBar"
                         Title="You're up to date!"
                         IsOpen="False"
                         Message="No updates are available."
                         Severity="Success" />
 
-                    <InfoBar x:ConnectionId='8'
+                    <InfoBar x:ConnectionId='12'
                         x:Name="UpdateFailInfoBar"
                         Title="Failed to check for updates"
                         IsOpen="False"
                         Message="Please check your internet connection, or try again later."
                         Severity="Error" />
                 </StackPanel>
+
+                <!--  Import/Export user data section  -->
+                <TextBlock
+                    Margin="0,15,0,0"
+                    FontSize="20"
+                    FontWeight="Bold"
+                    Text="Import / Export data" />
+
+                <wct:SettingsCard
+                    Margin="0,10,0,0"
+                    Description="Clears existing user data and imports LauncherX settings and items from the selected file."
+                    Header="Import user data">
+                    <wct:SettingsCard.HeaderIcon>
+                        <FontIcon Glyph="&#xE8B5;" />
+                    </wct:SettingsCard.HeaderIcon>
+                    <StackPanel Orientation="Horizontal">
+                        <ProgressRing x:ConnectionId='8'
+                            x:Name="ImportProgressRing"
+                            Margin="0,0,10,0"
+                            IsActive="False" />
+                        <Button x:ConnectionId='9'
+                            x:Name="ImportDataBtn"
+                                                       
+                            Content="Import data" />
+                    </StackPanel>
+                </wct:SettingsCard>
+
+                <wct:SettingsCard
+                    Margin="0,5,0,0"
+                    Description="Export LauncherX settings and items to a file."
+                    Header="Export user data">
+                    <wct:SettingsCard.HeaderIcon>
+                        <FontIcon Glyph="&#xEDE1;" />
+                    </wct:SettingsCard.HeaderIcon>
+                    <StackPanel Orientation="Horizontal">
+                        <ProgressRing x:ConnectionId='6'
+                            x:Name="ExportProgressRing"
+                            Margin="0,0,10,0"
+                            IsActive="False" />
+                        <Button x:ConnectionId='7'
+                            x:Name="ExportDataBtn"
+                                                       
+                            Content="Export data" />
+                    </StackPanel>
+                </wct:SettingsCard>
+
+
 
                 <!--  About section  -->
                 <TextBlock
