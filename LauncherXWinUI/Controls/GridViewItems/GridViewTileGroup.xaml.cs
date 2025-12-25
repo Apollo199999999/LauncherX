@@ -3,6 +3,7 @@ using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Controls.Primitives;
 using Microsoft.UI.Xaml.Media;
 using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.Diagnostics;
@@ -174,6 +175,20 @@ namespace LauncherXWinUI.Controls.GridViewItems
         }
 
         /// <summary>
+        /// Check if we should allow clicking interaction with this item, based on the selection mode of the parent GridView
+        /// </summary>
+        /// <returns>true if GridView is single select</returns>
+        private bool IsInteractionEnabled()
+        {
+            GridView parentGridView = this.Parent as GridView;
+            if (parentGridView.SelectionMode == ListViewSelectionMode.Single)
+            {
+                return true;
+            }
+            return false;
+        }
+
+        /// <summary>
         /// Highlights the control by drawing a border around it
         /// </summary>
         public void HighlightControl()
@@ -209,19 +224,47 @@ namespace LauncherXWinUI.Controls.GridViewItems
             UnhighlightControl();
         }
 
+        /// <summary>
+        /// Removes this group from the parent GridView
+        /// </summary>
+        public void RemoveFromGridView()
+        {
+            // Remove this group
+            GridView parentGridView = this.Parent as GridView;
+            if (parentGridView != null)
+            {
+                parentGridView.Items.Remove(this);
+            }
+        }
+
         // Event Handlers
+        // Similar to GridViewTile.
+        // For event handlers relating to left/right clicking the GridViewTile,
+        // we only enable them if the parent GridView has "Single" selection mode,
+        // as if we are in multiselect, we want the users to be able to select multiple items
         private void GroupPanel_PointerPressed(object sender, Microsoft.UI.Xaml.Input.PointerRoutedEventArgs e)
         {
-            HighlightControl();
+            if (IsInteractionEnabled())
+            {
+                HighlightControl();
+            }
         }
 
         private void GroupPanel_PointerReleased(object sender, Microsoft.UI.Xaml.Input.PointerRoutedEventArgs e)
         {
-            UnhighlightControl();
+            if (IsInteractionEnabled())
+            {
+                UnhighlightControl();
+            }
         }
 
         private async void GroupPanel_Tapped(object sender, Microsoft.UI.Xaml.Input.TappedRoutedEventArgs e)
         {
+            if (IsInteractionEnabled() == false)
+            {
+                return;
+            }
+
             // Show the ContentDialog to display the items in this Group
             ItemsGridView.Items.Clear();
             foreach (GridViewTile gridViewTile in Items)
@@ -299,19 +342,17 @@ namespace LauncherXWinUI.Controls.GridViewItems
 
         private void GroupPanel_RightTapped(object sender, Microsoft.UI.Xaml.Input.RightTappedRoutedEventArgs e)
         {
-            // Show right click menu options
-            MenuFlyout flyoutBase = (MenuFlyout)FlyoutBase.GetAttachedFlyout(GroupPanel);
-            flyoutBase.ShowAt(GroupPanel, e.GetPosition(GroupPanel));
+            if (IsInteractionEnabled())
+            {
+                // Show normal right click menu options 
+                MenuFlyout flyoutBase = (MenuFlyout)FlyoutBase.GetAttachedFlyout(GroupPanel);
+                flyoutBase.ShowAt(GroupPanel, e.GetPosition(GroupPanel));
+            }
         }
 
         private void MenuRemoveOption_Click(object sender, RoutedEventArgs e)
         {
-            // Remove this group
-            GridView parentGridView = this.Parent as GridView;
-            if (parentGridView != null)
-            {
-                parentGridView.Items.Remove(this);
-            }
+            RemoveFromGridView();
         }
     }
 }

@@ -30,28 +30,9 @@ namespace LauncherXWinUI.Controls.GridViewItems
 
             // For some reason, StackPanel needs a background for right tap to work
             TilePanel.Background = new SolidColorBrush(Color.FromArgb(0, 0, 0, 0));
-
-            // Set the unique id to some guid
-            this.UniqueId = System.Guid.NewGuid().ToString();
         }
 
         // Declare properties that this control will have
-
-        /// <summary>
-        /// A unique GUID to identify each item in the ItemsGridView
-        /// </summary>
-        public string UniqueId
-        {
-            get => (string)GetValue(UniqueIdProperty);
-            set => SetValue(UniqueIdProperty, value);
-        }
-
-        DependencyProperty UniqueIdProperty = DependencyProperty.Register(
-            nameof(UniqueId),
-            typeof(string),
-            typeof(GridViewTile),
-            new PropertyMetadata(default(string)));
-
 
         /// <summary>
         /// Size of the control
@@ -384,34 +365,84 @@ namespace LauncherXWinUI.Controls.GridViewItems
                 await messageDialog.ShowAsync();
             }
 
-            // Unselect this item
+            // Unselect this item, only if parent gridview is single select
             await Task.Delay(500);
-            UnhighlightControl();
             GridView parentGridView = this.Parent as GridView;
-            if (parentGridView != null)
+
+            if (parentGridView == null)
             {
+                return;
+            }
+
+            if (parentGridView.SelectionMode == ListViewSelectionMode.Single)
+            {
+                UnhighlightControl();
                 parentGridView.SelectedItem = null;
             }
         }
 
+        /// <summary>
+        /// Removes this item from the parent GridView
+        /// </summary>
+        public void RemoveFromGridView()
+        {
+            // Remove this group
+            GridView parentGridView = this.Parent as GridView;
+            if (parentGridView != null)
+            {
+                parentGridView.Items.Remove(this);
+            }
+        }
+
+        /// <summary>
+        /// Check if we should allow clicking interaction with this item, based on the selection mode of the parent GridView
+        /// </summary>
+        /// <returns>true if GridView is single select</returns>
+        private bool IsInteractionEnabled()
+        {
+            GridView parentGridView = this.Parent as GridView;
+            if (parentGridView.SelectionMode == ListViewSelectionMode.Single)
+            {
+                return true;
+            }
+            return false;
+        }
+
         // Event handlers
+        // For event handlers relating to left/right clicking the GridViewTile,
+        // we only enable them if the parent GridView has "Single" selection mode,
+        // as if we are in multiselect, we want the users to be able to select multiple items
         private void GridViewTileControl_PointerPressed(object sender, PointerRoutedEventArgs e)
         {
-            HighlightControl();
+            if (IsInteractionEnabled())
+            {
+                HighlightControl();
+            }
         }
 
         private void GridViewTileControl_PointerReleased(object sender, PointerRoutedEventArgs e)
         {
-            UnhighlightControl();
+            if (IsInteractionEnabled())
+            {
+                UnhighlightControl();
+            }
         }
 
         private async void GridViewTileControl_Tapped(object sender, TappedRoutedEventArgs e)
         {
-            await StartAssociatedProcess();
+            if (IsInteractionEnabled())
+            {
+                await StartAssociatedProcess();
+            }
         }
 
         private void GridViewTileControl_RightTapped(object sender, RightTappedRoutedEventArgs e)
         {
+            if (IsInteractionEnabled() == false)
+            {   
+                return;
+            }
+
             // Implement right click menu
             // Rename options based on the ExecutingPath
             if (ExecutingPath.StartsWith("http://") || ExecutingPath.StartsWith("https://"))
