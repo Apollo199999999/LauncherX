@@ -44,6 +44,7 @@ namespace LauncherXWinUI
             ScaleSlider.Value = UserSettingsClass.GridScale;
             ChangeHeaderTextBox.Text = UserSettingsClass.HeaderText;
             FullscreenToggleSwitch.IsOn = UserSettingsClass.UseFullscreen;
+            MinimalistModeToggleSwitch.IsOn = UserSettingsClass.UseMinimalistMode;
             GridAlignComboBox.SelectedItem = UserSettingsClass.GridPosition;
 
             // Create event handlers for the textbox and slider to update settings when their value is changed
@@ -53,12 +54,14 @@ namespace LauncherXWinUI
             ScaleSlider.ValueChanged += ScaleSlider_ValueChanged;
             ChangeHeaderTextBox.TextChanged += ChangeHeaderTextBox_TextChanged;
             FullscreenToggleSwitch.Toggled += FullscreenToggleSwitch_Toggled;
+            MinimalistModeToggleSwitch.Toggled += MinimalistModeToggleSwitch_Toggled;
             GridAlignComboBox.SelectionChanged += GridAlignComboBox_SelectionChanged;
 
             // Make sure to unsubscribe from the event handlers after
             ScaleSlider.Unloaded += (s, e) => ScaleSlider.ValueChanged -= ScaleSlider_ValueChanged;
             ChangeHeaderTextBox.Unloaded += (s, e) => ChangeHeaderTextBox.TextChanged -= ChangeHeaderTextBox_TextChanged;
             FullscreenToggleSwitch.Unloaded += (s, e) => FullscreenToggleSwitch.Toggled -= FullscreenToggleSwitch_Toggled;
+            MinimalistModeToggleSwitch.Unloaded += (s, e) => MinimalistModeToggleSwitch.Toggled -= MinimalistModeToggleSwitch_Toggled;
             GridAlignComboBox.Unloaded += (s, e) => GridAlignComboBox.SelectionChanged -= GridAlignComboBox_SelectionChanged;
         }
 
@@ -82,6 +85,14 @@ namespace LauncherXWinUI
             UserSettingsClass.UseFullscreen = FullscreenToggleSwitch.IsOn;
             UserSettingsClass.WriteSettingsFile();
         }
+
+        private void MinimalistModeToggleSwitch_Toggled(object sender, RoutedEventArgs e)
+        {
+            // Update UserSettingsClass
+            UserSettingsClass.UseMinimalistMode = MinimalistModeToggleSwitch.IsOn; 
+            UserSettingsClass.WriteSettingsFile();
+        }
+
         private void GridAlignComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             // Update UserSettingsClass

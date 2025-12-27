@@ -105,6 +105,20 @@
                         OnContent="Yes" />
                 </wct:SettingsCard>
 
+                <!--  Minimalist mode  -->
+                <wct:SettingsCard
+                    Margin="0,5,0,0"
+                    Description="Hides the header text and unifies the add buttons into a single dropdown."
+                    Header="Minimalist mode">
+                    <wct:SettingsCard.HeaderIcon>
+                        <FontIcon Glyph="&#xE73F;" />
+                    </wct:SettingsCard.HeaderIcon>
+                    <ToggleSwitch
+                        x:Name="MinimalistModeToggleSwitch"
+                        OffContent="No"
+                        OnContent="Yes" />
+                </wct:SettingsCard>
+
                 <!--  Align GridView  -->
                 <wct:SettingsCard
                     Margin="0,5,0,0"

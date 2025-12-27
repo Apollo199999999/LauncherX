@@ -111,6 +111,25 @@ namespace LauncherXWinUI
                 this.AppWindow.SetPresenter(Microsoft.UI.Windowing.AppWindowPresenterKind.Default);
             }
 
+            // Show/Hide the necessary UI elements for minimalist mode (Update from UseMinimalistMode)
+            if (UserSettingsClass.UseMinimalistMode == true)
+            {
+                // Hide the header and add buttons
+                HeaderGrid.Visibility = Visibility.Collapsed;
+
+                // Show the add items dropdown button
+                AddAllDropdownButton.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                // Show the header and add buttons
+                HeaderGrid.Visibility = Visibility.Visible;
+
+                // Hide the add items dropdown button
+                AddAllDropdownButton.Visibility = Visibility.Collapsed;
+            }
+
+
             // Align the GridView (Update from GridPosition)
             if (UserSettingsClass.GridPosition == "Left")
             {

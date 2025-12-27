@@ -62,9 +62,10 @@
                         <ColumnDefinition Width="auto" />
                         <ColumnDefinition Width="auto" />
                         <ColumnDefinition Width="auto" />
+                        <ColumnDefinition Width="auto" />
                     </Grid.ColumnDefinitions>
 
-                    <AutoSuggestBox x:ConnectionId='21'
+                    <AutoSuggestBox x:ConnectionId='22'
                         x:Name="SearchBox"
                         Grid.Column="0"
                         VerticalAlignment="Top"
@@ -75,7 +76,7 @@
                                                                      
                                                             />
 
-                    <Button x:ConnectionId='22'
+                    <Button x:ConnectionId='23'
                         x:Name="SettingsButton"
                         Grid.Column="1"
                         Width="35"
@@ -103,7 +104,7 @@
                         </Viewbox>
                     </Button>
 
-                    <ToggleButton x:ConnectionId='23'
+                    <ToggleButton x:ConnectionId='24'
                         x:Name="MultiSelectButton"
                         Grid.Column="2"
                         Width="35"
@@ -126,9 +127,41 @@
                         </Viewbox>
                     </ToggleButton>
 
-                    <Button x:ConnectionId='24'
-                        x:Name="CloseButton"
+                    <!--  Minimised add items button  -->
+                    <DropDownButton x:ConnectionId='25'
+                        x:Name="AddAllDropdownButton"
                         Grid.Column="3"
+                        Height="35"
+                        Margin="10,0,0,0"
+                        Padding="6"
+                        HorizontalAlignment="Right"
+                        VerticalAlignment="Top"
+                        HorizontalContentAlignment="Center"
+                        VerticalContentAlignment="Center"
+                        ToolTipService.ToolTip="Add item"
+                        Visibility="Collapsed">
+                        <!--  Add Icon  -->
+                        <Viewbox
+                            Width="18"
+                            Height="18"
+                            Stretch="Uniform"
+                            StretchDirection="Both">
+                            <FontIcon Glyph="&#xE710;" />
+                        </Viewbox>
+
+                        <DropDownButton.Flyout>
+                            <MenuFlyout Placement="Bottom">
+                                <MenuFlyoutItem x:ConnectionId='27'                          Text="Add a file" />
+                                <MenuFlyoutItem x:ConnectionId='28'                            Text="Add a folder" />
+                                <MenuFlyoutItem x:ConnectionId='29'                             Text="Add a website" />
+                            </MenuFlyout>
+                        </DropDownButton.Flyout>
+
+                    </DropDownButton>
+
+                    <Button x:ConnectionId='26'
+                        x:Name="CloseButton"
+                        Grid.Column="4"
                         Width="35"
                         Height="35"
                         Margin="10,0,0,0"
@@ -152,7 +185,8 @@
                 </Grid>
 
                 <!--  Header Text + Buttons  -->
-                <Grid
+                <Grid x:ConnectionId='17'
+                    x:Name="HeaderGrid"
                     Height="32"
                     Margin="0,62,0,0"
                     HorizontalAlignment="Stretch"
@@ -162,7 +196,7 @@
                         <ColumnDefinition Width="365" />
                     </Grid.ColumnDefinitions>
 
-                    <TextBlock x:ConnectionId='17'
+                    <TextBlock x:ConnectionId='18'
                         x:Name="HeaderTextBlock"
                         Grid.Column="0"
                         HorizontalAlignment="Stretch"
@@ -178,21 +212,21 @@
                         HorizontalAlignment="Right"
                         VerticalAlignment="Stretch"
                         Orientation="Horizontal">
-                        <Button x:ConnectionId='18'
+                        <Button x:ConnectionId='19'
                             x:Name="AddFileBtn"
                             Width="105"
                             Height="32"
                                                     
                             Content="Add a file"
                             Style="{ThemeResource AccentButtonStyle}" />
-                        <Button x:ConnectionId='19'
+                        <Button x:ConnectionId='20'
                             x:Name="AddFolderBtn"
                             Width="110"
                             Height="32"
                             Margin="10,0,0,0"
                                                       
                             Content="Add a folder" />
-                        <Button x:ConnectionId='20'
+                        <Button x:ConnectionId='21'
                             x:Name="AddWebsiteBtn"
                             Width="120"
                             Height="32"

@@ -24,6 +24,7 @@ namespace LauncherXWinUI.Classes
         public string headerText { get; set; } = "My files, folders, and websites";
         public double gridScale { get; set; } = 1.0f;
         public bool useFullscreen { get; set; } = false;
+        public bool useMinimalistMode { get; set; } = false;
         public string gridPosition { get; set; } = "Left";
     }
 
@@ -79,6 +80,11 @@ namespace LauncherXWinUI.Classes
         /// Variable which stores whether LauncherX should be in fullscreen
         /// </summary>
         public static bool UseFullscreen = false;
+
+        /// <summary>
+        /// Variable which stores whether LauncherX is in minimalist mode
+        /// </summary>
+        public static bool UseMinimalistMode = false;
 
         /// <summary>
         /// Variable which stores which position the app grid is in
@@ -279,6 +285,7 @@ namespace LauncherXWinUI.Classes
                 headerText = HeaderText,
                 gridScale = GridScale,
                 useFullscreen = UseFullscreen,
+                useMinimalistMode = UseMinimalistMode,
                 gridPosition = GridPosition
             };
 
@@ -303,6 +310,7 @@ namespace LauncherXWinUI.Classes
                 HeaderText = userSettingsJson.headerText;
                 GridScale = userSettingsJson.gridScale;
                 UseFullscreen = userSettingsJson.useFullscreen;
+                UseMinimalistMode = userSettingsJson.useMinimalistMode;
                 GridPosition = userSettingsJson.gridPosition;
             }
         }
