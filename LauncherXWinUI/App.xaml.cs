@@ -1,13 +1,16 @@
 ﻿using LauncherXWinUI.Classes;
 using Microsoft.UI.Xaml;
+using Microsoft.UI.Xaml.Controls;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
+using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text.Json.Nodes;
+using WinUIEx;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -19,7 +22,11 @@ namespace LauncherXWinUI
     /// </summary>
     public partial class App : Application
     {
-        public static MainWindow MainWindow = new();
+        // Tray icon for LauncherX to run in background
+        private TrayIcon AppTrayIcon;
+
+        // MainWindow instance
+        public static MainWindow MainWindow;
 
         /// <summary>
         /// Initializes the singleton application object.  This is the first line of authored code
@@ -34,13 +41,73 @@ namespace LauncherXWinUI
         }
 
         /// <summary>
+        /// Creates a new MainWindow and activates it
+        /// </summary>
+        public void GetMainWindow()
+        {
+            if (MainWindow == null)
+            {
+                MainWindow = new MainWindow();
+                MainWindow.Activate();
+                return;
+            }
+
+            // Try to just activate the window, if it fails, create a new instance
+            try
+            {
+                MainWindow.Activate();
+            }
+            catch
+            {
+                MainWindow = new MainWindow();
+                MainWindow.Activate();
+            }
+        }
+
+        /// <summary>
         /// Invoked when the application is launched.
         /// </summary>
         /// <param name="args">Details about the launch request and process.</param>
         protected override void OnLaunched(Microsoft.UI.Xaml.LaunchActivatedEventArgs args)
         {
-            MainWindow.Activate();
+            // Register a tray icon
+            AppTrayIcon = new TrayIcon(1, "Resources\\icon.ico", "LauncherX");
+            AppTrayIcon.IsVisible = true;
+            AppTrayIcon.Selected += (s, e) => GetMainWindow();
+            // A bit messy, but its just UI stuff, so who cares?
+            AppTrayIcon.ContextMenu += (w, e) =>
+            {
+                var flyout = new MenuFlyout();
+                flyout.Items.Add(new MenuFlyoutItem() 
+                { 
+                    Text = "Open LauncherX",
+                    Height = 36,
+                    Icon = new FontIcon() 
+                    { 
+                        Glyph="\uE8A7"
+                    } 
+                });
+                ((MenuFlyoutItem)flyout.Items[0]).Click += (s, e) => GetMainWindow();
 
+                flyout.Items.Add(new MenuFlyoutItem() 
+                { 
+                    Text = "Quit LauncherX", 
+                    Height = 36,
+                    Icon = new FontIcon()
+                    {
+                        Glyph = "\uE711"
+                    }
+                });
+                ((MenuFlyoutItem)flyout.Items[1]).Click += (s, e) =>
+                {
+                    AppTrayIcon.Dispose();
+                    Application.Current.Exit();
+                };
+                e.Flyout = flyout;
+            };
+
+            // Launch MainWindow
+            GetMainWindow();
         }
 
         [DllImport("kernel32.dll", CharSet = CharSet.Unicode, SetLastError = true)]
