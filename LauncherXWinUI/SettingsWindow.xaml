@@ -86,7 +86,7 @@
                     Description="Modify the text shown below the search box."
                     Header="Change header text">
                     <wct:SettingsCard.HeaderIcon>
-                        <FontIcon Glyph="&#xE70F;" />
+                        <FontIcon Glyph="&#xE8AC;" />
                     </wct:SettingsCard.HeaderIcon>
                     <TextBox x:Name="ChangeHeaderTextBox" Width="220" />
                 </wct:SettingsCard>
@@ -134,6 +134,16 @@
                         <x:String>Left</x:String>
                         <x:String>Center</x:String>
                     </ComboBox>
+                </wct:SettingsCard>
+
+                <wct:SettingsCard
+                    Margin="0,5,0,0"
+                    Description="Customise the keyboard control that activates LauncherX."
+                    Header="Activation shortcut">
+                    <wct:SettingsCard.HeaderIcon>
+                        <FontIcon Glyph="&#xE78B;" />
+                    </wct:SettingsCard.HeaderIcon>
+                    <local:KeyComboViewer x:Name="KeyComboControl" KeyCombo="Win Shift L" />
                 </wct:SettingsCard>
 
                 <!--  Check for updates  -->
@@ -234,8 +244,6 @@
                             Content="Export data" />
                     </StackPanel>
                 </wct:SettingsCard>
-
-
 
                 <!--  About section  -->
                 <TextBlock

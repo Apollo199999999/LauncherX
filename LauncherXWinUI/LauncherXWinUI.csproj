@@ -37,6 +37,8 @@
     <None Remove="Controls\GridViewItems\EditItemWindow.xaml" />
     <None Remove="Controls\GridViewTile.xaml" />
     <None Remove="Controls\GridViewTileGroup.xaml" />
+    <None Remove="Controls\KeyComboViewer.xaml" />
+    <None Remove="Controls\KeyPreview.xaml" />
     <None Remove="Controls\Titlebar.xaml" />
     <None Remove="Resources\icon.ico" />
     <None Remove="Resources\LinkedFolderIcon.png" />
@@ -125,6 +127,12 @@
     <Page Update="Controls\GridViewItems\EditItemWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Update="Controls\KeyComboViewer.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Update="Controls\KeyPreview.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <None Update="Resources\icon.png">
       <Pack>True</Pack>
       <PackagePath>\</PackagePath>
@@ -178,8 +186,5 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\WinFormsClassLibrary\WinFormsClassLibrary.csproj" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Controls\Dialogs\" />
   </ItemGroup>
 </Project>

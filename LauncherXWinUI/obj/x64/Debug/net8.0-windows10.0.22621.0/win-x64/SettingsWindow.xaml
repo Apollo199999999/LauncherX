@@ -68,7 +68,7 @@
                     <wct:SettingsCard.HeaderIcon>
                         <FontIcon Glyph="&#xE73F;" />
                     </wct:SettingsCard.HeaderIcon>
-                    <Slider x:ConnectionId='20'
+                    <Slider x:ConnectionId='21'
                         x:Name="ScaleSlider"
                         Width="220"
                         Maximum="6.00"
@@ -86,9 +86,9 @@
                     Description="Modify the text shown below the search box."
                     Header="Change header text">
                     <wct:SettingsCard.HeaderIcon>
-                        <FontIcon Glyph="&#xE70F;" />
+                        <FontIcon Glyph="&#xE8AC;" />
                     </wct:SettingsCard.HeaderIcon>
-                    <TextBox x:ConnectionId='19' x:Name="ChangeHeaderTextBox" Width="220" />
+                    <TextBox x:ConnectionId='20' x:Name="ChangeHeaderTextBox" Width="220" />
                 </wct:SettingsCard>
 
                 <!--  Fullscreen  -->
@@ -99,7 +99,7 @@
                     <wct:SettingsCard.HeaderIcon>
                         <FontIcon Glyph="&#xE740;" />
                     </wct:SettingsCard.HeaderIcon>
-                    <ToggleSwitch x:ConnectionId='18'
+                    <ToggleSwitch x:ConnectionId='19'
                         x:Name="FullscreenToggleSwitch"
                         OffContent="No"
                         OnContent="Yes" />
@@ -113,7 +113,7 @@
                     <wct:SettingsCard.HeaderIcon>
                         <FontIcon Glyph="&#xE73F;" />
                     </wct:SettingsCard.HeaderIcon>
-                    <ToggleSwitch x:ConnectionId='17'
+                    <ToggleSwitch x:ConnectionId='18'
                         x:Name="MinimalistModeToggleSwitch"
                         OffContent="No"
                         OnContent="Yes" />
@@ -127,13 +127,23 @@
                     <wct:SettingsCard.HeaderIcon>
                         <FontIcon Glyph="&#xF0E2;" />
                     </wct:SettingsCard.HeaderIcon>
-                    <ComboBox x:ConnectionId='16'
+                    <ComboBox x:ConnectionId='17'
                         x:Name="GridAlignComboBox"
                         Width="150"
                         SelectedIndex="0">
                         <x:String>Left</x:String>
                         <x:String>Center</x:String>
                     </ComboBox>
+                </wct:SettingsCard>
+
+                <wct:SettingsCard
+                    Margin="0,5,0,0"
+                    Description="Customise the keyboard control that activates LauncherX."
+                    Header="Activation shortcut">
+                    <wct:SettingsCard.HeaderIcon>
+                        <FontIcon Glyph="&#xE78B;" />
+                    </wct:SettingsCard.HeaderIcon>
+                    <local:KeyComboViewer x:ConnectionId='16' x:Name="KeyComboControl" KeyCombo="Win Shift L" />
                 </wct:SettingsCard>
 
                 <!--  Check for updates  -->
@@ -234,8 +244,6 @@
                             Content="Export data" />
                     </StackPanel>
                 </wct:SettingsCard>
-
-
 
                 <!--  About section  -->
                 <TextBlock

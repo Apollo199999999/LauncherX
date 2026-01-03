@@ -358,6 +358,7 @@ namespace LauncherXWinUI.Controls.GridViewItems
             catch
             {
                 // Use a MessageDialog to show the error message
+                // We use MessageeDialog because if this GridViewTile is in a group, we can't launch a second ContentDialog
                 MessageDialog messageDialog = new MessageDialog("If you are attempting to run this item as an administrator, check that it is possible to do so in the first place. " +
                                   "Finally, check that the file/folder has not been moved or deleted.", "Error running item");
                 WinRT.Interop.InitializeWithWindow.Initialize(messageDialog, WinRT.Interop.WindowNative.GetWindowHandle(App.MainWindow));
