@@ -138,12 +138,12 @@
 
                 <wct:SettingsCard
                     Margin="0,5,0,0"
-                    Description="Customise the keyboard control that activates LauncherX."
+                    Description="Customise the keyboard shortcut that activates LauncherX."
                     Header="Activation shortcut">
                     <wct:SettingsCard.HeaderIcon>
                         <FontIcon Glyph="&#xE78B;" />
                     </wct:SettingsCard.HeaderIcon>
-                    <local:KeyComboViewer x:ConnectionId='16' x:Name="KeyComboControl" KeyCombo="Win Shift L" />
+                    <local:KeyComboViewer x:ConnectionId='16' x:Name="KeyComboControl" />
                 </wct:SettingsCard>
 
                 <!--  Check for updates  -->

@@ -55,9 +55,9 @@ namespace LauncherXWinUI
 
         // Helper methods
         /// <summary>
-        /// Method that updates the UI based on the UserSettingsClass
+        /// Method that applies settings (UI, functionality, etc.) based on the UserSettingsClass
         /// </summary>
-        private void UpdateUIFromSettings()
+        private void ApplyFromSettings()
         {
             // Set header text (Update from HeaderText)
             HeaderTextBlock.Text = UserSettingsClass.HeaderText;
@@ -129,7 +129,6 @@ namespace LauncherXWinUI
                 AddAllDropdownButton.Visibility = Visibility.Collapsed;
             }
 
-
             // Align the GridView (Update from GridPosition)
             if (UserSettingsClass.GridPosition == "Left")
             {
@@ -139,6 +138,12 @@ namespace LauncherXWinUI
             {
                 AlignGridViewCenter();
             }
+
+            // Update the activation shortcut
+            App.ActivationHotKeyHook.UnregisterAll();
+            KeyClass.TryRegisterHotKeyFromList(
+                KeyClass.StringToKeysList(UserSettingsClass.ActivationShortcut), 
+                App.ActivationHotKeyHook);
         }
 
         /// <summary>
@@ -304,8 +309,8 @@ namespace LauncherXWinUI
                 // Retrieve user settings from file
                 UserSettingsClass.TryReadSettingsFile();
 
-                // Once we have initialised the UserSettingsClass with the correct values, update the UI
-                UpdateUIFromSettings();
+                // Once we have initialised the UserSettingsClass with the correct values, update from UserSettingsClass
+                ApplyFromSettings();
 
                 // Monitor when the window is resized so that we can adjust the position of the GridView as necesssary
                 this.SizeChanged += WindowEx_SizeChanged;
@@ -330,8 +335,8 @@ namespace LauncherXWinUI
                 // Retrieve user settings from file
                 UserSettingsClass.TryReadSettingsFile();
 
-                // Once we have initialised the UserSettingsClass with the correct values, update the UI
-                UpdateUIFromSettings();
+                // Once we have initialised the UserSettingsClass with the correct values, update from UserSettingsClass
+                ApplyFromSettings();
 
                 // Monitor when the window is resized so that we can adjust the position of the GridView as necesssary
                 this.SizeChanged += WindowEx_SizeChanged;
@@ -390,7 +395,7 @@ namespace LauncherXWinUI
         {
             // Navigate to GitHub releases page and exit application
             Process.Start(new ProcessStartInfo { FileName = "https://github.com/Apollo199999999/LauncherX/releases", UseShellExecute = true });
-            Application.Current.Exit();
+            App.ExitApplication();
         }
 
         private void ItemsGridViewItems_VectorChanged(Windows.Foundation.Collections.IObservableVector<object> sender, Windows.Foundation.Collections.IVectorChangedEventArgs @event)
@@ -530,8 +535,8 @@ namespace LauncherXWinUI
             SettingsWindow settingsWindow = new SettingsWindow();
             UIFunctionsClass.CreateModalWindow(settingsWindow, this);
 
-            // Update the UI once the SettingsWindow is closed
-            settingsWindow.Closed += (s, e) => UpdateUIFromSettings();
+            // Apply user settings once the SettingsWindow is closed
+            settingsWindow.Closed += (s, e) => ApplyFromSettings();
         }
 
         // This section of event handlers handles dragging items in the GridView to make groups
@@ -902,7 +907,7 @@ namespace LauncherXWinUI
         // For fullscreen mode - Exit LauncherX
         private void CloseButton_Click(object sender, RoutedEventArgs e)
         {
-            Application.Current.Exit();
+            this.Close();
         }
 
         // When window resized

@@ -22,14 +22,23 @@ namespace LauncherXWinUI
     /// </summary>
     public partial class App : Application
     {
-        // Tray icon for LauncherX to run in background
-        private TrayIcon AppTrayIcon;
+        /// <summary>
+        /// Tray icon for LauncherX to run in background
+        /// </summary>
+        private static TrayIcon AppTrayIcon;
 
-        // MainWindow instance
+        /// <summary>
+        /// MainWindow instance
+        /// </summary>
         public static MainWindow MainWindow;
 
         /// <summary>
-        /// Initializes the singleton application object.  This is the first line of authored code
+        /// To register system hot keys to activate LauncherX
+        /// </summary>
+        public static HotKeyHook ActivationHotKeyHook;
+
+        /// <summary>
+        /// Initializes the singleton application object. This is the first line of authored code
         /// executed, and as such is the logical equivalent of main() or WinMain().
         /// </summary>
         public App()
@@ -38,10 +47,15 @@ namespace LauncherXWinUI
 
             // Configure FilePersistence for WinUIEx to save Window position in Unpackaged apps https://github.com/dotMorten/WinUIEx/issues/61
             WinUIEx.WindowManager.PersistenceStorage = new FilePersistence(Path.Combine(UserSettingsClass.SettingsDir, "windowPlace.json"));
-        }
 
+            // Create an instance of HotKeyHook to watch out for activation shortcuts,
+            // and create a new event handler for when the activation shortcut (hotkey) is triggered
+            ActivationHotKeyHook = new HotKeyHook();
+            ActivationHotKeyHook.KeyPressed += ActivationHotKeyHook_KeyPressed;
+        }
+       
         /// <summary>
-        /// Creates a new MainWindow and activates it
+        /// Creates a new MainWindow (if applicable) and activates the MainWindow
         /// </summary>
         public void GetMainWindow()
         {
@@ -100,14 +114,29 @@ namespace LauncherXWinUI
                 });
                 ((MenuFlyoutItem)flyout.Items[1]).Click += (s, e) =>
                 {
-                    AppTrayIcon.Dispose();
-                    Application.Current.Exit();
+                    ExitApplication();
                 };
                 e.Flyout = flyout;
             };
 
             // Launch MainWindow
             GetMainWindow();
+        }
+
+        // Activate LauncherX when hot key is triggered
+        private void ActivationHotKeyHook_KeyPressed(object sender, KeyPressedEventArgs e)
+        {
+            GetMainWindow();
+        }
+
+        /// <summary>
+        /// Exits the application and cleans up the necessary objects
+        /// </summary>
+        public static void ExitApplication()
+        {
+            AppTrayIcon.Dispose();
+            ActivationHotKeyHook.Dispose();
+            Application.Current.Exit();
         }
 
         [DllImport("kernel32.dll", CharSet = CharSet.Unicode, SetLastError = true)]

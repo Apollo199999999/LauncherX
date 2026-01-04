@@ -26,6 +26,7 @@ namespace LauncherXWinUI.Classes
         public bool useFullscreen { get; set; } = false;
         public bool useMinimalistMode { get; set; } = false;
         public string gridPosition { get; set; } = "Left";
+        public string activationShortcut { get; set; } = "Ctrl L";
     }
 
     /// <summary>
@@ -91,6 +92,13 @@ namespace LauncherXWinUI.Classes
         /// Valid values are "Left" or "Center"
         /// </summary>
         public static string GridPosition = "Left";
+
+        /// <summary>
+        /// Variable which stores the key combination that activates LauncherX
+        /// Key combo should start with Win, Shift, Ctrl, Alt,
+        /// and individual keys are space separated
+        /// </summary>
+        public static string ActivationShortcut = "Ctrl L";
 
         // DIRECTORIES
         /// <summary>
@@ -286,7 +294,8 @@ namespace LauncherXWinUI.Classes
                 gridScale = GridScale,
                 useFullscreen = UseFullscreen,
                 useMinimalistMode = UseMinimalistMode,
-                gridPosition = GridPosition
+                gridPosition = GridPosition,
+                activationShortcut = ActivationShortcut
             };
 
             string settingsFilePath = Path.Combine(SettingsDir, "userSettings.json");
@@ -312,6 +321,7 @@ namespace LauncherXWinUI.Classes
                 UseFullscreen = userSettingsJson.useFullscreen;
                 UseMinimalistMode = userSettingsJson.useMinimalistMode;
                 GridPosition = userSettingsJson.gridPosition;
+                ActivationShortcut = userSettingsJson.activationShortcut;
             }
         }
 

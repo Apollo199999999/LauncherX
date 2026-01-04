@@ -17,6 +17,7 @@ using System.Runtime.InteropServices.WindowsRuntime;
 using System.Windows.Forms;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.UI.Popups;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -28,7 +29,18 @@ namespace LauncherXWinUI.Controls
         /// <summary>
         /// GlobalKeyboardHook to detect key presses
         /// </summary>
-        GlobalKeyboardHook globalKeyboardHook;
+        private GlobalKeyboardHook globalKeyboardHook;
+
+        /// <summary>
+        /// A HotKeyHook just to verify that the key combination input can be registered
+        /// Note that this HotKeyHook is NOT used to actually activate LauncherX
+        /// </summary>
+        private HotKeyHook verifyKeyHook;
+
+        /// <summary>
+        /// As the name suggests, an event that is triggered when the user successsfully edits and registers a new keyboard shortcut
+        /// </summary>
+        public event EventHandler OnNewKeyboardShortcutRegistered;
 
         public KeyComboViewer()
         {
@@ -43,6 +55,8 @@ namespace LauncherXWinUI.Controls
             foreach (Keys key in Enum.GetValues(typeof(Keys)))
                 globalKeyboardHook.HookedKeys.Add(key);
 
+            // Initialise a HotKeyHook for key combo verification
+            verifyKeyHook = new HotKeyHook();
         }
 
         /// <summary>
@@ -58,28 +72,44 @@ namespace LauncherXWinUI.Controls
             nameof(KeyCombo),
             typeof(string),
             typeof(KeyComboViewer),
-            new PropertyMetadata("Ctrl L", new PropertyChangedCallback(OnKeyComboChanged)));
+            new PropertyMetadata(default(string), new PropertyChangedCallback(OnKeyComboChanged)));
 
         private static void OnKeyComboChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             KeyComboViewer keyComboViewer = d as KeyComboViewer;
             string newKeyCombo = e.NewValue as string;
+            keyComboViewer.UpdateUIFromKeyCombo(keyComboViewer, newKeyCombo);
+            
+        }
+
+        // Helper functions
+
+        /// <summary>
+        /// Updates UI controls in a KeyComboViewer given a key combination
+        /// </summary>
+        /// <param name="keyComboViewer">KeyComboViewer to update</param>
+        /// <param name="newKeyCombo">Key combination to use</param>
+        private void UpdateUIFromKeyCombo(KeyComboViewer keyComboViewer, string newKeyCombo)
+        {
             if (newKeyCombo != null)
             {
                 // Clear existing key combo
                 keyComboViewer.KeyComboKeysPanel.Children.Clear();
                 keyComboViewer.KeyComboDialogPanel.Children.Clear();
 
-                foreach (string key in newKeyCombo.Trim().Split(' '))
+                // From the key combo, which is a string, obtain a list of keys
+                List<Keys> keysList = KeyClass.StringToKeysList(newKeyCombo);
+
+                foreach (Keys key in keysList)
                 {
                     // Create and display a KeyPreview control for each key
                     KeyPreview keyPreview = new KeyPreview();
-                    keyPreview.Key = KeyClass.CharToKeycode(key);
+                    keyPreview.Key = key;
                     keyComboViewer.KeyComboKeysPanel.Children.Add(keyPreview);
 
                     // Additionally, add the KeyPreview control to the panel in the ContentDialog
                     KeyPreview keyPreviewDialog = new KeyPreview();
-                    keyPreviewDialog.Key = KeyClass.CharToKeycode(key);
+                    keyPreviewDialog.Key = key;
                     keyPreviewDialog.Size = 2.0;
                     keyComboViewer.KeyComboDialogPanel.Children.Add(keyPreviewDialog);
 
@@ -88,8 +118,6 @@ namespace LauncherXWinUI.Controls
                 }
             }
         }
-
-        // Helper functions
         /// <summary>
         /// Gets the keys displayed in the KeyComboDialog
         /// </summary>
@@ -140,6 +168,7 @@ namespace LauncherXWinUI.Controls
 
             return isValidKeyCombo;
         }
+
         // Event handlers
         private async void ChangeKeyComboBtn_Click(object sender, RoutedEventArgs e)
         {
@@ -151,15 +180,40 @@ namespace LauncherXWinUI.Controls
 
             if (result == ContentDialogResult.Primary)
             {
-                // Register a new key combination
                 List<Keys> pressedKeys = GetKeyComboDialogKeys();
-                string newKeyCombo = "";
-                foreach (Keys key in pressedKeys)
+
+                // First, we need to determine if the key combination can be registered,
+                // or whether it is being blocked by an application
+                verifyKeyHook.UnregisterAll();
+                if (KeyClass.TryRegisterHotKeyFromList(pressedKeys, verifyKeyHook))
                 {
-                    newKeyCombo += KeyClass.KeycodeToChar(key);
-                    newKeyCombo += " ";
+                    // Key combo is valid!
+                    // Assign the new key combination to be registered later
+                    this.KeyCombo = KeyClass.KeysListToString(pressedKeys);
+
+                    // Raise the event
+                    OnNewKeyboardShortcutRegistered(this, EventArgs.Empty);
                 }
-                this.KeyCombo = newKeyCombo.Trim();
+                else
+                {
+                    // Reset all UI controls
+                    UpdateUIFromKeyCombo(this, this.KeyCombo);
+
+                    // Show an error message
+                    ContentDialog errorDialog = new ContentDialog();
+                    errorDialog.XamlRoot = this.XamlRoot;
+                    errorDialog.Style = Microsoft.UI.Xaml.Application.Current.Resources["DefaultContentDialogStyle"] as Style;
+                    errorDialog.Title = "Failed to register new keyboard shortcut";
+                    errorDialog.PrimaryButtonText = "OK";
+                    errorDialog.DefaultButton = ContentDialogButton.Primary;
+                    errorDialog.Content = "The keyboard shortcut could not be registered. This may be because another application might already be this keyboard shortcut. " +
+                                  "LauncherX cannot override this action. Please use another keyboard shortcut.";
+
+                    await errorDialog.ShowAsync();
+                }
+
+                verifyKeyHook.UnregisterAll();
+
             }
         }
 

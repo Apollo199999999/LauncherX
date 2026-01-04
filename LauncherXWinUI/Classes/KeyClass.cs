@@ -9,11 +9,12 @@ namespace LauncherXWinUI.Classes
 {
     /// <summary>
     /// Contains helper functions for dealing with keys
-    /// Note that KeycodeToChar and CharToKeycode are perfect inverses,
-    /// and composing the 2 functions can be helpful in mapping both LShift and RShift to just Shift, for example
     /// </summary>
     public static class KeyClass
     {
+        /// Note that KeycodeToChar and CharToKeycode are perfect inverses,
+        /// and composing the 2 functions can be helpful in mapping both LShift and RShift to just Shift, for example
+        /// See KeyComboViewer.xaml.cs for example usage
 
         /// <summary>
         /// Converts a key to a string
@@ -186,6 +187,103 @@ namespace LauncherXWinUI.Classes
                 default:
                     return (Keys)Enum.Parse(typeof(Keys), key);
             }
+        }
+
+        /// <summary>
+        /// Function that registers a hot key from a list of keys
+        /// This function assumes that the list of keys passed in is a valid key combo
+        /// </summary>
+        /// <param name="KeysList">List of System.Windows.Forms.Keys containing the key combination</param>
+        /// <param name="hotKeyHook">Instance of a HotKeyHook class</param>
+        /// <returns>Boolean whether the HotKey was successfully registered</returns>
+        public static bool TryRegisterHotKeyFromList(List<Keys> KeysList, HotKeyHook hotKeyHook)
+        {
+            // Empty list of ModifierKeys (Win, Shift, Alt, Ctrl)
+            // ModifierKeys enum comes from HotKeyHook class
+            List<ModifierKeys> modifierKeysList = new List<ModifierKeys>();
+            modifierKeysList.Clear();
+            modifierKeysList.Add(ModifierKeys.None);
+            modifierKeysList.Add(ModifierKeys.None);
+            modifierKeysList.Add(ModifierKeys.None);
+            modifierKeysList.Add(ModifierKeys.None);
+
+            // Obtain the last key in the key combo, which is not a modifier key
+            Keys lastKey = KeysList.Last();
+
+            for (int i = 0; i < KeysList.Count(); i++)
+            {
+                if (KeysList[i] == Keys.LWin)
+                {
+                    modifierKeysList.RemoveAt(i);
+                    modifierKeysList.Insert(i, ModifierKeys.Win);
+                }
+                else if (KeysList[i] == Keys.ShiftKey)
+                {
+                    modifierKeysList.RemoveAt(i);
+                    modifierKeysList.Insert(i, ModifierKeys.Shift);
+                }
+                else if (KeysList[i] == Keys.Menu)
+                {
+                    modifierKeysList.RemoveAt(i);
+                    modifierKeysList.Insert(i, ModifierKeys.Alt);
+                }
+                else if (KeysList[i] == Keys.ControlKey)
+                {
+                    modifierKeysList.RemoveAt(i);
+                    modifierKeysList.Insert(i, ModifierKeys.Control);
+                }
+            }
+
+            hotKeyHook.UnregisterAll();
+
+            switch (KeysList.Count())
+            {
+                case 2:
+                    return hotKeyHook.RegisterHotKey(modifierKeysList[0], lastKey);
+                case 3:
+                    return hotKeyHook.RegisterHotKey(modifierKeysList[0] | modifierKeysList[1], lastKey);
+                case 4:
+                    return hotKeyHook.RegisterHotKey(modifierKeysList[0] | modifierKeysList[1] | modifierKeysList[2], lastKey);
+                default:
+                    return hotKeyHook.RegisterHotKey(modifierKeysList[0] | modifierKeysList[1] | modifierKeysList[2] | modifierKeysList[3], lastKey);
+            }
+        }
+
+        /// <summary>
+        /// Function that converts a string containing a key combination, e.g. "Ctrl L", to a list of System.Windows.Forms.Keys,
+        /// assuming that individual keys in the string are space separated.
+        /// Inverse of KeysListToString().
+        /// </summary>
+        /// <param name="KeysString">String to convert, e.g. "Ctrl L"</param>
+        /// <returns>A list of System.Windows.Forms.Keys</returns>
+        public static List<Keys> StringToKeysList(string KeysString)
+        {
+            List<Keys> keysList = new List<Keys>();
+
+            foreach (string key in KeysString.Trim().Split(' '))
+            {
+                keysList.Add(CharToKeycode(key));
+            }
+
+            return keysList;
+        }
+
+        /// <summary>
+        /// Function that converts a list of System.Windows.Forms.Keys to a string containing a key combination, e.g. "Ctrl L",
+        /// with individual keys in the output string space separated.
+        /// Inverse of KeysListToString().
+        /// </summary>
+        /// <param name="keysList">List of keys to convert</param>
+        /// <returns>Output string</returns>
+        public static string KeysListToString(List<Keys> keysList)
+        {
+            string newKeyCombo = "";
+            foreach (Keys key in keysList)
+            {
+                newKeyCombo += KeycodeToChar(key);
+                newKeyCombo += " ";
+            }
+            return newKeyCombo.Trim();
         }
     }
 }

@@ -46,7 +46,8 @@ namespace LauncherXWinUI
             FullscreenToggleSwitch.IsOn = UserSettingsClass.UseFullscreen;
             MinimalistModeToggleSwitch.IsOn = UserSettingsClass.UseMinimalistMode;
             GridAlignComboBox.SelectedItem = UserSettingsClass.GridPosition;
-
+            KeyComboControl.KeyCombo = UserSettingsClass.ActivationShortcut;
+    
             // Create event handlers for the textbox and slider to update settings when their value is changed
             // We only create the event handlers here to prevent them from firing when the window loads
             // Since we are updating the settings using these event handlers, if they fire when the window is created, 
@@ -56,6 +57,7 @@ namespace LauncherXWinUI
             FullscreenToggleSwitch.Toggled += FullscreenToggleSwitch_Toggled;
             MinimalistModeToggleSwitch.Toggled += MinimalistModeToggleSwitch_Toggled;
             GridAlignComboBox.SelectionChanged += GridAlignComboBox_SelectionChanged;
+            KeyComboControl.OnNewKeyboardShortcutRegistered += KeyComboControl_OnNewKeyboardShortcutRegistered;
 
             // Make sure to unsubscribe from the event handlers after
             ScaleSlider.Unloaded += (s, e) => ScaleSlider.ValueChanged -= ScaleSlider_ValueChanged;
@@ -63,6 +65,7 @@ namespace LauncherXWinUI
             FullscreenToggleSwitch.Unloaded += (s, e) => FullscreenToggleSwitch.Toggled -= FullscreenToggleSwitch_Toggled;
             MinimalistModeToggleSwitch.Unloaded += (s, e) => MinimalistModeToggleSwitch.Toggled -= MinimalistModeToggleSwitch_Toggled;
             GridAlignComboBox.Unloaded += (s, e) => GridAlignComboBox.SelectionChanged -= GridAlignComboBox_SelectionChanged;
+            KeyComboControl.Unloaded += (s, e) => KeyComboControl.OnNewKeyboardShortcutRegistered -= KeyComboControl_OnNewKeyboardShortcutRegistered;
         }
 
         private void ScaleSlider_ValueChanged(object sender, RangeBaseValueChangedEventArgs e)
@@ -97,6 +100,13 @@ namespace LauncherXWinUI
         {
             // Update UserSettingsClass
             UserSettingsClass.GridPosition = GridAlignComboBox.SelectedItem.ToString();
+            UserSettingsClass.WriteSettingsFile();
+        }
+
+        private void KeyComboControl_OnNewKeyboardShortcutRegistered(object sender, EventArgs e)
+        {
+            // Update UserSettingsClass
+            UserSettingsClass.ActivationShortcut = KeyComboControl.KeyCombo;
             UserSettingsClass.WriteSettingsFile();
         }
 
@@ -137,7 +147,7 @@ namespace LauncherXWinUI
         {
             // Navigate to GitHub releases page and exit application
             Process.Start(new ProcessStartInfo { FileName = "https://github.com/Apollo199999999/LauncherX/releases", UseShellExecute = true});
-            Application.Current.Exit();
+            App.ExitApplication();
         }
 
         private async void ImportDataBtn_Click(object sender, RoutedEventArgs e)
