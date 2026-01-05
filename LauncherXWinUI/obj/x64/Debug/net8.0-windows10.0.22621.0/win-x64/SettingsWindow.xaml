@@ -60,6 +60,13 @@
                     Opacity="0.7"
                     Text="Settings are automatically saved once modified." />
 
+                <!--#region Appearance-->
+                <TextBlock
+                    Margin="0,15,0,0"
+                    FontSize="20"
+                    FontWeight="Bold"
+                    Text="Appearance" />
+
                 <!--  Icon Scale  -->
                 <wct:SettingsCard
                     Margin="0,10,0,0"
@@ -68,7 +75,7 @@
                     <wct:SettingsCard.HeaderIcon>
                         <FontIcon Glyph="&#xE73F;" />
                     </wct:SettingsCard.HeaderIcon>
-                    <Slider x:ConnectionId='21'
+                    <Slider x:ConnectionId='23'
                         x:Name="ScaleSlider"
                         Width="220"
                         Maximum="6.00"
@@ -88,7 +95,7 @@
                     <wct:SettingsCard.HeaderIcon>
                         <FontIcon Glyph="&#xE8AC;" />
                     </wct:SettingsCard.HeaderIcon>
-                    <TextBox x:ConnectionId='20' x:Name="ChangeHeaderTextBox" Width="220" />
+                    <TextBox x:ConnectionId='22' x:Name="ChangeHeaderTextBox" Width="220" />
                 </wct:SettingsCard>
 
                 <!--  Fullscreen  -->
@@ -99,7 +106,7 @@
                     <wct:SettingsCard.HeaderIcon>
                         <FontIcon Glyph="&#xE740;" />
                     </wct:SettingsCard.HeaderIcon>
-                    <ToggleSwitch x:ConnectionId='19'
+                    <ToggleSwitch x:ConnectionId='21'
                         x:Name="FullscreenToggleSwitch"
                         OffContent="No"
                         OnContent="Yes" />
@@ -113,7 +120,7 @@
                     <wct:SettingsCard.HeaderIcon>
                         <FontIcon Glyph="&#xE73F;" />
                     </wct:SettingsCard.HeaderIcon>
-                    <ToggleSwitch x:ConnectionId='18'
+                    <ToggleSwitch x:ConnectionId='20'
                         x:Name="MinimalistModeToggleSwitch"
                         OffContent="No"
                         OnContent="Yes" />
@@ -127,7 +134,7 @@
                     <wct:SettingsCard.HeaderIcon>
                         <FontIcon Glyph="&#xF0E2;" />
                     </wct:SettingsCard.HeaderIcon>
-                    <ComboBox x:ConnectionId='17'
+                    <ComboBox x:ConnectionId='19'
                         x:Name="GridAlignComboBox"
                         Width="150"
                         SelectedIndex="0">
@@ -136,19 +143,66 @@
                     </ComboBox>
                 </wct:SettingsCard>
 
+                <!--#endregion-->
+
+                <!--#region Behaviour-->
+                <TextBlock
+                    Margin="0,15,0,0"
+                    FontSize="20"
+                    FontWeight="Bold"
+                    Text="Behaviour" />
+
+                <!--  Keyboard shortcut  -->
                 <wct:SettingsCard
-                    Margin="0,5,0,0"
+                    Margin="0,10,0,0"
                     Description="Customise the keyboard shortcut that activates LauncherX."
                     Header="Activation shortcut">
                     <wct:SettingsCard.HeaderIcon>
                         <FontIcon Glyph="&#xE78B;" />
                     </wct:SettingsCard.HeaderIcon>
-                    <local:KeyComboViewer x:ConnectionId='16' x:Name="KeyComboControl" />
+                    <local:KeyComboViewer x:ConnectionId='18' x:Name="KeyComboControl" />
                 </wct:SettingsCard>
+
+                <!--  Run on startup  -->
+                <wct:SettingsCard
+                    Margin="0,5,0,0"
+                    Description="LauncherX will run on Windows startup."
+                    Header="Run on startup">
+                    <wct:SettingsCard.HeaderIcon>
+                        <FontIcon Glyph="&#xE7E8;" />
+                    </wct:SettingsCard.HeaderIcon>
+                    <ToggleSwitch x:ConnectionId='17'
+                        x:Name="RunOnStartupToggleSwitch"
+                        OffContent="No"
+                        OnContent="Yes" />
+                </wct:SettingsCard>
+
+                <!--  Minimise after item launch  -->
+                <wct:SettingsCard
+                    Margin="0,5,0,0"
+                    Description="LauncherX will minimise to the taskbar after an item is opened."
+                    Header="Minimise on item launch">
+                    <wct:SettingsCard.HeaderIcon>
+                        <FontIcon Glyph="&#xE944;" />
+                    </wct:SettingsCard.HeaderIcon>
+                    <ToggleSwitch x:ConnectionId='16'
+                        x:Name="MinimiseOnItemLaunchToggleSwitch"
+                        OffContent="No"
+                        OnContent="Yes" />
+                </wct:SettingsCard>
+
+                <!--#endregion-->
+
+                <!--#region Updates-->
+                <TextBlock
+                    Margin="0,15,0,0"
+                    FontSize="20"
+                    FontWeight="Bold"
+                    Text="Updates" />
 
                 <!--  Check for updates  -->
                 <wct:SettingsCard
-                    Margin="0,5,0,0"
+                    Margin="0,10,0,0"
                     Description="Check if any new updates are available."
                     Header="Check for updates">
                     <wct:SettingsCard.HeaderIcon>
@@ -200,7 +254,9 @@
                         Severity="Error" />
                 </StackPanel>
 
-                <!--  Import/Export user data section  -->
+                <!--#endregion-->
+
+                <!--#region Import/Export data-->
                 <TextBlock
                     Margin="0,15,0,0"
                     FontSize="20"
@@ -245,7 +301,9 @@
                     </StackPanel>
                 </wct:SettingsCard>
 
-                <!--  About section  -->
+                <!--#endregion-->
+
+                <!--#region About-->
                 <TextBlock
                     Margin="0,15,0,0"
                     FontSize="20"
@@ -268,6 +326,9 @@
                         </wct:SettingsCard>
                     </wct:SettingsExpander.Items>
                 </wct:SettingsExpander>
+
+                <!--#endregion-->
+
             </StackPanel>
         </ScrollViewer>
 

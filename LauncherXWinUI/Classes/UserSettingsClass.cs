@@ -27,6 +27,8 @@ namespace LauncherXWinUI.Classes
         public bool useMinimalistMode { get; set; } = false;
         public string gridPosition { get; set; } = "Left";
         public string activationShortcut { get; set; } = "Ctrl L";
+        public bool runOnStartup { get; set; } = false;
+        public bool minimiseOnItemLaunch { get; set; } = false;
     }
 
     /// <summary>
@@ -99,6 +101,16 @@ namespace LauncherXWinUI.Classes
         /// and individual keys are space separated
         /// </summary>
         public static string ActivationShortcut = "Ctrl L";
+
+        /// <summary>
+        /// Variable which stores whether to run LauncherX on Windows startup
+        /// </summary>
+        public static bool RunOnStartup = false;
+
+        /// <summary>
+        /// Variable which stores whether to minimise LauncherX to the taskbar after an item is launched
+        /// </summary>
+        public static bool MinimiseOnItemLaunch = false;
 
         // DIRECTORIES
         /// <summary>
@@ -295,7 +307,9 @@ namespace LauncherXWinUI.Classes
                 useFullscreen = UseFullscreen,
                 useMinimalistMode = UseMinimalistMode,
                 gridPosition = GridPosition,
-                activationShortcut = ActivationShortcut
+                activationShortcut = ActivationShortcut,
+                runOnStartup = RunOnStartup,
+                minimiseOnItemLaunch = MinimiseOnItemLaunch
             };
 
             string settingsFilePath = Path.Combine(SettingsDir, "userSettings.json");
@@ -322,6 +336,8 @@ namespace LauncherXWinUI.Classes
                 UseMinimalistMode = userSettingsJson.useMinimalistMode;
                 GridPosition = userSettingsJson.gridPosition;
                 ActivationShortcut = userSettingsJson.activationShortcut;
+                RunOnStartup = userSettingsJson.runOnStartup;
+                MinimiseOnItemLaunch = userSettingsJson.minimiseOnItemLaunch;
             }
         }
 

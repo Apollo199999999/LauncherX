@@ -47,6 +47,8 @@ namespace LauncherXWinUI
             MinimalistModeToggleSwitch.IsOn = UserSettingsClass.UseMinimalistMode;
             GridAlignComboBox.SelectedItem = UserSettingsClass.GridPosition;
             KeyComboControl.KeyCombo = UserSettingsClass.ActivationShortcut;
+            RunOnStartupToggleSwitch.IsOn = UserSettingsClass.RunOnStartup;
+            MinimiseOnItemLaunchToggleSwitch.IsOn = UserSettingsClass.MinimiseOnItemLaunch;
     
             // Create event handlers for the textbox and slider to update settings when their value is changed
             // We only create the event handlers here to prevent them from firing when the window loads
@@ -58,6 +60,8 @@ namespace LauncherXWinUI
             MinimalistModeToggleSwitch.Toggled += MinimalistModeToggleSwitch_Toggled;
             GridAlignComboBox.SelectionChanged += GridAlignComboBox_SelectionChanged;
             KeyComboControl.OnNewKeyboardShortcutRegistered += KeyComboControl_OnNewKeyboardShortcutRegistered;
+            RunOnStartupToggleSwitch.Toggled += RunOnStartupToggleSwitch_Toggled;
+            MinimiseOnItemLaunchToggleSwitch.Toggled += MinimiseOnItemLaunchToggleSwitch_Toggled;
 
             // Make sure to unsubscribe from the event handlers after
             ScaleSlider.Unloaded += (s, e) => ScaleSlider.ValueChanged -= ScaleSlider_ValueChanged;
@@ -66,6 +70,8 @@ namespace LauncherXWinUI
             MinimalistModeToggleSwitch.Unloaded += (s, e) => MinimalistModeToggleSwitch.Toggled -= MinimalistModeToggleSwitch_Toggled;
             GridAlignComboBox.Unloaded += (s, e) => GridAlignComboBox.SelectionChanged -= GridAlignComboBox_SelectionChanged;
             KeyComboControl.Unloaded += (s, e) => KeyComboControl.OnNewKeyboardShortcutRegistered -= KeyComboControl_OnNewKeyboardShortcutRegistered;
+            RunOnStartupToggleSwitch.Unloaded += (s, e) => RunOnStartupToggleSwitch.Toggled -= RunOnStartupToggleSwitch_Toggled;
+            MinimiseOnItemLaunchToggleSwitch.Unloaded += (s, e) => MinimiseOnItemLaunchToggleSwitch.Toggled -= MinimiseOnItemLaunchToggleSwitch_Toggled;
         }
 
         private void ScaleSlider_ValueChanged(object sender, RangeBaseValueChangedEventArgs e)
@@ -109,6 +115,20 @@ namespace LauncherXWinUI
             UserSettingsClass.ActivationShortcut = KeyComboControl.KeyCombo;
             UserSettingsClass.WriteSettingsFile();
         }
+
+        private void RunOnStartupToggleSwitch_Toggled(object sender, RoutedEventArgs e)
+        {
+            // Update UserSettingsClass
+            UserSettingsClass.RunOnStartup = RunOnStartupToggleSwitch.IsOn;
+            UserSettingsClass.WriteSettingsFile();
+        }
+        private void MinimiseOnItemLaunchToggleSwitch_Toggled(object sender, RoutedEventArgs e)
+        {
+            // Update UserSettingsClass
+            UserSettingsClass.MinimiseOnItemLaunch = MinimiseOnItemLaunchToggleSwitch.IsOn;
+            UserSettingsClass.WriteSettingsFile();
+        }
+
 
         private void CloseButton_Click(object sender, RoutedEventArgs e)
         {

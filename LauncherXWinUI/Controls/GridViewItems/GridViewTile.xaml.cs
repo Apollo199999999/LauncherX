@@ -15,6 +15,7 @@ using System.Threading.Tasks;
 using Windows.Storage;
 using Windows.UI;
 using Windows.UI.Popups;
+using WinUIEx;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -256,6 +257,21 @@ namespace LauncherXWinUI.Controls.GridViewItems
             }
         }
 
+        /// <summary>
+        /// Whether to minimise LauncherX to taskbar after launching an item
+        /// </summary>
+        public bool MinimiseOnItemLaunch
+        {
+            get => (bool)GetValue(MinimiseOnItemLaunchProperty);
+            set => SetValue(MinimiseOnItemLaunchProperty, value);
+        }
+
+        DependencyProperty MinimiseOnItemLaunchProperty = DependencyProperty.Register(
+            nameof(MinimiseOnItemLaunch),
+            typeof(bool),
+            typeof(GridViewTile),
+            new PropertyMetadata(default(bool)));
+
         // Methods
 
         /// <summary>
@@ -354,6 +370,12 @@ namespace LauncherXWinUI.Controls.GridViewItems
                     processStartInfo.Verb = "runas";
                 }
                 Process.Start(processStartInfo);
+
+                // If successful, minimise LauncherX to taskbar if it is needed
+                if (this.MinimiseOnItemLaunch)
+                {
+                    App.MainWindow.Minimize();
+                }
             }
             catch
             {

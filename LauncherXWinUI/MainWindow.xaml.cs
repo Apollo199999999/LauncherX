@@ -144,6 +144,35 @@ namespace LauncherXWinUI
             KeyClass.TryRegisterHotKeyFromList(
                 KeyClass.StringToKeysList(UserSettingsClass.ActivationShortcut), 
                 App.ActivationHotKeyHook);
+
+            // Sets LauncherX to run on startup if applicable
+            if (UserSettingsClass.RunOnStartup == true)
+            {
+                Shell32.InstallAppOnStartUp();
+            }
+            else if (UserSettingsClass.RunOnStartup == false)
+            {
+                Shell32.UninstallAppOnStartUp();
+            }
+
+            // Sets LauncherX to minimise after item launch if applicable
+            foreach (var gridViewItem in ItemsGridView.Items)
+            {
+                if (gridViewItem is GridViewTile)
+                {
+                    ((GridViewTile)gridViewItem).MinimiseOnItemLaunch = UserSettingsClass.MinimiseOnItemLaunch;
+                }
+                else if (gridViewItem is GridViewTileGroup)
+                {
+                    GridViewTileGroup gridViewTileGroup = gridViewItem as GridViewTileGroup;
+
+                    // Update the items in the GridViewTileGroup as well
+                    foreach (GridViewTile gridViewTile in gridViewTileGroup.Items)
+                    {
+                        gridViewTile.MinimiseOnItemLaunch = UserSettingsClass.MinimiseOnItemLaunch;
+                    }
+                }
+            }
         }
 
         /// <summary>
