@@ -8,6 +8,12 @@ using System.Windows.Forms;
 
 namespace LauncherXWinUI
 {
+    /// <summary>
+    /// Class to register a hot key with Windows.
+    /// Each instance of this class can only register one hot key associated with a fixed _currentId,
+    /// so that if the app crashes, calling UnregisterHotKey when the app relaunches will unregister the previously registered hot key
+    /// to prevent conflicts
+    /// </summary>
     public sealed class HotKeyHook : IDisposable
     {
         // Registers a hot key with Windows.
@@ -64,30 +70,42 @@ namespace LauncherXWinUI
         }
 
         private Window _window = new Window();
-        private int _currentId;
 
-        public HotKeyHook()
+        // ID to use to register hotkey
+        private int _currentId; 
+
+        public HotKeyHook(int id)
         {
+            _currentId = id;
+
             // register the event of the inner native window.
             _window.KeyPressed += delegate (object sender, KeyPressedEventArgs args)
             {
                 if (KeyPressed != null)
                     KeyPressed(this, args);
             };
+
         }
 
         /// <summary>
         /// Registers a hot key in the system.
+        /// Should call UnregisterHotKey before registering a nw hot key to prevent problems.
         /// </summary>
         /// <param name="modifier">The modifiers that are associated with the hot key.</param>
         /// <param name="key">The key itself that is associated with the hot key.</param>
         public bool RegisterHotKey(ModifierKeys modifier, Keys key)
         {
-            // increment the counter.
-            _currentId = _currentId + 1;
-
             // register the hot key.
             return RegisterHotKey(_window.Handle, _currentId, (uint)modifier, (uint)key);
+        }
+
+        /// <summary>
+        /// Unregisters a hot key in the system.
+        /// </summary>
+        public bool UnregisterHotKey()
+        {
+            // Unregister the hot key.
+            return UnregisterHotKey(_window.Handle, _currentId);
         }
 
         /// <summary>
@@ -96,22 +114,11 @@ namespace LauncherXWinUI
         public event EventHandler<KeyPressedEventArgs> KeyPressed;
 
         #region IDisposable Members
-        public void UnregisterAll()
-        {
-            // unregister all the registered hot keys.
-            for (int i = _currentId; i > 0; i--)
-            {
-                UnregisterHotKey(_window.Handle, i);
-            }
-        }
 
         public void Dispose()
         {
             // unregister all the registered hot keys.
-            for (int i = _currentId; i > 0; i--)
-            {
-                UnregisterHotKey(_window.Handle, i);
-            }
+            UnregisterHotKey();
 
             // dispose the inner native window.
             _window.Dispose();

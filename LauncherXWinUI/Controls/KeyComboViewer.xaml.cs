@@ -56,7 +56,7 @@ namespace LauncherXWinUI.Controls
                 globalKeyboardHook.HookedKeys.Add(key);
 
             // Initialise a HotKeyHook for key combo verification
-            verifyKeyHook = new HotKeyHook();
+            verifyKeyHook = new HotKeyHook(1);
         }
 
         /// <summary>
@@ -184,7 +184,7 @@ namespace LauncherXWinUI.Controls
 
                 // First, we need to determine if the key combination can be registered,
                 // or whether it is being blocked by an application
-                verifyKeyHook.UnregisterAll();
+                verifyKeyHook.UnregisterHotKey();
                 if (KeyClass.TryRegisterHotKeyFromList(pressedKeys, verifyKeyHook))
                 {
                     // Key combo is valid!
@@ -212,7 +212,7 @@ namespace LauncherXWinUI.Controls
                     await errorDialog.ShowAsync();
                 }
 
-                verifyKeyHook.UnregisterAll();
+                verifyKeyHook.UnregisterHotKey();
 
             }
         }

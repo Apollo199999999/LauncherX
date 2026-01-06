@@ -63,7 +63,7 @@
                 <!--#region Appearance-->
                 <TextBlock
                     Margin="0,15,0,0"
-                    FontSize="20"
+                    FontSize="18"
                     FontWeight="Bold"
                     Text="Appearance" />
 
@@ -148,7 +148,7 @@
                 <!--#region Behaviour-->
                 <TextBlock
                     Margin="0,15,0,0"
-                    FontSize="20"
+                    FontSize="18"
                     FontWeight="Bold"
                     Text="Behaviour" />
 
@@ -196,7 +196,7 @@
                 <!--#region Updates-->
                 <TextBlock
                     Margin="0,15,0,0"
-                    FontSize="20"
+                    FontSize="18"
                     FontWeight="Bold"
                     Text="Updates" />
 
@@ -259,7 +259,7 @@
                 <!--#region Import/Export data-->
                 <TextBlock
                     Margin="0,15,0,0"
-                    FontSize="20"
+                    FontSize="18"
                     FontWeight="Bold"
                     Text="Import / Export data" />
 

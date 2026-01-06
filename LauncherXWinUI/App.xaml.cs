@@ -50,7 +50,7 @@ namespace LauncherXWinUI
 
             // Create an instance of HotKeyHook to watch out for activation shortcuts,
             // and create a new event handler for when the activation shortcut (hotkey) is triggered
-            ActivationHotKeyHook = new HotKeyHook();
+            ActivationHotKeyHook = new HotKeyHook(0);
             ActivationHotKeyHook.KeyPressed += ActivationHotKeyHook_KeyPressed;
         }
        

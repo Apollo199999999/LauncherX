@@ -234,7 +234,7 @@ namespace LauncherXWinUI.Classes
                 }
             }
 
-            hotKeyHook.UnregisterAll();
+            hotKeyHook.UnregisterHotKey();
 
             switch (KeysList.Count())
             {

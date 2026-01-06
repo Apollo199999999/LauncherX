@@ -140,7 +140,7 @@ namespace LauncherXWinUI
             }
 
             // Update the activation shortcut
-            App.ActivationHotKeyHook.UnregisterAll();
+            App.ActivationHotKeyHook.UnregisterHotKey();
             KeyClass.TryRegisterHotKeyFromList(
                 KeyClass.StringToKeysList(UserSettingsClass.ActivationShortcut), 
                 App.ActivationHotKeyHook);
