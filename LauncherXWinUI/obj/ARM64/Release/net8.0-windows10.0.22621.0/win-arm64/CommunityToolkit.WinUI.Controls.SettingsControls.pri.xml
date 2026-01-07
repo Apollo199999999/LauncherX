@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<PriInfo>
+	<ResourceMap name="CommunityToolkit.WinUI.Controls.SettingsControls" version="1.0" primary="true">
+		<Qualifiers/>
+		<ResourceMapSubtree name="Files">
+			<ResourceMapSubtree name="CommunityToolkit.WinUI.Controls.SettingsControls">
+				<ResourceMapSubtree name="SettingsCard">
+					<NamedResource name="SettingsCard.xbf" uri="ms-resource://CommunityToolkit.WinUI.Controls.SettingsControls/Files/CommunityToolkit.WinUI.Controls.SettingsControls/SettingsCard/SettingsCard.xbf">
+						<Candidate type="EmbeddedData">
+							<Base64Value>[Embedded Binary Data]</Base64Value>
+						</Candidate>
+					</NamedResource>
+				</ResourceMapSubtree>
+				<ResourceMapSubtree name="SettingsExpander">
+					<NamedResource name="SettingsExpander.xbf" uri="ms-resource://CommunityToolkit.WinUI.Controls.SettingsControls/Files/CommunityToolkit.WinUI.Controls.SettingsControls/SettingsExpander/SettingsExpander.xbf">
+						<Candidate type="EmbeddedData">
+							<Base64Value>[Embedded Binary Data]</Base64Value>
+						</Candidate>
+					</NamedResource>
+				</ResourceMapSubtree>
+				<ResourceMapSubtree name="Themes">
+					<NamedResource name="Generic.xbf" uri="ms-resource://CommunityToolkit.WinUI.Controls.SettingsControls/Files/CommunityToolkit.WinUI.Controls.SettingsControls/Themes/Generic.xbf">
+						<Candidate type="EmbeddedData">
+							<Base64Value>[Embedded Binary Data]</Base64Value>
+						</Candidate>
+					</NamedResource>
+				</ResourceMapSubtree>
+			</ResourceMapSubtree>
+		</ResourceMapSubtree>
+	</ResourceMap>
+</PriInfo>

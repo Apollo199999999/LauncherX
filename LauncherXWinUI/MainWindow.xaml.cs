@@ -1,19 +1,20 @@
+using CommunityToolkit.WinUI;
 using LauncherXWinUI.Classes;
-using LauncherXWinUI.Controls.GridViewItems;
 using LauncherXWinUI.Controls.Dialogs;
+using LauncherXWinUI.Controls.GridViewItems;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
+using Microsoft.UI.Xaml.Controls.Primitives;
 using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Media.Imaging;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Windows.ApplicationModel.DataTransfer;
 using Windows.Storage;
-using CommunityToolkit.WinUI;
-using System.IO;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -54,9 +55,9 @@ namespace LauncherXWinUI
 
         // Helper methods
         /// <summary>
-        /// Method that updates the UI based on the UserSettingsClass
+        /// Method that applies settings (UI, functionality, etc.) based on the UserSettingsClass
         /// </summary>
-        private void UpdateUIFromSettings()
+        private void ApplyFromSettings()
         {
             // Set header text (Update from HeaderText)
             HeaderTextBlock.Text = UserSettingsClass.HeaderText;
@@ -110,6 +111,24 @@ namespace LauncherXWinUI
                 this.AppWindow.SetPresenter(Microsoft.UI.Windowing.AppWindowPresenterKind.Default);
             }
 
+            // Show/Hide the necessary UI elements for minimalist mode (Update from UseMinimalistMode)
+            if (UserSettingsClass.UseMinimalistMode == true)
+            {
+                // Hide the header and add buttons
+                HeaderGrid.Visibility = Visibility.Collapsed;
+
+                // Show the add items dropdown button
+                AddAllDropdownButton.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                // Show the header and add buttons
+                HeaderGrid.Visibility = Visibility.Visible;
+
+                // Hide the add items dropdown button
+                AddAllDropdownButton.Visibility = Visibility.Collapsed;
+            }
+
             // Align the GridView (Update from GridPosition)
             if (UserSettingsClass.GridPosition == "Left")
             {
@@ -118,6 +137,41 @@ namespace LauncherXWinUI
             else if (UserSettingsClass.GridPosition == "Center")
             {
                 AlignGridViewCenter();
+            }
+
+            // Update the activation shortcut
+            App.ActivationHotKeyHook.UnregisterHotKey();
+            KeyClass.TryRegisterHotKeyFromList(
+                KeyClass.StringToKeysList(UserSettingsClass.ActivationShortcut), 
+                App.ActivationHotKeyHook);
+
+            // Sets LauncherX to run on startup if applicable
+            if (UserSettingsClass.RunOnStartup == true)
+            {
+                Shell32.InstallAppOnStartUp();
+            }
+            else if (UserSettingsClass.RunOnStartup == false)
+            {
+                Shell32.UninstallAppOnStartUp();
+            }
+
+            // Sets LauncherX to minimise after item launch if applicable
+            foreach (var gridViewItem in ItemsGridView.Items)
+            {
+                if (gridViewItem is GridViewTile)
+                {
+                    ((GridViewTile)gridViewItem).MinimiseOnItemLaunch = UserSettingsClass.MinimiseOnItemLaunch;
+                }
+                else if (gridViewItem is GridViewTileGroup)
+                {
+                    GridViewTileGroup gridViewTileGroup = gridViewItem as GridViewTileGroup;
+
+                    // Update the items in the GridViewTileGroup as well
+                    foreach (GridViewTile gridViewTile in gridViewTileGroup.Items)
+                    {
+                        gridViewTile.MinimiseOnItemLaunch = UserSettingsClass.MinimiseOnItemLaunch;
+                    }
+                }
             }
         }
 
@@ -246,12 +300,21 @@ namespace LauncherXWinUI
                     gridViewTileGroup.Drop += GridViewTileGroup_Drop;
                     ItemsGridView.Items.Add(gridViewTileGroup);
 
+                    // Hook up event handlers for GridViewTiles inside the group as well, 
+                    // in case the user chooses to remove them from the group 
+                    // and dragging and dropping should work in that case
+                    foreach (GridViewTile gridViewTile in gridViewTileGroup.Items)
+                    {
+                        gridViewTile.Drop += GridViewTile_Drop;
+                        gridViewTile.DragEnter += GridViewTile_DragEnter;
+                        gridViewTile.DragLeave += GridViewTile_DragLeave;
+                    }
                 }
             }
         }
 
         // Event Handlers
-        private async void Container_Loaded(object sender, RoutedEventArgs e)
+        public async void Container_Loaded(object sender, RoutedEventArgs e)
         {
             // Set Window icon
             UIFunctionsClass.SetWindowLauncherXIcon(this);
@@ -275,8 +338,8 @@ namespace LauncherXWinUI
                 // Retrieve user settings from file
                 UserSettingsClass.TryReadSettingsFile();
 
-                // Once we have initialised the UserSettingsClass with the correct values, update the UI
-                UpdateUIFromSettings();
+                // Once we have initialised the UserSettingsClass with the correct values, update from UserSettingsClass
+                ApplyFromSettings();
 
                 // Monitor when the window is resized so that we can adjust the position of the GridView as necesssary
                 this.SizeChanged += WindowEx_SizeChanged;
@@ -301,8 +364,8 @@ namespace LauncherXWinUI
                 // Retrieve user settings from file
                 UserSettingsClass.TryReadSettingsFile();
 
-                // Once we have initialised the UserSettingsClass with the correct values, update the UI
-                UpdateUIFromSettings();
+                // Once we have initialised the UserSettingsClass with the correct values, update from UserSettingsClass
+                ApplyFromSettings();
 
                 // Monitor when the window is resized so that we can adjust the position of the GridView as necesssary
                 this.SizeChanged += WindowEx_SizeChanged;
@@ -361,7 +424,7 @@ namespace LauncherXWinUI
         {
             // Navigate to GitHub releases page and exit application
             Process.Start(new ProcessStartInfo { FileName = "https://github.com/Apollo199999999/LauncherX/releases", UseShellExecute = true });
-            Application.Current.Exit();
+            App.ExitApplication();
         }
 
         private void ItemsGridViewItems_VectorChanged(Windows.Foundation.Collections.IObservableVector<object> sender, Windows.Foundation.Collections.IVectorChangedEventArgs @event)
@@ -501,23 +564,38 @@ namespace LauncherXWinUI
             SettingsWindow settingsWindow = new SettingsWindow();
             UIFunctionsClass.CreateModalWindow(settingsWindow, this);
 
-            // Update the UI once the SettingsWindow is closed
-            settingsWindow.Closed += (s, e) => UpdateUIFromSettings();
+            // Apply user settings once the SettingsWindow is closed
+            settingsWindow.Closed += (s, e) => ApplyFromSettings();
         }
 
         // This section of event handlers handles dragging items in the GridView to make groups
+        // The code within the event handlers for GridViewTile will only fire when
+        // they are in MainWindow's ItemsGridView, since e.Data.Properties["DraggedControl"] == null
+        // if the GridViewTile is in the ItemsGridView of the GridViewTileControl
+        // (ItemsGridView_DragItemsStarting is not fired)
 
-        // When an item in the GridView is being dragged, add the control to the data package that is transferred in Drag-Drop operations
+        // When an item in the GridView is being dragged, add the selected controls to the data package that is transferred in Drag-Drop operations
         private void ItemsGridView_DragItemsStarting(object sender, DragItemsStartingEventArgs e)
         {
-            if (e.Items[0] is GridViewTile)
+            // If any of the dragged items contain a GridViewTileGroup, simply dont assign DraggedControl
+            // to prevent GridViewTileGroups from being added to an existing group/used to create a new group
+            List<GridViewTile> draggedItems = new List<GridViewTile>();
+
+            foreach (object draggedItem in e.Items)
             {
-                e.Data.Properties.Add("DraggedControl", (e.Items[0] as GridViewTile));
+                if (draggedItem is GridViewTileGroup)
+                {
+                    // Just exit the function
+                    return;
+                }
+                else
+                {
+                    GridViewTile gridViewTile = draggedItem as GridViewTile;
+                    draggedItems.Add(gridViewTile);
+                }
             }
-            else if (e.Items[0] is GridViewTileGroup)
-            {
-                e.Data.Properties.Add("DraggedControl", (e.Items[0] as GridViewTileGroup));
-            }
+
+            e.Data.Properties.Add("DraggedControl", draggedItems);
         }
 
         // Drag event handlers for GridViewTile: When something is dragged over a GridViewTile, highlight it
@@ -525,31 +603,39 @@ namespace LauncherXWinUI
         // Prevent anything from happening when a GridViewTileGroup is dragged over a GridViewTile
         private void GridViewTile_DragEnter(object sender, DragEventArgs e)
         {
-            if (e.Data != null && e.Data.Properties["DraggedControl"] != null && e.Data.Properties["DraggedControl"] is GridViewTile)
+            if (e.Data != null && e.Data.Properties["DraggedControl"] != null)
             {
-                GridViewTile DraggedTile = e.Data.Properties["DraggedControl"] as GridViewTile;
                 GridViewTile DraggedOverTile = sender as GridViewTile;
 
-                if (DraggedTile.UniqueId != DraggedOverTile.UniqueId)
+                foreach (GridViewTile DraggedTile in e.Data.Properties["DraggedControl"] as List<GridViewTile>)
                 {
-                    // Show some indication that a group can be formed
-                    DraggedOverTile.ShowCreateGroupIndicator();
+                    if (DraggedTile == DraggedOverTile)
+                    {
+                        return;
+                    }
                 }
+
+                // Show some indication that a group can be formed
+                DraggedOverTile.ShowCreateGroupIndicator();
             }
 
         }
         private void GridViewTile_DragLeave(object sender, DragEventArgs e)
         {
-            if (e.Data != null && e.Data.Properties["DraggedControl"] != null && e.Data.Properties["DraggedControl"] is GridViewTile)
+            if (e.Data != null && e.Data.Properties["DraggedControl"] != null)
             {
-                GridViewTile DraggedTile = e.Data.Properties["DraggedControl"] as GridViewTile;
                 GridViewTile DraggedOverTile = sender as GridViewTile;
 
-                if (DraggedTile.UniqueId != DraggedOverTile.UniqueId)
+                foreach (GridViewTile DraggedTile in e.Data.Properties["DraggedControl"] as List<GridViewTile>)
                 {
-                    // Hide the create group indicator
-                    DraggedOverTile.HideCreateGroupIndicator();
+                    if (DraggedTile == DraggedOverTile)
+                    {
+                        return;
+                    }
                 }
+
+                // Show some indication that a group can be formed
+                DraggedOverTile.HideCreateGroupIndicator();
             }
         }
 
@@ -557,16 +643,16 @@ namespace LauncherXWinUI
 
         private void GridViewTile_Drop(object sender, DragEventArgs e)
         {
-            if (e.Data != null && e.Data.Properties["DraggedControl"] != null && e.Data.Properties["DraggedControl"] is GridViewTile)
+            if (e.Data != null && e.Data.Properties["DraggedControl"] != null)
             {
                 GridViewTile DroppedOnTile = sender as GridViewTile;
-                GridViewTile DraggedTile = e.Data.Properties["DraggedControl"] as GridViewTile;
-                DroppedOnTile.HideCreateGroupIndicator();
-                DraggedTile.UnhighlightControl();
 
-                if (DroppedOnTile.UniqueId == DraggedTile.UniqueId)
+                foreach (GridViewTile DraggedTile in e.Data.Properties["DraggedControl"] as List<GridViewTile>)
                 {
-                    return;
+                    if (DraggedTile == DroppedOnTile)
+                    {
+                        return;
+                    }
                 }
 
                 // Create a new group when a GridViewTile is dropped over another GridViewTile
@@ -577,26 +663,33 @@ namespace LauncherXWinUI
                 newGridViewTileGroup.DragLeave += GridViewTileGroup_DragLeave;
                 newGridViewTileGroup.Drop += GridViewTileGroup_Drop;
 
-                // Add GridViewTiles
-                DraggedTile.AssociateGroup(newGridViewTileGroup);
+                // Add the tile the dragged items were dropped on into the new group and mark it for deletion
+                DroppedOnTile.HideCreateGroupIndicator();
                 DroppedOnTile.AssociateGroup(newGridViewTileGroup);
-                newGridViewTileGroup.Items.Add(DraggedTile);
                 newGridViewTileGroup.Items.Add(DroppedOnTile);
+                GridViewItemsToRemove.Add(DroppedOnTile);
 
+                // Iterate through controls dragged
+                foreach (GridViewTile DraggedTile in e.Data.Properties["DraggedControl"] as List<GridViewTile>)
+                {
+                    DraggedTile.UnhighlightControl();
+                    DraggedTile.AssociateGroup(newGridViewTileGroup);
+                    newGridViewTileGroup.Items.Add(DraggedTile);
+
+                    // Mark the old GridViewTile objects for deletion
+                    GridViewItemsToRemove.Add(DraggedTile);
+                }
+             
                 // Add the GridViewTileGroup
                 int index = ItemsGridView.Items.IndexOf(DroppedOnTile);
                 ItemsGridView.Items.Insert(index, newGridViewTileGroup);
-
-                // Mark the old GridViewTile objects for deletion
-                GridViewItemsToRemove.Add(DroppedOnTile);
-                GridViewItemsToRemove.Add(DraggedTile);
             }
         }
 
         // GridViewTileGroup drag events
         private void GridViewTileGroup_DragEnter(object sender, DragEventArgs e)
         {
-            if (e.Data != null && e.Data.Properties["DraggedControl"] != null && e.Data.Properties["DraggedControl"] is GridViewTile)
+            if (e.Data != null && e.Data.Properties["DraggedControl"] != null)
             {
                 GridViewTileGroup DraggedOverTileGroup = sender as GridViewTileGroup;
 
@@ -607,7 +700,7 @@ namespace LauncherXWinUI
 
         private void GridViewTileGroup_DragLeave(object sender, DragEventArgs e)
         {
-            if (e.Data != null && e.Data.Properties["DraggedControl"] != null && e.Data.Properties["DraggedControl"] is GridViewTile)
+            if (e.Data != null && e.Data.Properties["DraggedControl"] != null)
             {
                 GridViewTileGroup DraggedOverTileGroup = sender as GridViewTileGroup;
 
@@ -618,19 +711,22 @@ namespace LauncherXWinUI
 
         private void GridViewTileGroup_Drop(object sender, DragEventArgs e)
         {
-            if (e.Data != null && e.Data.Properties["DraggedControl"] != null && e.Data.Properties["DraggedControl"] is GridViewTile)
+            if (e.Data != null && e.Data.Properties["DraggedControl"] != null)
             {
                 GridViewTileGroup existingGridViewTileGroup = sender as GridViewTileGroup;
-                GridViewTile DraggedTile = e.Data.Properties["DraggedControl"] as GridViewTile;
-                DraggedTile.UnhighlightControl();
-
-                // Add the DraggedTile to the existingGridViewTileGroup
                 existingGridViewTileGroup.HideAddItemIndicator();
-                DraggedTile.AssociateGroup(existingGridViewTileGroup);
-                existingGridViewTileGroup.Items.Add(DraggedTile);
 
-                // Mark objects for deletion
-                GridViewItemsToRemove.Add(DraggedTile);
+
+                // Iterate through controls dragged
+                foreach (GridViewTile DraggedTile in e.Data.Properties["DraggedControl"] as List<GridViewTile>)
+                {
+                    DraggedTile.UnhighlightControl();
+                    DraggedTile.AssociateGroup(existingGridViewTileGroup);
+                    existingGridViewTileGroup.Items.Add(DraggedTile);
+
+                    // Mark the old GridViewTile objects for deletion
+                    GridViewItemsToRemove.Add(DraggedTile);
+                }
             }
         }
 
@@ -840,7 +936,7 @@ namespace LauncherXWinUI
         // For fullscreen mode - Exit LauncherX
         private void CloseButton_Click(object sender, RoutedEventArgs e)
         {
-            Application.Current.Exit();
+            this.Close();
         }
 
         // When window resized
@@ -854,6 +950,98 @@ namespace LauncherXWinUI
             else if (UserSettingsClass.GridPosition == "Center")
             {
                 AlignGridViewCenter();
+            }
+        }
+
+        // Event handlers for multiselect
+        private void MultiSelectButton_Click(object sender, RoutedEventArgs e)
+        {
+            // We enable multiselect for batch opening/removal of icons
+            if (MultiSelectButton.IsChecked == true)
+            {
+                ItemsGridView.SelectionMode = ListViewSelectionMode.Multiple;
+            }
+            else
+            {
+                ItemsGridView.SelectionMode = ListViewSelectionMode.Single;
+            }
+        }
+
+        // Events for right click menu when multiselect is enabled
+        private void ItemsGridView_RightTapped(object sender, Microsoft.UI.Xaml.Input.RightTappedRoutedEventArgs e)
+        {
+            if (ItemsGridView.SelectedItems.Count > 0 && ItemsGridView.SelectionMode == ListViewSelectionMode.Multiple)
+            {
+                // Show right click menu
+                MenuFlyout flyoutBase = (MenuFlyout)FlyoutBase.GetAttachedFlyout(ItemsGridView);
+                flyoutBase.ShowAt(ItemsGridView, e.GetPosition(ItemsGridView));
+            }
+        }
+
+        private async void GroupMenuOpenOption_Click(object sender, RoutedEventArgs e)
+        {
+            // Open all selected items
+            foreach (UserControl gridViewItem in ItemsGridView.SelectedItems)
+            {
+                // Assert that the gridViewItem is a GridViewTile in order for us to launch stuff
+                if (gridViewItem is GridViewTile)
+                {
+                    GridViewTile gridViewTile = gridViewItem as GridViewTile;
+                    await gridViewTile.StartAssociatedProcess();
+                }
+                // If a GridViewTileGroup is selected, open all items in the GridViewTileGroup
+                else if (gridViewItem is GridViewTileGroup)
+                {
+                    GridViewTileGroup gridViewTileGroup = gridViewItem as GridViewTileGroup;
+                    foreach (GridViewTile tile in gridViewTileGroup.Items)
+                    {
+                        await tile.StartAssociatedProcess();
+                    }
+                }
+            }
+        }
+
+        private async void GroupMenuRemoveOption_Click(object sender, RoutedEventArgs e)
+        {
+            // Remove all selected items from LauncherX
+            // Since we are modifying ItemsGridView.SelectedItems in place, make a copy of the list
+            List<object> selectedItems = ItemsGridView.SelectedItems.ToList();
+
+            // First, check if there are any items selected that are part of a linked folder
+            // If so, don't allow them to remove those items, otherwise the linked folder will no longer be "in sync"
+            bool containsLinkedFolder = false;
+
+            foreach (UserControl gridViewItem in ItemsGridView.Items)
+            {
+                if (gridViewItem is GridViewTile)
+                {
+                    GridViewTile gridViewTile = gridViewItem as GridViewTile;
+                    if (gridViewTile.IsLinkedFolder == true)
+                    {
+                        selectedItems.Remove(gridViewTile);
+                        containsLinkedFolder = true;
+                    }
+                }
+            }
+
+
+            foreach (object gridViewItem in selectedItems)
+            {
+                ItemsGridView.Items.Remove(gridViewItem);
+            }
+
+            // Finally, show an error message if we were unable to remove linked folder items
+            if (containsLinkedFolder)
+            {
+                ContentDialog errorDialog = new ContentDialog();
+                errorDialog.XamlRoot = Container.XamlRoot;
+                errorDialog.Style = Application.Current.Resources["DefaultContentDialogStyle"] as Style;
+                errorDialog.Title = "Could not remove all items";
+                errorDialog.PrimaryButtonText = "OK";
+                errorDialog.DefaultButton = ContentDialogButton.Primary;
+                errorDialog.Content = "One or more items that you have selected belong to a linked folder and could not be removed.";
+
+                await errorDialog.ShowAsync();
             }
         }
 

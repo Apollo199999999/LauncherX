@@ -14,6 +14,12 @@
     <None Update="App.xaml">
       <SubType>Designer</SubType>
     </None>
+    <Page Update="Controls\KeyPreview.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Controls\KeyComboViewer.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="Controls\GridViewItems\EditItemWindow.xaml">
       <SubType>Designer</SubType>
     </Page>

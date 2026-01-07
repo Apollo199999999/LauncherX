@@ -1,0 +1,310 @@
+{
+  "Packages": [
+    {
+      "FamilyName": "WindowsWorkload.PSOnnxRuntime.3.5_8wekyb3d8bbwe",
+      "Version": "1.2507.793.0"
+    },
+    {
+      "FamilyName": "WindowsWorkload.PSTokenizerShared.3.5_8wekyb3d8bbwe",
+      "Version": "1.2507.793.0"
+    },
+    {
+      "FamilyName": "WindowsWorkload.PSTokenizerShared.Data.3.5_8wekyb3d8bbwe",
+      "Version": "1.2507.793.0"
+    },
+    {
+      "FamilyName": "WindowsWorkload.ImageContentModeration.1_8wekyb3d8bbwe",
+      "Version": "1.2504.709.0"
+    },
+    {
+      "FamilyName": "WindowsWorkload.ImageContentModeration.Data.1_8wekyb3d8bbwe",
+      "Version": "1.2504.709.0"
+    },
+    {
+      "FamilyName": "WindowsWorkload.ImageScaler.1_8wekyb3d8bbwe",
+      "Version": "1.2507.793.0"
+    },
+    {
+      "FamilyName": "WindowsWorkload.ImageScaler.Data.1_8wekyb3d8bbwe",
+      "Version": "1.2507.793.0"
+    },
+    {
+      "FamilyName": "WindowsWorkload.ImageSegmentation.1_8wekyb3d8bbwe",
+      "Version": "1.2507.793.0"
+    },
+    {
+      "FamilyName": "WindowsWorkload.ImageSegmentation.Data.1_8wekyb3d8bbwe",
+      "Version": "1.7.817.0"
+    },
+    {
+      "FamilyName": "WindowsWorkload.ImageObjectExtractor.1_8wekyb3d8bbwe",
+      "Version": "1.2507.793.0"
+    },
+    {
+      "FamilyName": "WindowsWorkload.ImageObjectExtractor.Data.1_8wekyb3d8bbwe",
+      "Version": "1.2507.793.0"
+    },
+    {
+      "FamilyName": "WindowsWorkload.ImageObjectRemover.1_8wekyb3d8bbwe",
+      "Version": "1.2507.793.0"
+    },
+    {
+      "FamilyName": "WindowsWorkload.ImageObjectRemover.Data.1_8wekyb3d8bbwe",
+      "Version": "1.2507.793.0"
+    },
+    {
+      "FamilyName": "WindowsWorkload.Parallax.1_8wekyb3d8bbwe",
+      "Version": "1.2507.793.0"
+    },
+    {
+      "FamilyName": "WindowsWorkload.Parallax.Data.1_8wekyb3d8bbwe",
+      "Version": "1.7.817.0"
+    },
+    {
+      "FamilyName": "WindowsWorkload.ScrRegDetection.1_8wekyb3d8bbwe",
+      "Version": "1.2507.793.0"
+    },
+    {
+      "FamilyName": "WindowsWorkload.ScrRegDetection.Data.1_8wekyb3d8bbwe",
+      "Version": "1.2507.793.0"
+    },
+    {
+      "FamilyName": "WindowsWorkload.TextRecognition.1_8wekyb3d8bbwe",
+      "Version": "1.2507.793.0"
+    },
+    {
+      "FamilyName": "WindowsWorkload.ImageSearch.2_8wekyb3d8bbwe",
+      "Version": "1.2507.793.0"
+    },
+    {
+      "FamilyName": "WindowsWorkload.ImageTextSearch.2_8wekyb3d8bbwe",
+      "Version": "1.2507.793.0"
+    },
+    {
+      "FamilyName": "WindowsWorkload.ImageSearch.3_8wekyb3d8bbwe",
+      "Version": "1.2507.793.0"
+    },
+    {
+      "FamilyName": "WindowsWorkload.ImageSearch.Data.3_8wekyb3d8bbwe",
+      "Version": "1.7.817.0"
+    },
+    {
+      "FamilyName": "WindowsWorkload.ImageTextSearch.3_8wekyb3d8bbwe",
+      "Version": "1.2507.793.0"
+    },
+    {
+      "FamilyName": "WindowsWorkload.ImageTextSearch.Data.3_8wekyb3d8bbwe",
+      "Version": "1.7.817.0"
+    },
+    {
+      "FamilyName": "WindowsWorkload.Manager.1_8wekyb3d8bbwe",
+      "Version": "1.2506.707.0"
+    },
+    {
+      "FamilyName": "WindowsWorkload.SessionManager.1_8wekyb3d8bbwe",
+      "Version": "1.2507.793.0"
+    },
+    {
+      "FamilyName": "WindowsWorkload.Data.ContentExtraction.1_8wekyb3d8bbwe",
+      "Version": "1.2507.793.0"
+    },
+    {
+      "FamilyName": "WindowsWorkload.Data.ImageProcessing.1_8wekyb3d8bbwe",
+      "Version": "1.2507.793.0"
+    },
+    {
+      "FamilyName": "WindowsWorkload.Data.ImageTransform.1_8wekyb3d8bbwe",
+      "Version": "1.2507.793.0"
+    },
+    {
+      "FamilyName": "WindowsWorkload.Data.ImageSearch.1_8wekyb3d8bbwe",
+      "Version": "1.2507.793.0"
+    }
+  ],
+  "Workloads": [
+    {
+      "Id": "Windows.Workload.ContentExtraction",
+      "Packages": [
+        {
+          "FamilyName": "WindowsWorkload.Data.ContentExtraction.1_8wekyb3d8bbwe",
+          "ManifestPackage": true
+        },
+        {
+          "FamilyName": "WindowsWorkload.Manager.1_8wekyb3d8bbwe"
+        },
+        {
+          "FamilyName": "WindowsWorkload.PSOnnxRuntime.3.5_8wekyb3d8bbwe"
+        },
+        {
+          "FamilyName": "WindowsWorkload.ScrRegDetection.1_8wekyb3d8bbwe"
+        },
+        {
+          "FamilyName": "WindowsWorkload.ScrRegDetection.Data.1_8wekyb3d8bbwe"
+        },
+        {
+          "FamilyName": "WindowsWorkload.SessionManager.1_8wekyb3d8bbwe"
+        },
+        {
+          "FamilyName": "WindowsWorkload.TextRecognition.1_8wekyb3d8bbwe"
+        }
+      ]
+    },
+    {
+      "Id": "Windows.Workload.ImageProcessing",
+      "Packages": [
+        {
+          "FamilyName": "WindowsWorkload.Data.ImageProcessing.1_8wekyb3d8bbwe",
+          "ManifestPackage": true
+        },
+        {
+          "FamilyName": "WindowsWorkload.ImageContentModeration.1_8wekyb3d8bbwe"
+        },
+        {
+          "FamilyName": "WindowsWorkload.ImageContentModeration.Data.1_8wekyb3d8bbwe"
+        },
+        {
+          "FamilyName": "WindowsWorkload.ImageObjectExtractor.1_8wekyb3d8bbwe"
+        },
+        {
+          "FamilyName": "WindowsWorkload.ImageObjectExtractor.Data.1_8wekyb3d8bbwe"
+        },
+        {
+          "FamilyName": "WindowsWorkload.ImageScaler.1_8wekyb3d8bbwe"
+        },
+        {
+          "FamilyName": "WindowsWorkload.ImageScaler.Data.1_8wekyb3d8bbwe"
+        },
+        {
+          "FamilyName": "WindowsWorkload.ImageSegmentation.1_8wekyb3d8bbwe"
+        },
+        {
+          "FamilyName": "WindowsWorkload.ImageSegmentation.Data.1_8wekyb3d8bbwe"
+        },
+        {
+          "FamilyName": "WindowsWorkload.Manager.1_8wekyb3d8bbwe"
+        },
+        {
+          "FamilyName": "WindowsWorkload.Parallax.1_8wekyb3d8bbwe"
+        },
+        {
+          "FamilyName": "WindowsWorkload.Parallax.Data.1_8wekyb3d8bbwe"
+        },
+        {
+          "FamilyName": "WindowsWorkload.PSOnnxRuntime.3.5_8wekyb3d8bbwe"
+        },
+        {
+          "FamilyName": "WindowsWorkload.SessionManager.1_8wekyb3d8bbwe"
+        }
+      ]
+    },
+    {
+      "Id": "Windows.Workload.ImageSearch",
+      "Packages": [
+        {
+          "FamilyName": "WindowsWorkload.Data.ImageSearch.1_8wekyb3d8bbwe",
+          "ManifestPackage": true
+        },
+        {
+          "FamilyName": "WindowsWorkload.ImageContentModeration.1_8wekyb3d8bbwe"
+        },
+        {
+          "FamilyName": "WindowsWorkload.ImageContentModeration.Data.1_8wekyb3d8bbwe"
+        },
+        {
+          "FamilyName": "WindowsWorkload.ImageSearch.2_8wekyb3d8bbwe"
+        },
+        {
+          "FamilyName": "WindowsWorkload.ImageSearch.3_8wekyb3d8bbwe"
+        },
+        {
+          "FamilyName": "WindowsWorkload.ImageSearch.Data.3_8wekyb3d8bbwe"
+        },
+        {
+          "FamilyName": "WindowsWorkload.ImageTextSearch.2_8wekyb3d8bbwe"
+        },
+        {
+          "FamilyName": "WindowsWorkload.ImageTextSearch.3_8wekyb3d8bbwe"
+        },
+        {
+          "FamilyName": "WindowsWorkload.ImageTextSearch.Data.3_8wekyb3d8bbwe"
+        },
+        {
+          "FamilyName": "WindowsWorkload.Manager.1_8wekyb3d8bbwe"
+        },
+        {
+          "FamilyName": "WindowsWorkload.PSOnnxRuntime.3.5_8wekyb3d8bbwe"
+        },
+        {
+          "FamilyName": "WindowsWorkload.PSTokenizerShared.3.5_8wekyb3d8bbwe"
+        },
+        {
+          "FamilyName": "WindowsWorkload.PSTokenizerShared.Data.3.5_8wekyb3d8bbwe"
+        },
+        {
+          "FamilyName": "WindowsWorkload.SessionManager.1_8wekyb3d8bbwe"
+        }
+      ]
+    },
+    {
+      "Id": "Windows.Workload.ImageTransform",
+      "Packages": [
+        {
+          "FamilyName": "WindowsWorkload.Data.ImageTransform.1_8wekyb3d8bbwe",
+          "ManifestPackage": true
+        },
+        {
+          "FamilyName": "WindowsWorkload.ImageObjectRemover.1_8wekyb3d8bbwe"
+        },
+        {
+          "FamilyName": "WindowsWorkload.ImageObjectRemover.Data.1_8wekyb3d8bbwe"
+        },
+        {
+          "FamilyName": "WindowsWorkload.Manager.1_8wekyb3d8bbwe"
+        },
+        {
+          "FamilyName": "WindowsWorkload.PSOnnxRuntime.3.5_8wekyb3d8bbwe"
+        },
+        {
+          "FamilyName": "WindowsWorkload.SessionManager.1_8wekyb3d8bbwe"
+        }
+      ]
+    }
+  ],
+  "ApiInfos": [
+    {
+      "ApiClassName": "Microsoft.Windows.AI.Imaging.ImageObjectExtractor",
+      "SessionClassName": "Microsoft.Graphics.Internal.Imaging.ImageObjectExtractorSession",
+      "Workload": "Windows.Workload.ImageProcessing",
+      "SessionPackage": "WindowsWorkload.ImageObjectExtractor.1_8wekyb3d8bbwe",
+      "Public": true
+    },
+    {
+      "ApiClassName": "Microsoft.Windows.AI.Imaging.ImageScaler",
+      "SessionClassName": "Microsoft.Graphics.Internal.Imaging.ImageScalerSession",
+      "Workload": "Windows.Workload.ImageProcessing",
+      "SessionPackage": "WindowsWorkload.ImageScaler.1_8wekyb3d8bbwe",
+      "Public": true
+    },
+    {
+      "ApiClassName": "Microsoft.Windows.AI.Imaging.ImageObjectRemover",
+      "SessionClassName": "Microsoft.Graphics.Internal.Imaging.ImageObjectRemoverSession",
+      "Workload": "Windows.Workload.ImageTransform",
+      "SessionPackage": "WindowsWorkload.ImageObjectRemover.1_8wekyb3d8bbwe",
+      "Public": true
+    },
+    {
+      "ApiClassName": "Microsoft.Windows.AI.Search.Experimental.ImageSearchEmbeddingsCreator+Image",
+      "SessionClassName": "Microsoft.Windows.Internal.SemanticSearch.ImageSearchImageEmbeddingsSession",
+      "Workload": "Windows.Workload.ImageSearch",
+      "SessionPackage": "WindowsWorkload.ImageSearch.3_8wekyb3d8bbwe",
+      "VectorSpaceId": "7DF9C12E-2031-4DC9-99AB-CEF774D84EB2"
+    },
+    {
+      "ApiClassName": "Microsoft.Windows.AI.Imaging.TextRecognizer",
+      "SessionClassName": "Microsoft.Windows.Internal.Vision.TextRecognizerSession",
+      "Workload": "Windows.Workload.ContentExtraction",
+      "SessionPackage": "WindowsWorkload.TextRecognition.1_8wekyb3d8bbwe",
+      "Public": true
+    }
+  ]
+}

@@ -61,6 +61,8 @@
                         <ColumnDefinition Width="*" />
                         <ColumnDefinition Width="auto" />
                         <ColumnDefinition Width="auto" />
+                        <ColumnDefinition Width="auto" />
+                        <ColumnDefinition Width="auto" />
                     </Grid.ColumnDefinitions>
 
                     <AutoSuggestBox
@@ -102,9 +104,64 @@
                         </Viewbox>
                     </Button>
 
+                    <ToggleButton
+                        x:Name="MultiSelectButton"
+                        Grid.Column="2"
+                        Width="35"
+                        Height="35"
+                        Margin="10,0,0,0"
+                        Padding="6"
+                        HorizontalAlignment="Right"
+                        VerticalAlignment="Top"
+                        HorizontalContentAlignment="Center"
+                        VerticalContentAlignment="Center"
+                        Click="MultiSelectButton_Click"
+                        ToolTipService.ToolTip="Select multiple items">
+                        <!--  Multiselect Icon  -->
+                        <Viewbox
+                            Width="18"
+                            Height="18"
+                            Stretch="Uniform"
+                            StretchDirection="Both">
+                            <FontIcon Glyph="&#xE762;" />
+                        </Viewbox>
+                    </ToggleButton>
+
+                    <!--  Minimised add items button  -->
+                    <DropDownButton
+                        x:Name="AddAllDropdownButton"
+                        Grid.Column="3"
+                        Height="35"
+                        Margin="10,0,0,0"
+                        Padding="6"
+                        HorizontalAlignment="Right"
+                        VerticalAlignment="Top"
+                        HorizontalContentAlignment="Center"
+                        VerticalContentAlignment="Center"
+                        ToolTipService.ToolTip="Add item"
+                        Visibility="Collapsed">
+                        <!--  Add Icon  -->
+                        <Viewbox
+                            Width="18"
+                            Height="18"
+                            Stretch="Uniform"
+                            StretchDirection="Both">
+                            <FontIcon Glyph="&#xE710;" />
+                        </Viewbox>
+
+                        <DropDownButton.Flyout>
+                            <MenuFlyout Placement="Bottom">
+                                <MenuFlyoutItem Click="AddFileBtn_Click" Text="Add a file" />
+                                <MenuFlyoutItem Click="AddFolderBtn_Click" Text="Add a folder" />
+                                <MenuFlyoutItem Click="AddWebsiteBtn_Click" Text="Add a website" />
+                            </MenuFlyout>
+                        </DropDownButton.Flyout>
+
+                    </DropDownButton>
+
                     <Button
                         x:Name="CloseButton"
-                        Grid.Column="2"
+                        Grid.Column="4"
                         Width="35"
                         Height="35"
                         Margin="10,0,0,0"
@@ -129,6 +186,7 @@
 
                 <!--  Header Text + Buttons  -->
                 <Grid
+                    x:Name="HeaderGrid"
                     Height="32"
                     Margin="0,62,0,0"
                     HorizontalAlignment="Stretch"
@@ -255,13 +313,34 @@
                     DragItemsCompleted="ItemsGridView_DragItemsCompleted"
                     DragItemsStarting="ItemsGridView_DragItemsStarting"
                     IsItemClickEnabled="True"
+                    RightTapped="ItemsGridView_RightTapped"
                     SelectionMode="Single">
                     <GridView.ItemContainerStyle>
-                        <Style TargetType="GridViewItem">
+                        <Style BasedOn="{StaticResource DefaultGridViewItemStyle}" TargetType="GridViewItem">
                             <!--  Set a background property for GridViewItem for drag and drop events to work properly  -->
                             <Setter Property="Background" Value="Transparent" />
                         </Style>
                     </GridView.ItemContainerStyle>
+
+                    <FlyoutBase.AttachedFlyout>
+                        <!--  Separate right click menu for batch removal/addition of items  -->
+                        <MenuFlyout x:Name="GroupRightClickMenu">
+                            <MenuFlyoutItem
+                                x:Name="GroupMenuOpenOption"
+                                Click="GroupMenuOpenOption_Click"
+                                Text="Open all items">
+                                <MenuFlyoutItem.Icon>
+                                    <FontIcon Glyph="&#xE8E5;" />
+                                </MenuFlyoutItem.Icon>
+                            </MenuFlyoutItem>
+
+                            <MenuFlyoutItem
+                                x:Name="GroupMenuRemoveOption"
+                                Click="GroupMenuRemoveOption_Click"
+                                Icon="Delete"
+                                Text="Remove all from LauncherX" />
+                        </MenuFlyout>
+                    </FlyoutBase.AttachedFlyout>
                 </GridView>
             </Grid>
         </Grid>

@@ -15,6 +15,7 @@ using System.Threading.Tasks;
 using Windows.Storage;
 using Windows.UI;
 using Windows.UI.Popups;
+using WinUIEx;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -30,28 +31,9 @@ namespace LauncherXWinUI.Controls.GridViewItems
 
             // For some reason, StackPanel needs a background for right tap to work
             TilePanel.Background = new SolidColorBrush(Color.FromArgb(0, 0, 0, 0));
-
-            // Set the unique id to some guid
-            this.UniqueId = System.Guid.NewGuid().ToString();
         }
 
         // Declare properties that this control will have
-
-        /// <summary>
-        /// A unique GUID to identify each item in the ItemsGridView
-        /// </summary>
-        public string UniqueId
-        {
-            get => (string)GetValue(UniqueIdProperty);
-            set => SetValue(UniqueIdProperty, value);
-        }
-
-        DependencyProperty UniqueIdProperty = DependencyProperty.Register(
-            nameof(UniqueId),
-            typeof(string),
-            typeof(GridViewTile),
-            new PropertyMetadata(default(string)));
-
 
         /// <summary>
         /// Size of the control
@@ -275,6 +257,21 @@ namespace LauncherXWinUI.Controls.GridViewItems
             }
         }
 
+        /// <summary>
+        /// Whether to minimise LauncherX to taskbar after launching an item
+        /// </summary>
+        public bool MinimiseOnItemLaunch
+        {
+            get => (bool)GetValue(MinimiseOnItemLaunchProperty);
+            set => SetValue(MinimiseOnItemLaunchProperty, value);
+        }
+
+        DependencyProperty MinimiseOnItemLaunchProperty = DependencyProperty.Register(
+            nameof(MinimiseOnItemLaunch),
+            typeof(bool),
+            typeof(GridViewTile),
+            new PropertyMetadata(default(bool)));
+
         // Methods
 
         /// <summary>
@@ -373,10 +370,17 @@ namespace LauncherXWinUI.Controls.GridViewItems
                     processStartInfo.Verb = "runas";
                 }
                 Process.Start(processStartInfo);
+
+                // If successful, minimise LauncherX to taskbar if it is needed
+                if (this.MinimiseOnItemLaunch)
+                {
+                    App.MainWindow.Minimize();
+                }
             }
             catch
             {
                 // Use a MessageDialog to show the error message
+                // We use MessageeDialog because if this GridViewTile is in a group, we can't launch a second ContentDialog
                 MessageDialog messageDialog = new MessageDialog("If you are attempting to run this item as an administrator, check that it is possible to do so in the first place. " +
                                   "Finally, check that the file/folder has not been moved or deleted.", "Error running item");
                 WinRT.Interop.InitializeWithWindow.Initialize(messageDialog, WinRT.Interop.WindowNative.GetWindowHandle(App.MainWindow));
@@ -384,34 +388,84 @@ namespace LauncherXWinUI.Controls.GridViewItems
                 await messageDialog.ShowAsync();
             }
 
-            // Unselect this item
+            // Unselect this item, only if parent gridview is single select
             await Task.Delay(500);
-            UnhighlightControl();
             GridView parentGridView = this.Parent as GridView;
-            if (parentGridView != null)
+
+            if (parentGridView == null)
             {
+                return;
+            }
+
+            if (parentGridView.SelectionMode == ListViewSelectionMode.Single)
+            {
+                UnhighlightControl();
                 parentGridView.SelectedItem = null;
             }
         }
 
+        /// <summary>
+        /// Removes this item from the parent GridView
+        /// </summary>
+        public void RemoveFromGridView()
+        {
+            // Remove this group
+            GridView parentGridView = this.Parent as GridView;
+            if (parentGridView != null)
+            {
+                parentGridView.Items.Remove(this);
+            }
+        }
+
+        /// <summary>
+        /// Check if we should allow clicking interaction with this item, based on the selection mode of the parent GridView
+        /// </summary>
+        /// <returns>true if GridView is single select</returns>
+        private bool IsInteractionEnabled()
+        {
+            GridView parentGridView = this.Parent as GridView;
+            if (parentGridView.SelectionMode == ListViewSelectionMode.Single)
+            {
+                return true;
+            }
+            return false;
+        }
+
         // Event handlers
+        // For event handlers relating to left/right clicking the GridViewTile,
+        // we only enable them if the parent GridView has "Single" selection mode,
+        // as if we are in multiselect, we want the users to be able to select multiple items
         private void GridViewTileControl_PointerPressed(object sender, PointerRoutedEventArgs e)
         {
-            HighlightControl();
+            if (IsInteractionEnabled())
+            {
+                HighlightControl();
+            }
         }
 
         private void GridViewTileControl_PointerReleased(object sender, PointerRoutedEventArgs e)
         {
-            UnhighlightControl();
+            if (IsInteractionEnabled())
+            {
+                UnhighlightControl();
+            }
         }
 
         private async void GridViewTileControl_Tapped(object sender, TappedRoutedEventArgs e)
         {
-            await StartAssociatedProcess();
+            if (IsInteractionEnabled())
+            {
+                await StartAssociatedProcess();
+            }
         }
 
         private void GridViewTileControl_RightTapped(object sender, RightTappedRoutedEventArgs e)
         {
+            if (IsInteractionEnabled() == false)
+            {   
+                return;
+            }
+
             // Implement right click menu
             // Rename options based on the ExecutingPath
             if (ExecutingPath.StartsWith("http://") || ExecutingPath.StartsWith("https://"))

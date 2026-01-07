@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<PriInfo>
+	<ResourceMap name="Microsoft.WindowsAppRuntime" version="1.0" primary="true">
+		<Qualifiers>
+			<Language>EN-US,CS-CZ,DE-DE,ES-ES,FR-FR,IT-IT,JA-JP,KO-KR,PL-PL,PT-BR,RU-RU,TR-TR,ZH-CN,ZH-TW</Language>
+		</Qualifiers>
+		<ResourceMapSubtree name="Microsoft.WindowsAppRuntime">
+			<ResourceMapSubtree name="StoragePickers">
+				<NamedResource name="All Files" uri="ms-resource://Microsoft.WindowsAppRuntime/Microsoft.WindowsAppRuntime/StoragePickers/All Files">
+					<Candidate qualifiers="Language-ZH-TW" type="String">
+						<Value>所有檔案</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-ZH-CN" type="String">
+						<Value>所有文件</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-TR-TR" type="String">
+						<Value>Tüm Dosyalar</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-RU-RU" type="String">
+						<Value>Все файлы</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-PT-BR" type="String">
+						<Value>Todos os Arquivos</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-PL-PL" type="String">
+						<Value>Wszystkie pliki</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-KO-KR" type="String">
+						<Value>모든 파일</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-JA-JP" type="String">
+						<Value>すべてのファイル</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-IT-IT" type="String">
+						<Value>Tutti i file</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-FR-FR" type="String">
+						<Value>Tous les fichiers</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-ES-ES" type="String">
+						<Value>Todos los archivos</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-EN-US" isDefault="true" type="String">
+						<Value>All Files</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-DE-DE" type="String">
+						<Value>Alle Dateien</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-CS-CZ" type="String">
+						<Value>Všechny soubory</Value>
+					</Candidate>
+				</NamedResource>
+				<NamedResource name="IDS_APIERROR_IMPROPERFILEEXTENSION" uri="ms-resource://Microsoft.WindowsAppRuntime/Microsoft.WindowsAppRuntime/StoragePickers/IDS_APIERROR_IMPROPERFILEEXTENSION">
+					<Candidate qualifiers="Language-ZH-TW" type="String">
+						<Value>副檔名的開頭必須是 ’.’，而且不能包含萬用字元。</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-ZH-CN" type="String">
+						<Value>文件扩展名必须以“.”开头，不得包含通配符。</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-TR-TR" type="String">
+						<Value>Dosya uzantıları ’.’ ile başlamalı ve içlerinde joker karakter bulunmamalıdır.</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-RU-RU" type="String">
+						<Value>Расширения файлов должны начинаться с точки (".") и не могут содержать подстановочные знаки.</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-PT-BR" type="String">
+						<Value>As extensões de arquivo devem começar com '.' e não conter curingas.</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-PL-PL" type="String">
+						<Value>Rozszerzenie musi rozpoczynać się od kropki („.”) i nie może zawierać żadnych symboli wieloznacznych.</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-KO-KR" type="String">
+						<Value>파일 확장명은 '.'으로 시작해야 하며 와일드카드를 포함할 수 없습니다.</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-JA-JP" type="String">
+						<Value>ファイル拡張子の先頭は '.' にし、ワイルドカードを使わないようにしてください。</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-IT-IT" type="String">
+						<Value>Le estensioni di file devono iniziare con '.' e non devono contenere caratteri jolly.</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-FR-FR" type="String">
+						<Value>Les extensions de fichier doivent commencer par « . » et ne doivent pas contenir de caractères génériques.</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-ES-ES" type="String">
+						<Value>Las extensiones de archivo tienen que empezar por ‘.’ y no pueden contener comodines.</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-EN-US" isDefault="true" type="String">
+						<Value>File extensions must begin with '.' and contain no wildcards.</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-DE-DE" type="String">
+						<Value>Dateierweiterungen müssen mit "." beginnen und dürfen keine Platzhalter enthalten.</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-CS-CZ" type="String">
+						<Value>Přípony souborů musí začínat tečkou a nesmí obsahovat žádné zástupné znaky.</Value>
+					</Candidate>
+				</NamedResource>
+				<NamedResource name="IDS_APIERROR_INVALIDSUGGESTEDSTARTLOCATIONVALUE" uri="ms-resource://Microsoft.WindowsAppRuntime/Microsoft.WindowsAppRuntime/StoragePickers/IDS_APIERROR_INVALIDSUGGESTEDSTARTLOCATIONVALUE">
+					<Candidate qualifiers="Language-ZH-TW" type="String">
+						<Value>指定的 SuggestedStartLocation 無效。</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-ZH-CN" type="String">
+						<Value>指定的 SuggestedStartLocation 无效。</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-TR-TR" type="String">
+						<Value>Belirtilen SuggestedStartLocation geçersiz.</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-RU-RU" type="String">
+						<Value>Указано недопустимое значение SuggestedStartLocation.</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-PT-BR" type="String">
+						<Value>O SuggestedStartLocation especificado é inválido.</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-PL-PL" type="String">
+						<Value>Określona wartość SuggestedStartLocation jest nieprawidłowa.</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-KO-KR" type="String">
+						<Value>지정한 SuggestedStartLocation이 잘못되었습니다.</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-JA-JP" type="String">
+						<Value>指定された SuggestedStartLocation は無効です。</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-IT-IT" type="String">
+						<Value>Il valore SuggestedStartLocation specificato non è valido.</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-FR-FR" type="String">
+						<Value>La valeur SuggestedStartLocation spécifiée est non valide.</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-ES-ES" type="String">
+						<Value>El elemento SuggestedStartLocation especificado no es válido.</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-EN-US" isDefault="true" type="String">
+						<Value>The specified SuggestedStartLocation is invalid.</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-DE-DE" type="String">
+						<Value>Die angegebene SuggestedStartLocation ist ungültig.</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-CS-CZ" type="String">
+						<Value>Zadaná hodnota SuggestedStartLocation je neplatná.</Value>
+					</Candidate>
+				</NamedResource>
+				<NamedResource name="IDS_APIERROR_INVALIDVIEWMODEVALUE" uri="ms-resource://Microsoft.WindowsAppRuntime/Microsoft.WindowsAppRuntime/StoragePickers/IDS_APIERROR_INVALIDVIEWMODEVALUE">
+					<Candidate qualifiers="Language-ZH-TW" type="String">
+						<Value>指定的 ViewMode 無效。</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-ZH-CN" type="String">
+						<Value>指定的 ViewMode 无效。</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-TR-TR" type="String">
+						<Value>Belirtilen ViewMode geçersiz.</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-RU-RU" type="String">
+						<Value>Указано недопустимое значение ViewMode.</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-PT-BR" type="String">
+						<Value>O ViewMode especificado é inválido.</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-PL-PL" type="String">
+						<Value>Określona wartość ViewMode jest nieprawidłowa.</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-KO-KR" type="String">
+						<Value>지정한 ViewMode가 잘못되었습니다.</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-JA-JP" type="String">
+						<Value>指定された ViewMode は無効です。</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-IT-IT" type="String">
+						<Value>Il valore ViewMode specificato non è valido.</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-FR-FR" type="String">
+						<Value>La valeur ViewMode spécifiée est non valide.</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-ES-ES" type="String">
+						<Value>El ViewMode especificado no es válido.</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-EN-US" isDefault="true" type="String">
+						<Value>The specified ViewMode is invalid.</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-DE-DE" type="String">
+						<Value>Der angegebene ViewMode ist ungültig.</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-CS-CZ" type="String">
+						<Value>Zadaný režim ViewMode je neplatný.</Value>
+					</Candidate>
+				</NamedResource>
+				<NamedResource name="IDS_APIERROR_MAXSAVEFILELENGTHEXCEEDED" uri="ms-resource://Microsoft.WindowsAppRuntime/Microsoft.WindowsAppRuntime/StoragePickers/IDS_APIERROR_MAXSAVEFILELENGTHEXCEEDED">
+					<Candidate qualifiers="Language-ZH-TW" type="String">
+						<Value>建議的檔案名稱超過允許的字元數目上限。</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-ZH-CN" type="String">
+						<Value>建议的文件名超出允许的最大字符数。</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-TR-TR" type="String">
+						<Value>Önerilen dosya adı izin verilen karakter sayısı üst sınırını aşıyor.</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-RU-RU" type="String">
+						<Value>Предложенное имя файла превышает максимально допустимое число символов.</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-PT-BR" type="String">
+						<Value>O nome de arquivo sugerido excede o número máximo de caracteres permitidos.</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-PL-PL" type="String">
+						<Value>Sugerowana nazwa pliku przekracza maksymalną dozwoloną liczbę znaków.</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-KO-KR" type="String">
+						<Value>제안된 파일 이름이 허용된 최대 문자 수를 초과합니다.</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-JA-JP" type="String">
+						<Value>候補のファイル名は、使える文字数の上限を超えています。</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-IT-IT" type="String">
+						<Value>Il nome file suggerito supera il numero massimo di caratteri consentito.</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-FR-FR" type="String">
+						<Value>Le nom de fichier suggéré dépasse le nombre maximum de caractères autorisés.</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-ES-ES" type="String">
+						<Value>El nombre de archivo sugerido sobrepasa el número máximo de caracteres permitido.</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-EN-US" isDefault="true" type="String">
+						<Value>The suggested file name exceeds the maximum number of characters allowed.</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-DE-DE" type="String">
+						<Value>Der vorgeschlagene Dateiname überschreitet die maximal zulässige Zeichenanzahl.</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-CS-CZ" type="String">
+						<Value>Navrhovaný název souboru má větší počet znaků, než je povolené maximum.</Value>
+					</Candidate>
+				</NamedResource>
+				<NamedResource name="IDS_APIERROR_STRINGSNOEMBEDDEDNULLS" uri="ms-resource://Microsoft.WindowsAppRuntime/Microsoft.WindowsAppRuntime/StoragePickers/IDS_APIERROR_STRINGSNOEMBEDDEDNULLS">
+					<Candidate qualifiers="Language-ZH-TW" type="String">
+						<Value>字串不能包含內嵌的 Null。</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-ZH-CN" type="String">
+						<Value>字符串不能内嵌空字符。</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-TR-TR" type="String">
+						<Value>Dizelerde eklenmiş null karakterler olamaz.</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-RU-RU" type="String">
+						<Value>В строках не могут содержаться внедренные нуль-символы.</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-PT-BR" type="String">
+						<Value>Cadeias não podem ter valores nulos inseridos.</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-PL-PL" type="String">
+						<Value>Ciągi nie mogą zawierać osadzonych wartości null.</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-KO-KR" type="String">
+						<Value>문자열에는 임베디드 null을 사용할 수 없습니다.</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-JA-JP" type="String">
+						<Value>文字列に null を埋め込むことはできません。</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-IT-IT" type="String">
+						<Value>Le stringhe non possono contenere valori Null incorporati.</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-FR-FR" type="String">
+						<Value>Les chaînes ne peuvent pas contenir des caractères Null incorporés.</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-ES-ES" type="String">
+						<Value>Las cadenas no pueden tener valores nulos incrustados.</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-EN-US" isDefault="true" type="String">
+						<Value>Strings cannot have embedded nulls.</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-DE-DE" type="String">
+						<Value>Zeichenfolgen dürfen keine eingebetteten NULL-Werte enthalten.</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-CS-CZ" type="String">
+						<Value>Řetězce nemůžou mít vložené hodnoty null.</Value>
+					</Candidate>
+				</NamedResource>
+			</ResourceMapSubtree>
+		</ResourceMapSubtree>
+	</ResourceMap>
+</PriInfo>

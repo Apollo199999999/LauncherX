@@ -1,0 +1,1087 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<PriInfo>
+	<ResourceMap name="WinUIEx" version="1.0" primary="true">
+		<Qualifiers>
+			<Language>EN-US,EN-GB,AF-ZA,AM-ET,AR-SA,AS-IN,AZ-LATN-AZ,BG-BG,BN-IN,BS-LATN-BA,CA-ES,CA-ES-VALENCIA,CS-CZ,CY-GB,DA-DK,DE-DE,EL-GR,ES-ES,ES-MX,ET-EE,EU-ES,FA-IR,FI-FI,FIL-PH,FR-CA,FR-FR,GA-IE,GD-GB,GL-ES,GU-IN,HE-IL,HI-IN,HR-HR,HU-HU,HY-AM,ID-ID,IS-IS,IT-IT,JA-JP,KA-GE,KK-KZ,KM-KH,KN-IN,KO-KR,KOK-IN,LB-LU,LO-LA,LT-LT,LV-LV,MI-NZ,MK-MK,ML-IN,MR-IN,MS-MY,MT-MT,NB-NO,NE-NP,NL-NL,NN-NO,OR-IN,PA-IN,PL-PL,PT-BR,PT-PT,QUZ-PE,RO-RO,RU-RU,SK-SK,SL-SI,SQ-AL,SR-CYRL-BA,SR-CYRL-RS,SR-LATN-RS,SV-SE,TA-IN,TE-IN,TH-TH,TR-TR,TT-RU,UG-CN,UK-UA,UR-PK,UZ-LATN-UZ,VI-VN,ZH-CN,ZH-TW</Language>
+		</Qualifiers>
+		<ResourceMapSubtree name="Files">
+			<ResourceMapSubtree name="WinUIEx">
+				<ResourceMapSubtree name="NumberBox">
+					<NamedResource name="NumberBox.xbf" uri="ms-resource://WinUIEx/Files/WinUIEx/NumberBox/NumberBox.xbf">
+						<Candidate type="EmbeddedData">
+							<Base64Value>[Embedded Binary Data]</Base64Value>
+						</Candidate>
+					</NamedResource>
+					<NamedResource name="NumberBox_themeresources.xbf" uri="ms-resource://WinUIEx/Files/WinUIEx/NumberBox/NumberBox_themeresources.xbf">
+						<Candidate type="EmbeddedData">
+							<Base64Value>[Embedded Binary Data]</Base64Value>
+						</Candidate>
+					</NamedResource>
+				</ResourceMapSubtree>
+				<ResourceMapSubtree name="Themes">
+					<NamedResource name="Generic.xbf" uri="ms-resource://WinUIEx/Files/WinUIEx/Themes/Generic.xbf">
+						<Candidate type="EmbeddedData">
+							<Base64Value>[Embedded Binary Data]</Base64Value>
+						</Candidate>
+					</NamedResource>
+				</ResourceMapSubtree>
+				<ResourceMapSubtree name="TitleBar">
+					<NamedResource name="TitleBar.xbf" uri="ms-resource://WinUIEx/Files/WinUIEx/TitleBar/TitleBar.xbf">
+						<Candidate type="EmbeddedData">
+							<Base64Value>[Embedded Binary Data]</Base64Value>
+						</Candidate>
+					</NamedResource>
+					<NamedResource name="TitleBar_themeresources.xbf" uri="ms-resource://WinUIEx/Files/WinUIEx/TitleBar/TitleBar_themeresources.xbf">
+						<Candidate type="EmbeddedData">
+							<Base64Value>[Embedded Binary Data]</Base64Value>
+						</Candidate>
+					</NamedResource>
+				</ResourceMapSubtree>
+			</ResourceMapSubtree>
+		</ResourceMapSubtree>
+		<ResourceMapSubtree name="WinUIEx">
+			<ResourceMapSubtree name="Resources">
+				<NamedResource name="NumberBoxDownSpinButtonName" uri="ms-resource://WinUIEx/WinUIEx/Resources/NumberBoxDownSpinButtonName">
+					<Candidate qualifiers="Language-ZH-TW" type="String">
+						<Value>減少</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-ZH-CN" type="String">
+						<Value>减少</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-VI-VN" type="String">
+						<Value>Giảm</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-UZ-LATN-UZ" type="String">
+						<Value>Kamaytirish</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-UR-PK" type="String">
+						<Value>کم کريں</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-UK-UA" type="String">
+						<Value>Зменшити</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-UG-CN" type="String">
+						<Value>كېمىيىش</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-TT-RU" type="String">
+						<Value>Киметү</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-TR-TR" type="String">
+						<Value>Azalt</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-TH-TH" type="String">
+						<Value>ลด</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-TE-IN" type="String">
+						<Value>తగ్గించు</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-TA-IN" type="String">
+						<Value>குறை</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-SV-SE" type="String">
+						<Value>Minska</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-SR-LATN-RS" type="String">
+						<Value>Smanji</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-SR-CYRL-RS" type="String">
+						<Value>Смањи</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-SR-CYRL-BA" type="String">
+						<Value>Смањи</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-SQ-AL" type="String">
+						<Value>Zvogëlo</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-SL-SI" type="String">
+						<Value>Zmanjšaj</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-SK-SK" type="String">
+						<Value>Zmenšiť</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-RU-RU" type="String">
+						<Value>Уменьшение</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-RO-RO" type="String">
+						<Value>Micșorare</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-QUZ-PE" type="String">
+						<Value>Pisiyachiy</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-PT-PT" type="String">
+						<Value>Diminuir</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-PT-BR" type="String">
+						<Value>Diminuir</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-PL-PL" type="String">
+						<Value>Zmniejsz</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-PA-IN" type="String">
+						<Value>ਘਟਾਓ</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-OR-IN" type="String">
+						<Value>ହ୍ରାସ କରନ୍ତୁ</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-NN-NO" type="String">
+						<Value>Reduser</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-NL-NL" type="String">
+						<Value>Verkleinen</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-NE-NP" type="String">
+						<Value>घटाउनुहोस्</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-NB-NO" type="String">
+						<Value>Reduser</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-MT-MT" type="String">
+						<Value>Naqqas</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-MS-MY" type="String">
+						<Value>Kurangkan</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-MR-IN" type="String">
+						<Value>कमी करा</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-ML-IN" type="String">
+						<Value>കുറയ്ക്കുക</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-MK-MK" type="String">
+						<Value>Намали</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-MI-NZ" type="String">
+						<Value>Whakaero</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-LV-LV" type="String">
+						<Value>Samazinājums</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-LT-LT" type="String">
+						<Value>Mažinti</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-LO-LA" type="String">
+						<Value>ຫຼຸດລົງ</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-LB-LU" type="String">
+						<Value>Reduzéieren</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-KOK-IN" type="String">
+						<Value>उणावचें</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-KO-KR" type="String">
+						<Value>좁게</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-KN-IN" type="String">
+						<Value>ಕಡಿಮೆಗೊಳಿಸು</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-KM-KH" type="String">
+						<Value>បន្ថយ</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-KK-KZ" type="String">
+						<Value>Азайту</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-KA-GE" type="String">
+						<Value>შემცირება</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-JA-JP" type="String">
+						<Value>減少</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-IT-IT" type="String">
+						<Value>Diminuisci</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-IS-IS" type="String">
+						<Value>Minnkun</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-ID-ID" type="String">
+						<Value>Kurangi</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-HY-AM" type="String">
+						<Value>Նվազեցնել</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-HU-HU" type="String">
+						<Value>Csökkentés</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-HR-HR" type="String">
+						<Value>Smanjenje</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-HI-IN" type="String">
+						<Value>घटाएँ</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-HE-IL" type="String">
+						<Value>הקטן</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-GU-IN" type="String">
+						<Value>ઘટાડો</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-GL-ES" type="String">
+						<Value>Redución</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-GD-GB" type="String">
+						<Value>Lùghdaich</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-GA-IE" type="String">
+						<Value>Laghdaigh</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-FR-FR" type="String">
+						<Value>Diminuer</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-FR-CA" type="String">
+						<Value>Diminuer</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-FIL-PH" type="String">
+						<Value>Bawasan</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-FI-FI" type="String">
+						<Value>Vähennä</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-FA-IR" type="String">
+						<Value>کاهش دادن</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-EU-ES" type="String">
+						<Value>Txikitu</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-ET-EE" type="String">
+						<Value>Vähenda</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-ES-MX" type="String">
+						<Value>Reducir</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-ES-ES" type="String">
+						<Value>Disminuir</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-EN-US" isDefault="true" type="String">
+						<Value>Decrease</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-EN-GB" isDefault="true" type="String">
+						<Value>Decrease</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-EL-GR" type="String">
+						<Value>Μείωση</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-DE-DE" type="String">
+						<Value>Verringerung</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-DA-DK" type="String">
+						<Value>Formindsk</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-CY-GB" type="String">
+						<Value>Lleihau</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-CS-CZ" type="String">
+						<Value>Pokles</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-CA-ES-VALENCIA" type="String">
+						<Value>Disminueix</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-CA-ES" type="String">
+						<Value>Disminueix</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-BS-LATN-BA" type="String">
+						<Value>Smanji</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-BN-IN" type="String">
+						<Value>হ্রাস</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-BG-BG" type="String">
+						<Value>Намаляване</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-AZ-LATN-AZ" type="String">
+						<Value>Azalt</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-AS-IN" type="String">
+						<Value>হ্ৰাস কৰক</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-AR-SA" type="String">
+						<Value>تخفيض</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-AM-ET" type="String">
+						<Value>ቀንስ</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-AF-ZA" type="String">
+						<Value>Verminder</Value>
+					</Candidate>
+				</NamedResource>
+				<NamedResource name="NumberBoxMaximumValueStatus" uri="ms-resource://WinUIEx/WinUIEx/Resources/NumberBoxMaximumValueStatus">
+					<Candidate qualifiers="Language-ZH-TW" type="String">
+						<Value>最大值</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-ZH-CN" type="String">
+						<Value>最大</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-VI-VN" type="String">
+						<Value>Tối đa</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-UZ-LATN-UZ" type="String">
+						<Value>Maksimum</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-UR-PK" type="String">
+						<Value>زيادہ سے زيادہ</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-UK-UA" type="String">
+						<Value>Максимум</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-UG-CN" type="String">
+						<Value>ئەڭ چوڭ</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-TT-RU" type="String">
+						<Value>Максимум</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-TR-TR" type="String">
+						<Value>Maksimum</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-TH-TH" type="String">
+						<Value>สูงสุด</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-TE-IN" type="String">
+						<Value>గరిష్టం</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-TA-IN" type="String">
+						<Value>அதிகபட்சம்</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-SV-SE" type="String">
+						<Value>Högsta</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-SR-LATN-RS" type="String">
+						<Value>Maksimum</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-SR-CYRL-RS" type="String">
+						<Value>Максимално</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-SR-CYRL-BA" type="String">
+						<Value>Максимум</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-SQ-AL" type="String">
+						<Value>Maksimumi</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-SL-SI" type="String">
+						<Value>Največje</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-SK-SK" type="String">
+						<Value>Maximum</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-RU-RU" type="String">
+						<Value>Максимальное значение</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-RO-RO" type="String">
+						<Value>Maximă</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-QUZ-PE" type="String">
+						<Value>Kuraq</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-PT-PT" type="String">
+						<Value>Máximo</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-PT-BR" type="String">
+						<Value>Máximo</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-PL-PL" type="String">
+						<Value>Maksimum</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-PA-IN" type="String">
+						<Value>ਅਧਿਕਤਮ</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-OR-IN" type="String">
+						<Value>ସର୍ବାଧିକ</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-NN-NO" type="String">
+						<Value>Maksimum</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-NL-NL" type="String">
+						<Value>Maximum</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-NE-NP" type="String">
+						<Value>अधिकतम</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-NB-NO" type="String">
+						<Value>Maksimum</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-MT-MT" type="String">
+						<Value>Massimu</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-MS-MY" type="String">
+						<Value>Maksimum</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-MR-IN" type="String">
+						<Value>कमाल</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-ML-IN" type="String">
+						<Value>പരമാവധി</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-MK-MK" type="String">
+						<Value>Максимум</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-MI-NZ" type="String">
+						<Value>Mōrahi</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-LV-LV" type="String">
+						<Value>Maksimālā</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-LT-LT" type="String">
+						<Value>Maksimalus</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-LO-LA" type="String">
+						<Value>ສູງສຸດ</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-LB-LU" type="String">
+						<Value>Maximum</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-KOK-IN" type="String">
+						<Value>कमाल</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-KO-KR" type="String">
+						<Value>최대</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-KN-IN" type="String">
+						<Value>ಗರಿಷ್ಠ</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-KM-KH" type="String">
+						<Value>អតិបរមា</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-KK-KZ" type="String">
+						<Value>Ең үлкен мән</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-KA-GE" type="String">
+						<Value>მაქსიმუმი</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-JA-JP" type="String">
+						<Value>最大</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-IT-IT" type="String">
+						<Value>Massimo</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-IS-IS" type="String">
+						<Value>Hámark</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-ID-ID" type="String">
+						<Value>Maksimum</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-HY-AM" type="String">
+						<Value>Առավելագույն</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-HU-HU" type="String">
+						<Value>Maximum</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-HR-HR" type="String">
+						<Value>Maksimum</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-HI-IN" type="String">
+						<Value>अधिकतम</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-HE-IL" type="String">
+						<Value>מקסימום</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-GU-IN" type="String">
+						<Value>મહત્તમ</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-GL-ES" type="String">
+						<Value>Máximo</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-GD-GB" type="String">
+						<Value>As motha</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-GA-IE" type="String">
+						<Value>Uasmhéid</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-FR-FR" type="String">
+						<Value>Maximal</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-FR-CA" type="String">
+						<Value>Maximal</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-FIL-PH" type="String">
+						<Value>Maximum</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-FI-FI" type="String">
+						<Value>Suurin</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-FA-IR" type="String">
+						<Value>حداکثر</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-EU-ES" type="String">
+						<Value>Gehienez</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-ET-EE" type="String">
+						<Value>Maksimum</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-ES-MX" type="String">
+						<Value>Máximo</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-ES-ES" type="String">
+						<Value>Máximo</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-EN-US" isDefault="true" type="String">
+						<Value>Maximum</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-EN-GB" isDefault="true" type="String">
+						<Value>Maximum</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-EL-GR" type="String">
+						<Value>Μέγιστο</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-DE-DE" type="String">
+						<Value>Maximum</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-DA-DK" type="String">
+						<Value>Maksimum</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-CY-GB" type="String">
+						<Value>Uchafswm</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-CS-CZ" type="String">
+						<Value>Maximum</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-CA-ES-VALENCIA" type="String">
+						<Value>Màxim</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-CA-ES" type="String">
+						<Value>Màxim</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-BS-LATN-BA" type="String">
+						<Value>Maksimum</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-BN-IN" type="String">
+						<Value>সর্বাধিক</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-BG-BG" type="String">
+						<Value>Максимум</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-AZ-LATN-AZ" type="String">
+						<Value>Maksimum</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-AS-IN" type="String">
+						<Value>সৰ্বাধিক</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-AR-SA" type="String">
+						<Value>الحد الأقصى</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-AM-ET" type="String">
+						<Value>ከፍተኛው</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-AF-ZA" type="String">
+						<Value>Maksimum</Value>
+					</Candidate>
+				</NamedResource>
+				<NamedResource name="NumberBoxMinimumValueStatus" uri="ms-resource://WinUIEx/WinUIEx/Resources/NumberBoxMinimumValueStatus">
+					<Candidate qualifiers="Language-ZH-TW" type="String">
+						<Value>最小值</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-ZH-CN" type="String">
+						<Value>最小</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-VI-VN" type="String">
+						<Value>Tối thiểu</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-UZ-LATN-UZ" type="String">
+						<Value>Minimum</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-UR-PK" type="String">
+						<Value>کم از کم</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-UK-UA" type="String">
+						<Value>Мінімум</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-UG-CN" type="String">
+						<Value>ئەڭ كىچىك</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-TT-RU" type="String">
+						<Value>Минимум</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-TR-TR" type="String">
+						<Value>Minimum</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-TH-TH" type="String">
+						<Value>ต่ำสุด</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-TE-IN" type="String">
+						<Value>కనిష్టం</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-TA-IN" type="String">
+						<Value>குறைந்தபட்சம்</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-SV-SE" type="String">
+						<Value>Minimal</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-SR-LATN-RS" type="String">
+						<Value>Minimum</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-SR-CYRL-RS" type="String">
+						<Value>Минимално</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-SR-CYRL-BA" type="String">
+						<Value>Минимум</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-SQ-AL" type="String">
+						<Value>Minimumi</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-SL-SI" type="String">
+						<Value>Najmanjše</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-SK-SK" type="String">
+						<Value>Minimum</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-RU-RU" type="String">
+						<Value>Минимальное значение</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-RO-RO" type="String">
+						<Value>Minimă</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-QUZ-PE" type="String">
+						<Value>Huchuycha</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-PT-PT" type="String">
+						<Value>Mínimo</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-PT-BR" type="String">
+						<Value>Mínimo</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-PL-PL" type="String">
+						<Value>Minimum</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-PA-IN" type="String">
+						<Value>ਨਿਊਨਤਮ</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-OR-IN" type="String">
+						<Value>ସର୍ବନିମ୍ନ</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-NN-NO" type="String">
+						<Value>Minimum</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-NL-NL" type="String">
+						<Value>Minimum</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-NE-NP" type="String">
+						<Value>न्यूनतम</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-NB-NO" type="String">
+						<Value>Minimum</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-MT-MT" type="String">
+						<Value>Minimu</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-MS-MY" type="String">
+						<Value>Minimum</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-MR-IN" type="String">
+						<Value>किमान</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-ML-IN" type="String">
+						<Value>കുറഞ്ഞത്</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-MK-MK" type="String">
+						<Value>Минимум</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-MI-NZ" type="String">
+						<Value>Mōkito</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-LV-LV" type="String">
+						<Value>Minimālā</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-LT-LT" type="String">
+						<Value>Minimalus</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-LO-LA" type="String">
+						<Value>ຕ່ຳສຸດ</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-LB-LU" type="String">
+						<Value>Minimum</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-KOK-IN" type="String">
+						<Value>किमान</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-KO-KR" type="String">
+						<Value>최소</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-KN-IN" type="String">
+						<Value>ಕನಿಷ್ಠ</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-KM-KH" type="String">
+						<Value>អប្បបរមា</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-KK-KZ" type="String">
+						<Value>Ең кіші мән</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-KA-GE" type="String">
+						<Value>მინიმუმი</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-JA-JP" type="String">
+						<Value>最小</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-IT-IT" type="String">
+						<Value>Minimo</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-IS-IS" type="String">
+						<Value>Lágmark</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-ID-ID" type="String">
+						<Value>Minimum</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-HY-AM" type="String">
+						<Value>Նվազագույն</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-HU-HU" type="String">
+						<Value>Minimum</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-HR-HR" type="String">
+						<Value>Minimum</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-HI-IN" type="String">
+						<Value>न्यूनतम</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-HE-IL" type="String">
+						<Value>מינימום</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-GU-IN" type="String">
+						<Value>ન્યૂનતમ</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-GL-ES" type="String">
+						<Value>Mínimo</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-GD-GB" type="String">
+						<Value>As lugha</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-GA-IE" type="String">
+						<Value>Íosmhéid</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-FR-FR" type="String">
+						<Value>Minimal</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-FR-CA" type="String">
+						<Value>Minimal</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-FIL-PH" type="String">
+						<Value>Minimum</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-FI-FI" type="String">
+						<Value>Pienin</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-FA-IR" type="String">
+						<Value>حداقل</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-EU-ES" type="String">
+						<Value>Gutxienez</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-ET-EE" type="String">
+						<Value>Miinimum</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-ES-MX" type="String">
+						<Value>Mínimo</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-ES-ES" type="String">
+						<Value>Mínimo</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-EN-US" isDefault="true" type="String">
+						<Value>Minimum</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-EN-GB" isDefault="true" type="String">
+						<Value>Minimum</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-EL-GR" type="String">
+						<Value>Ελάχιστο</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-DE-DE" type="String">
+						<Value>Minimum</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-DA-DK" type="String">
+						<Value>Minimum</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-CY-GB" type="String">
+						<Value>Isafswm</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-CS-CZ" type="String">
+						<Value>Minimum</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-CA-ES-VALENCIA" type="String">
+						<Value>Mínim</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-CA-ES" type="String">
+						<Value>Mínim</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-BS-LATN-BA" type="String">
+						<Value>Minimalno</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-BN-IN" type="String">
+						<Value>ন্যূনতম</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-BG-BG" type="String">
+						<Value>Минимум</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-AZ-LATN-AZ" type="String">
+						<Value>Minimum</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-AS-IN" type="String">
+						<Value>ন্যূনতম</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-AR-SA" type="String">
+						<Value>الحد الأدنى</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-AM-ET" type="String">
+						<Value>ዝቅተኛው</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-AF-ZA" type="String">
+						<Value>Minimum</Value>
+					</Candidate>
+				</NamedResource>
+				<NamedResource name="NumberBoxUpSpinButtonName" uri="ms-resource://WinUIEx/WinUIEx/Resources/NumberBoxUpSpinButtonName">
+					<Candidate qualifiers="Language-ZH-TW" type="String">
+						<Value>增加</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-ZH-CN" type="String">
+						<Value>增加</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-VI-VN" type="String">
+						<Value>Tăng</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-UZ-LATN-UZ" type="String">
+						<Value>Oshirish</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-UR-PK" type="String">
+						<Value>بڑھائیں</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-UK-UA" type="String">
+						<Value>Збільшити</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-UG-CN" type="String">
+						<Value>ئېشىش</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-TT-RU" type="String">
+						<Value>Арттыру</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-TR-TR" type="String">
+						<Value>Artır</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-TH-TH" type="String">
+						<Value>เพิ่ม</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-TE-IN" type="String">
+						<Value>పెంచు</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-TA-IN" type="String">
+						<Value>அதிகரி</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-SV-SE" type="String">
+						<Value>Öka</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-SR-LATN-RS" type="String">
+						<Value>Povećanje</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-SR-CYRL-RS" type="String">
+						<Value>Повећање</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-SR-CYRL-BA" type="String">
+						<Value>Повећај</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-SQ-AL" type="String">
+						<Value>Zmadho</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-SL-SI" type="String">
+						<Value>Povečaj</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-SK-SK" type="String">
+						<Value>Zväčšiť</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-RU-RU" type="String">
+						<Value>Увеличение</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-RO-RO" type="String">
+						<Value>Mărire</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-QUZ-PE" type="String">
+						<Value>Yapariy</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-PT-PT" type="String">
+						<Value>Aumentar</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-PT-BR" type="String">
+						<Value>Aumentar</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-PL-PL" type="String">
+						<Value>Zwiększ</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-PA-IN" type="String">
+						<Value>ਵਧਾਓ</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-OR-IN" type="String">
+						<Value>ବୃଦ୍ଧି ହେବା</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-NN-NO" type="String">
+						<Value>Auk</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-NL-NL" type="String">
+						<Value>Vergroten</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-NE-NP" type="String">
+						<Value>बढाउनुहोस्</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-NB-NO" type="String">
+						<Value>Øk</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-MT-MT" type="String">
+						<Value>Żieda</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-MS-MY" type="String">
+						<Value>Meningkat</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-MR-IN" type="String">
+						<Value>वाढवा</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-ML-IN" type="String">
+						<Value>വർദ്ധിപ്പിക്കുക</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-MK-MK" type="String">
+						<Value>Зголеми</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-MI-NZ" type="String">
+						<Value>Whakanui</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-LV-LV" type="String">
+						<Value>Palielinājums</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-LT-LT" type="String">
+						<Value>Didinti</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-LO-LA" type="String">
+						<Value>ເພີ່ມ</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-LB-LU" type="String">
+						<Value>Vergréisseren</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-KOK-IN" type="String">
+						<Value>वाडोवचें</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-KO-KR" type="String">
+						<Value>증가</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-KN-IN" type="String">
+						<Value>ಹೆಚ್ಚಿಸು</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-KM-KH" type="String">
+						<Value>បង្កើន</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-KK-KZ" type="String">
+						<Value>Ұлғайту</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-KA-GE" type="String">
+						<Value>გაზრდა</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-JA-JP" type="String">
+						<Value>増加</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-IT-IT" type="String">
+						<Value>Aumenta</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-IS-IS" type="String">
+						<Value>Hækkun</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-ID-ID" type="String">
+						<Value>Tambahkan</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-HY-AM" type="String">
+						<Value>Ավելացնել</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-HU-HU" type="String">
+						<Value>Növelés</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-HR-HR" type="String">
+						<Value>Povećanje</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-HI-IN" type="String">
+						<Value>बढ़ाएँ</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-HE-IL" type="String">
+						<Value>הגדל</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-GU-IN" type="String">
+						<Value>વધારો</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-GL-ES" type="String">
+						<Value>Aumento</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-GD-GB" type="String">
+						<Value>Meudaich</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-GA-IE" type="String">
+						<Value>Méadaigh</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-FR-FR" type="String">
+						<Value>Augmenter</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-FR-CA" type="String">
+						<Value>Hausse</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-FIL-PH" type="String">
+						<Value>Dagdagan</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-FI-FI" type="String">
+						<Value>Lisää</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-FA-IR" type="String">
+						<Value>افزایش</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-EU-ES" type="String">
+						<Value>Handitu</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-ET-EE" type="String">
+						<Value>Suurenda</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-ES-MX" type="String">
+						<Value>Aumentar</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-ES-ES" type="String">
+						<Value>Aumento</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-EN-US" isDefault="true" type="String">
+						<Value>Increase</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-EN-GB" isDefault="true" type="String">
+						<Value>Increase</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-EL-GR" type="String">
+						<Value>Αύξηση</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-DE-DE" type="String">
+						<Value>Anstieg</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-DA-DK" type="String">
+						<Value>Forøgelse</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-CY-GB" type="String">
+						<Value>Cynyddu</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-CS-CZ" type="String">
+						<Value>Nárůst</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-CA-ES-VALENCIA" type="String">
+						<Value>Augmenta</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-CA-ES" type="String">
+						<Value>Augmenta</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-BS-LATN-BA" type="String">
+						<Value>Povećaj</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-BN-IN" type="String">
+						<Value>বৃদ্ধি</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-BG-BG" type="String">
+						<Value>Увеличаване</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-AZ-LATN-AZ" type="String">
+						<Value>Artırmaq</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-AS-IN" type="String">
+						<Value>বৃদ্ধি কৰক</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-AR-SA" type="String">
+						<Value>زيادة</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-AM-ET" type="String">
+						<Value>ጨምር</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-AF-ZA" type="String">
+						<Value>Vermeerder</Value>
+					</Candidate>
+				</NamedResource>
+			</ResourceMapSubtree>
+		</ResourceMapSubtree>
+	</ResourceMap>
+</PriInfo>

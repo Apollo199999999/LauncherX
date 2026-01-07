@@ -9,6 +9,8 @@ Controls\Dialogs\AddWebsiteDialog.xbf
 Controls\GridViewItems\EditItemWindow.xbf
 Controls\GridViewItems\GridViewTile.xbf
 Controls\GridViewItems\GridViewTileGroup.xbf
+Controls\KeyComboViewer.xbf
+Controls\KeyPreview.xbf
 Controls\Titlebar.xbf
 MainWindow.xbf
 SettingsWindow.xbf

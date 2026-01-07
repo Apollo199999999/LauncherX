@@ -3,6 +3,7 @@ using Microsoft.UI.Xaml.Media.Imaging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Runtime.InteropServices.WindowsRuntime;
 using System.Text;
@@ -124,6 +125,37 @@ namespace LauncherXWinUI.Classes
             return dpi;
         }
 
+        /// <summary>
+        /// Sets LauncherX to run on Windows startup using Registry
+        /// </summary>
+        public static void InstallAppOnStartUp()
+        {
+            try
+            {
+                UninstallAppOnStartUp();
+
+                Microsoft.Win32.RegistryKey key = Microsoft.Win32.Registry.CurrentUser.OpenSubKey("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", true);
+                key.SetValue("LauncherX", System.Environment.ProcessPath);
+            }
+            catch { }
+        }
+
+        /// <summary>
+        /// Removes LauncherX from running on Windows startup using Registry
+        /// </summary>
+        public static void UninstallAppOnStartUp()
+        {
+            try
+            {
+                Microsoft.Win32.RegistryKey key = Microsoft.Win32.Registry.CurrentUser.OpenSubKey("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", true);
+
+                if (key != null && key.GetValue("LauncherX") != null)
+                {
+                    key.DeleteValue("LauncherX");
+                }
+            }
+            catch { }
+        }
     }
 
     [Flags]

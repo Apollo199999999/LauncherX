@@ -11,6 +11,11 @@
         <winrtv1:activatableClass name='Microsoft.Windows.Globalization.ApplicationLanguages' threadingModel='both'/>
     </asmv3:file>
     <asmv3:file name='Microsoft.WindowsAppRuntime.dll'>
+        <winrtv1:activatableClass name='Microsoft.Windows.ApplicationModel.Background.BackgroundTaskBuilder' threadingModel='both'/>
+        <winrtv1:activatableClass name='Microsoft.Security.Authentication.OAuth.OAuth2Manager' threadingModel='both'/>
+        <winrtv1:activatableClass name='Microsoft.Security.Authentication.OAuth.AuthRequestParams' threadingModel='both'/>
+        <winrtv1:activatableClass name='Microsoft.Security.Authentication.OAuth.ClientAuthentication' threadingModel='both'/>
+        <winrtv1:activatableClass name='Microsoft.Security.Authentication.OAuth.TokenRequestParams' threadingModel='both'/>
         <winrtv1:activatableClass name='Microsoft.Windows.ApplicationModel.DynamicDependency.AddPackageDependencyOptions' threadingModel='both'/>
         <winrtv1:activatableClass name='Microsoft.Windows.ApplicationModel.DynamicDependency.CreatePackageDependencyOptions' threadingModel='both'/>
         <winrtv1:activatableClass name='Microsoft.Windows.ApplicationModel.DynamicDependency.PackageDependency' threadingModel='both'/>
@@ -27,11 +32,15 @@
         <winrtv1:activatableClass name='Microsoft.Windows.AppNotifications.AppNotification' threadingModel='both'/>
         <winrtv1:activatableClass name='Microsoft.Windows.AppNotifications.AppNotificationProgressData' threadingModel='both'/>
         <winrtv1:activatableClass name='Microsoft.Windows.AppNotifications.AppNotificationActivatedEventArgs' threadingModel='both'/>
+        <winrtv1:activatableClass name='Microsoft.Windows.AppNotifications.AppNotificationConferencingConfig' threadingModel='both'/>
         <winrtv1:activatableClass name='Microsoft.Windows.AppNotifications.Builder.AppNotificationBuilder' threadingModel='both'/>
         <winrtv1:activatableClass name='Microsoft.Windows.AppNotifications.Builder.AppNotificationTextProperties' threadingModel='both'/>
         <winrtv1:activatableClass name='Microsoft.Windows.AppNotifications.Builder.AppNotificationButton' threadingModel='both'/>
         <winrtv1:activatableClass name='Microsoft.Windows.AppNotifications.Builder.AppNotificationProgressBar' threadingModel='both'/>
         <winrtv1:activatableClass name='Microsoft.Windows.AppNotifications.Builder.AppNotificationComboBox' threadingModel='both'/>
+        <winrtv1:activatableClass name='Microsoft.Windows.ApplicationModel.WindowsAppRuntime.RuntimeCompatibilityOptions' threadingModel='both'/>
+        <winrtv1:activatableClass name='Microsoft.Windows.BadgeNotifications.BadgeNotificationManager' threadingModel='both'/>
+        <winrtv1:activatableClass name='Microsoft.Windows.Foundation.DecimalHelper' threadingModel='both'/>
         <winrtv1:activatableClass name='Microsoft.Windows.Management.Deployment.AddPackageOptions' threadingModel='both'/>
         <winrtv1:activatableClass name='Microsoft.Windows.Management.Deployment.EnsureReadyOptions' threadingModel='both'/>
         <winrtv1:activatableClass name='Microsoft.Windows.Management.Deployment.PackageDeploymentManager' threadingModel='both'/>
@@ -46,6 +55,7 @@
         <winrtv1:activatableClass name='Microsoft.Windows.Management.Deployment.RegisterPackageOptions' threadingModel='both'/>
         <winrtv1:activatableClass name='Microsoft.Windows.Management.Deployment.RemovePackageOptions' threadingModel='both'/>
         <winrtv1:activatableClass name='Microsoft.Windows.Management.Deployment.StagePackageOptions' threadingModel='both'/>
+        <winrtv1:activatableClass name='Microsoft.Windows.Media.Capture.CameraCaptureUI' threadingModel='both'/>
         <winrtv1:activatableClass name='Microsoft.Windows.PushNotifications.PushNotificationChannel' threadingModel='both'/>
         <winrtv1:activatableClass name='Microsoft.Windows.PushNotifications.PushNotificationCreateChannelResult' threadingModel='both'/>
         <winrtv1:activatableClass name='Microsoft.Windows.PushNotifications.PushNotificationActivationInfo' threadingModel='both'/>
@@ -55,8 +65,140 @@
         <winrtv1:activatableClass name='Microsoft.Windows.Security.AccessControl.SecurityDescriptorHelpers' threadingModel='both'/>
         <winrtv1:activatableClass name='Microsoft.Windows.Storage.ApplicationData' threadingModel='both'/>
         <winrtv1:activatableClass name='Microsoft.Windows.Storage.ApplicationDataContainer' threadingModel='both'/>
+        <winrtv1:activatableClass name='Microsoft.Windows.Storage.Pickers.FileOpenPicker' threadingModel='both'/>
+        <winrtv1:activatableClass name='Microsoft.Windows.Storage.Pickers.FileSavePicker' threadingModel='both'/>
+        <winrtv1:activatableClass name='Microsoft.Windows.Storage.Pickers.FolderPicker' threadingModel='both'/>
         <winrtv1:activatableClass name='Microsoft.Windows.System.EnvironmentManager' threadingModel='both'/>
         <winrtv1:activatableClass name='Microsoft.Windows.System.Power.PowerManager' threadingModel='both'/>
+    </asmv3:file>
+    <asmv3:file name='CoreMessagingXP.dll'>
+        <winrtv1:activatableClass name='Microsoft.UI.Dispatching.DispatcherExitDeferral' threadingModel='both'/>
+        <winrtv1:activatableClass name='Microsoft.UI.Dispatching.DispatcherQueue' threadingModel='both'/>
+        <winrtv1:activatableClass name='Microsoft.UI.Dispatching.DispatcherQueueController' threadingModel='both'/>
+    </asmv3:file>
+    <asmv3:file name='dcompi.dll'>
+        <winrtv1:activatableClass name='Microsoft.UI.Composition.AnimationController' threadingModel='both'/>
+        <winrtv1:activatableClass name='Microsoft.UI.Composition.CompositionAnimation' threadingModel='both'/>
+        <winrtv1:activatableClass name='Microsoft.UI.Composition.CompositionApiInformation' threadingModel='both'/>
+        <winrtv1:activatableClass name='Microsoft.UI.Composition.CompositionBrush' threadingModel='both'/>
+        <winrtv1:activatableClass name='Microsoft.UI.Composition.CompositionCapabilities' threadingModel='both'/>
+        <winrtv1:activatableClass name='Microsoft.UI.Composition.CompositionClip' threadingModel='both'/>
+        <winrtv1:activatableClass name='Microsoft.UI.Composition.CompositionDrawingSurface' threadingModel='both'/>
+        <winrtv1:activatableClass name='Microsoft.UI.Composition.CompositionEasingFunction' threadingModel='both'/>
+        <winrtv1:activatableClass name='Microsoft.UI.Composition.CompositionEffectSourceParameter' threadingModel='both'/>
+        <winrtv1:activatableClass name='Microsoft.UI.Composition.CompositionGeometry' threadingModel='both'/>
+        <winrtv1:activatableClass name='Microsoft.UI.Composition.CompositionGradientBrush' threadingModel='both'/>
+        <winrtv1:activatableClass name='Microsoft.UI.Composition.CompositionLight' threadingModel='both'/>
+        <winrtv1:activatableClass name='Microsoft.UI.Composition.CompositionObject' threadingModel='both'/>
+        <winrtv1:activatableClass name='Microsoft.UI.Composition.CompositionPath' threadingModel='both'/>
+        <winrtv1:activatableClass name='Microsoft.UI.Composition.CompositionProjectedShadowCasterCollection' threadingModel='both'/>
+        <winrtv1:activatableClass name='Microsoft.UI.Composition.CompositionShadow' threadingModel='both'/>
+        <winrtv1:activatableClass name='Microsoft.UI.Composition.CompositionShape' threadingModel='both'/>
+        <winrtv1:activatableClass name='Microsoft.UI.Composition.CompositionTransform' threadingModel='both'/>
+        <winrtv1:activatableClass name='Microsoft.UI.Composition.CompositionVirtualDrawingSurface' threadingModel='both'/>
+        <winrtv1:activatableClass name='Microsoft.UI.Composition.Compositor' threadingModel='both'/>
+        <winrtv1:activatableClass name='Microsoft.UI.Composition.ContainerVisual' threadingModel='both'/>
+        <winrtv1:activatableClass name='Microsoft.UI.Composition.Core.CompositorController' threadingModel='both'/>
+        <winrtv1:activatableClass name='Microsoft.UI.Composition.Diagnostics.CompositionDebugSettings' threadingModel='both'/>
+        <winrtv1:activatableClass name='Microsoft.UI.Composition.Effects.SceneLightingEffect' threadingModel='both'/>
+        <winrtv1:activatableClass name='Microsoft.UI.Composition.Experimental.ExpCompositionVisualSurface' threadingModel='both'/>
+        <winrtv1:activatableClass name='Microsoft.UI.Composition.Interactions.CompositionConditionalValue' threadingModel='both'/>
+        <winrtv1:activatableClass name='Microsoft.UI.Composition.Interactions.InteractionTracker' threadingModel='both'/>
+        <winrtv1:activatableClass name='Microsoft.UI.Composition.Interactions.InteractionTrackerInertiaModifier' threadingModel='both'/>
+        <winrtv1:activatableClass name='Microsoft.UI.Composition.Interactions.InteractionTrackerInertiaMotion' threadingModel='both'/>
+        <winrtv1:activatableClass name='Microsoft.UI.Composition.Interactions.InteractionTrackerInertiaNaturalMotion' threadingModel='both'/>
+        <winrtv1:activatableClass name='Microsoft.UI.Composition.Interactions.InteractionTrackerInertiaRestingValue' threadingModel='both'/>
+        <winrtv1:activatableClass name='Microsoft.UI.Composition.Interactions.InteractionTrackerVector2InertiaModifier' threadingModel='both'/>
+        <winrtv1:activatableClass name='Microsoft.UI.Composition.Interactions.InteractionTrackerVector2InertiaNaturalMotion' threadingModel='both'/>
+        <winrtv1:activatableClass name='Microsoft.UI.Composition.Interactions.VisualInteractionSource' threadingModel='both'/>
+        <winrtv1:activatableClass name='Microsoft.UI.Composition.KeyFrameAnimation' threadingModel='both'/>
+        <winrtv1:activatableClass name='Microsoft.UI.Composition.NaturalMotionAnimation' threadingModel='both'/>
+        <winrtv1:activatableClass name='Microsoft.UI.Composition.ScalarNaturalMotionAnimation' threadingModel='both'/>
+        <winrtv1:activatableClass name='Microsoft.UI.Composition.Scenes.SceneComponent' threadingModel='both'/>
+        <winrtv1:activatableClass name='Microsoft.UI.Composition.Scenes.SceneMaterial' threadingModel='both'/>
+        <winrtv1:activatableClass name='Microsoft.UI.Composition.Scenes.SceneMaterialInput' threadingModel='both'/>
+        <winrtv1:activatableClass name='Microsoft.UI.Composition.Scenes.SceneMesh' threadingModel='both'/>
+        <winrtv1:activatableClass name='Microsoft.UI.Composition.Scenes.SceneMeshRendererComponent' threadingModel='both'/>
+        <winrtv1:activatableClass name='Microsoft.UI.Composition.Scenes.SceneMetallicRoughnessMaterial' threadingModel='both'/>
+        <winrtv1:activatableClass name='Microsoft.UI.Composition.Scenes.SceneNode' threadingModel='both'/>
+        <winrtv1:activatableClass name='Microsoft.UI.Composition.Scenes.SceneObject' threadingModel='both'/>
+        <winrtv1:activatableClass name='Microsoft.UI.Composition.Scenes.ScenePbrMaterial' threadingModel='both'/>
+        <winrtv1:activatableClass name='Microsoft.UI.Composition.Scenes.SceneRendererComponent' threadingModel='both'/>
+        <winrtv1:activatableClass name='Microsoft.UI.Composition.Scenes.SceneSurfaceMaterialInput' threadingModel='both'/>
+        <winrtv1:activatableClass name='Microsoft.UI.Composition.Scenes.SceneVisual' threadingModel='both'/>
+        <winrtv1:activatableClass name='Microsoft.UI.Composition.Vector2NaturalMotionAnimation' threadingModel='both'/>
+        <winrtv1:activatableClass name='Microsoft.UI.Composition.Vector3NaturalMotionAnimation' threadingModel='both'/>
+        <winrtv1:activatableClass name='Microsoft.UI.Composition.Visual' threadingModel='both'/>
+    </asmv3:file>
+    <asmv3:file name='Microsoft.Graphics.Display.dll'>
+        <winrtv1:activatableClass name='Microsoft.Graphics.Display.DisplayInformation' threadingModel='both'/>
+    </asmv3:file>
+    <asmv3:file name='Microsoft.UI.Designer.dll'>
+        <winrtv1:activatableClass name='Microsoft.UI.Designer.DesignerOutputHost' threadingModel='both'/>
+    </asmv3:file>
+    <asmv3:file name='Microsoft.UI.dll'>
+        <winrtv1:activatableClass name='Microsoft.UI.Colors' threadingModel='both'/>
+        <winrtv1:activatableClass name='Microsoft.UI.ColorHelper' threadingModel='both'/>
+        <winrtv1:activatableClass name='Microsoft.UI.System.ThemeSettings' threadingModel='both'/>
+    </asmv3:file>
+    <asmv3:file name='Microsoft.UI.Input.dll'>
+        <winrtv1:activatableClass name='Microsoft.UI.Content.ChildSiteLink' threadingModel='both'/>
+        <winrtv1:activatableClass name='Microsoft.UI.Content.ContentAppWindowBridge' threadingModel='both'/>
+        <winrtv1:activatableClass name='Microsoft.UI.Content.ContentCoordinateConverter' threadingModel='both'/>
+        <winrtv1:activatableClass name='Microsoft.UI.Content.ContentExternalBackdropLink' threadingModel='both'/>
+        <winrtv1:activatableClass name='Microsoft.UI.Content.ContentExternalOutputLink' threadingModel='both'/>
+        <winrtv1:activatableClass name='Microsoft.UI.Content.ContentIsland' threadingModel='both'/>
+        <winrtv1:activatableClass name='Microsoft.UI.Content.ContentIslandEnvironment' threadingModel='both'/>
+        <winrtv1:activatableClass name='Microsoft.UI.Content.ContentSite' threadingModel='both'/>
+        <winrtv1:activatableClass name='Microsoft.UI.Content.ContentSiteEnvironment' threadingModel='both'/>
+        <winrtv1:activatableClass name='Microsoft.UI.Content.ContentSiteEnvironmentView' threadingModel='both'/>
+        <winrtv1:activatableClass name='Microsoft.UI.Content.ContentSiteView' threadingModel='both'/>
+        <winrtv1:activatableClass name='Microsoft.UI.Content.CoreWindowSiteBridge' threadingModel='both'/>
+        <winrtv1:activatableClass name='Microsoft.UI.Content.DesktopAttachedSiteBridge' threadingModel='both'/>
+        <winrtv1:activatableClass name='Microsoft.UI.Content.DesktopChildSiteBridge' threadingModel='both'/>
+        <winrtv1:activatableClass name='Microsoft.UI.Content.DesktopPopupSiteBridge' threadingModel='both'/>
+        <winrtv1:activatableClass name='Microsoft.UI.Content.DesktopSiteBridge' threadingModel='both'/>
+        <winrtv1:activatableClass name='Microsoft.UI.Content.ProcessStarter' threadingModel='both'/>
+        <winrtv1:activatableClass name='Microsoft.UI.Content.SystemVisualSiteBridge' threadingModel='both'/>
+        <winrtv1:activatableClass name='Microsoft.UI.Input.DragDrop.DragDropManager' threadingModel='both'/>
+        <winrtv1:activatableClass name='Microsoft.UI.Input.DragDrop.DragOperation' threadingModel='both'/>
+        <winrtv1:activatableClass name='Microsoft.UI.Input.Experimental.ExpPointerPoint' threadingModel='both'/>
+        <winrtv1:activatableClass name='Microsoft.UI.Input.FocusNavigationRequest' threadingModel='both'/>
+        <winrtv1:activatableClass name='Microsoft.UI.Input.GestureRecognizer' threadingModel='both'/>
+        <winrtv1:activatableClass name='Microsoft.UI.Input.InputActivationListener' threadingModel='both'/>
+        <winrtv1:activatableClass name='Microsoft.UI.Input.InputCursor' threadingModel='both'/>
+        <winrtv1:activatableClass name='Microsoft.UI.Input.InputCustomCursor' threadingModel='both'/>
+        <winrtv1:activatableClass name='Microsoft.UI.Input.InputDesktopResourceCursor' threadingModel='both'/>
+        <winrtv1:activatableClass name='Microsoft.UI.Input.InputDesktopNamedResourceCursor' threadingModel='both'/>
+        <winrtv1:activatableClass name='Microsoft.UI.Input.InputFocusController' threadingModel='both'/>
+        <winrtv1:activatableClass name='Microsoft.UI.Input.InputFocusNavigationHost' threadingModel='both'/>
+        <winrtv1:activatableClass name='Microsoft.UI.Input.InputKeyboardSource' threadingModel='both'/>
+        <winrtv1:activatableClass name='Microsoft.UI.Input.InputLightDismissAction' threadingModel='both'/>
+        <winrtv1:activatableClass name='Microsoft.UI.Input.InputNonClientPointerSource' threadingModel='both'/>
+        <winrtv1:activatableClass name='Microsoft.UI.Input.InputObject' threadingModel='both'/>
+        <winrtv1:activatableClass name='Microsoft.UI.Input.InputPopupController' threadingModel='both'/>
+        <winrtv1:activatableClass name='Microsoft.UI.Input.InputPreTranslateKeyboardSource' threadingModel='both'/>
+        <winrtv1:activatableClass name='Microsoft.UI.Input.InputPointerSource' threadingModel='both'/>
+        <winrtv1:activatableClass name='Microsoft.UI.Input.InputSystemCursor' threadingModel='both'/>
+        <winrtv1:activatableClass name='Microsoft.UI.Input.Interop.PenDeviceInterop' threadingModel='both'/>
+        <winrtv1:activatableClass name='Microsoft.UI.Input.PointerPredictor' threadingModel='both'/>
+    </asmv3:file>
+    <asmv3:file name='Microsoft.UI.Windowing.dll'>
+        <winrtv1:activatableClass name='Microsoft.UI.Windowing.AppWindow' threadingModel='both'/>
+        <winrtv1:activatableClass name='Microsoft.UI.Windowing.AppWindowPlacementDetails' threadingModel='both'/>
+        <winrtv1:activatableClass name='Microsoft.UI.Windowing.AppWindowPresenter' threadingModel='both'/>
+        <winrtv1:activatableClass name='Microsoft.UI.Windowing.CompactOverlayPresenter' threadingModel='both'/>
+        <winrtv1:activatableClass name='Microsoft.UI.Windowing.DisplayArea' threadingModel='both'/>
+        <winrtv1:activatableClass name='Microsoft.UI.Windowing.FullScreenPresenter' threadingModel='both'/>
+        <winrtv1:activatableClass name='Microsoft.UI.Windowing.OverlappedPresenter' threadingModel='both'/>
+    </asmv3:file>
+    <asmv3:file name='Microsoft.UI.Windowing.Core.dll'>
+        <winrtv1:activatableClass name='Microsoft.UI.Windowing.AppWindowTitleBar' threadingModel='both'/>
+    </asmv3:file>
+    <asmv3:file name='wuceffectsi.dll'>
+        <winrtv1:activatableClass name='Microsoft.UI.Composition.SystemBackdrops.DesktopAcrylicController' threadingModel='both'/>
+        <winrtv1:activatableClass name='Microsoft.UI.Composition.SystemBackdrops.MicaController' threadingModel='both'/>
+        <winrtv1:activatableClass name='Microsoft.UI.Composition.SystemBackdrops.SystemBackdropConfiguration' threadingModel='both'/>
     </asmv3:file>
     <asmv3:file name='Microsoft.UI.Xaml.dll'>
         <winrtv1:activatableClass name='Microsoft.UI.Xaml.AdaptiveTrigger' threadingModel='both'/>
@@ -806,129 +948,6 @@
         <winrtv1:activatableClass name='Microsoft.Web.WebView2.Core.CoreWebView2Environment' threadingModel='both'/>
         <winrtv1:activatableClass name='Microsoft.Web.WebView2.Core.CoreWebView2EnvironmentOptions' threadingModel='both'/>
     </asmv3:file>
-    <asmv3:file name='CoreMessagingXP.dll'>
-        <winrtv1:activatableClass name='Microsoft.UI.Dispatching.DispatcherExitDeferral' threadingModel='both'/>
-        <winrtv1:activatableClass name='Microsoft.UI.Dispatching.DispatcherQueue' threadingModel='both'/>
-        <winrtv1:activatableClass name='Microsoft.UI.Dispatching.DispatcherQueueController' threadingModel='both'/>
-    </asmv3:file>
-    <asmv3:file name='dcompi.dll'>
-        <winrtv1:activatableClass name='Microsoft.UI.Composition.AnimationController' threadingModel='both'/>
-        <winrtv1:activatableClass name='Microsoft.UI.Composition.CompositionAnimation' threadingModel='both'/>
-        <winrtv1:activatableClass name='Microsoft.UI.Composition.CompositionApiInformation' threadingModel='both'/>
-        <winrtv1:activatableClass name='Microsoft.UI.Composition.CompositionBrush' threadingModel='both'/>
-        <winrtv1:activatableClass name='Microsoft.UI.Composition.CompositionCapabilities' threadingModel='both'/>
-        <winrtv1:activatableClass name='Microsoft.UI.Composition.CompositionClip' threadingModel='both'/>
-        <winrtv1:activatableClass name='Microsoft.UI.Composition.CompositionDrawingSurface' threadingModel='both'/>
-        <winrtv1:activatableClass name='Microsoft.UI.Composition.CompositionEasingFunction' threadingModel='both'/>
-        <winrtv1:activatableClass name='Microsoft.UI.Composition.CompositionEffectSourceParameter' threadingModel='both'/>
-        <winrtv1:activatableClass name='Microsoft.UI.Composition.CompositionGeometry' threadingModel='both'/>
-        <winrtv1:activatableClass name='Microsoft.UI.Composition.CompositionGradientBrush' threadingModel='both'/>
-        <winrtv1:activatableClass name='Microsoft.UI.Composition.CompositionLight' threadingModel='both'/>
-        <winrtv1:activatableClass name='Microsoft.UI.Composition.CompositionObject' threadingModel='both'/>
-        <winrtv1:activatableClass name='Microsoft.UI.Composition.CompositionPath' threadingModel='both'/>
-        <winrtv1:activatableClass name='Microsoft.UI.Composition.CompositionProjectedShadowCasterCollection' threadingModel='both'/>
-        <winrtv1:activatableClass name='Microsoft.UI.Composition.CompositionShadow' threadingModel='both'/>
-        <winrtv1:activatableClass name='Microsoft.UI.Composition.CompositionShape' threadingModel='both'/>
-        <winrtv1:activatableClass name='Microsoft.UI.Composition.CompositionTransform' threadingModel='both'/>
-        <winrtv1:activatableClass name='Microsoft.UI.Composition.CompositionVirtualDrawingSurface' threadingModel='both'/>
-        <winrtv1:activatableClass name='Microsoft.UI.Composition.Compositor' threadingModel='both'/>
-        <winrtv1:activatableClass name='Microsoft.UI.Composition.ContainerVisual' threadingModel='both'/>
-        <winrtv1:activatableClass name='Microsoft.UI.Composition.Core.CompositorController' threadingModel='both'/>
-        <winrtv1:activatableClass name='Microsoft.UI.Composition.Diagnostics.CompositionDebugSettings' threadingModel='both'/>
-        <winrtv1:activatableClass name='Microsoft.UI.Composition.Effects.SceneLightingEffect' threadingModel='both'/>
-        <winrtv1:activatableClass name='Microsoft.UI.Composition.Experimental.ExpCompositionVisualSurface' threadingModel='both'/>
-        <winrtv1:activatableClass name='Microsoft.UI.Composition.Interactions.CompositionConditionalValue' threadingModel='both'/>
-        <winrtv1:activatableClass name='Microsoft.UI.Composition.Interactions.InteractionTracker' threadingModel='both'/>
-        <winrtv1:activatableClass name='Microsoft.UI.Composition.Interactions.InteractionTrackerInertiaModifier' threadingModel='both'/>
-        <winrtv1:activatableClass name='Microsoft.UI.Composition.Interactions.InteractionTrackerInertiaMotion' threadingModel='both'/>
-        <winrtv1:activatableClass name='Microsoft.UI.Composition.Interactions.InteractionTrackerInertiaNaturalMotion' threadingModel='both'/>
-        <winrtv1:activatableClass name='Microsoft.UI.Composition.Interactions.InteractionTrackerInertiaRestingValue' threadingModel='both'/>
-        <winrtv1:activatableClass name='Microsoft.UI.Composition.Interactions.InteractionTrackerVector2InertiaModifier' threadingModel='both'/>
-        <winrtv1:activatableClass name='Microsoft.UI.Composition.Interactions.InteractionTrackerVector2InertiaNaturalMotion' threadingModel='both'/>
-        <winrtv1:activatableClass name='Microsoft.UI.Composition.Interactions.VisualInteractionSource' threadingModel='both'/>
-        <winrtv1:activatableClass name='Microsoft.UI.Composition.KeyFrameAnimation' threadingModel='both'/>
-        <winrtv1:activatableClass name='Microsoft.UI.Composition.NaturalMotionAnimation' threadingModel='both'/>
-        <winrtv1:activatableClass name='Microsoft.UI.Composition.ScalarNaturalMotionAnimation' threadingModel='both'/>
-        <winrtv1:activatableClass name='Microsoft.UI.Composition.Scenes.SceneComponent' threadingModel='both'/>
-        <winrtv1:activatableClass name='Microsoft.UI.Composition.Scenes.SceneMaterial' threadingModel='both'/>
-        <winrtv1:activatableClass name='Microsoft.UI.Composition.Scenes.SceneMaterialInput' threadingModel='both'/>
-        <winrtv1:activatableClass name='Microsoft.UI.Composition.Scenes.SceneMesh' threadingModel='both'/>
-        <winrtv1:activatableClass name='Microsoft.UI.Composition.Scenes.SceneMeshRendererComponent' threadingModel='both'/>
-        <winrtv1:activatableClass name='Microsoft.UI.Composition.Scenes.SceneMetallicRoughnessMaterial' threadingModel='both'/>
-        <winrtv1:activatableClass name='Microsoft.UI.Composition.Scenes.SceneNode' threadingModel='both'/>
-        <winrtv1:activatableClass name='Microsoft.UI.Composition.Scenes.SceneObject' threadingModel='both'/>
-        <winrtv1:activatableClass name='Microsoft.UI.Composition.Scenes.ScenePbrMaterial' threadingModel='both'/>
-        <winrtv1:activatableClass name='Microsoft.UI.Composition.Scenes.SceneRendererComponent' threadingModel='both'/>
-        <winrtv1:activatableClass name='Microsoft.UI.Composition.Scenes.SceneSurfaceMaterialInput' threadingModel='both'/>
-        <winrtv1:activatableClass name='Microsoft.UI.Composition.Scenes.SceneVisual' threadingModel='both'/>
-        <winrtv1:activatableClass name='Microsoft.UI.Composition.Vector2NaturalMotionAnimation' threadingModel='both'/>
-        <winrtv1:activatableClass name='Microsoft.UI.Composition.Vector3NaturalMotionAnimation' threadingModel='both'/>
-        <winrtv1:activatableClass name='Microsoft.UI.Composition.Visual' threadingModel='both'/>
-    </asmv3:file>
-    <asmv3:file name='Microsoft.Graphics.Display.dll'>
-        <winrtv1:activatableClass name='Microsoft.Graphics.Display.DisplayInformation' threadingModel='both'/>
-    </asmv3:file>
-    <asmv3:file name='Microsoft.UI.dll'>
-        <winrtv1:activatableClass name='Microsoft.UI.Colors' threadingModel='both'/>
-        <winrtv1:activatableClass name='Microsoft.UI.ColorHelper' threadingModel='both'/>
-        <winrtv1:activatableClass name='Microsoft.UI.System.ThemeSettings' threadingModel='both'/>
-    </asmv3:file>
-    <asmv3:file name='Microsoft.UI.Input.dll'>
-        <winrtv1:activatableClass name='Microsoft.UI.Content.ChildContentLink' threadingModel='both'/>
-        <winrtv1:activatableClass name='Microsoft.UI.Content.ContentAppWindowBridge' threadingModel='both'/>
-        <winrtv1:activatableClass name='Microsoft.UI.Content.ContentCoordinateConverter' threadingModel='both'/>
-        <winrtv1:activatableClass name='Microsoft.UI.Content.ContentExternalBackdropLink' threadingModel='both'/>
-        <winrtv1:activatableClass name='Microsoft.UI.Content.ContentExternalOutputLink' threadingModel='both'/>
-        <winrtv1:activatableClass name='Microsoft.UI.Content.ContentIsland' threadingModel='both'/>
-        <winrtv1:activatableClass name='Microsoft.UI.Content.ContentIslandEnvironment' threadingModel='both'/>
-        <winrtv1:activatableClass name='Microsoft.UI.Content.ContentSite' threadingModel='both'/>
-        <winrtv1:activatableClass name='Microsoft.UI.Content.ContentSiteEnvironment' threadingModel='both'/>
-        <winrtv1:activatableClass name='Microsoft.UI.Content.ContentSiteEnvironmentView' threadingModel='both'/>
-        <winrtv1:activatableClass name='Microsoft.UI.Content.ContentSiteView' threadingModel='both'/>
-        <winrtv1:activatableClass name='Microsoft.UI.Content.CoreWindowSiteBridge' threadingModel='both'/>
-        <winrtv1:activatableClass name='Microsoft.UI.Content.DesktopChildSiteBridge' threadingModel='both'/>
-        <winrtv1:activatableClass name='Microsoft.UI.Content.DesktopSiteBridge' threadingModel='both'/>
-        <winrtv1:activatableClass name='Microsoft.UI.Content.ProcessStarter' threadingModel='both'/>
-        <winrtv1:activatableClass name='Microsoft.UI.Content.ReadOnlyDesktopSiteBridge' threadingModel='both'/>
-        <winrtv1:activatableClass name='Microsoft.UI.Content.SystemVisualSiteBridge' threadingModel='both'/>
-        <winrtv1:activatableClass name='Microsoft.UI.Input.DragDrop.DragDropManager' threadingModel='both'/>
-        <winrtv1:activatableClass name='Microsoft.UI.Input.DragDrop.DragOperation' threadingModel='both'/>
-        <winrtv1:activatableClass name='Microsoft.UI.Input.Experimental.ExpPointerPoint' threadingModel='both'/>
-        <winrtv1:activatableClass name='Microsoft.UI.Input.FocusNavigationRequest' threadingModel='both'/>
-        <winrtv1:activatableClass name='Microsoft.UI.Input.GestureRecognizer' threadingModel='both'/>
-        <winrtv1:activatableClass name='Microsoft.UI.Input.InputActivationListener' threadingModel='both'/>
-        <winrtv1:activatableClass name='Microsoft.UI.Input.InputCursor' threadingModel='both'/>
-        <winrtv1:activatableClass name='Microsoft.UI.Input.InputCustomCursor' threadingModel='both'/>
-        <winrtv1:activatableClass name='Microsoft.UI.Input.InputDesktopResourceCursor' threadingModel='both'/>
-        <winrtv1:activatableClass name='Microsoft.UI.Input.InputDesktopNamedResourceCursor' threadingModel='both'/>
-        <winrtv1:activatableClass name='Microsoft.UI.Input.InputFocusController' threadingModel='both'/>
-        <winrtv1:activatableClass name='Microsoft.UI.Input.InputFocusNavigationHost' threadingModel='both'/>
-        <winrtv1:activatableClass name='Microsoft.UI.Input.InputKeyboardSource' threadingModel='both'/>
-        <winrtv1:activatableClass name='Microsoft.UI.Input.InputLightDismissAction' threadingModel='both'/>
-        <winrtv1:activatableClass name='Microsoft.UI.Input.InputObject' threadingModel='both'/>
-        <winrtv1:activatableClass name='Microsoft.UI.Input.InputPreTranslateKeyboardSource' threadingModel='both'/>
-        <winrtv1:activatableClass name='Microsoft.UI.Input.InputNonClientPointerSource' threadingModel='both'/>
-        <winrtv1:activatableClass name='Microsoft.UI.Input.InputPointerSource' threadingModel='both'/>
-        <winrtv1:activatableClass name='Microsoft.UI.Input.InputSystemCursor' threadingModel='both'/>
-        <winrtv1:activatableClass name='Microsoft.UI.Input.Interop.PenDeviceInterop' threadingModel='both'/>
-        <winrtv1:activatableClass name='Microsoft.UI.Input.PointerPredictor' threadingModel='both'/>
-    </asmv3:file>
-    <asmv3:file name='Microsoft.UI.Windowing.dll'>
-        <winrtv1:activatableClass name='Microsoft.UI.Windowing.AppWindow' threadingModel='both'/>
-        <winrtv1:activatableClass name='Microsoft.UI.Windowing.AppWindowPresenter' threadingModel='both'/>
-        <winrtv1:activatableClass name='Microsoft.UI.Windowing.CompactOverlayPresenter' threadingModel='both'/>
-        <winrtv1:activatableClass name='Microsoft.UI.Windowing.DisplayArea' threadingModel='both'/>
-        <winrtv1:activatableClass name='Microsoft.UI.Windowing.FullScreenPresenter' threadingModel='both'/>
-        <winrtv1:activatableClass name='Microsoft.UI.Windowing.OverlappedPresenter' threadingModel='both'/>
-    </asmv3:file>
-    <asmv3:file name='Microsoft.UI.Windowing.Core.dll'>
-        <winrtv1:activatableClass name='Microsoft.UI.Windowing.AppWindowTitleBar' threadingModel='both'/>
-    </asmv3:file>
-    <asmv3:file name='wuceffectsi.dll'>
-        <winrtv1:activatableClass name='Microsoft.UI.Composition.SystemBackdrops.DesktopAcrylicController' threadingModel='both'/>
-        <winrtv1:activatableClass name='Microsoft.UI.Composition.SystemBackdrops.MicaController' threadingModel='both'/>
-        <winrtv1:activatableClass name='Microsoft.UI.Composition.SystemBackdrops.SystemBackdropConfiguration' threadingModel='both'/>
-    </asmv3:file>
     <asmv3:file name='Microsoft.Windows.Widgets.dll'>
         <winrtv1:activatableClass name='Microsoft.Windows.Widgets.Providers.WidgetUpdateRequestOptions' threadingModel='both'/>
         <winrtv1:activatableClass name='Microsoft.Windows.Widgets.Providers.WidgetManager' threadingModel='both'/>
@@ -938,5 +957,44 @@
         <winrtv1:activatableClass name='Microsoft.Windows.Widgets.Feeds.Providers.CustomQueryParametersUpdateOptions' threadingModel='both'/>
         <winrtv1:activatableClass name='Microsoft.Windows.Widgets.Feeds.Providers.FeedResourceResponse' threadingModel='both'/>
         <winrtv1:activatableClass name='Microsoft.Windows.Widgets.Notifications.FeedAnnouncement' threadingModel='both'/>
+    </asmv3:file>
+    <asmv3:file name='Microsoft.Windows.AI.Imaging.dll'>
+        <winrtv1:activatableClass name='Microsoft.Windows.AI.Imaging.TextRecognizer' threadingModel='both'/>
+        <winrtv1:activatableClass name='Microsoft.Windows.AI.Imaging.TextRecognizerOptions' threadingModel='both'/>
+        <winrtv1:activatableClass name='Microsoft.Windows.AI.Imaging.ImageDescriptionGenerator' threadingModel='both'/>
+        <winrtv1:activatableClass name='Microsoft.Windows.AI.Imaging.ImageDescriptionResult' threadingModel='both'/>
+        <winrtv1:activatableClass name='Microsoft.Windows.AI.Imaging.ImageObjectExtractor' threadingModel='both'/>
+        <winrtv1:activatableClass name='Microsoft.Windows.AI.Imaging.ImageObjectRemover' threadingModel='both'/>
+        <winrtv1:activatableClass name='Microsoft.Windows.AI.Imaging.ImageScaler' threadingModel='both'/>
+    </asmv3:file>
+    <asmv3:file name='Microsoft.Graphics.Imaging.dll'>
+        <winrtv1:activatableClass name='Microsoft.Graphics.Imaging.ImageBuffer' threadingModel='both'/>
+    </asmv3:file>
+    <asmv3:file name='Microsoft.Windows.Workloads.dll'>
+        <winrtv1:activatableClass name='Microsoft.Windows.Workloads.WorkloadManager' threadingModel='both'/>
+    </asmv3:file>
+    <asmv3:file name='Microsoft.Windows.AI.Text.dll'>
+        <winrtv1:activatableClass name='Microsoft.Windows.AI.Foundation.EmbeddingVector' threadingModel='both'/>
+        <winrtv1:activatableClass name='Microsoft.Windows.AI.Text.LanguageModel' threadingModel='both'/>
+        <winrtv1:activatableClass name='Microsoft.Windows.AI.Text.LanguageModelResponse' threadingModel='both'/>
+        <winrtv1:activatableClass name='Microsoft.Windows.AI.Text.TextIntelligence' threadingModel='both'/>
+    </asmv3:file>
+    <asmv3:file name='Microsoft.Windows.AI.ContentSafety.dll'>
+        <winrtv1:activatableClass name='Microsoft.Windows.AI.ContentSafety.ContentFilterOptions' threadingModel='both'/>
+    </asmv3:file>
+    <asmv3:file name='Microsoft.Windows.AI.MachineLearning.dll'>
+        <winrtv1:activatableClass name='Microsoft.Windows.AI.MachineLearning.ExecutionProviderCatalog' threadingModel='both'/>
+        <winrtv1:activatableClass name='Microsoft.Windows.AI.MachineLearning.ExecutionProvider' threadingModel='both'/>
+        <winrtv1:activatableClass name='Microsoft.Windows.AI.MachineLearning.ExecutionProviderReadyResult' threadingModel='both'/>
+        <winrtv1:activatableClass name='Microsoft.Windows.AI.MachineLearning.CatalogModelInfo' threadingModel='both'/>
+        <winrtv1:activatableClass name='Microsoft.Windows.AI.MachineLearning.ModelCatalog' threadingModel='both'/>
+        <winrtv1:activatableClass name='Microsoft.Windows.AI.MachineLearning.CatalogModelInstance' threadingModel='both'/>
+        <winrtv1:activatableClass name='Microsoft.Windows.AI.MachineLearning.ModelCatalogSource' threadingModel='both'/>
+        <winrtv1:activatableClass name='Microsoft.Windows.AI.MachineLearning.CatalogModelInstanceResult' threadingModel='both'/>
+    </asmv3:file>
+    <asmv3:file name='SessionHandleIPCProxyStub.dll'>
+        <asmv3:comClass clsid='{4321F616-6804-40F2-B584-B0D7708A720D}'/>        <asmv3:comInterfaceProxyStub name='ISessionHandleIPC' iid='{2B54FB34-8041-4505-9F31-7FB3BA0D6255}'/>
+        <asmv3:comInterfaceProxyStub name='ISessionEventHandleIPC' iid='{EBF3748D-1EF9-4B89-BA13-65D2B9EC04F0}'/>
+        <asmv3:comInterfaceProxyStub name='ILanguageModelAdapterHandleIPC' iid='{F75B465E-A49B-486F-ABBE-33F68E7E80ED}'/>
     </asmv3:file>
 </assembly>
