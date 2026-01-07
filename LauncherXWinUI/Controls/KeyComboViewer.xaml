@@ -58,7 +58,17 @@
                         <Run FontWeight="Bold">Alt,</Run>
                         <Run>or</Run>
                         <Run FontWeight="Bold">Shift</Run>
-                        <Run>are valid</Run>
+                        <Run>are valid.</Run>
+                    </TextBlock.Inlines>
+                </TextBlock>
+
+                <TextBlock Foreground="{StaticResource TextFillColorSecondaryBrush}">
+                    <TextBlock.Inlines>
+                        <Run>Pressing</Run>
+                        <Run FontWeight="Bold">Enter</Run>
+                        <Run>or</Run>
+                        <Run FontWeight="Bold">Escape</Run>
+                        <Run>will close this dialog, and will not register as a keyboard shortcut.</Run>
                     </TextBlock.Inlines>
                 </TextBlock>
             </StackPanel>

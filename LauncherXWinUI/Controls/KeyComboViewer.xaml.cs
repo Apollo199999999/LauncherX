@@ -113,7 +113,8 @@ namespace LauncherXWinUI.Controls
                     keyPreviewDialog.Size = 2.0;
                     keyComboViewer.KeyComboDialogPanel.Children.Add(keyPreviewDialog);
 
-                    // Also, enable the primary button in the ContentDialog (we assume key combo is valid)
+                    // Also, enable the primary button in the ContentDialog and hide the infobar (we assume key combo is valid)
+                    keyComboViewer.InvalidInfoBar.IsOpen = false;
                     keyComboViewer.KeyComboDialog.IsPrimaryButtonEnabled = true;
                 }
             }
@@ -214,6 +215,11 @@ namespace LauncherXWinUI.Controls
 
                 verifyKeyHook.UnregisterHotKey();
 
+            }
+            else
+            {
+                // Reset all UI controls
+                UpdateUIFromKeyCombo(this, this.KeyCombo);
             }
         }
 
