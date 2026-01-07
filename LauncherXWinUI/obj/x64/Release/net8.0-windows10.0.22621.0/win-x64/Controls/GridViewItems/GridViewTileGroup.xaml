@@ -77,7 +77,10 @@
                         <RowDefinition Height="*" />
                     </Grid.RowDefinitions>
 
-                    <StackPanel Grid.Row="0" Orientation="Horizontal">
+                    <StackPanel
+                        Grid.Row="0"
+                        HorizontalAlignment="Stretch"
+                        Orientation="Horizontal">
                         <TextBlock
                             VerticalAlignment="Center"
                             Style="{ThemeResource SubtitleTextBlockStyle}"
@@ -102,7 +105,7 @@
                         IsItemClickEnabled="True"
                         SelectionMode="Single">
                         <GridView.ItemContainerStyle>
-                            <Style TargetType="GridViewItem">
+                            <Style BasedOn="{StaticResource DefaultGridViewItemStyle}" TargetType="GridViewItem">
                                 <!--  Set a background property for GridViewItem for drag and drop events to work properly  -->
                                 <Setter Property="Background" Value="Transparent" />
                             </Style>

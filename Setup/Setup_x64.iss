@@ -2,7 +2,7 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "LauncherX"
-#define MyAppVersion "2.1.2"
+#define MyAppVersion "2.2.0"
 #define MyAppPublisher "ClickPhase"
 #define MyAppURL "https://clickphase.vercel.app/launcherx"
 #define MyAppExeName "LauncherX.exe"
@@ -27,12 +27,12 @@ LicenseFile=C:\Users\fligh\source\repos\LauncherX\Setup\COMBINED_LICENSES.TXT
 ; Uncomment the following line to run in non administrative install mode (install for current user only.)
 ;PrivilegesRequired=lowest
 OutputDir=C:\Users\fligh\source\repos\LauncherX\Setup
-OutputBaseFilename=LauncherX_2.1.2_x64_Setup
+OutputBaseFilename=LauncherX_2.2.0_x64_Setup
 SetupIconFile=C:\Users\fligh\source\repos\LauncherX\LauncherXWinUI\Resources\icon.ico
 Compression=lzma
 SolidCompression=yes
 WizardStyle=modern
-VersionInfoVersion = 2.1.2
+VersionInfoVersion = 2.2.0
 UninstallDisplayIcon={app}\LauncherX.exe
 UninstallDisplayName=LauncherX
 
@@ -54,4 +54,50 @@ Name: "{commondesktop}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"; Tasks: 
 [UninstallRun]
 Filename: "{cmd}"; Parameters: "/C ""taskkill /im {#MyAppExeName} /f /t"; RunOnceId: "Uninstall"
 
+[Code]
+(*
+Source - https://stackoverflow.com/a/11739624
+Posted by RobeN, modified by community. See post 'Timeline' for change history
+Retrieved 2026-01-07, License - CC BY-SA 3.0
+*)
+
+function GetUninstallString: string;
+var
+  sUnInstPath: string;
+  sUnInstallString: String;
+begin
+  Result := '';
+  sUnInstPath := ExpandConstant('Software\Microsoft\Windows\CurrentVersion\Uninstall\{{42F8A7FC-7816-44A3-ACCE-2E65EA8BBA0B}_is1'); { Your App GUID/ID }
+  sUnInstallString := '';
+  if not RegQueryStringValue(HKLM, sUnInstPath, 'UninstallString', sUnInstallString) then
+    RegQueryStringValue(HKCU, sUnInstPath, 'UninstallString', sUnInstallString);
+  Result := sUnInstallString;
+end;
+
+function IsUpgrade: Boolean;
+begin
+  Result := (GetUninstallString() <> '');
+end;
+
+function InitializeSetup: Boolean;
+var
+  V: Integer;
+  iResultCode: Integer;
+  sUnInstallString: string;
+begin
+  Result := True; { in case when no previous version is found }
+  if RegValueExists(HKEY_LOCAL_MACHINE,'Software\Microsoft\Windows\CurrentVersion\Uninstall\{42F8A7FC-7816-44A3-ACCE-2E65EA8BBA0B}_is1', 'UninstallString') then  { Your App GUID/ID }
+  begin
+    V := MsgBox(ExpandConstant('Another version of LauncherX is already installed on your system. It will need to be uninstalled first before this version of LauncherX can be installed. If you choose not to uninstall it, Setup will exit. Continue?'), mbInformation, MB_YESNO); { Custom Message if App installed }
+    if V = IDYES then
+    begin
+      sUnInstallString := GetUninstallString();
+      sUnInstallString :=  RemoveQuotes(sUnInstallString);
+      Exec(ExpandConstant(sUnInstallString), '/SILENT /NORESTART /SUPPRESSMSGBOXES','', SW_HIDE, ewWaitUntilTerminated, iResultCode);
+      Result := True; 
+    end
+    else
+      Result := False;
+  end;
+end;
 
