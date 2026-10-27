@@ -519,7 +519,10 @@ namespace LauncherXWinUI.Controls.GridViewItems
             // Try to open file location
             try
             {
-                Process.Start(new ProcessStartInfo { FileName = "explorer.exe", UseShellExecute = true, Arguments = "/select, " + ExecutingPath });
+                var startInfo = new ProcessStartInfo { FileName = "explorer.exe", UseShellExecute = true };
+                startInfo.ArgumentList.Add("/select,");
+                startInfo.ArgumentList.Add(ExecutingPath);
+                Process.Start(startInfo);
             }
             catch
             {
